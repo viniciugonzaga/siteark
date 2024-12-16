@@ -1,0 +1,992 @@
+body {
+    margin: 0;
+    font-family: 'Lora', serif;
+    background: url('../imagens/lobby_npc.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Impede o scroll horizontal */
+}
+
+/* Estilo inicial para a página */
+.page {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estilo ativo para a página carregada */
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    
+
+    .page {
+        padding: 10px; /* Adiciona espaçamento nas laterais para evitar cortes */
+    }
+}
+
+/* Responsividade para smartphones */
+@media (max-width: 480px) {
+    body {
+        background-size: cover;
+        font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
+    }
+
+    .page {
+        padding: 5px; /* Reduz o espaçamento */
+    }
+
+    h1, h2, h3, p {
+        font-size: 90%; /* Reduz os tamanhos de título e parágrafos */
+        line-height: 1.4; /* Aumenta o espaçamento entre linhas para melhor leitura */
+    }
+
+    img {
+        width: 100%; /* Imagens ocupam toda a largura da tela */
+        height: auto; /* Mantém proporção */
+    }
+}
+
+/* Adiciona quebra de linhas em telas menores para elementos que podem sobrepor */
+@media (max-width: 360px) {
+    h1, h2 {
+        font-size: 85%; /* Reduz ainda mais os tamanhos de fonte */
+    }
+}
+
+/* Estilo da Nav-Bar */
+nav {
+    background: rgba(39, 8, 51, 0.021); /* Transparência com fundo escuro */
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed; /* Fixa o nav-bar no topo */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 1068px) {
+    nav {
+        padding: 8px 15px; /* Reduzindo o espaçamento para telas menores */
+    }
+
+    nav .logo {
+        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
+    }
+
+    nav ul {
+        flex-direction: column; /* Alinha os itens do menu na vertical */
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 5px 0; /* Espaçamento entre os itens do menu */
+    }
+
+    nav a {
+        font-size: 0.9rem; /* Ajusta o tamanho da fonte dos links */
+    }
+}
+
+/* Ajustes para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+    nav {
+        padding: 5px 10px; /* Reduzindo ainda mais o padding */
+    }
+
+    nav .logo {
+        font-size: 1rem; /* Tamanho do logo menor */
+    }
+
+    nav ul li {
+        margin: 3px 0; /* Reduz o espaçamento entre os itens */
+    }
+
+    nav a {
+        font-size: 0.8rem; /* Reduz o tamanho da fonte dos links */
+    }
+}
+
+/* Estilo do Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.logo img {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+    border-radius: 50%; /* Deixa a imagem redonda */
+    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+}
+
+.logo h1 {
+    font-size: 24px; /* Tamanho do texto do logo */
+    margin: 0;
+    color: #ecf0f1;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+/* Links da Nav-Bar */
+.nav-links {
+    display: flex;
+    gap: 1px; /* Espaço entre os links */
+}
+
+.nav-links a {
+    position: relative;
+    width: 130px;
+    height: 50px;
+    line-height: 48px;
+    background: #ffffff00; /* Fundo transparente */
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: rgb(26, 23, 23); /* Cor do texto */
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 5px; /* Bordas arredondadas */
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
+}
+
+.nav-links a span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 2px;
+    right: 2px;
+    bottom: 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(7, 7, 7); /* Cor do texto */
+    transition: 0.5s;
+}
+
+.nav-links a:hover span {
+    color: rgba(255, 255, 255, 1); /* Cor ao passar o mouse */
+}
+
+.nav-links a span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 50%;
+    background: rgba(199, 71, 250, 0.1);
+    z-index: 10;
+    transition: transform 0.3s ease; /* Transição suave para o efeito */
+}
+.nav-links a span:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.nav-links a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        #bb10b2,
+        #f39c12,
+        #f1c40f,
+        #13e040,
+        #8c17ec,
+        #2980b9,
+        #9b59b6,
+        #8e44ad,
+        #bee418
+    );
+    background-size: 400%;
+    opacity: 0; /* Invisível inicialmente */
+    transition: 2.5s;
+    animation: eff 20s linear infinite;
+    border-radius: 5px;
+}
+
+.nav-links a:hover::before {
+    opacity: 1; /* Visível ao passar o mouse */
+}
+
+/* Animação do Link */
+@keyframes eff {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@media (max-width: 1078px) {
+    nav {
+        padding: 5px 8px;
+    }
+
+    .logo img {
+        width: 25px; /* Reduz tamanho do ícone */
+        height: 25px;
+    }
+
+    .logo h1 {
+        font-size: 9px; /* Reduz tamanho do texto do logo */
+    }
+
+    .nav-links a {
+        position: relative;
+        width: 10em; /* Largura relativa */
+        height: 3em; /* Altura relativa */
+        line-height: 2.8em; /* Ajusta alinhamento vertical */
+        background: #ffffff00; /* Fundo transparente */
+        text-transform: uppercase;
+        font-size: 1rem; /* Texto relativo ao tamanho padrão */
+        text-align: center;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        color: rgb(255, 255, 255); /* Cor do texto */
+        transition: 0.5s;
+        overflow: hidden;
+        border-radius: 5px; /* Bordas arredondadas */
+        -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
+    }
+    
+    /* Responsividade com media queries */
+    @media (max-width: 1480px) {
+        .nav-links a {
+            width: 5em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+    @media (max-width: 1020px) {
+        .nav-links a {
+            width: 6em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .nav-links a {
+            width: 5em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+
+    .nav-links a {
+        margin: 5px 0;
+    }
+    
+}
+/* Botão "Jogar Dados" com efeito Glow */
+/* Dado Container */
+.dado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Imagem do dado */
+.dado {
+    width: 3.75em; /* Usando unidade relativa (aprox. 60px) */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+    margin-right: 3.75em; /* Aproximadamente 60px */
+}
+
+.dado:hover {
+    transform: scale(1.2); /* Aumentar tamanho ao passar o mouse */
+}
+
+/* Botão Glow */
+.glow-on-hover {
+    padding: 0.5rem 1rem;
+    font-size: 1rem; /* Tamanho de fonte relativo */
+    background-color: #6b4f4f; /* Vermelho vibrante */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-right: 3.75em; /* Aproximadamente 60px */
+}
+
+/* Efeito ao passar o mouse */
+.glow-on-hover:hover {
+    transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+}
+
+/* Responsividade com media queries */
+@media (max-width: 1078px) {
+    .glow-on-hover {
+        padding: 0.4rem 0.5rem; /* Reduz padding em tablets */
+        font-size: 0.6rem; /* Diminui tamanho do texto */
+        margin-right: 4.0em; /* Ajusta margens */
+    }
+
+    .dado {
+        width:2em; /* Reduz largura do dado */
+        margin-right: 2.4em; /* Ajusta margem */
+    }
+}
+
+
+
+/* Menu de Dados */
+/* Menu */
+.menu {
+    position: fixed; /* Fixa o menu em uma posição específica na tela */
+    top: 1%; /* Define a distância do menu a partir do topo da tela */
+    right: 1%; /* Define a distância do menu a partir da borda direita */
+    width: 350px; /* Aumenta a largura do menu */
+    background-color: #493131b9; /* Cor de fundo */
+    border: 1px solid #f3dd16; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 1.2rem; /* Espaçamento interno maior */
+    box-shadow: 0 4px 8px rgba(133, 124, 49, 0.822); /* Sombra */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+    color: #f5df19;
+    transition: all 0.3s ease;
+}
+
+/* Menu escondido */
+.hidden {
+    display: none;
+}
+
+.menu button {
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem; /* Texto maior nos botões */
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilo do botão "Fechar" */
+#closeMenu {
+    background-color: #aa0303;
+    color: white;
+    float: right;
+}
+
+#closeMenu:hover {
+    box-shadow: 0 0 15px rgba(59, 58, 52, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo do botão "Rolar Dados" */
+#rollDice {
+    background-color: #fc631c;
+    color: white;
+}
+
+/* Estilo do botão "Limpar Registro" */
+#clearRolls {
+    background-color: #f89f19;
+    color: white;
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#clearRolls:hover {
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo da área de registro */
+#rolls {
+    margin-top: 1rem;
+    max-height: 250px; /* Aumenta a altura da área de registro */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    padding-right: 10px; /* Espaço extra para o scroll */
+    border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
+    border-radius: 5px;
+    background-color: #3b372fb9; /* Fundo levemente diferente para separar visualmente */
+}
+
+#rollList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#rollList li {
+    margin: 0.3rem 0;
+    font-weight: bold;
+    color: #e25a0a;
+}
+
+/* Campos de entrada */
+#diceSelect, #playerName {
+    width: 100%;
+    padding: 0.7rem; /* Aumenta o espaço interno */
+    font-size: 1rem; /* Texto maior */
+    border: 1px solid #faa80e;
+    border-radius: 5px;
+    color: #0e0b00;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 1780px) {
+    .menu {
+        width: 300px; /* Diminui o menu em telas menores */
+        top: 3%; /* Ajusta a posição */
+        right: 3%;
+        font-size: 0.9rem; /* Texto menor no menu */
+    }
+
+    #closeMenu {
+        font-size: 0.7rem; /* Ajusta o tamanho do texto no botão */
+    }
+
+    #rolls {
+        max-height: 200px; /* Ajusta a altura da área de registro */
+    }
+
+    #diceSelect, #playerName {
+        padding: 0.5rem; /* Reduz o espaço interno */
+        font-size: 0.9rem; /* Texto menor */
+    }
+
+    .menu button {
+        font-size: 0.6rem; /* Ajusta o tamanho dos botões */
+        padding: 0.5rem 0.5rem; /* Reduz o tamanho */
+    }
+}
+/* Estilo para a barra de rolagem */
+#rolls::-webkit-scrollbar {
+    width: 12px; /* Largura da barra vertical */
+    height: 12px; /* Altura da barra horizontal (caso exista) */
+}
+
+#rolls::-webkit-scrollbar-thumb {
+    background-color: #fc631c; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Deixa os cantos arredondados */
+    border: 3px solid #ffb936; /* Adiciona um contorno para destacar */
+}
+
+#rolls::-webkit-scrollbar-thumb:hover {
+    background-color: #f89f19; /* Cor ao passar o mouse */
+}
+
+#rolls::-webkit-scrollbar-track {
+    background-color: #ffe3a8; /* Fundo do trilho da barra */
+    border-radius: 10px; /* Cantos arredondados do trilho */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Leve sombra interna */
+}
+
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 768px) {
+    #rolls::-webkit-scrollbar {
+        width: 16px; /* Aumenta a largura do scrollbar para ajudar no toque */
+    }
+
+    #rolls::-webkit-scrollbar-thumb {
+        border: 4px solid #ffb936; /* Ajusta o contorno para manter o tamanho visual */
+    }
+}
+
+
+/* fim do nav-bar---------------------------------------------------------------------------- */
+
+.titulo_principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-top: 120px;
+  }
+  
+  .titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #c5ba20;
+    position: relative;
+}
+
+.titulo_efeito:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    background: linear-gradient(90deg, #4e3d1c, #8b8019, #f7ec56, #81771e, #4e3d1c);
+    animation: wave 8s infinite;
+}
+
+
+/* Animação da onda */
+@keyframes wave {
+    0% { width: 50px; }
+    20% { width: 100px; }
+    40% { width: 200px; }
+    60% { width: 200px; }
+    80% { width: 100px; }
+    100% { width: 50px; }
+}
+
+.form-container {
+    background: linear-gradient(90deg,  #753308b6, #473629b9);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgb(233, 221, 61);
+}
+.h2-front{
+    font-size: 2em; /* Tamanho do título */
+    color: #ffe6d2; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #fd8845,   /* Primeira camada de brilho vermelho */
+      0 0 10px #e9812c,  /* Segunda camada laranja */
+      0 0 20px #af7443,  /* Terceira camada mais forte */
+      0 0 40px #d18d56,  /* Camada de brilho maior */
+      0 0 80px #c5c345;  /* Brilho externo */
+}
+
+
+
+
+
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #eeae23;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffe6b1;
+    font-size: 1rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #ccc;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(45deg, #a34e2dc0, #775407b7);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: linear-gradient(45deg, #ac9513, #c97c09);
+    transform: scale(1.05);
+    box-shadow: #c27604;
+}
+
+.attributes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.attribute {
+    text-align: center;
+    flex: 1;
+    margin: 0 5px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.attribute span {
+    display: block;
+    font-size: 0.9rem;
+    color: #ffd700;
+}
+
+#preview {
+    display: block;
+    max-width: 100%;
+    margin: 10px auto;
+    border-radius: 10px;
+    border: 2px solid #21cbe9;
+    box-shadow: 0 2px 10px rgba(47, 243, 233, 0.822);
+}
+.attribute-button {
+    background-color: #f010caa1;
+    border: none;
+    color: #f8fc38;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.attribute-button:hover {
+    background-color: #cf06b4;
+    transform: scale(1.1);
+}
+
+
+.result {
+    margin-top: 20px;
+    background: rgba(170, 114, 11, 0.466);
+    border-radius: 10px;
+    padding: 15px;
+    color: #f8ef77;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 0 2px 10px rgba(248, 245, 32, 0.959);
+}
+/* Estilo geral para as áreas com scroll */
+.scrollable {
+    max-height: 150px; /* Limita a altura para ativar o scroll */
+    overflow-y: auto; /* Scroll vertical ativado */
+    border: 2px solid #e69d17; /* Cor da borda */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 10px; /* Espaçamento interno */
+    background-color: #864209a2; /* Fundo da área */
+    font-family: Arial, sans-serif; /* Fonte padrão */
+    color: #f7ea38; /* Cor do texto */
+}
+
+/* Estilização personalizada da barra de rolagem */
+.scrollable::-webkit-scrollbar {
+    width: 12px; /* Largura do scroll */
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: #f745e8; /* Cor da trilha do scroll */
+    border-radius: 8px; /* Bordas arredondadas */
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: #6c63ff; /* Cor da barra de rolagem */
+    border-radius: 8px; /* Bordas arredondadas */
+    border: 2px solid #f0f0f0; /* Espaço entre a barra e a trilha */
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: #5a52e0; /* Cor ao passar o mouse */
+}
+
+
+/* Estilos Responsivos */
+@media (max-width: 1080px) {
+    .form-container {
+        width: 80%;
+        font-size: 1.1em;
+        padding: 15px;
+    }
+
+    .h2-front {
+        font-size: 1.4em; /* Reduz o tamanho do título */
+    }
+
+    .attributes {
+        flex-direction: column; /* Empilha os itens em telas menores */
+        
+       
+    }
+
+    .attribute {
+        max-width: 70%;
+        margin-bottom: 10px;
+        margin-left: 12.5%;
+    }
+
+    .form-container button {
+        font-size: 0.9rem; /* Reduz o tamanho do texto dos botões */
+        max-width: 50%;
+    }
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Botão para gerar a região */
+.spawn-button {
+    background-color: #6236ff;
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(98, 54, 255, 0.8);
+    transition: all 0.3s ease-in-out;
+    margin-top: 30px;
+}
+
+.spawn-button:hover {
+    background-color: #854fff;
+    box-shadow: 0 0 20px rgba(133, 79, 255, 1);
+}
+/* Menu de Mapas */
+.map-menu {
+    position: fixed;
+    top: 55%;
+    right: 35%;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.842);
+    color: #fc0262;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(98, 54, 255, 0.5);
+    z-index: 1000;
+    display: none; /* Inicialmente escondido */
+}
+.map-menu p{
+font-size: 1.2rem;
+
+
+}
+
+/* Botão de fechar o menu */
+.close-menu-btn {
+    background-color: #aa0303;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-menu-btn:hover {
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8);
+    transform: scale(1.1);
+}
+
+/* Botão de reset */
+.reset-button {
+    background-color: #00bfff;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+    margin-top: 15px;
+    width: 100%;
+}
+
+.reset-button:hover {
+    background-color: #1ec9ff;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 1);
+}
+@media (max-width: 768px) {
+    .map-menu {
+        width: 40%; /* Aumenta a largura do menu em telas pequenas */
+        right: 5%; /* Ajusta a posição do menu */
+        top: 30%
+    }
+}
+/* Menu de Mapas */
+.map-menu {
+    position: fixed;
+    top: 55%;
+    right: 35%;
+    width: 300px;
+    background-color: rgba(0, 0, 0, 0.842);
+    color: #fc0262;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(98, 54, 255, 0.5);
+    z-index: 1000;
+    display: none; /* Inicialmente escondido */
+}
+.map-menu p{
+font-size: 1.2rem;
+
+
+}
+
+/* Botão de fechar o menu */
+.close-menu-btn {
+    background-color: #aa0303;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-menu-btn:hover {
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8);
+    transform: scale(1.1);
+}
+
+/* Botão de reset */
+.reset-button {
+    background-color: #00bfff;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+    margin-top: 15px;
+    width: 100%;
+}
+
+.reset-button:hover {
+    background-color: #1ec9ff;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 1);
+}
+@media (max-width: 768px) {
+    .map-menu {
+        width: 40%; /* Aumenta a largura do menu em telas pequenas */
+        right: 5%; /* Ajusta a posição do menu */
+        top: 30%
+    }
+}
+
+/* Geral do footer ------------------------------------------------------------------------------*/
+/* Estilo Geral do Footer */
+footer {
+    background: linear-gradient(45deg, #944510e0,#4b3630d5);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30% ;
+  }
+  
+  /* Conteúdo Principal */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Seções do Footer */
+  .footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 250px;
+  }
+  
+  .footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  /* Links */
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-section ul li a {
+    background: linear-gradient(45deg, #6d00fa, #fc104b, #8e8fff, #2dbdf7, #e05dfa);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  @keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+  .footer-section ul li a:hover {
+    color: #ff9800;
+  }
+  
+  /* Ícones de Redes Sociais */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .social-icons a img:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Rodapé Inferior */
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    border-top: 1px solid #444;
+    padding: 10px;
+  }
+  
+/* Responsividade para telas menores */

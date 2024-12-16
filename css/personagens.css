@@ -1,0 +1,1224 @@
+/* Estilo Geral----------------------------------------------------------------------- */
+body {
+    margin: 0;
+    font-family: 'Lora', serif;
+    background: url('../imagens/ark_personagens.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Impede o scroll horizontal */
+}
+
+/* Estilo inicial para a página */
+.page {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estilo ativo para a página carregada */
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    
+
+    .page {
+        padding: 10px; /* Adiciona espaçamento nas laterais para evitar cortes */
+    }
+}
+
+/* Responsividade para smartphones */
+@media (max-width: 480px) {
+    body {
+        background-size: cover;
+        font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
+    }
+
+    .page {
+        padding: 5px; /* Reduz o espaçamento */
+    }
+
+    h1, h2, h3, p {
+        font-size: 90%; /* Reduz os tamanhos de título e parágrafos */
+        line-height: 1.4; /* Aumenta o espaçamento entre linhas para melhor leitura */
+    }
+
+    img {
+        width: 100%; /* Imagens ocupam toda a largura da tela */
+        height: auto; /* Mantém proporção */
+    }
+}
+
+/* Adiciona quebra de linhas em telas menores para elementos que podem sobrepor */
+@media (max-width: 360px) {
+    h1, h2 {
+        font-size: 85%; /* Reduz ainda mais os tamanhos de fonte */
+    }
+}
+
+/* Estilo da Nav-Bar */
+nav {
+    background: rgba(39, 8, 51, 0.021); /* Transparência com fundo escuro */
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed; /* Fixa o nav-bar no topo */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Garante que fique acima de outros elementos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes para telas menores */
+@media (max-width: 1068px) {
+    nav {
+        padding: 8px 15px; /* Reduzindo o espaçamento para telas menores */
+    }
+
+    nav .logo {
+        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
+    }
+
+    nav ul {
+        flex-direction: column; /* Alinha os itens do menu na vertical */
+        padding: 0;
+    }
+
+    nav ul li {
+        margin: 5px 0; /* Espaçamento entre os itens do menu */
+    }
+
+    nav a {
+        font-size: 0.9rem; /* Ajusta o tamanho da fonte dos links */
+    }
+}
+
+/* Ajustes para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+    nav {
+        padding: 5px 10px; /* Reduzindo ainda mais o padding */
+    }
+
+    nav .logo {
+        font-size: 1rem; /* Tamanho do logo menor */
+    }
+
+    nav ul li {
+        margin: 3px 0; /* Reduz o espaçamento entre os itens */
+    }
+
+    nav a {
+        font-size: 0.8rem; /* Reduz o tamanho da fonte dos links */
+    }
+}
+
+/* Estilo do Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre a imagem e o texto */
+}
+
+.logo img {
+    width: 40px; /* Tamanho do ícone */
+    height: 40px;
+    border-radius: 50%; /* Deixa a imagem redonda */
+    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+}
+
+.logo h1 {
+    font-size: 24px; /* Tamanho do texto do logo */
+    margin: 0;
+    color: #ecf0f1;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+/* Links da Nav-Bar */
+.nav-links {
+    display: flex;
+    gap: 1px; /* Espaço entre os links */
+}
+
+.nav-links a {
+    position: relative;
+    width: 130px;
+    height: 50px;
+    line-height: 48px;
+    background: #ffffff00; /* Fundo transparente */
+    text-transform: uppercase;
+    font-size: 14px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    color: rgb(255, 255, 255); /* Cor do texto */
+    transition: 0.5s;
+    overflow: hidden;
+    border-radius: 5px; /* Bordas arredondadas */
+    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
+}
+
+.nav-links a span {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 2px;
+    right: 2px;
+    bottom: 0;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgb(255, 255, 255); /* Cor do texto */
+    transition: 0.5s;
+}
+
+.nav-links a:hover span {
+    color: rgba(255, 255, 255, 1); /* Cor ao passar o mouse */
+}
+
+.nav-links a span::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 50%;
+    background: rgba(199, 71, 250, 0.1);
+    z-index: 10;
+    transition: transform 0.3s ease; /* Transição suave para o efeito */
+}
+.nav-links a span:hover {
+    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
+}
+
+.nav-links a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        #bb10b2,
+        #f39c12,
+        #f1c40f,
+        #13e040,
+        #8c17ec,
+        #2980b9,
+        #9b59b6,
+        #8e44ad,
+        #bee418
+    );
+    background-size: 400%;
+    opacity: 0; /* Invisível inicialmente */
+    transition: 2.5s;
+    animation: eff 20s linear infinite;
+    border-radius: 5px;
+}
+
+.nav-links a:hover::before {
+    opacity: 1; /* Visível ao passar o mouse */
+}
+
+/* Animação do Link */
+@keyframes eff {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@media (max-width: 1078px) {
+    nav {
+        padding: 5px 8px;
+    }
+
+    .logo img {
+        width: 25px; /* Reduz tamanho do ícone */
+        height: 25px;
+    }
+
+    .logo h1 {
+        font-size: 9px; /* Reduz tamanho do texto do logo */
+    }
+
+    .nav-links a {
+        position: relative;
+        width: 10em; /* Largura relativa */
+        height: 3em; /* Altura relativa */
+        line-height: 2.8em; /* Ajusta alinhamento vertical */
+        background: #ffffff00; /* Fundo transparente */
+        text-transform: uppercase;
+        font-size: 1rem; /* Texto relativo ao tamanho padrão */
+        text-align: center;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        color: rgb(255, 255, 255); /* Cor do texto */
+        transition: 0.5s;
+        overflow: hidden;
+        border-radius: 5px; /* Bordas arredondadas */
+        -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
+    }
+    
+    /* Responsividade com media queries */
+    @media (max-width: 1480px) {
+        .nav-links a {
+            width: 5em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+    @media (max-width: 1020px) {
+        .nav-links a {
+            width: 6em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .nav-links a {
+            width: 5em; /* Reduz largura para telas menores */
+            height: 2.1em; /* Reduz altura */
+            line-height: 2.3em; /* Ajusta alinhamento vertical */
+            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        }
+    }
+
+    .nav-links a {
+        margin: 5px 0;
+    }
+    
+}
+/* Botão "Jogar Dados" com efeito Glow */
+/* Dado Container */
+.dado-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+/* Imagem do dado */
+.dado {
+    width: 3.75em; /* Usando unidade relativa (aprox. 60px) */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+    margin-right: 3.75em; /* Aproximadamente 60px */
+}
+
+.dado:hover {
+    transform: scale(1.2); /* Aumentar tamanho ao passar o mouse */
+}
+
+/* Botão Glow */
+.glow-on-hover {
+    padding: 0.5rem 1rem;
+    font-size: 1rem; /* Tamanho de fonte relativo */
+    background-color: #504a4a; /* Vermelho vibrante */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-right: 3.75em; /* Aproximadamente 60px */
+}
+
+/* Efeito ao passar o mouse */
+.glow-on-hover:hover {
+    transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+}
+
+/* Responsividade com media queries */
+@media (max-width: 1078px) {
+    .glow-on-hover {
+        padding: 0.4rem 0.5rem; /* Reduz padding em tablets */
+        font-size: 0.6rem; /* Diminui tamanho do texto */
+        margin-right: 4.0em; /* Ajusta margens */
+    }
+
+    .dado {
+        width:2em; /* Reduz largura do dado */
+        margin-right: 2.4em; /* Ajusta margem */
+    }
+}
+
+
+
+/* Menu de Dados */
+/* Menu */
+.menu {
+    position: fixed; /* Fixa o menu em uma posição específica na tela */
+    top: 1%; /* Define a distância do menu a partir do topo da tela */
+    right: 1%; /* Define a distância do menu a partir da borda direita */
+    width: 350px; /* Aumenta a largura do menu */
+    background-color: #15745c9c; /* Cor de fundo */
+    border: 1px solid #04fc9d; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 1.2rem; /* Espaçamento interno maior */
+    box-shadow: 0 4px 8px rgba(10, 240, 171, 0.1); /* Sombra */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+    color: #23fde0;
+    transition: all 0.3s ease;
+}
+
+/* Menu escondido */
+.hidden {
+    display: none;
+}
+
+.menu button {
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem; /* Texto maior nos botões */
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilo do botão "Fechar" */
+#closeMenu {
+    background-color: #aa0303;
+    color: white;
+    float: right;
+}
+
+#closeMenu:hover {
+    box-shadow: 0 0 15px rgba(59, 58, 52, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo do botão "Rolar Dados" */
+#rollDice {
+    background-color: #fc631c;
+    color: white;
+}
+
+/* Estilo do botão "Limpar Registro" */
+#clearRolls {
+    background-color: #f89f19;
+    color: white;
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#clearRolls:hover {
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo da área de registro */
+#rolls {
+    margin-top: 1rem;
+    max-height: 250px; /* Aumenta a altura da área de registro */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    padding-right: 10px; /* Espaço extra para o scroll */
+    border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
+    border-radius: 5px;
+    background-color: #3b372fb9; /* Fundo levemente diferente para separar visualmente */
+}
+
+#rollList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#rollList li {
+    margin: 0.3rem 0;
+    font-weight: bold;
+    color: #04e688;
+}
+
+/* Campos de entrada */
+#diceSelect, #playerName {
+    width: 100%;
+    padding: 0.7rem; /* Aumenta o espaço interno */
+    font-size: 1rem; /* Texto maior */
+    border: 1px solid #faa80e;
+    border-radius: 5px;
+    color: #0e0b00;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 1780px) {
+    .menu {
+        width: 300px; /* Diminui o menu em telas menores */
+        top: 3%; /* Ajusta a posição */
+        right: 3%;
+        font-size: 0.9rem; /* Texto menor no menu */
+    }
+
+    #closeMenu {
+        font-size: 0.7rem; /* Ajusta o tamanho do texto no botão */
+    }
+
+    #rolls {
+        max-height: 200px; /* Ajusta a altura da área de registro */
+    }
+
+    #diceSelect, #playerName {
+        padding: 0.5rem; /* Reduz o espaço interno */
+        font-size: 0.9rem; /* Texto menor */
+    }
+
+    .menu button {
+        font-size: 0.6rem; /* Ajusta o tamanho dos botões */
+        padding: 0.5rem 0.5rem; /* Reduz o tamanho */
+    }
+}
+/* Estilo para a barra de rolagem */
+#rolls::-webkit-scrollbar {
+    width: 12px; /* Largura da barra vertical */
+    height: 12px; /* Altura da barra horizontal (caso exista) */
+}
+
+#rolls::-webkit-scrollbar-thumb {
+    background-color: #fc631c; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Deixa os cantos arredondados */
+    border: 3px solid #ffb936; /* Adiciona um contorno para destacar */
+}
+
+#rolls::-webkit-scrollbar-thumb:hover {
+    background-color: #f89f19; /* Cor ao passar o mouse */
+}
+
+#rolls::-webkit-scrollbar-track {
+    background-color: #ffe3a8; /* Fundo do trilho da barra */
+    border-radius: 10px; /* Cantos arredondados do trilho */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Leve sombra interna */
+}
+
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 768px) {
+    #rolls::-webkit-scrollbar {
+        width: 16px; /* Aumenta a largura do scrollbar para ajudar no toque */
+    }
+
+    #rolls::-webkit-scrollbar-thumb {
+        border: 4px solid #ffb936; /* Ajusta o contorno para manter o tamanho visual */
+    }
+}
+
+
+/* fim do nav-bar---------------------------------------------------------------------------- */
+
+/* Estilo geral do título */
+.titulo_principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-top: 120px;
+  }
+  
+  .titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    color: #87c9b8;
+    position: relative;
+}
+
+.titulo_efeito:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    background: linear-gradient(90deg,  #ff4500, #33ecdd, #bdfdf8, #33ecdd, #ff4500);
+    animation: wave 8s infinite;
+}
+
+.Titulo_comentario{
+    font-size: 2em; /* Tamanho do título */
+    color: #fff; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+  }
+
+  .container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    padding: 20px;
+    background-color: #0628299a;
+    border: 2px solid #1fb6ca;
+    border-radius: 10%;
+}
+
+.title-conta2 {
+    font-size: 1.8em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow:
+      0 0 5px #1bfca6,   /* Primeira camada de brilho verde */
+      0 0 10px #26ebba,  /* Segunda camada verde claro */
+      0 0 20px #57ffe3,  /* Camada azul */
+      0 0 40px #b7f8e8,  /* Camada maior de brilho */
+      0 0 80px #46f3ab;  /* Brilho externo */
+}
+
+.content-conta2 {
+    display: flex;
+    justify-content: space-between;  /* Distribui os itens nas extremidades */
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.text-2 {
+    text-align: left; /* Alinha o texto à esquerda */
+    border: 2px solid #03b19a;
+  font-size: 1.4rem;
+    width: 75%; /* A div ocupa 45% do espaço disponível */
+    height: 100%;
+    padding: 10px;
+    background-color: #0e8b8b;/* Cor de fundo para a área de texto */
+    border-radius: 15%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(45deg,#35f585, #f9faf3, #56ffb0, #93f176, #fafaee);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    
+}
+@keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.text-3{
+    border: 2px solid #03b19a;
+    font-size: 1.4rem;
+    width: 75%; /* A div ocupa 45% do espaço disponível */
+    height: 100%;
+    padding: 10px;
+    border-radius: 15%;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(45deg,#3582f5, #f9faf3, #56ffb0, #93f176, #fafaee);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+@keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.h3t2{
+    border: 2px solid #03b19a;
+    border-radius: 30%;
+    font-size: 2rem;
+    padding: 10px;
+   color: #0e0b00;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow:
+      0 0 10px #1bfca6,
+      0 0 20px #26ebba,
+      0 0 30px #57ffe3;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(26, 250, 138, 0.4); /* Adiciona um leve sombreamento */
+}
+.h3t1{
+    border: 2px solid #03b19a;
+    border-radius: 30%;
+    font-size: 2rem;
+    padding: 10px;
+   color: #0e0b00;
+    text-align: center;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow:
+      0 0 10px #14c581,
+      0 0 20px #1eb891,
+      0 0 30px #3fb39f;
+      transition: transform 0.3s ease-in-out;
+      box-shadow: 0 4px 10px rgba(26, 250, 138, 0.4); /* Adiciona um leve sombreamento */
+}
+
+.text-2:hover, .text-3:hover {
+    transform: scale(1.05); /* Aumenta levemente ao passar o mouse */
+}
+
+.gif {
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+.gif img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+}
+/* Animação da onda */
+@keyframes wave {
+    0% { width: 50px; }
+    20% { width: 100px; }
+    40% { width: 200px; }
+    60% { width: 200px; }
+    80% { width: 100px; }
+    100% { width: 50px; }
+}
+
+/* Responsividade */
+@media (max-width: 1120px) {
+    .titulo_efeito {
+        font-size: 2.3rem; /* Diminui o tamanho da fonte em telas médias */
+    }
+
+    .titulo_efeito:after {
+        width: 350px; /* Reduz a largura da linha de efeito para telas menores */
+    }
+    @keyframes wave {
+        0% { width: 50px; }
+        20% { width: 100px; }
+        40% { width: 200px; }
+        60% { width: 200px; }
+        80% { width: 100px; }
+        100% { width: 50px; }
+    }
+}
+@media(max-width: 1120px){
+    .Titulo_comentario{
+
+        font-size: 1rem;
+
+
+    }
+
+
+}
+
+@media (max-width: 1080px) {
+    .container2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 80%;
+        max-width: 100%;
+        padding: 15px;
+        background-color: #0628299a; /* Mantém o fundo opaco */
+        border: 2px solid #1fb6ca;
+        border-radius: 10%; /* Deixa o container com bordas arredondadas */
+    }
+
+    .title-conta2 {
+        font-size: 1.4em; /* Ajusta o tamanho do título para telas menores */
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 15px;
+        text-shadow:
+          0 0 5px #1bfca6,  
+          0 0 10px #26ebba,  
+          0 0 20px #57ffe3,  
+          0 0 40px #b7f8e8,  
+          0 0 80px #46f3ab;
+    }
+
+    .content-conta2 {
+        flex-direction: column; /* Empilha os itens */
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .text-2, .text-3 {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+        width: 90%; /* Aumenta a largura para ocupar mais espaço */
+        padding: 10px;
+        border-radius: 15px; /* Bordas menos arredondadas */
+        margin-bottom: 10px;
+        text-align: center; /* Centraliza o texto em telas pequenas */
+        background-size: 300%;
+        animation: gradiente-animado 4s ease infinite;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .h3t2, .h3t1 {
+        font-size: 1.5rem; /* Reduz o tamanho da fonte */
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 15%;
+        text-shadow:
+          0 0 10px #1bfca6,
+          0 0 20px #26ebba,
+          0 0 30px #57ffe3;
+    }
+
+    .gif img {
+        width: 80%; /* Reduz o tamanho da imagem */
+        max-width: 200px;
+        border-radius: 10px;
+    }
+}
+
+/* Estilos gerais */
+.container-central1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 90%;
+    
+  
+    background: linear-gradient( #0628299a, #470a0a9a); /* Use background, não background-color */
+    border: 2px solid #1fb6ca;
+    border-radius: 10%;
+    margin-bottom: 5%;
+    margin-top: 10%;
+
+}
+.container-central2 {
+        display: flex;
+        flex-direction: column; /* Alinhar os elementos verticalmente */
+        justify-content: center; /* Centralizar verticalmente */
+        align-items: center; /* Centralizar horizontalmente */
+        width: 80%;
+        max-width: 700px; /* Limita a largura */
+        margin: auto; /* Centraliza horizontalmente na página */
+        border: 2px solid #1fb6ca;
+    border-radius: 10%;
+    transition: transform 0.3s ease-in-out;
+    padding: 30px;
+    margin-bottom: 5%;
+    margin-top: 10%;
+   
+   
+}
+
+/* Div para a imagem */
+  .img-box3{
+    width: 100%;
+   height: 400px;
+    background-image: url('../imagens/personagens_san\ diego_t_rex.jpg'); /* Substitua pelo caminho da imagem */
+    background-size: cover; /* Faz a imagem cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    border-radius: 10%; /* Bordas arredondadas */
+  }
+  
+  /* Título */
+  .title3 {
+    margin-top: 20px;
+    font-size: 2.6em;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(to bottom, #c4fce5,#811313c9); /* Gradiente horizontal */
+    background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-background-clip: text; /* Aplica o gradiente ao texto */
+    -webkit-text-fill-color: transparent; /* Faz o fundo das letras ser transparente */
+  
+  }
+  
+  /* Parágrafo */
+  .text3{
+    margin-top: 15px;
+    font-size: 1.4em;
+    background: linear-gradient(45deg,#f3d31f, #fc8618, #fff781, #dfeb43, #d8db00);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    border: 2px solid #f02f29;
+    line-height: 1.6;
+  text-align: center;
+    border-radius: 10%;
+    padding: 25px;
+    
+  }
+
+  .container-central2:hover {
+    transform: scale(1.05); /* Aumenta levemente ao passar o mouse */
+  }
+
+  @keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+  @media (max-width: 1080px) {
+    .container-central1 {
+      margin-top: 10%;
+      
+        width: 80%;
+        
+      padding: 15px; /* Reduz o espaçamento interno */
+      border-radius: 8%; /* Bordas levemente menos arredondadas */
+      margin-bottom: 6%; /* Adiciona mais espaçamento inferior */
+    }
+  
+    .img-box3 {
+      height: 250px; /* Reduz a altura da imagem */
+      border-radius: 8%; /* Ajusta as bordas arredondadas */
+    }
+  
+    .title3 {
+      font-size: 1.5em; /* Reduz o tamanho do título */
+      margin-top: 15px; /* Diminui o espaçamento superior */
+    }
+  
+    .text3 {
+      font-size: 0.9em; /* Reduz o tamanho do texto */
+      line-height: 1.5; /* Ajusta o espaçamento entre linhas */
+      padding: 10px; /* Reduz o padding */
+      border-radius: 8%; /* Ajusta as bordas arredondadas */
+    }
+  }
+
+
+
+/* Estilo geral do carrossel */
+.carousel {
+    width: 50%;
+    border-radius: 10%;
+    margin: 10px auto;
+    overflow: hidden; /* Esconde as imagens fora do contêiner */
+    box-shadow: 0 5px 15px rgba(24, 235, 224, 0.534); /* Sombra amarela */
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Contêiner de imagens */
+.carousel-images {
+    display: flex;
+    transition: transform 1s ease-in-out; /* Suaviza a transição */
+    transform: translateX(-100%); /* Ajusta para começar na primeira imagem */
+}
+
+/* Estilo das imagens */
+.carousel-images img {
+    width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
+    flex-shrink: 0; /* Garante que cada imagem ocupe seu espaço */
+    border-radius: 10px;
+}
+
+
+/* Container principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   margin-left: 10%;
+    border: solid 2px #b60a0a;
+    border-radius: 10%;
+    width: 80%;
+    text-align: center;
+    background: linear-gradient(to bottom,#470a0a9a,#470a0a9a,#7c410a9a);
+    transition: background 0.5s ease;
+    box-shadow: 0 4px 8px rgba(255, 1, 1, 0.89);
+  }
+  
+  /* Estilo do gif */
+  .gif img {
+    width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px 0;
+    
+  }
+  
+  /* Estilo do botão */
+  #toggle-icon {
+    cursor: pointer;
+    width: 50px; /* Largura do botão */
+    height: 50px; /* Altura do botão */
+    background: #ffffff00;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(255, 1, 1, 0.89);
+  }
+  
+  #toggle-icon img {
+    width: 140%; /* Largura da imagem dentro do botão */
+   
+   
+  }
+  
+  #toggle-icon:hover {
+    transform: rotate(180deg);
+  }
+  #titulo{
+
+    font-size: 2em; /* Tamanho do título */
+    color: #fff; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+
+  }
+
+  #descricao{
+    font-size: 1.4em;
+    background: linear-gradient(45deg,#f3d31f, #f7a960, #f1ff29, #e5f55a, #ff8879);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    border: 2px solid #f85c02;
+    line-height: 1.6;
+  text-align: center;
+    border-radius: 10%;
+    padding: 15px;
+    width: 80%;
+
+  }
+  /* Responsividade para telas menores */
+@media (max-width: 1080px) {
+    #descricao {
+        font-size: 1.2em; /* Menor fonte para telas pequenas */
+    }
+
+    .container {
+        width: 90%; /* Aumenta a largura para dispositivos pequenos */
+        margin-left: 0; /* Remove a margem esquerda */
+        margin-left: 5%;
+    }
+
+    /* Ajusta o tamanho do gif */
+    .gif img {
+        width: 150px; /* Reduz o tamanho do gif em telas menores */
+    }
+
+    #titulo {
+        font-size: 1.8em; /* Ajusta o tamanho do título */
+    }
+
+    #toggle-icon {
+        width: 40px; /* Reduz o tamanho do botão */
+        height: 40px; /* Reduz a altura do botão */
+    }
+
+    #toggle-icon img {
+        width: 120%; /* Ajusta a largura da imagem no botão */
+    }
+}
+/* Container principal dos cards */
+.container-cards {
+    position: relative;
+    
+  
+    height: 300px;
+    perspective: 1200px;
+    text-align: center;
+    object-position: center;
+    margin: 0;
+    width: 40%;
+    margin-top:5% ;
+    margin-left: 10%;
+  }
+  
+  /* Estilo base dos cards */
+  .card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,#1b0505e5,#410909de);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 15px rgba(214, 81, 4, 0.5);
+    transition: transform 0.5s ease, z-index 0.5s ease;
+    cursor: pointer;
+    backface-visibility: hidden;
+    text-decoration: none; /* Remove o sublinhado padrão */
+  }
+  
+  /* Estilo da imagem */
+  .card img {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    display: block;
+    border: 2px solid #f8631e;
+  }
+  
+  /* Texto da carta */
+  .card .content-card {
+    text-align: center;
+    background: linear-gradient(to bottom,#1b0505e5,#410909de);
+    color: #f86d10;
+    padding: 10px;
+    text-align: center;
+    font-size: 23px;
+    font-weight: bold;
+   
+    
+  }
+  
+  /* Posição inicial dos cards */
+  #card1 {
+    transform: translateX(-20px) rotate(-2deg);
+    z-index: 2;
+  }
+  
+  #card2 {
+    transform: translateX(20px) rotate(2deg);
+    z-index: 1;
+  }
+  
+  /* Efeito de hover */
+  .container-cards:hover #card1 {
+    transform: translateX(20px) rotate(2deg);
+    z-index: 1;
+  }
+  
+  .container-cards:hover #card2 {
+    transform: translateX(-20px) rotate(-2deg);
+    z-index: 2;
+  }
+
+ 
+
+/* Geral do footer ------------------------------------------------------------------------------*/
+/* Estilo Geral do Footer */
+footer {
+    background: linear-gradient(45deg, #5a4b6ee0,#343a53d5);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 30% ;
+  }
+  
+  /* Conteúdo Principal */
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap;
+  }
+  
+  /* Seções do Footer */
+  .footer-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 250px;
+  }
+  
+  .footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  /* Links */
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-section ul li a {
+    background: linear-gradient(45deg, #6d00fa, #fc104b, #8e8fff, #2dbdf7, #e05dfa);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+  }
+  @keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+  .footer-section ul li a:hover {
+    color: #ff9800;
+  }
+  
+  /* Ícones de Redes Sociais */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .social-icons a img:hover {
+    transform: scale(1.2);
+  }
+  
+  /* Rodapé Inferior */
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    border-top: 1px solid #444;
+    padding: 10px;
+  }
+  
+/* Responsividade para telas menores */
+
+
+
+  
