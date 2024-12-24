@@ -883,7 +883,7 @@ li.active {
 }
 @media (max-width: 1080px) {
     .modal-content {
-        width: 90%;  /* Deixa o modal mais estreito em telas pequenas */
+        width: 70%;  /* Deixa o modal mais estreito em telas pequenas */
         padding: 20px;
     }
 

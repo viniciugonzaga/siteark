@@ -278,23 +278,7 @@ nav {
             line-height: 2.3em; /* Ajusta alinhamento vertical */
             font-size: 0.6rem; /* Diminui tamanho da fonte */
         }
-    }
-    @media (max-width: 1020px) {
-        .nav-links a {
-            width: 6em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-        }
-    }
     
-    @media (max-width: 480px) {
-        .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-        }
     }
 
     .nav-links a {
@@ -344,7 +328,7 @@ nav {
 }
 
 /* Responsividade com media queries */
-@media (max-width: 1078px) {
+@media (max-width: 1278px) {
     .glow-on-hover {
         padding: 0.4rem 0.5rem; /* Reduz padding em tablets */
         font-size: 0.6rem; /* Diminui tamanho do texto */

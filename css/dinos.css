@@ -1504,13 +1504,12 @@ color:#13e040;
 
 .ataques{
 
-    margin-left:32%;
+    margin-left:1%;
 
 }
 .ataques2{
     margin:0 auto;
-    text-align: center;
-    margin-left: -46%;
+    text-align: center;    
     font-size: 2.3rem;
     color: #f7b62b;
 }
