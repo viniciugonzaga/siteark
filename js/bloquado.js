@@ -84,7 +84,7 @@ document.addEventListener("scroll", () => {
     }
 });
 // Defina a senha correta aqui
-const correctPassword = '69';  // Altere essa senha para o valor desejado
+const correctPassword = '696969';  // Altere essa senha para o valor desejado
 
 function checkPassword() {
     const userInput = document.getElementById('passwordInput').value;
