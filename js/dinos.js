@@ -185,7 +185,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Megavore','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw']
+    ['Indominus Rex','Megavore','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua']
 };
 
 const dinoFichas = {
@@ -3518,6 +3518,390 @@ const dinoFichas = {
     passiva: 'Descarga da Tempestade: Seus ataques têm 50% de chance de causar paralisia por 1 rodada, aumentando a vulnerabilidade do inimigo ao dano elétrico em +3d6.',
     passivaElemental: 'Eletricidade: Todos os ataques causam +1d8 de dano elétrico contínuo. Tempestade: Ao lutar em ambientes chuvosos ou tempestuosos, ganha +10 em agilidade e regenera 5% da vida máxima por rodada.',
 },
+'Drask': {
+    title: 'O Crocodilo Elétrico',
+    image: 'imagens/dinos_drask.jpg', // Substitua pelo caminho correto
+    weight: '6 toneladas',
+    height: '4.5 M',
+    length: '6 M',
+    attributes: { agi: 3, for: 5, int: 4, pre: 5, vig: 6 },
+    life: 380, // Escalável por nível ou estágio
+    armor: 180, // Bloqueio muito alto devido à sua pele resistente e capacidade de absorver choques
+    actionBonus: '+20 ataques de garra elétrica, +15 mordida elétrica, +25 contra-ataque de descarga, +20 resistência contra paralisia e efeitos elétricos',
+    attacks: [
+        'Garras Elétricas: 4d10+25 2x (causa +6d8 de dano elétrico contínuo em rodadas subsequentes por 1d4 rodadas).',
+        'Mordida Elétrica: 8d12+35 (causa dano elétrico adicional de +4d8 e efeito **paralisia** por 1 rodada se o alvo falhar no teste de resistência).',
+        'Grito Elétrico: 4d10+20 (em área de 6m, todos os inimigos devem fazer um teste de resistência Constituição. Falha causa atordoamento por 1 rodada e +5d8 de dano elétrico adicional).'
+    ],
+    abilities: [
+        'Acúmulo de Energia: Acumula energia elétrica por cada ataque que recebe. Ao atingir 3 pontos de energia, a próxima ação de contra-ataque de Drask libera uma descarga elétrica em área de 5m, causando 8d10 de dano elétrico a todos os inimigos próximos.',
+        'Contra-ataque Elétrico: Ao ser atacado fisicamente, Drask libera uma descarga elétrica em quem o atingiu, causando 5d10+20 de dano elétrico e causando paralisia por 1 rodada se o alvo falhar no teste de resistência.',
+    ],
+    passiva: 'Bloqueio de Energia: Drask possui 50% de chance de bloquear ataques físicos, gerando uma explosão elétrica ao ser atacado. O bloqueio causa 4d8 de dano elétrico a quem atacou.',
+    passivaElemental: 'Condutividade: Seus ataques causam +2d8 de dano elétrico contínuo. Tempestade: Em ambientes chuvosos ou com alta umidade, Drask aumenta sua armadura em +20 e regenera 5% de sua vida máxima por rodada.',
+},
+'Koshai': {
+    title: 'O Tigre de Chifres',
+    image: 'imagens/dinos_koshai.jpg', // Substitua pelo caminho correto
+    weight: '750 kg',
+    height: '3.2 M',
+    length: '4.5 M',
+    attributes: { agi: 6, for: 5, int: 6, pre: 4, vig: 6 },
+    life: 350, // Escalável por nível ou estágio
+    armor: 140, // Resistência natural devido à sua pelagem espessa e habilidades de controle da flora
+    actionBonus: '+15 ataques de garra, +10 ataque com bico, +20 resistência contra efeitos de controle mental ou veneno, +10 em testes de furtividade',
+    attacks: [
+        'Garras Cortantes: 4d10+20 2x(causa dano adicional de +3d8 de dano perfurante e pode enraizar o alvo no solo, dificultando sua movimentação por 1 rodada).',
+        'Bico Espiral: 3d12+25 (causa dano físico e um efeito de **cegueira** temporária por 1 rodada se o alvo falhar no teste de resistência).',
+        'Cabeçada Selvagem: 8d10+35 (causa um efeito de **atordoamento** por 1 rodada e empurra o alvo para trás em 2 metros).'
+    ],
+    abilities: [
+        'Aceleração Floral: Koshai pode acelerar o crescimento de plantas ao seu redor, criando uma parede de raízes ou arbustos ao longo de 6 metros. Essa parede dura 2 rodadas e pode bloquear ataques ou dificultar a movimentação inimiga.',
+        'Raízes Afiadas: Usando suas habilidades florais, Koshai pode criar raízes afiadas que saem do solo para prender inimigos ou atacar, causando 8d8 de dano e imobilizando o alvo por 1 rodada.',
+    ],
+    passiva: 'Tigre Cervo: Koshai tem a habilidade de regenerar 10% de sua vida máxima ao se esconder em áreas com vegetação densa, como florestas ou campos com plantas altas.',
+    passivaElemental: 'Flora Viva: Seus ataques com raízes ou plantas causam um dano adicional de +2d8 ao longo de 2 rodadas, e Koshai pode cavar rapidamente para se esconder e surpreender os inimigos com um teste de furtividade bem-sucedido.',
+},
+'Riftstalkear': {
+    title: 'O Tigre Sombrio',
+    image: 'imagens/dinos_riftstalkear.jpg', // Substitua pelo caminho correto
+    weight: '450 kg',
+    height: '3 M',
+    length: '4 M',
+    attributes: { agi: 4, for: 3, int: 5, pre: 6, vig: 5 },
+    life: 280, // Escalável por nível ou estágio
+    armor: 120, // Pele sombria e etérea que reduz danos físicos e mágicos
+    actionBonus: '+20 ataques de garra, +15 cauda sombria, +20 bônus de furtividade, +10 percepção em testes de localização',
+    attacks: [
+        'Garras Sombras: 4d10+25 2x(causa +8d6 de dano de sombras, afetando a visão e o movimento do alvo, com 50% de chance de causar cegueira temporária por 1 rodada).',
+        'Cauda de Aether: 10d8+20 (causa dano e atordoa o alvo, também cria uma área de sombra de 3 metros ao redor do alvo, dificultando a visão e as movimentações para inimigos por 1 rodada).',
+        'Ataque Sombrio: 6d12+25 (Riftstalker teleportando-se para atacar o inimigo de surpresa com um portal de Aether, causando dano de sombras e deixando o alvo vulnerável por 1 rodada).'
+    ],
+    abilities: [
+        'Teleporte Aéreo: Riftstalker pode criar portais de Aether para teletransportar-se por até 10 metros em qualquer direção. Após cada teleporte, ele ganha +10 em furtividade e +5d6 de dano extra em seu próximo ataque.',
+        'Sombra Dominante: Riftstalker pode controlar as sombras ao seu redor para se esconder ou atacar. Ele pode invocar uma sombra para distrair inimigos, ganhando um bônus de +15 em furtividade e criando uma zona de neblina que obscurece a visão dos inimigos dentro de 5 metros.',
+    ],
+    passiva: 'Ecolocalização Sombria: Riftstalker pode localizar inimigos ou objetos em um raio de 30 metros, mesmo se estiver escondido ou em total escuridão, usando ecolocalização baseada nas ondas sonoras e nas vibrações no ambiente.',
+    passivaElemental: 'Portais de Aether: Ao usar seus portais, Riftstalker ganha +20 em agilidade e pode reagir com +4d8 de dano sombrios adicionais em ataques contra inimigos dentro de seu portal, tornando-os vulneráveis a ataques subsequentes.',
+},
+'Gnasher': {
+    title: 'O Castor Gigante',
+    image: 'imagens/dinos_gnasher.jpg', // Substitua pelo caminho correto
+    weight: '1000 kg',
+    height: '3 M',
+    length: '4 M',
+    attributes: { agi: 3, for: 4, int: 4, pre: 4, vig: 5 },
+    life: 350, // Escalável por nível ou estágio
+    armor: 160, // Alta resistência devido à sua armadura natural e habilidades de bloqueio
+    actionBonus: '+15 ataques com dentes de castor, +20 ataque com cauda espinhosa, +10 em testes de esquiva e bloqueio, +15 em testes de percepção e intimidação',
+    attacks: [
+        'Dentes Cortantes: 7d10+25 (causa dano adicional de +3d6 a inimigos derrubados, além de cortar madeira ou obstáculos com facilidade).',
+        'Cauda Espinhosa: 4d8+20 3x(causa dano e cria um abalo sísmico de 5 metros ao redor de Gnasher, derrubando inimigos e causando 10d6 de dano físico a todos dentro da área).',
+        'Encontro da Ira: 6d12+30 (Gnasher usa a força acumulada da sua armadura para gerar uma onda de choque contra os inimigos próximos, causando dano em área e desestabilizando os inimigos com um efeito de **desorientação** por 1 rodada).'
+    ],
+    abilities: [
+        'Acúmulo de Dano: Gnasher pode absorver dano físico e transformá-lo em poder ofensivo. Para cada 10% de sua vida perdida, ele acumula +2d6 de dano adicional para seu próximo ataque.',
+        'Bloqueio Imbatível: Quando Gnasher se prepara para um ataque físico, ele pode bloquear com a cauda ou com seu corpo, reduzindo o dano recebido em 50% e causando um contra-ataque imediato de 2d10 de dano físico.',
+    ],
+    passiva: 'Percepção de Terreno: Gnasher é altamente sensível ao ambiente ao seu redor. Ele pode detectar movimentos no solo ou mudanças no terreno a até 20 metros de distância, recebendo +10 em testes de percepção para rastrear inimigos ou identificar armadilhas.',
+    passivaElemental: 'Esquiva Selvagem: Sua habilidade de movimentação e adaptação ao terreno aumenta sua agilidade, permitindo esquivar-se de ataques com 20% mais eficácia. Além disso, Gnasher pode se mover rapidamente em ambientes aquáticos ou terrenos de lama, mantendo sua agilidade.',
+},
+'Pangar': {
+    title: 'O Colosso Gelado',
+    image: 'imagens/dinos_pangar.jpg', // Substitua pelo caminho correto
+    weight: '8000 kg',
+    height: '16 M',
+    length: '19 M',
+    attributes: { agi: 4, for: 7, int: 6, pre: 5, vig: 6 },
+    life: 1000, // Escalável por nível ou estágio
+    armor: 500, // Sua pele congelada e endurecida proporciona uma defesa imensa
+    actionBonus: '+25 ataques com garras, +30 mordida, +20 contra-ataque gelado, +20 em testes de percepção e intimidação, +10 em esquiva e +20 bloqueio',
+    attacks: [
+        'Mordida Congelante: 10d12+40 (causa dano adicional de +4d6 de gelo e reduz a velocidade do alvo em 50% por 1d4 rodadas).',
+        'Garras de Gelo: 5d10+30 2x(causa dano adicional de +3d6 de dano gélido contínuo e pode causar **congelamento** no alvo por 1 rodada se falhar no teste de resistência).',
+        'Pisada Gelada: 5d12+35 (Pangar bate o chão com seu enorme peso, criando uma onda de gelo e causando 10d6 de dano em área de 5 metros. Inimigos na área devem fazer um teste de resistência ou ficarão **congelados** por 1 rodada).'
+    ],
+    abilities: [
+        'Hálito Gélido: Pangar pode liberar um sopro gélido em cone de 10 metros, causando 4d12 de dano gélido em todos os inimigos na área. Inimigos falharem no teste de resistência ficam **congelados** por 2 rodadas.',
+        'Abalos de Gelo: Pangar pode criar pedaços de gelo em qualquer área ao seu redor, causando abalos sísmicos ao bater o chão. Isso cria estalactites de gelo ou projéteis que podem ser disparados, causando 3d10 de dano gélido e derrubando inimigos dentro de 5 metros.',
+    ],
+    passiva: 'Pele Congelada: Pangar pode endurecer sua pele com sua energia gelada. Quando ele usa a habilidade de **contra-ataque**, ele causa 8d8 de dano gélido adicional, além de aumentar sua resistência a ataques físicos em +30%.',
+    passivaElemental: 'Controle do Gelo: Todos os ataques de Pangar têm um efeito adicional de **congelamento**, causando dano gélido contínuo de +2d8 ao longo de 2 rodadas. Além disso, Pangar ganha +20 em esquiva ao se mover em terrenos congelados ou gelados.',
+},
+'Hellion': {
+    title: 'O Colosso Flamejante',
+    image: 'imagens/dinos_hellion.jpg', // Substitua pelo caminho correto
+    weight: '8000 kg',
+    height: '16 M',
+    length: '19 M',
+    attributes: { agi: 4, for: 7, int: 6, pre: 5, vig: 6 },
+    life: 1000, // Escalável por nível ou estágio
+    armor: 500, // Sua pele reforçada e resistente ao calor proporciona uma defesa imensa
+    actionBonus: '+25 ataques com garras, +30 mordida flamejante, +20 contra-ataque ígneo, +20 em testes de percepção e intimidação, +10 em esquiva e +20 bloqueio',
+    attacks: [
+        'Mordida Flamejante: 9d12+40 (causa dano adicional de +4d6 de fogo e aumenta a temperatura do alvo, causando queimaduras que reduzem a agilidade em 25% por 1d4 rodadas).',
+        'Garras Incandescentes: 5d10+30 (causa dano adicional de +3d6 de dano de fogo contínuo e pode causar **queimaduras** no alvo por 1 rodada, com dano adicional de +2d6 de fogo).',
+        'Pisada Ígnea: 5d12+35 (Hellion bate o chão com seu enorme peso, criando uma onda de lava e causando 6d6 de dano em área de 5 metros. Inimigos na área devem fazer um teste de resistência ou sofrerão **queimaduras** que causam 2d6 de dano por rodada durante 2 rodadas).'
+    ],
+    abilities: [
+        'Sopro Ígneo: Hellion pode liberar um sopro de fogo em cone de 10 metros, causando 8d12 de dano ígneo em todos os inimigos na área. Inimigos falharem no teste de resistência ficam **queimados** por 2 rodadas, com dano contínuo de 3d6 de fogo por rodada.',
+        'Erupções Vulcânicas: Hellion pode criar erupções de lava ao seu redor, causando explosões de fogo em áreas de 5 metros e causando 3d10 de dano ígneo. Ele pode manipular o terreno, fazendo a lava surgir em qualquer lugar ao redor de sua posição, atingindo inimigos e causando queimaduras.',
+    ],
+    passiva: 'Pele Derretida: A alta temperatura do corpo de Hellion torna sua pele difícil de tocar. Quando ele usa a habilidade de **contra-ataque**, ele causa 4d8 de dano ígneo adicional, além de reduzir em 30% o dano recebido de ataques físicos.',
+    passivaElemental: 'Controle do Fogo: Todos os ataques de Hellion têm um efeito adicional de **queimadura**, causando dano de fogo contínuo de +2d8 ao longo de 2 rodadas. Hellion também recebe +20 em esquiva ao estar em terrenos quentes ou de lava.',
+},
+'Nayzaga': {
+    title: 'O Crocodilo Elétrico',
+    image: 'imagens/dinos_nayzaga.jpg', // Substitua pelo caminho correto
+    weight: '1200 kg',
+    height: '4 M',
+    length: '6 M',
+    attributes: { agi: 3, for: 5, int: 3, pre: 4, vig: 5 },
+    life: 350, // Escalável por nível ou estágio
+    armor: 150, // A resistência natural e a carga elétrica proporcionam uma defesa considerável
+    actionBonus: '+20 ataques com mordida elétrica, +15 ataques com garras afiadas, +20 espinhos elétricos, +10 bônus de esquiva, +15 bônus em ações relacionadas a voltagem',
+    attacks: [
+        'Mordida Elétrica: 6d10+30 (causa dano elétrico adicional de +4d6 e tem 50% de chance de paralisar o alvo por 1 rodada).',
+        'Garras Afiadas: 8d8+25 2x(causa dano de corte e elétrico contínuo, com chance de aumentar o dano em +6d6 se o alvo estiver paralisado).',
+        'Espinho Elétrico: 3d12+20 4x(lança um espinho elétrico em linha reta, causando dano em área de 5 metros, atingindo todos no caminho. Gasta 5% da voltagem acumulada e causa 6d6 de dano elétrico).'
+    ],
+    abilities: [
+        'Acúmulo de Voltagem: Nayzaga pode acumular energia elétrica de suas ações e proximidade com cristais ou elementos condutores. A cada 5% da sua vida acumulada em voltagem, ele ganha +2 em agilidade ou força para o próximo turno, podendo acumular até 20% da sua vida. Cada volta de voltagem aumenta a eficiência de suas habilidades elétricas.',
+        'Reação de Ferro: Ao receber dano de ataques que envolvem ferro (armas, armaduras ou objetos metálicos), Nayzaga estabiliza sua voltagem, restaurando 10% de sua vida e recebendo +10 em resistência elétrica por 2 rodadas.',
+    ],
+    passiva: 'Energia Condutora: Qualquer ação realizada perto de cristais ou fontes elétricas aumenta a voltagem de Nayzaga. Se ele estiver perto de uma fonte de energia elétrica (como cristais de voltagem ou tempestades), ele acumula voltagem 20% mais rápido.',
+    passivaElemental: 'Imunidade Elétrica: Nayzaga é completamente imune a ataques elétricos, além de causar +1d8 de dano elétrico adicional sempre que ele atacar com habilidades baseadas em eletricidade. Ele também recebe +15 em esquiva quando está em contato com fontes de voltagem.',
+},
+'Valomyr': {
+    title: 'O Rinoceronte Arcanjo',
+    image: 'imagens/dinos_valomyr.jpg', // Substitua pelo caminho correto
+    weight: '7000 kg',
+    height: '6 M',
+    length: '8 M',
+    attributes: { agi: 2, for: 5, int: 4, pre: 6, vig: 6 },
+    life: 550, // Escalável por nível ou estágio
+    armor: 180, // Sua carapaça encantada oferece resistência física e mágica considerável
+    actionBonus: '+20 chifre arcano, +25 debuffs de rasgos, +15 buffs mágicos, +15 em bloqueio e resistência mágica',
+    attacks: [
+        'Chifre Arcano: 6d12+35 (causa dano mágico adicional de +4d8, com 50% de chance de aplicar **desorientação mágica** no alvo, reduzindo inteligência e precisão em -10 por 1d4 rodadas).',
+        'Pata Arcana: 5d10+30 (causa dano físico misturado com energia mágica. Se atingir inimigos com buffs ativos, remove um buff aleatório e causa dano extra de +2d8).',
+        'Rasgo no Véu: 4d12+20 (Valomyr cria um rasgo arcano em uma área de 5 metros. Todos os inimigos dentro da área recebem debuffs aleatórios por 2 rodadas, como redução de força (-5) ou agilidade (-10), além de sofrerem dano de 3d8 mágico).'
+    ],
+    abilities: [
+        'Bolha de Poder Arcano: Valomyr invoca uma bolha protetora que reduz todo o dano recebido em 50% por 3 rodadas e gera +10 de resistência mágica e física para aliados próximos (em até 10 metros). A bolha pode ser destruída se receber mais de 100 de dano em um único golpe.',
+        'Fúria do Arcanjo: Valomyr pode usar seu poder arcano acumulado para liberar uma explosão em área de 10 metros, causando 6d10 de dano mágico. Ele ganha +10 em força por 2 rodadas após a explosão. Pode ser ativado uma vez por combate.',
+    ],
+    passiva: 'Presença Mística: Todas as ações realizadas por Valomyr dentro de sua bolha de poder recebem um bônus de +2d8 de dano mágico e causam **lentidão** nos inimigos em até 5 metros, reduzindo sua velocidade em 50%.',
+    passivaElemental: 'Energia Arcana: Todos os ataques de Valomyr têm um efeito mágico adicional que causa +1d8 de dano contínuo em energia arcana por 2 rodadas. Ele também ganha +10 em bloqueio ao estar dentro de áreas afetadas por magia ativa.',
+},
+'Shrike': {
+    title: 'A Fúria Alada',
+    image: 'imagens/dinos_shrike.jpg', // Substitua pelo caminho correto
+    weight: '2000 kg',
+    height: '3.5 M',
+    length: '4.5 M',
+    attributes: { agi: 6, for: 8, int: 5, pre: 6, vig: 9 },
+    life: 450, // Escalável por nível ou estágio
+    armor: 170, // Resistente devido ao corpo robusto e penas densas
+    actionBonus: '+20 ataques de soco, +25 ataques de bico, +15 encontrões, +10 em bloqueio, +15 em esquiva enquanto plana +10 arremesso',
+    attacks: [
+        'Soco Devastador: 5d10+30 (Shrike golpeia com suas patas enormes, causando dano adicional de +3d8 e empurrando o alvo 3 metros para trás. Se atingir um obstáculo, causa +2d6 de dano adicional).',
+        'Bicada Implacável: 4d8+25 (Shrike usa seu bico poderoso para causar dano perfurante. Tem 50% de chance de imobilizar o alvo por 1 rodada).',
+        'Encontrão Brutal: 5d12+40 (Shrike investe contra um inimigo, causando dano e o arremessando em linha reta. Inimigos atingidos pelo alvo arremessado sofrem 3d10 de dano por impacto).'
+    ],
+    abilities: [
+        'Arremesso Dominante: Shrike pode agarrar um inimigo de tamanho menor ou igual a ele e arremessá-lo em outro alvo em até 10 metros. Ambos os alvos sofrem 4d10 de dano de impacto. Gasta uma ação bônus.',
+        'Ódio Crescente: A cada golpe recebido, Shrike acumula **ódio** (5% por golpe). Quando atinge 50% de ódio, pode ativar esta habilidade para ganhar +10 em força e 100 de vida temporária por 3 rodadas. Enquanto ativo, todos os ataques causam +2d8 de dano adicional.',
+    ],
+    passiva: 'Voo Imponente: Enquanto Shrike estiver planando, ele ganha +15 em esquiva e pode se mover livremente pelo campo de batalha, ignorando terrenos difíceis. Se descer de uma altura maior que 5 metros para atacar, o dano do ataque é aumentado em +3d6.',
+    passivaElemental: 'Fúria Incontrolável: Quando Shrike ativa sua habilidade de **ódio**, ele regenera 5% de sua vida máxima por rodada enquanto o efeito estiver ativo. Seu corpo robusto e enraivecido reduz todo o dano recebido em 20%.',
+},
+'Skullcrawler': {
+    title: 'O Lagarto Endiabrado',
+    image: 'imagens/dinos_skullcralerw.jpg', // Substitua pelo caminho correto
+    weight: '2500 kg',
+    height: '5.5 M',
+    length: '8 M',
+    attributes: { agi: 4, for: 4, int: 4, pre: 5, vig: 5 },
+    life: 400, // Escalável por nível ou estágio
+    armor: 120, // Defesa razoável, com foco em esquiva e furtividade
+    actionBonus: '+15 mordida, +20 garras, +15 língua puxão, +10 furtividade, +15 rastreamento e percepção, +10 esquiva e contra ataque',
+    attacks: [
+        'Mordida Sangrenta: 5d12+35 (além do dano físico, causa sangramento de 2d8 por 1d4 rodadas. Contra humanos, o sangramento é dobrado, e a vítima entra em **pânico**, sendo incapaz de realizar ações calmas ou estratégicas por 2 rodadas).',
+        'Garras Sangrentas: 4d10+30 (causa dano físico e aplica sangramento de 3d6 por 1d4 rodadas. Pode agarrar o alvo, impedindo seu movimento até que escape com um teste de força ou agilidade).',
+        'Língua Puxão: 3d12+20 (Skullcrawler estica sua língua para agarrar um inimigo em até 10 metros e puxá-lo para sua boca. O alvo precisa passar em um teste de força para evitar ser puxado. Se bem-sucedido, o próximo ataque da mordida tem vantagem).'
+    ],
+    abilities: [
+        'Sinfonia de Adrenalina: Ao morder um humano, Skullcrawler desencadeia uma onda de adrenalina na vítima. Isso aumenta a frequência cardíaca e causa desespero, tornando impossível ações calmas por 2 rodadas e dobrando o dano de sangramento.',
+        'Predador Subterrâneo: Skullcrawler pode cavar para se mover rapidamente pelo terreno, ignorando obstáculos. Ele pode emergir em até 15 metros, surpreendendo inimigos e causando 2d10 de dano adicional em ataques no mesmo turno.',
+    ],
+    passiva: 'Caçador Implacável: Skullcrawler tem vantagem em testes de rastreamento e percepção. Ele ignora penalidades de terreno difícil enquanto rastreia ou caça, além de ser extremamente furtivo, recebendo +10 em ações de emboscada.',
+    passivaElemental: 'Sangue Demoníaco: Todas as ações de Skullcrawler que causam sangramento ganham +1d8 de dano adicional. Ele regenera 5% de sua vida máxima por rodada enquanto estiver em combate contra inimigos com sangramento ativo.',
+},
+'Golias': {
+    title: 'O Encouraçado',
+    image: 'imagens/dinos_golias.jpg', // Substitua pelo caminho correto
+    weight: '6500 kg',
+    height: '7 M',
+    length: '6.5 M',
+    attributes: { agi: 4, for: 5, int: 5, pre: 3, vig: 5 },
+    life: 600, // Escalável por nível ou estágio
+    armor: 200, // Com seu couro indestrutível, Golias é imune a fogo e balas convencionais
+    actionBonus: '+25 ataques de punho, +20 ombreada, +15 ataques de fogo, +15 rastreamento e percepção, +10 em furtividade e intimidação, +10 contra-ataque e bloqueio ',
+    attacks: [
+        'Punho Devastador: 6d12+40 2x(um golpe de força esmagadora. Se atingir, causa **fratura** em um membro do alvo, reduzindo a eficácia de ataques ou movimentação em 50% por 1d4 rodadas).',
+        'Ombreada Destruidora: 5d10+35 (Golias investe com o ombro contra um alvo, causando dano físico e deslocando ossos. O alvo é empurrado 5 metros e fica **atordoado** por 1 rodada, a menos que passe em um teste de Constituição).',
+        'Bafo de Fogo: 4d12+30 (Golias cospe um cone de fogo de 10 metros. Gasta energia e tem um cooldown de 2 rodadas. Todos na área sofrem dano de queimadura contínuo de +2d8 por 2 rodadas).'
+    ],
+    abilities: [
+        'Quebra-Ossos: Golias é especializado em imobilizar e causar dano estrutural. Após imobilizar um alvo com punhos ou ombreada, seus próximos ataques têm +3d8 de dano adicional e 50% de chance de causar outra fratura.',
+        'Mestre do Ambiente: Golias pode usar o ambiente a seu favor. Ele arremessa objetos, escala com facilidade e utiliza cobertura para se proteger ou surpreender. Ganha +10 em testes de escalada e arremesso.',
+      
+    ],
+    passiva: 'Couraça Implacável: Golias é imune a dano de fogo e armas convencionais, além de reduzir todo dano físico em 25%.',
+    passivaElemental: 'Fúria de Fogo: Quando Golias usa seu Bafo de Fogo, ele entra em um estado de **combustão controlada**, ganhando +10 em força e regenerando 5% de sua vida máxima por rodada por 2 rodadas.',
+},
+'Kraken': {
+    title: 'O Polvo Diabólico',
+    image: 'imagens/dinos_kraken.jpg', // Substitua pelo caminho correto
+    weight: '4500 kg',
+    height: '7 M',
+    length: '5 M',
+    attributes: { agi: 6, for: 3, int: 5, pre: 5, vig: 2 },
+    life: 350, // Escalável por nível ou estágio
+    armor: 80, // Pouca armadura devido à sua natureza frágil
+    actionBonus: '+20 ataques de tentáculos, +18 mordida, +15 bolas de energia, +10 manipulação magnética, +15 em percepção e planejamento',
+    attacks: [
+        'Tentáculos Esmagadores: 4d12+25 (os tentáculos agarram o alvo, imobilizando-o. Caso o alvo esteja imobilizado, o próximo ataque tem dano dobrado).',
+        'Mordida Mutante: 5d10+30 (mordida cheia de dentes serrilhados que causa sangramento de 2d6 por 2 rodadas e reduz a mobilidade do alvo em -10 enquanto durar o efeito).',
+        'Bola de Energia: 6d8+20 4x(Kraken arremessa uma esfera de energia elétrica a até 15 metros, causando dano em área de 3 metros ao redor do impacto e reduzindo a agilidade dos atingidos em -5 por 1 rodada).'
+    ],
+    abilities: [
+       
+        'Atração Eletromagnética: Kraken pode atrair ou repelir objetos metálicos em até 20 metros, causando 10d8 de dano por impacto. Se usado contra criaturas em armaduras metálicas, os alvos são puxados e ficam vulneráveis (-10 em defesa) por 1 rodada.',
+        'Descarga Celestial: Kraken concentra energia das nuvens e invoca um enorme raio em uma região de 5 metros. Todos os alvos na área devem fazer um teste de Constituição ou sofrer 8d12+40 de dano elétrico, além de paralisia por 1 rodada. Cooldown de 4 rodadas.',
+    ],
+    passiva: 'Condutor de Energia: Kraken absorve raios e energia elétrica no ambiente, regenerando 5% de sua vida máxima e ganhando +1d8 de dano adicional em todos os ataques elétricos enquanto estiver em combate próximo a tempestades ou fontes de energia. Absorção dura 2 rodadas.',
+    passivaElemental: 'Manipulação Magnética: O Kraken ganha +10 de agilidade e ignora terreno difícil em áreas com grande presença de magnetita ou minerais. Seus ataques elétricos causam +2d8 de dano extra nessas regiões.',
+},
+'Espectro': {
+    title: 'A Criatura Impossível',
+    image: 'imagens/dinos_espectro.jpg', // Substitua pelo caminho correto
+    weight: '800 kg',
+    height: '5 M',
+    length: '6 M',
+    attributes: { agi: 6, for: 3, int: 6, pre: 5, vig: 2 },
+    life: 320, // Escalável por nível ou estágio
+    armor: 90, // Pouca armadura devido à sua fragilidade, compensada por sua inteligência e habilidades
+    actionBonus: '+20 ataques de garra, +15 mordida regenerativa, +18 puxão de tentáculos, +15 camuflagem, +10 em criação de emboscadas, +15 em esquiva e contra ataque',
+    attacks: [
+        'Garras de Foice: 6d10+25 (ataque letal que causa **Adrenalina da Caveira**: alvos humanos atingidos entram em pânico, impossibilitando ações calmas e dobrando o dano de sangramento por 1d4 rodadas).',
+        'Mordida Regenerativa: 5d8+20 (a mordida suga sangue, restaurando 10% da vida máxima do Espectro por rodada por 2 rodadas).',
+        'Agarão de Tentáculos: 4d12+15 (puxa um alvo a até 10 metros diretamente para o Espectro. Caso o alvo falhe em um teste de Força, é imobilizado por 1 rodada).'
+    ],
+    abilities: [
+        'Adrenalina de Plasma: Espectro pode gastar grande quantidade de energia para transformar matéria ao redor em plasma, triplicando o dano de seus ataques por 2 rodadas. Cooldown de 3 rodadas.',
+        'Explosão do Clone: Espectro cria um clone ilusório que engana inimigos por 1 rodada. Ao explodir, o clone espalha pedaços de petróleo que inflamam com as faíscas da criatura, causando 8d10 de dano em área de 5 metros.',
+      
+    ],
+    passiva: 'Inteligência Predatória: Espectro pode adaptar rapidamente suas estratégias, recebendo +10 em percepção e agilidade enquanto estiver camuflado ou analisando o inimigo. Sua capacidade de planejamento é inigualável.',
+    passivaElemental: 'Plasma Instável: Espectro ganha +2d10 de dano adicional em ataques enquanto estiver agitado em combate. Após atingir 3 rodadas consecutivas de ataque, ativa automaticamente **Adrenalina de Plasma** sem custo adicional.',
+},
+'Górgona': {
+    title: 'A Primeira Rainha Tecelã',
+    image: 'imagens/dinos_górgona.jpg', // Substitua pelo caminho correto
+    weight: '2800 kg',
+    height: '6 M',
+    length: '8 M (incluindo patas)',
+    attributes: { agi: 6, for: 3, int: 5, pre: 5, vig: 2 },
+    life: 340, // Escalável por nível ou estágio
+    armor: 120, // Resistente, mas não impenetrável
+    actionBonus: '+18 ataques de garras, +20 baforada ácida, +15 teias de imobilização, +10 percepção e rastreamento, +15 esquiva e furtividade',
+    attacks: [
+        'Garras Predadoras: 5d10+30 (se o ataque acertar, a Górgona pode agarrar o alvo, imobilizando-o por 1 rodada e ganhando +10 em agilidade para o próximo turno).',
+        'Baforada Ácida: 6d12+25 (cobre uma área de 5 metros com ácido corrosivo que derrete armaduras e objetos. Inimigos sofrem dano contínuo de 3d6 por 2 rodadas).',
+        'Teia Imobilizadora: 4d8+15 (arremessa uma teia pegajosa em até 10 metros, imobilizando o alvo por 2 rodadas. Caso o alvo falhe em um teste de Força, a Górgona pode puxá-lo para perto em seu próximo turno).'
+    ],
+    abilities: [
+        'Clone de Teia: Górgona cria um clone feito de teia e petróleo, que engana inimigos por 1 rodada. Ao ser destruído ou explodido, causa 10d8 de dano em área de 5 metros com fogo e ácido.',
+        'Chamado da Criadagem: Górgona invoca uma cria menor com 10% de sua vida máxima. A cria pode agarrar inimigos e, caso consiga comer o alvo, regenera 5% da vida máxima da Górgona. A cria dura 3 rodadas ou até ser derrotada.',
+       
+    ],
+    passiva: 'Tecelã Demoníaca: A Górgona pode gerar teias que dificultam a movimentação de inimigos em um raio de 10 metros, reduzindo a agilidade deles em -10. Sempre que imobiliza ou agarra um alvo, ganha +1d8 de dano adicional nos ataques contra ele.',
+    passivaElemental: 'Veneno Ácido: Todos os ataques da Górgona causam 2d8 de dano ácido adicional. Áreas afetadas por ácido tornam-se difíceis de atravessar para inimigos, reduzindo sua velocidade em 50%.',
+},
+'Behemoth': {
+    title: 'O Golem do Diabo',
+    image: 'imagens/dinos_behemoth.jpg', // Substitua pelo caminho correto
+    weight: '25.000 kg',
+    height: '7.5 M',
+    length: '6 M',
+    attributes: { agi: 4, for: 6, int: 2, pre: 3, vig: 5 },
+    life: 600, // Escalável por nível ou estágio
+    armor: 600, // Base extremamente resistente devido à sua armadura mineral
+    actionBonus: '+20 esmagar, +18 língua agarradora, +22 jato de lava, +15 terreno pedregoso, +30 bloqueio.',
+    attacks: [
+        'Esmagar com Braços: 8d12+40 (ataque pesado que pode causar dano em área em um raio de 3 metros ao redor do Behemoth. Alvos atingidos devem fazer um teste de Constituição ou ficam atordoados por 1 rodada).',
+        'Língua Agarradora: 4d10+20 (a língua do Behemoth pode atingir inimigos em até 8 metros, agarrando-os e puxando-os para perto. Inimigos agarrados sofrem dano contínuo de 3d8 por sufocamento até escaparem).',
+        'Jato de Lava: 6d10+35 (Behemoth cospe lava em linha reta de até 10 metros, causando dano de fogo contínuo de 4d6 por 2 rodadas. A área afetada torna-se difícil de atravessar, reduzindo a velocidade em 50%).'
+    ],
+    abilities: [
+        'Bola de Espinhos: Behemoth enrola-se e rola em alta velocidade por até 15 metros, causando 6d10+30 de dano a todos os inimigos no caminho e criando um terreno pedregoso que reduz a mobilidade. Durante o movimento, ele recebe +15 de armadura.',
+        'Terreno Pedregoso: Behemoth ergue espinhos e pedras do chão em um raio de 10 metros, causando 5d8+20 de dano a todos os inimigos e dificultando a movimentação. Alvos atingidos ficam vulneráveis a ataques físicos no próximo turno.',
+     
+    ],
+    passiva: 'Estômago Exposto: Behemoth é imune a armas convencionais. Para causar dano significativo, é necessário fazer com que ele corra, expondo seu estômago. Enquanto o estômago está exposto, ataques causam +4d10 de dano adicional.',
+    passivaElemental: 'Fusão com Pedra: Todos os ataques causam 1d8 de dano adicional de pedra ou fogo. Behemoth ganha resistência ao dano de fogo e completa imunidade ao dano de perfuração ou corte de armas normais.',
+},
+'Peixe-jaula': {
+    title: 'Guardião do Void Profundo',
+    image: 'imagens/dinos_peixe_jaula.jpg', // Substitua pelo caminho correto
+    weight: '30.000 kg',
+    height: '16 M',
+    length: '28M',
+    attributes: { agi: 4, for: 7, int: 2, pre: 2, vig: 7 },
+    life: 1000, // Escalável por nível ou estágio
+    armor: 500, // Armadura natural reforçada pela pressão extrema das profundezas
+    actionBonus: '+38 mordida colapsante, +30 golpe de cauda, +25 rajada de sombras, +20 em testes de percepção em águas escuras',
+    attacks: [
+        'Mordida Colapsante: 10d12+50 (um ataque massivo que pode esmagar armaduras e causar quebrado-fatal contínuo de 20d8 por 3 rodadas. Se usado contra criaturas menores, o alvo deve passar em um teste de Constituição ou ser engolido).',
+        'Golpe de Cauda: 8d10+40 (o golpe de cauda gera uma onda de choque que desorienta inimigos em um raio de 10 metros, reduzindo sua mobilidade em 50% por 2 rodadas).',
+        'Rajada de Sombras: 6d12+35 (o Peixe-Jaula emite uma rajada de energia sombria que reduz a visibilidade e causa dano em área em um cone de 15 metros. Alvos atingidos têm -10 em precisão por 2 rodadas).'
+    ],
+    abilities: [
+        'Olhos Verdes do Abismo: A presença do Peixe-Jaula reduz a visibilidade para 1 metro em um raio de 20 metros ao redor. Seus olhos brilham em verde, forçando inimigos a fazerem um teste de Sabedoria ou sofrerem um efeito de pânico, reduzindo sua capacidade de atacar ou se mover estrategicamente.',
+        'Guardião do Void: O Peixe-Jaula pode invocar Leviatãs menores para ajudar na batalha. Cada Leviatã tem 20% de sua vida e causa 4d10+20 de dano com ataques. Podem ser invocados a cada 5 rodadas.',
+       
+    ],
+    passiva: 'Aura Abissal: Sempre que o Peixe-Jaula recebe dano, ele regenera 5% de sua vida máxima e reduz a visibilidade de quem o atacou ainda mais, tornando-o praticamente invisível para inimigos sem sentidos aprimorados.',
+    passivaElemental: 'Profundezas Sombria: Todos os ataques do Peixe-Jaula causam +2d8 de dano de escuridão. Ele é imune a ataques baseados em luz e calor e ganha +10 em todos os testes em ambientes aquáticos profundos.',
+},
+'Gargantua': {
+    title: 'O Colosso do Void',
+    image: 'imagens/dinos_gargantua.jpg', // Substitua pelo caminho correto
+    weight: '1.200.000 toneladas',
+    height: '200 M',
+    length: '1 KM',
+    attributes: { agi: 2, for: 20, int: 6, pre: 15, vig: 20 },
+    life: 10000, // Escalável por nível ou estágio, representando sua colossal resistência
+    armor: 500, // Armadura quase impenetrável devido à sua escama densa e adaptada ao void
+    actionBonus: '+105 mordida fatal, +80 golpe de cauda devastador, +75 rajada de escuridão, +75 em testes de percepção e rastreamento no void',
+    attacks: [
+        'Mordida Fatal: *Instant Kill* (Um ataque mortal que destrói qualquer criatura menor que o Gargantua. Criaturas maiores devem passar em um teste de Constituição extremo com dificuldade aumentada para evitar morte imediata, ainda sofrendo 15d20+100 de dano caso resistam).',
+        'Golpe de Cauda Devastador: 12d20+80 (o impacto causa um terremoto submarino, gerando ondas de choque em um raio de 50 metros. Todos os inimigos na área devem passar em um teste de Reflexo ou serem lançados a uma grande distância, sofrendo dano por impacto).',
+        'Rajada de Escuridão: 8d20+60 (o Gargantua emite uma onda de energia negra em um cone de 100 metros. Alvos atingidos perdem temporariamente a capacidade de enxergar, lutar estrategicamente ou usar habilidades mágicas por 1d4 rodadas).'
+    ],
+    abilities: [
+        'Terror do Void: A simples presença do Gargantua força todos os inimigos a fazerem testes de Sabedoria em cada turno. Falhas resultam em efeitos de pânico, fazendo-os hesitar ou fugir. Criaturas mais fracas que o Gargantua automaticamente ficam paralisadas em um raio de 30 metros.',
+        'Colosso do Abismo: O Gargantua é capaz de alterar o ambiente ao seu redor, criando correntes submarinas que arrastam inimigos para a escuridão. Esses redemoinhos causam 6d10 de dano por rodada e dificultam movimentos (-20 em agilidade).',
+      
+    ],
+    passiva: 'Aura do Void Eterno: Dentro de seu domínio, o Gargantua é praticamente intangível para ataques comuns. Ele regenera 5% de sua vida máxima por rodada e reflete 10% do dano recebido de fontes mágicas como dano de escuridão no atacante.',
+    passivaElemental: 'Escuridão Primordial: Todos os ataques do Gargantua causam +3d20 de dano sombrio. Ele é imune a qualquer efeito de luz, fogo ou gelo, e ganha +20 em todos os testes realizados em águas profundas e escuras.',
+},
+
+
+
 
 
 

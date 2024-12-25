@@ -21,43 +21,6 @@ body {
     transform: translateY(0);
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    
-
-    .page {
-        padding: 10px; /* Adiciona espaçamento nas laterais para evitar cortes */
-    }
-}
-
-/* Responsividade para smartphones */
-@media (max-width: 480px) {
-    body {
-        background-size: cover;
-        font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
-    }
-
-    .page {
-        padding: 5px; /* Reduz o espaçamento */
-    }
-
-    h1, h2, h3, p {
-        font-size: 90%; /* Reduz os tamanhos de título e parágrafos */
-        line-height: 1.4; /* Aumenta o espaçamento entre linhas para melhor leitura */
-    }
-
-    img {
-        width: 100%; /* Imagens ocupam toda a largura da tela */
-        height: auto; /* Mantém proporção */
-    }
-}
-
-/* Adiciona quebra de linhas em telas menores para elementos que podem sobrepor */
-@media (max-width: 360px) {
-    h1, h2 {
-        font-size: 85%; /* Reduz ainda mais os tamanhos de fonte */
-    }
-}
 
 /* Estilo da Nav-Bar */
 nav {
@@ -74,54 +37,14 @@ nav {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Ajustes para telas menores */
-@media (max-width: 1068px) {
-    nav {
-        padding: 8px 15px; /* Reduzindo o espaçamento para telas menores */
-    }
 
-    nav .logo {
-        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
-    }
 
-    nav ul {
-        flex-direction: column; /* Alinha os itens do menu na vertical */
-        padding: 0;
-    }
-
-    nav ul li {
-        margin: 5px 0; /* Espaçamento entre os itens do menu */
-    }
-
-    nav a {
-        font-size: 0.9rem; /* Ajusta o tamanho da fonte dos links */
-    }
-}
-
-/* Ajustes para telas muito pequenas (celulares) */
-@media (max-width: 480px) {
-    nav {
-        padding: 5px 10px; /* Reduzindo ainda mais o padding */
-    }
-
-    nav .logo {
-        font-size: 1rem; /* Tamanho do logo menor */
-    }
-
-    nav ul li {
-        margin: 3px 0; /* Reduz o espaçamento entre os itens */
-    }
-
-    nav a {
-        font-size: 0.8rem; /* Reduz o tamanho da fonte dos links */
-    }
-}
 
 /* Estilo do Logo */
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre a imagem e o texto */
+    gap: 10%; /* Espaço entre a imagem e o texto */
 }
 
 .logo img {
@@ -138,6 +61,7 @@ nav {
     margin-right: 20px;
     margin-left: 10px;
 }
+
 
 /* Links da Nav-Bar */
 .nav-links {
@@ -237,11 +161,26 @@ nav {
         background-position: 0 0;
     }
 }
-
-@media (max-width: 1078px) {
+/* Ajustes para telas menores */
+@media (max-width: 780px) {
     nav {
-        padding: 5px 8px;
+        flex-wrap: wrap; /* Permite que os elementos quebrem linha, se necessário */
+        padding: 5px; /* Reduz o padding total */
     }
+
+    .logo {
+        
+        text-align: center;
+    }
+
+    .nav-links {
+        flex: 2; /* Ajusta o espaço para os links */
+        justify-content: center; /* Centraliza os links */
+    }
+    
+}
+@media (max-width: 1078px) {
+  
 
     .logo img {
         width: 25px; /* Reduz tamanho do ícone */
@@ -269,39 +208,43 @@ nav {
         border-radius: 5px; /* Bordas arredondadas */
         -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
     }
-    
+}
     /* Responsividade com media queries */
-    @media (max-width: 1480px) {
+    @media (max-width: 1080px) {
         .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
+            width: 8em; /* Reduz largura para telas menores */
+            height: 2.6em; /* Reduz altura */
+            line-height: 2.6em; /* Ajusta alinhamento vertical */
+            font-size: 0.8rem; /* Diminui tamanho da fonte */
+           
         }
-    }
-    @media (max-width: 1020px) {
-        .nav-links a {
-            width: 6em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
+        .nav-links{
+            display: flex;
+            gap: 1px; /* Espaço entre os links */
+          
         }
-    }
+        
     
-    @media (max-width: 480px) {
+    }
+    @media (max-width: 780px) {
         .nav-links a {
             width: 5em; /* Reduz largura para telas menores */
             height: 2.1em; /* Reduz altura */
             line-height: 2.3em; /* Ajusta alinhamento vertical */
             font-size: 0.6rem; /* Diminui tamanho da fonte */
+           
         }
-    }
+        .nav-links{
+            display: flex;
+            gap: 1px; /* Espaço entre os links */
+        }
 
     .nav-links a {
         margin: 5px 0;
-    }
     
-}
+    }
+   
+    }
 /* Botão "Jogar Dados" com efeito Glow */
 /* Dado Container */
 .dado-container {
@@ -344,17 +287,53 @@ nav {
 }
 
 /* Responsividade com media queries */
-@media (max-width: 1078px) {
+@media (max-width: 1080px) {
     .glow-on-hover {
-        padding: 0.4rem 0.5rem; /* Reduz padding em tablets */
+        padding: 0.4rem ; /* Reduz padding em tablets */
         font-size: 0.6rem; /* Diminui tamanho do texto */
-        margin-right: 4.0em; /* Ajusta margens */
+       align-items: center;
+        margin-left: 20%;
+        
     }
 
     .dado {
         width:2em; /* Reduz largura do dado */
-        margin-right: 2.4em; /* Ajusta margem */
+        align-items: center;
+        margin-left: 40%;
     }
+  
+}
+@media (max-width: 780px) {
+    .glow-on-hover {
+        padding: 0.3rem ; /* Reduz padding em tablets */
+        font-size: 0.5rem; /* Diminui tamanho do texto */
+       align-items: center;
+        margin-left: 10%;
+        
+    } 
+
+    .dado {
+        width:2em; /* Reduz largura do dado */
+        align-items: center;
+        margin-left: 37.5%;
+    }
+  
+}
+@media (max-width: 480px) {
+    .glow-on-hover {
+        padding: 0.4rem ; /* Reduz padding em tablets */
+        font-size: 0.6rem; /* Diminui tamanho do texto */
+       align-items: center;
+        margin-left: 20%;
+        
+    }
+
+    .dado {
+        width:2em; /* Reduz largura do dado */
+        align-items: center;
+        margin-left: 40%;
+    }
+  
 }
 
 
