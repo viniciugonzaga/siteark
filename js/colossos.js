@@ -130,7 +130,7 @@ const colossos = {
     },
     "Esquecidrus": {
         nome: "Esquecidrus",
-        imagem: "imagens/tokens/colosso_esquecido.PNG",
+        imagem: "imagens/tokens/Colosso_esquecido.png",
         tamanho: "Altura: 5 M / Comprimento: 3 M",
         atributos: {
             agi: 2,
