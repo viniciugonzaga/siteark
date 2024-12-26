@@ -83,8 +83,8 @@ document.addEventListener("scroll", () => {
         footer.style.background = "linear-gradient(45deg, #552e948f,#5d0964d5,#502b8b8f)"; // Mantém a cor padrão
     }
 });
-  // Função para salvar dados no localStorage
-  function salvarFicha() {
+// Função para salvar dados no localStorage
+function salvarFicha() {
     const ficha = {
         nome: document.getElementById('nome').value,
         personagem: document.getElementById('personagem').value,
@@ -99,6 +99,7 @@ document.addEventListener("scroll", () => {
         anotacoes: document.getElementById('anotacoes').value,
     };
 
+    // Salva a ficha no localStorage como uma string JSON
     localStorage.setItem('ficha', JSON.stringify(ficha));
 }
 
@@ -118,13 +119,6 @@ function carregarFicha() {
         document.getElementById('vig').value = ficha.vig;
         document.getElementById('anotacoes').value = ficha.anotacoes;
     }
-}
-
-// Função para rolar dados
-function rolarDado(lados) {
-    const resultado = Math.floor(Math.random() * lados) + 1;
-    document.getElementById('resultadoDado').textContent = `Resultado do dado: ${resultado}`;
-    salvarFicha();
 }
 
 // Salvar automaticamente ao alterar campos
