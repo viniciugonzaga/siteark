@@ -145,4 +145,142 @@ const contents = [
     document.getElementById("resultadoEvento").textContent = 
       `Resultado do evento: ${eventoAleatorio} (${numeroAleatorio})`;
   }
+  function rolarItem() {
+    const itens = [
+      "Item Primal",
+      "Item Natural",
+      "Item Natural Quebrado",
+      "Item Primal Quebrado",
+      "Item Espólio Raro",
+      "Item Espólio Comum",
+      "Item Espólio Épico",
+      "Item Antigo"
+    ];
+    const numeroAleatorio = Math.floor(Math.random() * 8) + 1; // Número de 1 a 8
+    const itemAleatorio = itens[Math.floor(Math.random() * itens.length)]; // Item aleatório
+  
+    // Atualiza o resultado no HTML
+    document.getElementById("resultadoItem").textContent = 
+      `Resultado do item: ${itemAleatorio} (${numeroAleatorio})`;
+  }
+  function rolarSorte() {
+    // Lista de eventos de sorte
+    const eventosSorte = [
+      "Criatura comum pequena",
+      "Criatura comum média",
+      "Grupo de criaturas pequenas",
+      "Casal de criaturas médias",
+      "Predador alfa",
+      "Filhotes de alfa",
+      "Filhotes de comum",
+      "Filhotes de médio",
+      "Filhote comum com pai",
+      "Filhote médio com pai",
+      "Filhote alfa com pai",
+      "Ninho de grupo comum",
+      "Ninho de grupo médio",
+      "Ninho de alfa",
+      "Emboscada comum",
+      "Emboscada média",
+      "Perseguição alfa",
+      "Criatura comum ferida",
+      "Criatura média ferida",
+      "Fezes de criatura",
+    ];
+  
+    // Embaralhar a lista de eventos para torná-los aleatórios
+    const eventosEmbaralhados = eventosSorte.sort(() => Math.random() - 0.5);
+  
+    // Rolar o dado (1d20)
+    const numeroD20 = Math.floor(Math.random() * 20) + 1;
+  
+    // Selecionar um evento aleatório do array embaralhado
+    const eventoSorte = eventosEmbaralhados[numeroD20 - 1]; // Correspondente ao número do dado
+  
+    // Atualizar o resultado na página
+    const resultado = `Número sorteado (1d20): ${numeroD20}<br>Evento de sorte: ${eventoSorte}`;
+    document.getElementById("resultadoSorte").innerHTML = resultado;
+  }
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+  
+  function rolarPersonalidade() {
+    // Listas originais de personalidades
+    let personalidadesDomesticos = [
+      "Leal", "Medrosa", "Furioso", "Depressivo", "Cansado",
+      "Agitado", "Inteligente", "Invejoso", "Ciumento", "Bipolar",
+      "Insano", "Alegre", "Carente", "Corajoso", "Conturbado",
+      "Solitário", "Forte", "Calmo", "Obsessivo", "Ansioso"
+    ];
+  
+    let personalidadesSelvagens = [
+      "Corajoso", "Medrosa", "Furioso", "Guloso", "Cansado",
+      "Agitado", "Inteligente", "Fraco", "Forte", "Burro",
+      "Insano", "Alegre", "Carente", "Com sede", "Solitário",
+      "Brigão", "Prioritário", "Passivo", "Doente", "Parrudo"
+    ];
+  
+    // Embaralhar as listas
+    personalidadesDomesticos = shuffleArray(personalidadesDomesticos);
+    personalidadesSelvagens = shuffleArray(personalidadesSelvagens);
+  
+    // Rolar os dados (1d20 para cada lista)
+    const numeroDomestico = Math.floor(Math.random() * 20) + 1;
+    const numeroSelvagem = Math.floor(Math.random() * 20) + 1;
+  
+    // Selecionar as personalidades correspondentes
+    const personalidadeDomestico = personalidadesDomesticos[numeroDomestico - 1];
+    const personalidadeSelvagem = personalidadesSelvagens[numeroSelvagem - 1];
+  
+    // Atualizar o resultado na página
+    const resultado = `Animal Doméstico (1d20): ${numeroDomestico} - Personalidade: ${personalidadeDomestico}<br>
+                       Animal Selvagem (1d20): ${numeroSelvagem} - Personalidade: ${personalidadeSelvagem}`;
+    document.getElementById("resultadoPersonalidade").innerHTML = resultado;
+  }
+  function rolarEventoIlha() {
+    // Lista dos eventos da ilha
+    const eventosIlha = [
+      "Igneous", "Abismoelétrico", "Mortalidade", "Caveira", 
+      "Tribal", "Drops", "Aether", "Nada"
+    ];
+  
+    // Embaralha a lista de eventos
+    const eventosAleatorios = shuffleArray([...eventosIlha]);
+  
+    // Rola um número aleatório entre 1 e 8 (1d8)
+    const numeroEvento = Math.floor(Math.random() * 8) + 1;
+  
+    // Seleciona o evento baseado no número
+    const eventoSelecionado = eventosAleatorios[numeroEvento - 1];
+  
+    // Exibe o número do dado e o evento selecionado
+    const resultado = `Número (1d8): ${numeroEvento} - Evento: ${eventoSelecionado}`;
+    document.getElementById("resultadoEventoIlha").innerHTML = resultado;
+  }
+  function rolarItemDrop() {
+    // Lista de itens de drops
+    const itensDrop = [
+      "Arma Tek Quebrada 1/3", "Item Primal", "Item Raro", "Item Industrial",
+      "Ovo de Dino Comum", "Ovo de Dino Raro", "Ovo de Dino Alfa",
+      "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental"
+    ];
+  
+    // Embaralhar a lista de itens de drops aleatoriamente
+    const itensEmbaralhados = itensDrop.sort(() => Math.random() - 0.5);
+  
+    // Rola um número aleatório entre 1 e 10 (1d10)
+    const numeroDrop = Math.floor(Math.random() * 10) + 1;
+  
+    // Seleciona um item aleatório da lista embaralhada
+    const itemSelecionado = itensEmbaralhados[numeroDrop - 1];
+  
+    // Exibe o número do dado e o item selecionado
+    const resultado = `Número (1d10): ${numeroDrop} - Item: ${itemSelecionado}`;
+    document.getElementById("resultadoItemDrop").innerHTML = resultado;
+  }
   
