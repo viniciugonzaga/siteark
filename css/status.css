@@ -564,87 +564,99 @@ nav {
 /* Main - final*/
 
 .ficha-container {
-    background: #fff;
-    border: 2px solid #000;
+    background: linear-gradient(90deg, #3f1a68,  #30093f, #30093f,#3f1a68);
+    border: 2px solid #6c0bdb; /* Dark Purple */
     border-radius: 10px;
     padding: 20px;
     width: 800px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
+    margin: auto;
+    margin-bottom: 5%;
+  }
+  
+  .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-}
-
-.header input {
+    color: #fd0bc9; /* Light Gray */
+  }
+  
+  .header input {
     font-size: 1.2rem;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #560bad; /* Dark Purple */
     border-radius: 5px;
     width: 150px;
-}
-
-.atributos {
+    background: #3a2c3d; /* Dark Gray */
+    color: #0bffeb; /* Light Gray */
+  }
+  
+  .atributos {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
-}
-
-.atributo {
+  }
+  
+  .atributo {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.atributo span {
+    color: #0ec9f8; /* Light Gray */
+  }
+  
+  .atributo span {
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-.atributo input {
+  }
+  
+  .atributo input {
     width: 50px;
     text-align: center;
     padding: 5px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #560bad; /* Dark Purple */
     border-radius: 5px;
-}
-
-.dados {
+    background: #1a0231; /* Dark Gray */
+    color: #ff55be; /* Light Gray */
+  }
+  
+  .dados {
     margin-bottom: 20px;
-}
-
-.dados button {
+    color: #68faff; /* Light Gray */
+  }
+  
+  .dados button {
     margin: 5px;
     padding: 10px 15px;
-    background: #007bff;
-    color: #fff;
+    background: #3a2c3d; /* Dark Gray */
+    color: #ffffff; /* White */
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.dados button:hover {
-    background: #0056b3;
-}
-
-.resultado {
+  }
+  
+  .dados button:hover {
+    background: #0e243d; /* Darker Gray */
+  }
+  
+  .resultado {
     font-size: 1.2rem;
     font-weight: bold;
     margin-top: 10px;
-}
-
-.anotacoes textarea {
+    color: #f52ffc; /* Light Gray */
+  }
+  
+  .anotacoes textarea {
     width: 100%;
     height: 100px;
     padding: 10px;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #560bad; /* Dark Purple */
     border-radius: 5px;
-}
+    background: #343a40; /* Dark Gray */
+    color: #b4b4b4; /* Light Gray */
+  }
 
 
 /* Geral do footer ------------------------------------------------------------------------------*/

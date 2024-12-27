@@ -83,48 +83,37 @@ document.addEventListener("scroll", () => {
         footer.style.background = "linear-gradient(45deg, #552e948f,#5d0964d5,#502b8b8f)"; // Mantém a cor padrão
     }
 });
-// Função para salvar dados no localStorage
-function salvarFicha() {
-    const ficha = {
-        nome: document.getElementById('nome').value,
-        personagem: document.getElementById('personagem').value,
-        vida: document.getElementById('vida').value,
-        sanidade: document.getElementById('sanidade').value,
-        armadura: document.getElementById('armadura').value,
-        agi: document.getElementById('agi').value,
-        for: document.getElementById('for').value,
-        int: document.getElementById('int').value,
-        pre: document.getElementById('pre').value,
-        vig: document.getElementById('vig').value,
-        anotacoes: document.getElementById('anotacoes').value,
-    };
+function rolarDado(numFaces) {
+  // Gera um número aleatório entre 1 e numFaces
+  const resultado = Math.floor(Math.random() * numFaces) + 1;
 
-    // Salva a ficha no localStorage como uma string JSON
-    localStorage.setItem('ficha', JSON.stringify(ficha));
+  // Seleciona o elemento onde o resultado será exibido
+  const resultadoElemento = document.getElementById('resultadoDado');
+
+  // Atualiza o texto do elemento com o resultado
+  resultadoElemento.textContent = `Resultado do dado: ${resultado}`;
 }
 
-// Função para carregar dados do localStorage
-function carregarFicha() {
-    const ficha = JSON.parse(localStorage.getItem('ficha'));
-    if (ficha) {
-        document.getElementById('nome').value = ficha.nome;
-        document.getElementById('personagem').value = ficha.personagem;
-        document.getElementById('vida').value = ficha.vida;
-        document.getElementById('sanidade').value = ficha.sanidade;
-        document.getElementById('armadura').value = ficha.armadura;
-        document.getElementById('agi').value = ficha.agi;
-        document.getElementById('for').value = ficha.for;
-        document.getElementById('int').value = ficha.int;
-        document.getElementById('pre').value = ficha.pre;
-        document.getElementById('vig').value = ficha.vig;
-        document.getElementById('anotacoes').value = ficha.anotacoes;
-    }
+
+function rolarDado(numFaces) {
+  // Gera um número aleatório
+  const resultado = Math.floor(Math.random() * numFaces) + 1;
+
+  // Salva no localStorage
+  localStorage.setItem('resultadoDado', resultado);
+
+  // Envia mensagem para outras abas
+  window.postMessage({ tipo: 'atualizarDado', valor: resultado }, '*');
+
+  // Atualiza a interface local
+  const resultadoElemento = document.getElementById('resultadoDado');
+  resultadoElemento.textContent = `Resultado do dado: ${resultado}`;
 }
 
-// Salvar automaticamente ao alterar campos
-document.querySelectorAll('input, textarea').forEach((element) => {
-    element.addEventListener('input', salvarFicha);
+// Ouvir mensagens de outras abas
+window.addEventListener('message', (event) => {
+  if (event.data.tipo === 'atualizarDado') {
+    const resultadoElemento = document.getElementById('resultadoDado');
+    resultadoElemento.textContent = `Resultado do dado (de outra aba): ${event.data.valor}`;
+  }
 });
-
-// Carregar a ficha ao carregar a página
-window.onload = carregarFicha;
