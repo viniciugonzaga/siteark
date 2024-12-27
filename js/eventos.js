@@ -135,3 +135,14 @@ const contents = [
     document.getElementById("gif").src = content.gif;
     document.getElementById("imagem-fundo").src = content.background;
   }
+
+  function rolarEvento() {
+    const eventos = ["Normal", "Invertido", "Normal", "Normal"];
+    const numeroAleatorio = Math.floor(Math.random() * 4) + 1; // Número de 1 a 4
+    const eventoAleatorio = eventos[Math.floor(Math.random() * eventos.length)]; // Evento aleatório
+  
+    // Atualiza o resultado no HTML
+    document.getElementById("resultadoEvento").textContent = 
+      `Resultado do evento: ${eventoAleatorio} (${numeroAleatorio})`;
+  }
+  

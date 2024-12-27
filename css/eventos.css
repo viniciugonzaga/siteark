@@ -664,6 +664,37 @@ nav {
     }
   }
 
+  #botaoEvento {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #560bad; /* Roxo escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .centro{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+  }
+  
+  #botaoEvento:hover {
+    background-color: #79006f; /* Roxo vibrante */
+  }
+  
+  #resultadoEvento {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul claro */
+    padding: 10px;
+  }
+  
 
 footer {
     background: linear-gradient(45deg, #bb5e5ee0,#c07c2fd5,#03b38dd5,#c07c2fd5,#bb5e5ee0);

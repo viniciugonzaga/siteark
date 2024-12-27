@@ -83,37 +83,96 @@ document.addEventListener("scroll", () => {
         footer.style.background = "linear-gradient(45deg, #552e948f,#5d0964d5,#502b8b8f)"; // Mantém a cor padrão
     }
 });
-function rolarDado(numFaces) {
-  // Gera um número aleatório entre 1 e numFaces
-  const resultado = Math.floor(Math.random() * numFaces) + 1;
+let registroDados = [];
 
-  // Seleciona o elemento onde o resultado será exibido
-  const resultadoElemento = document.getElementById('resultadoDado');
-
-  // Atualiza o texto do elemento com o resultado
-  resultadoElemento.textContent = `Resultado do dado: ${resultado}`;
-}
-
-
-function rolarDado(numFaces) {
-  // Gera um número aleatório
-  const resultado = Math.floor(Math.random() * numFaces) + 1;
-
-  // Salva no localStorage
-  localStorage.setItem('resultadoDado', resultado);
-
-  // Envia mensagem para outras abas
-  window.postMessage({ tipo: 'atualizarDado', valor: resultado }, '*');
-
-  // Atualiza a interface local
-  const resultadoElemento = document.getElementById('resultadoDado');
-  resultadoElemento.textContent = `Resultado do dado: ${resultado}`;
-}
-
-// Ouvir mensagens de outras abas
-window.addEventListener('message', (event) => {
-  if (event.data.tipo === 'atualizarDado') {
-    const resultadoElemento = document.getElementById('resultadoDado');
-    resultadoElemento.textContent = `Resultado do dado (de outra aba): ${event.data.valor}`;
+function rolarDado(lados) {
+  const resultado = Math.floor(Math.random() * lados) + 1;
+  let resultadoTexto = `Resultado do dado: ${resultado}`;
+  
+  // Adiciona funcionalidade especial ao rolar um D20
+  if (lados === 20) {
+    const dadoInvertido = Math.random() < 0.5 ? "Chance de Normal" : "Chance de invertido";
+    const eventoD4 = Math.floor(Math.random() * 4) + 1; // Rola 1d4 escondido
+    resultadoTexto += ` | ${dadoInvertido} (1d2: ${Math.floor(Math.random() * 2) + 1})`;
+   
   }
-});
+
+  document.getElementById("resultadoDado").textContent = resultadoTexto;
+
+  const dadoInfo = { lados, resultado };
+  if (lados !== 20) {
+    registroDados.push(dadoInfo);
+  }
+
+  const botao = document.querySelector(`.dado-button[data-lados="${lados}"] img`);
+  botao.classList.add("girando");
+  setTimeout(() => botao.classList.remove("girando"), 1000);
+}
+
+  function mostrarRegistro() {
+    const modal = document.getElementById("modal-registro");
+    const registroDiv = document.getElementById("registro-dados");
+    registroDiv.innerHTML = registroDados
+      .map(dado => `<p>Dado ${dado.lados} → Resultado: ${dado.resultado}</p>`)
+      .join("");
+    const total = registroDados.reduce((acc, dado) => acc + dado.resultado, 0);
+    registroDiv.innerHTML += `<p><strong>Total de dano: ${total}</strong></p>`;
+    modal.style.display = "block";
+  }
+
+  function limparRegistro() {
+    registroDados = [];
+    document.getElementById("registro-dados").innerHTML = "";
+  }
+
+  function fecharModal() {
+    document.getElementById("modal-registro").style.display = "none";
+  }
+
+  function salvarFicha() {
+    const ficha = {
+      nome: document.getElementById("nome").value,
+      personagem: document.getElementById("personagem").value,
+      vida: document.getElementById("vida").value,
+      sanidade: document.getElementById("sanidade").value,
+      armadura: document.getElementById("armadura").value,
+      agi: document.getElementById("agi").value,
+      for: document.getElementById("for").value,
+      int: document.getElementById("int").value,
+      pre: document.getElementById("pre").value,
+      vig: document.getElementById("vig").value,
+      anotacoes: document.getElementById("anotacoes").value,
+    };
+
+    localStorage.setItem("ficha", JSON.stringify(ficha));
+    alert("Ficha salva com sucesso!");
+  }
+
+  // Carregar ficha ao iniciar
+  window.onload = () => {
+    const fichaSalva = localStorage.getItem("ficha");
+    if (fichaSalva) {
+      const ficha = JSON.parse(fichaSalva);
+      document.getElementById("nome").value = ficha.nome;
+      document.getElementById("personagem").value = ficha.personagem;
+      document.getElementById("vida").value = ficha.vida;
+      document.getElementById("sanidade").value = ficha.sanidade;
+      document.getElementById("armadura").value = ficha.armadura;
+      document.getElementById("agi").value = ficha.agi;
+      document.getElementById("for").value = ficha.for;
+      document.getElementById("int").value = ficha.int;
+      document.getElementById("pre").value = ficha.pre;
+      document.getElementById("vig").value = ficha.vig;
+      document.getElementById("anotacoes").value = ficha.anotacoes;
+    }
+  };
+  function rolarEvento() {
+    const eventos = ["Normal", "Invertido", "Normal", "Normal"];
+    const numeroAleatorio = Math.floor(Math.random() * 4) + 1; // Número de 1 a 4
+    const eventoAleatorio = eventos[Math.floor(Math.random() * eventos.length)]; // Evento aleatório
+  
+    // Atualiza o resultado no HTML
+    document.getElementById("resultadoEvento").textContent = 
+      `Resultado do evento: ${eventoAleatorio} (${numeroAleatorio})`;
+  }
+  
