@@ -896,24 +896,7 @@ text-align: center;
     }
 }
 
-/* @media para telas menores que 780px */
-@media screen and (max-width: 780px) {
-    .modal-animais-content {
-      width: 90%; /* Ajuste a largura do modal para telas menores */
-    }
-  
-    .animal-box input[type="text"],
-    .animal-box select,
-    .animal-box input[type="checkbox"] {
-      width: 95%; /* Ajuste a largura dos campos de entrada para telas menores */
-    }
-  
-    .nome-dino {
-      flex: 1;
-      padding: 8px;
-      margin-right: 5px; /* Ajuste o espaçamento para telas menores */
-    }
-  }
+
 /* Estilos gerais */
 .modal-animais {
     display: none;
