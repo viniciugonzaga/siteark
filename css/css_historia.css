@@ -817,7 +817,7 @@ nav {
 
 .container {
     display: flex; /* Usado para alinhar as divs lado a lado */
-    justify-content: space-between; /* Espaçamento entre as divs */
+   
     align-items: flex-start; /* Alinha as divs ao topo */
     width: 80%; /* Define a largura da .container */
     max-width: 1000px; /* Limita a largura máxima */
@@ -899,7 +899,7 @@ nav {
 
   .container2 {
     display: flex; /* Usado para alinhar as divs lado a lado */
-    justify-content: space-between; /* Espaçamento entre as divs */
+ 
     align-items: flex-start; /* Alinha as divs ao topo */
     width: 80%; /* Define a largura da .container */
     max-width: 1000px; /* Limita a largura máxima */

@@ -287,3 +287,256 @@ document.getElementById("calcularDTHibridos").addEventListener("click", () => {
     `;
 });
 
+// Abrir o modal
+const abrirModalAnimais = document.getElementById("abrirModalAnimais");
+const modalAnimais = document.getElementById("modalAnimais");
+
+abrirModalAnimais.addEventListener("click", () => {
+  modalAnimais.style.display = "block";
+});
+
+// Fechar o modal
+const fecharModalAnimais = document.getElementById("fecharModalAnimais");
+
+fecharModalAnimais.addEventListener("click", () => {
+  modalAnimais.style.display = "none";
+});
+
+// Adicionar outro dino à lista
+const adicionarAnimal = document.getElementById("adicionarAnimal");
+const animaisAdicionados = document.getElementById("animaisAdicionados");
+
+adicionarAnimal.addEventListener("click", () => {
+  // Cria um novo item de lista
+  const novoItem = document.createElement("li");
+  novoItem.innerHTML = `
+    <input type="text" placeholder="Nome do Dinossauro" class="nome-dino">
+    <button class="remover-dino">Remover</button>
+  `;
+
+  // Adiciona o novo item à lista
+  animaisAdicionados.appendChild(novoItem);
+
+  // Adiciona evento de clique para remover o dino
+  const removerDino = novoItem.querySelector(".remover-dino");
+  removerDino.addEventListener("click", () => {
+    animaisAdicionados.removeChild(novoItem);
+    calcularDT(); // Recalcula o DT após remover um dino
+  });
+});
+
+// Calcular o DT
+function calcularDT() {
+  // Pega o nome do dino principal
+  const nomeCriatura1 = document.getElementById("nomeCriatura1").value;
+
+  // Pega o tipo do dino principal
+  const tipoCriatura1 = document.getElementById("tipoCriatura1").value;
+
+  // Verifica se o DNA do dino principal deve ser duplicado
+  const duplicarDNA1 = document.getElementById("duplicarDNA1").checked;
+
+  // Pega a lista de dinos adicionais
+  const dinosAdicionados = animaisAdicionados.querySelectorAll("li");
+
+  // Calcula o DT do dino principal
+  let dtDinoPrincipal = 0;
+  switch (tipoCriatura1) {
+    case "comum":
+      dtDinoPrincipal = 5;
+      break;
+    case "medio":
+      dtDinoPrincipal = 10;
+      break;
+    case "grande":
+      dtDinoPrincipal = 15;
+      break;
+    case "apex":
+      dtDinoPrincipal = 20;
+      break;
+  }
+
+  // Duplica o DT do dino principal se o checkbox estiver marcado
+  if (duplicarDNA1) {
+    dtDinoPrincipal *= 2;
+  }
+
+  // Calcula o DT dos dinos adicionais
+  let dtDinosAdicionais = 0;
+  dinosAdicionados.forEach(dino => {
+    dtDinosAdicionais += 5;
+  });
+
+  // Calcula o DT total
+  const dtTotal = dtDinoPrincipal + dtDinosAdicionais;
+
+  // Exibe o DT total (você pode usar um elemento HTML para mostrar o resultado)
+  console.log("DT Total:", dtTotal);
+}
+
+// Chama a função calcularDT quando o modal é aberto
+modalAnimais.addEventListener("click", () => {
+  calcularDT();
+});
+
+// Chama a função calcularDT quando o checkbox de duplicar DNA é alterado
+const duplicarDNA1 = document.getElementById("duplicarDNA1");
+duplicarDNA1.addEventListener("change", () => {
+  calcularDT();
+});
+// Abrir e fechar o modal (mesmo código anterior)
+// ...
+
+// Adicionar outro dino à lista (mesmo código anterior)
+// ...
+
+// Calcular o DT
+const calcularDTButton = document.getElementById("calcularDT");
+calcularDTButton.addEventListener("click", () => {
+  // Pega o nome do dino principal
+  const nomeCriatura1 = document.getElementById("nomeCriatura1").value;
+
+  // Pega o tipo do dino principal
+  const tipoCriatura1 = document.getElementById("tipoCriatura1").value;
+
+  // Verifica se o DNA do dino principal deve ser duplicado
+  const duplicarDNA1 = document.getElementById("duplicarDNA1").checked;
+
+  // Pega a lista de dinos adicionais
+  const dinosAdicionados = animaisAdicionados.querySelectorAll("li");
+
+  // Calcula o DT do dino principal
+  let dtDinoPrincipal = 0;
+  switch (tipoCriatura1) {
+    case "comum":
+      dtDinoPrincipal = 10;
+      break;
+    case "medio":
+      dtDinoPrincipal = 20;
+      break;
+    case "grande":
+      dtDinoPrincipal = 30;
+      break;
+    case "apex":
+      dtDinoPrincipal = 40;
+      break;
+  }
+
+  // Duplica o DT do dino principal se o checkbox estiver marcado
+  if (duplicarDNA1) {
+    dtDinoPrincipal *= 2;
+  }
+
+  // Calcula o DT dos dinos adicionais
+  let dtDinosAdicionais = 0;
+  dinosAdicionados.forEach(dino => {
+    dtDinosAdicionais += 5;
+  });
+
+  // Calcula o DT total
+  const dtTotal = dtDinoPrincipal + dtDinosAdicionais;
+
+  // Exibe o DT total
+  const valorDT = document.getElementById("valorDT");
+  valorDT.textContent = dtTotal;
+});
+
+// Chama a função calcularDT quando o modal é aberto
+modalAnimais.addEventListener("click", () => {
+  calcularDT();
+});
+
+// Chama a função calcularDT quando o checkbox de duplicar DNA é alterado
+
+duplicarDNA1.addEventListener("change", () => {
+  calcularDT();
+});
+
+// Abrir e fechar o modal
+const abrirModalCaveira = document.getElementById("abrirModalCaveira");
+const fecharModalCaveira = document.getElementById("fecharModalCaveira");
+const modalCaveira = document.getElementById("modalCaveira");
+
+abrirModalCaveira.addEventListener("click", () => {
+  modalCaveira.style.display = "block";
+});
+
+fecharModalCaveira.addEventListener("click", () => {
+  modalCaveira.style.display = "none";
+});
+
+
+
+// Calcular o DT
+const calcularDTCaveiraButton = document.getElementById("calcularDTCaveira");
+calcularDTCaveiraButton.addEventListener("click", () => {
+  // Pega os valores do formulário
+  const nomeCriatura = document.getElementById("nomeCriatura").value;
+  const classeCriatura = document.getElementById("classeCriatura").value;
+  const mutacaoCriatura = document.getElementById("mutacaoCriatura").value;
+  const criaturaBase = document.getElementById("criaturaBase").value;
+  const tipoCriatura = document.getElementById("tipoCriatura").value;
+  const esforcoAlimentacao = parseInt(document.getElementById("esforcoAlimentacao").value);
+  const esforcoSangue = parseInt(document.getElementById("esforcoSangue").value);
+  const esforcoSanidade = parseInt(document.getElementById("esforcoSanidade").value);
+
+  // Calcula o DT base
+  let dtBase = 20; // DT base da criatura
+
+  // Adiciona o DT da classe
+  switch (classeCriatura) {
+    case "predador":
+      dtBase += 15;
+      break;
+    case "presa":
+      dtBase += 10;
+      break;
+    case "colosso":
+      dtBase += 20;
+      break;
+  }
+
+  // Adiciona o DT da mutação
+  switch (mutacaoCriatura) {
+    case "ataque":
+      dtBase += 15;
+      break;
+    case "defesa":
+      dtBase += 10;
+      break;
+    case "inteligencia":
+      dtBase += 20;
+      break;
+  }
+
+  // Adiciona o DT da criatura base
+  dtBase += 15; // DT por nome da criatura base
+
+  // Adiciona o DT do tipo
+  switch (tipoCriatura) {
+    case "comum":
+      dtBase += 5;
+      break;
+    case "medio":
+      dtBase += 10;
+      break;
+    case "grande":
+      dtBase += 15;
+      break;
+    case "apex":
+      dtBase += 20;
+      break;
+  }
+
+  // Calcula o DT de cada esforço
+  let dtAlimentacao = esforcoAlimentacao * 2; // 10 = 2 DT
+  let dtSangue = esforcoSangue * 2; // 10 = 2 DT
+  let dtSanidade = esforcoSanidade * 2; // 10 = 2 DT
+
+  // Calcula o DT total
+  const dtTotal = dtBase + dtAlimentacao + dtSangue + dtSanidade;
+
+  // Exibe o DT total
+  const valorDTCaveira = document.getElementById("valorDTCaveira");
+  valorDTCaveira.textContent = dtTotal;
+});

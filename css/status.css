@@ -571,7 +571,7 @@ nav {
     width: 800px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin: auto;
-    margin-bottom: 5%;
+    margin-bottom: 1%;
     color: #ffffff; /* Texto branco para maior contraste */
   }
   
@@ -828,23 +828,30 @@ button:hover {
     padding: 10px 15px;
     margin: 10px 0;
     font-size: 16px;
-    background-color: #560bad; /* Roxo escuro */
+    background-color:  #3f0437; /* Azul Escuro */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
   }
+    
+  
   .centro{
-
+   
     display: flex;
     justify-content: center;
     align-items: center;
     margin:auto;
+    flex-direction: column; /* Para alinhar verticalmente */
   }
   
   #botaoEvento:hover {
-    background-color: #79006f; /* Roxo vibrante */
+    background-color: #8f08fd;
   }
   
   #resultadoEvento {
@@ -853,7 +860,165 @@ button:hover {
     margin-top: 10px;
     color: #93ddff; /* Azul claro */
     padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
   }
+  #botaoItem {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color:  #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
+  }
+  
+  
+  
+  #botaoItem:hover {
+    background-color: #8f08fd;
+  }
+  
+  #resultadoItem {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
+  }
+  
+  #botaoSorte {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color:  #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
+  }
+  #resultadoSorte {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
+  }
+  #botaoPersonalidade {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color:  #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
+  }
+  
+  
+  #botaoPersonalidade:hover {
+    background-color: #8f08fd;
+  }
+  
+  #resultadoPersonalidade {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff;
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+  #botaoEventoIlha {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color:  #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
+  }
+  #botaoEventoIlha:hover {
+    background-color: #8f08fd;
+  }
+  
+  #resultadoEventoIlha {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
+  }
+  #botaoItemDrop {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color:  #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+    0 0 10px #fc32c9,
+    0 0 20px #fa1ddc,
+    0 0 30px #cf3acf;
+  }
+  
+  #botaoItemDrop:hover {
+    background-color: #8f08fd;
+  }
+  
+  #resultadoItemDrop {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
+  }  
+  .centro-meio{ background: linear-gradient(90deg, #3f1a68, #30093f, #30093f, #3f1a68);
+    border: 2px solid #07eeff;
+    padding:3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:auto;
+    flex-direction: column; /* Para alinhar verticalmente */
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  
+  
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */

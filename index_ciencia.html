@@ -103,6 +103,8 @@
 <div class="botoes">
   <!-- Botão que abre o modal -->
 <button id="abrirModalHibridos">Criar Híbrido</button>
+<button id="abrirModalAnimais">Criar Híbrido</button>
+<button id="abrirModalCaveira">Criar Criatura da Caveira</button>
 </div>
 
 
@@ -188,7 +190,123 @@
          <div id="habilidadesHibrido"></div>
     </div>
 </div>
+
+
+
+
+  <!-- Modal -->
+  <div id="modalAnimais" class="modal-animais">
+    <div class="modal-animais-content">
+      <span id="fecharModalAnimais" class="fechar-animais">&times;</span>
+      <h2>Sistema de Criação de Híbridos</h2>
+
+      <!-- Formulário para o dino principal -->
+      <div id="formularioAnimais">
+        <div class="animal2-box">
+          <label for="nomeCriatura1">Nome da Criatura:</label>
+          <input type="text" id="nomeCriatura1" placeholder="Ex: T-Rex">
+
+          <label for="tipoCriatura1">Tipo:</label>
+          <select id="tipoCriatura1">
+            <option value="comum">Comum</option>
+            <option value="medio">Médio</option>
+            <option value="grande">Grande</option>
+            <option value="apex">Apex</option>
+          </select>
+
+          <label for="duplicarDNA1">Duplicar DNA?</label>
+          <input type="checkbox" id="duplicarDNA1">
+        </div>
+      </div>
+
+      <!-- Seção para adicionar outros dinos -->
+      <div>
+        <h3>DNA de Fortificação</h3>
+        <ul id="animaisAdicionados"></ul>
+      </div>
+
+      <!-- Botão para calcular o DT -->
+      <button id="calcularDT">Calcular DT</button>
+
+      <!-- Exibir o DT total -->
+      <div id="dtTotal">DT Total: <span id="valorDT">0</span></div>
+    </div>
+  </div>
   
+  
+ 
+
+  <!-- Modal -->
+  <div id="modalCaveira" class="modal-caveira">
+    <div class="modal-caveira-content">
+      <span id="fecharModalCaveira" class="fechar-caveira">&times;</span>
+      <h2>Criar Criatura da Caveira</h2>
+
+      <!-- Formulário para a criatura -->
+      <div id="formularioCaveira">
+        <div class="campo-caveira">
+          <label for="nomeCriatura">Nome da Criatura:</label>
+          <input type="text" id="nomeCriatura" placeholder="Ex: O encourçado">
+        </div>
+
+        <div class="campo-caveira">
+          <label for="classeCriatura">Classe:</label>
+          <select id="classeCriatura">
+            <option value="predador">Predador</option>
+            <option value="presa">Presa</option>
+            <option value="colosso">Colosso</option>
+          </select>
+        </div>
+
+        <div class="campo-caveira">
+          <label for="mutacaoCriatura">Mutação:</label>
+          <select id="mutacaoCriatura">
+            <option value="ataque">Ataque</option>
+            <option value="defesa">Defesa</option>
+            <option value="inteligencia">Inteligência</option>
+          </select>
+        </div>
+
+        <div class="campo-caveira">
+          <label for="criaturaBase">Criatura Base de Sangue:</label>
+          <input type="text" id="criaturaBase" placeholder="Ex: T-Rex, Urso, etc">
+        </div>
+
+        <div class="campo-caveira">
+          <label for="tipoCriatura">Tipo:</label>
+          <select id="tipoCriatura">
+            <option value="comum">Comum</option>
+            <option value="medio">Médio</option>
+            <option value="grande">Grande</option>
+            <option value="apex">Apex</option>
+          </select>
+        </div>
+
+        <div class="campo-caveira">
+          <label for="esforcoAlimentacao">Esforço de Alimentação (Vida):</label>
+          <input type="number" id="esforcoAlimentacao" min="0" value="0">
+        </div>
+
+        <div class="campo-caveira">
+          <label for="esforcoSangue">Esforço de Sangue:</label>
+          <input type="number" id="esforcoSangue" min="0" value="0">
+        </div>
+
+        <div class="campo-caveira">
+          <label for="esforcoSanidade">Esforço de Sanidade:</label>
+          <input type="number" id="esforcoSanidade" min="0" value="0">
+        </div>
+      </div>
+
+      <!-- Botões -->
+      <button id="calcularDTCaveira">Calcular DT</button>
+      
+
+      <!-- Exibir o DT total -->
+      <div id="dtTotalCaveira">DT Total: <span id="valorDTCaveira">0</span></div>
+    </div>
+  </div>
+
       <!--footer----------------------------------------------------------------------------->
       <footer>
         <div class="footer-content">
