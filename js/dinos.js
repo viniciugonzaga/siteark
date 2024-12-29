@@ -178,7 +178,7 @@ const creatures = {
         'Trike', 'Torossauro', 'Chasmossauro', 'Dracorex', 'Nasuceratops', 'Sinoceratops', 'Estiracossauro', 
         'Estegossauro', 'Kentrossauro', 'Nodossauro', 'Anquilossauro', 'Tatu', 'Castor', 'Carbonemy', 'Mamute', 
         'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Basilossauro', 'Golfinho', 'Baleia', 'Foca', 
-        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro' 
+        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa' 
   
                 
     ],
@@ -1474,9 +1474,9 @@ const dinoFichas = {
     height: '1.9 M',
     length: '2.8 M',
     attributes: { agi: 4, for: 4, int: 4, pre: 3, vig: 4 },
-    life: 150,
-    armor: 10,
-    actionBonus: '+20 perseguição, +15 furtividade, +20 em defesa',
+    life: 120,
+    armor: 60,
+    actionBonus: '+20 perseguição, +15 furtividade, +20 em defesa, +15 em localizar, +10 luta, +10 contra-ataque',
     attacks: [
         'Mordida Atroz: 6d10+25 (causa sangramento)',
         'Garra Brutal: 5d12+20 (dano extra em alvos em fuga)',
@@ -3899,6 +3899,28 @@ const dinoFichas = {
     passiva: 'Aura do Void Eterno: Dentro de seu domínio, o Gargantua é praticamente intangível para ataques comuns. Ele regenera 5% de sua vida máxima por rodada e reflete 10% do dano recebido de fontes mágicas como dano de escuridão no atacante.',
     passivaElemental: 'Escuridão Primordial: Todos os ataques do Gargantua causam +3d20 de dano sombrio. Ele é imune a qualquer efeito de luz, fogo ou gelo, e ganha +20 em todos os testes realizados em águas profundas e escuras.',
 },
+  'Mariposa': {
+    title: 'Mariposa da Seda',
+    image: 'imagens/dinos_mariposa.jpg', // Substitua pelo caminho correto da imagem
+    height: '3.5 m',
+    length: '7 m', // Considerando a envergadura das asas
+    weight: '1.5 toneladas',
+    attributes: { agi: 4, for: 3, int: 3, pre: 3, vig: 2 },
+    life: 200, // Reduzido para refletir sua fragilidade
+    armor: 85, // Reduzido para refletir sua menor resistência
+    actionBonus: "+10 voar, +10 envenenar com seda, +10 camuflar, +10 detectar feromônios, +10 em acertos, flanquear, levar, esquiva, +10 em acertos de teia, +5 pensar",
+    attacks: [
+        'Picada Venenosa: 10d6+5 (dano venenoso e aplica veneno paralizante)',
+        'Ataque com Garras: 4d6+10 4x(dano cortante e pode prender em teias)',
+        'Disparo de Seda: 5d8+5 (cria teias que prendem por 1 turno)'
+    ],
+    abilities: [
+        'Teia Adesiva: Pode criar teias para prender inimigos ou escalar superfícies. Cada inimiga preso faz ela ganhar um bônus de +5 em acertos e +20 de dano em todos os ataques ',
+        'Grudar flanco: Ganha +5 em acertos e +25 de dano para aliados e para ela em acertos'
+    ],
+    passiva: 'Mestre Tecelã: Suas teias são extremamente fortes e podem ser usadas para diversas finalidades, como construir ninhos ou aprisionar presas.',
+    passivaElemental: 'Veneno Sedativo: Seu veneno causa paralisia temporária, tornando os inimigos mais fáceis de manipular.'
+}
 
 
 
