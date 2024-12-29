@@ -905,10 +905,10 @@ text-align: center;
     left: 0;
     top: 0;
     width: 100%;
-    height: 80%;
+    height: 100%;
     overflow: auto;
     background-color: rgba(17, 15, 15, 0.452);
-    margin-top: 15%;
+    margin-top: 12%;
     color: #ffffff;
     text-shadow:
     0 0 5px #e6f880,   /* Primeira camada de brilho vermelho */
@@ -1043,7 +1043,7 @@ text-align: center;
     left: 0;
     top: 0;
     width: 100%;
-    height: 70%;
+    height: 100%;
     overflow: auto;
     background-color: rgba(36, 2, 2, 0.4);
   }
