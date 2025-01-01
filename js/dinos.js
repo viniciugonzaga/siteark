@@ -166,7 +166,13 @@ const creatures = {
     'Lagosta-boxeadora',
     'Megalossauro',
     'Meraxes',
-    'Antrodemus'
+    'Antrodemus',
+    'Formiga-soldado-vermelha',
+    'Tecelão de Orbe',
+    'Formiga Soldado Bombeiro',
+    'Louva-a-deus',
+    'gorgossauro',
+    'Concavenator'
     ],
         
     'Herbívoros': 
@@ -178,14 +184,14 @@ const creatures = {
         'Trike', 'Torossauro', 'Chasmossauro', 'Dracorex', 'Nasuceratops', 'Sinoceratops', 'Estiracossauro', 
         'Estegossauro', 'Kentrossauro', 'Nodossauro', 'Anquilossauro', 'Tatu', 'Castor', 'Carbonemy', 'Mamute', 
         'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Basilossauro', 'Golfinho', 'Baleia', 'Foca', 
-        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa' 
+        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa', 'Porco', 'gado comum','Pulgão','Gorgulho', 'Abelha','Inseto Escudo Verde', 'Crabsquid',  
   
                 
     ],
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Megavore','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua']
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua']
 };
 
 const dinoFichas = {
@@ -1081,7 +1087,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 4, int: 4, pre: 5, vig: 4 },
     life: 250,
     armor: 18,
-    actionBonus: '+25 rugido inspirador, +20 mordida, +15 bloquear, +15 esquiva',
+    actionBonus: '+25 rugido inspirador, +20 mordida, +15 bloquear, +5 esquiva',
     attacks: [
         'Mordida Glacial: 6d10+15 (aplica lentidão e sangramento leve no alvo)',
         'Garra Imponente: 5d8+10 (causa desvantagem em ataques do inimigo na rodada seguinte)',
@@ -1103,7 +1109,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 4, int: 3, pre: 4, vig: 4 },
     life: 280,
     armor: 20,
-    actionBonus: '+25 mordida, +20 intimidar, +15 nadar, +15 bloquear',
+    actionBonus: '+25 mordida, +20 intimidar, +15 nadar, +15 bloquear, +5 esquiva',
     attacks: [
         'Mordida de Alcance: 6d12+20 (aplica desvantagem em reações de inimigos atingidos)',
         'Giro Mortal: 5d10+15 (causa dano extra de 2d10 na água e sangramento por 2 rodadas)',
@@ -1169,7 +1175,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 4, int: 3, pre: 4, vig: 5 },
     life: 300,
     armor: 20,
-    actionBonus: '+25 mordida, +20 furtividade, +20 nadar, +15 bloquear',
+    actionBonus: '+25 mordida, +20 furtividade, +20 nadar, +15 bloquear, +5 esquiva',
     attacks: [
         'Mordida Poderosa: 8d10+30 (aplica sangramento por 2 rodadas)',
         'Investida Submersa: 6d10+25 (só utilizável na água, reduz a defesa do alvo em 10 por 1 rodada)',
@@ -1213,7 +1219,7 @@ const dinoFichas = {
     attributes: { agi: 2, for: 4, int: 3, pre: 4, vig: 5 },
     life: 180,
     armor: 20,
-    actionBonus: '+25 arranhão, +20 nadar, +15 intimidar, +10 bloquear',
+    actionBonus: '+25 arranhão, +20 nadar, +15 intimidar, +10 bloquear , +5 contra-ataque',
     attacks: [
         'Arranhão Feroz: 7d10+25 (aplica sangramento, causando -10 de vida por rodada durante 3 rodadas)',
         'Golpe Submerso: 6d10+20 (pode ser usado na água, tem +10 de acerto)',
@@ -1235,7 +1241,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 3, pre: 4, vig: 5 },
     life: 380,
     armor: 30,
-    actionBonus: '+30 mordida, +25 agarrar, +25 girar, +20 intimidar, +20 nadar, +10 bloquear',
+    actionBonus: '+30 mordida, +25 agarrar, +25 girar, +20 intimidar, +20 nadar, +10 bloquear , +10 esquiva',
     attacks: [
         'Mordida Destruidora: 10d12+40 (aplica quebrado em estruturas e objetos atingidos)',
         'Garras Imobilizadoras: 8d10+35 (imobiliza alvos por 1 rodada, aplicando -15 de defesa)',
@@ -1257,7 +1263,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 4, int: 2, pre: 3, vig: 4 },
     life: 80,
     armor: 15,
-    actionBonus: '+15 mordida, +20 girar, +15 furtividade (na água), +10 agarrar, +10 nadar',
+    actionBonus: '+15 mordida, +20 girar, +15 furtividade (na água), +10 agarrar, +10 nadar +10 esquiva',
     attacks: [
         'Mordida Triturante: 6d10+20 (aplica dano de quebra em alvos atingidos)',
         'Giro Mortal: 5d12+25 (causa dano de quebra e hemorragia em alvos imobilizados)',
@@ -1345,7 +1351,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 4, int: 4, pre: 3, vig: 3 },
     life: 120,
     armor: 10,
-    actionBonus: '+20 escalada, +15 mordida, +15 furtividade, +10 salto',
+    actionBonus: '+20 escalada, +15 mordida, +15 furtividade, +10 salto +10 esquiva',
     attacks: [
         'Mordida Lacerante: 6d10+25 (causa sangramento e desvantagem em vigor no alvo)',
         'Garras Cortantes: 5d10+20 (aplica feridas leves que acumulam sangramento)',
@@ -1367,7 +1373,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 5, int: 3, pre: 3, vig: 4 },
     life: 140,
     armor: 15,
-    actionBonus: '+25 emboscada, +20 mordida, +20 furtividade, +15 imobilizar',
+    actionBonus: '+25 emboscada, +20 mordida, +20 furtividade, +15 imobilizar +10 esquiva',
     attacks: [
         'Mordida Devastadora: 7d10+30 (aplica desvantagem em vigor e resistência)',
         'Golpe Surpresa: 6d12+25 (dano dobrado ao atacar furtivamente)',
@@ -1410,7 +1416,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 3, int: 5, pre: 4, vig: 4 },
     life: 140,
     armor: 12,
-    actionBonus: '+20 mordida, +15 rastrear, +15 estratégia, +20 matilha',
+    actionBonus: '+20 mordida, +15 rastrear, +15 estratégia, +20 matilha +10 esquiva',
     attacks: [
         'Mordida Precisa: 6d10+20 (aplica sangramento moderado)',
         'Ataque em Grupo: 5d12+25 (dano extra por cada aliado próximo)',
@@ -1432,7 +1438,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 5, int: 3, pre: 3, vig: 4 },
     life: 160,
     armor: 15,
-    actionBonus: '+20 investida, +20 corrida, +15 mordida, +15 intimidação',
+    actionBonus: '+20 investida, +20 corrida, +15 mordida, +15 intimidação +10 bloqueio',
     attacks: [
         'Mordida Esmagadora: 6d12+30 (dano elevado ao atingir alvos parados)',
         'Investida Brutal: 7d10+25 (dano extra em alvos menores)',
@@ -1454,7 +1460,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 3, int: 5, pre: 4, vig: 3 },
     life: 125,
     armor: 8,
-    actionBonus: '+25 em grupo, +20 furtividade, +15 mordida, +20 análise de alvos',
+    actionBonus: '+25 em grupo, +20 furtividade, +15 mordida, +20 análise de alvos +10 esquiva',
     attacks: [
         'Mordida Lacerante: 5d10+20 (causa sangramento contínuo por 2 turnos)',
         'Garras Cortantes: 6d12+25 (dano extra em alvos imobilizados ou distraídos)',
@@ -1498,7 +1504,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 3, int: 4, pre: 4, vig: 3 },
     life: 120,
     armor: 8,
-    actionBonus: '+25 nadar, +20 ataque no gelo, +15 enfraquecimento',
+    actionBonus: '+25 nadar, +20 ataque no gelo, +15 enfraquecimento +10 esquiva',
     attacks: [
         'Mordida Gélida: 6d10+25 (diminui vigor do alvo em -5 por 2 turnos)',
         'Garra Cortante: 5d12+30 (dano extra contra alvos já enfraquecidos)',
@@ -1520,7 +1526,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 3, int: 3, pre: 5, vig: 3 },
     life: 100,
     armor: 6,
-    actionBonus: '+20 flanquear, +15 furtividade, +10 ganância',
+    actionBonus: '+20 flanquear, +15 furtividade, +10 ganância +10 esquiva',
     attacks: [
         'Bicada Afiada: 5d10+20 (dano extra em alvos distraídos)',
         'Garra Aérea: 4d12+15 (dano em investidas rápidas)',
@@ -1542,7 +1548,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 4, pre: 3, vig: 5 },
     life: 300,
     armor: 20,
-    actionBonus: '+25 carregar, +20 rasgar metal, +15 força em voo',
+    actionBonus: '+25 carregar, +20 rasgar metal, +15 força em voo + 10 bloqueio',
     attacks: [
         'Bicada Devastadora: 8d12+35 (dano extra contra armaduras)',
         'Investida Aérea: 6d10+30 (pode atordoar alvos menores)',
@@ -1564,7 +1570,7 @@ const dinoFichas = {
     "attributes": { "agi": 4, "for": 3, "int": 4, "pre": 4, "vig": 4 },
     "life": 180,
     "armor": 10,
-    actionBonus: "+20 voo rápido, +15 carregar pessoas, +15 adaptação, +10 esquiva aérea, +15 ataque aéreo",
+    actionBonus: "+20 voo rápido, +15 carregar pessoas, +15 adaptação, +10 esquiva aérea, +15 ataque aéreo, +10 esquiva",
     "attacks": [
       "Bicada Versátil: 5d10+20 (dano extra contra alvos pequenos)",
       "Garra Afiada: 6d8+25 (pode segurar e atacar ao mesmo tempo)",
@@ -1587,7 +1593,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 3, pre: 4, vig: 4 },
     life: 180,
     armor: 15,
-    actionBonus: "+10 voar rápido, +15 intimidar, +20 brigar no ar, +10 dano aéreo, +15 resistência ao ar",
+    actionBonus: "+10 voar rápido, +15 intimidar, +20 brigar no ar, +10 dano aéreo, +15 resistência ao ar +10 contra-ataque",
     attacks: [
         'Bicada Brutal: 7d12+30 (causa dano extra em alvos menores)',
         'Pancada com Asas: 6d10+25 (dano em área, pode empurrar inimigos)',
@@ -1631,7 +1637,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 3, int: 5, pre: 5, vig: 4 },
     life: 130,
     armor: 12,
-    actionBonus: "+15 atacar à noite, +10 voar silenciosamente, +15 detectar inimigos, +10 sugar sangue",
+    actionBonus: "+15 atacar à noite, +10 voar silenciosamente, +15 detectar inimigos, +10 sugar sangue +10 esquiva, +5 bloqueio, +15 furtividade",
     attacks: [
         'Mordida Vampírica: 6d8+25 (suga 50% do dano como vida)',
         'Garras Afiadas: 7d6+20 (imobiliza o alvo por 1 turno)',
@@ -1673,9 +1679,9 @@ const dinoFichas = {
     length: '4 m',
     weight: '80 kg',
     attributes: { agi: 4, for: 4, int: 3, pre: 5, vig: 4 },
-    life: 150,
-    armor: 15,
-    actionBonus: "+15 atacar em voo, +10 transportar carga, +15 avistar alvos a longa distância, +10 resistir a ventos fortes",
+    life: 180,
+    armor: 40,
+    actionBonus: "+15 atacar em voo, +10 transportar carga, +15 avistar alvos a longa distância, +10 resistir a ventos fortes, +10 esquiva",
     attacks: [
         'Garras Afiadas: 6d8+20 (causa sangramento)',
         'Investida do Vento: 5d10+15 (empurra alvos para trás e desestabiliza)',
@@ -1719,7 +1725,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 4, pre: 3, vig: 4 },
     life: 250,
     armor: 25,
-    actionBonus: "+20 congelar, +15 esmagar, +10 usar ferramentas, +15 cavar, +10 resistir a venenos",
+    actionBonus: "+20 congelar, +15 esmagar, +10 usar ferramentas, +15 cavar, +10 resistir a venenos +10 esquiva, +10 contra-ataque, +10 bloqeuio",
     attacks: [
         'Cauda Espinhosa: 5d10+20 (dano devastador e aplica sangramento)',
         'Investida com Garras: 4d8+15 (causa torpor e dano perfurante)',
@@ -1741,7 +1747,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 4, int: 3, pre: 2, vig: 3 },
     life: 150,
     armor: 15,
-    actionBonus: "+15 cavar, +10 emboscar, +15 mover-se na areia, +10 resistir a desidratação",
+    actionBonus: "+15 cavar, +10 emboscar, +15 mover-se na areia, +10 resistir a desidratação +10 esquiva, +10 contra-ataque +10 acertos",
     attacks: [
         'Agarrão Devastador: 4d10+15 (dano esmagador, quebra escudos ou carapaças)',
         'Mordida Tóxica: 3d8+10 (aplica veneno com alucinações, reduzindo precisão do alvo)',
@@ -1749,7 +1755,7 @@ const dinoFichas = {
     ],
     abilities: [
         'Emboscada Mortal: Pode atacar de surpresa, garantindo 30% de dano adicional no primeiro golpe.',
-        'Reação Rápida: Ao ser atacada, ganha 10% de esquiva adicional por 2 turnos.'
+        'Reação Rápida: Ao ser atacada, ganha 50% de esquiva adicional por 2 turnos.'
     ],
     passiva: 'Caçadora Ágil: Ao eliminar um inimigo, recupera 10% da vida máxima e reduz o custo de energia do próximo ataque em 20%.',
     passivaElemental: 'Abismoelétrico: No ambiente aquático, suas toxinas conduzem eletricidade, atordoando inimigos atingidos por 1 turno adicional.'
@@ -1763,7 +1769,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 3, int: 2, pre: 3, vig: 3 },
     life: 120,
     armor: 12,
-    actionBonus: "+15 atacar à distância com teias, +10 emboscar, +15 escalar superfícies lisas, +10 resistir a venenos",
+    actionBonus: "+15 atacar à distância com teias, +10 emboscar, +15 escalar superfícies lisas, +10 resistir a venenos +10 esquiva",
     attacks: [
         'Mordida Venenosa: 3d10+10 (aplica veneno que reduz a força do alvo por 2 turnos)',
         'Salto Predatório: 4d8+12 (ataca com força esmagadora ao pular sobre o inimigo)',
@@ -1785,7 +1791,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 4, int: 3, pre: 4, vig: 2 },
     life: 200,
     armor: 10,
-    actionBonus: "+15 se esconder em lugares estreitos, +10 resistir a esmagamento, +15 liberar ácido, +10 se mover em terrenos acidentados",
+    actionBonus: "+15 se esconder em lugares estreitos, +10 resistir a esmagamento, +15 liberar ácido, +10 se mover em terrenos acidentados +10 esquiva",
     attacks: [
         'Mordida Tóxica: 4d12+15 (causa veneno quase fatal, reduzindo vitalidade e dano por 3 turnos)',
         'Fio Mortal: 3d8+10 (prende o alvo e reduz agilidade em 50% por 2 turnos)',
@@ -1807,7 +1813,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 2, pre: 3, vig: 4 },
     life: 250,
     armor: 20,
-    actionBonus: "+15 se esconder em lugares estreitos, +10 resistir a esmagamento, +15 liberar ácido, +10 se mover em terrenos acidentados",
+    actionBonus: "+15 se esconder em lugares estreitos, +10 resistir a esmagamento, +15 liberar ácido, +10 se mover em terrenos acidentados +15 bloqueio",
     attacks: [
         'Ácido Corrosivo: 4d10+20 (cospe ácido que reduz a armadura do alvo em 30% por 2 turnos e causa dano contínuo)',
         'Mordida Letal: 3d12+15 (penetra carne e armadura, aplicando veneno leve)',
@@ -1829,7 +1835,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 2, pre: 3, vig: 4 },
     life: 180,
     armor: 15,
-    actionBonus: "+15 lutar corpo a corpo, +10 nadar em águas profundas, +15 quebrar estruturas, +10 resistir a pressão",
+    actionBonus: "+15 lutar corpo a corpo, +10 nadar em águas profundas, +15 quebrar estruturas, +10 resistir a pressão +10 contra-ataque",
     attacks: [
         'Soco Massivo: 10d12+25 (golpe devastador, quebra armaduras e causa desvantagem em movimento por 2 turnos)',
         'Impacto Sônico: 4d10+20 (onda de choque que afeta inimigos próximos, causando atordoamento por 1 turno)',
@@ -1873,7 +1879,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 5, int: 3, pre: 4, vig: 4 },
     life: 250,
     armor: 12,
-    actionBonus: "+15 atacar à noite, +10 perseguir presas, +15 intimidar, +10 resistir a fadiga",
+    actionBonus: "+15 atacar à noite, +10 perseguir presas, +15 intimidar, +10 resistir a fadiga +10 esquiva",
     attacks: [
         'Mordida Voraz: 5d12+15 (durante a noite, dano aumenta em 20%)',
         'Investida Noturna: 4d10+10 (velocidade alta durante a noite, reduz agilidade do alvo em 30% por 2 turnos)',
@@ -1896,7 +1902,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 6, int: 3, pre: 4, vig: 5 },
     life: 300,
     armor: 15,
-    actionBonus: "+15 atacar grandes alvos, +10 intimidar, +15 resistir a dor, +10 regenerar",
+    actionBonus: "+15 atacar grandes alvos, +10 intimidar, +15 resistir a dor, +10 regenerar +10 esquiva",
     attacks: [
         'Mordida Devastadora: 6d12+20 (causa dano de quebra e sangramento por 2 turnos)',
         'Investida de Fúria: 5d10+15 (causa dano adicional com base na quantidade de ira acumulada)',
@@ -1919,7 +1925,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 4, int: 3, pre: 4, vig: 3 },
     life: 220,
     armor: 10,
-    actionBonus: "+15 perseguir presas, +10 atacar em grupo, +15 infligir sangramento, +10 resistir a fadiga",
+    actionBonus: "+15 perseguir presas, +10 atacar em grupo, +15 infligir sangramento, +10 resistir a fadiga +10 contra-ataque",
     attacks: [
         'Mordida Lacerante: 4d10+15 (causa sangramento com dano aumentado em 1,5x)',
         'Rugido Frenético: Reduz a precisão do alvo em 20% por 2 turnos',
@@ -3678,7 +3684,7 @@ const dinoFichas = {
     weight: '7000 kg',
     height: '6 M',
     length: '8 M',
-    attributes: { agi: 2, for: 5, int: 4, pre: 6, vig: 6 },
+    attributes: { agi: 2, for: 3, int: 4, pre: 3, vig: 6 },
     life: 550, // Escalável por nível ou estágio
     armor: 180, // Sua carapaça encantada oferece resistência física e mágica considerável
     actionBonus: '+20 chifre arcano, +25 debuffs de rasgos, +15 buffs mágicos, +15 em bloqueio e resistência mágica',
@@ -3700,7 +3706,7 @@ const dinoFichas = {
     weight: '2000 kg',
     height: '3.5 M',
     length: '4.5 M',
-    attributes: { agi: 6, for: 8, int: 5, pre: 6, vig: 9 },
+    attributes: { agi: 3, for: 4, int: 5, pre: 4, vig: 4 },
     life: 450, // Escalável por nível ou estágio
     armor: 170, // Resistente devido ao corpo robusto e penas densas
     actionBonus: '+20 ataques de soco, +25 ataques de bico, +15 encontrões, +10 em bloqueio, +15 em esquiva enquanto plana +10 arremesso',
@@ -3920,24 +3926,471 @@ const dinoFichas = {
     ],
     passiva: 'Mestre Tecelã: Suas teias são extremamente fortes e podem ser usadas para diversas finalidades, como construir ninhos ou aprisionar presas.',
     passivaElemental: 'Veneno Sedativo: Seu veneno causa paralisia temporária, tornando os inimigos mais fáceis de manipular.'
+},
+
+"Formiga-soldado-vermelha": {
+    "title": "Formiga-Soldado Vermelha",
+    "image": "imagens/dinos_formiga_vermelha.webp",
+    "height": "2 m",
+    "length": "4.5 m",
+    "weight": "500 kg",
+    "attributes": { 
+      "agi": 4, 
+      "for": 4, 
+      "int": 2, 
+      "pre": 1, 
+      "vig": 3 
+    },
+    "life": 50,
+    "armor": 40,
+    "actionBonus": "+10 em ataques coordenados, +10 rastejar rápido, +10 mordida crítica, +10 escalar superfícies verticais, +10 em flanquear, +5 em testes de percepção olfativa, +5 estratégia em grupo",
+    "attacks": [
+      "Mordida Ácida: 8d6+5 (dano ácido e causa queimação contínua por 2 turnos)",
+      "Golpe com Mandíbulas: 6d8+5 (dano cortante, com chance de desmembrar partes menores do inimigo)",
+      "Ejetar Ácido: 3d10+5 (projétil de ácido com alcance de 10 metros, reduz armadura em 10% por turno)"
+    ],
+    "abilities": [
+      "Fúria Coordenada: Quando em grupo, a Formiga-Soldado Vermelha ganha +3 em acertos e +10 de dano para cada aliado próximo (máximo de 3).",
+      "Carapaça Defensiva: Pode reduzir em 50% o dano de ataques físicos durante 1 turno. Usável uma vez a cada 3 turnos."
+    ],
+    "passiva": "Estratégia de Colônia: Sempre que uma Formiga-Soldado Vermelha estiver próxima de outra criatura da mesma espécie, ambas ganham +5 em acertos e +5 de dano.",
+    "passivaElemental": "Ácido Corrosivo: Todo ataque de ácido ignora 20% da armadura do inimigo."
+  },
+  "Formiga Soldado Bombeiro": {
+    "title": "Formiga-Soldado Bombeiro",
+    "image": "imagens/dinos_formiga_bombeira.webp",
+    "height": "2.2 m",
+    "length": "4.8 m",
+    "weight": "550 kg",
+    "attributes": { 
+      "agi": 4, 
+      "for": 1, 
+      "int": 3, 
+      "pre": 2, 
+      "vig": 2 
+    },
+    "life": 70,
+    "armor": 20,
+    "actionBonus": "+10 em ataques incendiários, +10 resistência a fogo, +10 em rastejar por superfícies quentes, +5 em detecção de calor, +5 em flanquear, +5 esquiva em áreas de fogo",
+    "attacks": [
+      "Mordida Incandescente: 8d8+5 (dano de fogo e aplica queimadura severa por 2 turnos)",
+      "Golpe com Mandíbulas: 4d10+5 (dano cortante e pode desarmar o inimigo de itens pequenos)",
+      "Spray de Fogo: 3d10+5 (um jato de fogo em cone de 5 metros, causa dano e aplica queimaduras leves)"
+    ],
+    "abilities": [
+      "Chama Coordenada: Quando em grupo, a Formiga-Soldado Bombeiro aumenta em +10 o dano de ataques incendiários para todos os aliados próximos (máximo de 3).",
+      "Armadura Flamejante: Reduz em 30% o dano de ataques baseados em fogo e reflete 10% do dano como calor ao atacante durante 2 turnos. Usável uma vez a cada 3 turnos."
+    ],
+    "passiva": "Defensor do Fogo: Ganha imunidade a queimaduras e aumenta a eficácia de ataques incendiários aliados em +5.",
+    "passivaElemental": "Chamas Persistentes: Todo ataque de fogo causa dano contínuo por 1 turno adicional."
+  },
+  
+    "Louva-a-deus": {
+      "title": "Louva-Deus Predador",
+      "image": "imagens/dinos_mantis.webp",
+      "height": "2.5 m",
+      "length": "3.2 m",
+      "weight": "300 kg",
+      "attributes": { 
+        "agi": 5, 
+        "for": 4, 
+        "int": 3, 
+        "pre": 3, 
+        "vig": 3 
+      },
+      "life": 180,
+      "armor": 90,
+      "actionBonus": "+10 em ataques contra inimigos com menos de 50% da vida, +10 agarrar, +10 em bloqueio e contra-ataque, +10 camuflagem imóvel, +10 pulo, +5 escalada, +5 voo em pequenas distâncias",
+      "attacks": [
+        "Mordida Calculada: Causa dano baseado em 15% da vida total do inimigo (ignora armadura).",
+        "Corte Rápido: 6d8+5 (dano cortante, com chance de desarmar ou incapacitar membros menores).",
+        "Agarrar Letal: 7d6+5 (dano cortante e imobiliza o alvo por 1 turno, impedindo ações de movimento)."
+      ],
+      "abilities": [
+        "Golpe Oportunista: Quando o inimigo está com menos de 50% da vida, todos os ataques do Louva-Deus ganham +10 de dano e ignoram armadura.",
+        "Camuflagem Predatória: Pode ficar imóvel para se camuflar completamente, tornando-se indetectável por inimigos não atentos. Dura 2 turnos ou até realizar uma ação ofensiva."
+      ],
+      "passiva": "Caçador de Presas Fracas: Ganha bônus automático de +5 em acertos e +10 de dano contra inimigos com menos de 50% da vida.",
+      "passivaElemental": "Agilidade Voraz: Pode realizar dois ataques em um único turno caso tenha realizado um salto ou voo antes."
+    },
+    "Tecelão de Orbe": {
+        "title": "Tecelão de Orbe",
+        "image": "imagens/dinos_aranha_orbe.webp",
+        "height": "1.5 m",
+        "length": "3 m",
+        "weight": "200 kg",
+        "attributes": { 
+          "agi": 5, 
+          "for": 3, 
+          "int": 4, 
+          "pre": 2, 
+          "vig": 2 
+        },
+        "life": 180,
+        "armor": 80,
+        "actionBonus": "+15 furtividade, +10 em criar armadilhas, +10 em agarrar, +10 em detectar vibrações, +5 em escalar, +5 em esquiva",
+        "attacks": [
+          "Mordida Pegajosa: 6d6+5 (dano médio e aplica lentidão por 2 turnos).",
+          "Ataque com Garras: 5d8+5 (dano cortante e pode imobilizar por 1 turno se atingir o alvo).",
+          "Projeção de Orbe: 4d8+5 (arremessa um orbe pegajoso a até 10 metros, prendendo o inimigo por 1 turno)."
+        ],
+        "abilities": [
+          "Tecelão Astuto: Pode criar túneis de teias e armadilhas com orbes de mel ou líquidos pegajosos. Qualquer inimigo capturado recebe -10 em movimentos e sofre dano contínuo de 2d6 por turno enquanto estiver preso.",
+          "Captura Precisa: Ao agarrar um inimigo, o Tecelão de Orbe reduz as chances de evasão do alvo em -15 e pode executar um ataque adicional no próximo turno."
+        ],
+        "passiva": "Armadilhas Naturais: Sempre que um inimigo estiver preso em uma armadilha, o Tecelão de Orbe ganha +10 em acertos e +5 de dano contra ele.",
+        "passivaElemental": "Orbe Ácido: Orbes projetados têm 20% de chance de corroer armadura e causar 3d6 de dano extra no próximo turno."
+      },
+      "Porco": {
+    "title": "Porco Comum",
+    "image": "imagens/dinos_porco.jpeg",
+    "height": "1 m",
+    "length": "1.5 m",
+    "weight": "150 kg",
+    "attributes": { 
+      "agi": 2, 
+      "for": 2, 
+      "int": 1, 
+      "pre": 1, 
+      "vig": 3 
+    },
+    "life": 40,
+    "armor": 10,
+    "actionBonus": "+5 em esquiva, +5 farejar comida, +5 em resistência a venenos simples, +5 em carga e empurrão",
+    "attacks": [
+      "Mordida Simples: 2d6+2 (dano perfurante).",
+      "Investida: 3d6+3 (dano de impacto, com chance de derrubar inimigos pequenos).",
+      "Chute Desesperado: 2d8 (dano de impacto, só pode ser usado se o Porco estiver encurralado)."
+    ],
+    "abilities": [
+      "Faro Apurado: Pode detectar alimentos, água ou materiais orgânicos próximos a até 20 metros.",
+      "Persistência: Recebe +10 de resistência a qualquer efeito que cause medo ou paralisia."
+    ],
+    "passiva": "Força de Trabalho: Consegue carregar ou empurrar até o dobro do seu peso sem penalidades.",
+    "passivaElemental": "Adaptável: Ganha +5 em resistências a mudanças climáticas e efeitos ambientais leves (calor, frio, etc.)."
+  },
+  "gado comum": {
+    "title": "Gado Comum",
+    "image": "imagens/dinos_gado.jpg",
+    "height": "1.5 m",
+    "length": "2.5 m",
+    "weight": "700 kg",
+    "attributes": { 
+      "agi": 2, 
+      "for": 4, 
+      "int": 1, 
+      "pre": 1, 
+      "vig": 4 
+    },
+    "life": 100,
+    "armor": 80,
+    "actionBonus": "+5 em resistência a impactos, +10 em carga e empurrão, +5 em detectar ameaças naturais, -5 em ataques rápidos",
+    "attacks": [
+      "Chifrada: 4d6+4 (dano de impacto, com chance de derrubar inimigos pequenos).",
+      "Pisada Pesada: 3d8+3 (dano de impacto, aplica lentidão por 1 turno).",
+      "Investida: 5d6+5 (dano de impacto em linha reta, deve correr pelo menos 5 metros antes de atacar)."
+    ],
+    "abilities": [
+      "Força Bruta: Pode empurrar ou destruir barreiras frágeis com facilidade.",
+      "Tolerância Alta: Recebe +10 de resistência contra ataques baseados em veneno ou doenças."
+    ],
+    "passiva": "Animal de Carga: Pode transportar até 3 vezes seu peso sem penalidades.",
+    "passivaElemental": "Resistência Natural: Reduz o dano de efeitos ambientais (calor, frio, chuva) em 20%."
+  },
+  "Gorgulho": {
+    "title": "Gorgulho",
+    "image": "imagens/dinos_gorgulho.webp",
+    "height": "1 m",
+    "length": "2 m",
+    "weight": "50 g",
+    "attributes": { 
+      "agi": 4, 
+      "for": 1, 
+      "int": 1, 
+      "pre": 2, 
+      "vig": 3 
+    },
+    "life": 40,
+    "armor": 20,
+    "actionBonus": "+10 em perfurar, +5 escavar, +5 em resistência contra venenos naturais, -5 em velocidade de movimentação",
+    "attacks": [
+      "Mordida Perfurante: 3d4+2 (dano perfurante, com chance de ignorar 5% da armadura).",
+      "Saliva Degradante: 2d6 (diminui a resistência da armadura do alvo em -10% por 2 turnos)."
+    ],
+    "abilities": [
+      "Escavação: Pode criar túneis rapidamente para se esconder ou emboscar inimigos.",
+      "Devastador de Plantações: Ganha +10 em ataques contra materiais vegetais ou criaturas herbívoras."
+    ],
+    "passiva": "Carapaça Dura: Recebe 10% de redução de dano contra ataques físicos.",
+    "passivaElemental": "Sobrevivente Subterrâneo: Não sofre penalidades de movimento em terrenos difíceis ou subterrâneos."
+  },
+  "Pulgão": {
+    "title": "Pulgão",
+    "image": "imagens/dinos_pulgao.webp",
+    "height": "0.50 cm",
+    "length": "1.5 cm",
+    "weight": "2 g",
+    "attributes": { 
+      "agi": 5, 
+      "for": 1, 
+      "int": 1, 
+      "pre": 2, 
+      "vig": 2 
+    },
+    "life": 30,
+    "armor": 10,
+    "actionBonus": "+10 em furtividade, +10 em escalar plantas, +10 sugar nutrientes, -5 resistência contra ataques de impacto",
+    "attacks": [
+      "Mordida Nutritiva: 2d4 (suga 5 pontos de vida do alvo e regenera o mesmo valor).",
+      "Saliva Enfraquecedora: 1d6 (reduz força do alvo em -2 por 1 turno)."
+    ],
+    "abilities": [
+      "Multiplicação Rápida: Sempre que um Pulgão causar dano, há uma chance de 20% de um novo pulgão surgir na área.",
+      "Sugar Nutrientes: Pode recuperar 10 pontos de vida ao se alimentar de plantas ou criaturas grandes durante 1 turno."
+    ],
+    "passiva": "Parasitismo: Quando em grupo, todos os Pulgões ganham +5 em acertos e +5 de dano.",
+    "passivaElemental": "Colônia Resiliente: Recebem 50% de redução de dano contra ataques baseados em elementos naturais (fogo, gelo, etc.)."
+  },
+  "gorgossauro": {
+    "title": "Gorgossauro",
+    "image": "imagens/dinos_gorgossauro.jpg",
+    "height": "4 m",
+    "length": "7 m",
+    "weight": "1.2 toneladas",
+    "attributes": { 
+      "agi": 4, 
+      "for": 5, 
+      "int": 3, 
+      "pre": 3, 
+      "vig": 4 
+    },
+    "life": 200,
+    "armor": 100,
+    "actionBonus": "+10 em rastreamento, +10 em esquiva, +10 em ataques de grupo, +5 em furtividade, +5 em velocidade de movimento",
+    "attacks": [
+      "Mordida Devastadora: 8d10+10 (dano perfurante com chance de causar sangramento por 2 turnos).",
+      "Garra Ágil: 5d8+5 (dano cortante com chance de empurrar o alvo).",
+      "Investida Selvagem: 6d6+10 (dano de impacto em linha reta, só pode ser usado se o Gorgossauro correr ao menos 5 metros antes)."
+    ],
+    "abilities": [
+      "Caça em Grupo: Para cada Gorgossauro adicional atacando o mesmo inimigo, todos ganham +5 em acertos e +10 de dano.",
+      "Rastreador Nato: Pode seguir rastros e identificar presas a até 20 metros, ignorando obstáculos leves."
+    ],
+    "passiva": "Coordenação de Matilha: Todos os Gorgossauros no grupo ganham +10 de movimento enquanto estão a menos de 10 metros uns dos outros.",
+    "passivaElemental": "Fúria da Matilha: Ao ser ferido, o Gorgossauro ganha +10 em acertos e +5 de dano por 1 turno."
+  },
+  
+    "Abelha": {
+      "title": "Abelha Colmeia",
+      "image": "imagens/dinos_abelha.jpg",
+      "height": "1 m",
+      "length": "1.5 m",
+      "weight": "20 kg",
+      "attributes": { 
+        "agi": 4, 
+        "for": 2, 
+        "int": 3, 
+        "pre": 3, 
+        "vig": 3 
+      },
+      "life": 70,
+      "armor": 70,
+      "actionBonus": "+10 em coordenação de grupo, +10 em ataques de ferrão, +5 em velocidade de voo, +5 em esquiva",
+      "attacks": [
+        "Picada Venenosa: 6d6+5 (dano perfurante e aplica veneno, causando -5 em ações do alvo por 2 turnos).",
+        "Agressão em Grupo: 4d8+5 (dano acumulativo por abelhas próximas atacando o mesmo inimigo)."
+      ],
+      "abilities": [
+        "Inteligência de Colônia: Sempre que uma Abelha realizar uma ação, outra pode replicá-la com metade do custo de ação.",
+        "Fúria da Colmeia: Quando um aliado da colônia morre, todas as abelhas ganham +5 em dano por 2 turnos."
+      ],
+      "passiva": "Dedicação à Colônia: Recebem +5 em todas as ações enquanto estiverem protegendo sua colônia.",
+      "passivaElemental": "Feromônios de Alerta: Toda a colônia é notificada de ameaças próximas em um raio de 50 metros."
+    },
+    "Inseto Escudo Verde": {
+        "title": "Inseto Escudo Verde",
+        "image": "imagens/dinos_inseto_escudo_verde.jpg",
+        "height": "1.5 m",
+        "length": "2.5 m",
+        "weight": "300 kg",
+        "attributes": { 
+          "agi": 3, 
+          "for": 3, 
+          "int": 2, 
+          "pre": 2, 
+          "vig": 4 
+        },
+        "life": 150,
+        "armor": 150,
+        "actionBonus": "+10 em bloquear ataques, +10 em debuffs, +5 em resistência física, -5 em velocidade de movimento",
+        "attacks": [
+          "Escudo Ofensivo: 5d6+5 (dano de impacto e reduz acerto do inimigo em -5 por 1 turno).",
+          "Investida Protetora: 4d8+5 (dano de impacto, aplica lentidão por 1 turno)."
+        ],
+        "abilities": [
+          "Bloqueio Impecável: Pode bloquear até 50% do dano recebido de ataques físicos frontais.",
+          "Retaliação Tóxica: Quando recebe dano, aplica -5 em todos os atributos do atacante por 2 turnos."
+        ],
+        "passiva": "Carapaça Protetora: Reduz todo o dano recebido em 10%.",
+        "passivaElemental": "Escudo Regenerativo: Regenera 5% da vida total a cada 2 turnos enquanto estiver em combate."
+      },
+      "Concavenator": {
+        "title": "Concavenator da Areia",
+        "image": "imagens/dinos_concavenator.jpg",
+        "height": "2 m",
+        "length": "6 m",
+        "weight": "800 kg",
+        "attributes": { 
+          "agi": 5, 
+          "for": 4, 
+          "int": 3, 
+          "pre": 3, 
+          "vig": 3 
+        },
+        "life": 200,
+        "armor": 90,
+        "actionBonus": "+10 em furtividade, +10 em movimento na areia, +5 em ataques surpresa, +5 em esquiva",
+        "attacks": [
+          "Mordida Rápida: 6d6+5 (dano cortante).",
+          "Garras da Areia: 5d8+5 (dano cortante e aplica lentidão por 1 turno).",
+          "Ataque Surpresa: 7d6+10 (dano cortante, só pode ser usado ao sair da furtividade)."
+        ],
+        "abilities": [
+          "Caçador da Areia: Recebe +10 de movimento e furtividade ao se deslocar em terrenos arenosos.",
+          "Emboscador Ágil: Sempre que atacar saindo de furtividade, ganha +10 em acertos e ignora 20% da armadura do alvo."
+        ],
+        "passiva": "Resistência à Areia: Imunidade a penalidades de movimento em terrenos arenosos.",
+        "passivaElemental": "Velocidade do Deserto: Ao iniciar um turno, pode realizar um movimento extra sem gastar ação."
+      },
+      "Indoraptor": {
+    "title": "Arma biológica",
+    "image": "imagens/dinos_indoraptor.jpg",
+    "height": "3 m",
+    "length": "7 m",
+    "weight": "1.2 toneladas",
+    "attributes": { 
+      "agi": 6, 
+      "for": 5, 
+      "int": 6, 
+      "pre": 5, 
+      "vig": 4 
+    },
+    "life": 250,
+    "armor": 200,
+    "actionBonus": "+30 em lábia, +15 em furtividade, +20 em rastreamento, +15 em esquiva, +15 em acertos, +20 em testes de aprendizado",
+    "attacks": [
+      "Mordida Devastadora: 10d10+15 (dano perfurante com chance de causar sangramento severo por 2 turnos).",
+      "Garras Cortantes: 8d8+10 (dano cortante com chance de imobilizar o alvo por 1 turno).",
+      "Analisar: Pode tentar copiar o aatque ou simular a ação nessa rodada, podendo fazer alguma vantagem em seus ataques normais e ficar mais rápido ou saber pontos vitais por exemplo. "
+    ],
+    "abilities": [
+      "Caçador Implacável: Pode detectar alvos por calor, infravermelho, batimentos cardíacos ou eco, ignorando qualquer penalidade de furtividade do inimigo.",
+      "Fingimento Astuto: Pode fingir uma ação para enganar o inimigo, ganhando +30 em lábia. Se atacar após enganar, causa dano triplo nesse ataque.",
+     
+    ],
+    "passiva": "Caça Perfeita: Nunca perde rastros de suas presas, podendo segui-las indefinidamente.",
+    "passivaElemental": "Predador Diabólico: Recebe +10 em todos os ataques e +10% de dano adicional ao lutar em ambientes escuros ou confinados."
+  },
+  "E750": {
+    "title": "E750 - Híbrido Biológico",
+    "image": "imagens/dinos_e750.jpg",
+    "height": "4 m",
+    "length": "8 m",
+    "weight": "1.5 toneladas",
+    "attributes": { 
+      "agi": 6, 
+      "for": 5, 
+      "int": 4, 
+      "pre": 4, 
+      "vig": 5 
+    },
+    "life": 250,
+    "armor": 200,
+    "actionBonus": "+20 em furtividade, +15 em escalada, +15 em natação, +10 em esquiva, +10 em velocidade de movimento, +10 em ataques críticos.",
+    "attacks": [
+      "Mordida Envenenada: 10d10+15 (dano perfurante e aplica venenos com efeitos variados das glândulas: paralisia, redução de vida por turno ou dano acumulativo).",
+      "Garras Venenosas: 8d8+10 (dano cortante, aplica veneno com chance de reduzir armadura em 10% por 2 turnos).",
+      "Espinhos Tóxicos: 7d10+10 (dano perfurante em área, aplicando veneno com efeitos variados em até 3 alvos próximos)."
+    ],
+    "abilities": [
+      "Habilidades Fragmentadas: Sempre que E750 recebe dano, causa dano ou vê uma criatura morrer, role 1d6 para determinar sua ação: 1 - Matar; 2 - Fugir; 3 - Matar; 4 - Neutro; 5 - Matar; 6 - Ira (ganha +20 em dano e velocidade por 2 turnos).",
+      "Furtividade Fatal: Nunca sofre penalidades para se manter furtivo, e ao atacar de furtividade, causa dano crítico garantido."
+    ],
+    "passiva": "Metabolismo Tóxico: Seu corpo é resistente a todos os tipos de venenos e toxinas, ganhando +10 em resistência e regenerando 5% da vida total por turno.",
+    "passivaElemental": "Glândulas Venenosas: Cada ataque inflige um tipo de veneno aleatório (paralisante, corrosivo ou mortal) que dura 2 turnos e reduz as capacidades do alvo."
+  },
+  "Indotaurus": {
+    "title": "Indotaurus",
+    "image": "imagens/dinos_indotaurus.jpg",
+    "height": "4.5 m",
+    "length": "8 m",
+    "weight": "2 toneladas",
+    "attributes": { 
+      "agi": 5, 
+      "for": 6, 
+      "int": 4, 
+      "pre": 4, 
+      "vig": 5 
+    },
+    "life": 300,
+    "armor": 250,
+    "actionBonus": "+15 em força bruta, +20 em ataques de investida, +20 em rastreamento, +15 em esquiva, +15 em lábia",
+    "attacks": [
+      "Mordida Arrasadora: 12d10+20 (dano perfurante, aplica sangramento severo por 2 turnos).",
+      "Chifrada Devastadora: 10d10+25 (dano de impacto, empurra o inimigo 5 metros e derruba).",
+      "Investida Brutal: 10d10+30 (dano de impacto em linha reta, só pode ser usada após correr ao menos 10 metros)."
+    ],
+    "abilities": [
+      "Fúria do Predador: Quando reduz um inimigo a menos de 50% de vida, ganha +10 em dano e +10 em acerto até o fim do combate.",
+      "Carneiro Selvagem: Pode usar seus chifres para quebrar obstáculos ou ignorar barreiras, causando dano a todos em uma linha reta.",
+    ],
+    "passiva": "Mente Feroz: Embora menos inteligente que o Indoraptor, o Indotaurus ainda pode prever movimentos básicos e ajustar suas táticas, ganhando +5 em acertos contra inimigos previsíveis.",
+    "passivaElemental": "Força Colossal: Todos os ataques causam 20% de dano adicional e ignoram 25% da armadura do alvo."
+  },
+  "Crabsquid": {
+    "title": "Crabsquid",
+    "image": "imagens/dinos_crabsquid.jpg",
+    "height": "3 m",
+    "length": "5 m",
+    "weight": "800 kg",
+    "attributes": { 
+      "agi": 3, 
+      "for": 3, 
+      "int": 4, 
+      "pre": 4, 
+      "vig": 2 
+    },
+    "life": 250,
+    "armor": 110,
+    "actionBonus": "+15 em natação, +10 em intimidação (após rugir), +10 em ataques de agarrão, +10 em furtividade aquática, +10 em resistência contra eletricidade.",
+    "attacks": [
+      "Mordida Afiada: 8d8+10 (dano perfurante, pode reduzir a velocidade do alvo por 1 turno).",
+      "Garras Triturantes: 10d8+15 (dano cortante, tem chance de agarrar o inimigo por 2 turnos).",
+      "Investida Subaquática: 9d10+20 (dano de impacto, empurra o alvo e o atordoa por 1 turno)."
+    ],
+    "abilities": [
+      "Onda Eletromagnética: Pode desativar dispositivos elétricos em um raio de 15 metros por 2 turnos, afetando qualquer tecnologia em uso.",
+      "Teia Sintética: Cria teias de alta elasticidade para prender inimigos em um raio de 3 metros, reduzindo a mobilidade dos alvos por 2 turnos.",
+     
+    ],
+    "passiva": "Furtividade Subaquática: É quase indetectável enquanto está submerso, ganhando +15 em furtividade na água.",
+    "passivaElemental": "Campo Bioelétrico: Recebe resistência a ataques elétricos e reduz o dano de eletricidade em 50%."
+  }
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-};
 
 function openSearch(category) {
     document.getElementById('searchContainer').style.display = 'flex';

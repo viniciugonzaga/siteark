@@ -171,7 +171,7 @@ const topicos = [
   {
     id: 5,
     titulo: "Tempos de Recarga",
-    texto: "Tempos de recarga é uma mecânica que engloba todos os períodos necessários para ações e eventos no jogo, como o tempo de mutações, o aparecimento de drops, a preparação de comida, a satisfação das necessidades do personagem, ou até mesmo o uso do cristal de uma criatura como corpo por um tempo. Cada uma dessas ações ou eventos tem um tempo de recarga específico, o que adiciona uma camada de estratégia, pois o jogador precisa gerenciar o tempo adequadamente para garantir a sobrevivência e a eficiência nas suas ações.",
+    texto: "Tempos de recarga é uma mecânica que engloba todos os períodos necessários para ações e eventos no jogo, como o tempo de mutações, o aparecimento de drops, a preparação de comida, a satisfação das necessidades do personagem, ou até mesmo o uso do cristal de uma criatura como corpo por um tempo. Cada uma dessas ações ou eventos tem um tempo de recarga específico, o que adiciona uma camada de estratégia, pois o jogador precisa gerenciar o tempo adequadamente para garantir a sobrevivência e a eficiência nas suas ações. Pontos de determinação podem ser usados quando estiver 50% de vida, só podem ser usados pontos de determinação de 6 em 6, 1d6 cada 6 gasto.",
     imagem: "imagens/regras_tempos_de_recarga.jpg"
   },
   {
@@ -191,6 +191,12 @@ const topicos = [
     titulo: "Sistema de Evolução",
     texto: "Os sistemas de evolução no RPG podem ser aplicados tanto para personagens jogadores quanto para animais. Após cada sessão, os jogadores ganham um bônus de +5 em uma ação de sua escolha. Com o tempo, o Ark oferece + atributos aos personagens, refletindo a experiência acumulada ou a sobrevivência prolongada. Caso os jogadores desejem acelerar esse processo, podem derrotar colossos que possuem surtos de Aether instáveis, que também contêm elementos em seus mecanismos de funcionamento junto com a magia arcana. Ao beber o sangue de um colosso, embora de gosto desagradável, os jogadores podem melhorar seus atributos, recebendo +3 bônus em ações, além de ganhar a passiva do colosso e seus espólios. Os animais, por sua vez, também podem evoluir, com objetivos próprios no jogo, sendo grandes arcos na sobrevivência. Eles podem nascer já evoluídos ou conquistar essa evolução ao longo de sua jornada, podendo até se corromper. Um exemplo seria o Espinossauro, que ao matar um Rex, evolui para um novo elemento, podendo se corromper com o Aether ou já nascer com uma evolução genética avançada.",
     imagem: "imagens/regras_sistema_de_evolucao.jpg"
+  },
+  {
+    id: 9,
+    titulo: "Perseguições e determinação",
+    texto: "As perseguições variam de acordo com o bioma e a criatura, cada rodada será um teste de atletismo ou correr, em áreas mais abertas seriam o quanto vc corre(atletismo), em áreas mais fechadas, seria correr (agi-correr), caso o teste falhe 3 vezes a dt da criatura, ela o alcança e começa o combate. Perseguição diabólica podem fazer teste junto com determinação a cena toda.",
+    imagem: "imagens/dinos_regras_sistemas_chase.jpg"
   },
 ];
 
