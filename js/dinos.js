@@ -134,7 +134,6 @@ const creatures = {
     'Irritator',
     'Oshalaia',
     'Dimotrodonte',
-    'Deynocheirus',
     'Espinossauro',
     'Crocodilo',
     'Sarco-imperador',
@@ -172,26 +171,41 @@ const creatures = {
     'Formiga Soldado Bombeiro',
     'Louva-a-deus',
     'gorgossauro',
-    'Concavenator'
+    'Concavenator',
+    'Xiphactinus',
+    'Kronossauro',
+    'Elasmosauros',
+    'Titanoboa',
+    'Gigantophis',
+    'Nothosauros',
+    'Falosuchus',
+    'Aranha saltadora',
+    'Daeodon',
+    'Stalker da neve',
+    'Stalker marinho',
+    'Urso',
+
     ],
         
     'Herbívoros': 
     [
         'Dodô', 'Parassauro', 'Iguanodonte', 'Olorotiã', 'Coritossauro', 'Mutaburrassauro', 'Edmontossauro', 'Maiassauro', 
-        'Galimimo', 'Estrutiomimo', 'Gigantorraptor', 'Morchops', 'Cavalo', 'Alce', 'Archeotiomimus', 'Braquiossauro', 
+        'Galimimo', 'Estrutiomimo', 'Gigantoraptor', 'Morchops', 'Cavalo', 'Alce', 'Archeotiomimus', 'Braquiossauro', 
         'Brontossauro', 'Amargassauro', 'Argentinossauro', 'Titãnossauro', 'Apatossauro', 'Diplodoco', 'Mamequiassauro', 
         'Nigersauro', 'Dreadnoughtus', 'Camarassauro', 'Girafotitã', 'Paraceratério', 'Sea Treader', 
         'Trike', 'Torossauro', 'Chasmossauro', 'Dracorex', 'Nasuceratops', 'Sinoceratops', 'Estiracossauro', 
         'Estegossauro', 'Kentrossauro', 'Nodossauro', 'Anquilossauro', 'Tatu', 'Castor', 'Carbonemy', 'Mamute', 
         'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Basilossauro', 'Golfinho', 'Baleia', 'Foca', 
-        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa', 'Porco', 'gado comum','Pulgão','Gorgulho', 'Abelha','Inseto Escudo Verde', 'Crabsquid',  
+        'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa', 'Porco', 'gado comum','Pulgão','Gorgulho', 'Abelha','Inseto Escudo Verde', 'Crabsquid','leedsichthys','Archelon',
+        'Coruja das neves','Deynocheirus','Yi ling',
+
   
                 
     ],
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua']
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex',]
 };
 
 const dinoFichas = {
@@ -201,9 +215,9 @@ const dinoFichas = {
         weight: '8 toneladas',
         height: '7 M',
         length: '13,5 M',
-        attributes: { agi: 3, for: 5, int: 2, pre: 2, vig: 4 },
-        life: 360, // Vida do dinossauro
-        armor: 25, // Armadura do dinossauro
+        attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
+        life: 380, // Vida do dinossauro
+        armor: 250, // Armadura do dinossauro
         actionBonus: '+25 mordida, +20 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +15 cheirar, +10 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
         attacks: ['Mordida Poderosa: 16d10+30', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
         abilities: [
@@ -3266,10 +3280,10 @@ const dinoFichas = {
     attributes: { agi: 4, for: 5, int: 5, pre: 4, vig: 5 },
     life: 650, // Escalável por nível ou estágio
     armor: 400, // Base de armadura devido à couraça anti-balas
-    actionBonus: '+25 mordida, +15 garra, +15 camuflagem, +10 furtividade, +10 percepção, +25 intimidação, +10 em qualquer outra ação de agi e força.',
+    actionBonus: '+25 mordida, +20 garra, +15 camuflagem, +10 furtividade, +10 percepção, +25 intimidação, +15 em qualquer outra ação de agi e força.',
     attacks: [
         'Mordida Destrutiva: 16d12+30 (ignora metade da armadura)',
-        'Garra Devastadora: 6d12+25 / 3d20+10 (dano adicional em alvos com armadura inferior a 15)',
+        'Garra Devastadora: 6d12+25 / 3d20+10 (dano adicional em alvos com armadura infeiror a 65)',
         'Golpe Estratégico: 8d12+15 (adapta ao alvo, adicionando +1d6 ao ataque em rodadas subsequentes)'
     ],
     abilities: [
@@ -3288,7 +3302,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 5, int: 3, pre: 4, vig: 5 },
     life: 650, // Escalável por nível ou estágio
     armor: 600, // Base de armadura devido à pele resistente
-    actionBonus: '+15 mordida, +15 garra, +10 natação, +10 escalada, +10 intimidação, +10 percepção',
+    actionBonus: '+25 mordida, +20 garra, +30 bloqeuar, +25 luta, +10 esquiva, +20 contra ataque, +15 resistência, +20 ácido, +20 efeitos, +20 debuffs,   +10 natação, +10 escalada, +25 intimidação, +10 percepção',
     attacks: [
         'Mordida Quádrupla: 2d20+10 4x (aplica sangramento, causando 4d12 por turno)',
         'Garras Cortantes: 4d12+50 2x (dano adicional contra inimigos com elemento inimigo )',
@@ -3310,7 +3324,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 5, int: 2, pre: 3, vig: 5 },
     life: [600], // Escalável por nível ou estágio
     armor: 220, // Base de armadura devido à pele resistente e tamanho colossal
-    actionBonus: '+25 agarrar, +15 mordida, +10 regeneração, +10 resistência, +10 percepção subaquática',
+    actionBonus: '+25 agarrar, +15 mordida, +10 regeneração, +10 resistência, +10 percepção subaquática, +20 luta',
     attacks: [
         'Tentáculos Esmagadores: 2d12+25 6x/ 3d20+10 (agarra o alvo e reduz sua mobilidade pela metade enquanto causa dano contínuo de 4d12 por rodada)',
         'Mordida do Abismo: 4d10+30 (causa dano adicional de 20d6 se o alvo estiver agarrado)',
@@ -3352,9 +3366,9 @@ const dinoFichas = {
     height: '10 M',
     length: '30 M',
     attributes: { agi: 3, for: 5, int: 3, pre: 5, vig: 5 },
-    life: 450, // Escalável por nível ou estágio
+    life: 650, // Escalável por nível ou estágio
     armor: 400, // Base de armadura devido à sua couraça de ferro
-    actionBonus: '+15 mordida, +15 mãos, +10 bolas de fogo, +10 intimidação, +10 resistência, +10 furtividade aquática',
+    actionBonus: '+20 mordida, +15 mãos, +10 bolas de fogo, +10 intimidação, +10 resistência, +10 furtividade aquática',
     attacks: [
         'Mordida Devastadora: 6d20+50 (ignora 100% de pontos de armadura e causa +1d20 de dano em alvos com armadura.)',
         'Mãos Poderosas: 5d10+20 (desarma ou derruba o alvo com um teste de força contra dificuldade em teste de força)',
@@ -3374,7 +3388,7 @@ const dinoFichas = {
     height: '8 M',
     length: '42 M',
     attributes: { agi: 2, for: 5, int: 4, pre: 6, vig: 3 },
-    life: 600, // Escalável por nível ou estágio
+    life: 300, // Escalável por nível ou estágio
     armor: 350, // Base de armadura devido à sua resistência espectral
     actionBonus: '+20 mordida fantasma, +15 anéis espectrais, +15 esmagamento, +15 espasmos mentais, +15 furtividade aquática',
     attacks: [
@@ -3393,7 +3407,7 @@ const dinoFichas = {
     title: 'O Predador Sombrio das Profundezas',
     image: 'imagens/dinos_shadow_leviatã.jpg', // Substitua pelo caminho correto
     weight: '30 toneladas',
-    height: '12 M',
+    height: '8 M',
     length: '25 M',
     attributes: { agi: 5, for: 4, int: 3, pre: 4, vig: 4 },
     life: 450, // Escalável por nível ou estágio
@@ -3460,7 +3474,7 @@ const dinoFichas = {
     title: 'O Guardião dos Recifes Vivos',
     image: 'imagens/dinos_recife_de_coral.jpg', // Substitua pelo caminho correto
     weight: '120 toneladas',
-    height: '18 M',
+    height: '9 M',
     length: '60 M',
     attributes: { agi: 3, for: 6, int: 5, pre: 5, vig: 7 },
     life: 800, // Escalável por nível ou estágio
@@ -4277,11 +4291,11 @@ const dinoFichas = {
     },
     "life": 250,
     "armor": 200,
-    "actionBonus": "+30 em lábia, +15 em furtividade, +20 em rastreamento, +15 em esquiva, +15 em acertos, +20 em testes de aprendizado",
+    "actionBonus": "+30 em lábia,+25 mordida,+15 garras, +10 corgaem, +15 pensar, +10 luta +15 em furtividade, +20 em rastreamento, +15 em esquiva, +15 em acertos, +20 em testes de aprendizado",
     "attacks": [
       "Mordida Devastadora: 10d10+15 (dano perfurante com chance de causar sangramento severo por 2 turnos).",
       "Garras Cortantes: 8d8+10 (dano cortante com chance de imobilizar o alvo por 1 turno).",
-      "Analisar: Pode tentar copiar o aatque ou simular a ação nessa rodada, podendo fazer alguma vantagem em seus ataques normais e ficar mais rápido ou saber pontos vitais por exemplo. "
+      "Analisar: Pode tentar copiar o ataque ou simular a ação nessa rodada, podendo fazer alguma vantagem em seus ataques normais e ficar mais rápido ou saber pontos vitais por exemplo. "
     ],
     "abilities": [
       "Caçador Implacável: Pode detectar alvos por calor, infravermelho, batimentos cardíacos ou eco, ignorando qualquer penalidade de furtividade do inimigo.",
@@ -4327,14 +4341,14 @@ const dinoFichas = {
     "weight": "2 toneladas",
     "attributes": { 
       "agi": 5, 
-      "for": 6, 
+      "for": 5, 
       "int": 4, 
       "pre": 4, 
       "vig": 5 
     },
     "life": 300,
     "armor": 250,
-    "actionBonus": "+15 em força bruta, +20 em ataques de investida, +20 em rastreamento, +15 em esquiva, +15 em lábia",
+    "actionBonus": "+15 em força bruta, +20 em ataques de investida, +20 em rastreamento, +15 em esquiva, +10 em lábia, +25 mordida, +15 garras, +10 coragaem, +15 pensar, +10 luta",
     "attacks": [
       "Mordida Arrasadora: 12d10+20 (dano perfurante, aplica sangramento severo por 2 turnos).",
       "Chifrada Devastadora: 10d10+25 (dano de impacto, empurra o inimigo 5 metros e derruba).",
@@ -4375,11 +4389,527 @@ const dinoFichas = {
     ],
     "passiva": "Furtividade Subaquática: É quase indetectável enquanto está submerso, ganhando +15 em furtividade na água.",
     "passivaElemental": "Campo Bioelétrico: Recebe resistência a ataques elétricos e reduz o dano de eletricidade em 50%."
-  }
-  
-  
-  
-  
+  },
+   
+    "Rudy": {
+      "title": "Rudy - A Fera Branca",
+      "image": "imagens/dinos_rudy.jpg",
+      "height": "16 m",
+      "length": "25 m",
+      "weight": "20 toneladas",
+      "attributes": { 
+        "agi": 2, 
+        "for": 7, 
+        "int": 3, 
+        "pre": 5, 
+        "vig": 7 
+      },
+      "life": 800,
+      "armor": 300,
+      "actionBonus": "+35 em mordida, +25 em garras, +10 em corrida, +15 em natação, +30 em bloqueio de dano, +30 em intimidação.",
+      "attacks": [
+        "Mordida Devastadora: 12d12+60 (dano perfurante e aplica efeito de esmagamento, reduzindo armadura do alvo em 100% por 1 turno).",
+        "Garras Rasgadoras: 10d10+20 (dano cortante, pode causar sangramento severo por 2 turnos).",
+        "Investida Brutal: 15d10+25 (dano de impacto, derruba inimigos menores e causa dano extra contra alvos que já sofreram dano de quebra)."
+      ],
+      "abilities": [
+        "Escalada de Adrenalina: A cada 100 de dano sofrido, Rudy ganha um bônus de +10 em dano e +10 em acerto em sua próxima Mordida Devastadora, acumulando até 3 vezes por 3 rodadas.",
+        "Predador do Pântano: Ganha +15 em rastreamento, furtividade e ataques dentro de áreas pantanosas.",
+      ],
+      "passiva": "Voracidade Regenerativa: Cada criatura engolida regenera 50 pontos de vida temporários e restaura 50 pontos de armadura por turno até atingir o máximo.",
+      "passivaElemental": "Armadura Colossal: A armadura de Rudy nunca cai abaixo de 300 e regenera 20 pontos por turno naturalmente."
+    },
+    "Espinoraptor": {
+        "title": "Espinoraptor - Cria Feroz",
+        "image": "imagens/dinos_espinoraptor.jpg",
+        "height": "3,5 m",
+        "length": "8 m",
+        "weight": "3 toneladas",
+        "attributes": { 
+          "agi": 5, 
+          "for": 4, 
+          "int": 5, 
+          "pre": 4, 
+          "vig": 5 
+        },
+        "life": 250,
+        "armor": 180,
+        "actionBonus": "+25 em mordida, +20 em luta, +15 em contra-ataque, +10 em pensar, +20 em coragem, +15 em fazer plano, +10 em perseguir, +10 em nadar, +15 em garras, +20 em rabada, +25 em intimidar, +10 em localizar, +5 em escalar, +15 em bloquear.",
+        "attacks": [
+          "Mordida Feroz: 10d10+25 (dano perfurante, aplica sangramento, causando 5% da vida máxima do alvo como dano por 3 turnos).",
+          "Garras Afiadas: 8d10+20 (dano cortante, pode agarrar o alvo, causando 2d10 de dano adicional se o alvo estiver sangrando).",
+          "Rabada Rápida: 9d10+20 (dano contundente, tem chance de derrubar inimigos menores)."
+        ],
+        "abilities": [
+          "Agressão Predatória: Sempre que uma criatura é intimidada pelo Espinoraptor, ele recebe +15 contra suas ações por 3 turnos.",
+          "Coragem Inabalável: É imune a efeitos de medo e recebe +10 em testes de resistência contra controle mental ou mágicos.",
+      
+        ],
+        "passiva": "Inteligência Adaptativa: Pode observar e aprender os padrões de ataque dos inimigos, ganhando +5 de acerto contra um alvo por turno de combate, acumulando até +25.",
+        "passivaElemental": "Sede de Sangue: Contra inimigos que estão sangrando, todos os ataques do Espinoraptor causam dano adicional de 2d10 e têm chance de causar atordoamento."
+      },
+      "Espinoceratops": {
+        "title": "Espinoceratopes - O Guardião Territorial",
+        "image": "imagens/dinos_espinoceratopes.jpg",
+        "height": "6 m",
+        "length": "9 m",
+        "weight": "5 toneladas",
+        "attributes": { 
+          "agi": 4, 
+          "for": 5, 
+          "int": 4, 
+          "pre": 3, 
+          "vig": 6 
+        },
+        "life": 450,
+        "armor": 200,
+        "actionBonus": "+25 em bloquear, +20 em chifres, +25 em encontrão, +30 em intimidação, +25 em contra-ataque, +15 em pensar, +15 em torpor, +20 em luta, +15 em coragem.",
+        "attacks": [
+          "Chifrada Implacável: 10d10+20 (dano perfurante, aplica torpor ao alvo, dificultando suas ações em -10 por 2 turnos).",
+          "Investida Territorial: 12d10+25 (dano de impacto, derruba inimigos menores e causa dano adicional de 3d10 contra alvos intimidados).",
+          "Golpe de Cauda: 8d10+15 (dano contundente, pode atingir múltiplos inimigos próximos em um arco de 180 graus)."
+        ],
+        "abilities": [
+          "Regeneração Férrea: Recupera 10% da vida máxima ao final de cada turno em combate quando acerta um alvo.",
+          "Dominância Territorial: Todas as criaturas ao alcance devem realizar um teste de resistência ao entrar em combate; falha reduz suas ações em -10 e dá ao Espinoceratopes +15 contra elas.",
+       
+        ],
+        "passiva": "Proteção Inabalável: Reduz todos os danos físicos recebidos em 10%.",
+        "passivaElemental": "Força Territorial: No próprio território ou em ambientes conhecidos, ganha +10 em todos os testes e ataques, além de se tornar imune a efeitos de controle ou medo."
+      },
+      "Espécime 000": {
+        "title": "Espécime 000 - A Parasita Noturna",
+        "image": "imagens/dinos_espécime 000.jpg",
+        "height": "1 m",
+        "length": "1.5 m",
+        "weight": "50 kg",
+        "attributes": { 
+          "agi": 7, 
+          "for": 3, 
+          "int": 4, 
+          "pre": 4, 
+          "vig": 4 
+        },
+        "life": 300,
+        "armor": 100,
+        "actionBonus": "+20 em furtivo, +10 em luta, +25 em esquiva, +10 em contra-ataque, +15 em mordida, +20 em cauda, +15 em garras, +15 em escalar, +15 em correr, +10 em localizar.",
+        "attacks": [
+          "Mordida Parasítica: 8d10+15 (dano perfurante, aplica uma marca parasita que reduz a regeneração do alvo pela metade).",
+          "Golpe de Garras: 7d10+15 (dano cortante, tem chance de aplicar ferimento profundo que reduz os movimentos do alvo em -10 por 1 turno).",
+          "Chicotada de Cauda: 9d10+20 (dano contundente, pode atordoar inimigos menores por 1 turno)."
+        ],
+        "abilities": [
+          "Predador Noturno: Durante a noite, todas as ações do Espécime 000 recebem bônus dobrados e seu dano furtivo é multiplicado por 2.",
+          "Parasitismo Devastador: Quando reduz um alvo a metade da vida em um ataque furtivo, pode entrar no corpo do inimigo e consumir sua vitalidade. Regenera 20% da própria vida máxima a cada turno enquanto está dentro do hospedeiro.",
+        
+        ],
+        "passiva": "Natureza Voraz: Cada ataque furtivo que atinge reduz a eficácia das ações do alvo em -5 por 2 turnos.",
+        "passivaElemental": "Parasitismo Evolutivo: Após consumir um hospedeiro, recebe um bônus temporário de +10 em força e vitalidade por 3 turnos."
+      },
+      "Estegoceratopes": {
+        "title": "Estegoceratopes - A Fortaleza Agressiva",
+        "image": "imagens/dinos_estegoceratops.jpg",
+        "height": "4 m",
+        "length": "10 m",
+        "weight": "12 toneladas",
+        "attributes": { 
+          "agi": 4, 
+          "for": 5, 
+          "int": 3, 
+          "pre": 4, 
+          "vig": 5 
+        },
+        "life": 400,
+        "armor": 230,
+        "actionBonus": "+30 bloqueio, +25 chifre, +25 cauda, +25 encontrão, +15 intimidar, +20 luta, +20 contra-ataque, +10 esquiva, +15 resistência, +10 coragem, +5 combo.",
+        "attacks": [
+          "Investida de Chifres: 12d12+25 (dano perfurante, aplica dilacerado que causa 30% da vida do alvo ao ser empalado).",
+          "Golpe de Espinhos: 10d10+25 (dano cortante, pode empalar inimigos causando dano adicional de 30% da vida do alvo).",
+          "Encontrão Brutal: 15d8+30 (dano contundente, expulsa o alvo para longe e permite escolher entre aplicar torpor ou dano seco adicional de +30)."
+        ],
+        "abilities": [
+          "Empalar Mortal: Ao acertar ataques de chifres ou espinhos, pode empalar inimigos automaticamente, causando dilacerado e dano contínuo equivalente a 30% da vida do alvo por 2 turnos.",
+          "Impacto Devastador: Caso o Estegoceratopes atinja um ataque crítico, o dano é triplicado.",
+       
+        ],
+        "passiva": "Presença Dominante: Enquanto houver inimigos próximos (5 metros), regenera 5% da vida máxima por turno.",
+        "passivaElemental": "Instinto de Sobrevivência: Recebe +10 adicional em todas as resistências enquanto sua vida estiver abaixo de 50%."
+      },
+      "Tiranolofossauro": {
+        "title": "Tiranolofossauro - O Predador Ácido",
+        "image": "imagens/dinos_tiranolofossauro.jpg",
+        "height": "5.5 m",
+        "length": "13 m",
+        "weight": "9 toneladas",
+        "attributes": { 
+          "agi": 5, 
+          "for": 6, 
+          "int": 4, 
+          "pre": 5, 
+          "vig": 5 
+        },
+        "life": 420,
+        "armor": 200,
+        "actionBonus": "+25 mordida, +20 intimidação, +20 furtividade, +15 contra-ataque, +10 localizar, +15 ácido, +15 resistir a atordoamento, +10 bloqueio.",
+        "attacks": [
+          "Mordida Destruidora: 14d12+25 (dano perfurante e cortante, aplica desvantagem no próximo ataque do alvo).",
+          "Borrifo de Ácido: 8d10+15 (dano ácido, cega o alvo por 2 rodadas e reduz sua precisão em -10).",
+          "Golpe com a Cauda: 10d8+20 (dano contundente, empurra o alvo 5 metros para longe)."
+        ],
+        "abilities": [
+          "Veneno Ácido: Sempre que o Tiranolofossauro acerta um ataque, o ácido aplicado reduz a armadura do alvo em 50% por 2 rodadas e causa dano contínuo de 5% da vida máxima do inimigo.",
+          "Caçador Furtivo: O Tiranolofossauro causa dano dobrado ao atacar inimigos cegos ou que estejam sob efeito de desvantagem.",
+       
+        ],
+        "passiva": "Olhos Predadores: Aumenta sua capacidade de localizar inimigos ocultos, aplicando desvantagem automática na furtividade de alvos próximos (10 metros).",
+        "passivaElemental": "Ácido Corrosivo: O ácido do Tiranolofossauro é tão potente que ignora resistências a dano ácido e tem 30% de chance de causar dano adicional de 5d8 em armaduras e escudos por rodada."
+      },
+      "Ultimssauros": {
+    "title": "Ultimissauro - A Criatura do Caos",
+    "image": "imagens/dinos_ultimassauros.jpg",
+    "height": "10 m",
+    "length": "18 m",
+    "weight": "12 toneladas",
+    "attributes": {
+      "agi": 6,
+      "for": 6,
+      "int": 6,
+      "pre": 5,
+      "vig": 6
+    },
+    "life": 700,
+    "armor": 600,
+    "actionBonus": "+30 mordida, +25 chifres, +25 espinhos, +20 cauda, +25 luta, +20 contra-ataque +20 combo, +20 quebrar, +10 esquiva, +20 intimidar, +15 bloquear, +15 resistência.",
+    "attacks": [
+      "Mordida Destruidora: 16d12+30 (dano perfurante, aplica o estado 'quebrado' que reduz a armadura do alvo em 25% por 2 rodadas).",
+      "Golpe com Chifres: 12d10+25 (dano cortante, aplica sangramento que causa 5% da vida máxima do alvo como dano por 2 rodadas; críticos dobram o dano).",
+      "Caudada Espinhosa: 14d8+20 (dano contundente, aplica sangramento e empurra o alvo 5 metros).",
+    
+    ],
+    "abilities": [
+      "Combinador de Caos: Sempre que atinge um alvo com o estado 'quebrado', pode imediatamente realizar outro ataque no mesmo turno com +10 de bônus.",
+      "Instinto Predador: Sempre que o Ultimissauro causa dano crítico, ele recebe +20 de dano adicional em seu próximo ataque e ignora resistências por 1 rodada.",
+    
+    ],
+    "passiva": "Cicatrizador do Caos: Regenera 100 pontos de vida por rodada enquanto houver inimigos esfolados por chifres ou espinhos.",
+    "passivaElemental": "Caos Elemental: Todos os ataques do Ultimissauro ignoram resistências e causam dano extra de 5d12 se atingirem um alvo já enfraquecido (ex.: quebrado, sangrando, ou esfolado)."
+  },
+  "Espinossauro ger 3": {
+    "title": "Espinossauro Geração 3",
+    "image": "imagens/dinos_espinossauro_ger_3.jpg",
+    "height": "10 m",
+    "length": "18 m",
+    "weight": "9 toneladas",
+    "attributes": {
+      "agi": 5,
+      "for": 5,
+      "int": 5,
+      "pre": 5,
+      "vig": 6
+    },
+    "life": 600,
+    "armor": 300,
+    "actionBonus": "+30 mordida, +25 garras, +25 encontrão, +20 luta, +25 contra-ataque, +15 bloquear, +30 intimidação(Menor alvo), +15 esquiva, +20 combo, +20 agarrar, +20 quebrar, +15 resistência.",
+    "attacks": [
+      "Mordida Selvagem: 14d10+30 (dano perfurante, aplica o estado 'quebrado', reduzindo a armadura do alvo em 40% por 2 rodadas).",
+      "Golpe com Garras: 12d8+25 (dano cortante, críticos permitem realizar um ataque de mordida adicional na mesma ação).",
+      "Encontrão Destrutivo: 15d8+20 (dano contundente, empurra o alvo 3 metros e, se acertar, pode automaticamente agarrar o alvo)."
+    ],
+    "abilities": [
+      "Caçador Intimidador: Sempre que ataca um inimigo intimidado, o Espinossauro Ger 3 pode realizar um ataque adicional no mesmo turno com +10 de bônus.",
+      "Dominância Agressiva: Ganha +65 de dano em ataques e +15 em acertos contra inimigos afetados por efeitos de ira ou em posição de combate ofensiva.",
+    ],
+    "passiva": "Predador Resiliente: Regenera 5% da vida máxima por rodada quando acertar inimigos em combate.",
+    "passivaElemental": "Terror Aquático: Na água, o Espinossauro Geração 3 ganha +10 em todas as ações e ignora metade da armadura dos alvos."
+  },
+  "Carnotauro Rex": {
+    "title": "Carnotauro Rex - O Diabo Vermelho",
+    "image": "imagens/dinos_carnotauro_rex.jpg",
+    "height": "6 m",
+    "length": "9 m",
+    "weight": "4 toneladas",
+    "attributes": { 
+      "agi": 5, 
+      "for": 5, 
+      "int": 3, 
+      "pre": 4, 
+      "vig": 5 
+    },
+    "life": 350,
+    "armor": 220,
+    "actionBonus": "+15 em contra-ataque, +15 em luta, +10 em coragem, +15 em mordida, +10 em ataques de cauda, +15 em localizar, +15 em encontrão, +10 em flanquear.",
+    "attacks": [
+      "Mordida Poderosa: 10d10+20 (dano perfurante, pode reduzir a resistência do alvo em 10% por 2 turnos).",
+      "Chifrada Devastadora: 8d10+25 (dano cortante, aplica dilaceração, fazendo o alvo perder 20% da vida máxima ao se mover por 2 turnos).",
+      "Investida de Ira: 10d10+15 (dano de impacto, escala com o estágio de ira para adicionar até +30 de dano adicional)."
+    ],
+    "abilities": [
+      "Fúria Crescente: Ao tomar dano em sequência, acumula um bônus de +5 em dano e +5 em acerto por turno até um máximo de +30. Ao atingir o máximo, pode ativar Ira para dobrar o dano da próxima Investida de Ira e se tornar imune a atordoamentos ou efeitos de controle por 3 turnos.",
+      "Contra-ataque Implacável: Sempre que é alvo de um ataque que falha ou sofre um efeito de controle, pode reagir com uma mordida ou chifrada, causando metade do dano normal.",
+    
+    ],
+    "passiva": "Regeneração Sanguinária: Regenera 5% de sua vida máxima, e ganha 1d10 de dano a cada turno nas rodadas ao estar em combate.",
+    "passivaElemental": "Armadura Furiosa: Enquanto estiver em estado de Ira, regenera 20 pontos de armadura por turno e aumenta sua resistência a ataques físicos em 10%."
+  },
+  "Desolatitan": {
+    "title": "Desolatitan",
+    "image": "imagens/dinos_desolatitan.jpg",
+    "height": "12 m",
+    "length": "22 m",
+    "weight": "15 toneladas",
+    "attributes": {
+      "agi": 4,
+      "for": 6,
+      "int": 4,
+      "pre": 4,
+      "vig": 6
+    },
+    "life": 750,
+    "armor": 400,
+    "actionBonus": "+30 mordida, +30 encontrão, +30 pisão, +30 luta, +30 bloqueio, +30 contra ataque, +10 esquiva, +10 tática, +5 corrida, +15 cauda, +15 resistência, +10 combo.",
+    "attacks": [
+      "Mordida Devastadora: 18d10+30 (dano perfurante, aplica o estado 'quebrado', anulando armadura contra alvos médios ou menores).",
+      "Encontrão Brutal: 20d8+30 (dano contundente, empurra inimigos 4 metros e anula a armadura de alvos médios ou menores).",
+      "Pisada Apocalíptica: 16d12+30 (dano esmagador em uma área de 5 metros, todos os alvos afetados têm a armadura anulada por 1 rodada)."
+    ],
+    "abilities": [
+      "Grito da Fúria: Um rugido que afeta todas as criaturas em um raio de 30 metros, concedendo aos aliados vida temporária equivalente a 100% de sua vida máxima por 3 rodadas. Inimigos sofrem 10d10+50 de dano (ignora resistência) e ficam com o efeito 'Medo', sendo forçados a agir por último no turno.",
+      "Força Avassaladora: Todos os ataques causam o estado 'quebrado', anulando armadura de alvos médios ou menores por 2 rodadas.",
+   
+    ],
+    "passiva": "Predador Supremacista: Todo inimigo afetado por 'quebrado' sofre -10 em todas as ações contra o Desolatitan.",
+    "passivaElemental": "Aura da Fúria: O Desolatitan emana uma presença que aumenta o dano de aliados em 20% e reduz a resistência dos inimigos em 15% enquanto estiver em combate."
+  },
+  "Giga ger 2": {
+    "title": "Giganotossauro Geração 2",
+    "image": "imagens/dinos_giga_ger_2.jpg",
+    "height": "12 m",
+    "length": "24 m",
+    "weight": "18 toneladas",
+    "attributes": {
+      "agi": 4,
+      "for": 6,
+      "int": 4,
+      "pre": 5,
+      "vig": 6
+    },
+    "life": 700,
+    "armor": 350,
+    "actionBonus": "+30 mordida, +30 encontrão, +25 luta, +25 bloqueio, +20 cauda, +15 contra ataque, +15 esquiva, +10 resistência, +10 tática, +5 corrida.",
+    "attacks": [
+      "Mordida Colossal: 20d10+35 (dano perfurante, aplica 'sangramento' que causa 15% da vida total do alvo por turno por 3 rodadas e aplica 'quebrado' que anula armadura por 2 rodadas).",
+      "Encontrão Avassalador: 18d8+30 (dano contundente, empurra inimigos 5 metros e reduz a movimentação em 50% por 2 rodadas).",
+      "Golpe de Cauda Devastador: 16d8+25 (dano de impacto em área de 3 metros, inimigos atingidos são derrubados)."
+    ],
+    "abilities": [
+      "Modo Rage: Ao sofrer dano alto (10% ou mais da vida total em um ataque), entra em modo de fúria por 3 rodadas. Durante esse estado, regenera 50 PV por turno, ganha +50 de armadura, sua velocidade de movimento dobra, e seus ataques causam +20 de dano adicional. No entanto, é forçado a atacar um alvo a cada turno.",
+      "Sede de Sangue: Para cada inimigo com 'sangramento' ativo, o Giga Geração 2 ganha +15 de dano em ataques e regenera 5% de sua vida máxima no final de cada turno.",
+      "Rastro de Caos: Ao derrotar um inimigo, todos os inimigos a 15 metros sofrem -10 em suas ações devido ao medo instintivo."
+    ],
+    "passiva": "Instinto Predador: Alvos afetados por 'sangramento' sofrem desvantagem -5 em suas jogadas contra o Giga Geração 2.",
+    "passivaElemental": "Aura de Destruição: Emana uma presença de devastação que aumenta o dano de aliados em 15% e reduz a armadura de inimigos em 10% enquanto estiver em combate."
+  },
+  "Verme da areia": {
+    "title": "Verme da Areia",
+    "image": "imagens/dinos_verme_da_areia.jpg",
+    "height": "5 m",
+    "length": "24 m",
+    "weight": "60 toneladas",
+    "attributes": {
+      "agi": 6,
+      "for": 5,
+      "int": 2,
+      "pre": 6,
+      "vig": 4
+    },
+    "life": 500,
+    "armor": 250,
+    "actionBonus": "+20 furtividade, +15 luta, +25 bloqueio, +10 esquiva, +20 mordida, +10 em ações de força.",
+    "attacks": [
+      "Mordida Devastadora: 14d8+30 (dano perfurante, puxa o alvo 3 metros em sua direção, causando 'quebrado' se o alvo for menor).",
+      "Golpe de Cauda Sísmico: 16d8+25 (dano contundente em área de 5 metros, derruba os inimigos atingidos e reduz sua movimentação em 50% por 2 rodadas).",
+      "Encontrão Predatório: 14d10+25 (dano de impacto, agarra o alvo automaticamente em caso de acerto)."
+    ],
+    "abilities": [
+      "Enterrado Vivo: Se atacar debaixo da terra, dobra o dano contra alvos menores e aplica 'atordoamento' por 1 rodada em caso de acerto crítico.",
+      "Predador Subterrâneo: Consegue localizar criaturas a até 15 metros enquanto estão no subsolo, desde que estejam se movimentando.",
+    
+    ],
+    "passiva": "Caçador Implacável: Enquanto permanecer no subsolo, recebe +10 em furtividade e não pode ser detectado por métodos normais de percepção.",
+    "passivaElemental": "Fúria da Areia: Movimentar-se debaixo da terra cria tremores leves que reduzem a esquiva e furtividade dos inimigos em 10 pontos enquanto estão a 10 metros do Verme."
+  },
+  "Rodan": {
+    "title": "Rodan - O Demônio que Voa",
+    "image": "imagens/dinos_rodan.jpg",
+    "height": "8 m",
+    "length": "28 m",
+    "weight": "50 toneladas",
+    "attributes": {
+      "agi": 6,
+      "for": 4,
+      "int": 5,
+      "pre": 6,
+      "vig": 4
+    },
+    "life": 400,
+    "armor": 400,
+    "actionBonus": "+25 voar, +20 luta, +25 mordida, +25 garras, +20 resitência a fogo, +25 intimidação, +20 resistência, +15 bloquear, +15 esquiva.",
+    "attacks": [
+      "Mordida Flamejante: 10d8+30 (dano perfurante e 10d6 de dano de fogo, deixa o alvo em 'queimadura grave' por 2 rodadas).",
+      "Garras Infernais: 9d10+25 2x(dano cortante e 10d6 de fogo, aplica 'incendiado' por 3 rodadas).",
+      "Encontrão Ardente: 16d12+30 (dano de impacto e 8d6 de fogo, empurra o alvo 6 metros e quebra construções)."
+    ],
+    "abilities": [
+      "Caos Aéreo: Enquanto voa, cria um rastro de fogo e ventos destrutivos que aplicam 'lentidão' e 8d8 de dano de fogo em todas as criaturas e objetos em uma área de 20 metros ao longo de sua trajetória.",
+      "Explosão Crítica: Sempre que acerta um crítico em um ataque, pode liberar uma explosão de fogo ao redor, causando 12d6 de dano de fogo em uma área de 10 metros.",
+ 
+    ],
+    "passiva": "Sangue de Magma: Qualquer criatura que cause dano corpo a corpo no Rodan sofre 6d10 de dano de fogo e, em caso de armas, estas derretem ou quebram se falharem em um teste de resistência (CD 20).",
+    "passivaElemental": "Aura de Calor: Todas as criaturas a até 10 metros sofrem 3d6 de dano de fogo ao início de seus turnos devido ao calor extremo emanado pelo Rodan."
+  },
+  "Camazotz": {
+    "title": "Camazotz - O Predador das Sombras",
+    "image": "imagens/dinos_camazotz.jpg",
+    "height": "7 m",
+    "length": "16 m",
+    "weight": "10 toneladas",
+    "attributes": {
+      "agi": 6,
+      "for": 4,
+      "int": 6,
+      "pre": 6,
+      "vig":4
+    },
+    "life": 350,
+    "armor": 200,
+    "actionBonus": "+30 furtividade, +20 luta, +20 mordida, +20 garras, +15 tática, +25 esquiva, +20 resistência, +20 eco localização, +10 intimidação, +15 rastrear.",
+    "attacks": [
+      "Mordida Vampírica: 10d10+25 (dano perfurante, cura 50% do dano causado ao alvo).",
+      "Garras Sombrias: 7d12+30 2x(dano cortante, aplica 'sangramento grave' por 2 rodadas).",
+      "Grito Destruidor: 10d10+20 (dano sônico em área de 15 metros, causa surdez permanente se o alvo perder 50% ou mais da vida restante)."
+    ],
+    "abilities": [
+      "Comando dos Desmodus: Todos os morcegos ou Desmodus na área de 30 metros tornam-se aliados, atacando ao comando de Camazotz e ganhando +10 nas ações de ataque enquanto estão sob seu controle.",
+      "Eco Localização: Ao emitir um som de rastreamento, pode identificar a posição exata e detalhes do ambiente, incluindo obstáculos e inimigos escondidos, ganhando +15 em tática em situações estratégicas no ambiente.",
+     
+    ],
+    "passiva": "Caçador Noturno: No escuro ou durante a noite, ganha vantagem em todas as ações e dobra o dano causado por ataques furtivos, in imigos mortos de forma furtivo, são eliminados sem soltar ou emitir som",
+    "passivaElemental": "Aura de Silêncio: Cria uma zona de 10 metros ao seu redor onde todas as criaturas inimigas não podem emitir som, dificultando comunicação e cancelando conjurações que exijam componentes verbais."
+  },
+  "Acro ger 2": {
+    "title": "Acro Geração 2 - O Ceifador das Batalhas",
+    "image": "imagens/dinos_acro_ger_2.jpg",
+    "height": "10 m",
+    "weight": "12 toneladas",
+    "attributes": {
+      "agi": 5,
+      "for": 5,
+      "int": 4,
+      "pre": 5,
+      "vig": 5
+    },
+    "life": 500,
+    "armor": 400,
+    "actionBonus": "+25 luta, +20 mordida, +20 encontrão, +15 cauda, +10 tática, +15 resistência, +10 intimidação, +15 perseguição, +15 bloqueio, +10 esquiva.",
+    "attacks": [
+      "Mordida Rápida: 12d12+30 (dano perfurante, se causar 45% ou mais do total de vida do alvo, aplica 'sangramento viral' que causa 25% do dano da mordida no início de cada turno por 3 rodadas).",
+      "Encontrão Destruidor: 14d10+25 (dano de impacto, cria um rastro de morte em 10 metros ao redor que aplica lentidão de 50% por 2 rodadas).",
+      "Cauda Arremessadora: 13d10+20 (dano de impacto, desarma o alvo ou arremessa criaturas médias ou menores a até 10 metros de distância)."
+    ],
+    "abilities": [
+      "Grito Ceifador: Cada morte em um raio de 15 metros faz o Acro Geração 2 emitir um grito aterrorizante que aplica lentidão de 50% e força um teste de intimidação em todos os inimigos na área. Quem falhar sofre 25% de dano a mais contra qualquer ataque do Acro Geração 2 até o final do combate. Este efeito escala com cada grito emitido.",
+      "Sangramento Viral: A mordida do Acro Geração 2 pode aplicar um efeito devastador que enfraquece o inimigo ao longo do tempo, causando dano contínuo proporcional ao dano inicial do ataque."
+    ],
+    "passiva": "Fúria da Batalha: Cada morte em combate próximo do Acro Geração 2 aumenta seu dano em +5% cumulativo até o final do combate.",
+    "passivaElemental": "Aura de Desespero: Todos os inimigos em um raio de 10 metros têm suas ações atrasadas, agindo sempre por último na rodada enquanto estão na zona de influência do Acro Geração 2."
+  },
+  "Cão da lua": {
+    "title": "Cão da Lua - Guardião do Gelo e do Caos",
+    "image": "imagens/dinos_cao_da_lua.jpg",
+    "height": "4 m",
+    "length": "12 m",
+    "attributes": {
+      "agi": 5,
+      "for": 4,
+      "int": 5,
+      "pre": 5,
+      "vig": 4
+    },
+    "life": 300,
+    "armor": 200,
+    "actionBonus": "+15 luta, +20 contra-ataque, +10 esquiva, +10 bloqueio, +10 correr, +15 mordida, +20 garras, +20 encontrão, +10 nadar, +5 furtividade, +10 intimidação.",
+    "attacks": [
+      "Mordida Gélida: 10d12+25 (dano perfurante e de gelo; em acertos críticos, congela o alvo por 1 rodada, causando atordoamento e dano adicional de 2d12).",
+      "Encontrão Congelante: 12d10+30 (dano de impacto e gelo; se o alvo estiver a mais de 5 metros de distância, aplica congelamento por 1 rodada, reduzindo o movimento do alvo em 50%).",
+      "Garras Cortantes: 11d10+20 (dano cortante e de gelo; em acertos críticos, causa dano contínuo de 3d6 de gelo por 2 rodadas)."
+    ],
+    "abilities": [
+      "Pulso Eletromagnético: Solta um pulso que o expulsa para cima, permitindo planar por 2 rodadas e gerando uma onda que desativa dispositivos elétricos em um raio de 20 metros. Durante o voo, pode mergulhar em puro gelo, causando 10d12 de dano de impacto e congelando inimigos em um raio de 5 metros no impacto.",
+      "Jato de Gelo: Carrega um poderoso jato de gelo em sua boca, escalando dano com cada rodada de carregamento. O ataque final causa 3d12+30 3x de dano em uma linha reta de 20 metros e congela todos os alvos atingidos por 1 rodada.",
+   
+    ],
+    "passiva": "Regeneração Ártica: Enquanto estiver em ambiente de gelo ou água gelada, regenera 40 pontos de vida por rodada.",
+    "passivaElemental": "Aura Gélida: Inimigos em um raio de 10 metros sofrem redução de movimento em 30% e dano de 2d6 de gelo por rodada enquanto permanecerem próximos ao Cão da Lua."
+  },
+  "Pyromane": {
+    "title": "Pyromane - O Tigre do Fogo Selvagem",
+    "image": "imagens/dinos_pyromane.jpg",
+    "height": "3,5 m",
+    "length": "6 m",
+    "attributes": {
+      "agi": 6,
+      "for": 5,
+      "int": 5,
+      "pre": 5,
+      "vig": 4
+    },
+    "life": 200,
+    "armor": 200,
+    "actionBonus": "+15 luta, +20 contra-ataque, +10 esquiva, +15 bloqueio, +10 mordida, +20 garras, +20 encontrão, +10 intimidação, +10 correr.",
+    "attacks": [
+      "Mordida Flamejante: 8d10+20 (dano perfurante e de fogo; aplica queimadura leve, causando 1d6 de dano por rodada durante 2 rodadas).",
+      "Garras Incandescentes: 10d8+25 (dano cortante e de fogo; em críticos, aplica chamuscamento, aumentando o dano de fogo do próximo ataque em 50%).",
+      "Encontrão Ígneo: 9d12+30 (dano de impacto e fogo; ao acertar, lança uma onda de calor que causa 3d8 de dano de fogo em um raio de 5 metros)."
+    ],
+    "abilities": [
+      "Frenesi Ígneo: Cada movimento bem-sucedido aumenta os dados de dano de fogo em 1d6 por rodada e diminui o valor necessário para crítico em 1 até o limite de 16 rodadas. (Exemplo: Crítico reduzido para 19 após 1 rodada, 18 após 2 rodadas, etc.)",
+      "Chamas Corporais: Ao sofrer dano corpo a corpo, reage com uma explosão de fogo ao redor de seu corpo, causando 5d10 de dano de fogo em um raio de 3 metros.",
+ 
+    ],
+    "passiva": "Fervor Crescente: Quanto mais o Pyromane se move ou é atacado, maior sua agitação, aumentando sua velocidade em 10% por rodada (máximo 50%).",
+    "passivaElemental": "Aura Ardente: Todos os inimigos em um raio de 10 metros sofrem 2d6 de dano de fogo por rodada enquanto estiverem próximos ao Pyromane."
+  },
+  "Dodorex": {
+    "title": "Dodorex - O Terror de Halloween",
+    "image": "imagens/dinos_dodorex.jpg",
+    "height": "10 m",
+    "length": "20 m",
+    "attributes": {
+      "agi": 4,
+      "for": 6,
+      "int": 3,
+      "pre": 4,
+      "vig": 6
+    },
+    "life": 700,
+    "armor": 400,
+    "actionBonus": "+20 luta, +25 contra-ataque, +15 bloqueio, +10 esquiva, +15 intimidação, +20 mordida, +20 encontrão, +15 resistência, +15 em fogo",
+    "attacks": [
+      "Mordida Sombria: 10d10+30 (dano perfurante; aumenta em +1 dado por Dodô Zumbi ativo no campo).",
+      "Encontrão Aterrorizante: 9d12+35 (dano de impacto; ao acertar, empurra o alvo até 10 metros e aplica atordoamento por 1 rodada em críticos).",
+      "Sopro de Chamas: 8d12+40 (dano de fogo em um cone de 15 metros; inimigos atingidos precisam fazer um teste de resistência ou ficarão queimando por 2d6 de dano por rodada durante 3 rodadas)."
+    ],
+    "abilities": [
+      "Convocação Zumbi: Ao chegar à metade da vida, invoca 3 Dodôs Zumbis por inimigo em campo. Cada Dodô Zumbi aumenta o dano da mordida em +1 dado.",
+      "Aura de Terror: Quando o Dodorex surge, todas as criaturas em um raio de 30 metros devem realizar um teste de intimidação. Falhar resulta em estado de pasmo por 1d4 rodadas.",
+     
+    ],
+    "passiva": "Imunidade ao Sobrenatural: O Dodorex é imune a fogo, choque, ácido e danos convecionais de impacto.É preciso o combate direto e danos diretos a corpo a corpo. Tiros podem ser bloqueados automaticamente com um teste de esquiva bem-sucedido.",
+    "passivaElemental": "Chamas Eternas: O Dodorex emite uma aura flamejante constante, causando 3d6 de dano de fogo por rodada a qualquer inimigo em um raio de 5 metros."
+  },
+ 
+
+  };
 
 
 
@@ -4389,8 +4919,6 @@ const dinoFichas = {
 
 
 
-
-}
 
 function openSearch(category) {
     document.getElementById('searchContainer').style.display = 'flex';

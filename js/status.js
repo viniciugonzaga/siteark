@@ -203,8 +203,9 @@ function rolarDado(lados) {
       `Resultado do item: ${itemAleatorio} (${numeroAleatorio})`;
   }
   function rolarSorte() {
-    // Lista de eventos de sorte
+    // Lista de eventos de sorte (com 40 opções)
     const eventosSorte = [
+      // Primeiros 20 eventos originais
       "Criatura comum pequena",
       "Criatura comum média",
       "Grupo de criaturas pequenas",
@@ -225,21 +226,41 @@ function rolarDado(lados) {
       "Criatura comum ferida",
       "Criatura média ferida",
       "Fezes de criatura",
+      // Novos 20 eventos
+      "Carcaça de criatura média",
+      "Duas criaturas médias brigando",
+      "Criatura elemental(1d4)tamanho",
+      "Ninho elemental isolado(1d4)tamanho",
+      "Criatura diabólica faminta média",
+      "Casal faminto(1d4)tamanho",
+      "Filhote(1d4) isolado carente",
+      "emboscada de aventureiros",
+      "Criatura apex dormindo",
+      "Criatura apex faminta",
+      "Oviraptor roubando ovo aleatório(1d4)tamanho",
+      "Enboscada de elemental(1d4)tamanho",
+      "Criatura ferida carente com filhote(1d4)tamanho",
+      "Caçada de civilização local",
+      "Armadilha de caçador local",
+      "Dinossauro dormindo(1d4)tamanho",
+      "Encontro com Apex Lendário",
+      "Dica de alguma progressão na história",
+      "Bando desorientado de criaturas(1d2)",
+      "A PIOR situação que poderia encontrar",
     ];
   
     // Embaralhar a lista de eventos para torná-los aleatórios
     const eventosEmbaralhados = eventosSorte.sort(() => Math.random() - 0.5);
   
-    // Rolar o dado (1d20)
-    const numeroD20 = Math.floor(Math.random() * 20) + 1;
+    // Rolar o dado (1d40)
+    const numeroD40 = Math.floor(Math.random() * 40) + 1;
   
     // Selecionar um evento aleatório do array embaralhado
-    const eventoSorte = eventosEmbaralhados[numeroD20 - 1]; // Correspondente ao número do dado
+    const eventoSorte = eventosEmbaralhados[numeroD40 - 1]; // Correspondente ao número do dado
   
     // Atualizar o resultado na página
-    const resultado = `Número sorteado (1d20): ${numeroD20}<br>Evento de sorte: ${eventoSorte}`;
+    const resultado = `Número sorteado (1d40): ${numeroD40}<br>Evento de sorte: ${eventoSorte}`;
     document.getElementById("resultadoSorte").innerHTML = resultado;
-  }
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -322,4 +343,4 @@ function rolarDado(lados) {
     const resultado = `Número (1d10): ${numeroDrop} - Item: ${itemSelecionado}`;
     document.getElementById("resultadoItemDrop").innerHTML = resultado;
   }
-  
+}
