@@ -4984,3 +4984,32 @@ function filterCreatures() {
         }
     });
 }
+document.addEventListener("DOMContentLoaded", () => {
+    const triggers = document.querySelectorAll(".modalTrigger");
+    const modals = document.querySelectorAll(".modal");
+    const closeButtons = document.querySelectorAll(".close");
+  
+    // Open modal
+    triggers.forEach(trigger => {
+      trigger.addEventListener("click", () => {
+        const modalId = trigger.dataset.modal;
+        document.getElementById(modalId).style.display = "flex";
+      });
+    });
+  
+    // Close modal
+    closeButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        button.closest(".modal").style.display = "none";
+      });
+    });
+  
+    // Close modal when clicking outside content
+    modals.forEach(modal => {
+      modal.addEventListener("click", e => {
+        if (e.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    });
+  });

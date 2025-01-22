@@ -1006,6 +1006,35 @@ button:hover {
     background-color: #47042b;
     border: 2px solid  #02d9ff;
   }  
+  #botaoItemDrop, #botaoGerarOvo {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #3f0437; /* Azul Escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow:
+      0 0 10px #fc32c9,
+      0 0 20px #fa1ddc,
+      0 0 30px #cf3acf;
+  }
+  
+  #botaoItemDrop:hover, #botaoGerarOvo:hover {
+    background-color: #8f08fd;
+  }
+  
+  .resultado {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
   .centro-meio{ background: linear-gradient(90deg, #3f1a68, #30093f, #30093f, #3f1a68);
     border: 2px solid #07eeff;
     padding:3%;
