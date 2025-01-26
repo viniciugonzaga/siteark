@@ -1227,6 +1227,38 @@ button:hover {
     vertical-align: middle;
     background-color: #33013073;
   }
+  /* Responsividade para telas pequenas */
+@media (max-width: 780px) {
+  .icone {
+    width: 20px; /* Ajusta o tamanho para telas menores */
+    height: 20px; /* Ajusta o tamanho para telas menores */
+    margin-left: 5px; /* Ajusta o espaço à esquerda */
+  }
+}
+/* Responsividade para telas pequenas */
+@media (max-width: 780px) {
+  .icone {
+      width: 20px; /* Ajusta o tamanho para telas menores */
+      height: 20px; /* Ajusta o tamanho para telas menores */
+      margin-left: 5px; /* Ajusta o espaço à esquerda */
+  }
+  
+  #botaoEvento, #botaoItem, #botaoSorte, #botaoPersonalidade, 
+  #botaoEventoIlha, #botaoItemDrop, #botaoGerarOvo, #botaoItemSummon, 
+  #botaoTranstorno, #botaoFuncao, #botaoMinerio, #botaoMinerioLendario, 
+  #botaoMinerioRaro {
+      font-size: 14px; /* Ajusta o tamanho da fonte */
+      padding: 8px 12px; /* Ajusta o padding */
+  }
+
+  #resultadoEvento, #resultadoItem, #resultadoSorte, #resultadoPersonalidade, 
+  #resultadoEventoIlha, #resultadoItemDrop, #resultadoItemSummon, 
+  #resultadoTranstorno, #resultadoFuncao, #resultadoMinerio, #resultadoMinerioLendario, 
+  #resultadoMinerioRaro {
+      font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+      padding: 8px;
+  }
+}
   
 
 /* Geral do footer ------------------------------------------------------------------------------*/
