@@ -201,7 +201,7 @@ function rolarDado(lados) {
       "Item de ritual Arcano",
       "Item de Npc local",
       "Item de Criopod(1d4)",
-      "Item de contrução nivel 1"
+      "Item de contrução nivel 1",
     ];
     const numeroAleatorio = Math.floor(Math.random() * 16) + 1; // Número de 1 a 8
     const itemAleatorio = itens[Math.floor(Math.random() * itens.length)]; // Item aleatório
@@ -284,14 +284,94 @@ function rolarDado(lados) {
       "Leal", "Medrosa", "Furioso", "Depressivo", "Cansado",
       "Agitado", "Inteligente", "Invejoso", "Ciumento", "Bipolar",
       "Insano", "Alegre", "Carente", "Corajoso", "Conturbado",
-      "Solitário", "Forte", "Calmo", "Obsessivo", "Ansioso"
+      "Solitário", "Forte", "Calmo", "Obsessivo", "Ansioso",
+      "Arrogante",
+"Desconfiado",
+"Vingativo",
+"Nostálgico",
+"Indeciso",
+"Frustrado",
+"Orgulhoso",
+"Comodista",
+"Tímido",
+"Empático",
+"Inseguro",
+"Solidário",
+"Pessimista",
+"Extrovertido",
+"Introvertido",
+"Cauteloso",
+"Estressado",
+"Inquieto",
+"Eufórico",
+"Exuberante",
+"Gélido",
+"Melancólico",
+"Humilde",
+"Zeloso",
+"Perseverante",
+"Desesperado",
+"Desiludido",
+"Desinteressado",
+"Arrependido",
+"Orgulhoso",
+"Determinada",
+"Descontrolado",
+"Cínico",
+"Teimoso",
+"Irritado",
+"Sarcástico",
+"Vulnerável",
+"Culpado",
+"Conformado",
+"Rebelde",
     ];
   
     let personalidadesSelvagens = [
       "Corajoso", "Medrosa", "Furioso", "Guloso", "Cansado",
       "Agitado", "Inteligente", "Fraco", "Forte", "Burro",
       "Insano", "Alegre", "Carente", "Com sede", "Solitário",
-      "Brigão", "Prioritário", "Passivo", "Doente", "Parrudo"
+      "Brigão", "Prioritário", "Passivo", "Doente", "Parrudo",
+      "Impetuoso",
+"Meloso",
+"Frágil",
+"Altruísta",
+"Dúbio",
+"Exigente",
+"Caridoso",
+"Impressionado",
+"Inquietante",
+"Fatalista",
+"Aceitante",
+"Grato",
+"Distraído",
+"Submisso",
+"Reprimido",
+"Estranho",
+"Dedicado",
+"Esperançoso",
+"Confuso",
+"Resiliente",
+"Satisfeito",
+"Sofredor",
+"Cauteloso",
+"Imprevisível",
+"Cético",
+"Entusiástico",
+"Solitário",
+"Decepcionado",
+"Romântico",
+"Subestimado",
+"Orgulhoso",
+"Temeroso",
+"Triste",
+"Feliz",
+"Obstinado",
+"Calculista",
+"Ansioso",
+"Descomprometido",
+"Exaltado",
+
     ];
   
     // Embaralhar as listas
@@ -534,10 +614,330 @@ function rolarDado(lados) {
 "Coruja das neves", "Coruja das neves(1d4 Elemental)",
 "Deynocheirus", "Deynocheirus(1d4 Elemental)",
 "Yi ling", "Yi ling(1d4 Elemental)",
+        ];
+  
+        const criaturaSelecionada = criaturas[Math.floor(Math.random() * criaturas.length)];
+        const resultado = `Ovo gerado: Ovo de ${criaturaSelecionada}`;
+        document.getElementById("resultadoGerarOvo").innerHTML = resultado;
+    }
+  
+  function rolarItemSummon() {
+    const itensSummon = [
+"Colar de Presas Inquebráveis - Item que invoca Indominus Rex",
+"Garra Escarlate Sombria - Item que invoca Indoraptor",
+"Fragmento de Espelho Mutante - Item que invoca E750",
+"Totem de Ossos Colossais - Item que invoca Megavore",
+"Máscara de Chifres Flamejantes - Item que invoca Indotaurus",
+"Amuleto das Presas Rápidas - Item que invoca Espinoraptor",
+"Escama de Escudo Ceratopsiano - Item que invoca Espinoceratops",
+"Orbe do Protótipo Perdido - Item que invoca Espécime 000",
+"Estatueta de Chifres Cruzados - Item que invoca Estegoceratopes",
+"Adaga de Feras Supremas - Item que invoca Tiranolofossauro",
+"Bracelete do Caçador Supremo - Item que invoca Ultimssauros",
+"Fóssil com Escamas Eternas - Item que invoca Espinossauro Ger 3",
+"Concha Ancestral dos Abismos - Item que invoca Tusotheuthis",
+"Coroa da Fera das Profundezas - Item que invoca Reaper-leviatã",
+"Cristal de Dragões Abissais - Item que invoca Dragão-leviatã",
+"Véu do Espectro Submerso - Item que invoca Fantasma-leviatã",
+"Amuleto da Sombra Profunda - Item que invoca Sombra-leviatã",
+"Garra Gélida da Fera - Item que invoca Chelicerate",
+"Runa do Guardião de Algas - Item que invoca Imperador",
+"Orbe de Coral Luminoso - Item que invoca Leviatã-Coral",
+"Pluma Ardente - Item que invoca Embermane",
+"Tempestade da Garra do Céu - Item que invoca Stormc,law",
+"Olho do Relâmpago - Item que invoca Drask",
+"Raiz da Floresta Eterna - Item que invoca Koshai",
+"Garra do Caçador Sombrio - Item que invoca Riftstalkear",
+"Mandíbula Serrada do Predador - Item que invoca Gnasher",
+"Gelo Vivo - Item que invoca Pangar",
+"Carapaça do Inferno - Item que invoca Hellion",
+"Cristal da Tempestade - Item que invoca Nayzaga",
+"Runas Estelares - Item que invoca Valomyr",
+"Pluma Fantasma - Item que invoca Shrike",
+"Ídolo da Fera da Escuridão - Item que invoca Skullcrawler",
+"Pedra do Gigante Imortal - Item que invoca Golias",
+"Fragmento do Tentáculo Ancestral - Item que invoca Kraken",
+"Corrente Espectral - Item que invoca Espectro",
+"Estátua da Deusa da Pedra - Item que invoca Górgona",
+"Fragmento de Rocha Colossal - Item que invoca Behemoth",
+"Gancho da Jaula Viva - Item que invoca Peixe-jaula",
+"Troféu do Colosso - Item que invoca Gargantua",
+"Colar de Gelo Vivo - Item que invoca Rudy",
+"Chifre Distorcido - Item que invoca Carnotauro Rex",
+"Amuleto da Ruína Infinita - Item que invoca Desolatitan",
+"Garra do Devorador de Mundos - Item que invoca Giga Ger 2",
+"Fragmento do Deserto Infinito - Item que invoca Verme da Areia",
+"Pluma do Rei Alado - Item que invoca Rodan",
+"Relíquia do Deus das Sombras - Item que invoca Camazotz",
+"Garra do Predador Primordial - Item que invoca Acro Ger 2",
+"Amuleto da Lua Sombria - Item que invoca Cão da Lua",
+"Coroa do Mestre das Chamas - Item que invoca Pyromane",
+"Troféu de Chifres Ardentes - Item que invoca Dodorex",
+    ];
+
+    const itensEmbaralhados = itensSummon.sort(() => Math.random() - 0.5);
+    const numeroSummon = Math.floor(Math.random() * 10) + 1;
+    const itemSelecionado = itensEmbaralhados[numeroSummon - 1];
+    const resultado = `Número (1d10): ${numeroSummon} - Item: ${itemSelecionado}`;
+    document.getElementById("resultadoItemSummon").innerHTML = resultado;
+  }
+  function mostrarTranstorno() {
+    // Lista de transtornos
+    const transtornos = [
+      "Transtorno de Estresse Pós-Traumático",
+      "Transtorno Dissociativo",
+      "Transtorno Obsessivo-Compulsivo",
+      "Transtorno de Ansiedade Generalizada",
+      "Depressão Maior",
+      "Transtorno de Apego Reativo",
+      "Cleptomania",
+      "Tricotilomania",
+      "Automutilação",
+      "Distúrbios Alimentares",
+      "Abuso de Substâncias",
+      "Pensamento Catastrófico",
+      "Sentimento de Culpa Excessiva",
+      "Despersonalização",
+      "Desrealização",
+      "Paranoia",
+      "Transtorno de Personalidade Borderline",
+      "Transtorno de Personalidade Esquizotípica",
+      "Distorção de Identidade",
+      "Síndrome de Estocolmo",
+      "Alexitimia",
+      "Hipocondria",
+      "Fobia Social",
+      "Anedonia",
+      "Trauma de Sobrevivente",
+"Efeito Pós-Terror",
+"Perturbação Mental",
+"Desconexão Emocional",
+"Fobia de Escuridão",
+"Desordem de Identidade",
+"Medo Paralisante",
+"Despersonalização",
+"Síndrome do Sobrevivente",
+"Tensão Psíquica",
+"Pesadelo Contínuo",
+"Desespero Incontrolável",
+"Perda de Realidade",
+"Obsessão pela Morte",
+"Distorção Temporal",
+"Reflexo de Medo",
+"Reatividade Pós-Traumática",
+"Coração Congelado",
+"Pânico Insano",
+"Visões Angustiantes",
+"Afastamento Emocional",
+"Síndrome da Fuga",
+"Vozes na Mente",
+"Tragédia Indizível",
+"Terror Congelante",
+"Desconfiança Incessante",
+"Pavor de Enganos",
+"Esquecimento Forçado",
+"Desintegração Psicológica",
+"Ecos de Horror",
+"Sombra do Passado",
+"Quebra da Lógica",
+"Estigmatização do Medo",
+"Pesadelo Vivo",
+"Deformidade Mental",
+"Distorção de Memória",
+"Desespero Irreversível",
+"Isolamento Sensorial",
+"Instinto de Autopreservação Pervertido",
+"Efeito de Apatia Pós-Horror",
+"Síndrome da Realidade Distante",
+"Surto de Colapso Emocional",
+"Visões Obsessivas",
+"Coração Em Ruínas",
+"Perda de Contato com a Verdade",
+"Dúvida Perpétua",
+"Fobia do Conhecido",
+"Vazio Existencial",
+"Cegueira Psicológica",
+"Pavor Imortal",
     ];
   
-    const criaturaSelecionada = criaturas[Math.floor(Math.random() * criaturas.length)];
-    const resultado = `Ovo gerado: Ovo de ${criaturaSelecionada}`;
-    document.getElementById("resultadoGerarOvo").innerHTML = resultado;
+    // Seleciona um transtorno aleatório
+    const transtornoAleatorio = transtornos[Math.floor(Math.random() * transtornos.length)];
+  
+    // Exibe o transtorno no elemento de resultado
+    document.getElementById("resultadoTranstorno").innerHTML = transtornoAleatorio;
   }
+  function sortearFuncaoNPC() {
+    // Lista de funções ou trabalhos sem duplicatas
+    const funcoes = [
+        "Domador de Criaturas", "Construtor", "Ferreiro", "Explorador", "Agricultor",
+        "Caçador", "Minerador", "Alquimista", "Navegador", "Cartógrafo",
+        "Cientista Genético", "Treinador de Combate", "Mecânico Tek",
+        "Domínio de Arco e Flecha", "Mestre em Diplomacia", "Tolerância ao Clima",
+        "Navegação Estelar", "Resistência Física", "Empatia com Criaturas",
+        "Senso de Orientação", "Especialista em Armadilhas", "Guarda-Costas",
+        "Comerciante", "Guia de Cavernas", "Artilheiro", "Pesquisador de Relíquias",
+        "Médico Tribal", "Treinador de Voadores", "Guarda de Portão", "Enfrentar Chefes",
+        "Explorar Ruínas Antigas", "Participar de Guerra de Tribos",
+        "Domesticar Criaturas Épicas", "Sobrevivência Extrema", "Missões de Resgate",
+        "Construção de Estruturas Avançadas", "Decifrar Sigilos e Artefatos",
+        "Explorador de Biomas", "Domador de Criaturas Alpha", "Mestre das Ruínas",
+        "Criadouro de Dinossauros", "Tecelão de Redes", "Especialista em Armadilhas de Selva",
+        "Líder de Expedições", "Especialista em Defesa de Bases", "Mestre de Engenharia Avançada",
+        "Criador de Artefatos", "Mestre de Cerco", "Especialista em Submersíveis",
+        "Criador de Modificações Genéticas", "Mercador de Artefatos Raros",
+        "Mestre em Venenos Naturais", "Especialista em Cristais", "Domador de Criaturas Voadoras",
+        "Curandeiro de Tribo", "Mestre em Armadilhas Explosivas", "Especialista em Recursos Raros",
+        "Historiador de Tribos Antigas", "Rastreador de Criaturas Raras",
+        "Especialista em Sobrevivência Aquática", "Operador de Balistas",
+        "Preparador de Rituais", "Guardião de Relíquias Perdidas",
+        "Especialista em Mecanismos de Defesa", "Pesquisador de Fósseis",
+        "Criador de Rotas Seguras", "Mestre em Táticas de Combate Tribal",
+        "Engenheiro de Estruturas Subterrâneas", "Perito em Toxinas e Antídotos",
+        "Especialista em Recolhimento de Espólios", "Criador de Pontes Suspensas",
+        "Montador de Mechas Tek", "Domador de Criaturas Marinhas", "Especialista em Camuflagem",
+        "Instrutor de Técnicas de Fuga", "Cultivador de Plantas Medicinais",
+        "Navegador de Tempestades", "Instrutor de Técnicas de Escalada",
+        "Mestre em Técnicas de Caça Noturna",
+        "Engenheiro de Máquinas a Vapor", "Operador de Fábrica", "Minerador de Carvão", 
+        "Ferreiro Industrial", "Operador de Tecelagem", "Mestre de Fundição", 
+        "Operador de Caldeiras", "Construtor de Trilhos", "Operador de Guindaste", 
+        "Fabricante de Engrenagens", "Projetista de Motores", "Mecânico de Locomotivas", 
+        "Técnico em Eletricidade", "Supervisor de Linhas de Produção", 
+        "Cortador de Madeira", "Trabalhador Ferroviário", "Operador de Fornalhas", 
+        "Maquinista", "Inventor de Ferramentas", "Construtor de Navios", 
+        "Trabalhador de Siderúrgica", "Soldador Industrial", "Padeiro de Grande Produção", 
+        "Ceramista Industrial", "Engenheiro Civil", "Engenheiro Hidráulico", 
+        "Montador de Máquinas", "Especialista em Polimento de Metais", 
+        "Engenheiro Químico", "Trabalhador de Refinarias", "Gestor de Fábrica", 
+        "Inventor de Equipamentos", "Estivador de Portos", "Maquinista de Escavadoras", 
+        "Operador de Serras Industriais", "Projetista de Máquinas Pesadas", 
+        "Supervisor de Construção", "Trabalhador de Usinas", "Operador de Laminadoras", 
+        "Carregador de Vagões", "Fabricante de Motores a Vapor", "Artesão de Mobiliário", 
+        "Técnico em Hidráulica", "Desenhista de Plantas Industriais", 
+        "Metalúrgico", "Escavador de Túneis", "Especialista em Construção de Pontes", 
+        "Transportador de Materiais", "Pesquisador de Combustíveis Fósseis", 
+        "Especialista em Sistemas de Ventilação", "Engenheiro de Iluminação Pública", 
+        "Operador de Máquinas Têxteis", "Instalador de Linhas de Telégrafo", 
+        "Trabalhador de Docas", "Fabricante de Tubulações", 
+        "Mecânico de Ferramentas Pesadas", "Administrador de Fábricas", 
+        "Designer de Ferramentas Industriais", "Químico Industrial", 
+        "Pesquisador de Novos Materiais", "Minerador de Ferro", "Engenheiro de Mineração", 
+        "Mestre em Soldagem", "Montador de Pontes Metálicas", "Consertador de Motores", 
+        "Operador de Máquinas de Corte", "Engenheiro de Infraestruturas Urbanas", 
+        "Planejador Urbano", "Fabricante de Caldeiras", "Operador de Prensas Industriais", 
+        "Especialista em Extração de Recursos", "Gerente de Estoque Industrial", 
+        "Pesquisador de Energia Renovável Inicial", "Engenheiro de Drenagem Urbana",
+        "Ferreiro Mestre", "Minerador de Gemas Preciosas", "Guardião do Salão das Montanhas",
+         "Construtor de Túneis", "Engenheiro de Máquinas a Vapor", "Mestre Cervejeiro",
+          "Escultor de Pedra Ancestral", "Mercador de Metais Raros", "Guardião do Tesouro da Tribo",
+           "Inventor de Armamentos Pesados",
+           "Guerreiro Selvagem", "Domador de Bestas", "Forjador de Armas Brutais", "Líder de Clãs Bárbaros",
+            "Xamã Espiritual", "Caçador de Presas Gigantes", "Mestre em Emboscadas", "Criador de Táticas Tribais",
+             "Espreitador das Sombras", "Rasgador de Almas",
+             "Guardião de Masmorras", "Observador de Portais", "Espreitador Abissal", "Guardião de Relíquias Perdidas",
+              "Arauto do Caos", "Ceifador de Almas", "Criatura Guardiã de Biomas", "Semeador de Pesadelos", "Tentáculo do Vazio",
+               "Guardião de Cristais Ancestrais",
+               "Cientista de Tecnologia Antiga", "Explorador de Galáxias Perdidas", "Guardião de Conhecimentos Perdidos", "Emissário do Conselho Estelar", "Protetor de Civilizações Emergentes", "Engenheiro de Naves-Mãe", "Caçador de Recursos Cósmicos", "Criador de Artefatos Estelares", "Mestre de Manipulação Temporal", "Operador de Drones Biomecânicos",
+               "Mestre das Lâminas Ocultas", "Espião das Nações", "Infiltrador de Fortalezas", "Especialista em Táticas Silenciosas", "Sabotador de Máquinas", "Ladrão de Segredos", "Caçador de Alvos Marcados", "Agente Duplo", "Mercenário das Sombras", "Executor Fantasma",
+               "Campeão da Luz", "Guardião dos Fracos", "Desbravador de Terras Selvagens", "Caçador de Recompensas", "Cavaleiro Andarilho", "Salvador de Vilas Perdidas", "Explorador de Mundos Distantes", "Mestre dos Mapas Perdidos", "Defensor de Reinos Antigos", "Caçador de Títulos Heroicos",
+               "Shifter de Bestas Selvagens", "Mutante de Ambientes Hostis", "Guardião das Formas Perdidas", "Explorador de Identidades", "Camaleão de Civilizações", "Mestre da Metamorfose", "Protetor da Harmonia Biológica", "Desbravador das Essências Naturais", "Ceifador das Formas", "Moldador de Aparências",
+               "Guardião Animado", "Construto Vivo", "Arauto dos Artefatos", "Animal de Suporte", "Montaria Lendária", "Espírito Encantado", "Arma com Consciência", "Mascote de Aventura", "Sentinela Ancestral", "Protetor Fantasmagórico",
+              "Drone de Batalha", "Mecânico de Inteligências", "Engenheiro de Sistemas Avançados", "Sentinela Autônoma", "Protetor de Zonas Industriais", "Combatente Cibernético", "Criador de Redes de Defesa", "Guardião de Dados Críticos", "Androide Explorador", "Mestre em Automação Total"
+    ];
+
+    // Embaralha a lista para maior aleatoriedade
+    const funcoesEmbaralhadas = funcoes.sort(() => Math.random() - 0.5);
+
+    // Sorteia uma função da lista embaralhada
+    const funcaoSorteada = funcoesEmbaralhadas[Math.floor(Math.random() * funcoesEmbaralhadas.length)];
+
+    // Exibe a função sorteada
+    document.getElementById("resultadoFuncao").innerHTML = `Função sorteada: ${funcaoSorteada}`;
+}
+  function mostrarMinerio() {
+    // Lista de minérios
+    const minerios = [
+"Ouro",
+"Prata",
+"Cobre",
+"Ferro",
+"Níquel",
+"Titanita",
+"Manganês",
+"Zinco",
+"Metal Primário",
+
+  
+    ];
+
+    // Seleciona um minério aleatório
+    const minerioAleatorio = minerios[Math.floor(Math.random() * minerios.length)];
+    
+    // Rola um número aleatório entre 1 e 4 (1d4)
+    const quantidade = Math.floor(Math.random() * 4) + 1;
+    
+    // Exibe o minério e a quantidade
+    document.getElementById("resultadoMinerio").innerHTML = `Minério: ${minerioAleatorio} (Quantidade: 1d4 = ${quantidade})`;
+  }
+  function mostrarMinerioRaro() {
+    // Lista de minérios raros
+    const mineriosRaros = [
+      "Platina", 
+      "Diamante", 
+      "Esmeralda", 
+      "Rubi", 
+      "Safira", 
+      "Urânio", 
+      "Níquel", 
+      "Titânio", 
+      "Lítio", 
+      "Obsidiana", 
+      "Cristal de Mana", 
+      "Elemento", 
+      "Âmbar", 
+      "Metal Primário", 
+      "Eletrocristal", 
+      "Cobalto", 
+      "Neodímio", 
+      "Irídio", 
+      "Paládio", 
+      "Cianita",
+      "Azurita"
+    ];
+      // Seleciona um minério raro aleatório
+      const minerioAleatorio = mineriosRaros[Math.floor(Math.random() * mineriosRaros.length)];
+    
+      // Rola um número aleatório entre 1 e 4 (1d4)
+      const quantidade = Math.floor(Math.random() * 4) + 1;
+      
+      // Exibe o minério raro e a quantidade
+      document.getElementById("resultadoMinerioRaro").innerHTML = `Minério Raro: ${minerioAleatorio} (Quantidade: 1d4 = ${quantidade})`;
+    }
+    function mostrarMinerioLendario() {
+      // Lista de minérios lendários
+      const mineriosLendarios = [
+      'Cube de Ion',
+      'Cristal de Mana',
+      'Cristal de Sangue',
+      'Magma igneo',
+      'Elemento',
+      'Pedra hyoo carga',
+      'Concha do mar',
+      'Minério da caveira',
+      'Gelo verdadeiro',
+      'Veia de Aether',
+      'Netherite',
+      "Pedra Colossal"
+      ];
+    
+      // Seleciona um minério lendário aleatório
+      const minerioAleatorio = mineriosLendarios[Math.floor(Math.random() * mineriosLendarios.length)];
+    
+      // Rola um número aleatório entre 1 e 3 (1d3)
+      const quantidade = Math.floor(Math.random() * 3) + 1;
+    
+      // Exibe o minério lendário e a quantidade
+      document.getElementById("resultadoMinerioLendario").innerHTML = 
+        `Minério Lendário: ${minerioAleatorio} (Quantidade: 1d3 = ${quantidade})`;
+    }
 

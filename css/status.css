@@ -1026,6 +1026,180 @@ button:hover {
     background-color: #8f08fd;
   }
   
+  #botaoItemSummon {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #290841; /* Roxo escuro */
+    color: #fffaeb; /* Amarelo vibrante */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow: 
+      0 0 10px #ffa500, 
+      0 0 20px #ffc400, 
+      0 0 30px #ffeb3b;
+  }
+  
+  #botaoItemSummon:hover {
+    background-color: #6a0dad; /* Roxo claro */
+  }
+  
+  #resultadoItemSummon {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid  #02d9ff;
+  }
+  #botaoTranstorno {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #3f0437; /* Roxo escuro */
+    color: rgb(255, 253, 253);
+    border: 2px solid #bb0303;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow: 
+      0 0 5px #420000,
+      0 0 10px #fa1d1d,
+      0 0 60px #740202;
+  }
+  
+  #botaoTranstorno:hover {
+    background-color: #8f08fd;
+  }
+  #botaoFuncao {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #3f0437; /* Roxo escuro */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-shadow: 
+      0 0 10px #fc32c9,
+      0 0 20px #fa1ddc,
+      0 0 30px #cf3acf;
+  }
+  
+  #botaoFuncao:hover {
+    background-color: #8f08fd;
+  }
+  
+  #botaoMinerio {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    background-color: #3f0437; /* Roxo escuro */
+    color: #fffb01;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid #fffb01;
+  }
+
+  #botaoMinerio:hover {
+    background-color: #8f08fd;
+  }
+#botaoMinerioLendario{
+  padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fffb01; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid #fffb01;
+}
+
+  #botaoMinerioRaro {
+    padding: 10px 15px;
+    margin: 10px 0;
+    font-size: 16px;
+    color: #fffb01; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid #fffb01;
+  }
+
+  #botaoMinerioRaro:hover {
+    background-color: #8f08fd;
+  }
+
+  #resultadoMinerioRaro {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+
+  .resultado {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+  #resultadoMinerio {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+
+  .resultado {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+
+  #resultadoFuncao {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
+  #resultadoTranstorno {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #93ddff; /* Azul Claro */
+    padding: 10px;
+    background-color: #47042b;
+    border: 2px solid #02d9ff;
+  }
   .resultado {
     font-size: 1rem;
     font-weight: bold;
@@ -1046,7 +1220,13 @@ button:hover {
     margin-top: 2%;
     margin-bottom: 2%;
   }
-  
+  .icone {
+    width: 25px;
+    height: 25px;
+    margin-left: 8px;
+    vertical-align: middle;
+    background-color: #33013073;
+  }
   
 
 /* Geral do footer ------------------------------------------------------------------------------*/

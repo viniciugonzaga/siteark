@@ -178,7 +178,6 @@ const creatures = {
     'Titanoboa',
     'Gigantophis',
     'Nothosauros',
-    'Falosuchus',
     'Aranha saltadora',
     'Daeodon',
     'Stalker da neve',
@@ -218,7 +217,7 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +20 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +15 cheirar, +10 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
+        actionBonus: '+25 mordida, +20 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +10 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
         attacks: ['Mordida Poderosa: 16d10+30', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
         abilities: [
             'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão de 1d6 na corrida. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito quebrado e se um dado for extremo ganha mais 1 para extremo.',
@@ -1363,9 +1362,9 @@ const dinoFichas = {
     height: '2 M',
     length: '1.5 M',
     attributes: { agi: 5, for: 4, int: 4, pre: 3, vig: 3 },
-    life: 120,
-    armor: 10,
-    actionBonus: '+20 escalada, +15 mordida, +15 furtividade, +10 salto +10 esquiva',
+    life: 200,
+    armor: 100,
+    actionBonus: '+20 escalada, +15 mordida,+10 contra-ataque, +10 esquiva, +5 bloqueio, +5 agarrão +15 furtividade, +10 salto, +5 preparar ação, +10 rastrear',
     attacks: [
         'Mordida Lacerante: 6d10+25 (causa sangramento e desvantagem em vigor no alvo)',
         'Garras Cortantes: 5d10+20 (aplica feridas leves que acumulam sangramento)',
@@ -1384,9 +1383,9 @@ const dinoFichas = {
     weight: '150 kg',
     height: '2 M',
     length: '2.5 M',
-    attributes: { agi: 4, for: 5, int: 3, pre: 3, vig: 4 },
+    attributes: { agi: 4, for: 4, int: 3, pre: 3, vig: 4 },
     life: 140,
-    armor: 15,
+    armor: 70,
     actionBonus: '+25 emboscada, +20 mordida, +20 furtividade, +15 imobilizar +10 esquiva',
     attacks: [
         'Mordida Devastadora: 7d10+30 (aplica desvantagem em vigor e resistência)',
@@ -1407,7 +1406,7 @@ const dinoFichas = {
     length: '2.8 M',
     attributes: { agi: 5, for: 4, int: 3, pre: 4, vig: 3 },
     life: 130,
-    armor: 10,
+    armor: 40,
     actionBonus: '+20 corrida, +20 mordida, +15 flanqueamento, +15 farejar',
     attacks: [
         'Mordida Lacerante: 6d12+25 (causa sangramento contínuo)',
@@ -2824,17 +2823,17 @@ const dinoFichas = {
     life: 180,
     armor: 280,
     attacks: [
-        'Pancada com Cauda: 3d10+15 (causa lentidão por 2 turnos)',
+        'Pancada com Cauda: 4d10+15 (causa lentidão por 2 turnos)',
         'Investida Blindada: 4d12+15 (derruba inimigos menores)',
-        'Defesa Impenetrável: 2d6+8 (bloqueia 50% do dano recebido por 2 turnos)'
+        'Defesa Impenetrável: 5d6+8 (bloqueia 50% do dano recebido por 2 turnos)'
     ],
     abilities: [
         'Armadura Pesada: Reduz 25% do dano recebido de ataques à distância.',
-        'Resistência Inabalável: Imune a efeitos de empurrão.'
+        'Resistência Inabalável: Imune a efeitos de empurrão, sempre que bloqueia um ataque pode atacar um alvo(bloqueio de atauqe defensivo)'
     ],
     passiva: 'Escudo de Pedra: Ganha +20% de resistência ao defender aliados próximos.',
     passivaElemental: 'Vigor Inato: Em climas frios, regenera 25% da vida ao final de cada turno.',
-    actionBonus: '+15 em ataques de defesa, +10 bloqueio adicional, +10 resistência em grupo.'
+    actionBonus: '+15 em ataques de defesa, +10 pancada +10 bloqueio adicional caos fracasse, +10 resistência em grupo, +10 bloqueio, +10 pontaria, +5 furtividade, +10 em teste de força, +5 contra ataque .'
 },
 
 'Anquilossauro': {
@@ -4908,7 +4907,307 @@ const dinoFichas = {
     "passivaElemental": "Chamas Eternas: O Dodorex emite uma aura flamejante constante, causando 3d6 de dano de fogo por rodada a qualquer inimigo em um raio de 5 metros."
   },
  
+  
+"Xiphactinus": {
+  "title": "Xiplactinus - O Terror dos Cardumes",
+  "image": "imagens/dinos_xiphactinus.jpg",
+  "height": "2,5 m",
+  "length": "4 m",
+  "attributes": {
+    "agi": 5,
+    "for": 4,
+    "int": 2,
+    "pre": 3,
+    "vig": 4
+  },
+  "life": 160,
+  "armor": 60,
+  "actionBonus": "+10 esquiva na água, +15 atacar em bando, +10 resistir a venenos, +10 nadar rapidamente, +5 evitar emboscadas",
+  "attacks": [
+    "Mordida Frenética: 4d12+15 (dano base; ganha +1d12 para cada aliado do cardume próximo ao alvo).",
+    "Encontrão Selvagem: 3d10+10 (ao acertar, o alvo faz um teste de fortitude. Caso falhe, a criatura pode realizar uma mordida no mesmo turno).",
+    "Rabada Devastadora: 3d8+10 (derruba alvos pequenos e médios; reduz agilidade do alvo em 20% por 1 rodada)."
+  ],
+  "abilities": [
+    "Banquete Sangrento: Sempre que consome um ser, regenera 40 PV temporários por criatura consumida.",
+    "Caçador Voraz: Enquanto na água, ganha +20% de dano por cada aliado no cardume presente no combate."
+  ],
+  "passiva": "Sede de Sangue: Sempre que acerta um alvo com mordida ou encontrão, aplica sangramento (1d12, escalando +1d12 para cada aliado no cardume presente).",
+  "passivaElemental": "Predador Aquático: Na água, reduz esquiva do inimigo em 15% e ignora armaduras leves."
+},
+"Kronossauro": {
+  "title": "Kronossauro - O Bando dos Mares",
+  "image": "imagens/dinos_kronossauro.jpg",
+  "height": "3 m",
+  "length": "10 m",
+  "attributes": {
+    "agi": 4,
+    "for": 5,
+    "int": 2,
+    "pre": 3,
+    "vig": 5
+  },
+  "life": 250,
+  "armor": 150,
+  "actionBonus": "+10 em ataques de mordida, +15 em combate em grupo, +10 resistir a sangramento, +5 nadar em velocidade, +10 detectar presas",
+  "attacks": [
+    "Mordida Voraz: 5d12+20 (aplica sangramento de 1d10 por rodada por 2 turnos).",
+    "Investida Submarina: 4d10+15 (ao acertar, empurra o alvo 5 metros e reduz sua esquiva em 20% por 1 turno).",
+    "Golpe com Nadadeira: 3d8+10 (derruba alvos pequenos e médios; chance de causar atordoamento com um teste de vigor falho)."
+  ],
+  "abilities": [
+    "Caçador em Grupo: Ganha +5 de dano para cada aliado próximo no combate (máximo de +15).",
+    "Rastreador Submarino: Detecta presas em um raio de 30 metros, mesmo em águas turvas ou com pouca luz."
+  ],
+  "passiva": "Sangramento Mortal: Sempre que um ataque causa sangramento, o alvo perde 1d12 adicional se já estiver sangrando.",
+  "passivaElemental": "Fúria das Profundezas: Quando está em águas profundas, ganha +20% de velocidade e ignora penalidades de combate no ambiente."
+},
 
+"Elasmosauros": {
+  "title": "Elasmosauro - A Presa Robusta",
+  "image": "imagens/dinos_elasmosauros.jpg",
+  "height": "2 m",
+  "length": "7 m",
+  "attributes": {
+    "agi": 4,
+    "for": 3,
+    "int": 4,
+    "pre": 4,
+    "vig": 3
+  },
+  "life": 170,
+  "armor": 80,
+  "actionBonus": "+10 esquiva em fuga, +10 nadar rapidamente, +5 percepção, +10 detectar predadores, +10 em combate em grupo",
+  "attacks": [
+    "Mordida Ágil: 3d10+10 (chance de escapar de um combate ao acertar um golpe crítico).",
+    "Investida de Fuga: 2d8+5 (empurra o predador 2 metros para ganhar espaço e aumenta esquiva em 50% por 1 turno).",
+    "Chicotada com Cauda: 3d8+10 (reduz agilidade do inimigo em 100% por 1 rodada se o alvo for médio ou menor)."
+  ],
+  "abilities": [
+    "Evasão em Grupo: Ao fugir em grupo, aumenta a esquiva em +10% para todos os aliados próximos.",
+    "Nado Veloz: Pode realizar um movimento extra ao final do turno para escapar de predadores."
+  ],
+  "passiva": "Sobrevivência Instintiva: Sempre que sofre um ataque crítico, reduz o dano em 50% e ganha +50% de esquiva por 1 rodada.",
+  "passivaElemental": "Velocidade Submersa: Em águas calmas ou rasas, aumenta a velocidade de nado em +30%, permitindo cobrir maiores distâncias rapidamente."
+},
+
+"Titanoboa": {
+  "title": "Titanoboa - O Predador Silencioso",
+  "image": "imagens/dinos_titanoboa.jpg",
+  "height": "1,5 m",
+  "length": "8 m",
+  "attributes": {
+    "agi": 4,
+    "for": 3,
+    "int": 2,
+    "pre": 4,
+    "vig": 5
+  },
+  "life": 150,
+  "armor": 70,
+  "actionBonus": "+15 furtividade, +10 ataque furtivo, +10 em espreitar, +15 veneno, +5 localizar alvos por calor, +5 modida, +5 rabol, +5 nadar, +5 escalar",
+  "attacks": [
+    "Mordida Venenosa: 5d10+15 (aplica veneno paralisante; teste de resistência: falha faz o alvo dormir por 1 rodada e aumenta o torpor em 1d12).",
+    "Espremer com o Rabo: 4d12+20 (dano de impacto; ao acertar, reduz a força do alvo em 10% por 2 rodadas).",
+    "Cuspe de Veneno Ácido: 3d10+10 (dano ácido; aplica paralisia por 1 rodada e retarda o dano de 1 ataque inimigo para a próxima rodada)."
+  ],
+  "abilities": [
+    "Predador Furtivo: Ganha furtividade por 3 rodadas contra um alvo específico, mesmo após ser detectada. Durante esse período, recebe +5 em todas as ações contra o alvo.",
+    "Visão de Calor: Pode localizar qualquer criatura em um raio de 30 metros, ignorando obstáculos e efeitos de invisibilidade."
+  ],
+  "passiva": "Sono Letal: Sempre que morde um alvo, se ele já estiver envenenado, aumenta o dano do veneno em 1d10 adicional e prolonga o efeito por mais 1 rodada.",
+  "passivaElemental": "Veneno Ácido Paralisante: Alvos que fracassam no teste contra seu veneno ficam paralisados e sofrem 2d6 de dano ácido por rodada enquanto o efeito durar."
+}, 
+"Gigantophis": {
+  "title": "Gigantophis - O Constritor Colossal",
+  "image": "imagens/dinos_gigantophis.jpg",
+  "height": "3 m",
+  "length": "16 m",
+  "attributes": {
+    "agi": 4,
+    "for": 4,
+    "int": 2,
+    "pre": 3,
+    "vig": 5
+  },
+  "life": 300,
+  "armor": 150,
+  "actionBonus": "+20 agarrar, +15 luta, +10 bloqueio, +15 estrangulamento, +10 esquiva,+10 bloqueio, +10 contra ataque +10 resistência a ataques contundentes, +10 nadar, +10 escalar,",
+  "attacks": [
+    "Mordida Poderosa: 6d12+20 (dano perfurante; inimigos quebrados engolidos sofrem 2d10 de dano adicional).",
+    "Espremer com a Cauda: 5d12+25 (dano de impacto; alvo preso pela cauda deve fazer um teste de luta por rodada; falha resulta em estrangulamento que causa 3d10 de dano adicional e 2d6 de torpor).",
+    "Investida Colossal: 4d12+15 (dano de impacto em linha reta; empurra inimigos 10 metros para trás e aplica redução de agilidade em 20% por 2 rodadas)."
+  ],
+  "abilities": [
+    "Constritor Mortal: Alvos agarrados pela cauda da Gigantophis sofrem 3d10 de dano estrangulador por rodada, além de 2d6 de torpor. A cada rodada que falharem no teste de luta, os danos aumentam em +1 dado.",
+    "Sufocamento Prolongado: Alvos agarrados por mais de 2 rodadas têm sua resistência reduzida em 100% até o final do combate."
+  ],
+  "passiva": "Quebra Ossos: Todos os ataques da Gigantophis têm chance de 50% em causar o estado quebrado. Alvos nesse estado sofrem dano adicional de 2d10 em cada mordida subsequente.",
+  "passivaElemental": "Força Indomável: Durante o estrangulamento, a Gigantophis reduz em 20% a força e a agilidade do alvo enquanto o mantém preso."
+},
+"Nothosauros": {
+  "title": "Nothosauros - O Ágil Predador Costeiro",
+  "image": "imagens/dinos_nothosaurus.jpg",
+  "height": "2 m",
+  "length": "6 m",
+  "attributes": {
+    "agi": 5,
+    "for": 4,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 180,
+  "armor": 60,
+  "actionBonus": "+15 esquiva, +10 luta, +10 furtividade, +15 saltos, +20 em testes de agilidade na água, +10 testes de força para agarrar, +5 contra-ataque",
+  "attacks": [
+    "Mordida Rápida: 4d10+10 (dano perfurante; reduz a agilidade do alvo em 50% por 2 rodadas).",
+    "Ataque de Arremesso: 5d8+15 (ao acertar, o Nothosauros lança areia ou lama, deixando o alvo lento por 2 rodadas e reduzindo sua precisão em 10%).",
+    "Salto Predador: 6d12+20 (ação livre após acumular raiva; o Nothosauros salta sobre o alvo, causando dano perfurante e o empurrando 5 metros)."
+  ],
+  "abilities": [
+    "Fúria Esquiva: Após evitar 2 ataques consecutivos, o Nothosauros ganha a habilidade de usar Salto Predador como uma ação livre. Durante o turno seguinte, suas ações recebem +5 de bônus adicional.",
+    "Controle do Terreno: O Nothosauros pode usar areia ou lama como uma ação bônus para criar uma zona difícil de 10 metros ao redor, reduzindo em 50% a agilidade dos inimigos e dificultando suas esquivas."
+  ],
+  "passiva": "Predador Aquático: Enquanto na água, o Nothosauros ganha +5 furtividade  por 3 rodadas ao se aproximar de um inimigo e pode nadar sem penalidades.Sua energia é grande, podendo sempre em uma rodada reagir com o mesmo tipo de reação, contra o mesmo tipo de alvo(humano,animal,etc..)",
+  "passivaElemental": "Ambiente Costeiro: Em ambientes costeiros, o Nothosauros causa +10% de dano em todos os ataques e reduz a esquiva de inimigos em 15%."
+},
+"Aranha saltadora": {
+  "title": "Aranha Papa-Mosca - Caçadora Ágil e Precisa",
+  "image": "imagens/dinos_aranha_saltadora.jpg",
+  "height": "2 m",
+  "length": "3.5 m",
+  "attributes": {
+    "agi": 4,
+    "for": 3,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 160,
+  "armor": 80,
+  "actionBonus": "+20 esquiva, +15 saltos, +15 furtividade, +10 luta, +10 precisão em ataques, +15 perseguição em terrenos verticais.",
+  "attacks": [
+    "Mordida Ágil: 5d8+12 (dano perfurante; ao acertar, reduz a agilidade do alvo em 10% por 2 rodadas).",
+    "Pulo Predatório: 6d10+15 (a aranha salta até 10 metros em um alvo; causa dano de impacto e aplica estado de 'surpresa' no inimigo por 1 rodada se ele não passar em um teste de percepção).",
+    "Lançamento de Seda: 4d6+10 (a aranha prende o alvo em uma teia; o inimigo deve realizar um teste de força ou ficará imobilizado por 2 rodadas)."
+  ],
+  "abilities": [
+    "Salto Mortal: Pode realizar um salto adicional durante o seu turno sem consumir ação, permitindo reposicionamento estratégico ou ataque surpresa.",
+    "Rastreamento Visual: A Aranha Papa-Mosca pode localizar inimigos ocultos a até 20 metros com base em visão aguçada, ignorando penalidades por escuridão ou camuflagem."
+  ],
+  "passiva": "Caçadora Versátil: Ganha +15 em furtividade e percepção quando perseguindo inimigos menores ou equivalentes em tamanho. Pode escalar qualquer superfície sem penalidades.",
+  "passivaElemental": "Veneno Ácido: Sua mordida causa um veneno que, além de dano contínuo de 2d6 por 3 rodadas, corrói armaduras inimigas, reduzindo sua eficácia em 10% durante o combate."
+},
+"Daeodon": {
+  "title": "Daeodon - O Porco das Neves",
+  "image": "imagens/dinos_daeodon.jpg",
+  "height": "2.5 m",
+  "length": "2.5 m",
+  "attributes": {
+    "agi": 4,
+    "for": 4,
+    "int": 3,
+    "pre": 3,
+    "vig": 5
+  },
+  "life": 150,
+  "armor": 100,
+  "actionBonus": "+15 luta, +15 carga, +10 resistência ao frio, +10 mordida, +15 em bloqueio e +10 contra-ataques, +5 socializar, +5 intimidar, +5 atletismo.",
+  "attacks": [
+    "Mordida Poderosa: 6d8+12 (dano perfurante; aplica atordoamento por 1 rodada em críticos).",
+    "Coice Devastador: 5d10+10 (dano de impacto; ao acertar, reduz a agilidade do alvo em 20% por 2 rodadas).",
+    "Encontrão Brutal: 6d12+15 (dano de impacto; ao acertar, o alvo faz um teste de resistência para evitar atordoamento por 1 rodada)."
+  ],
+  "abilities": [
+    "Adrenalina em Grupo: Quando a vida do Daeodon ou de um aliado próximo cai abaixo de 50%, pode liberar um grito que concede dose de adrenalina a todos os aliados em combate corpo a corpo. A adrenalina retarda o dano recebido em 1d4 rodadas.",
+    "Força Imensa: Pode carregar até o dobro de sua capacidade de peso normal sem penalidades, mesmo em terrenos difíceis ou neve profunda."
+  ],
+  "passiva": "Sobrevivente do Frio: Ganha +20 em resistência ao frio e é imune a efeitos de congelamento. Além disso, regenera 10% da vida por rodada enquanto em ambientes gélidos.",
+  "passivaElemental": "Coração Indomável: Após cair abaixo de 50% da vida, ganha +5 em força e vigor e reduz todos os danos recebidos em 10% até o final do combate."
+},
+"Stalker da neve": {
+  "title": "Stalker da Neve - A Sombra do Ártico",
+  "image": "imagens/dinos_stalker_da_neve.jpg",
+  "height": "3.5 m",
+  "length": "5 m",
+  "attributes": {
+    "agi": 3,
+    "for": 4,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 300,
+  "armor": 200,
+  "actionBonus": "+20 em emboscadas, +15 rastreamento, +15 luta, +10 esquiva, +10 bloqueio, +15 em resistências ao frio e +15 intimidação.",
+  "attacks": [
+    "Garras Gélidas: 7d8+20 (dano cortante; reduz a agilidade do alvo em 15% por 2 rodadas).",
+    "Investida Ártica: 6d12+25 (dano de impacto; aplica atordoamento por 1 rodada caso o alvo falhe em um teste de resistência).",
+    "Mordida Destruidora: 8d10+22 (dano perfurante; em críticos, causa sangramento de 2d6 por 3 rodadas)."
+  ],
+  "abilities": [
+    "Emboscada Glacial: Em ambientes gelados, pode ficar furtivo por 2 rodadas, mesmo após ser detectado, ainda com as vanatagens de estar furtivo. Durante este período, seus ataques têm +5 de precisão e causam +10% de dano adicional.",
+    "Sede de Caça: Quando persegue um alvo por mais de 3 rodadas, ganha +1 em força e agilidade e reduz a velocidade do alvo em 10% até o final do combate."
+  ],
+  "passiva": "Resistência Ártica: Imune a todos os efeitos de congelamento e reduz em 50% o dano de ataques de gelo. Recupera 5% da vida máxima por rodada enquanto em ambientes frios.",
+  "passivaElemental": "Aura Gélida: Em combate, emana uma aura de frio intenso em um raio de 5 metros, causando 2d6 de dano de gelo por rodada a todos os inimigos próximos."
+},
+"Stalker marinho": {
+  "title": "Stalker Marinho - O Predador das Profundezas",
+  "image": "imagens/dinos_stalker_marinho.jpg",
+  "height": "2.8 m",
+  "length": "7 m",
+  "attributes": {
+    "agi": 4,
+    "for": 4,
+    "int": 3,
+    "pre": 4,
+    "vig": 3
+  },
+  "life": 180,
+  "armor": 40,
+  "actionBonus": "+25 em flanquear, +10 em ataques de mordida, +15 esquiva, +20 em ataque surpresa, +10 resistência a dano aquático.",
+  "attacks": [
+    "Mordida Cortante: 6d8+15 (dano cortante; causa sangramento de 1d6 por 3 rodadas).",
+    "Investida Aquática: 5d12+12 (dano de impacto; ao acertar, empurra o alvo 5 metros e aplica desorientação por 1 rodada).",
+    "Rugido do Mar: 4d10+10 (dano sônico; reduz a defesa de todos os inimigos próximos em 10% por 2 rodadas)."
+  ],
+  "abilities": [
+    "Ataque Veloz: Ao atacar um alvo de flanco, o Stalker Marinho tem +1d6 de dano adicional e +10 de precisão.",
+    "Caçada Implacável: Durante 2 rodadas, se o Stalker Marinho acertar um crítico, ele ganha +5 em todas as suas habilidades de ataque e +15% de dano em sua próxima mordida."
+  ],
+  "passiva": "Predador das Profundezas: O Stalker Marinho pode se mover livremente em ambientes aquáticos, ignorando efeitos de terreno e ganhando +10 em todas as ações no oceano.",
+  "passivaElemental": "Fúria Subaquática: Quando em combate submerso, aumenta sua agilidade e dano em 50% e ganha resistência a efeitos de status como atordoamento."
+},
+
+"Urso": {
+  "title": "Urso Grande - O Guardião da Floresta",
+  "image": "imagens/dinos_urso.jpg",
+  "height": "2.5 m",
+  "length": "4.5 m",
+  "attributes": {
+    "agi": 4,
+    "for": 8,
+    "int": 3,
+    "pre": 5,
+    "vig": 7
+  },
+  "life": 225,
+  "armor": 190,
+  "actionBonus": "+20 luta, +15 em investidas, +25 resistência a fadiga, +10 em defesa contra ataques corpo a corpo.",
+  "attacks": [
+    "Mordida Poderosa: 6d10+20 (dano perfurante; causa 1d6 de sangramento adicional por 2 rodadas).",
+    "Pata Impetuosa: 6d12+10 2x(dano de impacto; atordoa o alvo por 1 rodada em críticos).",
+    "Investida Furiosa: 6d8+15 (dano de impacto; empurra o alvo até 3 metros e reduz a defesa do alvo em 20% por 1 rodada)."
+  ],
+  "abilities": [
+    "Comedor de Mel: Sempre que o Urso Grande consome mel ou substâncias semelhantes, ele recupera 10% da vida máxima e ganha +10 em resistência por 3 rodadas.",
+    "Força Bruta: Ao acertar um golpe crítico, o Urso Grande aumenta seu dano em 50% na rodada seguinte e pode realizar um ataque extra."
+  ],
+  "passiva": "Defensor da Floresta: O Urso Grande ganha +10 em defesa e resistência a ataques de longo alcance ou habilidades à distância.",
+  "passivaElemental": "Coração de Urso: Ao perder mais de 50% da vida, o Urso Grande ganha +20% em dano e +15% em resistência a debuffs, mas sofre -10% de agilidade por 3 rodadas."
+}
   };
 
 
@@ -5013,3 +5312,94 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
+  const slides = [
+    {
+      titulo: "Mutações Elementais",
+      texto: "Cada animal, dinossauro ou criatura que habita a Ilha do Ark, ou foi criado pelo próprio Mestre, possui o potencial de evoluir. Essa evolução permite que ele se torne mais forte, ganhe novas habilidades ou melhore seus atributos, como vida, armadura e outros. No entanto, é importante que o Mestre defina quais criaturas podem evoluir ao longo da campanha, equilibrando a presença desses animais tanto em terra quanto no mar. A evolução pode ocorrer de diferentes formas. Ela pode surgir como resultado de um grande evento ou desafio na narrativa, onde a criatura demonstra a necessidade de evoluir para sobreviver. Também pode ser fruto de heranças genéticas, passadas naturalmente de uma geração para outra, ou até mesmo manipulada em laboratório, onde experimentos alteram geneticamente a essência do animal. Mais do que um simples aumento de poder, a evolução deve estar ligada ao contexto da história, criando momentos emocionantes e memoráveis. Isso incentiva o vínculo entre os jogadores e suas criaturas, enquanto mantém a experiência do jogo equilibrada e imersiva.",
+      corFundo: "radial-gradient(circle, rgba(29, 1, 60, 0.918), rgba(10, 0, 30, 0.925))",
+      corTexto: "#ffeb3b",
+      corTitulo: "#ff9900"
+    },
+    {
+      titulo: "Mutações Ígneas ou de Fogo",
+      texto: "Mutações de fogo, também conhecidas como mutações ígneas, adaptam os animais a ambientes extremamente quentes, como regiões vulcânicas ou áreas com lava, fogo constante ou queimadas naturais. Essas criaturas não apenas sobrevivem nesses locais, mas interagem ativamente com o fogo, ganhando habilidades e características únicas. Naturalmente, todos os animais com essa mutação recebem um bônus de +10 em intimidação devido à sua aura flamejante, mas sofrem uma penalidade de -10 em ações realizadas na água. Além disso, ao encostar na pele, escamas ou pelos dessas criaturas, qualquer ser vivo sofrerá dano de fogo. Esses animais também adquirem duas habilidades de fogo específicas, escolhidas com base em seu tamanho, inteligência ou qualidades únicas. A escolha das habilidades é interpretativa e deve refletir a essência da criatura ou o que ela se tornou após a mutação. Exemplos de habilidades incluem cuspir fogo, lançar bolas de fogo, aumentar as chamas ao redor do corpo, garras flamejantes, redemoinhos de fogo, caudas incendiárias, rastros ardentes, cuspir lava, lançar pedras em chamas, criar cópias de fogo ou formar círculos de fogo. O Mestre pode criar habilidades adicionais para adaptar melhor a criatura ao contexto da história. O dano causado pelas habilidades de fogo varia de acordo com o porte da criatura e o impacto da habilidade. Pequenas criaturas podem causar de 1d6 a 3d6 de dano de fogo. Criaturas de porte médio podem causar entre 4d6 e 8d6 de dano. Já criaturas grandes ou de categoria Apex podem alcançar danos de 9d6 a 12d6 em um único ataque. Além do dano, muitas dessas habilidades podem aplicar efeitos adicionais, como queimaduras, fragilidade ou até gerar barulhos e rastros que revelam a presença da criatura",
+      corFundo: "radial-gradient(circle, rgba(73, 28, 28, 0.87), rgba(77, 31, 1, 0.92),rgba(44, 3, 0, 0.87))",
+      corTexto: "#ffe066",
+      corTitulo: "#ff6e1b"
+    },
+    {
+      titulo: "Mutações de Morte ou Sombra",
+      texto: "Mutações de morte, também chamadas de mutações sombrias, são evoluções que permitem aos animais sobreviver em ambientes extremamente perigosos. Essas criaturas são adaptadas para a velocidade e astúcia, muitas vezes participando de uma luta constante entre ser a presa ou o caçador. Essas mutações podem surgir em ambientes escuros, onde a camuflagem e a cor escura proporcionam uma vantagem de sobrevivência. Como resultado, essas criaturas ganham habilidades relacionadas à escuridão e à morte. Naturalmente, os animais com mutações de morte recebem um bônus de +10 em esquiva ou contra-ataques, além de um aumento em um atributo de agilidade, já que são mais rápidos e habilidosos em evitar ataques. No entanto, eles tendem a ser mais frágeis em termos de armadura ou resistência(40%), pois a evolução os favoreceu em velocidade em vez de resistência física. As habilidades de um animal com mutação de morte podem ser interpretadas de acordo com o nível de inteligência e a ameaça que a criatura representa, podendo apenas utilizar duas habilidades . Entre as habilidades possíveis estão mordida de morte, mordida de sombra, garra de morte, garra de sombra, encontro da morte, encontro sombrio, fenda sombria, camuflagem anormal, clones ou alucinações visuais, bola sombria, picada de morte e roubo de vida sombrio. O Mestre também pode criar habilidades adicionais para enriquecer a experiência da criatura. Os danos e vantagens dessas habilidades variam de acordo com o tamanho da criatura e seu nível de evolução. O dano de morte é passivamente determinado em 15% da vida máxima da criatura, além do dano causado pelo ataque em si. Habilidades como bolas de sombra ou ataques sombrios podem causar de 3d8 a 12d8 de dano, dependendo do porte da criatura, que pode ser de pequena a Apex. Fendas sombrias ou camuflagem garantem +15 de deslocamento em pulo durante a ação de movimento e +10 de furtividade devido à capacidade de alterar a coloração ou adaptar-se ao ambiente. Criar alucinações faz com que a criatura fique parada e gere uma cópia de sua imagem, confundindo os inimigos por um tempo curto. O roubo de vida sombrio permite que a criatura cause dano e regenere 40% de sua vida máxima, recuperando parte da energia vital de sua vítima.",
+      corFundo: "radial-gradient(circle, rgba(20, 20, 20, 0.87), rgba(0, 0, 0, 0.918))",
+      corTexto: "#d3d3d3",
+      corTitulo: "#b8082e",
+    },
+    {
+      titulo: "Mutações Hypo",
+      texto: "As criaturas com mutações Hypos são maiores, mais resistentes e naturalmente mais armadas, representando um estágio evolutivo que pode ser alcançado apenas por aqueles que já estão no auge de sua existência ou entrando em uma fase anciã. Essa evolução surge após terem vivenciado inúmeras experiências diferentes e enfrentado desafios que as forçaram a se tornar ainda mais poderosas para sobreviver. Mutações Hypos são características que elevam os animais a um nível de poder impressionante, tornando-os verdadeiras fortalezas vivas. Essas criaturas possuem uma vida 30% maior e armaduras significativamente mais resistentes, cobrindo maior parte de seus corpos com uma eficiência aprimorada de 20%. Elas também recebem um bônus de +10 em bloqueio ou resistência, refletindo sua capacidade superior de suportar ataques. Contudo, essas vantagens vêm com uma desvantagem: os Hypos são mais lentos, perdendo 1 ponto de agilidade, mas compensam ganhando 1 ponto de vigor, destacando sua robustez. As habilidades dessas criaturas refletem sua força bruta e grande preparação para combates intensos. Entre as habilidades mais comuns estão mordida hypo, cauda hypo, encontrão hypo, garra hypo, agarrão hypo e imobilização hypo. Essas habilidades não apenas são devastadoras, mas também mostram a natureza brutal e implacável dos Hypos. Os danos causados por habilidades Hypos são sempre incrementados com três dados adicionais em comparação com a mordida ou ataque original da criatura. Além disso, habilidades como imobilização hypo possuem dois efeitos de controle de grupo físico, que podem incluir atordoamento, quebrado ou enraizado. Esses efeitos tornam os Hypos uma ameaça mortal em combate, especialmente contra múltiplos inimigos.",
+      corFundo: "radial-gradient(circle, rgba(32, 63, 3, 0.87), rgba(50, 92, 22, 0.92))",
+      corTexto: "#f0e68c",
+      corTitulo: "#ffeb3b"
+    },
+    {
+      titulo: "Mutações Elétricas",
+      texto: "Mutações elétricas transformam as criaturas em seres rápidos, energéticos e eletricamente carregados, adaptados para aproveitar as energias disponíveis na ilha. Essas mutações permitem que os animais criem faíscas, emitam descargas ou convertam sua energia em choques intensos, tornando-se extremamente perigosos e ágeis. Todas as criaturas com mutações elétricas recebem um bônus de +10 em corridas e +10 em combos, o que permite causar efeitos adicionais após suas habilidades e potencializar seus ataques com maior dano. Além disso, essas criaturas acumulam eletricidade de forma natural, podendo usá-la para causar dano extra ou ganhar um bônus de +5 em qualquer teste. A cada rodada, elas acumulam energia suficiente para gerar 1d8 de dano elétrico por alvo em combate corpo a corpo ou adicionam +5 em uma ação acumulada. As habilidades elétricas disponíveis incluem mordida elétrica, garra elétrica, cauda elétrica, bola de eletricidade, raio de eletricidade, veneno elétrico, picada elétrica, encontrão elétrico e raios terrestres. O dano dessas habilidades é calculado com base no ataque natural da criatura, somando um incremento elétrico. A cada 10 pontos de dano natural, adiciona-se 1d8 de dano elétrico, além da passiva de sequência corpo a corpo. Por exemplo, uma mordida elétrica que cause 30 pontos de dano natural adicionaria 3d8 de dano elétrico, atingindo até 3 alvos adicionais em combate corpo a corpo, cada um recebendo também 3d8 de dano elétrico. Habilidades como bola de eletricidade, raio e veneno aplicam dano fixo baseado no porte da criatura: pequenas causam 4d8, médias 8d8 (x2), grandes 12d8 (x3) e apex 16d8. Essas habilidades são particularmente letais, mas há formas de mitigá-las dependendo das condições do confronto. Criaturas ou ambientes com isolamento elétrico anulam completamente o dano, enquanto esquivas podem reduzir o impacto pela metade. Em casos extremos, certos efeitos podem cancelar o ataque por completo, destacando a imprevisibilidade e o perigo ao enfrentar essas criaturas. As mutações elétricas representam a energia bruta e a adaptabilidade da natureza, tornando as criaturas que as possuem mestres em agilidade e destruição, sendo temidas por qualquer um que se oponha a elas.",
+      corFundo: "radial-gradient(circle, rgba(0, 0, 139, 0.87), rgba(0, 0, 60, 0.918))",
+      corTexto: "#add8e6",
+      corTitulo: "#ffeb3b"
+    },
+    {
+      titulo: "Mutação Abismoelétrico",
+      texto: "A mutação do abismoelétrico transforma as criaturas em verdadeiras potências aquáticas, combinando a agilidade dos elétricos com uma afinidade impressionante com a água e o domínio da eletricidade em seu estado mais letal. Essas criaturas recebem um bônus de +10 em natação, além de total resistência a eletricidade, tornando-as praticamente invulneráveis a ataques desse tipo. Quando estão na água, o bônus de escalada elétrica contra alvos a distância média é dobrado, causando 2d8 de dano adicional por cada alvo dentro dessa área de alcance. Elas herdam todas as habilidades e vantagens das mutações elétricas, como velocidade aprimorada, efeitos de combo e acúmulo de eletricidade. Contudo, o diferencial do abismoelétrico é sua capacidade de acumular ainda mais energia de maneira devastadora. A cada 30 de dano causado por ataques ou habilidades, essas criaturas acumulam 2d8 de eletricidade adicional durante 1d4 rodadas. Ao final desse período, elas podem liberar essa energia acumulada como uma poderosa rajada de eletricidade, utilizando uma ação completa em seu turno. Por exemplo, se uma criatura causar 120 de dano em 4 rodadas, ela acumularia 4 instâncias de 2d8, resultando em um ataque final em área que causa 8d8 de dano elétrico total. Essa rajada afeta tudo ao seu redor, tornando o abismoelétrico um oponente formidável, especialmente em combates aquáticos. Suas habilidades são mortais tanto em ataques diretos quanto em estratégias de longo prazo, tornando-os os verdadeiros reis do ambiente aquático e ameaças implacáveis para quem se atrever a enfrentá-los.",
+      corFundo: "radial-gradient(circle, rgba(0, 0, 50, 0.87), rgba(10, 0, 20, 0.925))",
+      corTexto: "#d3d3d3",
+      corTitulo: "#ffeb3b"
+    },
+    {
+      titulo: "Mutação Radioativa",
+      texto: "A mutação radioativa transforma a criatura em uma presença aterradora, comparável a uma jóia rara e mortal no ambiente da ilha. Essas criaturas são incrivelmente raras, e sua mera existência redefine o equilíbrio de poder ao seu redor. Os seres radioativos ganham um bônus de +5 em intimidação e adicionam impressionantes +40 de dano a todas as habilidades corpo a corpo devido à intensa radiação que emana de seus corpos. Essa radiação não apenas afeta seus inimigos fisicamente, mas também altera geneticamente como eles funcionam, tornando a simples proximidade com essas criaturas um risco contínuo. Uma característica marcante dessa mutação é a capacidade de transformar dano em regeneração. Sempre que a criatura radioativa atinge um inimigo com três ataques diferentes, ela recupera 20% da vida máxima do alvo, como se drenasse sua vitalidade por meio da radiação. Esse efeito não se limita a um único alvo: qualquer ser que esteja dentro do alcance de sua radiação é afetado, tornando essa mutação incrivelmente poderosa em combates de múltiplos oponentes. Além disso, a presença constante de radiação enfraquece os inimigos, deixando-os fracos e frágeis após sobreviverem uma rodada perto da criatura. As habilidades dessa mutação estão intimamente ligadas à energia radiativa. A criatura pode conjurar e manipular a radiação que absorve de minérios ou outras fontes de energia extremamente concentrada. Essa energia pode ser utilizada de maneira devastadora, seja em ataques diretos ou em ações que espalham radiação pelo campo de batalha. Além disso, a mutação radioativa concede bônus adicionais de +5 em luta, contra-ataque e bloqueio, refletindo sua capacidade de dominar tanto no ataque quanto na defesa. Essas criaturas são o ápice da força destrutiva e da resiliência, uma combinação letal que transforma o ambiente em uma extensão de sua própria radiação. Enfrentar um ser radioativo exige estratégia, resistência e coragem, pois sua presença altera o equilíbrio de qualquer batalha a seu favor.",
+      corFundo: "radial-gradient(circle, rgba(21, 99, 21, 0.87), rgba(0, 50, 0, 0.925))",
+      corTexto: "#98fb98",
+      corTitulo: "#00fa9a"
+    },
+    {
+      titulo: "Mutações de Aether",
+      texto: "As mutações de Aether mergulham a criatura em um estado de pura energia elemental corrompida, sobrecarregando sua selvageria e tornando-a uma força imparável. Essas criaturas recebem +1 em todos os atributos, refletindo seu aprimoramento geral, e ganham um bônus de +5 em todas as ações realizadas durante o combate. Além disso, a influência do Aether as torna completamente imunes a qualquer tipo de dano Elemental. Uma das características mais impressionantes dessas mutações é a capacidade de absorver e reutilizar o dano recebido. Sempre que a criatura perde 5% de sua vida máxima, ela acumula 1d10 de dano adicional para todas as suas habilidades, que é descarregado na próxima utilização. Esse acúmulo desaparece após ser usado, incentivando uma estratégia de resposta devastadora. Além disso, sempre que recebem dano Elemental, essas criaturas podem reagir infinitas vezes dentro da mesma rodada, transformando a força de seus inimigos em uma arma contra eles. As mutações de Aether também amplificam os ataques naturais da criatura, concedendo três rolagens adicionais de dano para todas as habilidades baseadas em seus ataques físicos ou mágicos. Como se não bastasse, essas criaturas recuperam 30% de sua vida máxima, fortalecendo ainda mais sua resiliência em combate. Essas mutações fazem da criatura um verdadeiro colosso de poder, capaz de dominar qualquer batalha com força bruta e estratégias de contra-ataque. Enfrentar uma criatura imbuída com o poder do Aether é um desafio mortal, exigindo nada menos que uma combinação perfeita de habilidade, inteligência e sorte.",
+      corFundo: "radial-gradient(circle, rgba(47, 41, 85, 0.87), rgba(9, 9, 85, 0.93)",
+      corTexto: "#d8bfd8",
+      corTitulo: "#9370db"
+    },
+    {
+      titulo: "Mutações de Caveira",
+      texto: "As mutações da Caveira transformam as criaturas em combatentes implacáveis, altamente agressivos e fisicamente resilientes. Estas mutações aumentam significativamente o tamanho da criatura e a adaptam perfeitamente ao combate direto. Todas as criaturas que possuem essa mutação recebem um bônus de +10 em luta, +10 em contra-ataque e +1 no atributo de Força, além de resistências adicionais contra efeitos de atordoamento e debuffs, tornando-as extremamente difíceis de subjugar. As habilidades das criaturas da Caveira são naturalmente mais poderosas e altamente adaptadas ao combate ofensivo. Elas podem realizar combos em todos os seus ataques, multiplicando o impacto de cada golpe. Sempre que uma criatura com essa mutação executa um combo bem-sucedido, ela ganha vida temporária equivalente a 20% de sua vida máxima, proporcionando maior sobrevivência em batalhas prolongadas. Além disso, todas as suas habilidades e ataques recebem duas rolagens adicionais de dano, aumentando ainda mais seu poder destrutivo. Essas características tornam as criaturas da Caveira o ápice da brutalidade em combate, dominando o campo de batalha com força avassaladora e agressividade implacável. Enfrentar uma delas é um desafio que poucos são capazes de superar.",
+      corFundo: "radial-gradient(circle, rgba(63, 59, 59, 0.87), rgba(44, 3, 0, 0.87)",
+      corTexto: "#ffdead",
+      corTitulo: "#b8082e"
+    },
+    {
+      titulo: "Mutações Gélidas",
+      texto: "As mutações gélidas adaptam as criaturas ao frio extremo, concedendo a elas a capacidade de manipular o ambiente, o clima e o gelo em benefício próprio. Criaturas com essa mutação tornam-se verdadeiros mestres dos territórios congelados, com bônus significativos para sobrevivência e combate em condições de baixas temperaturas. Elas recebem +10 em bloqueio ao lutar na neve, +5 em esquiva em lugares frios, +10 em resistências contra condições extremas de frio e +5 em pontaria, tornando-as tanto defensivamente sólidas quanto ofensivamente precisas nesses ambientes. As habilidades das criaturas gélidas incluem mordida gélida, cauda gélida, garras gélidas, jato gélido, encontrão gélido, espinhos gélidos e barreira gélida. Todos os ataques gélidos causam o dano natural da habilidade ou ataque base mais 2d6 de dano de gelo adicional. Além disso, sempre que uma criatura gélida é atingida, o inimigo deve realizar um teste de vigor. Se falhar duas vezes, será congelado, ficando impossibilitado de agir. Habilidades como jato gélido, encontrão gélido e espinhos gélidos podem ser carregadas após uma rodada usando pontaria, ampliando seu impacto para 4d6 de dano, escalando com o tamanho da criatura (1x para criaturas pequenas, 2x para médias, 3x para grandes, e assim por diante). A barreira de gelo, por sua vez, pode ser usada tanto para criar obstáculos e dificultar a movimentação inimiga quanto para curar passivamente 20% da vida de um aliado, tornando-se uma ferramenta extremamente versátil no combate. Essas mutações transformam as criaturas gélidas em dominadoras dos campos gelados, combinando resistência, precisão e controle ambiental para assegurar sua supremacia em cenários de frio extremo.",
+      corFundo: "radial-gradient(circle, rgba(70, 130, 180, 0.87), rgba(0, 50, 90, 0.925))",
+      corTexto: "#e0ffff",
+      corTitulo: "#d3d3d3"
+    },
+  
+  ];
+  
+  let indiceAtual = 0;
+  
+  function mudarTexto(direcao) {
+    indiceAtual = (indiceAtual + direcao + slides.length) % slides.length;
+    const slide = slides[indiceAtual];
+  
+    const container = document.querySelector(".carousel-container");
+    const titulo = document.getElementById("carouselTitulo");
+    const texto = document.getElementById("carouselTexto");
+  
+    container.style.background = slide.corFundo;
+    titulo.textContent = slide.titulo;
+    titulo.style.color = slide.corTitulo;
+    texto.textContent = slide.texto;
+    texto.style.color = slide.corTexto;
+  }
+  
