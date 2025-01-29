@@ -196,7 +196,7 @@ const creatures = {
         'Estegossauro', 'Kentrossauro', 'Nodossauro', 'Anquilossauro', 'Tatu', 'Castor', 'Carbonemy', 'Mamute', 
         'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Basilossauro', 'Golfinho', 'Baleia', 'Foca', 
         'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa', 'Porco', 'gado comum','Pulgão','Gorgulho', 'Abelha','Inseto Escudo Verde', 'Crabsquid','leedsichthys','Archelon',
-        'Coruja das neves','Deynocheirus','Yi ling',
+        'Coruja das neves','Deynocheirus',
 
   
                 
@@ -218,9 +218,9 @@ const dinoFichas = {
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
         actionBonus: '+25 mordida, +20 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +10 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
-        attacks: ['Mordida Poderosa: 16d10+30', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
+        attacks: ['Mordida Poderosa: 16d10+60', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
         abilities: [
-            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão de 1d6 na corrida. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito quebrado e se um dado for extremo ganha mais 1 para extremo.',
+            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão de 1d6 na corrida. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar, parte do dano q ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de  extremo.',
             'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação.'
         ],
         passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar efeitos de quebrado, sangramento ou dilacerado para toda mordida.',
@@ -5207,6 +5207,92 @@ const dinoFichas = {
   ],
   "passiva": "Defensor da Floresta: O Urso Grande ganha +10 em defesa e resistência a ataques de longo alcance ou habilidades à distância.",
   "passivaElemental": "Coração de Urso: Ao perder mais de 50% da vida, o Urso Grande ganha +20% em dano e +15% em resistência a debuffs, mas sofre -10% de agilidade por 3 rodadas."
+},
+"leedsichthys": {
+  "title": "Leedsichthys - O Colosso do Oceano",
+  "image": "imagens/dinos_leedsichthys.jpg",
+  "height": "5 m",
+  "length": "16 m",
+  "attributes": {
+    "agi": 2,
+    "for": 4,
+    "int": 3,
+    "pre": 3,
+    "vig": 5
+  },
+  "life": 600,
+  "armor": 400,
+  "actionBonus": "+30 em força contra estruturas, +20 em resistência a ataques físicos, +10 em manobras aquáticas, +15 em bloqueios.",
+  "attacks": [
+    "Investida Colossal: 10d12+40 (dano de impacto; causa o dobro de dano em barcos ou embarcações).",
+    "Rabo Demolidor: 8d10+30 (dano de impacto em área; afeta todos os inimigos em um cone de 10 metros).",
+    "Mordida Gigante: 9d8+35 (dano perfurante; pode destruir pequenos objetos ou partes de embarcações com um ataque crítico)."
+  ],
+  "abilities": [
+    "Quebrador de Barcos: Sempre que o Leedsichthys ataca uma embarcação, ganha +3 dados adicionais em dano e aplica um efeito de naufrágio se a estrutura tiver menos de 20% de durabilidade.",
+    "Fortaleza Oceânica: Reduz em 25% todo dano recebido de ataques físicos ou projéteis enquanto estiver dentro d'água.",
+   
+  ],
+  "passiva": "Gigante Imparável: O Leedsichthys não pode ser empurrado ou contido por efeitos de controle de multidão (CC) e reduz qualquer penalidade de movimento em 50%.",
+  "passivaElemental": "Força Oceânica: Quando em mar aberto, o Leedsichthys regenera 5% de sua vida máxima a cada rodada, graças à conexão com as profundezas do oceano."
+},
+
+"Archelon": {
+    "title": "Archelon - A Rocha dos Oceanos",
+    "image": "imagens/dinos_archelon.jpg",
+    "height": "2,5 m",
+    "length": "4 m",
+    "attributes": {
+      "agi": 3,
+      "for": 3,
+      "int": 3,
+      "pre": 4,
+      "vig": 5
+    },
+    "life": 250,
+    "armor": 500,
+    "actionBonus": "+5 luta, +15 em resistência a ataques físicos, +20 em furtividade em ambientes marítimos, +10 em carregar peso, +15 em nadar e se mover em mares rasos.",
+    "attacks": [
+      "Mordida Triturante: 6d10+25 (dano perfurante; ao atingir um alvo, pode reduzir a durabilidade de equipamentos em 10%).",
+      "Investida Submersa: 5d12+20 (dano de impacto; se o Archelon estiver em camuflagem, esse ataque causa 50% de dano adicional).",
+      "Rabada Poderosa: 4d10+15 (dano de impacto em área; inimigos em um raio de 3 metros devem realizar um teste de equilíbrio ou cair)."
+    ],
+    "abilities": [
+      "Camuflagem Rochosa: O Archelon pode se esconder fingindo ser uma rocha submersa, ganhando +25 em furtividade por 3 rodadas. Ele só perde a camuflagem ao atacar.",
+      "Movimento Hidrodinâmico: No mar, o Archelon dobra seu deslocamento e não é afetado por terrenos difíceis em águas rasas.",
+   
+    ],
+    "passiva": "Pele Blindada: O Archelon reduz todos os danos recebidos em 20% enquanto estiver em movimento ou submerso.",
+    "passivaElemental": "Conexão Marítima: Quando em mares rasos ou praias, o Archelon regenera 10% de sua vida máxima a cada 3 rodadas devido à sua sinergia com o ambiente."
+  },
+
+  "Coruja das neves": {
+  "title": "Coruja das Neves - A Guardiã do Gelo",
+  "image": "imagens/dinos_coruja_das_neves.jpg",
+  "height": "3,5 m",
+  "length": "6 m (envergadura das asas)",
+  "attributes": {
+    "agi": 4,
+    "for": 2,
+    "int": 4,
+    "pre": 5,
+    "vig": 3
+  },
+  "life": 200,
+  "armor": 50,
+  "actionBonus": "+20 em furtividade aérea,+10 bico, +10 agarrar, +10 percepção, +10 rastrear +15 em esquivas, +10 em ataques contra alvos desacordados, +15 em testes de percepção, +15 em ataques cortantes.",
+  "attacks": [
+    "Razante Cortante: 5d12+20 (dano cortante; aplica lentidão por 2 rodadas ao atingir).",
+    "Garras Gélidas: 4d10+15 (dano de frio; pode agarrar o alvo com teste de força e carregá-lo por até 10 metros).",
+    "Investida Silenciosa: 6d10+25 (dano físico; se usado enquanto furtivo, o alvo deve realizar um teste de percepção ou recebe dano dobrado)."
+  ],
+  "abilities": [
+    "Visão de Calor: A Coruja das Neves pode localizar criaturas ocultas ou escondidas em qualquer ambiente, ignorando disfarces e camuflagens.",
+    "Congelamento Restaurador: A coruja pode congelar a si mesma ou um aliado, curando 40% da vida máxima por rodada durante 2 rodadas. Durante esse tempo, o alvo fica imune a danos físicos e efeitos de status.",
+    "Calmaria das Asas: Enquanto voa, a Coruja das Neves ganha +25 em furtividade e não pode ser detectada por som, mesmo ao se aproximar de alvos atentos."
+  ],
+  "passiva": "Reflexos Aéreos: No ar, a Coruja das Neves pode realizar 2 reações de esquiva por rodada.",
+  "passivaElemental": "Aura Gélida: Todos os inimigos em um raio de 5 metros recebem 1d8 de dano de frio por rodada e têm suas ações reduzidas em 1 devido ao congelamento do ambiente."
 }
   };
 
