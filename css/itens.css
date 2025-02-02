@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_itensEconstruções.jpg') no-repeat center center fixed;
+    background: url('../imagens/lobby_construções.jpg') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
@@ -661,9 +661,7 @@ nav {
     0 0 30px #57fff7;
 }
 @media (max-width: 1080px) {
-    .container {
-        flex-direction: column; /* Empilha as colunas */
-    }
+   
 
     .coluna-esquerda, .coluna-central, .coluna-direita {
         flex: 1 1 auto; /* Permite que cada coluna ocupe todo o espaço disponível */
@@ -681,7 +679,7 @@ nav {
 
     .coluna-direita p {
         font-size: 1rem;
-        text-shadow: none; /* Remove a sombra do texto para melhor legibilidade */
+       
     }
 
     .efeito {
