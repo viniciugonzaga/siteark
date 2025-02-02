@@ -96,7 +96,7 @@ const dadosEfeitos = [
     { nome: 'Picareta', descricao: 'Medieval: 2d12+5/ Ferro: 4d12+10/ Industrializado: 5d12+15/ Modificado/Minério:5d10+25+(forjador/minério)' },
     { nome: 'Machado', descricao: 'Medieval: 4d8+10/ Ferro: 5d10+10/ Industrializado: 6d10+15/ Modificado/Minério:7d10+25+(forjador/minério)' },
     { nome: 'Lança', descricao: 'Medieval: 2d8+15/ Ferro: 3d12+20/ Industrializado: 4d10+25/ Modificado/Minério:5d10+30+(forjador/minério)' },
-    { nome: 'Martalo', descricao: 'Medieval: 3d10+10/ Ferro: 6d10+20/ Industrializado: 7d10+25/ Modificado/Minério:8d10+25+(forjador/minério)' },
+    { nome: 'Martelo', descricao: 'Medieval: 3d10+10/ Ferro: 6d10+20/ Industrializado: 7d10+25/ Modificado/Minério:8d10+25+(forjador/minério)' },
     { nome: 'Foice dupla', descricao: 'Medieval: 2d8+5 x2/ Ferro: 2d12+15 2x/ Industrializado: 4d12+15 2x/ Modificado/Minério:4d12+25+(forjador/minério) 2x' },
     { nome: 'Soqueira', descricao: 'Medieval: 1d10+For(x= +5) 2x/ Ferro: 2d10+For(x= +5) 2x/ Industrializado: 3d10+For(x= +5) 2x/ Modificado/Minério:3d12+For(x= +10)+(forjador/minério) 2x' },
     { nome: 'Tridente', descricao: 'Medieval: 3d8+15/ Ferro: 3d10+20/ Industrializado: 6d12+25/ Modificado/Minério:7d12+35+(forjador/minério)' },

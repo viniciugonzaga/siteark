@@ -733,6 +733,68 @@ border:solid, 2px #07cfc5
 }
 }
 
+.container3 {
+    width: 90%;
+    margin: auto;
+    border: 2px solid #f7f306;
+    background-color: #351e1e;
+}
+
+.paragrafo {
+    margin: 10px;
+    padding: 50px; /* Espaço interno aumentado */
+    border: 4px solid #bed304;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #fff;
+    background-size: cover;
+    background-position: center;
+}
+
+.paragrafo:nth-child(1) {
+    background-image: url('../imagens/itens_ouro.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    color: #fcf977;
+}
+
+.paragrafo:nth-child(2) {
+    background-image: url('../imagens/itens_ferro.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    color: #f0feff;
+}
+
+.paragrafo:nth-child(3) {
+    background-image: url('../imagens/Itens_Black_ice.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    color: #cefcff;
+}
+
+.paragrafo:nth-child(4) {
+    background-image: url('../imagens/itens_radiação.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    color: #eef775;
+}
+
+.paragrafo:nth-child(5) {
+    background-image: url('../imagens/Itens_diabolicos.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    color: #fd766d;
+}
+
+/* Estilo para a sobreposição de cor apenas no texto */
+.text-overlay {
+    background-color: rgba(0, 0, 0, 0.637); /* Fundo preto com transparência */
+    padding: 20px 30px;
+    border-radius: 8px; /* Bordas arredondadas para estilo */
+    display: inline-block;
+}
+
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {
