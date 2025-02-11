@@ -888,21 +888,13 @@ function rolarDado(lados) {
       "Rubi", 
       "Safira", 
       "Urânio", 
-      "Níquel", 
       "Titânio", 
       "Lítio", 
       "Obsidiana", 
-      "Cristal de Mana", 
-      "Elemento", 
       "Âmbar", 
       "Metal Primário", 
-      "Eletrocristal", 
       "Cobalto", 
-      "Neodímio", 
-      "Irídio", 
-      "Paládio", 
       "Cianita",
-      "Azurita"
     ];
       // Seleciona um minério raro aleatório
       const minerioAleatorio = mineriosRaros[Math.floor(Math.random() * mineriosRaros.length)];
@@ -917,6 +909,7 @@ function rolarDado(lados) {
       // Lista de minérios lendários
       const mineriosLendarios = [
       'Cube de Ion',
+      "Eletrocristal", 
       'Cristal de Mana',
       'Cristal de Sangue',
       'Magma igneo',

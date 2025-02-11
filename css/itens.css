@@ -759,42 +759,180 @@ border:solid, 2px #07cfc5
 .paragrafo:nth-child(1) {
     background-image: url('../imagens/itens_ouro.jpg');
     background-color: #2d311a; /* Cor de fallback */
-    color: #fcf977;
+    text-shadow:
+    0 0 5px #f7f447,   /* Primeira camada de brilho vermelho */
+    0 0 10px #ff1e1e,  /* Segunda camada laranja */
+    0 0 80px #ebf747;  /* Brilho externo */
 }
 
 .paragrafo:nth-child(2) {
     background-image: url('../imagens/itens_ferro.jpg');
     background-color: #2d311a; /* Cor de fallback */
-    color: #f0feff;
+    text-shadow:
+    0 0 5px #cacac0,   /* Primeira camada de brilho vermelho */
+    0 0 10px #89c5c7,  /* Segunda camada laranja */
+    0 0 80px #cacac0;  /* Brilho externo */
 }
 
 .paragrafo:nth-child(3) {
     background-image: url('../imagens/Itens_Black_ice.jpg');
     background-color: #2d311a; /* Cor de fallback */
-    color: #cefcff;
+    text-shadow:
+    0 0 5px  #75eff8,   /* Primeira camada de brilho vermelho */
+    0 0 10px #89c5c7,  /* Segunda camada laranja */
+    0 0 80px #75eff8;  /* Brilho externo */
 }
 
 .paragrafo:nth-child(4) {
     background-image: url('../imagens/itens_radiação.jpg');
     background-color: #2d311a; /* Cor de fallback */
-    color: #eef775;
+  
+    text-shadow:
+    0 0 5px   #eef775,   /* Primeira camada de brilho vermelho */
+    0 0 10px #22be03,  /* Segunda camada laranja */
+    0 0 80px  #eef775;  /* Brilho externo */
 }
 
 .paragrafo:nth-child(5) {
     background-image: url('../imagens/Itens_diabolicos.jpg');
     background-color: #2d311a; /* Cor de fallback */
-    color: #fd766d;
+   
+    text-shadow:
+    0 0 5px   #fd766d,   /* Primeira camada de brilho vermelho */
+    0 0 10px #270d0d,  /* Segunda camada laranja */
+    0 0 80px  #fd766d;  /* Brilho externo */
+}
+.paragrafo:nth-child(6) {
+    background-image: url('../imagens/itens_metal.jpg');
+    background-color: #2d311a; /* Cor de fallback */
+    text-shadow:
+    0 0 5px   #ffd69a,   /* Primeira camada de brilho vermelho */
+    0 0 10px #4b2912,  /* Segunda camada laranja */
+    0 0 80px  #ffd69a;  /* Brilho externo */
+}
+.paragrafo:nth-child(7) {
+    background-image: url('../imagens/itens_energia.jpg');
+    background-color: #137213; /* Cor de fallback */
+
+    text-shadow:
+    0 0 5px    #cde210,   /* Primeira camada de brilho vermelho */
+    0 0 10px #fced26,  /* Segunda camada laranja */
+    0 0 80px   #cde210;  /* Brilho externo */
 }
 
 /* Estilo para a sobreposição de cor apenas no texto */
 .text-overlay {
-    background-color: rgba(0, 0, 0, 0.637); /* Fundo preto com transparência */
+    background-color: rgba(0, 0, 0, 0.842); /* Fundo preto com transparência */
     padding: 20px 30px;
     border-radius: 8px; /* Bordas arredondadas para estilo */
     display: inline-block;
 }
+.titulo_principal2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   margin-top: 120px;
+  }
+  
+  .titulo_efeito2 {
+    font-size: 3rem;
+    font-weight: bold;
+    position: relative;
+    text-shadow:
+    0 0 5px #f7f447,   /* Primeira camada de brilho vermelho */
+
+    0 0 20px #eeff00,  /* Terceira camada mais forte */
+
+    0 0 80px #ebf747;  /* Brilho externo */
+}
 
 
+.titulo_efeito2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 4px;
+    background: linear-gradient(90deg,  #c7e426,#eb3c1d,#c7e426);
+    animation: wave 8s infinite;
+    
+}
+@keyframes wave {
+    0% { width: 50px; }
+    20% { width: 100px; }
+    40% { width: 200px; }
+    60% { width: 200px; }
+    80% { width: 100px; }
+    100% { width: 50px; }
+}
+/* Responsividade */
+@media (max-width: 1120px) {
+    .titulo_efeito2 {
+        font-size: 2rem; /* Diminui o tamanho da fonte em telas médias */
+    }
+
+    .titulo_efeito2:after {
+        width: 350px; /* Reduz a largura da linha de efeito para telas menores */
+    }
+    @keyframes wave {
+        0% { width: 50px; }
+        20% { width: 100px; }
+        40% { width: 200px; }
+        60% { width: 200px; }
+        80% { width: 100px; }
+        100% { width: 50px; }
+    }
+}
+@media (max-width: 780px) {
+    .paragrafo {
+        margin: 5px;
+        padding: 30px; /* Reduz espaço interno */
+        border: 3px solid #bed304;
+        font-size: 0.8rem; /* Ajusta tamanho da fonte */
+        text-align: center;
+        display: flex;
+        flex-direction: column; /* Empilha o conteúdo */
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-size: contain; /* Melhor ajuste de imagem */
+        background-position: center;
+    }
+
+    /* Ajuste para texto dentro do parágrafo */
+    .text-overlay {
+        padding: 15px 20px;
+        font-size: 0.9rem;
+    }
+
+    .titulo_principal2 {
+        margin-top: 80px;
+    }
+
+    .titulo_efeito2 {
+        font-size: 2rem; /* Redução do tamanho da fonte */
+        text-shadow:
+        0 0 3px #f7f447,
+
+        0 0 12px #eeff00,
+
+    }
+
+    .titulo_efeito2:after {
+        height: 3px;
+        width: 200px; /* Reduz o efeito */
+    }
+
+    @keyframes wave {
+        0% { width: 40px; }
+        20% { width: 80px; }
+        40% { width: 150px; }
+        60% { width: 150px; }
+        80% { width: 80px; }
+        100% { width: 40px; }
+    }
+}
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {

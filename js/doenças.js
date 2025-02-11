@@ -88,7 +88,7 @@ const dadosEfeitos = [
     { nome: 'Efeito 1', descricao: ' Causada por mordidas de criaturas infectadas. Reduz saúde e estamina rapidamente.(Cirurgia)' },
     { nome: 'Efeito 2', descricao: ' Contrai-se ao inalar esporos tóxicos em cavernas. Causa perda de saúde constante.(Rémédio)' },
     { nome: 'Efeito 3', descricao: ' Transmitida por Leeches. Drena saúde e afeta movimento.(Transfusão)' },
-    { nome: 'Efeito 4', descricao: 'Adquirida ao ser atingido por inimigos contaminados, reduz atributos temporariamente.(Remédio)' },
+    { nome: 'Efeito 4', descricao: ' Ataca o sistema imunológico, deixando o corpo mais vulnerável a doenças.(Tratamento) ' },
     { nome: 'Efeito 5', descricao: 'Provocadas pela exposição prolongada a gás venenoso em áreas vulcânicas ou cavernas.(Tratamento)'},
     { nome: 'Efeito 6', descricao: 'Uma infecção causada por contato com criaturas ácidas ou superfícies tóxicas.(Tratamento)' },
     { nome: 'Efeito 7', descricao: 'Causada por exposição prolongada ao calor extremo. Afeta foco e estamina.(Tratamento)' },
