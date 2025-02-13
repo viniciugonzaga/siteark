@@ -183,6 +183,12 @@ const creatures = {
     'Stalker da neve',
     'Stalker marinho',
     'Urso',
+    'Dimetrodonte',
+    'Prestosuchus',
+    'Pulmonoscorpius',
+    'Dracovenator',
+    'Diplocaulos',
+
 
     ],
         
@@ -204,7 +210,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth','Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex',]
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex',]
 };
 
 const dinoFichas = {
@@ -981,14 +987,14 @@ const dinoFichas = {
 },
 'Deinonico': {
     title: 'O Caçador em Grupo',
-    image: 'imagens/dinos_deinonico.webp',
+    image: 'imagens/dinos_deinonico.jpg',
     weight: '70 kg',
     height: '1,8 M',
     length: '4 M',
     attributes: { agi: 4, for: 3, int: 3, pre: 4, vig: 3 },
     life: 90,
     armor: 15,
-    actionBonus: '+20 mordida ágil, +15 garras rápidas, +15 saltar, +10 esquiva, +10 rastreamento',
+    actionBonus: '+10 mordida ágil, +10 garras rápidas, +15 saltar, +10 esquiva, +10 rastreamento, +5 escalar, +5 rastrear, +5 socializar, +10 contra-ataque, +10 resistência a doenças, + 5 furtividade, +5 preparação de ação.',
     attacks: [
         'Mordida Rápida: 4d8+10 (aplica **infecção leve**, causando 1d8 de dano contínuo por rodada por 2 rodadas)',
         'Garra Saltadora: 5d6+10 (ataca pontos frágeis do alvo, reduzindo armadura em -5 por 2 rodadas)',
@@ -4179,7 +4185,7 @@ const dinoFichas = {
     },
     "life": 200,
     "armor": 100,
-    "actionBonus": "+10 em rastreamento, +10 em esquiva, +10 em ataques de grupo, +5 em furtividade, +5 em velocidade de movimento",
+    "actionBonus": "+10 em rastreamento, +10 em esquiva, +10 em ataques de grupo, +5 em furtividade, +5 em velocidade de movimento, +10 luta, +5 flanquar, +5 perseguição, +5 agarrar",
     "attacks": [
       "Mordida Devastadora: 8d10+10 (dano perfurante com chance de causar sangramento por 2 turnos).",
       "Garra Ágil: 5d8+5 (dano cortante com chance de empurrar o alvo).",
@@ -4208,7 +4214,7 @@ const dinoFichas = {
       },
       "life": 70,
       "armor": 70,
-      "actionBonus": "+10 em coordenação de grupo, +10 em ataques de ferrão, +5 em velocidade de voo, +5 em esquiva",
+      "actionBonus": "+10 em coordenação de grupo, +10 em ataques de ferrão, +5 em velocidade de voo, +5 em esquiva, +25 cultivo, +25 em produzir",
       "attacks": [
         "Picada Venenosa: 6d6+5 (dano perfurante e aplica veneno, causando -5 em ações do alvo por 2 turnos).",
         "Agressão em Grupo: 4d8+5 (dano acumulativo por abelhas próximas atacando o mesmo inimigo)."
@@ -4262,7 +4268,7 @@ const dinoFichas = {
         },
         "life": 200,
         "armor": 90,
-        "actionBonus": "+10 em furtividade, +10 em movimento na areia, +5 em ataques surpresa, +5 em esquiva",
+        "actionBonus": "+10 em furtividade, +10 em movimento na areia, +15 em ataques surpresa, +10 em esquiva, +10 luta, +5 intimidação, +5 socialziar",
         "attacks": [
           "Mordida Rápida: 6d6+5 (dano cortante).",
           "Garras da Areia: 5d8+5 (dano cortante e aplica lentidão por 1 turno).",
@@ -4290,7 +4296,7 @@ const dinoFichas = {
     },
     "life": 250,
     "armor": 200,
-    "actionBonus": "+30 em lábia,+25 mordida,+15 garras, +10 corgaem, +15 pensar, +10 luta +15 em furtividade, +20 em rastreamento, +15 em esquiva, +15 em acertos, +20 em testes de aprendizado",
+    "actionBonus": "+30 em lábia ,+15 mordida, +15 garras, +10 coragem, +15 pensar, +15 luta, +15 em furtividade, +20 em rastreamento, +15 em esquiva, +15 em acertos, +20 em testes de aprendizado",
     "attacks": [
       "Mordida Devastadora: 10d10+15 (dano perfurante com chance de causar sangramento severo por 2 turnos).",
       "Garras Cortantes: 8d8+10 (dano cortante com chance de imobilizar o alvo por 1 turno).",
@@ -4319,7 +4325,7 @@ const dinoFichas = {
     },
     "life": 250,
     "armor": 200,
-    "actionBonus": "+20 em furtividade, +15 em escalada, +15 em natação, +10 em esquiva, +10 em velocidade de movimento, +10 em ataques críticos.",
+    "actionBonus": "+20 em furtividade, +15 em escalada, +15 em natação, +15 em esquiva, +15 em velocidade de movimento, +20 em ataques críticos, + 15 luta, +35 em mudar foco(alvo)",
     "attacks": [
       "Mordida Envenenada: 10d10+15 (dano perfurante e aplica venenos com efeitos variados das glândulas: paralisia, redução de vida por turno ou dano acumulativo).",
       "Garras Venenosas: 8d8+10 (dano cortante, aplica veneno com chance de reduzir armadura em 10% por 2 turnos).",
@@ -4723,7 +4729,7 @@ const dinoFichas = {
     },
     "life": 500,
     "armor": 250,
-    "actionBonus": "+20 furtividade, +15 luta, +25 bloqueio, +10 esquiva, +20 mordida, +10 em ações de força.",
+    "actionBonus": "+20 furtividade, +25 luta, +25 bloqueio, +10 esquiva, +25 mordida, +10 em ações de força.",
     "attacks": [
       "Mordida Devastadora: 14d8+30 (dano perfurante, puxa o alvo 3 metros em sua direção, causando 'quebrado' se o alvo for menor).",
       "Golpe de Cauda Sísmico: 16d8+25 (dano contundente em área de 5 metros, derruba os inimigos atingidos e reduz sua movimentação em 50% por 2 rodadas).",
@@ -4752,7 +4758,7 @@ const dinoFichas = {
     },
     "life": 400,
     "armor": 400,
-    "actionBonus": "+25 voar, +20 luta, +25 mordida, +25 garras, +20 resitência a fogo, +25 intimidação, +20 resistência, +15 bloquear, +15 esquiva.",
+    "actionBonus": "+25 voar, +25 luta, +25 mordida, +25 garras, +20 resitência a fogo, +25 intimidação, +30 resistência, +15 bloquear, +15 esquiva.",
     "attacks": [
       "Mordida Flamejante: 10d8+30 (dano perfurante e 10d6 de dano de fogo, deixa o alvo em 'queimadura grave' por 2 rodadas).",
       "Garras Infernais: 9d10+25 2x(dano cortante e 10d6 de fogo, aplica 'incendiado' por 3 rodadas).",
@@ -4809,7 +4815,7 @@ const dinoFichas = {
     },
     "life": 500,
     "armor": 400,
-    "actionBonus": "+25 luta, +20 mordida, +20 encontrão, +15 cauda, +10 tática, +15 resistência, +10 intimidação, +15 perseguição, +15 bloqueio, +10 esquiva.",
+    "actionBonus": "+25 luta, +20 mordida, +20 encontrão, +15 cauda, +10 tática, +15 resistência, +20 intimidação, +15 perseguição, +15 bloqueio, +10 esquiva, +",
     "attacks": [
       "Mordida Rápida: 12d12+30 (dano perfurante, se causar 45% ou mais do total de vida do alvo, aplica 'sangramento viral' que causa 25% do dano da mordida no início de cada turno por 3 rodadas).",
       "Encontrão Destruidor: 14d10+25 (dano de impacto, cria um rastro de morte em 10 metros ao redor que aplica lentidão de 50% por 2 rodadas).",
@@ -4864,7 +4870,7 @@ const dinoFichas = {
     },
     "life": 200,
     "armor": 200,
-    "actionBonus": "+15 luta, +20 contra-ataque, +10 esquiva, +15 bloqueio, +10 mordida, +20 garras, +20 encontrão, +10 intimidação, +10 correr.",
+    "actionBonus": "+15 luta, +20 contra-ataque, +10 esquiva, +15 bloqueio, +10 mordida, +20 garras, +20 encontrão, +10 intimidação, +10 correr, +10 rastrear",
     "attacks": [
       "Mordida Flamejante: 8d10+20 (dano perfurante e de fogo; aplica queimadura leve, causando 1d6 de dano por rodada durante 2 rodadas).",
       "Garras Incandescentes: 10d8+25 (dano cortante e de fogo; em críticos, aplica chamuscamento, aumentando o dano de fogo do próximo ataque em 50%).",
@@ -4892,7 +4898,7 @@ const dinoFichas = {
     },
     "life": 700,
     "armor": 400,
-    "actionBonus": "+20 luta, +25 contra-ataque, +15 bloqueio, +10 esquiva, +15 intimidação, +20 mordida, +20 encontrão, +15 resistência, +15 em fogo",
+    "actionBonus": "30 luta, +25 contra-ataque, +25 bloqueio, +10 esquiva, +35 intimidação, +25 mordida, +20 encontrão, +25 resistência, +15 em fogo",
     "attacks": [
       "Mordida Sombria: 10d10+30 (dano perfurante; aumenta em +1 dado por Dodô Zumbi ativo no campo).",
       "Encontrão Aterrorizante: 9d12+35 (dano de impacto; ao acertar, empurra o alvo até 10 metros e aplica atordoamento por 1 rodada em críticos).",
@@ -4922,7 +4928,7 @@ const dinoFichas = {
   },
   "life": 160,
   "armor": 60,
-  "actionBonus": "+10 esquiva na água, +15 atacar em bando, +10 resistir a venenos, +10 nadar rapidamente, +5 evitar emboscadas",
+  "actionBonus": "+10 esquiva na água, +15 atacar em bando, +10 resistir a venenos, +10 nadar rapidamente, +5 evitar emboscadas, +10 luta, +5 bloqueio, +10 rastrear, +10 contra-ataque, +20 comer, +5 furtividade, +5 socializar",
   "attacks": [
     "Mordida Frenética: 4d12+15 (dano base; ganha +1d12 para cada aliado do cardume próximo ao alvo).",
     "Encontrão Selvagem: 3d10+10 (ao acertar, o alvo faz um teste de fortitude. Caso falhe, a criatura pode realizar uma mordida no mesmo turno).",
@@ -4949,7 +4955,7 @@ const dinoFichas = {
   },
   "life": 250,
   "armor": 150,
-  "actionBonus": "+10 em ataques de mordida, +15 em combate em grupo, +10 resistir a sangramento, +5 nadar em velocidade, +10 detectar presas",
+  "actionBonus": "+10 em ataques de mordida, +15 em combate em grupo, +10 resistir a sangramento, +5 nadar em velocidade, +10 detectar presas, +10 contra-ataque, +5 esquiva, +5 socializar, +5 preparação de ação",
   "attacks": [
     "Mordida Voraz: 5d12+20 (aplica sangramento de 1d10 por rodada por 2 turnos).",
     "Investida Submarina: 4d10+15 (ao acertar, empurra o alvo 5 metros e reduz sua esquiva em 20% por 1 turno).",
@@ -4977,7 +4983,7 @@ const dinoFichas = {
   },
   "life": 170,
   "armor": 80,
-  "actionBonus": "+10 esquiva em fuga, +10 nadar rapidamente, +5 percepção, +10 detectar predadores, +10 em combate em grupo",
+  "actionBonus": "+10 esquiva em fuga, +10 nadar rapidamente, +5 percepção, +10 detectar predadores, +10 em combate em grupo, +5 bloqueio, +5 luta",
   "attacks": [
     "Mordida Ágil: 3d10+10 (chance de escapar de um combate ao acertar um golpe crítico).",
     "Investida de Fuga: 2d8+5 (empurra o predador 2 metros para ganhar espaço e aumenta esquiva em 50% por 1 turno).",
@@ -5005,7 +5011,7 @@ const dinoFichas = {
   },
   "life": 150,
   "armor": 70,
-  "actionBonus": "+15 furtividade, +10 ataque furtivo, +10 em espreitar, +15 veneno, +5 localizar alvos por calor, +5 modida, +5 rabol, +5 nadar, +5 escalar",
+  "actionBonus": "+15 furtividade, +10 ataque furtivo, +10 em espreitar, +15 veneno, +5 localizar alvos por calor, +5 modida, +5 rabo, +10 luta, +10 esquiva, +10 contra-ataque, +5 nadar, +5 escalar",
   "attacks": [
     "Mordida Venenosa: 5d10+15 (aplica veneno paralisante; teste de resistência: falha faz o alvo dormir por 1 rodada e aumenta o torpor em 1d12).",
     "Espremer com o Rabo: 4d12+20 (dano de impacto; ao acertar, reduz a força do alvo em 10% por 2 rodadas).",
@@ -5032,7 +5038,7 @@ const dinoFichas = {
   },
   "life": 300,
   "armor": 150,
-  "actionBonus": "+20 agarrar, +15 luta, +10 bloqueio, +15 estrangulamento, +10 esquiva,+10 bloqueio, +10 contra ataque +10 resistência a ataques contundentes, +10 nadar, +10 escalar,",
+  "actionBonus": "+20 agarrar, +15 luta, +10 bloqueio, +15 estrangulamento, +10 esquiva,+10 bloqueio, +10 contra ataque +10 resistência a ataques contundentes, +10 nadar, +10 escalar, +10 localizar",
   "attacks": [
     "Mordida Poderosa: 6d12+20 (dano perfurante; inimigos quebrados engolidos sofrem 2d10 de dano adicional).",
     "Espremer com a Cauda: 5d12+25 (dano de impacto; alvo preso pela cauda deve fazer um teste de luta por rodada; falha resulta em estrangulamento que causa 3d10 de dano adicional e 2d6 de torpor).",
@@ -5059,7 +5065,7 @@ const dinoFichas = {
   },
   "life": 180,
   "armor": 60,
-  "actionBonus": "+15 esquiva, +10 luta, +10 furtividade, +15 saltos, +20 em testes de agilidade na água, +10 testes de força para agarrar, +5 contra-ataque",
+  "actionBonus": "+15 esquiva, +10 luta, +10 furtividade, +15 saltos, +20 em testes de agilidade na água, +10 testes de força para agarrar, +10 contra-ataque",
   "attacks": [
     "Mordida Rápida: 4d10+10 (dano perfurante; reduz a agilidade do alvo em 50% por 2 rodadas).",
     "Ataque de Arremesso: 5d8+15 (ao acertar, o Nothosauros lança areia ou lama, deixando o alvo lento por 2 rodadas e reduzindo sua precisão em 10%).",
@@ -5086,7 +5092,7 @@ const dinoFichas = {
   },
   "life": 160,
   "armor": 80,
-  "actionBonus": "+20 esquiva, +15 saltos, +15 furtividade, +10 luta, +10 precisão em ataques, +15 perseguição em terrenos verticais.",
+  "actionBonus": "+15 esquiva, +15 saltos, +15 furtividade, +10 luta, +10 precisão em ataques, +15 perseguição em terrenos verticais, +10 contra-ataque, +5 localizar, +15 escalar",
   "attacks": [
     "Mordida Ágil: 5d8+12 (dano perfurante; ao acertar, reduz a agilidade do alvo em 10% por 2 rodadas).",
     "Pulo Predatório: 6d10+15 (a aranha salta até 10 metros em um alvo; causa dano de impacto e aplica estado de 'surpresa' no inimigo por 1 rodada se ele não passar em um teste de percepção).",
@@ -5140,7 +5146,7 @@ const dinoFichas = {
   },
   "life": 300,
   "armor": 200,
-  "actionBonus": "+20 em emboscadas, +15 rastreamento, +15 luta, +10 esquiva, +10 bloqueio, +15 em resistências ao frio e +15 intimidação.",
+  "actionBonus": "+20 em emboscadas, +15 rastreamento, +15 luta,+10 contra-ataque, +10 esquiva, +10 bloqueio, +15 em resistências ao frio e +15 intimidação.",
   "attacks": [
     "Garras Gélidas: 7d8+20 (dano cortante; reduz a agilidade do alvo em 15% por 2 rodadas).",
     "Investida Ártica: 6d12+25 (dano de impacto; aplica atordoamento por 1 rodada caso o alvo falhe em um teste de resistência).",
@@ -5167,7 +5173,7 @@ const dinoFichas = {
   },
   "life": 180,
   "armor": 40,
-  "actionBonus": "+25 em flanquear, +10 em ataques de mordida, +15 esquiva, +20 em ataque surpresa, +10 resistência a dano aquático.",
+  "actionBonus": "+25 em flanquear, +10 em ataques de mordida, +15 esquiva, +10 em ataque surpresa, +10 resistência a dano aquático, +10 contra-ataque",
   "attacks": [
     "Mordida Cortante: 6d8+15 (dano cortante; causa sangramento de 1d6 por 3 rodadas).",
     "Investida Aquática: 5d12+12 (dano de impacto; ao acertar, empurra o alvo 5 metros e aplica desorientação por 1 rodada).",
@@ -5195,7 +5201,7 @@ const dinoFichas = {
   },
   "life": 225,
   "armor": 190,
-  "actionBonus": "+20 luta, +15 em investidas, +25 resistência a fadiga, +10 em defesa contra ataques corpo a corpo.",
+  "actionBonus": "+15 luta, +15 em investidas, +25 resistência a fadiga, +10 em defesa contra ataques corpo a corpo, +10 bloqueio, +10 resitência, +10 farejar, +5 dormir, +5 escalar, +10 contra-ataque",
   "attacks": [
     "Mordida Poderosa: 6d10+20 (dano perfurante; causa 1d6 de sangramento adicional por 2 rodadas).",
     "Pata Impetuosa: 6d12+10 2x(dano de impacto; atordoa o alvo por 1 rodada em críticos).",
@@ -5222,7 +5228,7 @@ const dinoFichas = {
   },
   "life": 600,
   "armor": 400,
-  "actionBonus": "+30 em força contra estruturas, +20 em resistência a ataques físicos, +10 em manobras aquáticas, +15 em bloqueios.",
+  "actionBonus": "+30 em força contra estruturas, +20 em resistência a ataques físicos, +10 em manobras aquáticas, +15 em bloqueios, +10 contra-aatque, +5 dormir, +5 localizar, +15 luta",
   "attacks": [
     "Investida Colossal: 10d12+40 (dano de impacto; causa o dobro de dano em barcos ou embarcações).",
     "Rabo Demolidor: 8d10+30 (dano de impacto em área; afeta todos os inimigos em um cone de 10 metros).",
@@ -5251,7 +5257,7 @@ const dinoFichas = {
     },
     "life": 250,
     "armor": 500,
-    "actionBonus": "+5 luta, +15 em resistência a ataques físicos, +20 em furtividade em ambientes marítimos, +10 em carregar peso, +15 em nadar e se mover em mares rasos.",
+    "actionBonus": "+10 luta, +15 em resistência a ataques físicos, +20 em furtividade em ambientes marítimos, +10 em carregar peso, +10 em nadar e se mover em mares rasos, +15 bloqueio",
     "attacks": [
       "Mordida Triturante: 6d10+25 (dano perfurante; ao atingir um alvo, pode reduzir a durabilidade de equipamentos em 10%).",
       "Investida Submersa: 5d12+20 (dano de impacto; se o Archelon estiver em camuflagem, esse ataque causa 50% de dano adicional).",
@@ -5293,7 +5299,36 @@ const dinoFichas = {
   ],
   "passiva": "Reflexos Aéreos: No ar, a Coruja das Neves pode realizar 2 reações de esquiva por rodada.",
   "passivaElemental": "Aura Gélida: Todos os inimigos em um raio de 5 metros recebem 1d8 de dano de frio por rodada e têm suas ações reduzidas em 1 devido ao congelamento do ambiente."
-}
+},
+"Kraken Ancião": {
+  "title": "Kraken Ancião - O Presságio da Destruição",
+  "image": "imagens/dinos_kraken_anciao.jpg",
+  "height": "7,5 m",
+  "length": "4,5 m",
+  "weight": "3,5 toneladas",
+  "attributes": {
+    "agi": 4,
+    "for": 5,
+    "int": 6,
+    "pre": 6,
+    "vig": 5
+  },
+  "life": 500,
+  "armor": 250,
+  "actionBonus": "+30 em ataques de raio, +10 em voo, +15 em ataques com tentáculos, +25 em ataques com orbes de energia, +15 em bloqueios +25 em manipulação de metal, +10 em esquiva, +15 em contra-ataques, +15 ao preparar ações, +10 em foco, +5 em escalada, +15 ao analisar alvos. +40 de resistência elétrica",
+  "attacks": [
+    "Tentáculos Defensivos: 4d12+25 (dano físico; agarra o alvo imobilizando-o. Caso o alvo esteja imobilizado, o próximo ataque tem dano dobrado).",
+    "Grito Desenfreado: 7d10+40 (dano sonoro; alvos abaixo de 20 de vida ficam surdos permanentemente no combate).",
+    "Dano Magnético: 6d12+35+20 (dano elétrico; atinge todos os alvos próximos. O dano extra é baseado no número de pessoas ao redor)."
+  ],
+  "abilities": [
+    "Raio do Tormento: Causa 10d8+20 de dano elétrico duas vezes seguidas. Se o alvo falhar na esquiva, fica paralisado e recebe -5 em todos os ataques e testes de agilidade.",
+    "Domínio do Metal: O Kraken pode manipular objetos metálicos em um raio de 20 metros, atraindo ou lançando-os como projéteis (dano baseado no peso).",
+  ],
+  "passiva": "Mente Perversa: Todo dano elétrico também causa dano de sanidade igual à metade do dano recebido. Alvos com menos de 20 de sanidade podem ser controlados pelo Kraken Ancião.",
+  "passivaElemental": "Presença do Fim: Criaturas fracas que olham diretamente para o Kraken devem fazer um teste de vontade. Se falharem, ficam aterrorizadas e incapazes de agir por 1d4 rodadas."
+},
+
   };
 
 
@@ -5457,7 +5492,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     {
       titulo: "Mutações de Caveira",
-      texto: "As mutações da Caveira transformam as criaturas em combatentes implacáveis, altamente agressivos e fisicamente resilientes. Estas mutações aumentam significativamente o tamanho da criatura e a adaptam perfeitamente ao combate direto. Todas as criaturas que possuem essa mutação recebem um bônus de +10 em luta, +10 em contra-ataque e +1 no atributo de Força, além de resistências adicionais contra efeitos de atordoamento e debuffs, tornando-as extremamente difíceis de subjugar. As habilidades das criaturas da Caveira são naturalmente mais poderosas e altamente adaptadas ao combate ofensivo. Elas podem realizar combos em todos os seus ataques, multiplicando o impacto de cada golpe. Sempre que uma criatura com essa mutação executa um combo bem-sucedido, ela ganha vida temporária equivalente a 20% de sua vida máxima, proporcionando maior sobrevivência em batalhas prolongadas. Além disso, todas as suas habilidades e ataques recebem duas rolagens adicionais de dano, aumentando ainda mais seu poder destrutivo. Essas características tornam as criaturas da Caveira o ápice da brutalidade em combate, dominando o campo de batalha com força avassaladora e agressividade implacável. Enfrentar uma delas é um desafio que poucos são capazes de superar.",
+      texto: "As mutações da Caveira transformam as criaturas em combatentes implacáveis, altamente agressivos e fisicamente resilientes. Estas mutações aumentam significativamente o tamanho da criatura e a adaptam perfeitamente ao combate direto. Todas as criaturas que possuem essa mutação recebem um bônus de +10 em luta, +10 em contra-ataque e +1 no atributo de Força, além de resistências adicionais contra efeitos de atordoamento e debuffs, tornando-as extremamente difíceis de subjugar. As habilidades das criaturas da Caveira são naturalmente mais poderosas e altamente adaptadas ao combate ofensivo. Elas podem realizar combos em todos os seus ataques, podendo sempre dar 2 efeitos diferentes em suas variações de combos. Sempre que uma criatura com essa mutação executa um combo bem-sucedido, ela ganha vida temporária equivalente a 20% de sua vida máxima, proporcionando maior sobrevivência em batalhas prolongadas. Além disso, todas as suas habilidades e ataques recebem duas rolagens adicionais de dano, aumentando ainda mais seu poder destrutivo. Essas características tornam as criaturas da Caveira o ápice da brutalidade em combate, dominando o campo de batalha com força avassaladora e agressividade implacável. Enfrentar uma delas é um desafio que poucos são capazes de superar.",
       corFundo: "radial-gradient(circle, rgba(63, 59, 59, 0.87), rgba(44, 3, 0, 0.87)",
       corTexto: "#ffdead",
       corTitulo: "#b8082e"

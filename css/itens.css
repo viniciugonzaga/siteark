@@ -840,9 +840,7 @@ border:solid, 2px #07cfc5
     position: relative;
     text-shadow:
     0 0 5px #f7f447,   /* Primeira camada de brilho vermelho */
-
     0 0 20px #eeff00,  /* Terceira camada mais forte */
-
     0 0 80px #ebf747;  /* Brilho externo */
 }
 
@@ -886,24 +884,19 @@ border:solid, 2px #07cfc5
 }
 @media (max-width: 780px) {
     .paragrafo {
-        margin: 5px;
+      font-size: 0.5rem;
+      margin: 5px;
         padding: 30px; /* Reduz espaço interno */
         border: 3px solid #bed304;
-        font-size: 0.8rem; /* Ajusta tamanho da fonte */
+        font-size: 1rem; /* Ajusta tamanho da fonte */
         text-align: center;
         display: flex;
-        flex-direction: column; /* Empilha o conteúdo */
-        align-items: center;
-        justify-content: center;
-        color: #fff;
-        background-size: contain; /* Melhor ajuste de imagem */
-        background-position: center;
     }
 
     /* Ajuste para texto dentro do parágrafo */
     .text-overlay {
         padding: 15px 20px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     .titulo_principal2 {

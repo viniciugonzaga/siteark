@@ -1789,7 +1789,7 @@ color: #f7b62b;
     }
   }
   .paragrafo-decorado {
-    background: radial-gradient(circle, rgba(73, 3, 119, 0.87), rgba(29, 1, 60, 0.918), rgba(10, 0, 30, 0.925)); /* Gradiente mais sutil */
+    background: radial-gradient(circle, rgba(29, 1, 60, 0.918), rgba(29, 1, 60, 0.918), rgba(10, 0, 30, 0.925)); /* Gradiente mais sutil */
     color: #ffeb3b; /* Cor amarela para o texto */
     padding: 20px;
     font-size: 1.2em;
@@ -1809,12 +1809,12 @@ color: #f7b62b;
 .paragrafo-decorado p {
     line-height: 1.6;
 }
-@media (max-width: 1080px) {
+@media (max-width: 780px) {
     .paragrafo-decorado {
-        background: radial-gradient(circle, rgba(73, 3, 119, 0.87), rgba(29, 1, 60, 0.918), rgba(10, 0, 30, 0.925)); /* Gradiente mais sutil */
+        background: radial-gradient(circle, rgba(29, 1, 60, 0.918), rgba(29, 1, 60, 0.918), rgba(10, 0, 30, 0.925)); /* Gradiente mais sutil */
         color: #ffeb3b; /* Cor amarela para o texto */
         padding: 20px;
-        font-size: 1.2em;
+        font-size: 0.8em;
         border-radius: 8px;
         border: 2px solid #ffeb3b; /* Borda amarela */
         width: 90%; /* Ajuste para ocupar 100% da largura da tela em dispositivos menores */
@@ -1956,7 +1956,7 @@ footer {
   
   .carousel-text {
     font-size: 1.2rem;
-    line-height: 1.5;
+
     color: #ffeb3b;
   }
   
@@ -1974,18 +1974,18 @@ footer {
   }
   @media (max-width: 780px) {
     .carousel-container {
-      flex-direction: column;
+     
       padding: 15px;
-      width: 90%;
+      width: 85%;
     }
   
     .carousel-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-bottom: 10px;
     }
   
     .carousel-text {
-      font-size: 1rem;
+      font-size: 0.8rem;
       line-height: 1.4;
     }
   
