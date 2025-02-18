@@ -987,7 +987,7 @@ const dinoFichas = {
 },
 'Deinonico': {
     title: 'O Caçador em Grupo',
-    image: 'imagens/dinos_deinonico.jpg',
+    image: 'imagens/dinos_deinonico.webp',
     weight: '70 kg',
     height: '1,8 M',
     length: '4 M',
@@ -3832,6 +3832,28 @@ const dinoFichas = {
     passiva: 'Inteligência Predatória: Espectro pode adaptar rapidamente suas estratégias, recebendo +10 em percepção e agilidade enquanto estiver camuflado ou analisando o inimigo. Sua capacidade de planejamento é inigualável.',
     passivaElemental: 'Plasma Instável: Espectro ganha +2d10 de dano adicional em ataques enquanto estiver agitado em combate. Após atingir 3 rodadas consecutivas de ataque, ativa automaticamente **Adrenalina de Plasma** sem custo adicional.',
 },
+"Espectro Rubro": {
+    "title": "O Caçador Dimensional",
+    "image": "imagens/dinos_espectro_rubro.jpg", // Substitua pelo caminho correto
+    "weight": "700 kg",
+    "height": "5.5 M",
+    "length": "6.5 M",
+    "attributes": { "agi": 7, "for": 4, "int": 7, "pre": 7, "vig": 4 },
+    "life": 380, // Regeneração extremamente acelerada
+    "armor": 200, // Pouca armadura, mas compensada por sua velocidade sobre-humana e teletransporte instantâneo
+    "actionBonus": "+30 ataques de garra, +25 mordida drenante, +25 puxão de tentáculos, +25 camuflagem avançada, +20 em emboscadas, +25 em esquiva, +20 contra-ataque e flanqueamento, +15 preparar ação, +15 analisar alvo, +15 escalar, +15 intimidar, +30 enganação, +25 clone, ",
+    "attacks": [
+        "Lâminas Dimencionais: 8d10+30 (ataque absurdamente rápido que corta através do espaço-tempo. Se atingir um alvo pelas costas ou desprevenido, causa **desmembramento** e impossibilita reações por 1d4 rodadas).",
+        "Mordida Drenante: 6d8+25 (a mordida suga não apenas sangue, mas vitalidade. Restaura 15% da vida máxima do Espectro Rubro por 3 rodadas e enfraquece o alvo, reduzindo seu dano em 25%).",
+        "Agarre Tentacular Sombrio: 5d12+20 (puxa um alvo de até 15 metros e o envolve em sombras. Caso falhe em um teste de Força, fica **imobilizado** e sofre 3d10 de dano adicional no próximo turno do Espectro Rubro)."
+    ],
+    "abilities": [
+        "Caçador de Reflexos: Espectro Rubro se move em alta velocidade, podendo agir **duas vezes por rodada** e teletransportar-se para trás de inimigos isolados como ação bônus. Se atacar um inimigo sozinho, causa **dano dobrado**.",
+        "Sombra Sangrenta: Enquanto estiver sem ser detectado, Espectro Rubro pode se movimentar **sem consumir ações** e tem sua furtividade aumentada em +25. Se iniciar o combate sem ser visto, seu primeiro ataque triplica de dano."
+    ],
+    "passiva": "Predador Alfa: Espectro Rubro analisa padrões de movimento e comportamento de suas presas, prevendo ataques e desvios. Enquanto estiver enfrentando apenas um alvo, recebe +10 em defesa, esquiva e reflexos, além de ignorar efeitos que impedem sua movimentação.",
+    "passivaElemental": "Presságio Carmesim: A cada 3 rodadas de combate, o Espectro Rubro entra em **estado de aceleração absoluta**, podendo agir **três vezes por rodada** e causando queimaduras dimensionais que reduzem a defesa do alvo em 30% até o fim da luta."
+},
 'Górgona': {
     title: 'A Primeira Rainha Tecelã',
     image: 'imagens/dinos_górgona.jpg', // Substitua pelo caminho correto
@@ -3841,7 +3863,7 @@ const dinoFichas = {
     attributes: { agi: 6, for: 3, int: 5, pre: 5, vig: 2 },
     life: 340, // Escalável por nível ou estágio
     armor: 120, // Resistente, mas não impenetrável
-    actionBonus: '+18 ataques de garras, +20 baforada ácida, +15 teias de imobilização, +10 percepção e rastreamento, +15 esquiva e furtividade',
+    actionBonus: '+18 ataques de garras, +15 luta, +15 preparar ação, +15 pontaria, +15 analisar alvo, +15 contra-ataque +20 baforada ácida, +15 teias de imobilização, +10 percepção e rastreamento, +15 esquiva e furtividade',
     attacks: [
         'Garras Predadoras: 5d10+30 (se o ataque acertar, a Górgona pode agarrar o alvo, imobilizando-o por 1 rodada e ganhando +10 em agilidade para o próximo turno).',
         'Baforada Ácida: 6d12+25 (cobre uma área de 5 metros com ácido corrosivo que derrete armaduras e objetos. Inimigos sofrem dano contínuo de 3d6 por 2 rodadas).',
@@ -3855,6 +3877,29 @@ const dinoFichas = {
     passiva: 'Tecelã Demoníaca: A Górgona pode gerar teias que dificultam a movimentação de inimigos em um raio de 10 metros, reduzindo a agilidade deles em -10. Sempre que imobiliza ou agarra um alvo, ganha +1d8 de dano adicional nos ataques contra ele.',
     passivaElemental: 'Veneno Ácido: Todos os ataques da Górgona causam 2d8 de dano ácido adicional. Áreas afetadas por ácido tornam-se difíceis de atravessar para inimigos, reduzindo sua velocidade em 50%.',
 },
+"Górgona rubra": {
+    "title": "A Rainha da Teia Vermelha",
+    "image": "imagens/dinos_gorgona_rubra.jpg", // Substitua pelo caminho correto
+    "weight": "3000 kg",
+    "height": "6.5 M",
+    "length": "9 M (incluindo patas)",
+    "attributes": { "agi": 6, "for": 4, "int": 5, "pre": 6, "vig": 5 },
+    "life": 420, // Vida aumentada pela sua regeneração passiva
+    "armor": 200, // Extremamente resistente, com carapaça reforçada e regeneração ácida
+    "actionBonus": "+25 ataques de garras, +25 preparação de ação, +10 bloqueio, +20 pontaria, +10 enganação, +20 contra-ataque, +15 ataque +28 baforada ácida aprimorada, +20 teias corrosivas, +15 percepção e rastreamento, +20 esquiva e furtividade",
+    "attacks": [
+        "Garras da Matriarca: 6d12+35 (se o ataque acertar, a Górgona Rubra pode agarrar o alvo e injetar veneno corrosivo, causando 3d10 de dano por rodada por 3 rodadas. Enquanto estiver agarrado, o alvo sofre -15 em todas as ações de fuga).",
+        "Baforada Ácida Devastadora: 8d12+30 (cobre uma área de 8 metros com ácido destrutivo que **dissolve armaduras** e **corrompe armas**, reduzindo sua eficácia em 50%. O dano contínuo aumenta para 5d6 por 3 rodadas).",
+        "Teia Corrosiva da Prisão: 6d10+20 (arremessa uma teia altamente ácida em até 15 metros, **imobilizando totalmente** o alvo por 2 rodadas e causando 3d10 de dano ácido contínuo. Caso o alvo falhe no teste de Força, a Górgona pode puxá-lo para si e mordê-lo como ação bônus)."
+    ],
+    "abilities": [
+        "Exército da Rainha: Sempre que a Górgona Rubra usa um **ataque ou habilidade**, uma de suas crias surge no campo de batalha. Essas crias duram 3 rodadas e possuem 10% da vida máxima da Górgona. Elas priorizam atacar inimigos já imobilizados ou enfraquecidos.",
+        "Clone de Teia Explosivo: A Górgona cria um clone feito de teia e petróleo, que engana inimigos por 1 rodada. Quando destruído ou explodido, **o dano causado aumenta com a quantidade de inimigos próximos**, causando 10d10 para cada alvo dentro de 5 metros. Se pelo menos 3 inimigos forem atingidos, a explosão libera **mais 2 crias** no campo.",
+       
+    ],
+    "passiva": "Aranha Suprema: A Górgona Rubra **não pode ser surpreendida** e sente qualquer movimentação dentro de 20 metros. Sempre que uma criatura ficar imobilizada por sua teia ou agarrada, a Górgona recebe um bônus de **+15 em todos os seus ataques** contra esse alvo.",
+    "passivaElemental": "Sangue Ácido Vivo: Todos os ataques da Górgona Rubra causam **4d8 de dano ácido adicional** e deixam o inimigo vulnerável ao ácido por 3 rodadas. Criaturas que atacarem a Górgona corpo a corpo sofrem **2d12 de dano ácido refletido**."
+},
 'Behemoth': {
     title: 'O Golem do Diabo',
     image: 'imagens/dinos_behemoth.jpg', // Substitua pelo caminho correto
@@ -3864,7 +3909,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 6, int: 2, pre: 3, vig: 5 },
     life: 600, // Escalável por nível ou estágio
     armor: 600, // Base extremamente resistente devido à sua armadura mineral
-    actionBonus: '+20 esmagar, +18 língua agarradora, +22 jato de lava, +15 terreno pedregoso, +30 bloqueio.',
+    actionBonus: '+20 esmagar, +18 língua agarradora, +22 jato de lava,  +20 luta, +15 terreno pedregoso, +30 bloqueio, +10 contra-ataque, +10 furtividade, +10 preparaçaõ de ação, +5 escalar, +10 pontaria',
     attacks: [
         'Esmagar com Braços: 8d12+40 (ataque pesado que pode causar dano em área em um raio de 3 metros ao redor do Behemoth. Alvos atingidos devem fazer um teste de Constituição ou ficam atordoados por 1 rodada).',
         'Língua Agarradora: 4d10+20 (a língua do Behemoth pode atingir inimigos em até 8 metros, agarrando-os e puxando-os para perto. Inimigos agarrados sofrem dano contínuo de 3d8 por sufocamento até escaparem).',
@@ -3877,6 +3922,28 @@ const dinoFichas = {
     ],
     passiva: 'Estômago Exposto: Behemoth é imune a armas convencionais. Para causar dano significativo, é necessário fazer com que ele corra, expondo seu estômago. Enquanto o estômago está exposto, ataques causam +4d10 de dano adicional.',
     passivaElemental: 'Fusão com Pedra: Todos os ataques causam 1d8 de dano adicional de pedra ou fogo. Behemoth ganha resistência ao dano de fogo e completa imunidade ao dano de perfuração ou corte de armas normais.',
+},
+"Behemoth congelado": {
+    "title": "O Titã do Gelo e Rocha",
+    "image": "imagens/dinos_behemoth_gelo.jpg", // Substitua pelo caminho correto
+    "weight": "27.000 kg",
+    "height": "8 M",
+    "length": "6.5 M",
+    "attributes": { "agi": 4, "for": 7, "int": 3, "pre": 4, "vig": 7 },
+    "life": 750, // Aumento devido à sua resistência extrema
+    "armor": 700, // Armadura reforçada com gelo e rocha
+    "actionBonus": "+25 esmagar gélido, +25 língua de gelo, +25 jato de obsidiana, +30 luta, +15 pontaria +18 terreno congelado, +35 bloqueio, +45 resitências de veneno e efeitos de controle, +10 contra-ataque, +30 encontrão de gelo, +15 intimidar, +10 escalar, +15 furtividade",
+    "attacks": [
+        "Esmagar Gélido: 8d12+45 (ataque brutal que gera uma onda de choque gélida em um raio de 4 metros. Alvos atingidos perdem 1 ponto de Vigor na cena e fazem um teste de Constituição. Falha resulta em lentidão por 2 rodadas).",
+        "Língua de Gelo: 4d10+25 (a língua do Behemoth pode atingir inimigos em até 10 metros, agarrando-os e congelando suas articulações. O alvo recebe -20 em todas as jogadas físicas enquanto estiver preso e podem ser digeridos caso estejam com 2 vig, recebendo 12d10+45 de dano.).",
+        "Jato de Obsidiana: 8d10+40 (o Behemoth expele uma mistura devastadora de lava e gelo cristalizado em linha reta de 12 metros. Alvos atingidos sofrem dano de fogo e gelo simultaneamente, ficam petrificados no solo por 1 rodada e perdem 2 ponto de Vigor)."
+    ],
+    "abilities": [
+        "Avalanche Glacial: O Behemoth enrola-se e rola por até 20 metros, destruindo tudo em seu caminho e criando um terreno congelado. Causa 6d12+35 de dano, reduzindo a velocidade das vítimas em 50%. Alvos atingidos fazem um teste de Resistência; falha os deixa confusos e reduz o Vigor em 1 ponto.",
+        "Terreno Congelado: Behemoth ergue lanças de gelo e pedra em um raio de 12 metros, causando 5d10+25 de dano a todos os inimigos e tornando o solo escorregadio. Alvos afetados ficam vulneráveis a ataques físicos no próximo turno e perdem 1 ponto de Vigor."
+    ],
+    "passiva": "Coração de Gelo: Behemoth é imune a armas convencionais e resistênte a dano de calor. Para causar dano significativo, os inimigos devem expôr seu estômago. Quando exposto, recebe +4d10 de dano adicional e perde sua resistência ao calor por 2 rodadas.",
+    "passivaElemental": "Forja de Gelo e Obsidiana: Todos os ataques físicos causam +3d10 de dano gélido adicional. Inimigos atingidos têm sua velocidade reduzida e, se possuírem menos de 2 de Vigor, são completamente congelados. Behemoth também é imune a dano de gelo e ganha +15 de defesa contra ataques mágicos."
 },
 'Peixe-jaula': {
     title: 'Guardião do Void Profundo',
@@ -5328,6 +5395,175 @@ const dinoFichas = {
   "passiva": "Mente Perversa: Todo dano elétrico também causa dano de sanidade igual à metade do dano recebido. Alvos com menos de 20 de sanidade podem ser controlados pelo Kraken Ancião.",
   "passivaElemental": "Presença do Fim: Criaturas fracas que olham diretamente para o Kraken devem fazer um teste de vontade. Se falharem, ficam aterrorizadas e incapazes de agir por 1d4 rodadas."
 },
+"Dimetrodonte": {
+  "title": "Dimetrodonte - O Regulador Primitivo",
+  "image": "imagens/dinos_dimetrodonte.jpg",
+  "height": "1,8 m",
+  "length": "3,5 m",
+  "weight": "500 kg",
+  "attributes": {
+    "agi": 2,
+    "for": 3,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 200,
+  "armor": 110,
+  "actionBonus": "+15 em intimidação, +10 luta, +10 bloqueio, +10 contra-ataque, +10 dormir, +10 socializar +15 em furtividade quando imóvel, +10 em defesa contra ataques baseados em calor ou frio, +10 em trabalho em equipe com outros Dimetrodontes.",
+  "attacks": [
+    "Mordida Serrilhada: 4d10+20 (dano cortante; aplica sangramento, causando 1d8 de dano por rodada por 3 rodadas).",
+    "Investida Territorial: 5d8+15 (dano de impacto; pode derrubar o alvo com um teste de força).",
+    "Garras Afiadas: 3d12+18 (dano perfurante; se usado em um alvo distraído, recebe +10 no ataque)."
+  ],
+  "abilities": [
+    "Regulação Corporal: O Dimetrodonte pode absorver ou dissipar calor usando sua vela dorsal, tornando-se imune a efeitos de congelamento ou superaquecimento.",
+    "Postura Estática: Se permanecer imóvel por uma rodada, ganha +25 em furtividade e se torna indetectável para criaturas que dependem de visão de movimento.",
+  
+  ],
+  "passiva": "Domínio do Habitat: Ganha +5 em furtividade e deslocamento em terrenos áridos ou pantanosos.",
+  "passivaElemental": "Aura Térmica: Controla a temperatura ao seu redor, reduzindo ou aumentando em até 10°C, afetando inimigos sensíveis a variações térmicas."
+},
+"Prestosuchus": {
+  "title": "Prestosuchus - O Caçador Tático",
+  "image": "imagens/dinos_prestosuchus.jpg",
+  "height": "2 m",
+  "length": "5 m",
+  "weight": "450 kg",
+  "attributes": {
+    "agi": 4,
+    "for": 4,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 200,
+  "armor": 100,
+  "actionBonus": "+20 em ataques flanqueando, +10 em luta, +10 contra-ataques, +5 bloqueio, +10 esquiva +15 em furtividade em terrenos difíceis, +10 em emboscadas, +10 em testes de percepção para detectar presas, +15 em saltos e investidas.",
+  "attacks": [
+    "Mordida Devastadora: 5d12+25 (dano perfurante; se o alvo estiver flanqueado, a mordida causa +20 de dano e aplica sangramento, causando 1d8 de dano por 3 rodadas).",
+    "Bote Preciso: 6d10+20 (dano de impacto; pode agarrar a presa com um teste de força, imobilizando-a por 1 rodada).",
+    "Golpe Cortante: 4d12+18 (dano cortante; pode ser usado imediatamente após um bote bem-sucedido, causando dano dobrado)."
+  ],
+  "abilities": [
+    "Caçador Estratégico: Se atacar junto com um aliado, recebe +5 de dano e +10 na rolagem de ataque.",
+    "Presa Inevitável: Se o Prestosuchus permanecer oculto por uma rodada, seu próximo ataque ignora pontos de armadura do alvo.",
+    
+  ],
+  "passiva": "Predador Persistente: Se um inimigo tentar fugir do Prestosuchus, ele pode realizar um ataque extra como reação.",
+  "passivaElemental": "Instinto Sangrento: Sempre que causar sangramento em um inimigo, o Prestosuchus ganha +5 em sua próxima rolagem de ataque e dano."
+},
+"Pulmonoscorpius": {
+  "title": "Pulmonoscorpius - O Terror Silencioso",
+  "image": "imagens/dinos_pulmonoscorpius.jpg",
+  "height": "2 m",
+  "length": "4 m",
+  "weight": "200 kg",
+  "attributes": {
+    "agi": 3,
+    "for": 3,
+    "int": 3,
+    "pre": 5,
+    "vig": 4
+  },
+  "life": 150,
+  "armor": 100,
+  "actionBonus": "+20 em furtividade em terrenos difíceis, +10 luta, +10 contra-ataque, +10 bloqueio, +5 flaquear, +20 veneno, +15 em ataques flanqueando, +10 em ataques surpresa, +10 em testes de escalada e deslocamento rápido, +15 contra venenos.",
+  "attacks": [
+    "Picada Paralisante: 5d10+20 (dano perfurante e venenoso; aplica torpor equivalente ao dano causado e faz o alvo perder 1 ação por rodada durante 3 rodadas).",
+    "Golpe de Pinça: 4d12+18 (dano físico; pode agarrar o alvo, imobilizando-o por 1 rodada caso falhe em um teste de força).",
+    "Bote Furtivo: 6d8+22 (dano perfurante; se o ataque for feito enquanto furtivo, ignora metade da armadura do alvo e aplica torpor dobrado)."
+  ],
+  "abilities": [
+    "Caçador Silencioso: Movimenta-se sem gerar som em terrenos difíceis e recebe +10 em furtividade e ataques surpresa.",
+    "Veneno Neurotóxico: Se um inimigo ficar inconsciente pelo veneno do Pulmonoscorpius, ele sofre 1d10 de dano por rodada até despertar.",
+   
+  ],
+  "passiva": "Resistência Escorpiônica: Imune a venenos e efeitos de paralisia, além de reduzir todo dano perfurante recebido em 50%.",
+  "passivaElemental": "Torpor Crescente: Cada vez que um inimigo recebe dano venenoso do Pulmonoscorpius, seu torpor aumenta cumulativamente em 10 pontos adicionais."
+},
+"Dracovenator": {
+  "title": "Dracovenator - O Caçador Sombrio",
+  "image": "imagens/dinos_dracovenator.jpg",
+  "height": "2,5 m",
+  "length": "6 m",
+  "weight": "400 kg",
+  "attributes": {
+    "agi": 4,
+    "for": 3,
+    "int": 3,
+    "pre": 4,
+    "vig": 4
+  },
+  "life": 150,
+  "armor": 40,
+  "actionBonus": "+10 em ataques flanqueando, +15 em furtividade, +10 em esquivas rápidas, +10 em rastreamento, +15 contra efeitos de cegueira, +10 luta, +5 bloqueio, +5 contra-ataque, +10 intimidação",
+  "attacks": [
+    "Mordida Rasteira: 5d10+20 (dano cortante; se atingir, reduz o deslocamento do alvo pela metade por 2 rodadas).",
+    "Garra Afiada: 4d12+18 (dano perfurante; se estiver flanqueando, ignora 50 de armadura do alvo).",
+    "Bote Preciso: 6d8+22 (dano físico; se usado como primeiro ataque contra um alvo desprevenido, acerta automaticamente e tem dano dobrado)."
+  ],
+  "abilities": [
+    "Caça Coordenada: Sempre que atacar um inimigo cercado por outro Dracovenator aliado, o ataque tem vantagem e recebe +1d8 de dano adicional.",
+    "Predador Oportunista: Sempre que um inimigo perder uma ação ou ficar vulnerável, o Dracovenator pode usar uma ação bônus para atacá-lo.",
+   
+  ],
+  "passiva": "Instinto de Alcateia: Se houver pelo menos um aliado Dracovenator próximo, recebe +10 em esquiva e +5 em dano.",
+  "passivaElemental": "Caçador das Sombras: Em ambientes escuros ou com pouca visibilidade, fica invisível a 10 metros de distância e recebe +15 em furtividade."
+},
+"Diplocaulos": {
+  "title": "Diplocaulus - O Sobrevivente Anfíbio",
+  "image": "imagens/dinos_diplocaulos.jpg",
+  "height": "1 m",
+  "length": "2 m",
+  "weight": "15 kg",
+  "attributes": {
+    "agi": 4,
+    "for": 2,
+    "int": 2,
+    "pre": 5,
+    "vig": 2
+  },
+  "life": 100,
+  "armor": 40,
+  "actionBonus": "+20 em furtividade quando imóvel, +15 em escavação, +15 em resistência a venenos, +10 em testes de sobrevivência, +10 em natação, +15 esquiva, +5 contra-ataque, +5 enganação",
+  "attacks": [
+    "Investida Aquática: 4d8+15 (dano físico; pode ser usado debaixo d'água sem penalidades).",
+    "Cauda Afiada: 3d10+12 (dano cortante; se usado após esquivar, recebe +10 de acerto).",
+    "Cavar e Fugir: O Diplocaulus pode escavar rapidamente, se movendo para até 5 metros abaixo da terra ou lama sem custo de ação."
+  ],
+  "abilities": [
+    "Respiração Anfíbia: O Diplocaulus pode respirar indefinidamente debaixo d'água e se move com o dobro da velocidade na água.",
+    "Regeneração Natural: Recupera 5% da vida máxima por rodada se estiver em um ambiente úmido ou submerso.",
+   
+  ],
+  "passiva": "Sobrevivente Adaptável: Sempre que sofre dano, pode reduzir o dano total em 10% e ganhar +5 em esquiva por 1 rodada.",
+  "passivaElemental": "Resistência Biológica: Ganha imunidade a efeitos de veneno e doenças naturais, além de reduzir em 50% os danos tóxicos recebidos."
+},
+"Golias Meteoro": {
+    "title": "O Titã das Chamas Azuis",
+    "image": "imagens/dinos_golias_meteoro.jpg", // Substitua pelo caminho correto
+    "weight": "8000 kg",
+    "height": "8 M",
+    "length": "7.5 M",
+    "attributes": { "agi": 5, "for": 6, "int": 5, "pre": 5, "vig": 6 },
+    "life": 800, // Gigantesca resistência e regeneração aumentada
+    "armor": 350, // Corpo reforçado por chamas, resistência absoluta a fogo e explosões
+    "actionBonus": "+30 em ataques corpo a corpo, +30 luta, +25 em investidas, +20 em rastreamento e percepção, +30 em intimidação, +25 contra-ataque e bloqueio, +15 esquiva, +15 furtividade, +10 escalar e nadar, +20 luta, +20 resistência a efeitos de controle",
+    "attacks": [
+        "Golpe Cataclísmico: 8d12+50 2x (Um impacto colossal que gera ondas de choque flamejantes. Se atingir, causa **fratura severa** e atordoa por 1d4 rodadas. Se o alvo estiver queimando, o dano aumenta em +3d10).",
+        "Carga Abrasadora: 6d10+40 (Golias avança em chamas azuladas, explodindo o solo ao contato. O impacto atinge todos num raio de 3 metros, empurrando-os 6 metros e aplicando **chamas vorazes**, que causam +3d8 de dano por rodada).",
+        "Erupção de Fogo Azul: 6d12+40 (Golias libera uma rajada de chamas azuis em um cone de 15 metros. Todos na área sofrem queimaduras profundas, explosões secundárias ocorrem em objetos inflamáveis, e cada alvo queimando aumenta o dano em +2d10)."
+    ],
+    "abilities": [
+        "Explosão Cinética: Golias pode transformar qualquer objeto arremessado em um projétil incendiário. Rochas, troncos ou metal explodem ao impacto, causando +3d12 de dano e incendiando tudo em um raio de 5 metros.",
+        "Predador Imparável: Golias pode realizar **duas ações por rodada** e ganha +15 em todas as tentativas de esquiva e perseguição. Se atingir um alvo já em chamas, pode realizar um ataque adicional como ação bônus.",
+    ],
+    "passiva": "Chamas Crescentes: Para cada inimigo queimando na cena, Golias recebe +5 em dano e regeneração de 5% da vida máxima por rodada. Se pelo menos 3 inimigos estiverem pegando fogo, ele ganha +1 dado(agi) extra por rodada.(limite 3)",
+    "passivaElemental": "Inferno Azul: Qualquer ataque de Golias deixa chamas persistentes no solo e nos alvos atingidos. Essas chamas queimam até oxigênio puro, ignorando resistências normais ao fogo. Todos os ataques que acertam um alvo em chamas explodem, causando +4d10 de dano adicional em área."
+}
+
+
 
   };
 

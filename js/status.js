@@ -1,6 +1,5 @@
 
 
-
 // ========================
 // Menu (Navbar)
 // ========================
@@ -202,8 +201,9 @@ function rolarDado(lados) {
       "Item de Npc local",
       "Item de Criopod(1d4)",
       "Item de contrução nivel 1",
+      "Ligação desconhecida de um telefone(1d4)",
     ];
-    const numeroAleatorio = Math.floor(Math.random() * 16) + 1; // Número de 1 a 8
+    const numeroAleatorio = Math.floor(Math.random() * 17) + 1; // Número de 1 a 8
     const itemAleatorio = itens[Math.floor(Math.random() * itens.length)]; // Item aleatório
   
     // Atualiza o resultado no HTML
@@ -255,13 +255,14 @@ function rolarDado(lados) {
       "Dica de alguma progressão na história",
       "Bando desorientado de criaturas(1d2)",
       "A PIOR situação que poderia encontrar",
+      "Ligação desconhecida de um telefone(1d4)",
     ];
   
     // Embaralhar a lista de eventos para torná-los aleatórios
     const eventosEmbaralhados = eventosSorte.sort(() => Math.random() - 0.5);
   
     // Rolar o dado (1d40)
-    const numeroD40 = Math.floor(Math.random() * 40) + 1;
+    const numeroD40 = Math.floor(Math.random() * 41) + 1;
   
     // Selecionar um evento aleatório do array embaralhado
     const eventoSorte = eventosEmbaralhados[numeroD40 - 1]; // Correspondente ao número do dado
@@ -630,10 +631,8 @@ function rolarDado(lados) {
 "Máscara de Chifres Flamejantes - Item que invoca Indotaurus",
 "Amuleto das Presas Rápidas - Item que invoca Espinoraptor",
 "Escama de Escudo Ceratopsiano - Item que invoca Espinoceratops",
-"Orbe do Protótipo Perdido - Item que invoca Espécime 000",
 "Estatueta de Chifres Cruzados - Item que invoca Estegoceratopes",
 "Adaga de Feras Supremas - Item que invoca Tiranolofossauro",
-"Bracelete do Caçador Supremo - Item que invoca Ultimssauros",
 "Fóssil com Escamas Eternas - Item que invoca Espinossauro Ger 3",
 "Concha Ancestral dos Abismos - Item que invoca Tusotheuthis",
 "Coroa da Fera das Profundezas - Item que invoca Reaper-leviatã",

@@ -1,11 +1,11 @@
 /* Estilo Geral----------------------------------------------------------------------- */
 body {
-    margin: 0;
-    font-family: 'Lora', serif;
-    background: url('../imagens/lobby_status.jpg') no-repeat center center fixed;
-    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
-    scroll-behavior: smooth;
-    overflow-x: hidden; /* Impede o scroll horizontal */
+  margin: 0;
+  font-family: 'Lora', serif;
+  background: url('../imagens/status_fundo2.jpg') no-repeat center center fixed;
+  background-size: cover; /* Ajusta o fundo ao tamanho da tela */
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Impede o scroll horizontal */
 }
 
 /* Estilo inicial para a página */
