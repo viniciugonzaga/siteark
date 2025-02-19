@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <style>
-    </style>
+
 </head>
 <body>
     <header>
