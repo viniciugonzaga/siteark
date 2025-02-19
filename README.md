@@ -2,25 +2,6 @@
 <html lang="pt-br">
 <head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-        section {
-            margin: 20px;
-        }
-        h2 {
-            color: #4CAF50;
-        }
     </style>
 </head>
 <body>
