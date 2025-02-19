@@ -8,6 +8,8 @@ body {
   overflow-x: hidden; /* Impede o scroll horizontal */
 }
 
+
+
 /* Estilo inicial para a página */
 .page {
     opacity: 0;

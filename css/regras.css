@@ -663,6 +663,7 @@ nav {
     #texto {
         font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
     }
+
   }
   .container {
     display: flex;
@@ -756,7 +757,7 @@ nav {
 /* Responsividade para telas com até 780px */
 @media screen and (max-width: 1080px) {
     .container {
-        flex-direction: column; /* Alinha os itens verticalmente */
+      
         margin-left: 0;
         width: 80%;
         margin: 5%;
@@ -764,27 +765,145 @@ nav {
     }
 
     .topicos {
-        width: 100%; /* Deixa os tópicos com 100% da largura disponível */
+      
         margin-bottom: 10px;
     }
 
     .topicos li {
-        width: 100%; /* Faz com que os itens da lista ocupem 100% da largura */
+      
         text-align: center; /* Centraliza o texto dos tópicos */
     }
 
     .bloco-conteudo {
-        width: 90%; /* A largura do conteúdo ocupa 100% */
+        width: 100%; /* A largura do conteúdo ocupa 100% */
         height: auto;
-        padding: 15px;
+        padding: 6px;
     }
 
     .titulo {
-        font-size: 24px; /* Ajusta o tamanho da fonte do título */
+        font-size: 18px; /* Ajusta o tamanho da fonte do título */
     }
 
     .texto {
-        font-size: 16px; /* Ajusta o tamanho da fonte do texto */
+        font-size: 12px; /* Ajusta o tamanho da fonte do texto */
+    }
+}
+
+
+.carrossel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    
+}
+
+.conteudo {
+    position: relative;
+    width: 80%;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: #3d0404c2;
+    backdrop-filter: blur(2px);
+    box-shadow: 0 4px 10px rgba(247, 12, 12, 0.2);
+    border: solid 2px #faa80e;
+}
+
+.fundo-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    opacity: 0.5;
+    border-radius: 15px;
+    z-index: -1;
+}
+
+img {
+    width: 100%;
+    border-radius: 10px;
+    border: solid 2px #faa80e;
+}
+
+
+.seta {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: rgb(161, 1, 1);
+    cursor: pointer;
+    padding: 10px;
+    
+}
+
+.seta:hover {
+    color: #faa80e;
+    
+}
+h3{
+
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+
+}
+#textoDescricao{
+
+    color: #fff5bb;
+    background-color: #3b0202d7;
+    border-radius: 10px;
+    padding: 10px;
+    text-shadow: 0 0 10px #e0b31c, 0 0 30px #cfcd3a;
+    text-align: center;
+    font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
+
+}
+@media (max-width: 780px) {
+    .carrossel {
+        width: 95%;  /* Aumenta a largura para usar melhor o espaço em telas pequenas */
+        margin: 1% auto;  /* Ajusta a margem */
+    }
+
+    .conteudo {
+        width: 100%;  /* Ajusta a largura do conteúdo para a tela */
+        padding: 15px;  /* Reduz o padding para mais espaço */
+        font-size: 1rem;  /* Diminui a fonte para telas menores */
+    }
+
+    .fundo-blur {
+        filter: blur(5px);  /* Aumenta o desfoque para telas pequenas */
+    }
+
+    img {
+        width: 100%;  /* Mantém as imagens responsivas */
+        border-radius: 8px;  /* Diminui o arredondamento */
+    }
+
+    .seta {
+        font-size: 1.5rem;  /* Diminui o tamanho das setas */
+        padding: 8px;  /* Ajusta o padding */
+    }
+
+    h3 {
+        font-size: 1.5rem;  /* Diminui o tamanho da fonte */
+    }
+
+    #textoDescricao {
+        font-size: 1rem;  /* Ajusta o tamanho da fonte */
+        padding: 8px;  /* Diminui o padding */
     }
 }
 /* Geral do footer ------------------------------------------------------------------------------*/

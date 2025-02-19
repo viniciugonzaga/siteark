@@ -142,6 +142,8 @@ const contents = [
     document.getElementById("imagem-fundo").src = content.background;
   }
 
+
+  
  // Dados dos tópicos e imagens de fundo
 const topicos = [
   {
@@ -186,18 +188,6 @@ const topicos = [
     texto: "Cada tipo de dano no jogo varia conforme a origem, como balístico (balas de armas de fogo), corte ou perfuração (armas de perto ou flechas). O comportamento dos críticos também é influenciado pelo tipo de dano. Críticos sempre fazem a soma do dobro dos dados rolados, o que significa que o dano causado será multiplicado por 1,5x. Por exemplo: se o jogador rolou 2d20 e obteve críticos nos dois, ele adicionaria +2d10 de dano, sendo que esse valor seria sempre a metade do dado de dano causado. Para as balas, o valor do crítico é mais vantajoso devido ao grande número de balas disparadas. Dano físico, como mordidas ou garras, tende a ser mais consistente, com efeitos adicionais. Por outro lado, os danos causados por arcano não possuem críticos, funcionando de maneira diferente em relação às outras fontes de dano.",
     imagem: "imagens/regras_criticos_danos.jpg_large"
   },
-  {
-    id: 8,
-    titulo: "Sistema de Evolução",
-    texto: "Os sistemas de evolução no RPG podem ser aplicados tanto para personagens jogadores quanto para animais. Após o desenvolvimento dos personagens em algumas sessões, os jogadores ganham um bônus de +5 em uma ação de sua escolha baseada em seu personagem. Com o tempo, o Ark oferece + atributos aos personagens, refletindo a experiência acumulada ou a sobrevivência prolongada. Caso os jogadores desejem acelerar esse processo, podem derrotar colossos que possuem surtos de Aether instáveis, que também contêm elementos em seus mecanismos de funcionamento junto com a magia arcana. Ao beber o sangue de um colosso, embora de gosto desagradável, os jogadores podem melhorar seus atributos, recebendo +3 bônus em ações, além de ganhar a passiva do colosso e seus espólios. Os animais, por sua vez, também podem evoluir, com objetivos próprios no jogo, sendo grandes arcos na sobrevivência. Eles podem nascer já evoluídos ou conquistar essa evolução ao longo de sua jornada, podendo até se corromper. Um exemplo seria o Espinossauro, que ao matar um Rex, evolui para um novo elemento, podendo se corromper com o Aether ou já nascer com uma evolução genética avançada.",
-    imagem: "imagens/regras_sistema_de_evolucao.jpg"
-  },
-  {
-    id: 9,
-    titulo: "Perseguições e determinação",
-    texto: "As perseguições variam de acordo com o bioma e a criatura. A cada rodada, o jogador deve realizar um teste de Atletismo (para áreas abertas) ou Agilidade - Correr (para áreas fechadas). Caso falhe três vezes contra a DT da criatura, ela o alcança e o combate se inicia. Em uma Perseguição Diabólica, os jogadores podem realizar testes de Determinação ao longo de toda a cena.",
-    imagem: "imagens/dinos_regras_sistemas_chase.jpg"
-  },
 ];
 
 // Seleciona elementos
@@ -218,5 +208,28 @@ listaTopicos.forEach(item => {
     blocoConteudo.style.backgroundImage = `url(${topico.imagem})`; // Adicionado URL corretamente
   });
 });
+
+const imagens = [
+  { src: "imagens/regras_fundo1.jpg", titulo: "Mecânicas de Situações", texto: "O Ark reage ativamente às decisões dos personagens, criando momentos inesperados de perigo intenso ou alívio momentâneo. Cada situação pode desencadear uma nova mecânica, adaptando-se à tensão crescente ou oferecendo respiros estratégicos antes da próxima ameaça. O desconhecido não é apenas um elemento narrativo, mas uma força viva que molda a experiência dos jogadores.", fundo: "imagens/regras_fundo1.jpg" },
+  { src: "imagens/regras_fundo3.jpg", titulo: "Cenas de Furtividade", texto: "Ao cruzar o caminho de um predador ou animal territorial, a furtividade pode ser a única chance de sobrevivência. Nesse momento, inicia-se um embate entre percepção e furtividade, onde os jogadores devem evitar serem detectados pelos sentidos da criatura — seja pelo cheiro, visão ou outros meios. Cada jogador ou grupo começará com 0 a 4 pontos de visibilidade, dependendo do ambiente e da habilidade da criatura em rastrear. Fatores como tamanho, ruído e número de pessoas afetam diretamente a chance de sucesso: um grupo grande é mais chamativo, enquanto indivíduos menores e silenciosos passam despercebidos com mais facilidade. Se a visibilidade alcançar 4 pontos, a furtividade falha e a perseguição começa. Para sobreviver, os jogadores precisarão analisar o terreno, explorar vantagens e evitar chamar atenção, pois o menor erro pode significar o fim.", fundo: "imagens/regras_fundo3.jpg" },
+  { src: "imagens/regras_fundo4.jpg", titulo: "Cenas de Campo Furtivo", texto: "Diferente da furtividade tradicional, o Campo Furtivo ocorre quando os jogadores já foram detectados e estão sendo caçados. Não há mais a possibilidade de permanecerem ocultos para sempre—é apenas uma questão de tempo até serem encontrados. Nessa mecânica, os personagens devem atravessar um campo dividido em quadrantes, blocos ou qualquer estrutura que o mestre definir, enquanto os predadores patrulham a área de forma imprevisível, movendo-se mais de um espaço por turno. Os jogadores só podem avançar de um em um, sendo obrigados a utilizar o ambiente a seu favor. Distrações, armadilhas e esconderijos temporários podem retardar os caçadores e dar ao grupo mais chances de alcançar o outro lado da área antes de serem capturados. O confronto direto nunca é uma opção. Se um membro do grupo for descoberto, a cena se transforma imediatamente em uma perseguição, colocando todos em risco. O tempo corre contra os jogadores—e hesitar pode ser fatal.", fundo: "imagens/regras_fundo4.jpg" },
+  { src: "imagens/regras_fundo2.jpg", titulo: "Cenas de Perseguições Normais e Diabólicas", texto: "Quando lutar não é uma opção, resta apenas uma escolha: correr. As cenas de perseguição colocam os jogadores em um embate direto contra seus predadores, onde velocidade e resistência são as únicas esperanças de sobrevivência. A perseguição é resolvida em rodadas, com os jogadores realizando testes contra a Dificuldade Total (DT) da criatura, que pode variar de 10 (fácil) até 25 (apex), além dos bônus que ela possui para correr ou caçar. Atributos e Testes: Agilidade (Correr): Usado quando a fuga depende da velocidade e reflexos do personagem, Vigor (Atletismo): Utilizado em perseguições longas, onde manter o ritmo e não perder o fôlego é mais importante do que a velocidade bruta. A perseguição dura 5 rodadas. Se um jogador falhar 3 vezes, ele perde o ritmo e deve fazer um teste de esquiva com -5 por estar abalado mentalmente por ser escolhido. Caso falhe, ele é alcançado e recebe um ataque especial da criatura, geralmente um agarrão, sendo capturado e eliminado enquanto os outros continuam fugindo. Perseguições Diabólicas: O auge do terror, onde a adrenalina toma conta e cada um luta por sua própria vida. Aqui, os jogadores podem usar dados de determinação para tentar virar o jogo. Mas há um detalhe cruel: ninguém é obrigado a ajudar os outros. Empurrar um aliado para trás, bloquear uma passagem ou até mesmo sacrificá-lo pode ser o único caminho para escapar. Afinal, em uma perseguição mortal, só há um objetivo: não ser o mais lento.", fundo: "imagens/regras_fundo2.jpg" },
+  { src: "imagens/regras_fundo5.jpg", titulo: "Cenas de Encontro Mortal", texto: "Encontros Mortais ocorrem quando uma criatura ou chefe sofre mutações arcanas extremas, tornando-se brutalmente injusto. Nessas lutas, ela ganha +3 dados de dano em todas as habilidades, Vida Acelerada (+30 de vida por rodada), duas ações padrão, Ações de Fatalidade Aprimoradas que executam alvos livremente, dano de sanidade para todos próximos e um impacto direto na Ilha. O grupo só tem duas opções: lutar ou fugir, mas qualquer erro pode ser fatal.", fundo: "imagens/regras_fundo5.jpg" },
+  { src: "imagens/regras_fundo6.jpg", titulo: "Aventura de Masmorras", texto: "Nas masmorras do Ark, o grupo ou tribo pode acampar ou encontrar um ponto seguro para recuperar vida, sanidade e reparar equipamentos. Durante a exploração, eventos como emboscadas, salas secretas, lutas e armadilhas podem ocorrer. Ao acamparem, poderão ver os próximos eventos nos dois corredores mais próximos.", fundo: "imagens/regras_fundo6.jpg" },
+];
+
+let indiceAtual = 0;
+
+function trocarImagem(direcao) {
+  indiceAtual = (indiceAtual + direcao + imagens.length) % imagens.length;
+
+  document.getElementById("imagemPrincipal").src = imagens[indiceAtual].src;
+  document.getElementById("textoDescricao").textContent = imagens[indiceAtual].texto;
+  document.getElementById("tituloDescricao").textContent = imagens[indiceAtual].titulo;
+  
+  // Muda o fundo da página e o fundo desfocado
+  document.body.style.backgroundImage = `url(${imagens[indiceAtual].fundo})`;
+  document.querySelector(".fundo-blur").style.backgroundImage = `url(${imagens[indiceAtual].fundo})`;
+}
 
   

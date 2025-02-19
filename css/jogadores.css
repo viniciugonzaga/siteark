@@ -581,6 +581,7 @@ label {
     font-size: 1rem;
     font-weight: bold;
     color: #ffd700;
+    
 }
 
 input, select, textarea {
@@ -592,16 +593,20 @@ input, select, textarea {
     background: rgba(255, 255, 255, 0.1);
     color: #09dcf8;
     font-size: 1rem;
+    
+    
 }
 
 input::placeholder,
 textarea::placeholder {
     color: #ccc;
+    
 }
 
 textarea {
     resize: none;
 }
+
 
 .form-container button {
     width: 100%;
