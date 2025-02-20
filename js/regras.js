@@ -142,80 +142,113 @@ const contents = [
     document.getElementById("imagem-fundo").src = content.background;
   }
 
-
-  
- // Dados dos tópicos e imagens de fundo
-const topicos = [
-  {
-    id: 1,
-    titulo: "Mecânicas",
-    texto: "O RPG funciona em turnos, onde cada personagem realiza suas ações em sequência. Ações em conjunto, como lutas ou momentos de lazer, acontecem simultaneamente. A importância da ação define sua duração na cena.As cenas estruturam o jogo, combinando as ações de todos os personagens, garantindo que ninguém fique desincronizado no tempo do RPG. Dependendo da necessidade, o mestre pode acelerar ou desacelerar certas ações para manter a fluidez da narrativa.",
-    imagem: "imagens/regras_mecanicas.jpg" // Certifique-se de que esta imagem está na pasta 'imagens' no mesmo nível do HTML
-  },
-  {
-    id: 2,
-    titulo: "Fatalidade",
-    texto: "A Fatalidade no RPG determina o quanto o personagem suporta dor ou mantém sua sanidade. Danos que ultrapassam metade da vida do oponente podem resultar na perda de um membro ou órgão (não vital). Quando um inimigo chega a zero de Determinação, ataques recebem +5 em acertos, e uma finalização pode afetar os inimigos próximos, reduzindo sua sanidade ou determinação. Em duelos corpo a corpo, a guarda rígida é essencial, e se um oponente perder a guarda, o bloqueio ou contra-ataque do oponente decai em -10. Traumas podem causar alucinações, bloqueios de memória ou paranoia, e se o personagem ficar louco, o jogador perde controle total sobre ele.",
-    imagem: "imagens/regras_fatalidade.jpeg"
-  },
-  {
-    id: 3,
-    titulo: "Combate",
-    texto: "Quando sua vida chega a zero, o personagem entra no estado 'morrendo', podendo rastejar, mas sem agir com eficácia. Não existe dano massivo contra humanos (não ultrapassando metade da vida), mas contra criaturas é possível. Ao tomar dano completo da vida, o personagem pode ser finalizado no próximo turno. Armaduras podem ser danificadas até zerar sua vida, após o que a vida do personagem é contabilizada. Dano de veneno ou mordidas colossais afetam tanto a vida quanto a armadura. Após zerar a energia, o personagem ganha torpor se continuar em uso, e durante perseguições de estamina, cada rodada consome um fôlego, e se o teste de saúde falhar, o personagem começará a infartar. Não é possível defender balas sem equipamentos, e em lutas de intimidação entre animais, os alphas fazem testes de força, sendo o vencedor beneficiado com 1d6 no próximo teste de luta. O primeiro a agir é o vencedor da intimidação ou o mais ágil/furtivo se não houver furtividade envolvida.",
-    imagem: "imagens/regras_combate.jpg"
-  },
-  {
-    id: 4,
-    titulo: "Furtividade",
-    texto: "A furtividade é a habilidade de seu personagem se manter escondido ou agir sem ser percebido. Se o personagem passar no teste de percepção, ele ficará furtivo, ganhando um bônus de +5 em acertos e um dado adicional de dano repetido. Assassinos podem aumentar ainda mais o dano furtivo. No entanto, realizar ações barulhentas ou atacar irá revelar a posição do personagem. Flanquear não é considerado estar furtivo, mas sim quando o inimigo está sendo rodeado ou incapaz de ficar de frente ao jogador. Nesse caso, o personagem pode escolher entre um dado adicional de dano ou +5 no acerto, mas apenas uma dessas opções pode ser aplicada.",
-    imagem: "imagens/regras_furtividade.webp"
-  },
-  {
-    id: 5,
-    titulo: "Tempos de Recarga",
-    texto: "Tempos de recarga é uma mecânica que engloba todos os períodos necessários para ações e eventos no jogo, como o tempo de mutações, o aparecimento de drops, a preparação de comida, a satisfação das necessidades do personagem, ou até mesmo o uso do cristal de uma criatura como corpo por um tempo. Cada uma dessas ações ou eventos tem um tempo de recarga específico, o que adiciona uma camada de estratégia, pois o jogador precisa gerenciar o tempo adequadamente para garantir a sobrevivência e a eficiência nas suas ações. Pontos de determinação podem ser usados quando estiver 50% de vida, só podem ser usados pontos de determinação de 6 em 6, 1d6 cada 6 gasto.",
-    imagem: "imagens/regras_tempos_de_recarga.jpg"
-  },
-  {
-    id: 6,
-    titulo: "Domesticação",
-    texto: "A domesticação dos animais na ilha varia de acordo com a espécie, e existem diversas formas de conquistar a confiança das criaturas. A maneira mais simples é roubando os ovos das criaturas ou dinossauros e cuidando deles desde filhotes. Algumas espécies só podem ser domesticadas dessa forma, enquanto outras exigem métodos específicos. O processo pode envolver incubação ou até mesmo manipulação em laboratório, o que resulta na criatura sendo parte da tribo do jogador, mas não garante que ela agirá de forma amigável, já que seus instintos podem ainda prevalecer. À medida que o vínculo entre o jogador e a criatura cresce, ela ganha maior confiança, podendo até dividir o cristal com o jogador, permitindo fusões ou o controle conjunto de seus corpos em batalha. A barra de progresso da domesticação sobe ou desce dependendo das ações do jogador, com base no que agrada ou desagrada a criatura. Quanto maior o vínculo, mais forte será a parceria e a cooperação durante o jogo.",
-    imagem: "imagens/regras_domesticação.jpg"
-  },
-  {
-    id: 7,
-    titulo: "Críticos e Danos",
-    texto: "Cada tipo de dano no jogo varia conforme a origem, como balístico (balas de armas de fogo), corte ou perfuração (armas de perto ou flechas). O comportamento dos críticos também é influenciado pelo tipo de dano. Críticos sempre fazem a soma do dobro dos dados rolados, o que significa que o dano causado será multiplicado por 1,5x. Por exemplo: se o jogador rolou 2d20 e obteve críticos nos dois, ele adicionaria +2d10 de dano, sendo que esse valor seria sempre a metade do dado de dano causado. Para as balas, o valor do crítico é mais vantajoso devido ao grande número de balas disparadas. Dano físico, como mordidas ou garras, tende a ser mais consistente, com efeitos adicionais. Por outro lado, os danos causados por arcano não possuem críticos, funcionando de maneira diferente em relação às outras fontes de dano.",
-    imagem: "imagens/regras_criticos_danos.jpg_large"
-  },
+ // Array com os nomes das mecânicas de RPG
+const mecanicas = [
+  "Tempos e Turnos...",
+  "Perigos Sorteados...",
+  "Fatalidade...",
+  "Interlúdio...",
+  "Vantagens e Desvantagens..."
 ];
 
-// Seleciona elementos
-const listaTopicos = document.querySelectorAll(".topicos li");
-const tituloBloco = document.querySelector(".titulo");
-const textoBloco = document.querySelector(".texto");
-const blocoConteudo = document.querySelector(".bloco-conteudo");
+// Função para exibir conteúdo (acionada pelo clique)
+function exibirConteudo(botaoIndex) {
+    const imagens = [
+      "imagens/regras_icon6.jpg",
+      "imagens/regras_icon6.jpg",
+      "imagens/regras_icon6.jpg",
+      "imagens/regras_icon6.jpg",
+      "imagens/regras_icon6.jpg"
+    ];
+    const titulos = [
+      "Tempos e Turnos...",
+      "Perigos Sorteados...",
+      "Fatalidade...",
+      "Interlúdio...",
+      "Vantagens e Desvantagens..."
+    ];
+    const paragrafos = [
+      ["", 
+      "", 
+      ""],
 
-// Adiciona evento de clique
-listaTopicos.forEach(item => {
-  item.addEventListener("click", () => {
-    const id = parseInt(item.getAttribute("data-id"));
-    const topico = topicos.find(t => t.id === id);
+      ["", 
+      "", 
+      ""],
 
-    // Atualiza conteúdo do bloco
-    tituloBloco.textContent = topico.titulo;
-    textoBloco.textContent = topico.texto;
-    blocoConteudo.style.backgroundImage = `url(${topico.imagem})`; // Adicionado URL corretamente
-  });
-});
+      ["", 
+      "",
+      ""],
+
+      ["",
+      "", 
+      ""],
+
+      ["", 
+      "", 
+      ""]
+    ];
+
+     // Atualiza os elementos com o conteúdo selecionado
+     document.getElementById("imagem-selecionada").src = imagens[botaoIndex];
+     document.getElementById("titulo-conteudo").innerText = titulos[botaoIndex];
+     document.getElementById("paragrafo1").innerText = paragrafos[botaoIndex][0];
+     document.getElementById("paragrafo2").innerText = paragrafos[botaoIndex][1];
+     document.getElementById("paragrafo3").innerText = paragrafos[botaoIndex][2];
+ 
+     // Exibe a área de conteúdo
+     document.getElementById("area-conteudo").style.display = "block";
+ }
+ 
+ // Seleciona todos os botões
+ const botoes = document.querySelectorAll('.botao-interativo, .botao-interativo2');
+ 
+ // Para desktops: listeners de hover para atualizar o nome da mecânica
+ botoes.forEach(button => {
+   button.addEventListener('mouseenter', function() {
+     const index = this.getAttribute('data-index');
+     document.getElementById("mecanica-dinamica").textContent = mecanicas[index];
+   });
+   button.addEventListener('mouseleave', function() {
+     document.getElementById("mecanica-dinamica").textContent = ". . .";
+   });
+ });
+ 
+ // Para telas menores (ou dispositivos touch) – troca automática do nome e efeito no botão
+ if ('ontouchstart' in window || window.innerWidth < 1080) {
+   let index = 0;
+   setInterval(function() {
+     // Atualiza o texto da mecânica
+     document.getElementById("mecanica-dinamica").textContent = mecanicas[index];
+ 
+     // Remove a classe active-glow de todos os botões
+     botoes.forEach(btn => btn.classList.remove('active-glow'));
+     
+     // Adiciona a classe active-glow ao botão correspondente
+     const botaoAtual = document.querySelector(`.botao-interativo[data-index="${index}"], .botao-interativo2[data-index="${index}"]`);
+     if (botaoAtual) {
+       botaoAtual.classList.add('active-glow');
+     }
+     
+     index = (index + 1) % mecanicas.length;
+   }, 2000); // Intervalo de 2 segundos
+ }
+
 
 const imagens = [
   { src: "imagens/regras_fundo1.jpg", titulo: "Mecânicas de Situações", texto: "O Ark reage ativamente às decisões dos personagens, criando momentos inesperados de perigo intenso ou alívio momentâneo. Cada situação pode desencadear uma nova mecânica, adaptando-se à tensão crescente ou oferecendo respiros estratégicos antes da próxima ameaça. O desconhecido não é apenas um elemento narrativo, mas uma força viva que molda a experiência dos jogadores.", fundo: "imagens/regras_fundo1.jpg" },
   { src: "imagens/regras_fundo3.jpg", titulo: "Cenas de Furtividade", texto: "Ao cruzar o caminho de um predador ou animal territorial, a furtividade pode ser a única chance de sobrevivência. Nesse momento, inicia-se um embate entre percepção e furtividade, onde os jogadores devem evitar serem detectados pelos sentidos da criatura — seja pelo cheiro, visão ou outros meios. Cada jogador ou grupo começará com 0 a 4 pontos de visibilidade, dependendo do ambiente e da habilidade da criatura em rastrear. Fatores como tamanho, ruído e número de pessoas afetam diretamente a chance de sucesso: um grupo grande é mais chamativo, enquanto indivíduos menores e silenciosos passam despercebidos com mais facilidade. Se a visibilidade alcançar 4 pontos, a furtividade falha e a perseguição começa. Para sobreviver, os jogadores precisarão analisar o terreno, explorar vantagens e evitar chamar atenção, pois o menor erro pode significar o fim.", fundo: "imagens/regras_fundo3.jpg" },
-  { src: "imagens/regras_fundo4.jpg", titulo: "Cenas de Campo Furtivo", texto: "Diferente da furtividade tradicional, o Campo Furtivo ocorre quando os jogadores já foram detectados e estão sendo caçados. Não há mais a possibilidade de permanecerem ocultos para sempre—é apenas uma questão de tempo até serem encontrados. Nessa mecânica, os personagens devem atravessar um campo dividido em quadrantes, blocos ou qualquer estrutura que o mestre definir, enquanto os predadores patrulham a área de forma imprevisível, movendo-se mais de um espaço por turno. Os jogadores só podem avançar de um em um, sendo obrigados a utilizar o ambiente a seu favor. Distrações, armadilhas e esconderijos temporários podem retardar os caçadores e dar ao grupo mais chances de alcançar o outro lado da área antes de serem capturados. O confronto direto nunca é uma opção. Se um membro do grupo for descoberto, a cena se transforma imediatamente em uma perseguição, colocando todos em risco. O tempo corre contra os jogadores—e hesitar pode ser fatal.", fundo: "imagens/regras_fundo4.jpg" },
-  { src: "imagens/regras_fundo2.jpg", titulo: "Cenas de Perseguições Normais e Diabólicas", texto: "Quando lutar não é uma opção, resta apenas uma escolha: correr. As cenas de perseguição colocam os jogadores em um embate direto contra seus predadores, onde velocidade e resistência são as únicas esperanças de sobrevivência. A perseguição é resolvida em rodadas, com os jogadores realizando testes contra a Dificuldade Total (DT) da criatura, que pode variar de 10 (fácil) até 25 (apex), além dos bônus que ela possui para correr ou caçar. Atributos e Testes: Agilidade (Correr): Usado quando a fuga depende da velocidade e reflexos do personagem, Vigor (Atletismo): Utilizado em perseguições longas, onde manter o ritmo e não perder o fôlego é mais importante do que a velocidade bruta. A perseguição dura 5 rodadas. Se um jogador falhar 3 vezes, ele perde o ritmo e deve fazer um teste de esquiva com -5 por estar abalado mentalmente por ser escolhido. Caso falhe, ele é alcançado e recebe um ataque especial da criatura, geralmente um agarrão, sendo capturado e eliminado enquanto os outros continuam fugindo. Perseguições Diabólicas: O auge do terror, onde a adrenalina toma conta e cada um luta por sua própria vida. Aqui, os jogadores podem usar dados de determinação para tentar virar o jogo. Mas há um detalhe cruel: ninguém é obrigado a ajudar os outros. Empurrar um aliado para trás, bloquear uma passagem ou até mesmo sacrificá-lo pode ser o único caminho para escapar. Afinal, em uma perseguição mortal, só há um objetivo: não ser o mais lento.", fundo: "imagens/regras_fundo2.jpg" },
+  { src: "imagens/regras_fundo4.jpg", titulo: "Cenas de Campo Furtivo", texto: "Diferente da furtividade tradicional, o Campo Furtivo ocorre quando os jogadores já foram detectados e estão sendo caçados. Eles devem atravessar um campo dividido em quadrantes, blocos ou qualquer estrutura que o mestre definir, enquanto os predadores patrulham de forma imprevisível, movendo-se mais de um espaço por turno. Os jogadores avançam de um em um, podendo usar o ambiente para criar distrações, armadilhas ou esconderijos temporários, mas nunca enfrentando os caçadores diretamente. O mestre tem total liberdade para adaptar o cenário, o comportamento dos predadores e o nível de tensão, tornando cada tentativa única e imprevisível. Se um jogador for descoberto, a cena se torna uma perseguição, colocando todos em risco. O tempo é limitado e qualquer hesitação pode ser fatal.", fundo: "imagens/regras_fundo4.jpg" },
+  { src: "imagens/regras_fundo2.jpg", titulo: "Cenas de Perseguições Normais e Diabólicas", texto: "Quando lutar não é uma opção, resta apenas correr. Nas perseguições, os jogadores enfrentam seus predadores em uma disputa de velocidade e resistência, testando Agilidade (correr) ou Vigor (atletismo) contra a DT da criatura (10 a 25 escalando por tamanho do caçador), incluindo seus bônus. A fuga dura 5 rodadas; falhar 3 vezes faz o jogador perder o ritmo, exigindo um teste de esquiva (-5). Se falhar, é capturado e atacado de maneira brutal. Em Perseguições Diabólicas, o pânico domina: dados de determinação podem ser usados, mas ninguém é obrigado a ajudar. Empurrar aliados ou sacrificá-los pode ser a única forma de sobreviver.", fundo: "imagens/regras_fundo2.jpg" },
   { src: "imagens/regras_fundo5.jpg", titulo: "Cenas de Encontro Mortal", texto: "Encontros Mortais ocorrem quando uma criatura ou chefe sofre mutações arcanas extremas, tornando-se brutalmente injusto. Nessas lutas, ela ganha +3 dados de dano em todas as habilidades, Vida Acelerada (+30 de vida por rodada), duas ações padrão, Ações de Fatalidade Aprimoradas que executam alvos livremente, dano de sanidade para todos próximos e um impacto direto na Ilha. O grupo só tem duas opções: lutar ou fugir, mas qualquer erro pode ser fatal.", fundo: "imagens/regras_fundo5.jpg" },
   { src: "imagens/regras_fundo6.jpg", titulo: "Aventura de Masmorras", texto: "Nas masmorras do Ark, o grupo ou tribo pode acampar ou encontrar um ponto seguro para recuperar vida, sanidade e reparar equipamentos. Durante a exploração, eventos como emboscadas, salas secretas, lutas e armadilhas podem ocorrer. Ao acamparem, poderão ver os próximos eventos nos dois corredores mais próximos.", fundo: "imagens/regras_fundo6.jpg" },
+  { src: "imagens/regras_fundo7.jpg", titulo: "Cenas de Desafio Animal", texto: "Cenas de Desafio Animal ocorrem quando o grupo enfrenta um adversário estratégico que reconhece sua força e prefere um confronto indireto, utilizando criaturas para lutar à distância. Nessa mecânica, os animais do grupo se tornam cartas com valores de vida e dano, além de uma habilidade característica única. O combate ocorre entre essas cartas, onde cada criatura tem seu valor determinado pela resistência (1 ponto a cada 80 PV) e pelo poder ofensivo (1 ponto a cada 50 de dano). O objetivo é superar as cartas inimigas para abrir caminho sem que os jogadores sejam atacados diretamente. Quando um número chega a zero, a criatura correspondente é derrotada, forçando o jogador a aceitar a perda e seguir em frente sem ela.", fundo: "imagens/regras_fundo7.jpg" },
+  { src: "imagens/regras_fundo8.jpg", titulo: "Cenas de Desafio de Enigma", texto: "Cenas de Desafio de Enigma acontecem quando o grupo se depara com um obstáculo que não pode ser superado pela força bruta, uma porta que não se abre, uma criatura imune a dano ou um caminho oculto. Para avançar, é necessário decifrar o enigma por meio de pistas deixadas na história, símbolos, traduções ou padrões ocultos no cenário. A solução pode exigir lógica, criatividade ou um conhecimento profundo do mundo ao redor, forçando os jogadores a pensar antes de agir.", fundo: "imagens/regras_fundo8.jpg" },
+  { src: "imagens/regras_fundo9.jpg", titulo: "Cenas de Enigma de Domesticação", texto: "Cenas de Enigma de Domesticação ocorrem quando os jogadores têm a chance de domar uma criatura, mas, ao invés de um simples teste, o mestre pode introduzir um enigma baseado na personalidade ou características do animal. Esse enigma pode envolver ações específicas, alimentação adequada, imitações ou interações estratégicas que conduzam à domesticação. Todas as criaturas da ilha podem ser domadas, mas o grau de dificuldade varia: desafios fáceis (DT 5) exigem poucas ações para ganhar a confiança da fera, enquanto domesticações extremamente difíceis (DT 600) demandam estratégias precisas e grande dedicação.", fundo: "imagens/regras_fundo9.jpg" },
+  { src: "imagens/regras_fundo10.jpg", titulo: "Cenas de Rivalidade", texto: "Cenas de Rivalidade são eventos raros onde um animal do grupo enfrenta um inimigo para proteger seus aliados, mas, por estar enfraquecido, precisa da ajuda de seu dono. Nessa conexão única, jogador e criatura se tornam um só: o animal fornece o corpo físico, enquanto o dono assume a mente, permitindo que joguem juntos utilizando a ficha da criatura, sua mutação e evolução elemental. Após essa fusão, os dois ganham a habilidade de se unir novamente em outras situações, por um período de 1d8 rodadas, antes de entrarem em fadiga e ficarem totalmente cansados", fundo: "imagens/regras_fundo10.jpg" },
+  { src: "imagens/regras_fundo11.jpg", titulo:"Cenas de Pesadelo", texto: "Cenas de Pesadelo ocorrem quando os personagens estão aflitos ou sobrecarregados pelos horrores da Ilha. Se passarem por eventos traumáticos ou impactantes, suas mentes tentam se proteger, manifestando seus medos em sonhos intensos. Os jogadores podem superar esses traumas gradualmente ou enfrentá-los diretamente no pesadelo. No entanto, essas provações são extremamente desafiadoras e oferecem apenas uma única chance de superação. Se falharem, a condição persiste até ser vencida naturalmente, tornando-se um peso constante em sua jornada.", fundo: "imagens/regras_fundo11.jpg" },
+  { src: "imagens/regras_fundo12.jpg", titulo:"Cenas de Caçada Sombria", texto: "Cenas de Caçada Noturna ocorrem quando um jogador ou o grupo passam três dias seguidos sem cumprir objetivos ou demonstrar vontade de avançar. O Ark é um ciclo de transformação e evolução, ficar estagnado é um risco. Quando isso acontece, os personagens são puxados para um sonho compartilhado com outros NPCs afetados, onde precisam sobreviver contra uma criatura que devora sonhos e reduz todos os atributos até 1. Se falharem no combate ou na fuga, despertam feridos e com todos os atributos reduzidos a 1, forçados a recuperar sua força no mundo real.", fundo: "imagens/regras_fundo12.jpg" },
+  { src: "imagens/regras_fundo13.jpg", titulo:"Cenas de Tutorial", texto: "Cenas de Tutorial ocorrem quando um jogador entra no Ark pela primeira vez, enfrentando um desafio que exige o uso de sua mutação para superá-lo. Caso seja um smurf (já tenha jogado em outra mesa), pode tentar sem usá-la. O objetivo é apresentar o mundo e prepará-lo para os perigos que virão.", fundo: "imagens/regras_fundo13.jpg" },
 ];
 
 let indiceAtual = 0;
@@ -231,5 +264,6 @@ function trocarImagem(direcao) {
   document.body.style.backgroundImage = `url(${imagens[indiceAtual].fundo})`;
   document.querySelector(".fundo-blur").style.backgroundImage = `url(${imagens[indiceAtual].fundo})`;
 }
+
 
   

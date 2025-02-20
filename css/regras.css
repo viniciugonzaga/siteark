@@ -661,133 +661,11 @@ nav {
   }
   @media (max-width: 1080px) {
     #texto {
-        font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
+        font-size: 1rem; /* Diminui o tamanho da fonte em telas médias */
     }
 
   }
-  .container {
-    display: flex;
-    gap: 20px;
-    width: 80%;
-    max-width: 1200px;
-    padding: 20px;
-    background: #351010af;
-    border: solid 2px #faa80e;
-    box-shadow: 0 4px 8px rgba(240, 206, 13, 0.856);
-    border-radius: 5%;
-    margin: auto; /* Centraliza horizontalmente na página */
-    margin-bottom: 5%;
-}
-
-.topicos {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 200px;
-    border: solid 2px #faa80e;
-    border-radius: 5%;
-    text-align: center;
-}
-
-.topicos li {
-    padding: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    color: #fff5bb;
-    text-shadow: 0 0 10px #e0b31c, 0 0 30px #cfcd3a;
-    text-align: center;
-}
-
-.topicos li:hover {
-    background-color: #3d0404c2;
-}
-
-.bloco-conteudo {
-    flex: 1;
-    position: relative;
-    border-radius: 10px;
-    padding: 20px;
-    color: rgb(255, 228, 73);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    box-shadow: 0 4px 8px rgba(250, 237, 53, 0.3);
-    text-align: center;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px;
-    background-image: url('../imagens/regras_menu.jpg');
-}
-
-.bloco-conteudo::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
-    border-radius: 10px;
-}
-
-.titulo {
-    position: relative;
-    z-index: 2;
-    font-size: 30px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-shadow: 1px 1px 5px rgba(245, 229, 137, 0.7);
-}
-
-.texto {
-    position: relative;
-    z-index: 2;
-    font-size: 18px;
-    line-height: 1.5;
-    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
-    background-color: #3d0404c2;
-    border-radius: 5%;
-    padding: 10px;
-}
-
-/* Responsividade para telas com até 780px */
-@media screen and (max-width: 1080px) {
-    .container {
-      
-        margin-left: 0;
-        width: 80%;
-        margin: 5%;
-        margin: auto; /* Centraliza horizontalmente na página */
-    }
-
-    .topicos {
-      
-        margin-bottom: 10px;
-    }
-
-    .topicos li {
-      
-        text-align: center; /* Centraliza o texto dos tópicos */
-    }
-
-    .bloco-conteudo {
-        width: 100%; /* A largura do conteúdo ocupa 100% */
-        height: auto;
-        padding: 6px;
-    }
-
-    .titulo {
-        font-size: 18px; /* Ajusta o tamanho da fonte do título */
-    }
-
-    .texto {
-        font-size: 12px; /* Ajusta o tamanho da fonte do texto */
-    }
-}
+ 
 
 
 .carrossel {
@@ -839,7 +717,7 @@ img {
     background: none;
     border: none;
     font-size: 2rem;
-    color: rgb(161, 1, 1);
+    color: rgb(253, 207, 2);
     cursor: pointer;
     padding: 10px;
     
@@ -873,7 +751,7 @@ h3{
 }
 @media (max-width: 780px) {
     .carrossel {
-        width: 95%;  /* Aumenta a largura para usar melhor o espaço em telas pequenas */
+        width: 90%;  /* Aumenta a largura para usar melhor o espaço em telas pequenas */
         margin: 1% auto;  /* Ajusta a margem */
     }
 
@@ -893,17 +771,170 @@ h3{
     }
 
     .seta {
-        font-size: 1.5rem;  /* Diminui o tamanho das setas */
+        font-size: 1.4rem;  /* Diminui o tamanho das setas */
         padding: 8px;  /* Ajusta o padding */
     }
 
     h3 {
-        font-size: 1.5rem;  /* Diminui o tamanho da fonte */
+        font-size: 1.3rem;  /* Diminui o tamanho da fonte */
     }
 
     #textoDescricao {
-        font-size: 1rem;  /* Ajusta o tamanho da fonte */
+        font-size: 0.8rem;  /* Ajusta o tamanho da fonte */
         padding: 8px;  /* Diminui o padding */
+    }
+}
+
+/* Container dos botões */
+.container-botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 2%;
+}
+
+/* Estilização dos botões */
+.botao-interativo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #faa80e;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.botao-interativo2 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #d48001;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+.botao-interativo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ebc418;
+}
+.botao-interativo2:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff0202;
+}
+
+
+.conteudo-exibido {
+    display: none; /* Continua oculto até ser acionado */
+    margin-top: 30px;
+    padding: 20px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.938), rgba(34, 2, 2, 0.877),  rgba(53, 4, 4, 0.863), rgba(87, 4, 4, 0.829),rgb(68, 3, 3)); /* Gradiente de fundo */
+    border: 2px solid #faa80e;
+    border-radius: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 0 15px rgba(250, 168, 14, 0.5);
+}
+
+/* Crie um wrapper interno para centralizar os elementos */
+.centralizar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Estilização do título */
+#titulo-conteudo {
+    font-size: 1.9rem;
+    font-weight: bold;
+    color: #faa80e;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    
+}
+
+/* Estilização do texto */
+.paragrafo-conteudo {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ddd;
+}
+
+/* Estilização da imagem exibida */
+#imagem-selecionada {
+    width: 100%;       /* Ajusta a largura em porcentagem */
+    height: auto;     /* Mantém a proporção da imagem */
+    max-width: 150px; /* Limite máximo para telas maiores */
+    border-radius: 10px;
+    border: 2px solid #faa80e;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#mecanica-dinamica{
+
+ font-size: 1.5rem;   
+ text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+}
+/* Centralizar o contêiner da imagem e do título */
+.meio {
+    display: flex;
+    flex-direction: column; /* Coloca os itens um abaixo do outro */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: center; /* Centraliza verticalmente (se necessário) */
+    text-align: center;
+}
+
+/* Garante que a div de conteúdo também esteja centralizada */
+#area-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+@media screen and (max-width: 1080px) {
+    .container-botoes {
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .botao-interativo,
+    .botao-interativo2 {
+        width: 80px;
+        height: 80px;
+    }
+    #titulo-conteudo {
+        font-size: 1.7rem;
+    }
+    #mecanica-dinamica {
+        font-size: 1.3rem;
+    }
+    .paragrafo-conteudo {
+        font-size: 14px;
+    }
+    #imagem-selecionada {
+        max-width: 120px;
+    }
+    /* Classe para aplicar o efeito de glow na borda */
+    .active-glow {
+        animation: redGlow 2s infinite;
+        transform: scale(1.1);
+        
+    }
+    @keyframes redGlow {
+        0%, 100% { box-shadow: 0 0 0px red; }
+        50% { box-shadow: 0 0 45px red; }
     }
 }
 /* Geral do footer ------------------------------------------------------------------------------*/

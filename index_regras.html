@@ -121,23 +121,28 @@
     </div>
 
       
-      <div class="container">
-        <ul class="topicos">
-            <li data-id="1">1. Mecânicas</li>
-            <li data-id="2">2. Fatalidade</li>
-            <li data-id="3">3. Combate</li>
-            <li data-id="4">4. Furtividade</li>
-            <li data-id="5">5. Tempos de Recarga</li>
-            <li data-id="6">6. Domesticação</li>
-            <li data-id="7">7. Críticos e Danos</li>
-   
-      
-        </ul>
-        <div class="bloco-conteudo">
-            <h2 class="titulo">Bem-vindo As Regras Gerais</h2>
-            <p class="texto">Neste bloco, você verá as regras gerais e as mecânicas importantes do RPG.Como ações e turnos, mecânicas de luta ou domesticação de animais dentro do ark</p>
-        </div>
-    </div>
+    <<!-- Botões interativos -->
+<div class="container-botoes">
+  <button class="botao-interativo" id="botao1" data-index="0" style="background-image: url('imagens/regras_icon1.jpg');" onclick="exibirConteudo(0)"></button>
+  <button class="botao-interativo" id="botao2" data-index="1" style="background-image: url('imagens/regras_icon2.jpg');" onclick="exibirConteudo(1)"></button>
+  <button class="botao-interativo" id="botao3" data-index="2" style="background-image: url('imagens/regras_icon3.jpg');" onclick="exibirConteudo(2)"></button>
+  <button class="botao-interativo" id="botao4" data-index="3" style="background-image: url('imagens/regras_icon4.jpg');" onclick="exibirConteudo(3)"></button>
+  <button class="botao-interativo2" id="botao5" data-index="4" style="background-image: url('imagens/regras_icon5.jpg');" onclick="exibirConteudo(4)"></button>
+</div>
+
+<!-- Área onde o conteúdo será exibido -->
+<div id="area-conteudo" class="conteudo-exibido">
+  <div class="centralizar">
+    <img id="imagem-selecionada" src="imagens/regras_icon6.jpg" alt="Imagem do botão selecionado">
+    <h2 id="titulo-conteudo">
+      Escolha sua Mecânica do Rpg: <br>
+      <strong id="mecanica-dinamica">. . .</strong>
+    </h2>
+  </div>
+  <p class="paragrafo-conteudo" id="paragrafo1"></p>
+  <p class="paragrafo-conteudo" id="paragrafo2"></p>
+  <p class="paragrafo-conteudo" id="paragrafo3"></p>
+</div>
 
         
     
