@@ -167,27 +167,7 @@ function exibirConteudo(botaoIndex) {
       "Interlúdio...",
       "Vantagens e Desvantagens..."
     ];
-    const paragrafos = [
-      ["", 
-      "", 
-      ""],
-
-      ["", 
-      "", 
-      ""],
-
-      ["", 
-      "",
-      ""],
-
-      ["",
-      "", 
-      ""],
-
-      ["", 
-      "", 
-      ""]
-    ];
+   
 
      // Atualiza os elementos com o conteúdo selecionado
      document.getElementById("imagem-selecionada").src = imagens[botaoIndex];

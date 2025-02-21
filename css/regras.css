@@ -543,7 +543,7 @@ nav {
     100% { width: 50px; }
 }
 /* Responsividade */
-@media (max-width: 1120px) {
+@media (max-width: 780px) {
     .titulo_efeito {
         font-size: 2.2rem; /* Diminui o tamanho da fonte em telas médias */
     }
@@ -560,6 +560,26 @@ nav {
         100% { width: 50px; }
     }
 }
+ .explicacao-regras{
+    padding: 10px;
+    text-shadow: 0 0 10px #e0b31c, 0 0 30px #cfcd3a;
+    text-align: center;
+    font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
+    margin: 0 auto;
+    color: #fff5bb;
+    background-color: #3b0202d7;
+    border-radius: 10px;
+    width: 80%
+  
+ }
+ @media (max-width: 780px) {
+    .explicacao-regras {
+        font-size: 0.8rem; /* Diminui o tamanho da fonte em telas médias */
+        width: 70%;
+        padding: 5px;
+    }
+}
+
 
 /* Container central */
 #container-central {
