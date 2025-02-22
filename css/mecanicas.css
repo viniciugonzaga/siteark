@@ -602,6 +602,7 @@ nav {
     border: 2px solid #dbcd03b0;
     transition: width 0.3s ease-in-out; /* Suaviza a mudança de tamanho */
     margin-left: 3%;
+    padding: 10px;
 }
 
 /* Ajuste para telas menores */
@@ -707,6 +708,7 @@ strong {
     .container, .wrapper, .section {
         width: 85%;
         font-size: 1rem;
+        text-align: center;
     }
     
     /* Reorganiza o bloco texto + imagem para empilhar os elementos */
@@ -720,7 +722,7 @@ strong {
     .text-img img {
         width: 70%;
         max-width: 400px;
-        margin: 0 auto 20px auto;
+       
         margin: 0 auto;
     }
     
