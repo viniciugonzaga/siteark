@@ -1,8 +1,9 @@
+
 /* Estilo Geral----------------------------------------------------------------------- */
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/mecanicas_lobby.jpg') no-repeat center center fixed;
+    background: url('../imagens/perigos_lobby.jpg') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
@@ -518,11 +519,9 @@ nav {
     max-width:319px;
     color: #fff5bb;
     text-shadow:
-      0 0 5px #ff0077,   /* Primeira camada de brilho vermelho */
-      0 0 10px #ff0022,  /* Segunda camada laranja */
-      0 0 20px #ff00bf,  /* Terceira camada mais forte */
-      0 0 40px #ff4784,  /* Camada de brilho maior */
-      0 0 80px #ff0040;  /* Brilho externo */
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
 }
 
 .titulo_efeito:after {
@@ -532,7 +531,7 @@ nav {
     left: 50%;
     transform: translateX(-50%);
     height: 4px;
-    background: linear-gradient(90deg, #f54580b9,#9c2727ce, #f54580c4);
+    background: linear-gradient(90deg, #f5da45,#9c2727, #f5da45);
     animation: wave 8s infinite;
 }
 
@@ -545,7 +544,7 @@ nav {
     100% { width: 50px; }
 }
 /* Responsividade */
-@media (max-width: 1120px) {
+@media (max-width: 780px) {
     .titulo_efeito {
         font-size: 2.2rem; /* Diminui o tamanho da fonte em telas médias */
     }
@@ -563,212 +562,18 @@ nav {
     }
 }
 
-/* Estrutura principal */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    width: 90%;
-    margin: auto;
-    font-size: 1.3rem;
-    text-align: justify;
-}
 
-/* Estilo das caixas */
-.box {
-    background: radial-gradient(circle, rgba(83, 2, 26, 0.918), rgba(65, 3, 39, 0.925), rgb(68, 3, 25));
-    padding: 20px;
-    width: 100%;
-    color: #fff384;
-    border-radius: 10px;
-}
 
-/* Organização do primeiro bloco (parágrafo + imagem) */
-.text-img {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
 
-/* Ajuste do tamanho da imagem proporcionalmente ao texto */
-.text-img img {
-    width: 40%; /* Ajusta dinamicamente conforme a largura do contêiner */
-    max-width: 400px; /* Limite máximo para evitar distorção */
-    min-width: 300px; /* Tamanho mínimo para manter a legibilidade */
-    height: auto;
-    border-radius: 10px;
-    border: 2px solid #dbcd03b0;
-    transition: width 0.3s ease-in-out; /* Suaviza a mudança de tamanho */
-    margin-left: 3%;
-    padding: 10px;
-}
 
-/* Ajuste para telas menores */
-@media (max-width: 1080px) {
-    .text-img img {
-        width: 35%; /* Ajusta a imagem em telas intermediárias */
-        max-width: 300px;
-    }
-}
-
-/* Ajuste para telas ainda menores */
-@media (max-width: 768px) {
-    .text-img img {
-        width: 30%; /* Aumenta o tamanho proporcionalmente em telas menores */
-        max-width: 150px;
-    }
-}
-
-/* Título */
-h2 {
-    padding: 10px;
-    width: 90%;
-    color: #fffef9;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 2.3rem;
-    margin: 0 auto;
-    text-shadow: 0 0 5px #ff0077, 0 0 40px #ff4784, 0 0 80px #ff0040;
-}
-
-/* Destaques */
-strong {
-    text-shadow:
-      0 0 5px #ff0077,  /* Primeira camada de brilho vermelho */
-      0 0 10px #ff0022, /* Segunda camada laranja */
-      0 0 20px #ff00bf, /* Terceira camada mais forte */
-      0 0 40px #ff4784, /* Camada de brilho maior */
-      0 0 80px #ff0040; /* Brilho externo */
-}
-
-/* Estrutura principal */
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    width: 90%;
-    margin: auto;
-    font-size: 1.3rem;
-    text-align: justify;
-    margin-top: 1%;
-}
-
-/* Estilo das seções */
-.section {
-    background: radial-gradient(circle, rgba(83, 2, 26, 0.918), rgba(65, 3, 39, 0.925), rgb(68, 3, 25));
-    padding: 20px;
-    width: 90%; /* Reduzi para evitar que o texto fique muito esticado */
-    text-align: justify;
-    color: #fff384;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column; /* Organiza os elementos verticalmente */
-    align-items: center;
-    margin: 0 auto; /* Centraliza a seção */
-}
-
-/* Ajuste do tamanho da imagem */
-.section img {
-    width: 60%; /* Ajusta dinamicamente conforme a largura do contêiner */
-    max-width: 400px; /* Limite máximo para evitar distorção */
-    height: auto;
-    border-radius: 10px;
-    border: 2px solid #dbcd03b0;
-    transition: transform 0.3s ease-in-out;
-    margin-bottom: 20px; /* Espaçamento entre a imagem e o texto */
-}
-
-/* Ajuste para telas menores */
-@media (max-width: 768px) {
-    .section {
-        width: 90%;
-    }
-
-    .section img {
-        width: 80%; /* Torna a imagem mais responsiva */
-        max-width: 300px;
-    }
-}
-
-/* Destaques */
-.highlight {
-    text-shadow:
-      0 0 5px #ff0077,
-      0 0 10px #ff0022,
-      0 0 20px #ff00bf,
-      0 0 40px #ff4784,
-      0 0 80px #ff0040;
-}
-
-/* Mídia query para telas com largura de até 1080px */
-@media (max-width: 780px) {
-    
-    .container, .wrapper, .section {
-        width: 85%;
-        font-size: 1rem;
-        text-align: center;
-    }
-    
-    /* Reorganiza o bloco texto + imagem para empilhar os elementos */
-    .text-img {
-        flex-direction: column;
-        align-items: center;
-        margin: 0 auto;
-    }
-    
-    /* Ajusta o tamanho da imagem para melhor adaptação */
-    .text-img img {
-        width: 70%;
-        max-width: 400px;
-       
-        margin: 0 auto;
-    }
-    
-    h2 {
-        width: 95%;
-        font-size: 2rem;
-    }
-    
-    /* Se necessário, ajuste as imagens das seções */
-    .section img {
-        width: 80%;
-        max-width: 350px;
-    }
-    
-}
-
-.final{
-justify-items: center;
-margin: 0 auto;
-align-items: center;
-}
-
-.final img{
-    width: 100%; /* Ajusta dinamicamente conforme a largura do contêiner */
-    height: auto;
-    border-radius: 10px;
-    border: 2px solid #dbcd03b0;
-    background-color: #57023db7;
-    transition: transform 0.3s ease-in-out;
-   
-}
-@media (max-width: 780px) {
-    .final img{
-        width: 60%; /* Ajusta dinamicamente conforme a largura do contêiner */
-       
-    }
-}
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {
-    background: radial-gradient(circle, rgba(83, 2, 42, 0.918), rgba(65, 3, 39, 0.925), rgb(68, 3, 41));
+    background: linear-gradient(45deg,#792525c2,#3d0404c2);
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    margin-top: 2%
+    margin-top: 2%;
     
   }
   

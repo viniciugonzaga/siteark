@@ -571,7 +571,7 @@ nav {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #503e0d9a;;
+    background-color: #503e0dc4;
     border-radius: 10%;
     border: 3px solid #f2fc65;
   }
@@ -588,23 +588,18 @@ nav {
 
   .display-area p {
     margin-top: 3%;
-    font-size: 1.2rem; /* Reduzi um pouco o tamanho da fonte para caber melhor */
+    font-size: 1.1rem; /* Reduzi um pouco o tamanho da fonte para caber melhor */
     line-height: 1.6; /* Ajusta o espaçamento entre linhas */
-    color: #444; /* Uma cor neutra para maior contraste */
-    background: linear-gradient(45deg, #f7c420, #ffe817, #fffdfd, #fffc38, #fce6e6);
-    background-size: 300%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradiente-animado 4s ease infinite;
+    color: #ffeeb6; /* Uma cor neutra para maior contraste */
+  
     max-width: 800px; /* Define uma largura máxima para centralizar melhor */
     margin: 2% auto; /* Centraliza na tela */
    
     border: 1px solid #ffcc00; /* Opcional: borda decorativa */
-    border-radius: 10%; /* Bordas arredondadas */
+    border-radius: 65px; /* Bordas arredondadas */
     padding: 15px 40px; /* Adiciona espaçamento interno */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para realçar */
-    background-color: #fdfdfd; /* Fundo leve para destacar o texto */
+    background-color: #312f24e0; /* Fundo leve para destacar o texto */
   }
   
   /* Gradiente animado */
@@ -644,16 +639,16 @@ nav {
     /* Container Principal */
     .gallery-container {
       gap: 15px; /* Reduz o espaço entre os elementos */
-     width: 90%;
+      width: 95%;
      
-     margin-left: 5%;
+     margin: 0 auto;
     }
   
     /* Área de Exibição */
     .display-area {
       padding: 10px; /* Adiciona espaçamento interno */
       border-radius: 8%; /* Ajusta o arredondamento */
-      width: 80%;
+      width: 90%;
     }
   
     .display-area img {
@@ -662,10 +657,8 @@ nav {
     }
   
     .display-area p {
-      font-size: 0.9rem; /* Reduz um pouco o tamanho do texto */
+      font-size: 0.8rem; /* Reduz um pouco o tamanho do texto */
       padding:  5%; /* Ajusta o espaçamento interno */
-      width: 90%;
-      color: #fffb1f;
     }
   
     /* Lista de Ícones */
@@ -825,7 +818,7 @@ nav {
     border: 2px solid #54c6f3; /* Borda colorida */
     background-color: #101f4985; /* Cor de fundo da .container */
     margin-bottom: 5%;
-    margin-left: 15%;
+    margin: 0 auto;
     border-radius: 10%;
   }
   
@@ -907,7 +900,7 @@ nav {
     border: 2px solid #c25b06c9; /* Borda colorida */
     background-color: #994c0485; /* Cor de fundo da .container */
     margin-bottom: 5%;
-    margin-left: 15%;
+    margin: 0 auto;
     border-radius: 10%;
   }
   
@@ -989,7 +982,7 @@ nav {
     width: 80%;
     max-width: 700px; /* Limita a largura */
     margin: auto; /* Centraliza horizontalmente na página */
-    background-color: #4e333785; /* Cor de fundo */
+    background-color: #4e3337c2; /* Cor de fundo */
     padding: 20px;
     border: 3px solid #8f0303; /* Borda colorida */
     border-radius: 10%;
@@ -1019,7 +1012,7 @@ nav {
     margin-top: 15px;
     font-size: 1.3em;
     color: #fce684; /* Cor do texto */
- 
+    background-color: #473129ec; /* Cor de fundo */
     line-height: 1.6;
     border: 3px solid #be0404; /* Borda colorida */
     border-radius: 10%;

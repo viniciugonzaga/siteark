@@ -924,9 +924,9 @@ h3{
     text-align: center;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 780px) {
     .container-botoes {
-        gap: 15px;
+        gap: 8px;
         margin-top: 15px;
     }
     .botao-interativo,
@@ -964,6 +964,7 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
+    margin-top: 2%;
     
   }
   
