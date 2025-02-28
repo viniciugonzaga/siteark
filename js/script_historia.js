@@ -104,6 +104,7 @@ const imageData = [
         title: "Os Morgoths",
         desc: "'Toda rosa linda tem seus espinhos.' Os Morgoths nasceram das sombras de um passado sombrio, um legado macabro deixado pelos eventos da Guerra dos Cem Dias. Originalmente Elfos, eles foram capturados e aprisionados nos porões de guerra do Império Gladius, onde o sofrimento e a negligência moldaram sua transformação. Esquecidos no subterrâneo, longe da luz do sol e da esperança, esses Elfos evoluíram, ou melhor, decadiram, tornando-se algo completamente diferente. Sem comida suficiente, sem água limpa e sem a promessa de resgate, os Elfos prisioneiros foram lentamente sucumbindo à insanidade. A escuridão moldou suas mentes e corpos, fazendo-os mais pálidos, mais fortes e insensíveis à dor. Com os recursos tão escassos, eles passaram a alimentar-se de si mesmos, bebendo o sangue e devorando a carne dos mais fracos, tudo em nome da sobrevivência. Foi nesse ambiente de desespero que abandonaram sua identidade original e se autodenominaram Morgoths, que significa 'os Orcs dos Antigos Dias'. O ódio por aqueles que os aprisionaram e o desejo de vingança os consumiu, e sua humanidade (ou elficidade) foi completamente apagada, substituída por uma ferocidade animalesca e insaciável. Enquanto os Morgoths se organizavam em meio à loucura, surgiu um líder: o General Morgoth, um dos prisioneiros mais resilientes e astutos. Em uma demonstração de força absoluta, ele matou seu próprio pai o último elo que ainda o conectava à sua antiga vida como Elfo e assumiu o comando da tribo. Ele era, nas palavras dos sobreviventes, um leão em meio a cães famintos, liderando seu povo com uma combinação de brutalidade e inteligência. Após se libertarem dos porões, os Morgoths iniciaram uma rebelião sangrenta, mas sua existência como facção ativa foi breve.  Tornaram-se pálidos, resistentes à dor, e completamente insanos devido às condições brutais de confinamento e à prática de canibalismo. Um ódio ardente contra todos que os fizeram sofrer, transformando-os em uma força de destruição e caos. 'Nas trevas, onde a luz nunca chega, e o ódio é a única chama, nasce um novo predador um leão entre cães famintos, pronto para devorar o mundo."
     },
+    
     {
         src: "imagens/icone_precursor.jpg",
         title: "Os Precursores",
@@ -123,6 +124,16 @@ const imageData = [
         src: "imagens/icone_magos.jpg",
         title: "A Irmandade Arcana",
         desc: "A Irmandade Arcana é uma tribo distinta no Ark, conhecida por seu vasto conhecimento em conjuração e magia arcana. Mestres das línguas e culturas das outras civilizações, são um grupo de anciões sábios que buscam a preservação da ilha, dedicando suas vidas a manter o equilíbrio dentro dos ciclos do Ark. Sua missão é auxiliar sobreviventes perdidos e impedir aqueles que ameaçam a estabilidade do mundo. Por séculos, enfrentaram incontáveis guerras contra criaturas e armas de eras diferentes, testemunhando a ascensão e queda de civilizações. Mesmo diante do caos, permanecem fiéis à sua causa, protegendo a ilha com sabedoria e magia."
+    },
+    {
+        src: "imagens/icone_perdidos.png",
+        title: "A Desolação dos Caídos",
+        desc: "Os Perdidos são uma tribo isolada dos caídos, que habitam cidades em ruínas e vivem pacificamente, mas qualquer menção à sua origem ou ao segredo por trás dos símbolos arcanos os torna agressivos. Nesses casos, eles sacrificam forasteiros ao seu guardião. Cada tribo tem um protetor, geralmente um guerreiro ou ferreiro, responsável por lidar com estrangeiros e proteger a população. Devido à falta de contato com o sol, seus corpos são pálidos e distorcidos. Suas vilas são frias e silenciosas, e, se suas defesas falham, o líder se sacrifica para invocar um guardião natural da própria cidade."
+    },
+    {
+        src: "imagens/icone_orc.jpg",
+        title: "A legião Orc",
+        desc: "A Legião Orc é um grupo remanescente dos antigos Morgoths, que se distanciou de sua família original e agora segue novas regras conforme a vontade de seu líder. Vagueando pelas montanhas e pela neve, mantêm o mesmo objetivo de seus antepassados: exterminar todas as outras raças da ilha até que apenas seu povo reste, em vingança pelo que sofreram no passado. Para eles, os únicos em quem se pode confiar são aqueles que compartilham seu sangue."
     },
     
 ];
