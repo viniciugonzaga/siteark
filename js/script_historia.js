@@ -135,6 +135,16 @@ const imageData = [
         title: "A legião Orc",
         desc: "A Legião Orc é um grupo remanescente dos antigos Morgoths, que se distanciou de sua família original e agora segue novas regras conforme a vontade de seu líder. Vagueando pelas montanhas e pela neve, mantêm o mesmo objetivo de seus antepassados: exterminar todas as outras raças da ilha até que apenas seu povo reste, em vingança pelo que sofreram no passado. Para eles, os únicos em quem se pode confiar são aqueles que compartilham seu sangue."
     },
+    {
+        src: "imagens/icone_iberus.jpeg",
+        title: "Os Iberus",
+        desc: "A civilização dos Iberus é um império altamente avançado em tecnologia genética e industrial, consolidado por alianças estratégicas com os Gladius por meio de casamentos e acordos comerciais. A família Hegulos, embora abaixo do imperador, mantém grande riqueza e influência, garantindo acesso a armamento, poder bélico e criação de criaturas modificadas. Suas bases fortificadas, protegidas por muralhas de concreto, estão estrategicamente localizadas próximas ao mar, onde operam laboratórios de pesquisa de ponta."
+    },
+    {
+        src: "imagens/icone_anões.jpg",
+        title: "Os Anões",
+        desc: "Os anões são um povo recluso que habita o frio do norte da ilha, isolando-se devido às inúmeras guerras que enfrentaram. Com um forte senso de identidade, lidam apenas com sua própria tribo ou raça, nutrindo desconfiança em relação a outros povos. Embora não sejam estrategistas de guerra, são os melhores ferreiros da ilha, acumulando grande riqueza em minérios. Atualmente, a civilização está dividida após a morte do rei, e seus herdeiros travam uma intensa disputa pelo trono. O sucessor legítimo precisará provar sua dignidade ao restaurar o poder e a forja de seu povo."
+    },
     
 ];
   
