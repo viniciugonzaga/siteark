@@ -210,7 +210,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex',]
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex','Warden']
 };
 
 const dinoFichas = {
@@ -5561,7 +5561,30 @@ const dinoFichas = {
     ],
     "passiva": "Chamas Crescentes: Para cada inimigo queimando na cena, Golias recebe +5 em dano e regeneração de 5% da vida máxima por rodada. Se pelo menos 3 inimigos estiverem pegando fogo, ele ganha +1 dado(agi) extra por rodada.(limite 3)",
     "passivaElemental": "Inferno Azul: Qualquer ataque de Golias deixa chamas persistentes no solo e nos alvos atingidos. Essas chamas queimam até oxigênio puro, ignorando resistências normais ao fogo. Todos os ataques que acertam um alvo em chamas explodem, causando +4d10 de dano adicional em área."
-}
+},
+"Warden": {
+        "title": "O Guardião do Vazio",
+        "image": "imagens/dinos_warden.jpg",
+        "weight": "10 toneladas", 
+        "height": "4 M",
+        "width": "6 M",
+        "attributes": { "agi": 4, "for": 7, "int": 2, "pre": 6, "vig": 7 },
+        "life": 700,
+        "armor": 500,
+        "actionBonus": "+25 soco devastador, +20 giro, +20 vontade +20 fortitude, +20 arcano, +20 borça bruta, +20 espalhar, +20 combo, +30 parado +30 intimidação +20 grito aterrador, +20 investida esmagadora, +25 luta, +20 bloqueio, +15 contra-ataque, +15 rastreamento, +15 percepção e resistência, +40 resistir efeitos e venenos",
+        "attacks": [
+            "Soco Devastador: 8d12+50 2x (um golpe capaz de destruir rochas e estruturas. Se atingir um alvo, ele deve passar em um teste de Vigor ou ficará atordoado por 1 rodada).",
+            "Grito Aterrador: 6d10+30 (um rugido que afeta um raio de 15 metros. Todos os alvos devem passar em um teste de Sanidade ou ficarão em estado de *Pasmo* por 1d2 rodadas. O grito também revela qualquer inimigo oculto).",
+            "Investida Esmagadora: 7d10+40 (o Warden avança rapidamente contra um inimigo, causando dano e jogando-o a 5 metros de distância. Se o alvo colidir com uma superfície, sofre 3d10 de dano adicional)."
+        ],
+        "abilities": [
+            "Sculks Predatórios: O Warden pode detectar inimigos ocultos ao sentir suas vibrações. Criaturas em movimento em seu território não podem se esconder dele, caso sofra efeito de fogo, fica cego por uma rodada, podendo exergar apenas pelos rastros ou vibrações de seus fungos.",
+            "Ressurgir Imortal: Se for derrotado, o Warden retornará totalmente recuperado após um período, emergindo das trevas com fúria renovada. Sempre que ele retorna, sua velocidade aumenta em 50% e seu dano em 25%."
+        ],
+        "passiva": "Guardião Absoluto: Enquanto estiver em seu território, o Warden causa o dobro de dano na primeira rodada e se move 50% mais rápido. Seu faro e rastreamento tornam-se infalíveis, no começo da luta causa 50 pontos de sanidade pela sua presença.",
+        "passivaElemental": "Medo Primordial: Sempre que aparece pela primeira vez, ele causa o efeito *Pasmo* em todos que o enxergam e reduz imediatamente 150 pontos de Sanidade dos alvos."
+    },
+
 
 
 

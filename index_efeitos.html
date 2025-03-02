@@ -32,7 +32,7 @@
     </div>
     <!-- Botão Glow -->
     <div class="dado-container">
-        <img src="imagens/dado_terrestre.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+        <img src="imagens/dado_iridescente.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
     </div>
     
@@ -66,44 +66,19 @@
         <h1 class="titulo_efeito">Efeitos</h1>
     </div>
 
-   <div class="container">
-        <div class="coluna-esquerda">
-            <div class="efeito">Cegueira<i class="icon"></i></div>
-            <div class="efeito">Enjoado <i class="icon"></i></div>
-            <div class="efeito">Confuso<i class="icon"></i></div>
-            <div class="efeito">Alucinado <i class="icon"></i></div>
-            <div class="efeito">Trauma <i class="icon"></i></div>
-            <div class="efeito">Pasmo <i class="icon"></i></div>
-            <div class="efeito">Surdo <i class="icon"></i></div>
-            <div class="efeito">Mudo <i class="icon"></i></div>
-            <div class="efeito">Resistência<i class="icon"></i></div>
-            <div class="efeito">Cura <i class="icon"></i></div>
-        </div>
-        <div class="coluna-central">
-            <div class="efeito">sangrando <i class="icon"></i></div>
-            <div class="efeito">Hemorragia <i class="icon"></i></div>
-            <div class="efeito">torpor <i class="icon"></i></div>
-            <div class="efeito">agarrado<i class="icon"></i></div>
-            <div class="efeito">imobilizado <i class="icon"></i></div>
-            <div class="efeito">Quebrado<i class="icon"></i></div>
-            <div class="efeito">Agachado <i class="icon"></i></div>
-            <div class="efeito">Intimidade <i class="icon"></i></div>
-            <div class="efeito">Fraco<i class="icon"></i></div>
-            <div class="efeito">Lento <i class="icon"></i></div>
-            </div>
-         <div class="coluna-direita">
-            <h2>Detalhes do Efeito</h2>
-            <p id="descricao">Selecione um efeito para ver a descrição.</p>
-         </div>
-  <div>
-
-    <div class="main-container">
-      <!-- Botão para abrir o menu de mapas -->
-      <button id="btnSpawnV2" class="spawn-button-v2">
-          <a class="botão_atalho_v2" href="doenças.html">Doenças</a>
-      </button>
+    <div class="container">
+      <input type="text" class="search-bar" id="search" placeholder="Pesquisar efeitos...">
+      <div class="grid" id="effectsGrid"></div>
+      
+      <div class="modal" id="modal">
+          <div class="modal-content">
+              <img id="modalImg" src="" alt="Efeito">
+              <h2 id="modalTitle"></h2>
+              <p id="modalDescription"></p>
+              <button class="back-btn" onclick="closeModal()">Voltar</button>
+          </div>
+      </div>
   </div>
-  
        
 
       <!--footer----------------------------------------------------------------------------->

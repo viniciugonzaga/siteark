@@ -77,45 +77,98 @@ document.addEventListener("scroll", () => {
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
         footer.style.background = "linear-gradient(45deg,,#6b6a62a4,#857b7bad,#6b6a62a4)"; // Altera a cor do rodapé
     } else {
-        footer.style.background = "linear-gradient(45deg,,#6b6a62a4,#857b7bad,#6b6a62a4)"; // Mantém a cor padrão
+        footer.style.background = "linear-gradient(45deg,,#630909a4,#360404ad,#630909a4)"; // Mantém a cor padrão
     }
 });
-const efeitos = document.querySelectorAll('.efeito');
-const descricao = document.getElementById('descricao');
+const effects = [
+    { name: "Envenenado", img: "imagens/efeitos_icon1.jpg", description: "Recebe dano interno por rodada que pode variar e ignorar armadura, aplicando outras condições que são determinadas pelo veneno. Danos básicos: 1d8/3d8/6d8." },
+    { name: "Congelado", img: "imagens/efeitos_icon2.jpg", description: "Recebe dano interno, prendendo o alvo e fazendo perder 1 vig caso fracsse em um teste de fortitude até se aquecer novamente. Danos básicos: 2d12/3d12/4d12." },
+    { name: "Em Chamas", img: "imagens/efeitos_icon3.jpg", description: "Recebe dano de fogo por rodada até apagar a origem com alguma das ações. Dano básico: 2d6/4d6/6d6." },
+    { name: "Sobrecarregado", img: "imagens/efeitos_icon4.jpg", description: "Recebe dano elétrico que foi acumulado por rodadas, causando 2d8 a cada 30 pontos de dano de origem elétrica.(Ótimos Condutores duplicam o dano)" },
+    { name: "Sangrando", img: "imagens/efeitos_icon5.jpg", description: "Recebe pontos de dano interno por grande liberação de sangue continuo e faz mais rastros. Dano Básico: 2d12/3d12/4d12." },
+    { name: "Agarrado", img: "imagens/efeitos_icon6.jpg", description: "O alvo recebe desvantagem em reações e perde 1 dado de força e agilidade nas rolagens equanto estiver agarrado.(-5 + efeitos de ataque/habilidade/passiva)" },
+    { name: "Infectado", img: "imagens/efeitos_icon7.jpg", description: "O alvo contraiu uma doença ou vírus.(Efeitos de desvatagem variam)" },
+    { name: "Exposto a radiação", img: "imagens/efeitos_icon8.jpg", description: "O alvo está próximo ou interagindo com uma origem radioativa, os atributos serão alterados conforme o tempo, de forma permanente. Danos Básicos: +20/+30/+40 " },
+    { name: "Exposto ao ácido", img: "imagens/efeitos_icon9.jpg", description: "O alvo está próximo ou interagindo com uma origem ácida, recebendo o dano na armadura e na vida ao mesmo tempo até retirar a origem. Danos Básicos: 3d8+5 /+6d8+10 /9d8+15 " },
+    { name: "Corrompido", img: "imagens/efeitos_icon10.jpg", description: "O alvo está próximo ou interagindo com uma origem de Aether ou Elemento , recebendo o dano na vida álem de girar 1d2, caso caia 1 o alvo recebe o dano em dobro, caso seja 2 o alvo recebe uma habilidade desconhecida de forma permanente. Danos Básicos: 2d10/4d10/5d10" },
+    { name: "lento/Lentidão", img: "imagens/efeitos_icon11.jpg", description: "O alvo recebe uma desvatagem de -5 em todos os testes de agilidade e perde 1 agi temporáriamente. " },
+    { name: "Intimidado", img: "imagens/efeitos_icon12.jpg", description: "O alvo que ficar intimidado sofre o primerio ataque inimigo ou ação inimiga com +5 na rodada." },
+    { name: "Corajoso", img: "imagens/efeitos_icon13.jpg", description: "O alvo é imune a efeitos de medo ou controle mental durante a cena ou de forma permanente." },
+    { name: "Ódio/Rage", img: "imagens/efeitos_icon14.jpg", description: "O alvo causa +2 dados de dano, +5 em acertos de ataques, porém sempre precisa acerta um alvo na rodada ou na cena, até o efeito acabar. Duração Báscia: (1d4 + ficha)" },
+    { name: "Ágil", img: "imagens/efeitos_icon15.jpg", description: "O alvo recebe +1 de agi e +5 em todas as ações que envolvem se movimentar de forma frenética. Duração Básica: (1d4 + ficha)" },
+    { name: "Dilacerado", img: "imagens/efeitos_icon16.jpg", description: "O alvo sofre dano de sangramento interno e apenas metade de origens de cura, caso esteja sendo engolido, sofre -5 em todos os testes de força e vigor até o efeito acabar." },
+    { name: "Furtivo", img: "imagens/efeitos_icon17.jpg", description: "O alvo fica furtivo a ataques, ganhando +5 em reações e em ataques furtvios até o efeito acabar. (+ficha)" },
+    { name: "Protegido", img: "imagens/efeitos_icon18.jpg", description: "O alvo fica protegido de um certo ataque, condição ou temperatura, tomando menos dano ou sendo imune até o efeito acabar." },
+    { name: "Rasgo de vida", img: "imagens/efeitos_icon19.jpg", description: "O alvo pode causar dano físico e regenerar parte da vida conforme o dano do ataque. Rasgos Básicos: (10%-20% + ficha)" },
+    { name: "Forte", img: "imagens/efeitos_icon20.jpg", description: "O alvo fica ou se sente mais forte, ganhando +1 for, +5 em ações envolvendo força ou vigor. Duração Básica: (1d4+ficha)" },
+    { name: "Imobilizado", img: "imagens/efeitos_icon21.jpg", description: "O alvo não pode se mover ou fazer ações de movimento até o efeito acabar." },
+    { name: "Preparado", img: "imagens/efeitos_icon22.jpg", description: "O alvo prepara uma ação ganahndo +5 no teste dessa ação na próxima rodada. (+ficha)" },
+    { name: "Cego", img: "imagens/efeitos_icon23.jpg", description: "O alvo é incapaz de enxergar, perdendo em -1 percepção, -5 em testes de percepção e reações. Duração Básica (1d4+ficha)" },
+    { name: "Eficiente", img: "imagens/efeitos_icon24.jpg", description: "O alvo ganha +5 em testes de algum atributo de forma permanente ou durante a cena." },
+    { name: "Certeiro", img: "imagens/efeitos_icon25.jpg", description: "O alvo mira no inimigo e ganha +5 no ataque, ganahdo +1 dado de dano e examiando um ponto fraco ou de interesse por 1 rodada. (+ficha)" },
+    { name: "Fraco/Quebrado", img: "imagens/efeitos_icon26.jpg", description: "O alvo sofre -1 for, -5 em testes de força ou vigor, causa menos dano físico, perdendo 2 dados de dano até o efeito acabar. (+ficha)" },
+    { name: "Sufocando", img: "imagens/efeitos_icon27.jpg", description: "O alvo perde 1 vig por turno caso o fôlego esteja zerado, após isso toma dano em porcetagem da vida ou torpor em dados. Danos ou torpor Básicos: (Dano: 20%/ torpor: 2d8/3d8/5d8+ficha)" },
+    { name: "Cansado/Fadiga", img: "imagens/efeitos_icon28.jpg", description: "O alvo sofre -1 agi ou -1 int, -5 em testes envolvendo int/agi, caso o fôlego esteja zerado fica com as desvatagens de sufocado(Sem ar)" },
+    { name: "Molestado", img: "imagens/efeitos_icon29.jpg", description: "O alvo sofre +5 de ataques de inimgios conforme o número do grupo inimigo aumenta de forma eficiente, comparado ao grupo do alvo durante a cena. (+ficha)" },
+    { name: "Paralisado", img: "imagens/efeitos_icon30.jpg", description: "O alvo sofre -5 em todos os testes de reações, Pre e int até o efeito acabar. Duração Básica: (+1d4+ficha)" },
+    { name: "Atordoado", img: "imagens/efeitos_icon31.jpg", description: "O alvo sofre -5 em todos os testes por 1d4 rodadas e não pode fazer nada por 1 rodada, durando a desvatagem até o efeito acabar. (+ficha)" },
+    { name: "Inconciente", img: "imagens/efeitos_icon32.jpg", description: "O alvo n pdoe fazer nada por estar desacordado, após 3 rodadas poderá acordar com testes de vig (dt: 25/20/15). (+ficha)" },
+    { name: "Flanqueado", img: "imagens/efeitos_icon33.jpg", description: "O alvo sofre +5 no próximo ataque do inimigo por 1 rodada. (+ficha) " },
+    { name: "Afinidade", img: "imagens/efeitos_icon34.jpg", description: "Os seres afetados pela condição possuem um laço sentimental ou familiar, tendo melhores habilidades de grupo combinadas. (+ficha)" },
+    { name: "Estado Morrendo", img: "imagens/efeitos_icon35.jpg", description: "O alvo n pode fazer nada, apenas rastejar no chão, durante 3 rodadas é obrigado a afzer testes de vig para ficar vivo, caso fracasse o personagem morre. (dt: 10,15,20) (+ficha)" },
+    { name: "Executado", img: "imagens/efeitos_icon36.jpg", description: "O ser executado morre de forma instântania ou de maneria lenta, afetando todos que estão na cena diratmente ou olhando ao corpo, todos afetados devem fazer um teste de vontade para não ficarem pasmos por 1 rodada." },
+    { name: "Explodido", img: "imagens/efeitos_icon37.jpg", description: "O ser afetado por essa condição morre e não possui nenhuma sequer forma ou pedaço do corpo, não sobrando armas ou algo que lembre sua aparição na cena." },
+    { name: "Anti-Cura", img: "imagens/efeitos_icon38.jpg", description: "O alvo afetado por essa condição n recebe cura até o efeito passar. Duração Básica: (1d4+ficha)" },
+    { name: "Abalado", img: "imagens/efeitos_icon39.jpg", description: "O alvo sofre -5 em todos os testes, -1 agi,for,int,per,vig, álem de perder a guarda durante a luta e todos os pontos de determinação e fé. Duração Básica (1d2+ficha)" },
+    { name: "Alheio", img: "imagens/efeitos_icon40.jpg", description: "O alvo n sabe de nenhuma informação tática ou de localização que está acontecendo na cena. (+ficha)" },
+    { name: "Desmontado", img: "imagens/efeitos_icon41.jpg", description: "O alvo sai de forma obrigatória de cima do animal montado e fica atordoado por 1d2 de rodadas. (+ficha)" },
+    { name: "Imune", img: "imagens/efeitos_icon42.jpg", description: "O alvo é imune ou já foi tão torturado que não liga mais para a dor, ignorando metade do tipo de dano ou não tendo reações a dor, de forma permanente ou durante a cena. (+ficha)" },
+    { name: "Desprevinido", img: "imagens/efeitos_icon43.jpg", description: "O alvo sofre desvatagens de ataques furtivos ou flanqueados por 1 rodada. (+ficha) " },
+    { name: "Pasmo", img: "imagens/efeitos_icon44.jpg", description: "O alvo n pode reagir, agir, falar ou fazer quaqluer tipo de ação por 1 rodada. (+ficha)" },
+    { name: "Exposto", img: "imagens/efeitos_icon45.jpg", description: "O alvo recebe o primerio ataque inimigo com +10 no acerto e o dobro de dano. Duração Básica: (1d2+ficha)" },
+    { name: "Revelado", img: "imagens/efeitos_icon46.jpg", description: "O alvo possui a aura revelada, sua presença ou localização mostrada para todos os inimigos na cena. (+ficha)" },
+    { name: "Dose de Adrenalina", img: "imagens/efeitos_icon47.jpg", description: "O alvo pode tentar ignorar danos mentais ou físicos com testes de resitência, álem de poder usar dados de esforço na cena, até o efeito acabar. Duração Básica: (Cena+ficha)" },
+    { name: "Curado", img: "imagens/efeitos_icon48.jpg", description: "O alvo recebe um efeito de uma origem de cura, que pode curar por rodada ou por cena. Duração Básica: (Cena/1d4 rodadas + ficha) " },
 
 
-// Array de objetos com os dados de cada efeito
-const dadosEfeitos = [
-    { nome: 'Efeito 1', descricao: ' Além de não enxergar, o personagem pode desenvolver alucinações auditivas ou táteis.' },
-    { nome: 'Efeito 2', descricao: ' Se fazer ações vomita e recebe torpor, corre metade do deslocamento' },
-    { nome: 'Efeito 3', descricao: '1d6 aleatório pra oq deve fazer. 1-atacar 2-recuar 3-nada 4-cura- 5-grita 6-escolhe ' },
-    { nome: 'Efeito 4', descricao: 'Vê mais de uma coisa aleatória e imagens da cabeça, imagina criaturas, recebe danos mentais enganosos' },
-    { nome: 'Efeito 5', descricao: 'Toda vez que vê aquilo toma dano mental até superar ou esquecer.'},
-    { nome: 'Efeito 6', descricao: 'Não consegue se mover de medo, perde a ação.' },
-    { nome: 'Efeito 7', descricao: 'Além de não ouvir, o personagem pode ter dificuldade em qualquer teste de audição ou perceber q está fazendo barulho.' },
-    { nome: 'Efeito 8', descricao: 'Além de não poder falar, o personagem pode ter dificuldade em expressar suas emoções. '},
-    { nome: 'Efeito 9', descricao: 'Permita que os personagens façam testes de resistência para diminuir a duração ou a severidade de um efeito.' },
-    { nome: 'Efeito 10', descricao: 'Ofereça diferentes formas de curar os efeitos, como poções, magias ou descanso prolongado.' },
-    { nome: 'Efeito 11', descricao: ' 10% da vida máxima é perdida por rodada e faz rastro' },
-    { nome: 'Efeito 12', descricao: 'Normalmente conserta com cirurgia mas recebe 20% de dano total da vida por rodada até estabilizarem. '},
-    { nome: 'Efeito 13', descricao: 'Fica com sono ou é nocauteado, teste de resistência' },
-    { nome: 'Efeito 14', descricao: 'Sofre desvantagem no teste de lua, esquiva ou bloqueio. -5/-10/-15.'},
-    { nome: 'Efeito 15', descricao: 'Não faz nada e perde a ação.' },
-    { nome: 'Efeito 16', descricao: 'Ao andar toma dano interno 10 % da vida.' },
-    { nome: 'Efeito 17', descricao: ' Metade do deslocamento +5 furtividade em situações.'},
-    { nome: 'Efeito 18', descricao: 'Muito medo de começar a luta -5 em qualquer ação no começo da luta.'},
-    { nome: 'Efeito 19', descricao: ' Perde 1 dado em todos os testes de força.' },
-    { nome: 'Efeito 20', descricao: 'Menos 1 dado em todos os testes de agilidade.' }
-   
 
-];
 
-efeitos.forEach((efeito, index) => {
-    efeito.addEventListener('click', () => {
-        const efeitoSelecionado = dadosEfeitos[index];
-        descricao.textContent = efeitoSelecionado.descricao;
-        imagem.src = efeitoSelecionado.imagem;
+
+
+];  
+
+function renderEffects() {
+    const grid = document.getElementById("effectsGrid");
+    grid.innerHTML = "";
+    effects.forEach((effect, index) => {
+        let effectDiv = document.createElement("div");
+        effectDiv.classList.add("effect");
+        effectDiv.innerHTML = `
+            <img src="${effect.img}" alt="${effect.name}">
+            <h3>${effect.name}</h3>
+        `;
+        effectDiv.onclick = () => openModal(effect);
+        grid.appendChild(effectDiv);
+    });
+}
+
+function openModal(effect) {
+    document.getElementById("modalImg").src = effect.img;
+    document.getElementById("modalTitle").innerText = effect.name;
+    document.getElementById("modalDescription").innerText = effect.description;
+    document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+document.getElementById("search").addEventListener("input", function () {
+    const searchValue = this.value.toLowerCase();
+    document.querySelectorAll(".effect").forEach(effect => {
+        const name = effect.querySelector("h3").innerText.toLowerCase();
+        effect.style.display = name.includes(searchValue) ? "block" : "none";
     });
 });
 
-
+renderEffects();
