@@ -84,7 +84,7 @@ const effects = [
     { name: "Envenenado", img: "imagens/efeitos_icon1.jpg", description: "Recebe dano interno por rodada que pode variar e ignorar armadura, aplicando outras condições que são determinadas pelo veneno. Danos básicos: 1d8/3d8/6d8." },
     { name: "Congelado", img: "imagens/efeitos_icon2.jpg", description: "Recebe dano interno, prendendo o alvo e fazendo perder 1 vig caso fracsse em um teste de fortitude até se aquecer novamente. Danos básicos: 2d12/3d12/4d12." },
     { name: "Em Chamas", img: "imagens/efeitos_icon3.jpg", description: "Recebe dano de fogo por rodada até apagar a origem com alguma das ações. Dano básico: 2d6/4d6/6d6." },
-    { name: "Sobrecarregado", img: "imagens/efeitos_icon4.jpg", description: "Recebe dano elétrico que foi acumulado por rodadas, causando 2d8 a cada 30 pontos de dano de origem elétrica.(Ótimos Condutores duplicam o dano)" },
+    { name: "Sobrecarga", img: "imagens/efeitos_icon4.jpg", description: "Recebe dano elétrico que foi acumulado por rodadas, causando 2d8 a cada 30 pontos de dano de origem elétrica.(Ótimos Condutores duplicam o dano)" },
     { name: "Sangrando", img: "imagens/efeitos_icon5.jpg", description: "Recebe pontos de dano interno por grande liberação de sangue continuo e faz mais rastros. Dano Básico: 2d12/3d12/4d12." },
     { name: "Agarrado", img: "imagens/efeitos_icon6.jpg", description: "O alvo recebe desvantagem em reações e perde 1 dado de força e agilidade nas rolagens equanto estiver agarrado.(-5 + efeitos de ataque/habilidade/passiva)" },
     { name: "Infectado", img: "imagens/efeitos_icon7.jpg", description: "O alvo contraiu uma doença ou vírus.(Efeitos de desvatagem variam)" },
