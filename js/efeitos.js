@@ -128,13 +128,12 @@ const effects = [
     { "name": "Exposto", "img": "imagens/efeitos_icon45.jpg", "description": "O alvo recebe o primeiro ataque inimigo com +10 no acerto e o dobro de dano. Duração Básica: (1d2 + ficha)" },
     { "name": "Revelado", "img": "imagens/icon_revelado.jpg", "description": "O alvo tem sua aura e localização reveladas para todos os inimigos na cena. (+ficha)" },
     { "name": "Dose de Adrenalina", "img": "imagens/efeitos_icon47.jpg", "description": "O alvo pode tentar ignorar danos mentais ou físicos com testes de resistência, além de usar dados de esforço até o efeito acabar. Duração Básica: (Cena + ficha)" },
-    { "name": "Curado", "img": "imagens/efeitos_icon48.jpg", "description": "O alvo recebe um efeito de cura, podendo recuperar vida por rodada ou por cena. Duração Básica: (Cena / 1d4 rodadas + ficha)" },
+    { "name": "Curado", "img": "imagens/efeitos_icon48.jpg", "description": "O alvo recebe um efeito de cura, podendo recuperar vida por rodada ou por cena, efeitos negativos também podem ser anulados com esse efeito. Duração Básica: (Cena / 1d4 rodadas + ficha)" },
     { "name": "Trocado", "img": "imagens/efeitos_icon49.jpg", "description": "O alvo troca todos os seus efeitos com outro alvo escolhido. O efeito persiste até acabar. Duração Básica: (1d4 rodadas + ficha)" },
-    { "name": "Revigorado", "img": "imagens/efeitos_icon_revigorado2.jpg", "description": "O alvo recebe uma bênção que remove todos os efeitos negativos. Duração Básica: (Cena + ficha)" },
     { "name": "Marcado", "img": "imagens/efeitos_icon51.jpg", "description": "O alvo é marcado na mira da arma, facilitando acertos e estimulando aliados. Todos ganham +5 no acerto. Duração Básica: (1d2 + ficha)" },
     { "name": "Diabólico", "img": "imagens/efeitos_icon52.jpg", "description": "O alvo vê a realidade de forma distorcida e perde empatia por sua tribo e aliados, ganhando +5 em ações egoístas, mas sofrendo -5 em diplomacia. Duração Básica: (1d2 + ficha)" },
     { "name": "Embriagado", "img": "imagens/efeitos_icon53.jpg", "description": "O alvo está confuso e tem dificuldades para pensar, sofrendo -1 dado em todos os testes e -5 em todas as rolagens. Duração Básica: (Cena / 1d6 + ficha)" },
-];  
+];
 
 function renderEffects() {
     const grid = document.getElementById("effectsGrid");
