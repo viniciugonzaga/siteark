@@ -282,11 +282,27 @@ function rolarDado(lados) {
   function rolarPersonalidade() {
     // Listas originais de personalidades
     let personalidadesDomesticos = [
-      "Leal", "Medrosa", "Furioso", "Depressivo", "Cansado",
-      "Agitado", "Inteligente", "Invejoso", "Ciumento", "Bipolar",
-      "Insano", "Alegre", "Carente", "Corajoso", "Conturbado",
-      "Solitário", "Forte", "Calmo", "Obsessivo", "Ansioso",
-      "Arrogante",
+"Leal",
+"Medrosa",
+"Furioso",
+"Depressivo",
+"Cansado",
+"Agitado",
+"Inteligente", 
+"Invejoso",
+"Ciumento",
+"Bipolar",
+"Insano", 
+"Alegre",
+"Carente",
+"Corajoso",
+"Conturbado",
+"Solitário",
+"Forte",
+"Calmo",
+"Obsessivo",
+"Ansioso",
+"Arrogante",
 "Desconfiado",
 "Vingativo",
 "Nostálgico",
@@ -329,11 +345,27 @@ function rolarDado(lados) {
     ];
   
     let personalidadesSelvagens = [
-      "Corajoso", "Medrosa", "Furioso", "Guloso", "Cansado",
-      "Agitado", "Inteligente", "Fraco", "Forte", "Burro",
-      "Insano", "Alegre", "Carente", "Com sede", "Solitário",
-      "Brigão", "Prioritário", "Passivo", "Doente", "Parrudo",
-      "Impetuoso",
+"Corajoso",
+ "Medrosa", 
+"Furioso",
+ "Guloso",
+ "Cansado",
+"Agitado",
+ "Inteligente",
+ "Fraco",
+ "Forte",
+ "Burro",
+"Insano",
+ "Alegre",
+ "Carente",
+ "Com sede",
+ "Solitário",
+"Brigão",
+ "Prioritário",
+ "Passivo",
+ "Doente",
+ "Parrudo",
+ "Impetuoso",
 "Meloso",
 "Frágil",
 "Altruísta",
@@ -398,14 +430,16 @@ function rolarDado(lados) {
       "Igneous", "Abismoelétrico", "Mortalidade", "Caveira", 
       "Tribal", "Drops", "Aether", "Nada",
       "Vulcão Acordado", "Ciclone no mar", "Enxame de Pestes", "Cavernas iluminadas", 
-      "Evento aleatório local(1d4)", "Drops lendários Marinhos", "Surto de Aether marinho", "Evento de Sorte em domas ou itens"
+      "Evento aleatório local(1d4)", "Drops lendários Marinhos", "Surto de Aether marinho",
+       "Evento de Sorte em domas ou itens,", "Chuva de aranhas local (1d4)", "Chuva de granizo",
+        "Frota fantasma (1d6)", "frota de Orc", "Frota do Barco Infernal", "Todas as Criaturas Agressivas no Local",
     ];
   
     // Embaralha a lista de eventos
     const eventosAleatorios = shuffleArray([...eventosIlha]);
   
     // Rola um número aleatório entre 1 e 8 (1d8)
-    const numeroEvento = Math.floor(Math.random() * 16) + 1;
+    const numeroEvento = Math.floor(Math.random() * 22) + 1;
   
     // Seleciona o evento baseado no número
     const eventoSelecionado = eventosAleatorios[numeroEvento - 1];
@@ -418,7 +452,7 @@ function rolarDado(lados) {
     // Lista de itens de drops
     const itensDrop = [
       "Arma Tek Quebrada 1/3", "Item Primal", "Item Raro", "Item Industrial",
-      "Ovo de Dino Comum", "Ovo de Dino Raro", "Ovo de Dino aleatório",
+      "Ovo de Dino Comum(1d2)", "Ovo de Dino Raro(1d2)", "Ovo de Dino aleatório(1d2)",
       "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental"
     ];
   
@@ -437,13 +471,14 @@ function rolarDado(lados) {
   }
   function rolarItemDrop() {
     const itensDrop = [
-      "Arma Tek Quebrada 1/3", "Item Primal", "Item Raro", "Item Industrial",
+      "Arma Tek Quebrada 1/3 (1d2)", "Item Primal", "Item Raro", "Item Industrial",
       "Ovo de Dino herbívoro", "Ovo de Dino carnívoro", "Ovo de Dino elemental",
-      "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental"
+      "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental",
+      "Espólio de Caçador local", "Frutas naturais", 'Ervas de torpor', "Parte de traje"
     ];
   
     const itensEmbaralhados = itensDrop.sort(() => Math.random() - 0.5);
-    const numeroDrop = Math.floor(Math.random() * 10) + 1;
+    const numeroDrop = Math.floor(Math.random() * 14) + 1;
     const itemSelecionado = itensEmbaralhados[numeroDrop - 1];
     const resultado = `Número (1d10): ${numeroDrop} - Item: ${itemSelecionado}`;
     document.getElementById("resultadoItemDrop").innerHTML = resultado;
@@ -625,14 +660,6 @@ function rolarDado(lados) {
   function rolarItemSummon() {
     const itensSummon = [
 "Colar de Presas Inquebráveis - Item que invoca Indominus Rex",
-"Garra Escarlate Sombria - Item que invoca Indoraptor",
-"Fragmento de Espelho Mutante - Item que invoca E750",
-"Totem de Ossos Colossais - Item que invoca Megavore",
-"Máscara de Chifres Flamejantes - Item que invoca Indotaurus",
-"Amuleto das Presas Rápidas - Item que invoca Espinoraptor",
-"Escama de Escudo Ceratopsiano - Item que invoca Espinoceratops",
-"Estatueta de Chifres Cruzados - Item que invoca Estegoceratopes",
-"Adaga de Feras Supremas - Item que invoca Tiranolofossauro",
 "Fóssil com Escamas Eternas - Item que invoca Espinossauro Ger 3",
 "Concha Ancestral dos Abismos - Item que invoca Tusotheuthis",
 "Coroa da Fera das Profundezas - Item que invoca Reaper-leviatã",
@@ -683,31 +710,31 @@ function rolarDado(lados) {
   function mostrarTranstorno() {
     // Lista de transtornos
     const transtornos = [
-      "Transtorno de Estresse Pós-Traumático",
-      "Transtorno Dissociativo",
-      "Transtorno Obsessivo-Compulsivo",
-      "Transtorno de Ansiedade Generalizada",
-      "Depressão Maior",
-      "Transtorno de Apego Reativo",
-      "Cleptomania",
-      "Tricotilomania",
-      "Automutilação",
-      "Distúrbios Alimentares",
-      "Abuso de Substâncias",
-      "Pensamento Catastrófico",
-      "Sentimento de Culpa Excessiva",
-      "Despersonalização",
-      "Desrealização",
-      "Paranoia",
-      "Transtorno de Personalidade Borderline",
-      "Transtorno de Personalidade Esquizotípica",
-      "Distorção de Identidade",
-      "Síndrome de Estocolmo",
-      "Alexitimia",
-      "Hipocondria",
-      "Fobia Social",
-      "Anedonia",
-      "Trauma de Sobrevivente",
+"Transtorno de Estresse Pós-Traumático",
+"Transtorno Dissociativo",
+"Transtorno Obsessivo-Compulsivo",
+"Transtorno de Ansiedade Generalizada",
+"Depressão Maior",
+"Transtorno de Apego Reativo",
+"Cleptomania",
+"Tricotilomania",
+"Automutilação",
+"Distúrbios Alimentares",
+"Abuso de Substâncias",
+"Pensamento Catastrófico",
+"Sentimento de Culpa Excessiva",
+"Despersonalização",
+"Desrealização",
+"Paranoia",
+"Transtorno de Personalidade Borderline",
+"Transtorno de Personalidade Esquizotípica",
+"Distorção de Identidade",
+"Síndrome de Estocolmo",
+"Alexitimia",
+"Hipocondria",
+"Fobia Social",
+"Anedonia",
+"Trauma de Sobrevivente",
 "Efeito Pós-Terror",
 "Perturbação Mental",
 "Desconexão Emocional",
