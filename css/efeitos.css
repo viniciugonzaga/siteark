@@ -722,6 +722,101 @@ nav {
     }
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+  /* Botão para gerar a região */
+.spawn-button {
+    background: linear-gradient(45deg, #3c0d92c0, #460c68b7,#3c0d92c0);
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   
+    transition: all 0.3s ease-in-out;
+    margin-top: 30px;
+
+}
+
+.spawn-button:hover {
+    background-color: #a119f0d8;
+    box-shadow: 0 0 20px rgb(154, 11, 250);
+}
+  
+.botão_atalho{
+text-decoration: none;
+color: #fcf4ef;
+
+}
+@media (max-width: 1080px) {
+    /* Ajuste geral para o contêiner principal */
+    .main-container {
+        gap: 15px; /* Reduz o espaçamento entre os elementos */
+        padding: 10px; /* Adiciona margem interna */
+    }
+
+    /* Botão de gerar região responsivo */
+    .spawn-button {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+        padding: 10px 20px; /* Ajusta o espaçamento interno */
+        border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
+    }
+
+    /* Estilo do botão de atalho responsivo */
+    .botão_atalho {
+        font-size: 0.9rem; /* Reduz o tamanho do texto */
+        color: #eae1d8; /* Ajusta a cor para contraste melhor */
+    }
+}
+.spawn-button-v2 {
+    background: linear-gradient(45deg, #910b0b86, #5c25257e,#910b0b86);
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+   
+    transition: all 0.3s ease-in-out;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.spawn-button-v2:hover {
+    background-color: #5f0303;
+}
+
+.botão_atalho_v2 {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+@media (max-width: 1080px) {
+    /* Ajuste geral para o contêiner principal */
+    .main-container {
+        gap: 15px; /* Reduz o espaçamento entre os elementos */
+        padding: 10px; /* Adiciona margem interna */
+    }
+
+    /* Botão de gerar região responsivo (versão 2) */
+    .spawn-button-v2 {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+        padding: 10px 20px; /* Ajusta o espaçamento interno */
+        border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
+    }
+
+    /* Estilo do botão de atalho responsivo (versão 2) */
+    .botão_atalho_v2 {
+        font-size: 0.9rem; /* Reduz o tamanho do texto */
+        color: #eae1d8; /* Ajusta a cor para contraste melhor */
+    }
+}
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {

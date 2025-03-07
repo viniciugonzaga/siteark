@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fichas Perso/Npcs</title>
+    <title>Fichas</title>
     <link rel="stylesheet" href="css/ficha_status.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Fonte -->
@@ -32,7 +32,7 @@
     </div>
     <!-- Botão Glow -->
     <div class="dado-container">
-        <img src="imagens/dado_iridescente.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+        <img src="imagens/dado_calamita.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
     </div>
     
@@ -63,7 +63,112 @@
   </nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
     <div class="titulo_principal">
-        <h1 class="titulo_efeito">Efeitos</h1>
+        <h1 class="titulo_efeito">Npcs</h1>
+    </div>
+
+      
+    <div class="container">
+        <h1>Fichas de NPCs</h1>
+        <div class="npc-grid">
+            <!-- Ícone do NPC -->
+            <div class="npc" onclick="openModal('npc1')">
+                <img src="imagens/npc1_brok.jpg" alt="NPC 1">
+                <div class="info">
+                    <h2>Thormond</h2>
+                    <p class="info2">Construtor</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc2')">
+                <img src="imagens/npc2_dante.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Dante</h2>
+                    <p class="info2">Curandeiro</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc3')">
+                <img src="imagens/npc3_capitao.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Capitão</h2>
+                    <p class="info2">Atirador</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc4')">
+                <img src="imagens/npc4_guga.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Guga</h2>
+                    <p class="info2">Alquimista</p>
+                </div>
+            </div>
+            <div class="npc" onclick="openModal('npc5')">
+                <img src="imagens/npc5_ocatne.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Octane</h2>
+                    <p class="info2">Velocista</p>
+                </div>
+            </div>
+            <div class="npc" onclick="openModal('npc6')">
+                <img src="imagens/npc6_dito.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Dito</h2>
+                    <p class="info2">Isca</p>
+                </div>
+            </div>
+            <div class="npc" onclick="openModal('npc7')">
+                <img src="imagens/npc7_Wall-E.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Wall-E</h2>
+                    <p class="info2">Agricultor</p>
+                </div>
+            </div>
+
+
+           
+
+
+        </div>
+    </div>
+
+    <!-- Modal de senha -->
+    <div id="modalSenha" class="modal">
+        <div class="modal-content">
+            <h2>Insira a chave de acesso</h2>
+            <input type="password" id="senha" placeholder="Digite a senha">
+            <button onclick="verificarSenha()">Acessar</button>
+            <button class="fechar" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal da Ficha -->
+    <div id="modalFicha" class="modal ficha">
+        <div class="modal-content">
+            <h2 id="npcNome">Nome do NPC</h2>
+            <img id="npcImagem" src="" alt="Imagem do NPC">
+            <p id="npcHistoria">História do NPC...</p>
+
+            <h3>Bônus de Ações</h3>
+            <ul id="npcAcoes"></ul>
+
+            <h3>Mutação</h3>
+            <p id="npcMutacao"></p>
+
+            <h3>Classes</h3>
+            <p id="npcClasses"></p>
+
+            <h3>Atributos</h3>
+            <p>Agilidade: <span id="npcAgilidade"></span></p>
+            <p>Força: <span id="npcForca"></span></p>
+            <p>Inteligência: <span id="npcInteligencia"></span></p>
+            <p>Sobrevivência: <span id="npcSobrevivencia"></span></p>
+            <p>Vigor: <span id="npcVigor"></span></p>
+
+            <h3>Status</h3>
+            <p id="npcStatus"></p>
+
+            <button class="fechar" onclick="fecharFicha()">Fechar</button>
+        </div>
     </div>
 
     

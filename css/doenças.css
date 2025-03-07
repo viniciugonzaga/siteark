@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_doenças.jpg') no-repeat center center fixed;
+    background: url('../imagens/doenças_home.jpg') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
@@ -573,9 +573,9 @@ nav {
     padding: 20px;
     margin: 10px;
     text-align: center;
-    background: #3f1404e8; /* Cor de fundo suave para contraste */
+    background: #1f3f04e8; /* Cor de fundo suave para contraste */
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgb(190, 80, 6);
+    box-shadow: 0 4px 8px rgb(56, 133, 6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 2px solid  #f5e029;
 }
@@ -583,8 +583,8 @@ nav {
 .coluna-direita {
     flex: 2;
     padding: 20px;
-    background-color:#3f1404e8; /* Cor de fundo padrão */
-    background-image: url('../imagens/doenças_castelo.png');
+    background: #1f3f04e8; /* Cor de fundo suave para contraste */
+    background-image: url('../imagens/efeitos_doenças.png');
     background-size: contain; /* Ajusta a imagem para caber dentro da coluna */
     background-position: center center; /* Centraliza a imagem */
     background-repeat: no-repeat; /* Evita que a imagem se repita */
@@ -608,6 +608,9 @@ nav {
     font-size: 16px;
     line-height: 1.6;
     color: #ffffff; /* Texto mais legível sobre o fundo */
+    background-color: #0e0b00bb;
+    padding: 8px;
+    border-radius: 10px;
 }
 .coluna-esquerda:hover, .coluna-central:hover, .coluna-direita:hover {
     transform: translateY(-5px); /* Efeito de elevação */
@@ -658,6 +661,7 @@ nav {
 @media (max-width: 1080px) {
     .container {
         flex-direction: column; /* Empilha as colunas */
+        width: 80%;
     }
 
     .coluna-esquerda, .coluna-central, .coluna-direita {

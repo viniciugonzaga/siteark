@@ -104,9 +104,27 @@ const dadosEfeitos = [
     { nome: 'Efeito 17', descricao: 'Uma doença muito rara, que afeta a visão e a audição, causando alucinações.(Cirurgia)' },
     { nome: 'Efeito 18', descricao: 'Maldição que afeta a mente, causando perda de memória e confusão, criando uma dependência ao mar.(Cirurgia)' },
     { nome: 'Efeito 19', descricao: 'Uma peste viral que deixa o alvo fraco e drena suas forças, não deixando energia para o corpo restante(Remédio)' },
-    { nome: 'Efeito 20', descricao: 'A infecção sanguínea surge quando o sangue do hospedeiro é contaminado por patógenos agressivos.(Tranfusão e tratamento)' }
-   
-
+    { nome: 'Efeito 20', descricao: 'A infecção sanguínea surge quando o sangue do hospedeiro é contaminado por patógenos agressivos.(Tranfusão e tratamento)' },
+    { "nome": "Efeito 21", "descricao": "Um parasita microscópico que se aloja no cérebro do hospedeiro, causando confusão e perda de coordenação. (Cirurgia)" },
+    { "nome": "Efeito 22", "descricao": "Vírus altamente contagioso que destrói o sistema imunológico, deixando o corpo suscetível a qualquer outra infecção. (Tratamento contínuo)" },
+    { "nome": "Efeito 23", "descricao": "Doença bacteriana transmitida por insetos que causa febre intensa, calafrios e delírios. (Remédio e repouso)" },
+    { "nome": "Efeito 24", "descricao": "Uma febre misteriosa causada por um patógeno desconhecido presente na névoa de certas regiões. (Remédio específico)" },
+    { "nome": "Efeito 25", "descricao": "Infecção causada por contato prolongado com matéria orgânica em decomposição, causando necrose gradual. (Amputação ou tratamento intensivo)" },
+    { "nome": "Efeito 26", "descricao": "Causada por beber água contaminada, levando à desidratação extrema e falência dos órgãos. (Reidratação e remédios)" },
+    { "nome": "Efeito 27", "descricao": "Doença mística associada a queimaduras graves, onde as chamas parecem continuar ardendo por dentro. (Tratamento especializado)" },
+    { "nome": "Efeito 28", "descricao": "Fratura exposta que não se cura adequadamente, resultando em ossos frágeis e dores constantes. (Cirurgia e reabilitação)" },
+    { "nome": "Efeito 29", "descricao": "Paralisia severa causada por uma toxina que endurece os músculos e nervos, restringindo os movimentos. (Cirurgia e fisioterapia)" },
+    { "nome": "Efeito 30", "descricao": "Descarga elétrica de alta voltagem que causa danos irreversíveis ao sistema nervoso, afetando reflexos e percepção. (Tratamento especializado)" },
+    { "nome": "Efeito 31", "descricao": "Um parasita alienígena que devora o corpo de dentro para fora, levando a uma morte agonizante. (Cirurgia radical)" },
+    { "nome": "Efeito 32", "descricao": "Doença degenerativa que faz os sentidos do hospedeiro se deteriorarem lentamente, levando à loucura. (Tratamento experimental)" },
+    { "nome": "Efeito 33", "descricao": "Maldição marítima que suga a vitalidade do hospedeiro, fazendo-o desejar se lançar ao oceano. (Exorcismo ou cirurgia)" },
+    { "nome": "Efeito 34", "descricao": "Peste rara que consome a energia vital da vítima, deixando-a permanentemente exausta. (Remédio de alta potência)" },
+    { "nome": "Efeito 35", "descricao": "Infecção sanguínea avançada que endurece as veias e artérias, tornando a circulação sanguínea dolorosa. (Transfusão completa)" },
+    { "nome": "Efeito 36", "descricao": "Um vírus que altera geneticamente seu hospedeiro, tornando-o mais agressivo e menos racional. (Tratamento genético)" },
+    { "nome": "Efeito 37", "descricao": "Uma doença parasitária que transforma a pele em escamas duras e quebradiças, dificultando a mobilidade. (Tratamento avançado)" },
+    { "nome": "Efeito 38", "descricao": "Infecção causada por um fungo luminescente que se espalha pelo corpo, causando dores e febres intensas. (Antifúngico especializado)" },
+    { "nome": "Efeito 39", "descricao": "Síndrome rara que faz os órgãos internos falharem de maneira sequencial, levando a uma morte lenta. (Tratamento emergencial)" },
+    { "nome": "Efeito 40", "descricao": "Doença que corrompe o DNA do hospedeiro, causando mutações incontroláveis e crescimento de tumores. (Cirurgia e radioterapia)" }
 ];
 
 efeitos.forEach((efeito, index) => {

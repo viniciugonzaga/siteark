@@ -689,7 +689,7 @@ nav {
 
 @media (max-width: 1078px) {
     .card {
-        width: 60px; /* Menor tamanho para dispositivos de médio porte */
+        width: 75px; /* Menor tamanho para dispositivos de médio porte */
         height: 100px;
     }
     .card p {
@@ -761,7 +761,7 @@ nav {
 }
 
 .card-8 {
-    background-image: url('../imagens/doenças_home.jpg');
+    background-image: url('../imagens/lobby_doenças2.jpg');
     box-shadow: 0 5px 15px rgb(82, 7, 12);
     display: block; /* Garante que o link ocupe toda a área */
     text-decoration: none;
@@ -769,8 +769,8 @@ nav {
 }
 
 .card-9 {
-    background-image: url('../imagens/itens_home.webp');
-    box-shadow: 0 5px 15px rgb(16, 39, 243);
+    background-image: url('../imagens/lobby_itens2.jpg');
+    box-shadow: 0 5px 15px rgb(114, 1, 1);
     
 }
 
