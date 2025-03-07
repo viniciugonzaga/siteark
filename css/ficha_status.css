@@ -812,7 +812,7 @@ main {
 
 
 /* Responsividade */
-@media (max-width: 768px) {
+@media (max-width: 780px) {
     .modal {
         width: 90%;
     }
@@ -825,13 +825,18 @@ main {
     }
 
     .npc {
-        width: 20%;
-        height: 10%;
-        padding: 10px;
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    height: 10%;
+    padding: 10px;
     border-radius: 20px;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    word-wrap: break-word;
+   
     }
     .npc-grid {
         display: flex;
@@ -845,12 +850,12 @@ main {
 
     }
     .info{
-        font-size: 0.75rem;
+        font-size: 0.6rem;
         text-align: center;
         
        }
        .info2{
-         font-size: 0.65rem;
+         font-size: 0.5rem;
          text-align: center;
         
        }
