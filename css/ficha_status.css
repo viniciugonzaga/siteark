@@ -818,7 +818,7 @@ main {
     }
 }
 /* Responsividade para telas de 1080px */
-@media (max-width: 1080px) {
+@media (max-width: 780px) {
     .container {
         width: 95%;
         padding: 3%;
@@ -827,25 +827,38 @@ main {
     .npc {
         width: 20%;
         height: 10%;
+        padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
     }
-
+    .npc-grid {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
     .container h1{
 
       font-size: 1.4rem;
 
     }
     .info{
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        text-align: center;
         
        }
        .info2{
-         font-size: 0.7rem;
+         font-size: 0.65rem;
+         text-align: center;
         
        }
 
     .npc img {
         width: 90px;
         height: 90px;
+        margin: 0 auto;
     }
 
     #modalFicha {
