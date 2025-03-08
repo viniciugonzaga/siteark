@@ -580,7 +580,7 @@ main {
     border-radius: 20px;
   }
   .container h1{
-     font-size: 2.6rem;
+     font-size: 1.8rem;
     color: #fff5bb;
     text-shadow:
     0 0 10px #e0b31c,
@@ -589,14 +589,14 @@ main {
     margin-bottom: 2%;
   }
   .info{
-   font-size: 1.6rem;
+   font-size: 1.3rem;
    color: #fff5bb;
    text-shadow:
    0 0 10px #e0b31c;
    margin-bottom: 2%;
   }
   .info2{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     background: radial-gradient(circle, rgba(24, 2, 2, 0.829), rgba(29, 1, 1, 0.877), rgba(29, 2, 2, 0.877),rgba(27, 3, 3, 0.486)); /* Gradiente de fundo */
     border-radius: 20px;
     padding: 10px;
