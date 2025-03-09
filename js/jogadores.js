@@ -103,6 +103,7 @@ function calculateStats() {
 
     const name = document.getElementById("name").value || "Nome não informado";
     const history = document.getElementById("history").value || "História não informada";
+    const mutation = document.getElementById("mutation").value || "Mutação não informada";
     const bonus = document.getElementById("history2").value || "Bônus não informado";
     const class1 = document.getElementById("class1").value || "Classe 1 não selecionada";
     const class2 = document.getElementById("class2").value || "Classe 2 não selecionada";
@@ -114,6 +115,7 @@ function calculateStats() {
         <strong>Ficha Completa:</strong><br><br>
         <strong>Nome:</strong><br> ${name}<br><br>
         <strong>História:</strong><br> ${history}<br><br>
+        <strong>Mutação:</strong><br> ${mutation}<br><br>
         <strong>Bônus em Ações:</strong><br> ${formattedBonus}<br><br>
         <strong>Classe Primitiva 1:</strong><br> ${class1}<br><br>
         <strong>Classe Primitiva 2:</strong><br> ${class2}<br><br>

@@ -944,7 +944,62 @@ main {
     }
 }
 
+.main-container{
+    margin: 0 auto;
+    text-align: center;
+    align-items: center;
+}
 
+.spawn-button-v2 {
+    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));
+    color: #fff; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+    font-size: 1.2rem;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin:0 auto;
+    transition: all 0.3s ease-in-out;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.spawn-button-v2:hover {
+    background-color: #996403;
+}
+
+.botão_atalho_v2 {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+}
+@media (max-width: 1080px) {
+    /* Ajuste geral para o contêiner principal */
+    .main-container {
+        gap: 15px; /* Reduz o espaçamento entre os elementos */
+        padding: 10px; /* Adiciona margem interna */
+    }
+
+    /* Botão de gerar região responsivo (versão 2) */
+    .spawn-button-v2 {
+        font-size: 1rem; /* Reduz o tamanho da fonte */
+        padding: 10px 20px; /* Ajusta o espaçamento interno */
+        border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
+    }
+
+    /* Estilo do botão de atalho responsivo (versão 2) */
+    .botão_atalho_v2 {
+        font-size: 0.9rem; /* Reduz o tamanho do texto */
+        color: #eae1d8; /* Ajusta a cor para contraste melhor */
+    }
+}
 
 
 /* Geral do footer ------------------------------------------------------------------------------*/

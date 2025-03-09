@@ -510,8 +510,15 @@ nav {
   .titulo_efeito {
     font-size: 4rem;
     font-weight: bold;
-    color: #c5ba20;
-    position: relative;
+    color: #ffe6d2; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #fd8845,   /* Primeira camada de brilho vermelho */
+      0 0 10px #e9812c,  /* Segunda camada laranja */
+      0 0 20px #af7443,  /* Terceira camada mais forte */
+      0 0 40px #d18d56,  /* Camada de brilho maior */
+      0 0 80px #c5c345;  /* Brilho externo */
+      position: relative;
 }
 
 .titulo_efeito:after {
@@ -537,7 +544,7 @@ nav {
 }
 
 .form-container {
-    background: linear-gradient(90deg,  #753308b6, #473629b9);
+    background: linear-gradient(90deg,  #753408de, #473629e0);
     padding: 20px;
     border-radius: 8px;
     max-width: 600px;

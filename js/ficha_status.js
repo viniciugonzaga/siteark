@@ -95,6 +95,7 @@ const senhas = {
     "npc7": "Eva",
     "npc8": "Aurora",
     "npc9": "ganância",
+    "npc10": "Domador",
 };
 
 // Dados dos NPCs
@@ -217,6 +218,36 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 4,
         status: "Vida: 100, Determinação/Sanidade: 70, Existência/Resistência: 30, Fôlego: 7, Armadura: 5",
+      
+    },
+    "npc9": {
+        nome: "Anel de Morgoth",
+        imagem: "imagens/npc10_.jpg",
+        historia: "Criado por um Rei Morgoth antigo, o anel foi perdido na guerra, sendo resgatado e roubado de vária maneiras até passar nas mãos de um novo sobrevivente. Existem 9 anéis do Imperador Morgoth.",
+        acoes: ["+20 enganação, +20 persuação, +20 vontade, +20 bloqueio, +20 controle mental, +20 percepção, +35 furtividade."],
+        mutacao: "Anel de Morgoth da Ganância: O anel pode fazer o portador ou arauto enxergar de forma distorcida a realidade, podendo ficar invisível visualmente, cada rodada com o poder ativo gasta 5 de sanidade do portador. O Anel precisa deixar ele de maneira obcecada em seu uso, para ficar vivo.",
+        classes: "Arcano",
+        agilidade: 1,
+        forca: 1,
+        inteligencia: 1,
+        sobrevivencia: 5,
+        vigor: 2,
+        status: "Vida: 100, Determinação/Sanidade: 70, Existência/Resistência: 30, Fôlego: 7, Armadura: 5",
+      
+    },
+    "npc10": {
+        nome: "O Adestrador",
+        imagem: "imagens/npc10_adestrador.png",
+        historia: "TODOS VCS VÃO MORRER PARA AS MINHAS FERAS",
+        acoes: ["+25 teatro, +25 maquiagem, +25 enganação (Vou Matar todos VCS)"],
+        mutacao: "Filho do Domador",
+        classes: "Melhor Enganador 'Trouxas'",
+        agilidade: 0,
+        forca: 0,
+        inteligencia: 0,
+        sobrevivencia: 0,
+        vigor: 0,
+        status: "Morte a todos Vocês, em nome do meu pai",
       
     },
 
