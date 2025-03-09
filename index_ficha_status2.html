@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fichas</title>
-    <link rel="stylesheet" href="css/ficha_status.css">
+    <title>Ferocidades</title>
+    <link rel="stylesheet" href="css/ficha_status2.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,141 +63,65 @@
   </nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
     <div class="titulo_principal">
-        <h1 class="titulo_efeito">Npcs</h1>
-        <h1 class="titulo_efeito2"> <a class="botão_atalho_v2" href="index_ficha_status2.html">Feras</a></h1>
+        
+        <h1 class="titulo_efeito2"> <a class="botão_atalho_v2" href="index_ficha_status.html">Npcs</a></h1>
+        <h1 class="titulo_efeito">Feras</h1>
     </div>
 
-      
     <div class="container">
-        <input type="text" id="pesquisa" placeholder="Buscar NPC..." onkeyup="filtrarNPCs()">
-        <h1>Fichas de NPCs</h1>
+        <input type="text" id="pesquisa" placeholder="Buscar Criatura..." onkeyup="filtrarDinossauros()">
+        <h1>Fichas de Criaturas</h1>
         <div class="npc-grid">
-            <!-- Ícone do NPC -->
-            <div class="npc" onclick="openModal('npc1')">
-                <img src="imagens/npc1_brok.jpg" alt="NPC 1">
+            <!-- Ícone do Dino -->
+            <div class="npc" onclick="openModal('dino1')">
+                <img src="imagens/dino1.jpg" alt="Dino 1">
                 <div class="info">
-                    <h2>Thormond</h2>
-                    <p class="info2">Construtor</p>
+                    <h2 class="info3">Heressauro</h2>
+                    <p class="info2">Tirek</p>
                 </div>
-            </div>
+            </div>  
 
-            <div class="npc" onclick="openModal('npc2')">
-                <img src="imagens/npc2_dante.jpg" alt="NPC 2">
+            <div class="npc" onclick="openModal('dino2')">
+                <img src="imagens/dino2.jpg" alt="Dino 2">
                 <div class="info">
-                    <h2>Dante</h2>
-                    <p class="info2">Curandeiro</p>
+                    <h2 class="info3">Mariposa</h2>
+                    <p class="info2">Butterfly</p>
                 </div>
-            </div>
+            </div>  
 
-            <div class="npc" onclick="openModal('npc3')">
-                <img src="imagens/npc3_capitao.jpg" alt="NPC 3">
+            <div class="npc" onclick="openModal('dino3')">
+                <img src="imagens/dino3.jpg" alt="Dino 3">
                 <div class="info">
-                    <h2>Capitão</h2>
-                    <p class="info2">Atirador</p>
+                    <h2 class="info3">Purlovia</h2>
+                    <p class="info2">Cacau</p>
                 </div>
-            </div>
+            </div>  
 
-            <div class="npc" onclick="openModal('npc4')">
-                <img src="imagens/npc4_guga.jpg" alt="NPC 4">
+            <div class="npc" onclick="openModal('dino4')">
+                <img src="imagens/dino4.jpg" alt="Dino 4">
                 <div class="info">
-                    <h2>Guga</h2>
-                    <p class="info2">Alquimista</p>
+                    <h2 class="info3">Trike</h2>
+                    <p class="info2">Lewall</p>
                 </div>
-            </div>
-            <div class="npc" onclick="openModal('npc5')">
-                <img src="imagens/npc5_ocatne.jpg" alt="NPC 5">
-                <div class="info">
-                    <h2>Octane</h2>
-                    <p class="info2">Velocista</p>
-                </div>
-            </div>
-            <div class="npc" onclick="openModal('npc6')">
-                <img src="imagens/npc6_dito.jpg" alt="NPC 6">
-                <div class="info">
-                    <h2>Dito</h2>
-                    <p class="info2">Isca</p>
-                </div>
-            </div>
-            <div class="npc" onclick="openModal('npc7')">
-                <img src="imagens/npc7_Wall-E.jpg" alt="NPC 7">
-                <div class="info">
-                    <h2>Wall-E</h2>
-                    <p class="info2">Agricultor</p>
-                </div>
-            </div>
-            <div class="npc" onclick="openModal('npc8')">
-                <img src="imagens/npc8_meleys.jpg" alt="NPC 8">
-                <div class="info">
-                    <h2>Meleys</h2>
-                    <p class="info2">Vigia-Vanguarda</p>
-                </div>
-            </div>
-            <div class="npc" onclick="openModal('npc9')">
-                <img src="imagens/npc9_anel_ganância.jpg" alt="NPC 9">
-                <div class="info">
-                    <h2>Anel Orc</h2>
-                    <p class="info2">Suporte-Endiabrado</p>
-                </div>
-            </div>
-            <div class="npc" onclick="openModal('npc10')">
-                <img src="imagens/npc10_adestrador.png" alt="NPC 9">
-                <div class="info">
-                    <h2>Chistofher</h2>
-                    <p class="info2">Treinador</p>
-                </div>
-            </div>
+            </div>  
 
-
-           
-
-
+            <div class="npc" onclick="openModal('dino5')">
+                <img src="imagens/dino5.jpg" alt="Dino 5">
+                <div class="info">
+                    <h2 class="info3">Dodôs</h2>
+                    <p class="info2">Grupo: 2</p>
+                </div>
+            </div>  
+            <!-- Adicione outros dinossauros aqui -->
         </div>
     </div>
-
-    <!-- Modal de senha -->
-    <div id="modalSenha" class="modal">
-        <div class="modal-content">
-            <h2>Insira a chave de acesso</h2>
-            <input type="password" id="senha" placeholder="Digite a senha">
-            <button onclick="verificarSenha()">Acessar</button>
-            <button class="fechar" onclick="fecharModal()">Fechar</button>
-        </div>
-    </div>
-
-    <!-- Modal da Ficha -->
-    <div id="modalFicha" class="modal ficha">
-        <div class="modal-content">
-            <h2 id="npcNome">Nome do NPC</h2>
-            <img id="npcImagem" src="" alt="Imagem do NPC">
-            <p id="npcHistoria">História do NPC...</p>
-
-            <h3>Bônus de Ações</h3>
-            <ul id="npcAcoes"></ul>
-
-            <h3>Mutação</h3>
-            <p id="npcMutacao"></p>
-
-            <h3>Classes</h3>
-            <p id="npcClasses"></p>
-
-            <h3>Atributos</h3>
-            <p>Agilidade: <span id="npcAgilidade"></span></p>
-            <p>Força: <span id="npcForca"></span></p>
-            <p>Inteligência: <span id="npcInteligencia"></span></p>
-            <p>Sobrevivência: <span id="npcSobrevivencia"></span></p>
-            <p>Vigor: <span id="npcVigor"></span></p>
-
-            <h3>Status</h3>
-            <p id="npcStatus"></p>
-
-            <button class="fechar" onclick="fecharFicha()">Fechar</button>
-        </div>
-    </div>
+    
+   
 
     <div class="main-container">
         <!-- Botão para abrir o menu de mapas -->
         <button id="btnSpawnV2" class="spawn-button-v2">
-            <a class="botão_atalho_v2" href="index_npcs.html">Criação de Npc</a>
+            <a class="botão_atalho_v2" href="index_ciencia.html">Criação de Dinos</a>
         </button>
     </div>
        
@@ -235,6 +159,6 @@
       
 
  <!-- Inclui o arquivo de script -->
- <script src="js/ficha_status.js"></script>
+ <script src="js/ficha_status2.js"></script>
 </body>
 </html>

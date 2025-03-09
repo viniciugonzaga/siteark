@@ -254,6 +254,19 @@ const npcs = {
 
 };
 
+function filtrarNPCs() {
+    const termoPesquisa = document.getElementById("pesquisa").value.toLowerCase();
+    const npcs = document.querySelectorAll(".npc-grid .npc");
+
+    npcs.forEach(npc => {
+        const nome = npc.querySelector("h2").textContent.toLowerCase();
+        const classe = npc.querySelector(".info2").textContent.toLowerCase();
+        
+        // Se o nome ou a classe contiver o termo pesquisado, mostra; senão, esconde
+        npc.style.display = (nome.includes(termoPesquisa) || classe.includes(termoPesquisa)) ? "block" : "none";
+    });
+}
+
 function openModal(npcId) {
     npcAtual = npcId;
     document.getElementById("modalSenha").style.display = "flex";

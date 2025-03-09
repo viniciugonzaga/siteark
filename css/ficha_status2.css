@@ -1,10 +1,11 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_status_npc.jpg') no-repeat center center fixed;
+    background: url('../imagens/lobby_status_npc2.jpg') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
+    min-height: 100vh;
 }
 
 /* Estilo inicial para a página */
@@ -498,6 +499,9 @@ nav {
 }
 
 
+/* fim do nav-bar---------------------------------------------------------------------------- */
+/* Estilo geral do título */
+
 .titulo_principal {
     display: flex;
     justify-content: center;
@@ -526,7 +530,7 @@ nav {
 }
 
 .titulo_efeito2 a:hover {
-    background: radial-gradient(circle, rgba(41, 19, 2, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877),rgba(58, 23, 7, 0.836)); /* Gradiente de fundo */
+    background: linear-gradient(90deg, #575f0ad7, #575f0ad7);
     transform: scale(1.1);
 }
 
@@ -573,8 +577,6 @@ nav {
 }
 
 
-
-
 main {
     display: flex;
     flex-direction: column;
@@ -589,7 +591,7 @@ main {
     margin-top: var(--spacing);
     margin: 0 auto;
     text-align: center;
-    background: radial-gradient(circle, rgba(41, 19, 2, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877),rgba(58, 23, 7, 0.836)); /* Gradiente de fundo */
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     padding: 2%;
     border: 2px solid #b1a005; /* Borda */
     border-radius: 20px;
@@ -610,11 +612,20 @@ main {
    0 0 10px #e0b31c;
    margin-bottom: 2%;
   }
+  .info3{
+    font-size: 1.9rem;
+    color: #eeff00;
+    text-shadow:
+    0 0 10px #e0b31c;
+    background-color: #0e0b00cb;
+    border-radius: 20px;
+    padding: 2px;
+   }
   .info2{
     font-size: 1.3rem;
     background: radial-gradient(circle, rgba(24, 2, 2, 0.829), rgba(29, 1, 1, 0.877), rgba(29, 2, 2, 0.877),rgba(27, 3, 3, 0.486)); /* Gradiente de fundo */
     border-radius: 20px;
-    padding: 10px;
+    padding: 7px;
     color: #fff; /* Cor base do texto */
     text-align: center;
     text-shadow:
@@ -635,7 +646,7 @@ main {
 .npc {
     width: 200px; /* Largura fixa */
     height: 280px; /* Altura fixa */
-    background: radial-gradient(circle, rgba(68, 27, 8, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877), rgb(58, 23, 7));
+    background: radial-gradient(circle, rgba(34, 29, 4, 0.74), rgba(37, 28, 2, 0.877), rgba(34, 25, 2, 0.877), rgb(36, 26, 5));
     padding: 10px;
     border-radius: 20px;
     cursor: pointer;
@@ -658,306 +669,67 @@ main {
 }
 
 
-.modal {
-    display: none;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 15, 2, 0.95), rgb(58, 23, 7));
-    padding: 30px;
-    border-radius: 20px;
-    border: 4px solid #ffb936;
-    color: #f7e70a;
-    box-shadow: 0 0 15px rgba(255, 185, 54, 0.8);
-    z-index: 1000;
-    margin: 0 auto;
-    width: 60%;
-    overflow-y: auto;
-}
-
-.modal::-webkit-scrollbar {
-    width: 12px; /* Largura da barra de rolagem */
-}
-
-.modal::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.1); /* Cor de fundo da trilha */
-    border-radius: 10px;
-}
-
-.modal::-webkit-scrollbar-thumb {
-    background: #ffb936; /* Cor do "polegar" da barra de rolagem */
-    border-radius: 10px;
-    border: 2px solid rgba(0, 0, 0, 0.2); /* Borda do "polegar" */
-}
-
-.modal::-webkit-scrollbar-thumb:hover {
-    background: #e0a72b; /* Cor do "polegar" ao passar o mouse */
-}
-
-.modal-content {
-    text-align: center;
+.container {
     padding: 20px;
-    background: rgba(30, 10, 2, 0.97);
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(255, 185, 54, 0.7);
-    margin: 0 auto;
-    text-align: center;
-    align-items: center;
 }
 
-#modalFicha {
-    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));
-    border: 4px solid #ffb936;
-    color: #f7e70a;
-    box-shadow: 0 0 15px rgba(255, 185, 54, 0.8);
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60%;
-    height: 60%;
+.npc-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
-#modalFicha .modal-content {
-    background: rgba(30, 10, 2, 0.97);
-    border-radius: 15px;
+/* Estilos dos NPCs na grade */
+.npc {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.npc img {
     width: 100%;
     height: 100%;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(255, 185, 54, 0.7);
-    overflow-y: auto;
-    padding: 20px;
-}
-
-#modalFicha .modal-content::-webkit-scrollbar {
-    width: 10px; /* Largura da barra de rolagem */
-}
-
-#modalFicha .modal-content::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.2); /* Cor de fundo da trilha */
-    border-radius: 8px;
-}
-
-#modalFicha .modal-content::-webkit-scrollbar-thumb {
-    background: #ffb936; /* Cor do "polegar" da barra de rolagem */
-    border-radius: 8px;
-    border: 1px solid rgba(0, 0, 0, 0.3); /* Borda do "polegar" */
-}
-
-#modalFicha .modal-content::-webkit-scrollbar-thumb:hover {
-    background: #e0a72b; /* Cor do "polegar" ao passar o mouse */
-}
-.modal h2 {
-    font-size: 24px;
-    color: #ffd700;
-    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
-    margin-bottom: 10px;
-    
-}
-
-.modal-content img {
-    width: 240px;
-    height: 240px;
-    border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #ffb936;
-    box-shadow: 0 0 10px rgba(255, 185, 54, 0.6);
-    margin-bottom: 10px;
+    transition: transform 0.3s ease;
 }
 
-.modal-content p,
-.modal-content ul {
-    font-size: 16px;
-    color: #fff5bb;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.6);
-    background: rgba(0, 0, 0, 0.2); /* Cor de fundo da trilha */
-    border: 3px solid #ffb936;
-    text-align: center;
-    margin-bottom: 8px;
-    padding: 20px;
-    border-radius: 20px;
+.npc:hover img {
+    transform: scale(1.1);
 }
 
-.modal-content h3 {
+.npc .info {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.npc .info h2 {
+    margin: 0;
     font-size: 18px;
-    color: #e0b31c;
-    text-shadow: 0 0 6px rgba(255, 185, 54, 0.8);
-    margin-top: 15px;
 }
 
-.modal-content ul {
-    list-style: none;
-    padding: 0;
+.npc .info p {
+    font-size: 14px;
 }
 
-.modal-content li {
-    background: rgba(68, 27, 8, 0.8);
-    padding: 5px;
-    border-radius: 8px;
-    margin: 5px 0;
-    box-shadow: 0 0 5px rgba(255, 185, 54, 0.5);
+/* Animações do Modal */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
-.modal-content button {
-    background-color: #29b941;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease, transform 0.2s;
-    font-size: 16px;
+@keyframes zoomIn {
+    0% { transform: scale(0.7); }
+    100% { transform: scale(1); }
 }
 
-.modal-content button:hover {
-    background-color: #ccc01b;
-    transform: scale(1.05);
-}
-
-.modal-content button.fechar {
-    background: rgb(133, 22, 22);
-}
-
-.modal-content button.fechar:hover {
-    background: rgb(180, 30, 30);
-}
-
-
-
-/* Responsividade */
-@media (max-width: 780px) {
-    .modal {
-        width: 90%;
-    }
-}
-/* Responsividade para telas de 1080px */
-@media (max-width: 780px) {
-    .container {
-        width: 95%;
-        padding: 3%;
-        margin: 0 auto;
-    }
-
-    .npc {
-    width: 37.5%;
-    display: flex;
-    justify-content: center;
-    height: 10%;
-    padding: 15px;
-    border-radius: 20px;
-    text-align: center;
-    margin: 0 auto;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    word-wrap: break-word;
-   
-    }
-    .npc-grid {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-        align-items: center;
-    }
-    .container h1{
-
-      font-size: 1.4rem;
-
-    }
-    .info{
-        font-size: 0.6rem;
-        text-align: center;
-        
-       }
-       .info2{
-         font-size: 0.5rem;
-         text-align: center;
-        
-       }
-
-    .npc img {
-        width: 90px;
-        height: 90px;
-        margin: 0 auto;
-    }
-
-    #modalFicha {
-        width: 75%;
-        height: 70%;
-    }
-
-    #modalFicha .modal-content {
-        padding: 15px;
-    }
-    .modal {
-        width: 50%;
-        padding: 20px;
-        border-radius: 15px;
-    }
-
-    #modalFicha {
-        width: 80%;
-        height: 80%;
-        border-width: 3px;
-        box-shadow: 0 0 10px rgba(255, 185, 54, 0.7);
-    }
-
-    #modalFicha .modal-content {
-        padding: 10px;
-        border-radius: 10px;
-        box-shadow: 0 0 8px rgba(255, 185, 54, 0.6);
-    }
-
-    .modal h2 {
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
-    .modal-content img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border-width: 2px;
-        margin-bottom: 8px;
-    }
-
-    .modal-content p,
-    .modal-content ul {
-        justify-content: center;
-    
-        padding: 10px;
-        font-size: 0.9rem;
-        padding: 8px;
-        margin-bottom: 6px;
-    }
-
-    .modal-content h3 {
-        font-size: 16px;
-        margin-top: 10px;
-    }
-
-    .modal-content li {
-        padding: 4px;
-        border-radius: 6px;
-        margin: 4px 0;
-    }
-
-    .modal-content button {
-        padding: 8px 12px;
-        font-size: 14px;
-        border-radius: 8px;
-    }
-
-    .modal-content button.fechar {
-        background: rgb(133, 22, 22);
-    }
-
-    .modal-content button.fechar:hover {
-        background: rgb(180, 30, 30);
-    }
-}
 
 .main-container{
     margin: 0 auto;
