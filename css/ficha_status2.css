@@ -509,6 +509,7 @@ nav {
     gap: 40px; /* Espaçamento proporcional entre os títulos */
     margin-top: 120px;
     flex-wrap: wrap; /* Permite quebra em telas menores */
+    
 }
 
 .titulo_efeito,
@@ -516,8 +517,16 @@ nav {
     font-size: 4rem;
     font-weight: bold;
     position: relative;
-    color: #ffef10;
-    text-shadow: 0 0 50px #b60707;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
+    padding: 2%;
+    border: 2px solid #b1a005; /* Borda */
+    border-radius: 20px;
+  
     white-space: nowrap; /* Evita quebra de linha */
 }
 
@@ -527,11 +536,21 @@ nav {
     padding: 5px 15px;
     border-radius: 10px;
     transition: 0.3s ease-in-out;
+    
 }
 
 .titulo_efeito2 a:hover {
-    background: linear-gradient(90deg, #575f0ad7, #575f0ad7);
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     transform: scale(1.1);
+    color: #fff; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+      cursor: pointer;
 }
 
 /* Linha de efeito do título */
@@ -576,6 +595,25 @@ nav {
     }
 }
 
+.explicacao-regras{
+    padding: 10px;
+    text-shadow: 0 0 10px #e0b31c, 0 0 30px #cfcd3a;
+    text-align: center;
+    font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
+    margin: 0 auto;
+    color: #fff5bb;
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
+    border-radius: 10px;
+    width: 80%
+  
+ }
+ @media (max-width: 780px) {
+    .explicacao-regras {
+        font-size: 0.8rem; /* Diminui o tamanho da fonte em telas médias */
+        width: 70%;
+        padding: 5px;
+    }
+}
 
 main {
     display: flex;
@@ -799,7 +837,389 @@ color:#f1fc5b;
 border: 1px solid #f7e70a;
 }
 
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
 
+.npc-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.npc {
+   
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.npc:hover {
+    transform: scale(1.1);
+}
+
+img {
+    width: 40%;
+   border-radius: 20px;
+   border: 1px solid #f7e70a;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(31, 2, 11, 0.678), rgba(31, 2, 11, 0.678));    
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto; /* Scroll caso o conteúdo fique grande */
+}
+
+
+
+.modal-content {
+    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 70%;
+    max-width: 500px;
+    margin-top: 17%;
+   
+}
+.modal h2{
+    font-size: 1.8rem;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+    text-align: center;
+}
+.modal h3{
+    font-size: 1.4rem;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+    text-align: center;
+}
+
+
+
+
+
+#dino-especie{
+    font-size: 1.7rem;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+    text-align: center;
+}
+#dino-funcao{
+
+    font-size: 1.5rem;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+    text-align: center;
+
+}
+#dino-vida{
+
+    font-size: 1.2rem;
+    text-align: center;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #47cf08e8,   /* Primeira camada de brilho vermelho */
+      0 0 10px #01c91c;  /* Segunda camada laranja */
+
+
+}
+#dino-armadura{
+
+    font-size: 1.2rem;
+    text-align: center;
+    margin-left: 1%;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #08b8cfe8,   /* Primeira camada de brilho vermelho */
+      0 0 10px rgb(1, 121, 201);  /* Segunda camada laranja */
+}
+
+#valorVida{
+
+    font-size: 1.2rem;
+    text-align: center;
+    margin-left: 1%;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #8b4c04e8,   /* Primeira camada de brilho vermelho */
+      0 0 10px rgb(201, 81, 1);  /* Segunda camada laranja */
+}
+#valorDano{
+
+    font-size: 1.2rem;
+    text-align: center;
+    margin-left: 1%;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+}
+#classe{
+    font-size: 1.5rem;
+    color: #fff5bb;
+    text-shadow:
+      0 0 5px #cc00ff,   /* Primeira camada de brilho vermelho */
+      0 0 10px #0059ff,  /* Segunda camada laranja */
+      0 0 80px #8c00ff;  /* Brilho externo */
+    text-align: center;
+
+
+}
+.modal p{
+    font-size: 1.2rem;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+    text-align: center;
+
+
+}
+.close {
+    cursor: pointer;
+    color: rgb(217, 255, 0);
+    font-size: 20px;
+    float: right;
+}
+@media (max-width: 760px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: var(--spacing);
+        min-height: calc(100vh - 100px);
+    }
+
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        text-align: center;
+        padding: 3%;
+    }
+
+    .container h1 {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .info {
+        font-size: 1.2rem;
+    }
+
+    .info2, .info3 {
+        font-size: 1.1rem;
+        padding: 5px;
+    }
+
+    .npc-grid {
+        gap: 10px;
+    }
+
+    .npc {
+        width: 160px;
+        height: 200px;
+    }
+
+    .npc img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .spawn-button-v2 {
+        font-size: 1rem;
+        padding: 10px 18px;
+        border-radius: 18px;
+    }
+
+    .botão_atalho_v2 {
+        font-size: 0.9rem;
+    }
+
+    #pesquisa {
+        width: 50%;
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        width: 85%;
+        padding: 15px;
+    }
+    .modal-content {
+        background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 70%;
+        max-width: 500px;
+        margin-top: 46%;
+       
+    }
+}
+
+
+/* Container central */
+#container-central {
+    position: relative;
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(190, 125, 3, 0.692);
+    border-radius: 10px;
+    overflow: hidden;
+    border: solid 2px #faa80e;
+    margin: auto; /* Centraliza horizontalmente na página */
+  }
+  
+  /* Imagem de fundo apagada */
+  #fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  #imagem-fundo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(30%);
+  }
+  
+  /* Ícones */
+ 
+  #icones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  #icone{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os ícones quebrem linha se necessário */
+    gap: 10px;
+    margin: 15px 0;
+    padding: 10px;
+  }
+  .icone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+  }
+  
+  .icone:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Imagem dentro do ícone */
+  .icone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+
+  /* Conteúdo */
+  #conteudo {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fae3e3;
+    border-radius: 10px;
+  }
+  
+  #gif {
+    width: 400px;
+    height: auto;
+    margin-bottom: 15px;
+    border: 2px solid #fcda1c;
+    border-radius: 20%;
+  }
+  
+  #titulo {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+  }
+  
+  #texto {
+    font-size: 1.4rem;
+    background: radial-gradient(circle, rgba(34, 29, 4, 0.74), rgba(37, 28, 2, 0.877), rgba(34, 25, 2, 0.877), rgb(36, 26, 5));
+    border-radius: 20px;
+    border: 0.5px solid #fcda1c;
+    padding: 15px;
+    position: center;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    
+  }
+  @media (max-width: 780px) {
+    #container-central{
+       width: 95%;
+       padding: 10px;
+    }
+
+    #texto {
+        font-size: 1rem; /* Diminui o tamanho da fonte em telas médias */
+    }
+    #icones {
+        gap: 5px; /* Reduz o espaço entre os ícones */
+    }
+    .icone {
+        width: 40px; /* Reduz o tamanho dos ícones */
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap; /* Permite que os ícones quebrem linha se necessário */
+        gap: 10px;
+        margin: 15px 0;
+       
+    }
+}
+ 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {

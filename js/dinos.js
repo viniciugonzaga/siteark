@@ -1039,8 +1039,8 @@ const dinoFichas = {
     length: '6 M',
     attributes: { agi: 5, for: 3, int: 3, pre: 4, vig: 3 },
     life: 120,
-    armor: 12,
-    actionBonus: '+25 furtividade, +20 emboscada, +15 esquiva, +10 bloquear',
+    armor: 60,
+    actionBonus: '+15 furtividade, +15 emboscada, +15 esquiva, +10 bloquear, +10 mordida, +10 camuflar, +10 mudar de cor, +10 ficar parado, +10 garra, +10 rabo, +10 contra-ataque, +10 escalar, +5 agarrar, +5 rastrear, +5 agachar, +5 flexibilidade, +5 desarme, +5 perseguir, +5 investida, ',
     attacks: [
         'Mordida Rápida: 4d8+10 (causa sangramento leve por 2 rodadas)',
         'Garra Furtiva: 5d8+15 (se usado em emboscada, aplica desvantagem no alvo por 1 rodada)',
@@ -1048,9 +1048,9 @@ const dinoFichas = {
     ],
     abilities: [
         'Mestre da Camuflagem: Pode se esconder perfeitamente em áreas de floresta, recebendo +15 em furtividade e anulando percepção visual de inimigos próximos.',
-        'Ataque Surpresa: Quando ataca em furtividade, seus ataques recebem +10 no dano e bônus crítico em 18-20.'
+        'Ataque Surpresa: Quando ataca em furtividade, seus ataques recebem +20 no dano e bônus crítico de 20 para 18.'
     ],
-    passiva: 'Predador Silencioso: Recupera 5 pontos de vida toda vez que elimina um inimigo enquanto está em furtividade.',
+    passiva: 'Predador Silencioso: Quando está furtivo causa +2 dados de dano em ataques, não possui nenhuma penalidade de furtividade, álem de regenerar 2d6 fora de combate em florestas. ',
     passivaElemental: 'Elétrico: Em regiões florestais ou próximas de água, seus ataques geram descargas elétricas de 2d6 adicionais.'
 },
 'Metriacontossauro': {
@@ -1392,7 +1392,7 @@ const dinoFichas = {
     attributes: { agi: 4, for: 4, int: 3, pre: 3, vig: 4 },
     life: 140,
     armor: 70,
-    actionBonus: '+25 emboscada, +20 mordida, +20 furtividade, +15 imobilizar +10 esquiva',
+    actionBonus: '+15 emboscada, +15 mordida, +15 furtividade, +15 imobilizar, +10 esquiva, +10 contra-ataque, +10 luta, +10 mordida, +10 encontrão, +10 força bruta, +10 rastrear carniça, +10 quebrar ossos, +10 bloqueio,+10 salto, +10 ficar parado, +10 cavar, +10 escalar, +10 criar armadilha, +5 garras, +5 flanquear, +5 pensar.',
     attacks: [
         'Mordida Devastadora: 7d10+30 (aplica desvantagem em vigor e resistência)',
         'Golpe Surpresa: 6d12+25 (dano dobrado ao atacar furtivamente)',
@@ -1402,9 +1402,10 @@ const dinoFichas = {
         'Furtividade Suprem: Se esconde perfeitamente em vegetações ou terrenos rochosos, ganhando +20 em furtividade.',
         'Predador Sorrateiro: Ao atacar furtivamente, seus ataques ignoram 50% da armadura do alvo.'
     ],
-    passiva: 'Emboscador Implacável: Após sair de furtividade, causa +15 de dano no próximo ataque.',
+    passiva: 'Emboscador Implacável: Após sair de furtividade, causa +35 de dano no próximo ataque.',
     passivaElemental: 'Fogo: Ao atacar de surpresa, inflama alvos, aplicando queimaduras moderadas por 2 turnos.'
-},'Dente de sabre': {
+},
+'Dente de sabre': {
     title: 'Tigre Ágil e Mortal',
     image: 'imagens/dinos_dente_de_sabre.webp',
     weight: '200 kg',
@@ -1964,18 +1965,18 @@ const dinoFichas = {
     length: '1,5 m',
     weight: '15 kg',
     attributes: { agi: 1, for: 1, int: 2, pre: 2, vig: 1 },
-    life: 20,
+    life: 35,
     armor: 0,
-    actionBonus: "+10 correr, +15 procriar, +10 encontrar comida, +15 resistir a quedas",
+    actionBonus: "+5 gritar, +15 procriar, +10 encontrar comida, +10 indetificar espécie, +5 dançar, +5 impressionar, +5 botar ovo. ",
     attacks: [
         'Bicada Nutritiva: 1d4+2 (causa pouco dano, mas pode aumentar a nutrição da equipe com ovos)',
     ],
     abilities: [
-        'Procriação Veloz: Produz ovos nutritivos que regeneram 5% de vida para aliados próximos.',
-        'Fuga Rápida: Ganha +20% de agilidade ao fugir de predadores.'
+        'Procriação Veloz: Produz ovos nutritivos que propocrionam +1 nível de alimebtação Sáudavel aos donos ou seres que consumirem.',
+        'Fuga Rápida: Ganha +10 de agilidade para gritar e avisar aliados.'
     ],
-    passiva: 'Nutrição Natural: Dodôs em grupo aumentam a regeneração de vida da tribo em 2%.',
-    passivaElemental: 'Abismoelétrico: Se atingido por tempestades, acelera a produção de ovos, gerando até 3 extras por ciclo.'
+    passiva: 'Nutrição Natural: Dodôs em grupo aumentam a socialização dos dinos em +5 álem de forncecer os ovos, vários dodôs forma um grupo maior, onde poderão procriar mais rápido.',
+    passivaElemental: 'Abismoelétrico: Se atingido por descargas elétricas, acelera a produção de ovos, gerando até 3 extras por ciclo.'
 },
 'Parassauro': {
     title: 'Guarda de Alerta',
@@ -2504,20 +2505,20 @@ const dinoFichas = {
     length: '9 m',
     weight: '6.000 kg',
     attributes: { agi: 2, for: 4, int: 3, pre: 4, vig: 4 },
-    life: 230,
-    armor: 230,
+    life: 240,
+    armor: 240,
     attacks: [
-        'Investida de Chifres: 6d10+20 (derruba e causa atordoamento por 1 turno)',
-        'Cabeçada Poderosa: 5d12+18 (ignora 10% da armadura do alvo)',
+        'Investida de Chifres: 7d10+40 (derruba e causa atordoamento por 1 turno)',
+        'Cabeçada Poderosa: 5d12+18 (ignora armadura do alvo)',
         'Chifrada Giratória: 4d10+15 (dano em área pequena ao redor do Trike)'
     ],
     abilities: [
         'Fortaleza Natural: Reduz dano recebido em 50% contra ataques frontais.',
         'Resistência ao Impacto: Ignora efeitos de atordoamento.'
     ],
-    passiva: 'Defensor Territorial: Garante +40% de armadura a aliados próximos.',
+    passiva: 'Defensor Territorial: Ganha + 5 de intimidação quando está me grupo, álem de causar +2 dado de dano para cada trike próximo de sue grupo.',
     passivaElemental: 'Critico de chifre: Em áreas de montanhas, aumenta o dano em 75%.',
-    actionBonus: '+25 força em investidas, +20 resistência a impactos, +30 dano contra estruturas defensivas'
+    actionBonus: '+20 força em investidas +20 encontrão, +20 força bruta, +20 resistência a impactos, +20 dano contra estruturas defensivas, +15 chifres, +15 intimidação, +15 bloqeuio, +15 contra-ataque, +15 intolerância territorial , +15 preparar ataque, +10 imbolizar, +10 combo, +10 resistência, +5 pensar, +5 identificar território.  '
 },
 
 'Torossauro': {

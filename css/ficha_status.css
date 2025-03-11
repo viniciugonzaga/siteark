@@ -511,9 +511,16 @@ nav {
 .titulo_efeito2 {
     font-size: 4rem;
     font-weight: bold;
-    position: relative;
-    color: #ffef10;
-    text-shadow: 0 0 50px #b60707;
+    position: relative;   
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d;
+    background: radial-gradient(circle, rgba(41, 19, 2, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877),rgba(58, 23, 7, 0.836)); /* Gradiente de fundo */
+    padding: 2%;
+    border: 2px solid #b1a005; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
     white-space: nowrap; /* Evita quebra de linha */
 }
 
@@ -527,7 +534,17 @@ nav {
 
 .titulo_efeito2 a:hover {
     background: radial-gradient(circle, rgba(41, 19, 2, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877),rgba(58, 23, 7, 0.836)); /* Gradiente de fundo */
-    transform: scale(1.1);
+    transform: scale(1.7);
+    color: #fff; /* Cor base do texto */
+    text-align: center;
+    text-shadow:
+      0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+      0 0 10px #ff4500,  /* Segunda camada laranja */
+      0 0 20px #ff4500,  /* Terceira camada mais forte */
+      0 0 40px #ff6347,  /* Camada de brilho maior */
+      0 0 80px #ff4500;  /* Brilho externo */
+      cursor: pointer;
+
 }
 
 /* Linha de efeito do título */
