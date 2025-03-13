@@ -561,7 +561,7 @@ nav {
     left: 50%;
     transform: translateX(-50%);
     height: 4px;
-    background: linear-gradient(90deg, #ffda1f, #f51616, #ffda24);
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     animation: wave 8s infinite;
 }
 .titulo_efeito2:after {
@@ -571,7 +571,7 @@ nav {
     left: 50%;
     transform: translateX(-50%);
     height: 4px;
-    background: linear-gradient(90deg, #ffda1f, #f51616, #ffda24);
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     animation: wave 8s infinite;
 }
 
@@ -596,25 +596,36 @@ nav {
 }
 
 .explicacao-regras{
-    padding: 10px;
+    padding: 20px;
     text-shadow: 0 0 10px #e0b31c, 0 0 30px #cfcd3a;
+    border: 2px solid #b1a005; /* Borda */
     text-align: center;
     font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
     margin: 0 auto;
     color: #fff5bb;
     background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     border-radius: 10px;
-    width: 80%
+    width: 80%;
+ 
   
  }
  @media (max-width: 780px) {
     .explicacao-regras {
-        font-size: 0.8rem; /* Diminui o tamanho da fonte em telas médias */
-        width: 70%;
-        padding: 5px;
+        font-size: 0.9rem; /* Diminui o tamanho da fonte em telas médias */
+        width: 85%;
+        padding: 14px;
+        box-shadow: 0 4px 8px rgba(241, 226, 7, 0.685);
     }
 }
+.desafio{
+   background-color: #0e0b009a;
+   border-radius: 20px;
+   text-align: center;
+   margin: 0 auto;
+   width: 80%;
 
+
+}
 main {
     display: flex;
     flex-direction: column;
@@ -875,7 +886,7 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, rgba(31, 2, 11, 0.678), rgba(31, 2, 11, 0.678));    
+    background: radial-gradient(circle, rgba(31, 24, 2, 0.616), rgba(31, 18, 2, 0.616));    
     justify-content: center;
     align-items: center;
     overflow-y: auto; /* Scroll caso o conteúdo fique grande */
@@ -884,31 +895,27 @@ img {
 
 
 .modal-content {
-    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+    background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    width: 70%;
+    width: 60%;
     max-width: 500px;
-    margin-top: 17%;
+    margin-top: 6%;
    
 }
 .modal h2{
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color: #fff5bb;
     text-shadow:
-    0 0 10px #e0b31c,
-    0 0 20px #f6fa1d,
-    0 0 30px #cfcd3a;
+    0 0 10px #e0b31c;
     text-align: center;
 }
 .modal h3{
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     color: #fff5bb;
     text-shadow:
-    0 0 10px #e0b31c,
-    0 0 20px #f6fa1d,
-    0 0 30px #cfcd3a;
+    0 0 10px #e0b31c;
     text-align: center;
 }
 
@@ -917,26 +924,20 @@ img {
 
 
 #dino-especie{
-    font-size: 1.7rem;
+    font-size: 1.4em;
     color: #fff5bb;
     text-shadow:
       0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
-      0 0 10px #ff4500,  /* Segunda camada laranja */
-      0 0 20px #ff4500,  /* Terceira camada mais forte */
-      0 0 40px #ff6347,  /* Camada de brilho maior */
-      0 0 80px #ff4500;  /* Brilho externo */
+      0 0 10px #ff4500;
     text-align: center;
 }
 #dino-funcao{
 
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #fff5bb;
     text-shadow:
       0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
-      0 0 10px #ff4500,  /* Segunda camada laranja */
-      0 0 20px #ff4500,  /* Terceira camada mais forte */
-      0 0 40px #ff6347,  /* Camada de brilho maior */
-      0 0 80px #ff4500;  /* Brilho externo */
+      0 0 10px #ff4500;
     text-align: center;
 
 }
@@ -980,18 +981,13 @@ img {
     color: #fff5bb;
     text-shadow:
       0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
-      0 0 10px #ff4500,  /* Segunda camada laranja */
-      0 0 20px #ff4500,  /* Terceira camada mais forte */
-      0 0 40px #ff6347,  /* Camada de brilho maior */
-      0 0 80px #ff4500;  /* Brilho externo */
+      0 0 10px #ff4500;
 }
 #classe{
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     color: #fff5bb;
     text-shadow:
-      0 0 5px #cc00ff,   /* Primeira camada de brilho vermelho */
-      0 0 10px #0059ff,  /* Segunda camada laranja */
-      0 0 80px #8c00ff;  /* Brilho externo */
+      0 0 5px #cc00ff;
     text-align: center;
 
 
@@ -1000,18 +996,21 @@ img {
     font-size: 1.2rem;
     color: #fff5bb;
     text-shadow:
-    0 0 10px #e0b31c,
-    0 0 20px #f6fa1d,
-    0 0 30px #cfcd3a;
+    0 0 10px #e0b31c;
     text-align: center;
 
 
 }
 .close {
     cursor: pointer;
-    color: rgb(217, 255, 0);
-    font-size: 20px;
-    float: right;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #e0b31c,
+    0 0 20px #f6fa1d,
+    0 0 30px #cfcd3a;
+    font-size: 40px;
+    float: center;
+    margin-top: 5px;
 }
 @media (max-width: 760px) {
     .main {
@@ -1077,13 +1076,13 @@ img {
         padding: 15px;
     }
     .modal-content {
-        background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+        background: radial-gradient(circle, rgba(41, 35, 2, 0.74), rgba(56, 44, 3, 0.877), rgba(32, 34, 2, 0.877),rgba(58, 49, 7, 0.836)); /* Gradiente de fundo */
         padding: 20px;
         border-radius: 10px;
         text-align: center;
         width: 70%;
         max-width: 500px;
-        margin-top: 46%;
+        margin-top: 15%;
        
     }
 }
@@ -1205,19 +1204,24 @@ img {
     #texto {
         font-size: 1rem; /* Diminui o tamanho da fonte em telas médias */
     }
+   
     #icones {
-        gap: 5px; /* Reduz o espaço entre os ícones */
-    }
-    .icone {
-        width: 40px; /* Reduz o tamanho dos ícones */
-        height: 20px;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; /* Permite que os ícones quebrem linha se necessário */
-        gap: 10px;
-        margin: 15px 0;
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 colunas por linha */
+        gap: 10px; /* Espaçamento entre os ícones */
+        justify-content: center; /* Centraliza os ícones */
+        align-items: center; /* Alinha verticalmente */
+        max-width: fit-content; /* Garante que só ocupe o espaço necessário */
+        margin: auto;
        
     }
+    .icone{
+            width: 50px; /* Ajuste conforme necessário */
+            height: 50px;
+            max-width: 50px; /* Garante que não ultrapasse */
+
+    }
+    
 }
  
 /* Geral do footer ------------------------------------------------------------------------------*/
