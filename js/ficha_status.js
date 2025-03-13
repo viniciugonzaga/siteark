@@ -95,7 +95,7 @@ const senhas = {
     "npc7": "Eva",
     "npc8": "Aurora",
     "npc9": "ganância",
-    "npc10": "Domador",
+    "npc10": "Pai",
 };
 
 // Dados dos NPCs
@@ -309,3 +309,77 @@ function abrirFicha(npcId) {
 function fecharFicha() {
     document.getElementById("modalFicha").style.display = "none";
 }
+// Conteúdo dinâmico para cada ícone
+const contents = [
+    {
+    "titulo": "Duelista",
+    "texto": "O Duelista é o principal atacante do time. Personagens dessa classe podem atacar alvos que estejam entre os dois primeiros da linha de frente. Com um teste de Luta, podem tentar flanquear sempre o alvo da frente. Seus ataques reduzem a Guarda do inimigo e, caso este sofra muitos ataques que causem dano severo (80% da vida máxima), ele perde a Guarda e fica abalado. Além disso, caso o Duelista possua (Combo) em sua ficha, ele pode aplicar uma condição ou efeito ao alvo atingido, como Sangramento, Atordoamento, Imobilizado, Lento, entre outros, conforme descrito na ficha.",
+    "gif": "imagens/brutal1_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Guerreiro",
+    "texto": "O Guerreiro é a principal barreira quando não há um Vanguardista no time. Ele consegue causar dano e resistir a ataques com eficácia. Pode atingir os dois primeiros inimigos da linha de frente e, caso possua Giro, pode tentar um teste de Luta para acertar ambos simultaneamente. Além disso, se tiver Força Bruta ou Investida na ficha, sempre que acertar um alvo, pode realizar um teste para aplicar Atordoamento. Se o Guerreiro também possuir Resistência, ele pode mitigar efeitos negativos, reduzindo os debuffs recebidos e aproveitando apenas os benefícios que um efeito inimigo poderia conceder.",
+    "gif": "imagens/brutal2_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Mago ou Suporte Endiabrado",
+    "texto": "O Mago ou Suporte Endiabrado é o principal aplicador de efeitos e condições no time. Ele pode atacar qualquer inimigo utilizando Magia Arcana ou Encantamentos. Suas magias variam entre causar dano elemental (fogo, gelo, veneno, sangramento) ou aplicar efeitos de controle. Sempre que lança uma magia contra um inimigo, este deve realizar um teste de Resistência ou Fortitude para tentar anular a condição imposta. Além de causar dano, o Mago ou Suporte Endiabrado pode auxiliar a equipe de diferentes formas, dependendo das magias ou encantamentos que possui em sua ficha. Ele também tem a capacidade de teleportar um aliado durante o combate, permitindo reorganizar a formação do time conforme necessário.",
+    "gif": "imagens/brutal3_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Vanguardista",
+    "texto": "O Vanguardista é o principal tanque e a linha de frente do time. Ele pode utilizar todas as suas reações para defender a si mesmo ou proteger qualquer membro do grupo. Caso tenha um escudo, pode bloquear projéteis. Se possuir Reflexo, pode intervir para proteger um aliado, absorvendo todo o dano físico que ele receberia. Com Fortitude, pode reduzir pela metade qualquer dano físico recebido a cada rodada. Além de sua resistência, caso tenha Diplomacia ou alguma ação de Trabalho em Grupo, pode impulsionar um aliado para ajudá-lo a alcançar um ataque, concedendo-lhe um bônus de +5 no acerto.",
+    "gif": "imagens/brutal4_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Adestrador",
+    "texto": "A classe Adestrador é o principal controlador de criaturas e monstros. Ele é o único que pode usar criaturas durante o combate, pois os outros personagens estão ocupados demais para comandá-las. O Adestrador pode atacar apenas os dois primeiros inimigos da frente, mas sua fera pode alcançar qualquer alvo. A fera age de acordo com o comando do Adestrador e pode causar dano, curar ou aplicar efeitos no combate. Ele pode comandar apenas uma fera por rodada, mas caso tenha Reflexo, Pensar ou Adestramento, pode trocar de fera no meio do combate. Além disso, o Adestrador pode usar sua fera para um segundo contra-ataque ou preparar uma armadilha para inimigos que tentem se aproximar de sua equipe.",
+    "gif": "imagens/brutal5_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Assassino",
+    "texto": "A classe Assassino é especialista em causar dano crítico e aplicar efeitos de sangramento. Ele pode atacar apenas os dois primeiros inimigos da frente, mas se estiver furtivo, pode atacar qualquer alvo. Sempre que entra em furtividade, pode realizar um ataque que cause sangramento ou veneno. Caso tenha a habilidade Crítico na ficha, pode rolar duas vezes e reduzir a margem de acerto crítico em 2. Além disso, o Assassino possui duas reações de esquiva e contra-ataque, podendo usá-las para se reposicionar, atacar novamente ou fugir, tornando-se ideal para eliminar alvos isolados.",
+    "gif": "imagens/brutal6_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Suporte",
+    "texto": "A classe Suporte é o principal curandeiro do time. Ele pode curar qualquer aliado e atacar apenas o primeiro inimigo da frente. O Suporte tem controle total sobre os efeitos aplicados em seus aliados e pode redistribuí-los no início de cada rodada, transferindo efeitos para quem estiver mais preparado para suportá-los. Caso tenha Medicina, pode curar um aliado sem mutações (habilidades) usando utensílios que possua, restaurando vida proporcional ao item utilizado. Se possuir Tratamento de Feridas, pode tentar anular um efeito de sangramento e curar o dano causado por ele. Além disso, se tiver testes de Percepção relacionados a infecções ou doenças, pode tentar anular o dano causado por pestes ou enfermidades. Sempre que uma rodada reinicia, caso tenha Diplomacia, pode conceder um bônus de +5 para um aliado em uma ação ou tentar reverter dano de sanidade.",
+    "gif": "imagens/brutal7_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Atirador",
+    "texto": "A classe Atirador é especializada em dano direto contra inimigos estratégicos. Ele pode atacar qualquer inimigo que esteja em sua linha de visão. Caso tenha Pontaria, pode mirar antes de atacar para ganhar +5 no acerto. Se possuir Crítico, pode rolar novamente para tentar confirmar um acerto crítico e reduzir a margem de ameaça em 2. Além disso, se tiver Furtividade, pode tentar se esconder antes de atacar, obtendo um bônus de +5 no golpe. No início de cada rodada, o Atirador pode marcar um alvo, garantindo que seus aliados tenham um bônus de +5 ao atacá-lo.",
+    "gif": "imagens/brutal8_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Colosso",
+    "texto": "A classe Colosso é o principal tanque e lutador da linha de frente, sendo um monstro de guerra que só conhece a violência. Sempre que acerta um alvo e possui agarrão em sua ficha, pode agarrá-lo, aplicando -5 em todas as suas reações. Se possuir intimidação, pode tentar intimidar todos os inimigos, causando -5 em todos os testes contra ele. Se tiver bloquear, pode usar 2 reações de bloqueio no combate. Caso tenha resistência, pode reduzir todo o dano recebido pela metade. Além de ser uma máquina de guerra, a cada 3 rodadas pode tentar atordoar o primeiro alvo que vê ou correr enfurecido, embaralhando a posição dos inimigos.",
+    "gif": "imagens/brutal9_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  },
+  {
+    "titulo": "Chefe de Batalha",
+    "texto": "A classe Chefe de Batalha é uma classe especial onde um chefe participa do combate, podendo utilizar todas as vantagens de outras classes, além de criar suas próprias estratégias, ataques, passivas e efeitos. Ele tem total controle sobre a preparação de sua equipe, tornando-se um dos piores confrontos que qualquer um pode enfrentar.",
+    "gif": "imagens/brutal10_icon.jpg",
+    "background": "imagens/brutal_fundo_icon.jpg"
+  }
+   
+     
+    ];
+    
+    // Função para alterar o conteúdo
+    function changeContent(index) {
+      const content = contents[index - 1];
+      document.getElementById("titulo").textContent = content.titulo;
+      document.getElementById("texto").textContent = content.texto;
+      document.getElementById("gif").src = content.gif;
+      document.getElementById("imagem-fundo").src = content.background;
+    }

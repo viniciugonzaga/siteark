@@ -546,7 +546,27 @@ nav {
       cursor: pointer;
 
 }
+.titulo_efeito3{
+    font-size: 4rem;
+    font-weight: bold;
+    position: relative;   
+    color: #fff5bb;
+    text-shadow:
+    0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+    0 0 10px #ff4500,  /* Segunda camada laranja */
+    0 0 20px #ff4500,  /* Terceira camada mais forte */
+    0 0 40px #ff6347,  /* Camada de brilho maior */
+    0 0 80px #ff4500;  /* Brilho externo */
+    background: radial-gradient(circle, rgba(41, 19, 2, 0.74), rgba(56, 18, 3, 0.877), rgba(34, 15, 2, 0.877),rgba(58, 23, 7, 0.836)); /* Gradiente de fundo */
+    padding: 2%;
+    border: solid 2px #8f0202;
+    box-shadow: 0 4px 8px rgba(190, 3, 3, 0.692);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    white-space: nowrap; /* Evita quebra de linha */
 
+
+}
 /* Linha de efeito do título */
 .titulo_efeito:after {
     content: '';
@@ -583,7 +603,11 @@ nav {
     .titulo_efeito, .titulo_efeito2, .titulo_efeito2 a  {
         font-size: 2.5rem;
     }
+    .titulo_efeito3{
+     font-size: 2rem;
 
+    }
+    
     .titulo_principal {
         gap: 20px;
     }
@@ -982,6 +1006,26 @@ main {
     align-items: center;
 }
 
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing);
+    min-height: calc(100vh - 100px); /* Ajuste para evitar sobreposição com nav e footer */
+}
+  
+  .container {
+    width: 90%;
+    margin-top: var(--spacing);
+    margin: 0 auto;
+    text-align: center;
+    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+    padding: 2%;
+    border-radius: 20px;
+}
+
 .spawn-button-v2 {
     background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));
     color: #fff; /* Cor base do texto */
@@ -1044,6 +1088,183 @@ color:#f1fc5b;
 border: 1px solid #f7e70a;
 }
 
+/* Container central */
+#container-central {
+    position: relative;
+    width: 90%;
+    margin: 20px auto;
+    text-align: center;
+
+    border-radius: 10px;
+    overflow: hidden;
+    margin: auto; /* Centraliza horizontalmente na página */
+  }
+  
+ .desafio{
+    background-color: #0e00009a;
+   padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    margin-bottom: 2%;
+ 
+ 
+ }
+
+
+  /* Imagem de fundo apagada */
+  #fundo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+  
+  #imagem-fundo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(30%);
+  }
+  
+  /* Ícones */
+ 
+  #icones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+  }
+  
+  #icone{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que os ícones quebrem linha se necessário */
+    gap: 10px;
+    margin: 15px 0;
+    padding: 10px;
+  }
+  .icone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(190, 3, 3, 0.692);
+    border: solid 2px #660707;
+  }
+  
+  .icone:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Imagem dentro do ícone */
+  .icone img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+  
+
+  /* Conteúdo */
+  #conteudo {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fae3e3;
+    border-radius: 10px;
+  }
+  
+  #gif {
+    width: 250px;
+    height: auto;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(190, 3, 3, 0.692);
+    border: solid 2px #660707;
+    border-radius: 20%;
+  }
+  
+  #titulo {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+    color: #fff5bb;
+    text-shadow:
+    0 0 5px #ff0000,   /* Primeira camada de brilho vermelho */
+    0 0 10px #ff4500,  /* Segunda camada laranja */
+    0 0 20px #ff4500,  /* Terceira camada mais forte */
+    0 0 40px #ff6347,  /* Camada de brilho maior */
+    0 0 80px #ff4500;  /* Brilho externo */
+  }
+  
+  #texto {
+    font-size: 1.2rem;
+    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));      background: radial-gradient(circle, rgba(34, 29, 4, 0.74), rgba(37, 28, 2, 0.877), rgba(34, 25, 2, 0.877), rgb(36, 26, 5));
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(190, 3, 3, 0.692);
+    border: solid 2px #660707;
+    padding: 15px;
+    position: center;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    
+  }
+  .explicacao-regras{
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(190, 3, 3, 0.692);
+    border: solid 2px #660707;
+    text-align: center;
+    font-size: 1.1rem; /* Diminui o tamanho da fonte em telas médias */
+    margin: 0 auto;
+    color: #fff5bb;
+    background: radial-gradient(circle, rgba(68, 27, 8, 0.9), rgba(56, 18, 3, 0.95), rgba(34, 2, 12, 0.95), rgb(58, 23, 7));    
+    border-radius: 10px;
+    width: 80%;
+}
+@media (max-width: 780px) {
+    .explicacao-regras {
+        font-size: 0.9rem; /* Diminui o tamanho da fonte em telas médias */
+        width: 85%;
+        padding: 14px;
+       
+    }
+}
+
+  @media (max-width: 780px) {
+    #container-central{
+       width: 95%;
+       padding: 10px;
+    }
+   
+
+    #texto {
+        font-size: 1rem; /* Diminui o tamanho da fonte em telas médias */
+    }
+   
+    #icones {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 colunas por linha */
+        gap: 10px; /* Espaçamento entre os ícones */
+        justify-content: center; /* Centraliza os ícones */
+        align-items: center; /* Alinha verticalmente */
+        max-width: fit-content; /* Garante que só ocupe o espaço necessário */
+        margin: auto;
+       
+    }
+    .icone{
+            width: 50px; /* Ajuste conforme necessário */
+            height: 50px;
+            max-width: 50px; /* Garante que não ultrapasse */
+
+    }
+    
+}
+
+ 
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
