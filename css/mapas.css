@@ -519,7 +519,15 @@ margin-top: 150px;
   .titulo_efeito {
     font-size: 4rem;
     font-weight: bold;
-    color: #7dd7fa;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid #6f02c9;
+    color: #bbfdff;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #0ea9c4,
+    0 0 60px #4e13f1;
     position: relative;
     max-width:319px;
 }
@@ -563,738 +571,161 @@ margin-top: 150px;
     }
 }
 
-.mapa.da-ilha {
-    display: flex; /* Ativa o flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    height: 100%; /* Certifique-se de que a altura da div é suficiente */
-    position: relative; /* Para ajustes adicionais, se necessário */
-  
-}
 
-.imagem_do_mapa img {
-    max-width: 100%; /* Ajusta a largura para caber no container */
-    max-height: 100%; /* Ajusta a altura máxima */
-    object-fit: contain; /* Garante que a proporção seja mantida */
-    border: 2px solid #9301b1; /* Opcional: borda para visualização */
-    box-shadow: #002397;
-}
-/* Estilo padrão para telas menores que 1080px */
-@media (max-width: 1080px) {
-    .mapa.da-ilha {
-        flex-direction: column; /* Empilha os itens se houver mais de um */
-        padding: 10px; /* Adiciona espaçamento interno */
-        height: auto; /* Permite altura dinâmica */
-       
-    }
-
-    .imagem_do_mapa img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 15px; /* Bordas arredondadas */
-    background: radial-gradient(circle, rgba(45, 0, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(248, 153, 11, 0.493)); /* Gradiente de fundo */
-   
-    }
-}
-
-
-
-
-
-
-  
-.ilha1 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 90%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #fd6c58; /* Opcional: borda para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(116, 46, 0)); /* Gradiente radial */
-}
-
-/* Estilo para a imagem */
-.image img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 135px; /* Bordas arredondadas */
-    background: radial-gradient(circle, rgba(45, 0, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(248, 153, 11, 0.493)); /* Gradiente de fundo */
-}
-
-/* Estilo para o texto */
-.text {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
-   
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-}
-
-/* Ajustes para telas menores (mobile) */
-@media screen and (max-width: 768px) {
-    .ilha1 {
-        flex-direction: column; /* Alinha os itens na vertical */
-        width: 95%; /* Ajusta a largura para telas menores */
-        padding: 10px; /* Ajusta o espaçamento */
-    }
-
-    .image img {
-        max-height: 175px; /* Ajusta a altura máxima da imagem em telas pequenas */
-        border-radius: 80px; /* Borda arredondada mais suave */
-    }
-
-    .text {
-        margin-right: 0; /* Remove o espaço à direita */
-        margin-left: 0; /* Remove o espaço à esquerda */
-        font-size: 0.8rem; /* Diminui o tamanho da fonte para telas menores */
-    }
-}
-
-/* Ajustes para telas muito pequenas (ex. celulares antigos ou dispositivos com telas pequenas) */
-@media screen and (max-width: 480px) {
-    .ilha1 {
-        padding: 8px; /* Menos padding para caber melhor na tela */
-        width: 100%; /* Faz a div ocupar 100% da largura disponível */
-    }
-
-    .image img {
-        max-height: 200px; /* Menor altura para a imagem */
-    }
-
-    .text {
-        font-size: 0.9rem; /* Fonte ainda menor */
-    }
-}
-.ilha2 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 80%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #f3b304; /* Opcional: borda para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(71, 87, 0)); /* Gradiente radial */
-}
-
-/* Estilo para a imagem */
-.image2 img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 135px; /* Bordas arredondadas */
-    background: radial-gradient(circle, rgba(45, 0, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(239, 243, 14, 0.493)); /* Gradiente de fundo */
-}
-
-/* Estilo para o texto */
-.text2 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
+.container-1{
+    width: 60%;
+    max-width: 700px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgb(82, 2, 185); /* Sombra para destaque */
+    border: solid, 2px #0103b1;
+    border-radius: 15px;
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.671), rgba(35, 2, 58, 0.705), rgba(25, 1, 65, 0.733), rgba(27, 0, 90, 0.76));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 0 auto;
+    text-align: center;
+    animation: glow 6s infinite alternate ease-in-out;
     
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
 }
-
-/* Ajustes para telas menores (mobile) */
-@media screen and (max-width: 768px) {
-    .ilha2 {
-        flex-direction: column; /* Alinha os itens na vertical */
-        width: 95%; /* Ajusta a largura para telas menores */
-        padding: 10px; /* Ajusta o espaçamento */
-    }
-
-    .image2 img {
-        max-height: 250px; /* Ajusta a altura máxima da imagem em telas pequenas */
-        border-radius: 100px; /* Borda arredondada mais suave */
-    }
-
-    .text2 {
-        margin-right: 0; /* Remove o espaço à direita */
-        margin-left: 0; /* Remove o espaço à esquerda */
-        font-size: 1rem; /* Diminui o tamanho da fonte para telas menores */
-    }
-}
-
-/* Ajustes para telas muito pequenas (ex. celulares antigos ou dispositivos com telas pequenas) */
-@media screen and (max-width: 480px) {
-    .ilha2 {
-        padding: 8px; /* Menos padding para caber melhor na tela */
-        width: 100%; /* Faz a div ocupar 100% da largura disponível */
-    }
-
-    .image2 img {
-        max-height: 200px; /* Menor altura para a imagem */
-    }
-
-    .text2 {
-        font-size: 0.9rem; /* Fonte ainda menor */
-    }
-}
-
-.ilha3 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 80%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #77e9f8; /* Opcional: borda para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(0, 67, 105) ); /* Gradiente radial */
-}
-
-.image3 img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 135px; /* Opcional: bordas arredondadas */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(96, 201, 250, 0.493) );
-}
-
-.text3 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
-    
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-}
-
-/* Responsividade para telas médias (como tablets) */
-@media screen and (max-width: 768px) {
-    .ilha3 {
-        flex-direction: column; /* Organiza os elementos em coluna */
-        width: 90%; /* Reduz a largura para aproveitar melhor a tela */
-        padding: 15px;
-    }
-
-    .image3 img {
-        max-height: 250px; /* Reduz a altura máxima da imagem */
-        border-radius: 100px; /* Ajusta o raio da borda para maior suavidade */
-    }
-
-    .text3 {
-        margin-right: 0;
-        margin-left: 0;
-        font-size: 1.1rem; /* Ajusta o tamanho da fonte */
-    }
-}
-
-/* Responsividade para telas pequenas (como celulares) */
-@media screen and (max-width: 480px) {
-    .ilha3 {
-        padding: 10px;
-        width: 100%; /* Ajusta a largura para ocupar toda a tela */
-    }
-
-    .image3 img {
-        max-height: 200px; /* Reduz ainda mais a altura da imagem */
-        border-radius: 80px; /* Ajusta o raio da borda */
-    }
-
-    .text3 {
-        font-size: 1rem; /* Reduz o tamanho da fonte para facilitar a leitura */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.nomes{
-    text-align: justify; /* Deixa o texto alinhado */
-    background: linear-gradient(45deg, #f7d40e,  #f19101, #fae902, #f57474, #e6e203);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-    margin-right: 5px;
-    font-size: 1.3rem;
-}
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.ilha4 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 80%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #edff4b; /* Opcional: borda para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(92, 86, 0)); /* Gradiente radial */
-}
-
-.image4 img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 135px; /* Opcional: bordas arredondadas */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(255, 245, 159, 0.719));
-}
-
-.text4 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
-   
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-}
-
-/* Responsividade para telas médias (como tablets) */
-@media screen and (max-width: 768px) {
-    .ilha4 {
-        flex-direction: column; /* Organiza os elementos em coluna */
-        width: 90%; /* Reduz a largura para aproveitar melhor a tela */
-        padding: 15px;
-    }
-
-    .image4 img {
-        max-height: 250px; /* Reduz a altura máxima da imagem */
-        border-radius: 100px; /* Ajusta o raio da borda para maior suavidade */
-    }
-
-    .text4 {
-        margin-right: 0;
-        margin-left: 0;
-        font-size: 1.1rem; /* Ajusta o tamanho da fonte */
-    }
-}
-
-/* Responsividade para telas pequenas (como celulares) */
-@media screen and (max-width: 480px) {
-    .ilha4 {
-        padding: 10px;
-        width: 100%; /* Ajusta a largura para ocupar toda a tela */
-    }
-
-    .image4 img {
-        max-height: 200px; /* Reduz ainda mais a altura da imagem */
-        border-radius: 80px; /* Ajusta o raio da borda */
-    }
-
-    .text4 {
-        font-size: 1rem; /* Reduz o tamanho da fonte para facilitar a leitura */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-.ilha5 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 80%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #68282b; /* Opcional: borda para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(46, 1, 1)); /* Gradiente radial */
-}
-
-.image5 img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima, ajustável */
-    border-radius: 135px; /* Opcional: bordas arredondadas */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(136, 44, 44, 0.719));
-}
-
-.text5 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
-    
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-}
-
-/* Responsividade para telas médias (como tablets) */
-@media screen and (max-width: 768px) {
-    .ilha5 {
-        flex-direction: column; /* Organiza os elementos em coluna */
-        width: 90%; /* Reduz a largura para aproveitar melhor a tela */
-        padding: 15px;
-    }
-
-    .image5 img {
-        max-height: 250px; /* Reduz a altura máxima da imagem */
-        border-radius: 100px; /* Ajusta o raio da borda para maior suavidade */
-    }
-
-    .text5 {
-        margin-right: 0;
-        margin-left: 0;
-        font-size: 1.1rem; /* Ajusta o tamanho da fonte */
-    }
-}
-
-/* Responsividade para telas pequenas (como celulares) */
-@media screen and (max-width: 480px) {
-    .ilha5 {
-        padding: 10px;
-        width: 100%; /* Ajusta a largura para ocupar toda a tela */
-    }
-
-    .image5 img {
-        max-height: 200px; /* Reduz ainda mais a altura da imagem */
-        border-radius: 80px; /* Ajusta o raio da borda */
-    }
-
-    .text5 {
-        font-size: 1rem; /* Reduz o tamanho da fonte para facilitar a leitura */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.ilha6 {
-    display: flex; /* Organiza as divs lado a lado */
-    align-items: center; /* Centraliza verticalmente o conteúdo */
-    justify-content: space-between; /* Espaço entre a imagem e o texto */
-    width: 80%; /* Ajuste a largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    padding: 10px;
-    border: 2px solid #1b1515; /* Borda opcional para visualização */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra para destaque */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(46, 36, 36)); /* Gradiente radial */
-}
-
-.image6 img {
-    max-width: 100%; /* Garante que a imagem se ajuste ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 350px; /* Limita a altura máxima */
-    border-radius: 135px; /* Bordas arredondadas */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(92, 59, 59, 0.719)); /* Gradiente na imagem */
-}
-
-.text6 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin-right: 30px; /* Espaçamento entre a imagem e o texto */
-    margin-left: 30px;
-    font-size: 1.2rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Deixa o texto em negrito */
-   
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente para efeito animado */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatibilidade com navegadores Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica animação ao gradiente */
-}
-
-/* Responsividade para telas médias (como tablets) */
-@media screen and (max-width: 768px) {
-    .ilha6 {
-        flex-direction: column; /* Organiza os elementos em coluna */
-        width: 90%; /* Reduz a largura para aproveitar melhor a tela */
-        padding: 15px;
-    }
-
-    .image6 img {
-        max-height: 250px; /* Reduz a altura máxima da imagem */
-        border-radius: 100px; /* Ajusta o raio da borda */
-    }
-
-    .text6 {
-        margin-right: 0;
-        margin-left: 0;
-        font-size: 1.1rem; /* Ajusta o tamanho da fonte */
-    }
-}
-
-/* Responsividade para telas pequenas (como celulares) */
-@media screen and (max-width: 480px) {
-    .ilha6 {
-        padding: 10px;
-        width: 100%; /* Ajusta a largura para ocupar toda a tela */
-    }
-
-    .image6 img {
-        max-height: 200px; /* Reduz ainda mais a altura da imagem */
-        border-radius: 80px; /* Ajusta o raio da borda */
-    }
-
-    .text6 {
-        font-size: 1rem; /* Reduz o tamanho da fonte para facilitar a leitura */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Título */
+.title-titulo {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #bbfdff;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #0ea9c4,
+    0 0 60px #4e13f1;
+    border-radius: 20px;
+    width: 60%;
+ 
 }
 
 
-.parte1-container {
-    display: flex; /* Alinha os dois blocos lado a lado */
-    justify-content: space-between; /* Espaço entre os elementos */
-    flex-wrap: wrap; /* Permite que os elementos quebrem linha em telas menores */
-    width: 80%; /* Largura total da div principal */
-    margin: 20px auto; /* Centraliza horizontalmente e adiciona margem vertical */
-    gap: 20px; /* Espaçamento entre as divs internas */
-}
 
-.cavernas, .Ruinas {
-    display: flex; /* Organiza imagem e texto lado a lado */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    justify-content: space-between;
-    width: 48%; /* Ajusta a largura para que dois blocos caibam lado a lado */
-    padding: 10px;
-    border: 2px solid #00a30e; /* Borda para destaque */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(24, 53, 0)); /* Gradiente radial */
-}
-
-.image7 img, .image8 img {
-    max-width: 100%; /* Ajusta a imagem ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 150px; /* Limita a altura da imagem */
-    border-radius: 135px; /* Bordas arredondadas na imagem */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(92, 59, 59, 0.719));
-}
-
-.text7, .text8 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin: 0 15px; /* Espaçamento entre a imagem e o texto */
-    font-size: 1rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Negrito no texto */
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatível com navegadores baseados em Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica a animação ao gradiente */
-}
-
-/* Responsividade para telas menores */
-@media screen and (max-width: 768px) {
-    .cavernas, .Ruinas {
-        width: 100%; /* Faz os blocos ocuparem toda a largura em telas pequenas */
-        flex-direction: column; /* Organiza a imagem e o texto em coluna */
-    }
-
-    .image7 img, .image8 img {
-        max-height: 120px; /* Reduz a altura da imagem em telas pequenas */
-        border-radius: 100px; /* Ajusta a borda da imagem */
-    }
-
-    .text7, .text8 {
-        font-size: 0.95rem; /* Ajusta o tamanho da fonte para melhorar a legibilidade */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.Mar, .Abismo {
-    display: flex; /* Organiza imagem e texto lado a lado */
-    align-items: center; /* Centraliza o conteúdo verticalmente */
-    justify-content: space-between;
-    width: 78%; /* Largura reduzida para permitir dois blocos lado a lado */
-    padding: 10px;
-    border: 2px solid #002397; /* Borda para destaque */
-    border-radius: 10px; /* Bordas arredondadas */
-    box-shadow: 0px 4px 8px rgba(136, 6, 153, 0.815); /* Sombra */
-    background: radial-gradient(circle, rgba(29, 1, 34, 0.925), rgb(54, 1, 68), rgb(6, 0, 56)); /* Gradiente radial */
-    margin-left: 130px; /* Espaçamento à esquerda */
-}
-
-.image9 img, .image10 img {
-    max-width: 100%; /* Ajusta a imagem ao tamanho do contêiner */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 150px; /* Limita a altura da imagem */
-    border-radius: 135px; /* Bordas arredondadas na imagem */
-    background: radial-gradient(circle, rgba(0, 70, 87, 0.61), rgba(39, 1, 128, 0.541), rgba(92, 59, 59, 0.719));
-}
-
-.text9, .text10 {
-    flex: 1; /* Faz o texto ocupar o espaço restante */
-    margin: 0 15px; /* Espaçamento entre a imagem e o texto */
-    font-size: 1rem; /* Ajusta o tamanho da fonte */
-    font-weight: 800; /* Negrito no texto */
-    background: linear-gradient(45deg, #e7f6fd, #58f8fd, #e7f6fd, #9ff7fa, #e7f6fd);
-    background-size: 300%; /* Aumenta o tamanho do gradiente */
-    background-clip: text; /* Aplica o gradiente ao texto */
-    -webkit-background-clip: text; /* Compatível com navegadores baseados em Webkit */
-    -webkit-text-fill-color: transparent; /* Torna o restante do texto transparente */
-    animation: gradiente-animado 4s ease infinite; /* Aplica a animação ao gradiente */
-}
-
-/* Responsividade para telas menores */
-@media screen and (max-width: 1078px) {
-    .Mar, .Abismo {
-        width: 100%; /* Ajusta a largura para telas pequenas */
-        flex-direction: column; /* Organiza a imagem e o texto em coluna */
-        margin-left: 0; /* Remove o espaçamento à esquerda em telas pequenas */
-    }
-
-    .image9 img, .image10 img {
-        max-height: 120px; /* Reduz a altura da imagem em telas pequenas */
-        border-radius: 100px; /* Ajusta a borda da imagem */
-    }
-
-    .text9, .text10 {
-        font-size: 0.7rem; /* Ajusta o tamanho da fonte para melhorar a legibilidade */
-    }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Animação do gradiente */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-/* Definindo o efeito de gradiente animado */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.ilha1, .ilha2, .ilha3, .ilha4, .ilha5, .ilha6 {
+.mapa-container1 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+}
+
+.mapa {
     width: 80%;
-    margin: 20px auto;
-    padding: 10px;
-    
-    border-radius: 10px;
-    
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transição suave */
-}
-
-.ilha1:hover, .ilha2:hover, .ilha3:hover, .ilha4:hover, .ilha5:hover, .ilha6:hover {
-    transform: scale(1.05); /* Aumenta o tamanho da div ao passar o mouse */
-    box-shadow: 0px 8px 16px rgba(27, 242, 250, 0.815); /* Aumenta a sombra */
-}
-
-/* Similar para as imagens dentro das divs */
-.image img, .image2 img, .image3 img, .image4 img, .image5 img, .image6 img {
-    max-width: 100%;
+    max-width: 600px;
     height: auto;
-    max-height: 350px;
-    border-radius: 135px;
-    transition: transform 0.3s ease; /* Adiciona transição suave na imagem */
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    
 }
 
-.image img:hover, .image2 img:hover, .image3 img:hover, .image4 img:hover, .image5 img:hover, .image6 img:hover {
-    transform: scale(1.1); /* Aumenta a imagem ao passar o mouse */
+.mapa img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+    
 }
 
-.cavernas, .Ruinas{
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transição suave */
+button {
+    background-color: rgba(0, 3, 173, 0.911);
+    color: #bbfdff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: rgba(1, 133, 156, 0.829);
+    color: black;
+}
+
+
+
+
+.mapa img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0px 2px 5px rgba(19, 8, 114, 0.733);
+ 
 
 }
-.cavernas:hover,.Ruinas:hover{
-    transform: scale(1.05); /* Aumenta o tamanho da div ao passar o mouse */
-    box-shadow: 0px 8px 16px rgba(152, 253, 93, 0.815); /* Aumenta a sombra */
 
+
+/* Parágrafo */
+.descricao {
+    font-size: 1.2rem;
+    border-radius: 20px;
+    padding: 15px;
+    position: center;
+    text-align: center;
+    margin: 0 auto;
+    align-items: center;
+    width: 90%;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    padding: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #02199e,
+    0 0 20px #440092;
+    box-shadow: 0px 2px 5px rgba(19, 8, 114, 0.733);
+    margin-bottom: 2%;
+}
+.descricao2{
+    font-size: 1.1rem;
+    border-radius: 20px;
+    padding: 15px;
+    position: center;
+    margin: 0 auto;
+    align-items: center;
+    width: 90%;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    padding: 20px;
+    font-weight: bold;
+    justify-content: center;
+    color: #fff5bb;
+    text-shadow:
+    0 0 10px #02199e,
+    0 0 20px #440092;
+    box-shadow: 0px 2px 5px rgba(19, 8, 114, 0.733);
+    margin-bottom: 2%;
 }
 
-.parte2-container{
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Adiciona transição suave */
-
+.descricao3{
+    font-size: 1.8rem;
+    border-radius: 20px;
+    padding: 15px;
+    position: center;
+    margin: 0 auto;
+    align-items: center;
+    width: 60%;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    padding: 20px;
+    font-weight: bold;
+    justify-content: center;
+    color: #d1a9ff;
+    text-shadow:
+    0 0 90px #700799,
+    0 0 40px #400379,
+    0 0 60px #bf09f7;
+    box-shadow: 0px 2px 5px rgba(19, 8, 114, 0.733);
+    margin-bottom: 2%;
 }
-.parte2-container:hover{
-    transform: scale(1.05); /* Aumenta o tamanho da div ao passar o mouse */
-    box-shadow: 0px 8px 16px rgba(16, 0, 235, 0.815); /* Aumenta a sombra */
 
-}
+
+  
 
 
 .main-container {
@@ -1302,6 +733,7 @@ margin-top: 150px;
     flex-direction: column;
     align-items: center;
     gap: 20px;
+    margin: 0 auto;
 }
 
 /* Botão para gerar a região */
@@ -1315,7 +747,7 @@ margin-top: 150px;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(98, 54, 255, 0.8);
     transition: all 0.3s ease-in-out;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .spawn-button:hover {
@@ -1384,6 +816,330 @@ font-size: 1.2rem;
         top: 30%
     }
 }
+
+.container {
+    text-align: center;
+    margin-bottom: 3%; 
+    width: 70%;
+    max-width: 1000px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 8px rgb(82, 2, 185); /* Sombra para destaque */
+    border: solid, 2px #0103b1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6%; 
+    margin-bottom: 6%; 
+    border-radius: 20px;
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.671), rgba(35, 2, 58, 0.705), rgba(25, 1, 65, 0.733), rgba(27, 0, 90, 0.76));
+  
+}
+
+.titulo {
+    font-size: 1.4rem;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    padding: 10px;
+    border-radius: 20px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 2%;
+    width: 60%;
+    color: #bbfdff;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #0ea9c4,
+    0 0 60px #4e13f1;
+}
+
+.conteudo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 20px;
+    
+}
+.t{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+
+}
+/* Ícones laterais */
+.icones {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.icone {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.icone:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+
+
+.mapa {
+    width: 70%;
+    height: auto;
+    
+}
+
+/* Parágrafo descritivo */
+.paragrafo-container {
+    width: 70%;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    color: #bbfdff;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #0ea9c4,
+    0 0 60px #4e13f1;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Container principal */
+.carrossel-container {
+    width: 60%;
+    box-shadow: 0px 4px 8px rgb(82, 2, 185); /* Sombra para destaque */
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.836), rgba(35, 2, 58, 0.808), rgba(26, 1, 65, 0.822), rgba(27, 0, 90, 0.76));
+    border-radius: 20px;
+    border: solid, 2px #0103b1;
+    padding: 25px;
+    text-align: center;
+    margin-top: 20px;
+    margin-top: 30%;
+    margin: 0 auto;
+    border-radius: 20px;
+    margin-bottom: 5%;
+}
+
+
+
+/* Carrossel */
+.carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.692), rgba(35, 2, 58, 0.671), rgba(26, 1, 65, 0.822), rgba(27, 0, 90, 0.61));
+    box-shadow: 0px 4px 8px rgb(1, 68, 155); /* Sombra para destaque */
+    position: relative;
+    border: 2px solid #6f02c9;
+    border-radius: 20px;
+    gap: 5px; /* Espaçamento entre os botões e a imagem */
+}
+
+.carrossel img {
+    width: 60%;
+    text-align: center;
+    margin: auto;
+    filter: drop-shadow(5px 5px 50px rgba(12, 175, 187, 0.815)); /* Sombra natural */
+    border-radius: 20px;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+
+
+/* Botões de navegação */
+.nav-button {
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.671), rgba(35, 2, 58, 0.705), rgba(25, 1, 65, 0.733), rgba(27, 0, 90, 0.76));
+    color: #bbfdff;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #0ea9c4,
+    0 0 60px #4e13f1;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    padding: 15px 20px;
+    cursor: pointer;
+    margin: 50px;
+    border-radius: 50%;
+    border: 2px solid #6f02c9;
+    box-shadow: 0px 4px 8px rgb(1, 68, 155); /* Sombra para destaque */
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background: #4500b4c7; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento ao passar o mouse */
+}
+
+.nav-button:active {
+    transform: scale(0.95); /* Botão "afunda" ao clicar */
+}
+
+/* Texto descritivo */
+.texto-descricao {
+    font-size: 18px;
+    font-weight: bold;
+    background: radial-gradient(circle, rgba(3, 8, 26, 0.74), rgba(16, 3, 29, 0.877));
+    border: 2px solid #6f02c9;
+    border-radius: 20px;
+    padding: 15px;
+    margin-top: 10px;
+    color: #bbfdff;
+    text-shadow:
+    0 0 10px #09517a;
+}
+
+
+
+
+@media (max-width: 760px) {
+    .container-1 {
+        width: 90%;
+        max-width: 500px;
+        padding: 12px;
+    }
+    .botoes-carrossel button {
+        font-size: 4px; /* Reduz o tamanho da fonte */
+        padding: 2px 1px; /* Reduz o preenchimento interno */
+        border-radius: 2px; /* Ajusta os cantos arredondados */
+        width: 40%; /* Diminui a largura do botão */
+        height: 20px; /* Ajusta a altura */
+    }
+    .title-titulo {
+        font-size: 5rem;
+        width: 85%;
+    }
+    .carrossel-container{
+        width: 70%;
+    }
+    .nav-buttons {
+        font-size: 0.8rem;
+        padding: 10px 15px;
+    }
+    .mapa-container1 {
+        flex-direction: column;
+        gap: 5px;
+    }
+  
+    #imagem2{
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+    }
+    .mapa {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    button {
+        font-size: 20px;
+        border-radius: 20px;
+        padding: 3px 5px;
+    }
+
+    .descricao, .descricao2, .descricao3 {
+        font-size: 0.9rem;
+        width: 90%;
+        padding: 10px;
+    }
+
+    .spawn-button {
+        font-size: 0.8rem;
+        padding: 10px 18px;
+    }
+
+    .map-menu {
+        right: 10%;
+        width: 220px;
+    }
+
+    .icones {
+        display: flex;
+        flex-direction: row; /* Ícones ficam lado a lado em telas menores */
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+     .prev{
+        font-size: 0.8rem;
+        padding: 10px 18px;
+
+     }
+    .icone {
+        width: 50px;
+    }
+
+    .carrossel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 450px;
+        margin: 0 auto;
+    }
+    .descricao3{
+
+        font-size: 1.3rem;
+        width: 100%;
+        padding: 10px;
+
+
+    }
+    .carrossel img {
+        width: 100%;
+        max-height: 350px;
+        object-fit: cover;
+    }
+
+    .botoes-carrossel {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+        width: 20%;
+        margin-top: 8px;
+    }
+
+    .botoes-carrossel button {
+        font-size: 0.1rem;
+        padding: 3px 2px;
+        border-radius: 3px;
+        width: 50%;
+    }
+
+    .botoes-carrossel button:hover {
+        background-color: #6a00ff;
+        color: white;
+    }
+
+    .descricao-carrossel {
+        text-align: center;
+        font-size: 0.8rem;
+        width: 75%;
+        max-width: 450px;
+        padding: 10px;
+    }
+
+    .texto-descricao {
+        text-align: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        width: 85%;
+        max-width: 450px;
+        padding: 10px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+}
+
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */

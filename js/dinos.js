@@ -223,10 +223,10 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +20 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +10 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
+        actionBonus: '+25 mordida, +25 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
         attacks: ['Mordida Poderosa: 16d10+60', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
         abilities: [
-            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão de 1d6 na corrida. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar, parte do dano q ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de  extremo.',
+            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar, parte do dano q ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
             'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação.'
         ],
         passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar efeitos de quebrado, sangramento ou dilacerado para toda mordida.',

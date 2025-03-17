@@ -117,3 +117,64 @@ document.addEventListener("scroll", () => {
         footer.style.background = "linear-gradient(45deg, #0f0c29, #302b63, #24243e)";
     }
 });
+const imagens = [
+    "imagens/tokens/ilha_ark_mapas2.jpeg",
+    "imagens/ilha_ark_ciclo2.png",
+];
+
+let index = 0;
+const mapaImg = document.getElementById("mapaImg");
+
+// Função para trocar a imagem
+function trocarImagem(direcao) {
+    index = (index + direcao + imagens.length) % imagens.length;
+    mapaImg.style.opacity = "0"; // Efeito de fade-out
+    setTimeout(() => {
+        mapaImg.src = imagens[index];
+        mapaImg.style.opacity = "1"; // Efeito de fade-in
+    }, 300);
+}
+
+// Eventos dos botões
+document.querySelector(".prev").addEventListener("click", () => trocarImagem(-1));
+document.querySelector(".next").addEventListener("click", () => trocarImagem(1));
+
+// Array com as imagens e os textos correspondentes
+const imagens2 = [
+    { src: "imagens/tokens/campos de ourov2mapa.png", texto: "Os Campos de Ouro são uma vasta região de terra fértil, considerada a mais rica da ilha, onde as estações do ano favorecem o crescimento de uma vegetação exuberante. A terra é perfeita para a vida, sendo permeada por vilas e pequenas cidades povoadas por diversos povos, que se beneficiam dos recursos abundantes. Os herbívoros prosperam nesse ambiente, desde os de tamanho menor até os maiores, que se alimentam e se multiplicam rapidamente. A região também é lar de predadores médios, que caçam o que está disponível, sem especialização. Sua fertilidade atrai animais de outras partes da ilha, em busca de abrigo e alimento durante as mudanças sazonais. Minérios e rochas preciosas estão espalhados pela terra e montanhas, escondendo ruínas e cavernas que guardam mistérios antigos. Ao sul, um deserto desconhecido estende-se como uma barreira inexplorada, enquanto a floresta fechada, que se estende mais ao norte, serve de refúgio para animais maiores, que se protegem da presença dos predadores de lagos e riachos, especializados na pesca de peixes e nas águas das regiões mais isoladas.", titulo: "Campos de Ouro" },
+    { src: "imagens/tokens/condadov2mapa.png", texto: " O Condado é uma terra de paz e serenidade, dominada por vastas planícies e praias douradas, onde a vegetação litorânea floresce sob o céu aberto. Em contraste, uma floresta calma abriga predadores silenciosos, geralmente ativos à noite, enquanto os herbívoros adaptaram-se, com couraças mais espessas ou maior maturidade, para resistir aos perigos. As montanhas do condado, ricas em metais preciosos, são repletas de grandes aves, cujos cânticos ecoam pela região. O ambiente é marcado por uma melancolia sutil, onde as praias vazias dão a sensação de solidão, e as estrelas parecem observar cada movimento. Ao norte, uma floresta dominada por artrópodes gigantes é um lugar evitado por todos, devido aos mistérios de uma cidade perdida, escondida nas profundezas dessa vegetação escura e abandonada, a qual ninguém ousa explorar, nem mesmo os mais corajosos.", titulo: "Condado" },
+    { src: "imagens/tokens/floresta dos pinheirosv2mapa.png", texto: "A Floresta de Pinheiros é uma vasta e selvagem floresta, rica em flora e biodiversidade, que se estende por toda a região. O ambiente é denso, com árvores altas e espessas, criando uma cobertura verdejante onde animais de pelos densos dominam, além de mamíferos e répteis rápidos que são peritos em escalar as árvores. A vegetação é composta por uma diversidade impressionante de plantas e arbustos, proporcionando abrigo para uma grande quantidade de herbívoros grandes, que se alimentam das folhas e raízes. Porém, a floresta é também traiçoeira para os menores; criaturas e predadores mais astutos utilizam as armadilhas naturais do ambiente, como tocas antigas, buracos disfarçados e gramas com espinhos, além dos aromas de plantas que atraem presas desavisadas. Criaturas inteligentes, como caçadores em bando, patrulham a floresta, procurando por qualquer oportunidade de capturar presas. Ao norte da floresta, um clima frio domina a região, onde uma ilha isolada é habitada exclusivamente por herbívoros, rica em pedras preciosas e joias raras. Ao sul, as paisagens se transformam em campos de vegetação baixa, onde predadores corredores e vorazes caçam suas presas em alta velocidade. No sudeste, a floresta dá lugar a um reino construído pela força, governado por um ditador profano que proclamou uma profecia de libertação para seus súditos. No entanto, a verdadeira mensagem é que a derrota é o destino dos fracos, e os oprimidos estão destinados a sucumbir ao poder tirânico.", titulo: "Floresta dos Pinheiros" },
+    { src: "imagens/tokens/ilha da caveirav2mapa.png", texto: "A Ilha da Caveira é um lugar isolado e inóspito, afastada de qualquer rota comum e envolta por uma densa névoa que dificulta a aproximação. Suas águas são traidoras, repletas de criaturas desconhecidas, muitas das quais são verdadeiros monstros marinhos, prontos para devorar qualquer intruso que ouse se aproximar. Esta ilha é um território endiabrado, onde a morte permeia todos os cantos. Quem ousa pisar em suas praias nunca retorna. A fauna local é composta por predadores cruéis, acostumados a devorar tudo o que veem pela frente, com uma predileção particular por humanos, que são considerados as presas mais fáceis. As criaturas que habitam a ilha são fora dos padrões normais, gigantes e poderosas, com habilidades adaptadas tanto para o ataque quanto para a defesa. Pilhas de ossos e restos de carne se acumulam em várias partes da ilha, lembrando a carnificina que ali ocorre constantemente. Carniceiros e aproveitadores vagam pelas cavernas, em busca de qualquer oportunidade para saquear ou caçar. A ilha é repleta de cavernas e túneis, muitos deles contendo minérios únicos, que atraem aqueles que buscam riquezas. Também existem túneis secretos que conectam a ilha a vilarejos orcs e, segundo rumores, há passagens tão grandes que podem até ligar a Ilha da Caveira a outras ilhas, fazendo dela um ponto estratégico de trevas e mistérios.", titulo: "Ilha da Caveira" },
+    { src: "imagens/tokens/nortefriov2mapa.png", texto: "O Norte Frio é uma terra implacável, onde uma tempestade de neve constante esconde uma paisagem de gelo seco e pedras congeladas. As montanhas cobertas de neve se erguem como colossos, com picos de gelo e espinhos formando barreiras naturais em cada entrada de caverna, criando um labirinto perigoso. No coração desse deserto gelado, a temperatura extrema torna a sobrevivência impossível sem as adaptações necessárias: todas as criaturas, desde os predadores grandes e pacientes até os herbívoros gigantes, possuem penas ou pelos espessos para suportar o frio feroz. Os rastros de sangue são frequentemente encontrados, vestígios das caçadas impiedosas que ocorrem nas cavernas, onde os animais inteligentes formam grupos para tirar proveito das presas mais vulneráveis. As montanhas, ocupadas por corujas, golens e aves de rapina, aguardam o momento certo para atacar. O grande predador que caminha pelo deserto gelado é temido por todos, uma força imparável que percorre o território à procura de suas próximas vítimas. Ao sul, um pântano misterioso se estende, repleto de flores e ervas medicinais, mas infestadas de crocodilos, cobras, sapos e insetos gigantes, tornando a travessia um desafio mortal para quem ousa se aventurar por essa região infestada.", titulo: "Norte Frio" },
+    { src: "imagens/tokens/bosque_dos_pinheirosv2mapa.png", texto: "O Bosque Antigo é uma região selvagem dominada por um imponente Rei Leão e marcada pela presença de um vulcão ativo. O ambiente hostil é composto por campos de pedregulho, vegetação rasteira e uma fauna feroz, onde superpredadores lutam diariamente pelo domínio, enquanto herbívoros sobrevivem em bandos ou por agilidade. A gritaria das batalhas ecoa pela terra, criando um cenário de constante tensão. Ao Sudoeste, uma ilha cercada por mata fechada abriga animais que acumulam galhos para moldar os caminhos dos rios, oferecendo um contraste de estratégia em meio à brutalidade do bosque. É um território implacável, governado pela força e pela astúcia.", titulo: "Bosque Antigo" },
+];
+
+// Seleção dos elementos
+const imagemElemento = document.getElementById("imagem2");
+const textoElemento = document.getElementById("texto");
+const prevButton = document.getElementById("prev");
+const nextButton = document.getElementById("next");
+const tituloElemento = document.querySelector(".descricao3"); // Seleciona o título
+
+let indiceAtual = 0;
+
+// Função para atualizar o carrossel
+function atualizarCarrossel() {
+    imagemElemento.src = imagens2[indiceAtual].src; // Corrected to use imagens2
+    textoElemento.textContent = imagens2[indiceAtual].texto; // Corrected to use imagens2
+    tituloElemento.textContent = imagens2[indiceAtual].titulo; // Atualiza o título
+}
+
+// Eventos para os botões
+nextButton.addEventListener("click", () => {
+    indiceAtual = (indiceAtual + 1) % imagens2.length; // Corrected to use imagens2
+    atualizarCarrossel();
+});
+
+prevButton.addEventListener("click", () => {
+    indiceAtual = (indiceAtual - 1 + imagens2.length) % imagens2.length; // Corrected to use imagens2
+    atualizarCarrossel();
+});
+
+// Inicializa com a primeira imagem
+atualizarCarrossel();

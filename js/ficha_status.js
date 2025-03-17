@@ -95,7 +95,6 @@ const senhas = {
     "npc7": "Eva",
     "npc8": "Aurora",
     "npc9": "ganância",
-    "npc10": "Pai",
 };
 
 // Dados dos NPCs
