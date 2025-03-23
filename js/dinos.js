@@ -223,7 +223,7 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +25 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
+        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
         attacks: ['Mordida Poderosa: 16d10+60', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
         abilities: [
             'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar, parte do dano q ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
@@ -238,21 +238,21 @@ const dinoFichas = {
     weight: '300 kg',
     height: '30 cm - 2,50 M',
     length: '4,5 M',
-    attributes: { agi: 4, for: 2, int: 2, pre: 3, vig: 2 },
-    life: [15, 25, 50, 80, 100], // Escalável por nível ou estágio
+    attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2 },
+    life: [15, 25, 50, 80, 100], // Escalável por tipo ou estágio
     armor: 10, // Base de armadura
-    actionBonus: '+10 mordida, +10 garra, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade',
+    actionBonus: '+5 mordida, +10 garra, +5 luta, +5 reflexo, +5 pontaria, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade',
     attacks: [
         'Mordida: 1d10 / 2d12+5 ',
         'Garra: 1d10 / 2d12+5 ',
-        'Veneno Paralisante: 1d8 (cegueira por 1d4 rodadas)'
+        'Veneno Paralisante: 2d8 (cegueira por 1d4 rodadas)'
        
     ],
     abilities: [
-        'Distração Fatal: Quando a vítima está envenenada ou distraida, o Dilofossauro ganha um bônus de +1d6 em ataques diretos.',
+        'Distração Fatal: Quando a vítima está envenenada ou distraida, o Dilofossauro ganha um bônus de +1d10 em ataques diretos.',
         'Intimidar: +10 em intimidar, usado para assustar ou distrair oponentes em menor número.'
     ],
-    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente, permitindo ataques críticos ou desvantagem (-5) em testes de percepção.',
+    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente (1d4), permitindo ataques críticos ou desvantagem (-5) em testes de percepção.',
     passivaElemental: 'Morte:Pode criar clones ou alucinações contra inimigos envenenados. Fogo Veneno solta fogo (3d6 de fogo).Hypo: aumenta o tamanho para 2 metros e +1 força. ',
 
 

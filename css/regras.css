@@ -566,6 +566,7 @@ nav {
     text-align: center;
     font-size: 1.2rem; /* Diminui o tamanho da fonte em telas médias */
     margin: 0 auto;
+    border: solid 2px #faa80e;
     color: #fff5bb;
     background-color: #3b0202d7;
     border-radius: 10px;
@@ -576,7 +577,7 @@ nav {
     .explicacao-regras {
         font-size: 0.8rem; /* Diminui o tamanho da fonte em telas médias */
         width: 70%;
-        padding: 5px;
+        padding: 10px;
     }
 }
 

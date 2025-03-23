@@ -573,20 +573,25 @@ margin-top: 150px;
 
 
 .container-1{
-    width: 60%;
-    max-width: 700px;
+    width: 70%;
+   
     padding: 20px;
     box-shadow: 0px 4px 8px rgb(82, 2, 185); /* Sombra para destaque */
     border: solid, 2px #0103b1;
     border-radius: 15px;
-    background: radial-gradient(circle, rgba(4, 11, 31, 0.671), rgba(35, 2, 58, 0.705), rgba(25, 1, 65, 0.733), rgba(27, 0, 90, 0.76));
+    background: radial-gradient(circle, rgba(4, 11, 31, 0.788), rgba(35, 2, 58, 0.815),rgba(4, 11, 31, 0.788),rgba(5, 32, 25, 0.63), rgba(26, 1, 65, 0.815),rgba(4, 11, 31, 0.788), rgba(27, 0, 90, 0.829));
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
     margin: 0 auto;
     text-align: center;
-    animation: glow 6s infinite alternate ease-in-out;
+    background-size: 200% 200%; /* Expande o gradiente para permitir movimento */
+    background-blend-mode: overlay; /* Faz o gradiente misturar com a imagem */
+    background-position: 0% 0%;
+    background-attachment: fixed;
+    animation: girarGradiente 6s linear infinite;
+
     
 }
 /* Título */
@@ -620,7 +625,22 @@ margin-top: 150px;
     position: relative;
     border-radius: 20px;
     overflow: hidden;
+    filter: drop-shadow(-10px 10px 15px rgba(4, 183, 214, 0.705)); /* Sombra apenas na imagem */
+    animation: mudarOnda 10s infinite alternate;
     
+}
+
+@keyframes mudarOnda {
+    10% { filter: drop-shadow(-10px -10px 15px rgba(4, 125, 141, 0.596)); }
+    20% { filter: drop-shadow(10px 10px 15px rgba(1, 128, 150, 0.596)); }
+    30% { filter: drop-shadow(-10px -10px 15px rgba(173, 171, 2, 0.658)); }
+    40% { filter: drop-shadow(-10px -10px 15px rgba(1, 128, 150, 0.596)); }
+    50% { filter: drop-shadow(-10px -10px 15px rgba(1, 128, 150, 0.596)); }
+    60% { filter: drop-shadow(10px 10px 15px rgba(0, 109, 128, 0.644)); }
+    70% { filter: drop-shadow(10px 10px 15px rgba(0, 109, 128, 0.644)); }
+    80% { filter: drop-shadow(10px 10px 15px rgba(1, 128, 150, 0.596)); }
+    90% { filter: drop-shadow(10px 10px 15px rgba(173, 171, 2, 0.658)); }
+    100% { filter: drop-shadow(-10px -10px 15px rgba(3, 154, 192, 0.637)); }
 }
 
 .mapa img {
@@ -629,6 +649,7 @@ margin-top: 150px;
     border-radius: 20px;
     object-fit: cover;
     transition: opacity 0.5s ease-in-out;
+   
     
 }
 
@@ -656,8 +677,8 @@ button:hover {
     height: 100%;
     border-radius: 20px;
     object-fit: cover;
-    box-shadow: 0px 2px 5px rgba(19, 8, 114, 0.733);
- 
+    filter: drop-shadow(-10px 10px 15px rgba(4, 183, 214, 0.705)); /* Sombra apenas na imagem */
+    animation: mudarOnda 10s infinite alternate;
 
 }
 
@@ -832,7 +853,7 @@ font-size: 1.2rem;
     margin-bottom: 6%; 
     border-radius: 20px;
     background: radial-gradient(circle, rgba(4, 11, 31, 0.671), rgba(35, 2, 58, 0.705), rgba(25, 1, 65, 0.733), rgba(27, 0, 90, 0.76));
-  
+    
 }
 
 .titulo {
@@ -925,6 +946,7 @@ font-size: 1.2rem;
     margin: 0 auto;
     border-radius: 20px;
     margin-bottom: 5%;
+    
 }
 
 
@@ -1029,7 +1051,12 @@ font-size: 1.2rem;
         flex-direction: column;
         gap: 5px;
     }
-  
+    #texto{
+        font-size: 0.7rem;
+        padding: 5px;
+        justify-content: center;
+
+    }
     #imagem2{
         width: 100%;
         max-height: 350px;
@@ -1131,8 +1158,8 @@ font-size: 1.2rem;
     .texto-descricao {
         text-align: center;
         justify-content: center;
-        font-size: 0.7rem;
-        width: 85%;
+        font-size: 0.8rem;
+        width: 90%;
         max-width: 450px;
         padding: 10px;
         margin: 0 auto;
@@ -1140,6 +1167,245 @@ font-size: 1.2rem;
     }
 }
 
+
+/* Terceiro container centralizado */
+.terceiro-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 75%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 1;
+    
+    /* Mantém a imagem de fundo e adiciona o gradiente por cima */
+    background: radial-gradient(circle, 
+        rgba(31, 8, 4, 0.815), 
+        rgba(58, 2, 2, 0.808), 
+        rgba(26, 1, 65, 0.836), 
+        rgba(58, 2, 2, 0.815)
+    );
+    
+    background-size: 200% 200%; /* Expande o gradiente para permitir movimento */
+    background-blend-mode: overlay; /* Faz o gradiente misturar com a imagem */
+    background-position: 0% 0%;
+    background-attachment: fixed;
+    animation: girarGradiente 6s linear infinite;
+
+    /* Outros estilos */
+    backdrop-filter: blur(1px); /* Efeito vidro */
+    border: 2px solid #6f02c9;
+    box-shadow: 0px 2px 10px rgba(112, 11, 11, 0.904);
+}
+
+@keyframes girarGradiente {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+@keyframes mudarSombra {
+    0% { filter: drop-shadow(20px 20px 15px rgba(99, 12, 12, 0.829)); }
+    25% { filter: drop-shadow(-30px -20px 15px rgba(53, 5, 5, 0.822)); }
+    50% { filter: drop-shadow(25px 25px 20px rgba(71, 7, 7, 0.836)); }
+    75% { filter: drop-shadow(-30px -20px 15px rgba(53, 4, 4, 0.849)); }
+    100% { filter: drop-shadow(20px -20px 15px rgba(146, 17, 17, 0.822)); }
+}
+/* Estilização da imagem */
+.terceira-imagem {
+    width: 35%;
+    height: auto;
+    align-items: center;
+    max-height: 400px;
+    margin: 0 auto;
+    border-radius: 20px;
+    object-fit: cover;
+    animation: mudarSombra 4s infinite alternate;
+    
+}
+.terceiro-texto h2{
+    background-color: #0e0420b6;
+    border-radius: 20px;
+    padding: 10px;
+    width: 60%;
+    color: #bbfdff;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    text-shadow:
+    0 0 90px #09517a,
+    0 0 40px #812121,
+    0 0 60px #f11313;
+    font-size: 1.8rem;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border: 2px solid #6f02c9;
+
+
+}
+/* Estilização do texto */
+.terceiro-texto {
+    color: #bbfdff;
+    background-color: #0e0420b6;
+    border-radius: 20px;
+    width: 50%;
+    padding: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #6f02c9;
+}
+.terceiro-texto p{
+
+    color: #bbfdff;
+    background-color: #0e0420c7;
+    border: 2px solid #32025a60;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1.1rem;
+    
+
+}
+
+/* Terceiro container centralizado */
+.terceiro-container2 {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    width: 75%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 20px;
+    z-index: 1;
+    
+    /* Mantém a imagem de fundo e adiciona o gradiente por cima */
+    background: radial-gradient(circle, 
+        rgba(4, 18, 31, 0.815), 
+        rgba(2, 12, 58, 0.808), 
+        rgba(26, 1, 65, 0.836), 
+        rgba(2, 10, 58, 0.815)
+    );
+
+    /* Outros estilos */
+    backdrop-filter: blur(1px); /* Efeito vidro */
+    border: 2px solid #6f02c9;
+    box-shadow: 0px 2px 10px rgba(231, 199, 19, 0.904);
+    margin-bottom: 2%;
+}
+
+/* Estilização da imagem */
+.terceira-imagem2 {
+    width: 35%;
+    height: auto;
+    align-items: center;
+    max-height: 400px;
+    margin: 0 auto;
+    border-radius: 20px;
+    object-fit: cover;
+    
+    
+}
+.terceiro-texto2 h2{
+    background-color: #0e0420b6;
+    border-radius: 20px;
+    padding: 10px;
+    width: 60%;
+    color: #bbfdff;
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    text-shadow:
+    0 0 90px #b87f05,
+    0 0 40px #4e3002,
+    0 0 60px #754c00;
+    font-size: 1.8rem;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    border: 2px solid #6f02c9;
+
+
+}
+/* Estilização do texto */
+.terceiro-texto2 {
+    color: #bbfdff;
+    background-color: #0e0420b6;
+    border-radius: 20px;
+    width: 50%;
+    padding: 5px;
+    font-size: 1.2rem;
+    text-align: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    border: 1px solid #6f02c9;
+}
+.terceiro-texto2 p{
+
+    color: #bbfdff;
+    background-color: #0e0420c7;
+    border: 2px solid #32025a60;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 1.1rem;
+    
+
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .terceiro-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .terceiro-texto p{
+        font-size: 0.8rem;
+    }
+    .terceiro-texto h2{
+        font-size: 1.5rem;
+
+    }
+    .terceira-imagem, .terceiro-texto {
+        width: 80%;
+    }
+    .terceira-imagem{
+        width: 40%
+    }
+    
+    .terceiro-container2 {
+        flex-direction: column;
+        text-align: center;
+    }
+    .terceiro-texto2 p{
+        font-size: 0.8rem;
+    }
+    .terceiro-texto2 h2{
+        font-size: 1.5rem;
+
+    }
+    .terceira-imagem2, .terceiro-texto2 {
+        margin-bottom: 3%;
+        width: 80%;
+    }
+    .terceira-imagem2{
+        width: 40%
+    }
+}
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */

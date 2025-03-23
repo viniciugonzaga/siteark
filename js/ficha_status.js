@@ -205,18 +205,18 @@ const npcs = {
       
     },
     "npc8": {
-        nome: "Meleys",
+        nome: "Melarys",
         imagem: "imagens/npc8_meleys.jpg",
         historia: "Nasceu de uma semente hypo que foi colhida por um antigo mago, famoso por ser amigo dos animais, transformando o desejo daquela planta carnívora sem graça em um ser mais conciente e que podesse ir atrás de sua comida sem precisar esperar. Após anos sem ser tocada ou alimentada, ficou dormindo em sua casca de semente, onde toda a vida começou, acordada por uma jovem na floresta. Agora seu objetivo é saciar sua vontade de comer tudo e todos, se sua 'Mãe' permitir. ",
-        acoes: ["+15 agarrar, +15 morder, +15 resisitr venenos, +15 resisitir efeitos de controle, +15 em camuflar, +10 furtividade, +10 comer, +10 digestão, +10 atrair com cheiro, +10 em ficar parado, +10 giro, +10 força bruta na mordida, +10 engolir, +10 combo, +10 luta, +10 contra-ataque, +10 reflexo, +10 esquiva, +10 bloqueio, +10 perseguir, +10 cheirar, +5 flanco, +5 sentidos, +5 pontaria, +5 arremesso, +5 pensar em comer, +5 DRACARYSS, -5 visual, -5 enxergar. "],
-        mutacao: "Fome de Carnívora: Meleys pode sempre regernar metade do dano que causou em vida ou armadura até 50% da vida acumulada, álem disso pode tentar causa agarrão em todos os ataques e ganha +5 contra qualquer tipo de inseto. Meleys precisa obedecer seu dono caso seja treinada e cuidada, mais é intolerante a qualquer outro tipo de pessoa caso a provoquem, álem de ser fraca contra fogo por ser uma planta. ",
+        acoes: ["+15 agarrar, +15 quebrar solo, +15 locomover, +15 conhecimento arcano botânico, +15 vigia, +15 luta +15 morder, +15 resisitr venenos, +15 resisitir efeitos de controle, +15 em camuflar, +10 furtividade, +10 comer, +10 digestão, +10 atrair com cheiro, +10 em ficar parado, +10 giro, +10 força bruta na mordida, +10 engolir, +10 combo, +10 luta, +10 contra-ataque, +10 reflexo, +10 esquiva, +10 bloqueio, +10 perseguir, +10 cheirar, +5 flanco, +5 sentidos, +5 pontaria, +5 arremesso, +5 pensar em comer, +5 DRACARYSS, +5 visual, +5 percepção em terra. "],
+        mutacao: "Fome de Carnívora: Melarys pode sempre regernar metade do dano que causou em vida ou armadura até 50% da vida acumulada, álem disso pode tentar causa agarrão em todos os ataques e ganha +5 contra qualquer tipo de inseto. Meleys precisa obedecer seu dono caso seja treinada e cuidada, mais é intolerante a qualquer outro tipo de pessoa caso a provoquem, álem de ser fraca contra fogo por ser uma planta. Seu despertar faz aumentar o tamanho, ganhar +1 vig e +1 for, além de ter uma defesa maior em armadura ",
         classes: "Sobrevivente, guerreiro",
         agilidade: 2,
-        forca: 3,
+        forca: 4,
         inteligencia: 1,
         sobrevivencia: 2,
         vigor: 4,
-        status: "Vida: 100, Determinação/Sanidade: 70, Existência/Resistência: 30, Fôlego: 7, Armadura: 5",
+        status: "Vida: 130, Determinação/Sanidade: 70, Existência/Resistência: 30, Fôlego: 7, Armadura: 35",
       
     },
     "npc9": {
@@ -235,10 +235,10 @@ const npcs = {
       
     },
     "npc10": {
-        nome: "O Adestrador",
-        imagem: "imagens/npc10_adestrador.png",
-        historia: "TODOS VCS VÃO MORRER PARA AS MINHAS FERAS",
-        acoes: ["+25 teatro, +25 maquiagem, +25 enganação (Vou Matar todos VCS)"],
+        nome: "Alfredo Alexander Santos",
+        imagem: "imagens/npc10_alfredo.jpg",
+        historia: "Alfredo é um simples sapateiro no século 19, que foi transportado para o ark depois de um acidente envolvendo sua fámilia após a sua casa onde sua eles moravam pegar fogo, Alfredo tentou salvar sua neta e se perdeu em meio a fumaça, encontrando um mundo desconhecido e selvagem",
+        acoes: ["+15 criação primal, +15 manipular seda, +15 costura, +15 moldagem de couro, +10 corte, +10 pontaria, +10 empatia, +10 bloqueio, +10 diplomacia, +10 furtividade, +10 percepção, +10 customizar, +10 artes, +10 faxina, +5 cozinhar, +5 esquiva, +5 reflexo, +5 pensar, +5 sobrevivência  "],
         mutacao: "Filho do Domador",
         classes: "Melhor Enganador 'Trouxas'",
         agilidade: 0,
