@@ -210,7 +210,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','Pyromane','Dodorex','Warden']
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','kukulkan','Pyromane','Dodorex','Warden']
 };
 
 const dinoFichas = {
@@ -223,37 +223,39 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida ', // Bônus de ação de criatura
-        attacks: ['Mordida Poderosa: 16d10+60', 'Investida: 7d10+10', 'Ataque de cauda: 7d10+20'],
+        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida, -5 alvos parados. ', // Bônus de ação de criatura
+        attacks: ['Mordida Poderosa: 16d10+60 + quebrado (causa 200% de dano em armadura)', 
+            'Investida: 8d10+40 (200% em construções) ',
+             'Ataque de cauda: 7d10+30'],
         abilities: [
-            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar, parte do dano q ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
+            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar por 1 rodada, parte do dano que ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
             'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação.'
         ],
         passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar efeitos de quebrado, sangramento ou dilacerado para toda mordida.',
-        passivaElemental: 'FOGO: O tiranossauro pode fazer seu corpo pegar fogo nas investidas e rabadas, causando dano ao contato de 3d12 de fogo, por rodada 1d12+2d6 (1d6 rod). MORTE: Causa um dano extra a inimigos com pouca vida na mordida +20, 1/4 do dano da mordida faz ele devorar a carne e regenerar vida. AETHER: O tiranossauro ganha um buff de vida e gereneração por quantos inimigos estiver enfretando 1 = 30 de regeneração'
+        passivaElemental: 'Seu rugido ou grito pode ter interações adicionais de acordo com a mutação, podendo queimar, criar portais, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.'
     },
 'Dilofossauro': {
     title: 'O Mestre da Distração',
     image: 'imagens/dinos_dilofossauro.webp', // Substitua pelo caminho correto
     weight: '300 kg',
-    height: '30 cm - 2,50 M',
+    height: '1,7 M / 2,4 M',
     length: '4,5 M',
     attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2 },
-    life: [15, 25, 50, 80, 100], // Escalável por tipo ou estágio
-    armor: 10, // Base de armadura
-    actionBonus: '+5 mordida, +10 garra, +5 luta, +5 reflexo, +5 pontaria, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade',
+    life: 75, // Escalável por tipo ou estágio
+    armor: 20, // Base de armadura
+    actionBonus: '+5 mordida, +10 garra, +5 luta, +5 reflexo, +5 pontaria, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade, +5 agachar, +5 socializar, +5 enganação, +5 farejar, +5 agarrão',
     attacks: [
-        'Mordida: 1d10 / 2d12+5 ',
-        'Garra: 1d10 / 2d12+5 ',
-        'Veneno Paralisante: 2d8 (cegueira por 1d4 rodadas)'
+        'Mordida: 1d10+10 / 2d12+10 ',
+        'Garra: 1d10+10 / 2d12+10 ',
+        'Veneno Paralisante: 2d8 ácido (cegueira por 1d4 rodadas)'
        
     ],
     abilities: [
-        'Distração Fatal: Quando a vítima está envenenada ou distraida, o Dilofossauro ganha um bônus de +1d10 em ataques diretos.',
-        'Intimidar: +10 em intimidar, usado para assustar ou distrair oponentes em menor número.'
+        'Distração Fatal: Quando a vítima está envenenada ou distraida, o Dilofossauro ganha um bônus de +5 em pontaria e +1d10 em ataques diretos.',
+        'Intimidar: ganha +10 em intimidar quando está em grupo maior ou sozinho com apenas um alvo, usado para assustar ou distrair oponentes em menor número.'
     ],
-    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente (1d4), permitindo ataques críticos ou desvantagem (-5) em testes de percepção.',
-    passivaElemental: 'Morte:Pode criar clones ou alucinações contra inimigos envenenados. Fogo Veneno solta fogo (3d6 de fogo).Hypo: aumenta o tamanho para 2 metros e +1 força. ',
+    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente (1d4), permitindo ataques críticos em todos os ataques e desvantagem em inimigos (-5) em testes de percepção e reações.',
+    passivaElemental: 'Seu jato de veneno pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
 
 
     // Adicione outras fichas aqui
@@ -265,91 +267,90 @@ const dinoFichas = {
     height: '30 cm',
     length: '1,5 M',
     attributes: { agi: 5, for: 1, int: 2, pre: 2, vig: 1 },
-    life: [10, 20, 30, 40, 50], // Escalável por nível ou estágio
-    armor: 5, // Armadura leve
-    actionBonus: '+10 mordida, +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
+    life: 20, // Escalável por nível ou estágio
+    armor: 0, // Armadura leve
+    actionBonus: '+5 mordida, +15 reflexo, +15 esquiva, +5 garra, +10 furtividade, +10 trabalho em grupo, +5 corrida, +10 socializar, +5 rastrear, +5 saltar, +5 reproduzir, +5 flexível',
     attacks: [
-        'Mordida: 1d6 / 1d8+2 / 1d10+grupo',
-        'Garra: 1d6 / 1d8+2 / 1d10+grupo',
-        'Ataque em Grupo: Se houver 3 ou mais compsognathus, cada um ganha +1d6 no ataque e no dano.'
+        'Mordida: 1d6++2 veneno',
+        'Garra: 1d6+2 corte',
+        'Ataque em Grupo: Se houver 3 ou mais compsognathus, cada um ganha +5 em ataques diretos e +1d6 no ataque e no dano.'
     ],
     abilities: [
-        'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo.',
-        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando desvantagem em testes de percepção e esquiva do alvo.'
+        'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo, caso um grupo todo ataque um alvo, o alvo precisa fazer um teste de fortitude para não ser derrubado e receber o dano total, caso ele passe reduz 30% do dano para cada reação usada e sucedida  ',
+        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando torpor em suas mordidas, cada ataque de +2 de veneno vai somando junto com os outros membros do grupo, derrubando e deixando o alvo incosciente por 1d4 de rodadas.'
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
-    passivaElemental: 'Fogo: Aplica 1d6 de fogo para cada comp em contato, escala 1 dado para cada comp de fogo.Biolétrica: ataques causam dano extra de elétrico 1d6 em mordida. Morte: aplica torpor em qualquer ataque.',
+    passivaElemental: 'Suas mordidas com venenos poossuem interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
   
 },
 'Celófode': {
     title: 'O Médio Caçador',
     image: 'imagens/dinos_celopide.jpeg', // Substitua pelo caminho correto
-    weight: '3 kg',
-    height: '60 cm',
+    weight: '10 kg',
+    height: '50 cm',
     length: '1,5 M',
-    attributes: { agi: 5, for: 2, int: 2, pre: 2, vig: 1 },
-    life: [10, 20, 30, 40, 50], // Escalável por nível ou estágio
-    armor: 5, // Armadura leve
-    actionBonus: '+10 mordida, +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
+    attributes: { agi: 3, for: 2, int: 2, pre: 2, vig: 1 },
+    life: 35, // Escalável por nível ou estágio
+    armor: 15, // Armadura leve
+    actionBonus: '+10 mordida, +5 combo, +5 agarrão, +5 contra-ataque, +5 cheirar, +5 esquiva, +5 rasgar carne, +5 resistência, +5 reflexo, +5 escalar +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
     attacks: [
-        'Mordida: 2d6 / 1d8+2 / 1d10+grupo',
-        'Garra: 2d6 / 1d8+2 / 1d10+grupo',
-        'Ataque em Grupo: Se houver 3 ou mais compsognathus, cada um ganha +1d6 no ataque e no dano.'
+        'Mordida: 1d10 + sangramento',
+        'Garra: 1d8+2',
+        'Ataque em Grupo: Se houver 3 ou mais Celófode, cada um pode atacar com +5 no ataque e 1d12 de sangramento no dano.'
     ],
     abilities: [
-        'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo.',
-        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando desvantagem em testes de percepção e esquiva do alvo.'
+        'Médio Predador: Grupos de Celófode ganham +1d6 de dano em suas mordidas contra alvos que estão sangrando enquanto correm.',
+        'Trabalho em Grupo: Quando em grupo, podem rastrear um alvo isolado que esteja sangrando, ganhando +5 pensar, +5 cheirar e 1d6 adicional no próximo ataque para cada membro do grupo.'
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
-    passivaElemental: 'Fogo: Aplica 1d6 de fogo para cada celo em contato, escala 1 dado para cada celo de fogo.Biolétrica: ataques causam dano extra de elétrico 2d6 em mordida. Morte: aplica torpor em qualquer ataque.',
+    passivaElemental: 'Suas mordidas com Sangramento podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
   
 },
 'Proceratossauro': {
     title: 'O ágil Caçador',
     image: 'imagens/dinos_procerato.png', // Substitua pelo caminho correto
-    weight: '3 kg',
-    height: '60 cm',
-    length: '1,5 M',
-    attributes: { agi: 4, for: 2, int: 2, pre: 2, vig: 2 },
-    life: [10, 20, 30, 40, 50], // Escalável por nível ou estágio
-    armor: 7, // Armadura leve
-    actionBonus: '+10 mordida, +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
+    weight: '40 kg',
+    height: '80 cm',
+    length: '1,3 M',
+    attributes: { agi: 2, for: 2, int: 2, pre: 2, vig: 2 },
+    life: 50, // Escalável por nível ou estágio
+    armor: 25, // Armadura leve
+    actionBonus: '+10 mordida, +5 luta,+5 garra, +5 escalar, +5 contra-ataque, +5 esquiva, +5 socializar, +5 cabeçada, +5 fortitude +5 agarrão, +5 agachar, +5 regular temperatura, +5 acasalar, +5 furtividade, +10 trabalho em grupo, +5 corrida',
     attacks: [
-        'Mordida: 3d6 / 3d8+2 / 1d10+grupo',
-        'Garra: 4d6 / 2d8+2 / 1d10+grupo',
-        'Ataque em Grupo: Se houver 3 ou mais compsognathus, cada um ganha +1d6 no ataque e no dano.'
+        'Mordida: 2d10',
+        'Garra: 2d8 x2',
+        'Ataque em Grupo: Se houver 2 ou mais proceratossauro, cada um ganha +5 no ataque e 1d12+15 de dano.'
     ],
     abilities: [
-        'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo.',
-        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando desvantagem em testes de percepção e esquiva do alvo.'
+        'O Adaptado: Apesar de seu tamanho, o Proceratossauros pode regular sua temperatura para ageuntar climas severos tanto de calor e frio, ganhando +10 fortitude',
+        'Trabalho em Grupo: Proceratossauros quando estiver em grupo pode regular a temperatura do ambiente e deixar seus inimigos com frio ou calor, alterando a temperatura do ambiente em 1d4 rodadas, podendo sobreviver a pequenos climas extremos.'
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
-    passivaElemental: 'Fogo: Aplica 1d6 de fogo para cada Pro em contato, escala 1 dado para cada Pro de fogo.Biolétrica: ataques causam dano extra de elétrico 2d6 em mordida. Morte: aplica torpor em qualquer ataque.',
+    passivaElemental: 'Sua crista pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
   
 },
 'Trodonte': {
     title: 'O Caçador Noturno',
     image: 'imagens/dinos_trodonte.jpeg', // Substitua pelo caminho correto
     weight: '25 kg',
-    height: '50 cm',
+    height: '60 cm',
     length: '2 M',
-    attributes: { agi: 4, for: 2, int: 3, pre: 3, vig: 2 },
-    life: 35, // Vida moderada
-    armor: 7, // Armadura leve
-    actionBonus: '+10 mordida, +5 garra, +10 furtividade, +15 rastrear, +10 ataques noturnos, -5 em ações durante o dia',
+    attributes: { agi: 2, for: 2, int: 3, pre: 3, vig: 2 },
+    life: 55, // Vida moderada
+    armor: 35, // Armadura leve
+    actionBonus: '+10 mordida, +5 luta, +5 cheirar, +5 paralisia, +5 pensar, +5 agachar, +5 dormir, +5 ocultar rastros, +5 enganação, +10 visão noturna, +5 fortitude, +5 agarrão, +5 reflexo, +10 garra, +10 furtividade, +10 rastrear, +10 ataques noturnos, -5 em ações durante o dia',
     attacks: [
         'Mordida: 2d6+5',
-        'Garra: 1d8+3',
-        'Ataque Letal Noturno: 3d8+5+grupo, aplica sangramento devido à precisão mortal.'
+        'Garra: 1d8+3 2x',
+        'Ataque Letal Noturno em grupo: 3d8+(5 por grupo), aplica sangramento devido à precisão mortal.'
     ],
     abilities: [
-        'Visão Noturna: O Troodonte enxerga claramente no escuro, ignorando penalidades em combates noturnos.',
-        'Agressividade Noturna: Durante a noite, ganha +1d6 em furtividade, rastrear e ataques corpo a corpo.',
+        'Visão Noturna: O Troodonte enxerga claramente no escuro, ignorando penalidades em combates noturnos, além de sempre que acetrar sua mordida causar torpor no alvo, ao equivalente de 10 de dano = 1d8',
+        'Agressividade Noturna: Durante a noite, ganha +1d8 em furtividade, rastrear e ataques corpo a corpo, corre o dobro do deslocamneto durante a noite, ganhando +2 agi em ações de correr.',
       
     ],
     passiva: 'Caçador Silencioso: Quando está no escuro, o Troodonte pode atacar de surpresa, forçando o inimigo a realizar um teste de percepção com desvantagem. Caso o inimigo falhe, o ataque causa dano adicional de +1d6.',
-    passivaElemental: 'Morte: O Troodonte pode se fundir às sombras por 1 rodada, tornando-se impossível de ser detectado. Durante essa rodada, seu próximo ataque causa +2d8 de dano extra.Nuclear: possui radiação que altera o dna das vitimas, aplicando desvantagem +5 em tudo.',
-    gene: ['Adaptação Noturna', 'Resistência a baixas temperaturas', 'Furtividade Elevada']
+    passivaElemental: 'Suas Mordidas de torpor podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
 },
 
 'Oviraptor': {
@@ -5584,6 +5585,28 @@ const dinoFichas = {
         ],
         "passiva": "Guardião Absoluto: Enquanto estiver em seu território, o Warden causa o dobro de dano na primeira rodada e se move 50% mais rápido. Seu faro e rastreamento tornam-se infalíveis, no começo da luta causa 50 pontos de sanidade pela sua presença.",
         "passivaElemental": "Medo Primordial: Sempre que aparece pela primeira vez, ele causa o efeito *Pasmo* em todos que o enxergam e reduz imediatamente 150 pontos de Sanidade dos alvos."
+    },
+    "kukulkan": {
+        "title": "O Deus Maia",
+        "image": "imagens/dinos_kukulkan.jpg",
+        "weight": "8 toneladas", 
+        "height": "4 M",
+        "width": "18 M",
+        "attributes": { "agi": 4, "for": 4, "int": 5, "pre": 6, "vig": 4 },
+        "life": 450,
+        "armor": 400,
+        "actionBonus": "+40 manipulações de elementos, +35 pontaria elemental, +35 conhecimento arcano, +35 conjuração, +35 foco, +35 sopro arcano, +35 invocação arcana, +35 bloqueio, +35 contra-ataque, +35 fortitude, +35 rabada, +35 voar, +25 coragem, +25 intimidação, +25 força bruta, +20 vontade +15 rastejar, +15 nadar, +15 resistência, +15 planar, +15 pontaria de raio, +10 comunicação",
+        "attacks": [
+            "Mordida da Serpente: 10d12+20 + Fadiga",
+            "Sopro da tempestade: 13d10+25 (um sorpo que afeta um raio de 25 metros. Todos os alvos devem passar em um teste de fortitude ou ficarão em estado de *Tempestade Arcana* por 1d2 rodadas.",
+            "Raio Arcano 10d12+25 (Aplica efeito tempestade Arcana e deixa o alvo lento em uma área de 10 metros)."
+        ],
+        "abilities": [
+            "Tempestade Arcana: Cria uma enorme área de um tornando ou tempestade que causa 10d20 de dano em todos os seres em um raio de 25 metros, aplicando o efeito tempestade. Todos os efeitos tempestade estouram aplicando o dano de um tornado no alvo, causando 2d12 6x.",
+            "Encontrão dos Céus: Pode voar o dobro do deslocamento e criar um vento intenso que causa 8d10+30 de dano (Causa dano em 500% em construções)."
+        ],
+        "passiva": "Deus Maia: Sua divindade provoca a região de forma intensa, as tempestades e mares ficam interso quando sua presença é anunciada, quando kukulkan aparece na região todos são revelados durante a cena e tiros de armas são perdidos no meio do ar, por tamanah força arcana que controla os ventos. Toda vez que um ser é marcado por efeito Tempestade, recebe 2d8 4x por rodada, até apagar ou eliminar a origem dessa marca.",
+        "passivaElemental": "Seu efeito tempestade pode ter interações adicionais em mutações, como queimar, descaraga elétrica, radiaçãoe e outros tipos de interações que a mutação elemental forneça."
     },
 
 

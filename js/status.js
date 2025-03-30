@@ -185,35 +185,47 @@ function rolarDado(lados) {
   }
   function rolarItem() {
     const itens = [
-      "Item Primal",
-      "Item Natural",
-      "Item Natural Quebrado",
-      "Item Primal Quebrado",
-      "Item Espólio Raro",
-      "Item Espólio Comum",
-      "Item Espólio Épico",
-      "Item Antigo",
-      "Item industrializado",
-      "Item de invocação",
-      "Item de espólio de Apex",
-      "Item de ração animal(1d4)",
-      "Item de ritual Arcano",
-      "Item de Npc local",
-      "Item de Criopod(1d4)",
-      "Item de contrução nivel 1",
-      "Ligação desconhecida de um telefone(1d4)",
+        "Item Primal",
+        "Item Natural",
+        "Item Primal Quebrado",
+        "Item Espólio Raro",
+        "Item Espólio Comum",
+        "Item Espólio Épico",
+        "Item Antigo",
+        "Item industrializado",
+        "Item de invocação",
+        "Item de espólio de Apex",
+        "Item de ração animal (1d4)",
+        "Item de ritual Arcano",
+        "Item de Medalhão",
+        "Chave de Forte esqueleto",
+        "Parte de engrama antigo",
+        "Item de Npc local",
+        "Item de chefe local",
+        "Artefato de Anotação Antiga(animal)",
+        "Item de Criopod (1d2)",
+        "Item de construção nível 1",
+        "Ligação desconhecida de um telefone (1d2)",
     ];
-    const numeroAleatorio = Math.floor(Math.random() * 17) + 1; // Número de 1 a 8
-    const itemAleatorio = itens[Math.floor(Math.random() * itens.length)]; // Item aleatório
-  
-    // Atualiza o resultado no HTML
-    document.getElementById("resultadoItem").textContent = 
-      `Resultado do item: ${itemAleatorio} (${numeroAleatorio})`;
-  }
+
+    // Escolher um item aleatório da lista
+    const numeroAleatorio = Math.floor(Math.random() * itens.length);
+    const itemAleatorio = itens[numeroAleatorio];
+
+    // Atualiza o resultado no HTML se o elemento existir
+    const resultadoElemento = document.getElementById("resultadoItem");
+    if (resultadoElemento) {
+        resultadoElemento.textContent = `Resultado do item: ${itemAleatorio} (Índice: ${numeroAleatorio})`;
+    }
+
+    return itemAleatorio;
+}
+
+// Teste no console
+console.log(rolarItem());
   function rolarSorte() {
-    // Lista de eventos de sorte (com 40 opções)
+   
     const eventosSorte = [
-      // Primeiros 20 eventos originais
       "Criatura comum pequena",
       "Criatura comum média",
       "Grupo de criaturas pequenas",
@@ -234,43 +246,50 @@ function rolarDado(lados) {
       "Criatura comum ferida",
       "Criatura média ferida",
       "Fezes de criatura",
-      // Novos 20 eventos
+      "Fezes de criatura com item",
       "Carcaça de criatura média",
+      "Carcaça de criatura grande",
       "Duas criaturas médias brigando",
-      "Criatura elemental(1d4)tamanho",
-      "Ninho elemental isolado(1d4)tamanho",
-      "Criatura diabólica faminta média",
-      "Casal faminto(1d4)tamanho",
-      "Filhote(1d4) isolado carente",
-      "emboscada de aventureiros",
-      "Criatura apex dormindo",
+      "Duas criaturas grandes brigando",
+      "Criatura elemental (1d4 tamanho, 1d4 elemento)",
+      "Ninho elemental isolado (1d4 tamanho)",
+      "Criatura diabólica faminta média (1d4)",
+      "Casal faminto (1d4 tamanho)",
+      "Casal faminto alfa",
+      "Apex Predador dormindo",
+      "Filhote (1d4) isolado carente",
+      "Emboscada de NPCs",
+      "Criatura alfa dormindo",
       "Criatura apex faminta",
-      "Oviraptor roubando ovo aleatório(1d4)tamanho",
-      "Enboscada de elemental(1d4)tamanho",
-      "Criatura ferida carente com filhote(1d4)tamanho",
+      "Oviraptor roubando ovo aleatório (1d4 tamanho)",
+      "Emboscada de criaturas elementais (1d4 tamanho)",
+      "Criatura ferida carente com filhote (1d4 tamanho)",
       "Caçada de civilização local",
       "Armadilha de caçador local",
-      "Dinossauro dormindo(1d4)tamanho",
+      "Dinossauro dormindo (1d4 tamanho)",
       "Encontro com Apex Lendário",
       "Dica de alguma progressão na história",
-      "Bando desorientado de criaturas(1d2)",
+      "Bando desorientado de criaturas (1d2)",
       "A PIOR situação que poderia encontrar",
-      "Ligação desconhecida de um telefone(1d4)",
-    ];
-  
-    // Embaralhar a lista de eventos para torná-los aleatórios
-    const eventosEmbaralhados = eventosSorte.sort(() => Math.random() - 0.5);
-  
-    // Rolar o dado (1d40)
-    const numeroD40 = Math.floor(Math.random() * 41) + 1;
-  
-    // Selecionar um evento aleatório do array embaralhado
-    const eventoSorte = eventosEmbaralhados[numeroD40 - 1]; // Correspondente ao número do dado
-  
-    // Atualizar o resultado na página
-    const resultado = `Número sorteado (1d40): ${numeroD40}<br>Evento de sorte: ${eventoSorte}`;
-    document.getElementById("resultadoSorte").innerHTML = resultado;
+      "A MELHOR situação que poderia encontrar",
+      "Drop defeituoso",
+      "Criaturas treinadas sem tribo (1d4)",
+      "Criatura desconhecida observando de longe",
+      "Nevoeiro repentino que esconde algo espreitando"
+  ];
+
+  // Rolar o dado (1d48)
+  const numeroD48 = Math.floor(Math.random() * eventosSorte.length) + 1;
+
+  // Selecionar o evento correspondente ao número sorteado
+  const eventoSorte = eventosSorte[numeroD48 - 1];
+
+  // Atualizar o resultado na página
+  document.getElementById("resultadoSorte").innerHTML = 
+      `Número sorteado (1d48): ${numeroD48}<br>Evento de sorte: ${eventoSorte}`;
+
   }
+
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -279,210 +298,125 @@ function rolarDado(lados) {
     return array;
   }
   
-  function rolarPersonalidade() {
-    // Listas originais de personalidades
-    let personalidadesDomesticos = [
-"Leal",
-"Medrosa",
-"Furioso",
-"Depressivo",
-"Cansado",
-"Agitado",
-"Inteligente", 
-"Invejoso",
-"Ciumento",
-"Bipolar",
-"Insano", 
-"Alegre",
-"Carente",
-"Corajoso",
-"Conturbado",
-"Solitário",
-"Forte",
-"Calmo",
-"Obsessivo",
-"Ansioso",
-"Arrogante",
-"Desconfiado",
-"Vingativo",
-"Nostálgico",
-"Indeciso",
-"Frustrado",
-"Orgulhoso",
-"Comodista",
-"Tímido",
-"Empático",
-"Inseguro",
-"Solidário",
-"Pessimista",
-"Extrovertido",
-"Introvertido",
-"Cauteloso",
-"Estressado",
-"Inquieto",
-"Eufórico",
-"Exuberante",
-"Gélido",
-"Melancólico",
-"Humilde",
-"Zeloso",
-"Perseverante",
-"Desesperado",
-"Desiludido",
-"Desinteressado",
-"Arrependido",
-"Orgulhoso",
-"Determinada",
-"Descontrolado",
-"Cínico",
-"Teimoso",
-"Irritado",
-"Sarcástico",
-"Vulnerável",
-"Culpado",
-"Conformado",
-"Rebelde",
-    ];
-  
-    let personalidadesSelvagens = [
-"Corajoso",
- "Medrosa", 
-"Furioso",
- "Guloso",
- "Cansado",
-"Agitado",
- "Inteligente",
- "Fraco",
- "Forte",
- "Burro",
-"Insano",
- "Alegre",
- "Carente",
- "Com sede",
- "Solitário",
-"Brigão",
- "Prioritário",
- "Passivo",
- "Doente",
- "Parrudo",
- "Impetuoso",
-"Meloso",
-"Frágil",
-"Altruísta",
-"Dúbio",
-"Exigente",
-"Caridoso",
-"Impressionado",
-"Inquietante",
-"Fatalista",
-"Aceitante",
-"Grato",
-"Distraído",
-"Submisso",
-"Reprimido",
-"Estranho",
-"Dedicado",
-"Esperançoso",
-"Confuso",
-"Resiliente",
-"Satisfeito",
-"Sofredor",
-"Cauteloso",
-"Imprevisível",
-"Cético",
-"Entusiástico",
-"Solitário",
-"Decepcionado",
-"Romântico",
-"Subestimado",
-"Orgulhoso",
-"Temeroso",
-"Triste",
-"Feliz",
-"Obstinado",
-"Calculista",
-"Ansioso",
-"Descomprometido",
-"Exaltado",
+ function shuffleArray(array) {
+    // Embaralha a lista usando Fisher-Yates
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
+function rolarPersonalidade() {
+    // Listas de personalidades
+    let personalidadesDomesticos = [
+        "Leal", "Medrosa", "Furioso", "Depressivo", "Cansado", "Agitado", "Inteligente", "Invejoso",
+        "Ciumento", "Bipolar", "Insano", "Alegre", "Carente", "Corajoso", "Conturbado", "Solitário",
+        "Forte", "Calmo", "Obsessivo", "Ansioso", "Arrogante", "Desconfiado", "Vingativo", "Nostálgico",
+        "Indeciso", "Frustrado", "Orgulhoso", "Comodista", "Tímido", "Empático", "Inseguro", "Solidário",
+        "Pessimista", "Extrovertido", "Introvertido", "Cauteloso", "Estressado", "Inquieto", "Eufórico",
+        "Exuberante", "Gélido", "Melancólico", "Humilde", "Zeloso", "Perseverante", "Desesperado",
+        "Desiludido", "Desinteressado", "Arrependido", "Determinada", "Descontrolado", "Cínico",
+        "Teimoso", "Irritado", "Sarcástico", "Vulnerável", "Culpado", "Conformado", "Rebelde"
     ];
-  
-    // Embaralhar as listas
+
+    let personalidadesSelvagens = [
+        "Corajoso", "Medrosa", "Furioso", "Guloso", "Cansado", "Agitado", "Inteligente", "Fraco",
+        "Forte", "Burro", "Insano", "Alegre", "Carente", "Com sede", "Solitário", "Brigão", "Prioritário",
+        "Passivo", "Doente", "Parrudo", "Impetuoso", "Meloso", "Frágil", "Altruísta", "Dúbio",
+        "Exigente", "Caridoso", "Impressionado", "Inquietante", "Fatalista", "Aceitante", "Grato",
+        "Distraído", "Submisso", "Reprimido", "Estranho", "Dedicado", "Esperançoso", "Confuso",
+        "Resiliente", "Satisfeito", "Sofredor", "Cauteloso", "Imprevisível", "Cético", "Entusiástico",
+        "Solitário", "Decepcionado", "Romântico", "Subestimado", "Orgulhoso", "Temeroso", "Triste",
+        "Feliz", "Obstinado", "Calculista", "Ansioso", "Descomprometido", "Exaltado"
+    ];
+
+    // Embaralha as listas
     personalidadesDomesticos = shuffleArray(personalidadesDomesticos);
     personalidadesSelvagens = shuffleArray(personalidadesSelvagens);
-  
+
     // Rolar os dados (1d20 para cada lista)
     const numeroDomestico = Math.floor(Math.random() * 20) + 1;
     const numeroSelvagem = Math.floor(Math.random() * 20) + 1;
-  
+
     // Selecionar as personalidades correspondentes
     const personalidadeDomestico = personalidadesDomesticos[numeroDomestico - 1];
     const personalidadeSelvagem = personalidadesSelvagens[numeroSelvagem - 1];
-  
+
     // Atualizar o resultado na página
-    const resultado = `Animal Doméstico (1d20): ${numeroDomestico} - Personalidade: ${personalidadeDomestico}<br>
-                       Animal Selvagem (1d20): ${numeroSelvagem} - Personalidade: ${personalidadeSelvagem}`;
-    document.getElementById("resultadoPersonalidade").innerHTML = resultado;
+    document.getElementById("resultadoPersonalidade").innerHTML =
+        `🐾 <strong>Animal Doméstico (1d20)</strong>: ${numeroDomestico} - Personalidade: ${personalidadeDomestico}<br>
+         🌿 <strong>Animal Selvagem (1d20)</strong>: ${numeroSelvagem} - Personalidade: ${personalidadeSelvagem}`;
+}
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
   }
-  function rolarEventoIlha() {
-    // Lista dos eventos da ilha
-    const eventosIlha = [
-      "Igneous", "Abismoelétrico", "Mortalidade", "Caveira", 
-      "Tribal", "Drops", "Aether", "Nada",
-      "Vulcão Acordado", "Ciclone no mar", "Enxame de Pestes", "Cavernas iluminadas", 
-      "Evento aleatório local(1d4)", "Drops lendários Marinhos", "Surto de Aether marinho",
-       "Evento de Sorte em domas ou itens,", "Chuva de aranhas local (1d4)", "Chuva de granizo",
-        "Frota fantasma (1d6)", "frota de Orc", "Frota do Barco Infernal", "Todas as Criaturas Agressivas no Local",
-    ];
-  
-    // Embaralha a lista de eventos
-    const eventosAleatorios = shuffleArray([...eventosIlha]);
-  
-    // Rola um número aleatório entre 1 e 8 (1d8)
-    const numeroEvento = Math.floor(Math.random() * 22) + 1;
-  
-    // Seleciona o evento baseado no número
-    const eventoSelecionado = eventosAleatorios[numeroEvento - 1];
-  
-    // Exibe o número do dado e o evento selecionado
-    const resultado = `Número (1d8): ${numeroEvento} - Evento: ${eventoSelecionado}`;
-    document.getElementById("resultadoEventoIlha").innerHTML = resultado;
+  return array;
+}
+
+function rolarEventoIlha() {
+  // Lista dos eventos da ilha
+  const eventosIlha = [
+      "Igneous", "Abismoelétrico", "Mortalidade", "Caveira", "Tribal", "Drops", "Aether", "Nada",
+      "Vulcão Acordado", "Ciclone no mar", "Enxame de Pestes nas florestas", "Cavernas iluminadas",
+      "Evento aleatório local (1d4)", "Drops lendários Marinhos", "Surto de Aether marinho",
+      "Evento de Sorte em domas ou itens", "Chuva de aranhas local (1d4)", "Chuva de granizo",
+      "Frota Fantasma (1d6)", "Frota de Orcs", "Frota do Barco Infernal", "Forte Esqueleto", 
+      "Forte Fantasma", "Forte dos Caídos", "Criatura antiga Abissal", "Meteoro de minério", 
+      "Fenda de Aether controlada", "Lord de Ashen no local (1d4)", "Fruta de poder no local", 
+      "Todas as Criaturas Agressivas no Local", "Behemoth descontrolado no local", 
+      "Evento social dos Gladius", "Evento fogo amigo desativado"
+  ];
+
+  // Embaralha a lista
+  const eventosAleatorios = shuffleArray([...eventosIlha]);
+
+  // Rola um número aleatório entre 1 e 31 (1d31)
+  const numeroEvento = Math.floor(Math.random() * eventosIlha.length) + 1;
+
+  // Seleciona o evento correspondente
+  const eventoSelecionado = eventosAleatorios[numeroEvento - 1];
+
+  // Atualiza o resultado na página
+  document.getElementById("resultadoEventoIlha").innerHTML = 
+      `🎲 <strong>Número (1d31)</strong>: ${numeroEvento} - 🌊 <strong>Evento</strong>: ${eventoSelecionado}`;
+}
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
   }
-  function rolarItemDrop() {
-    // Lista de itens de drops
-    const itensDrop = [
+  return array;
+}
+
+function rolarItemDrop() {
+  // Lista de itens de drop
+  const itensDrop = [
       "Arma Tek Quebrada 1/3", "Item Primal", "Item Raro", "Item Industrial",
-      "Ovo de Dino Comum(1d2)", "Ovo de Dino Raro(1d2)", "Ovo de Dino aleatório(1d2)",
-      "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental"
-    ];
-  
-    // Embaralhar a lista de itens de drops aleatoriamente
-    const itensEmbaralhados = itensDrop.sort(() => Math.random() - 0.5);
-  
-    // Rola um número aleatório entre 1 e 10 (1d10)
-    const numeroDrop = Math.floor(Math.random() * 10) + 1;
-  
-    // Seleciona um item aleatório da lista embaralhada
-    const itemSelecionado = itensEmbaralhados[numeroDrop - 1];
-  
-    // Exibe o número do dado e o item selecionado
-    const resultado = `Número (1d10): ${numeroDrop} - Item: ${itemSelecionado}`;
-    document.getElementById("resultadoItemDrop").innerHTML = resultado;
-  }
-  function rolarItemDrop() {
-    const itensDrop = [
-      "Arma Tek Quebrada 1/3 (1d2)", "Item Primal", "Item Raro", "Item Industrial",
-      "Ovo de Dino herbívoro", "Ovo de Dino carnívoro", "Ovo de Dino elemental",
+      "Ovo de Dino Comum (1d2)", "Ovo de Dino Raro (1d2)", "Ovo de Dino Aleatório (1d2)",
       "Tradução de um Sigilo", "Item de Espólio Normal", "Item de Espólio Elemental",
-      "Espólio de Caçador local", "Frutas naturais", 'Ervas de torpor', "Parte de traje"
-    ];
-  
-    const itensEmbaralhados = itensDrop.sort(() => Math.random() - 0.5);
-    const numeroDrop = Math.floor(Math.random() * 14) + 1;
-    const itemSelecionado = itensEmbaralhados[numeroDrop - 1];
-    const resultado = `Número (1d10): ${numeroDrop} - Item: ${itemSelecionado}`;
-    document.getElementById("resultadoItemDrop").innerHTML = resultado;
-  }
+      "Medalhão Lendário", "Arma Industrializada com Minério Forjado (1d4)", 
+      "Amplificador de Arma (1d4)", "Pote Misterioso (1d4)", "Esfera de Mutação", 
+      "Convite da Athena", "Seringa de qualquer Genoma de Dino"
+  ];
+
+  // Embaralha a lista de itens
+  const itensEmbaralhados = shuffleArray([...itensDrop]);
+
+  // Rola um número aleatório entre 1 e 17 (1d17)
+  const numeroDrop = Math.floor(Math.random() * itensDrop.length) + 1;
+
+  // Seleciona um item aleatório da lista embaralhada
+  const itemSelecionado = itensEmbaralhados[numeroDrop - 1];
+
+  // Exibe o número do dado e o item selecionado
+  document.getElementById("resultadoItemDrop").innerHTML = 
+      `🎲 <strong>Número (1d17)</strong>: ${numeroDrop} - 🛡️ <strong>Item</strong>: ${itemSelecionado}`;
+}
+ 
   
   function gerarOvo() {
     const criaturas = [
@@ -659,8 +593,6 @@ function rolarDado(lados) {
   
   function rolarItemSummon() {
     const itensSummon = [
-"Colar de Presas Inquebráveis - Item que invoca Indominus Rex",
-"Fóssil com Escamas Eternas - Item que invoca Espinossauro Ger 3",
 "Concha Ancestral dos Abismos - Item que invoca Tusotheuthis",
 "Coroa da Fera das Profundezas - Item que invoca Reaper-leviatã",
 "Cristal de Dragões Abissais - Item que invoca Dragão-leviatã",
