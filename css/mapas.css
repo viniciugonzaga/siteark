@@ -1025,7 +1025,7 @@ font-size: 1.2rem;
 
 @media (max-width: 760px) {
     .container-1 {
-        width: 90%;
+        width: 85%;
         max-width: 500px;
         padding: 12px;
     }

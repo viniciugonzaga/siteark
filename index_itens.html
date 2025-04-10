@@ -66,7 +66,55 @@
       <h1 class="titulo_efeito">Itens e Construções</h1>
   </div>
 
- 
+  <div class="icon-container">
+    <div class="icon" onclick="showTable(1)"><img src="icon1.png" alt="Ícone 1"></div>
+    <div class="icon" onclick="showTable(2)"><img src="icon2.png" alt="Ícone 2"></div>
+    <div class="icon" onclick="showTable(3)"><img src="icon3.png" alt="Ícone 3"></div>
+    <div class="icon" onclick="showTable(4)"><img src="icon4.png" alt="Ícone 4"></div>
+    <div class="icon" onclick="showTable(5)"><img src="icon5.png" alt="Ícone 5"></div>
+</div>
+
+<div id="table1" class="table-container">
+    <table>
+        <tr><th>Item 1</th><th>Imagem</th></tr>
+        <tr><td>Descrição do item 1</td><td><img src="icon1.png" alt="Item 1" onclick="openModal('Item 1', 'icon1.png', 'Descrição completa do item 1')"></td></tr>
+    </table>
+</div>
+
+<div id="table2" class="table-container">
+    <table>
+        <tr><th>Item 2</th><th>Imagem</th></tr>
+        <tr><td>Descrição do item 2</td><td><img src="icon2.png" alt="Item 2" onclick="openModal('Item 2', 'icon2.png', 'Descrição completa do item 2')"></td></tr>
+    </table>
+</div>
+
+<div id="table3" class="table-container">
+    <table>
+        <tr><th>Item 3</th><th>Imagem</th></tr>
+        <tr><td>Descrição do item 3</td><td><img src="icon3.png" alt="Item 3" onclick="openModal('Item 3', 'icon3.png', 'Descrição completa do item 3')"></td></tr>
+    </table>
+</div>
+
+<div id="table4" class="table-container">
+    <table>
+        <tr><th>Item 4</th><th>Imagem</th></tr>
+        <tr><td>Descrição do item 4</td><td><img src="icon4.png" alt="Item 4" onclick="openModal('Item 4', 'icon4.png', 'Descrição completa do item 4')"></td></tr>
+    </table>
+</div>
+
+<div id="table5" class="table-container">
+    <table>
+        <tr><th>Item 5</th><th>Imagem</th></tr>
+        <tr><td>Descrição do item 5</td><td><img src="icon5.png" alt="Item 5" onclick="openModal('Item 5', 'icon5.png', 'Descrição completa do item 5')"></td></tr>
+    </table>
+</div>
+
+<div id="modal" class="modal">
+    <span class="close" onclick="closeModal()">X</span>
+    <h2 id="modalTitle"></h2>
+    <img id="modalImage" src="" alt="">
+    <p id="modalDescription"></p>
+</div>
 
 <div class="container">
     <div class="coluna-esquerda">

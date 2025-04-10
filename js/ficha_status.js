@@ -265,7 +265,6 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 70, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
-      
     },
     "npc12": {
         nome: "Baraka",

@@ -6,6 +6,7 @@
     <title>Rituais</title>
     <link rel="stylesheet" href="css/poderes.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js"></script>
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,56 +65,147 @@
     <!-- Fim Nav-Bar ------------------------------------------------->
 
  <!-- Seção Início -->
+  
  <div class="titulo_principal">
     <h1 class="titulo_efeito">Rituais</h1>
 </div>
 
-
-
-<div id="container-geral">
-    <!-- Ícones -->
-    <div id="icones">
-        <div class="icone" onclick="mudarConteudo(1)">
-            <img src="imagens/poderes_crescer.png" alt="Ícone 1">
-        </div>
-        <div class="icone" onclick="mudarConteudo(2)">
-            <img src="imagens/poderes_ira.jpg" alt="Ícone 2">
-        </div>
-        <div class="icone" onclick="mudarConteudo(3)">
-            <img src="imagens/poderes_espelho_de_carne.jpg" alt="Ícone 3">
-        </div>
-        <div class="icone" onclick="mudarConteudo(4)">
-            <img src="imagens/poderes_traumas.jpg" alt="Ícone 4">
-        </div>
-        <div class="icone" onclick="mudarConteudo(5)">
-            <img src="imagens/poderes_caminho.jpg" alt="Ícone 5">
-        </div>
-    </div>
-
-    <!-- Conteúdo -->
-    <div id="conteudo">
-        <img id="imagem-conteudo" src="imagens/poderes_menu_centro.png" alt="Imagem do Conteúdo">
-        <h1 id="titulo">Rituais-gerais</h1>
-        <p id="texto">Os Caídos (civilização) descobriram como controlar o arcano ou Aether em criaturas e itens, alterando seu comportamento, atributos ou aparência física. Para replicar suas ações, eles utilizam padrões ou sequências de sigilos e símbolos em pedras que regulam o fluxo de sintonia.</p>
-    </div>
-    <div id="icones">
-        <div class="icone" onclick="mudarConteudo(6)">
-            <img src="imagens/poderes_reflexão.jpg" alt="Ícone 1">
-        </div>
-        <div class="icone" onclick="mudarConteudo(7)">
-            <img src="imagens/poderes_chama.jpg" alt="Ícone 2">
-        </div>
-        <div class="icone" onclick="mudarConteudo(8)">
-            <img src="imagens/poderes_morte.jpg" alt="Ícone 3">
-        </div>
-        <div class="icone" onclick="mudarConteudo(9)">
-            <img src="imagens/poderes_arma.webp" alt="Ícone 4">
-        </div>
-        <div class="icone" onclick="mudarConteudo(10)">
-            <img src="imagens/poderes_bicho.jpg" alt="Ícone 5">
+<div id="container-geral2">
+    <div id="texto2">
+        <div class="ritual-intro">
+            <h2>✦ Segredos do Arcano ✦</h2>
+            <p class="ritual-subtitle">"O Arcano pode se manifestar de diversas formas, dependendo de como você o manipula — seja através de rituais, transformações, invocações, feitiços ou pactos."</p>
         </div>
     </div>
 </div>
+
+       <!-- Tipos de Rituais -->
+    <div class="ritual-cards">
+        <div class="ritual-card selamento">
+            <h3>Rituais</h3>
+            <p>Manipulações arcanas executadas em padrões antigos, moldadas por magos ancestrais ou pela tribo dos Caídos.</p>
+          </div>
+          <div class="ritual-card convocacao">
+            <h3>Transformações</h3>
+            <p>O Arcano reage ao corpo, fundindo magia e biologia para criar novas formas através da carne e do sangue.</p>
+          </div>
+          <div class="ritual-card protecao">
+            <h3>Invocações</h3>
+            <p>Quando gestos e palavras certas ecoam, o Arcano abre portas para entidades além da compreensão.</p>
+          </div>
+          <div class="ritual-card transformacao">
+            <h3>Feitiços</h3>
+            <p>Expressões do Arcano que surgem da fusão de elementos com matéria — sejam minerais, sintéticos ou vivos.</p>
+          </div>
+          <div class="ritual-card revelacao">
+            <h3>Pactos</h3>
+            <p>O Arcano responde a promessas. Palavras e emoções selam acordos... ou condenações.</p>
+          </div>
+    </div>
+  </div>
+
+  
+
+ <!-- Seção 0 -->
+ <div class="container active" id="container-0">
+    <div class="icon-bar">
+        <div class="icon" onclick="showContainer(0)">Rituais</div>
+        <div class="icon" onclick="showContainer(1)">Transformações</div>
+        <div class="icon" onclick="showContainer(2)">Invocações</div>
+        <div class="icon" onclick="showContainer(3)">feitiços</div>
+        <div class="icon" onclick="showContainer(4)">Pactos</div>
+      </div>
+    <div class="cards">
+      <div class="card" onclick="openModal('Névoa Sombria', 'Tipo: Controle', '')">
+        <img src="">
+        <div class="title">Névoa Sombria</div>
+        <div class="type">Controle</div>
+      </div>
+      <div class="card" onclick="openModal('Pacto Carmesim', 'Tipo: Maldição', '')">
+        <img src="">
+        <div class="title">Pacto Carmesim</div>
+        <div class="type">Maldição</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção 1 -->
+  <div class="container" id="container-1">
+    <div class="icon-bar">
+      <div class="icon" onclick="showContainer(0)">Rituais</div>
+      <div class="icon" onclick="showContainer(1)">Transformações</div>
+      <div class="icon" onclick="showContainer(2)">Invocações</div>
+      <div class="icon" onclick="showContainer(3)">feitiços</div>
+      <div class="icon" onclick="showContainer(4)">Pactos</div>
+      </div>
+    <div class="cards">
+      <div class="card" onclick="openModal('Chama do Vazio', 'Tipo: Dano', '')">
+        <img src="">
+        <div class="title">Chama do Vazio</div>
+        <div class="type">Dano</div>
+      </div>
+      <div class="card" onclick="openModal('Eco da Perdição', 'Tipo: Suporte', '')">
+        <img src="">
+        <div class="title"></div>
+        <div class="type"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seções 2, 3, 4 (vazias por enquanto) -->
+  <div class="container" id="container-2">
+    <div class="icon-bar">
+      <div class="icon" onclick="showContainer(0)">Rituais</div>
+      <div class="icon" onclick="showContainer(1)">Transformações</div>
+      <div class="icon" onclick="showContainer(2)">Invocações</div>
+      <div class="icon" onclick="showContainer(3)">feitiços</div>
+      <div class="icon" onclick="showContainer(4)">Pactos</div>
+      </div>
+    <div class="cards">
+      <!-- Adicione mais cards aqui -->
+    </div>
+  </div>
+
+  <div class="container" id="container-3">
+    <div class="icon-bar">
+      <div class="icon" onclick="showContainer(0)">Rituais</div>
+      <div class="icon" onclick="showContainer(1)">Transformações</div>
+      <div class="icon" onclick="showContainer(2)">Invocações</div>
+      <div class="icon" onclick="showContainer(3)">feitiços</div>
+      <div class="icon" onclick="showContainer(4)">Pactos</div>
+      </div>
+    <div class="cards">
+      <!-- Adicione mais cards aqui -->
+    </div>
+  </div>
+
+  <div class="container" id="container-4">
+    <div class="icon-bar">
+      <div class="icon" onclick="showContainer(0)">Rituais</div>
+      <div class="icon" onclick="showContainer(1)">Transformações</div>
+      <div class="icon" onclick="showContainer(2)">Invocações</div>
+      <div class="icon" onclick="showContainer(3)">feitiços</div>
+      <div class="icon" onclick="showContainer(4)">Pactos</div>
+      </div>
+    <div class="cards">
+      <!-- Adicione mais cards aqui -->
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal" onclick="event.stopPropagation()">
+      <h3 id="modal-title">Título</h3>
+      <img id="modal-img" src="" alt="Imagem do ritual">
+      <p id="modal-type">Tipo</p>
+      <button class="close-modal" onclick="closeModal()">Fechar</button>
+    </div>
+  </div>
+
+
+
+
+
 
 
        <!--footer----------------------------------------------------------------------------->

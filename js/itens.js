@@ -167,3 +167,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // Alterna automaticamente as imagens a cada 4 segundos
     setInterval(nextImage, 4000);
 });
+function showTable(num) {
+    document.querySelectorAll('.table-container').forEach(el => el.style.display = 'none');
+    document.getElementById('table' + num).style.display = 'block';
+}
+
+function openModal(title, img, description) {
+    document.getElementById('modalTitle').innerText = title;
+    document.getElementById('modalImage').src = img;
+    document.getElementById('modalDescription').innerText = description;
+    document.getElementById('modal').style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}

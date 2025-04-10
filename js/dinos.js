@@ -210,7 +210,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','kukulkan','Pyromane','Dodorex','Warden']
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Quillshot', 'Trovador', 'Charrog','Boreus','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','kukulkan','Pyromane','Dodorex','Warden']
 };
 
 const dinoFichas = {
@@ -356,25 +356,25 @@ const dinoFichas = {
 'Oviraptor': {
     title: 'O Ladrão de Ovos',
     image: 'imagens/dinos_oviraptor.webp', // Substitua pelo caminho correto
-    weight: '20 kg',
+    weight: '30 kg',
     height: '80 cm',
     length: '2 M',
-    attributes: { agi: 4, for: 2, int: 3, pre: 2, vig: 2 },
-    life: 40, // Vida leve, criatura ágil
-    armor: 8, // Armadura leve
-    actionBonus: '+15 em furtividade, +10 em corrida, +10 em esquiva, +20 em ações de roubo, +10 em provocação, +5 em rastrear ninhos',
+    attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 2 },
+    life: 50, // Vida leve, criatura ágil
+    armor: 30, // Armadura leve
+    actionBonus: '+10 em bicada, +10 segurar, +10 grito, +10 reflexo, +10 provocar, +10 agachar, +10 cheirar fêmeas, +10 rastrear ovos, +10 furtividade, +10 roubar, +10 em corrida, +10 em esquiva, +5 dança, +5 contra-ataque, +5 percepção, +5 quebrar ovos, +5 em rastrear ninhos',
     attacks: [
-        'Investida Rápida: 2d8+3, causa desequilíbrio no alvo.',
-        'Picada: 1d8+2, ideal para confundir inimigos.',
-        'Provocação: O Oviraptor pode irritar fêmeas protetoras próximas, forçando-as a um teste de resistência mental (int ou vig). Se falharem, recebem desvantagem em sua próxima ação.'
+        'Investida Rápida: 2d8+5',
+        'Picada: 1d10+2 (Causa 200% em ovos)',
+        'Provocação: O Oviraptor pode irritar fêmeas protetoras próximas, forçando-as a um teste de resistência mental (int) . Se falharem, recebem desvantagem em sua próxima ação.'
     ],
     abilities: [
-        'Roubo Especialista: Quando o Oviraptor se aproxima de um ninho, ele pode tentar roubar um ovo. Se bem-sucedido, ele recupera 10 de vida ao consumir o ovo em até 3 rodadas.',
-        'Provocador Nato: O Oviraptor é capaz de desviar a atenção das fêmeas de outras criaturas, fazendo com que o alvo perca sua próxima ação em um ataque direto ao Oviraptor.',
+        'Roubo Especialista: Quando o Oviraptor se aproxima de um ninho, ele pode pensar um um plano ganahndo +10 em pensar, para executar um plano bom para a coleta do ovo. Durante as ações de acordo com o plano, o oviraptor ganha +5 nas ações de furtividade e +5 em ações de correr.',
+        'Provocador Nato: O Oviraptor é capaz de analisar qual ovo é o mais nutritivo do ninho, localizar ninhos de forma precisa e até mesmo procurar ovos elementais com facilidade, ganhando +5 nessas ações de investigação sobre o ninho.',
        
     ],
-    passiva: 'Predador Ágil: O Oviraptor recebe +10 em esquiva contra ataques corpo a corpo e +5 contra ataques à distância enquanto estiver em movimento com o ovo.',
-    passivaElemental: 'Bioelétrico: consegue aplicar lentidão em seus rastro elétrico ao correr com os ovos. hypo: +30 de vida e maior tamanho.',
+    passiva: 'Furtador: O Oviraptor Consegue carregar itens enquanto corre com suas mãos, segurando qualquer tipo de item que posso carregar, caso o objetivo seja roubar um ovo, o oviraptor ganha +1 int e +5 em ações de pensar, para usar o item.',
+    passivaElemental: 'Seus encontrões podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     
 },
 
@@ -384,64 +384,66 @@ const dinoFichas = {
     weight: '50 kg',
     height: '1,2 M',
     length: '1,5 M',
-    attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 3 },
-    life: 45, // Vida da hiena
-    armor: 10, // Armadura da hiena
-    actionBonus: '+15 em ataques coordenados, +20 em furtividade, +20 em perceber sangrando, +20 em aproveitar cadáver, +10 em desviar, +5 em bloquear',
-    attacks: ['Mordida Coletiva: 2d12+10 (por hiena no grupo)', 'Investida de Caça: 3d10+5', 'Golpe Oportuno: 2d10+10 quando inimigo está ferido'],
+    attributes: { agi: 2, for: 3, int: 3, pre: 2, vig: 2 },
+    life: 60, // Vida da hiena
+    armor: 30, // Armadura da hiena
+    actionBonus: '+10 em ataques coordenados, +10 mordida, +10 em garras, +10 socializar, +10 furtividade, +10 rastrear, +10 percepção, +10 agachar, +10 contra-ataque, +10 risada(Provocar-Intimidar), +10 cheirar, +5 esquiva, +5 ocultar cheiro, +5 luta, +5 mastigar, +5 quebrar, +5 resistência, +5 fortitude, +5 pensar, +5 reflexo, +5 agarrão, +5 percpeção de inimigo, +5 flanquear.  ',
+    attacks: ['Mordida: 2d12+10',
+         'Investida de Caça: 1d10+10',
+        'Golpe de Grupo: 2d10+(10 por hiena)'],
     abilities: [
-        'Carniceira Oportunista: Hienas em grupo podem executar ataques coordenados, ganhando um bônus de +1d6 por cada hiena adicional próxima (máximo grupo).',
-        'Caçadora Astuta: Se enfrentar inimigos feridos ou distraídos, a hiena pode desferir ataques que ignoram metade da armadura do alvo.',
+        'Carniceira Oportunista: Hienas em grupo podem executar ataques coordenados, ganhando um bônus de +5 pensar em planos para separar ou atingir o objetivo de elminar um alvo isolado ou sangrando de um grupo.',
+        'Caçadora Astuta: As hienas podem causar mordidas que ignoram metade da armadura do alvo.',
       
     ],
-    passiva: 'Estratégia de Grupo: Cada hiena próxima aumenta em +1 a dificuldade dos testes de defesa dos inimigos.',
-    passivaElemental: 'Fogo: Ao atacar em grupo, as hienas podem causar 1d6 de fogo por hiena no grupo. Morte: Cada hiena que cair em combate pode ser consumida pelas outras, recuperando 25 de vida por hiena devorada.',
+    passiva: 'Estratégia de Grupo: Hienas que estavam se preparando no combate podem deixar bactérias na região da boca ou língua, faznedo com que suas mordidas causem o efeito Anti-Cura.',
+    passivaElemental: 'Seus ataques de Mordida podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
 },
 'Ave-do-Terror': {
     title: 'Predadora Implacável',
     image: 'imagens/dinos_ave_do_terror.jpeg', // Insira um caminho válido
-    weight: '78 kg',
+    weight: '90 kg',
     height: '1,8 M',
     length: '2,5 M',
-    attributes: { agi: 3, for: 3, int: 2, pre: 2, vig: 3 },
-    life: 65, // Vida da Ave do Terror
-    armor: 15, // Armadura da Ave do Terror
-    actionBonus: '+20 em corrida, +15 em planar, +15 em puxar carne, +10 em causar sangramento, +10 em esquivar, +15 em ataques rápidos',
+    attributes: { agi: 3, for: 3, int: 2, pre: 2, vig: 2 },
+    life: 75, // Vida da Ave do Terror
+    armor: 35, // Armadura da Ave do Terror
+    actionBonus: '+10 agarrar, +10 luta, +10 mordida, +10 garra, +10 bloqueio, +10 contra-ataque, +10 esquiva, +10 reflexo, +10 flanquear, +10 percepção inimiga, +5 percepção, +5 furtividade, +5 crítico, +5 planar, +5 dança, +5 gritar, +5 intimidação, +5 socializar, +5 correr, +5 resistência, +5 fortitude. ',
     attacks: [
-        'Mordida Cruel: 3d12+10 (causa sangramento por 1d6 rodadas)', 
-        'Garra Destruidora: 4d10+15 (ignora metade da armadura)', 
-        'Investida Planada: 4d10+10 (derruba inimigo no chão, exige teste de vigor ou fica atordoado por 1 rodada)'
+        'Mordida Cruel: 3d12+10+ fraco', 
+        'Garra Destruidora: 2d10+7 + agarrão  2x', 
+        'Investida Planada: 1d10+10 (Deixa o alvo lento no caminho que foi feito)'
     ],
     abilities: [
-        'Crueldade Inclemente: Cada ataque bem-sucedido com mordida ou garra ativa sangramento contínuo (1d6 por rodada até ser tratado).',
-        'Carrasco Veloz: Quando perseguindo um inimigo com menos de 50% da vida, ganha um bônus de +1d6 no próximo ataque.',
-        'Plana e Ataca: A Ave do Terror pode planar rapidamente sobre alvos, ganhando vantagem (rola 2d20 e escolhe o maior) em investidas feitas do ar.'
+        'Crueldade Inclemente: Ave do Terror sempre que intimidar um alvo ou estiver flaqueando pode observar e perceber os pontos fracos do alvo, ganahndo +5 em um ataque seguinte e garantindo que seja crítico. ',
+        'Carrasco Veloz: Quando derrubar um inimigo no chão ou estiver segurando u malvo, pode dilacerar a presa caso seja menor que ele, se for maior o alvo fica fraco e desarmado.',
+     
     ],
-    passiva: 'Puxar Carne: Sempre que causar dano crítico, retira parte da carne do alvo, reduzindo sua armadura em -5 (máximo acumulado de -15).',
-    passivaElemental: 'fOGO: Ao planar, pode soltar fogo no alvo, causando 1d6 de fogo por rodada. Morte: Cada inimigo abatido pode ser consumido, recuperando 25 de vida por inimigo devorado.',
+    passiva: 'Puxar Carne: Sempre que causar dano crítico, pode ter a chance de agarrar o alvo ou empurra-lo durante o ataque.',
+    passivaElemental: 'Suas garras podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
 },
 
  'Austroraptor': {
-    title: 'O ardiloso Caçador',
+    title: 'O Ardiloso Pescador',
     image: 'imagens/dinos_austro.jpg', // Substitua pelo caminho correto
-    weight: '3 kg',
-    height: '60 cm',
+    weight: '45 kg',
+    height: ' 1,2 M',
     length: '1,5 M',
-    attributes: { agi: 4, for: 2, int: 2, pre: 2, vig: 2 },
-    life: [10, 20, 30, 40, 50], // Escalável por nível ou estágio
-    armor: 7, // Armadura leve
-    actionBonus: '+10 mordida, +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
+    attributes: { agi: 3, for: 1, int: 2, pre: 3, vig: 2 },
+    life: 50, // Escalável por nível ou estágio
+    armor: 10, // Armadura leve
+    actionBonus: '+10 pescar, +10 nadar, +10 flanquear, +10 correr, +5 reflexo, +5 salto +5 esquiva, +5 contra-ataque, +5 socializar, +5 pensar, +5 identificar, +5 rastretar peixes, +5 fortitude, +5 acasalar, +5 dançar, +5 agarrar, +5 intimidar',
     attacks: [
-        'Mordida: 3d6 / 3d8+2 / 1d10+grupo',
-        'Garra: 4d6 / 2d8+2 / 1d10+grupo',
-        'Ataque em Grupo: Se houver 3 ou mais no grupo, cada um ganha +1d6 no ataque e no dano.'
+        'Mordida: 1d10+5 (Causa 300% de dano em peixes)',
+        'Garra: 2d6 2x',
+        'Ataque em Grupo: 2d8 +5 (se houver 2 ou mais Austro, cada um ganha +5 em flanquear)'
     ],
     abilities: [
-        'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo.',
-        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando desvantagem em testes de percepção e esquiva do alvo.'
+        'Pescador Raptor: O Austro é um caçador astuto e ágil, capaz de ganhar +5 em ações de movimento por 1 rodada após sair de ambientes aquáticos, ',
+        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir peixes, tendo conhecimento de cada peixe e quais efeitos positivos cada presa do cotidiado pode fornecer.'
     ],
-    passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
-    passivaElemental: 'Fogo: Aplica 1d6 de fogo para cada Asutro em contato, escala 1 dado para cada Austro de fogo.Biolétrica: ataques causam dano extra de elétrico 2d6 em mordida. Morte: aplica torpor em qualquer ataque.',
+    passiva: 'Caçador Ágil: Todos os Austros em terrenos próximos de água ou úmidos vão ter o efeito Ágil durante a cena.',
+    passivaElemental: 'Suas táticas de pescaria podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
   
 },
 
