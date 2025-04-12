@@ -79,34 +79,30 @@
     </div>
 </div>
 
-       <!-- Tipos de Rituais -->
-    <div class="ritual-cards">
+        <div class="ritual-cards">
         <div class="ritual-card selamento">
             <h3>Rituais</h3>
             <p>Manipulações arcanas executadas em padrões antigos, moldadas por magos ancestrais ou pela tribo dos Caídos.</p>
-          </div>
-          <div class="ritual-card convocacao">
+        </div>
+        <div class="ritual-card convocacao">
             <h3>Transformações</h3>
             <p>O Arcano reage ao corpo, fundindo magia e biologia para criar novas formas através da carne e do sangue.</p>
-          </div>
-          <div class="ritual-card protecao">
+        </div>
+        <div class="ritual-card protecao">
             <h3>Invocações</h3>
             <p>Quando gestos e palavras certas ecoam, o Arcano abre portas para entidades além da compreensão.</p>
-          </div>
-          <div class="ritual-card transformacao">
+        </div>
+        <div class="ritual-card transformacao">
             <h3>Feitiços</h3>
             <p>Expressões do Arcano que surgem da fusão de elementos com matéria — sejam minerais, sintéticos ou vivos.</p>
-          </div>
-          <div class="ritual-card revelacao">
+        </div>
+        <div class="ritual-card revelacao">
             <h3>Pactos</h3>
             <p>O Arcano responde a promessas. Palavras e emoções selam acordos... ou condenações.</p>
-          </div>
+        </div>
     </div>
-  </div>
 
-  
-
-  <div class="titulo_principal2">
+ <div class="titulo_principal2">
     <h1 class="titulo_efeito2">Manifestações Arcanas</h1>
 </div>
 <div class="container-wrapper">
@@ -137,7 +133,7 @@
                 <div class="title">Observar Alma</div>
                 <div class="type">Alma</div>
             </div>
-            <div class="card" onclick="openModal('Criar Fenda', 'Tipo: peso-Vida', 'imagens/poderes_ritual4.png', 'Um Ritual complexo que permite o invocador criar portais que possam atravessar outras situações ou criar momentos especificos que o ajudaram em uma batalha, podendo invocar para se transportar, criar oponentes para se defender como reação e também usar ataques que passaram pelo portal, +10 manipulação arcana, +10 pontaria arcana, +10 bloqueio arcano.')">
+            <div class="card" onclick="openModal('Criar Fenda', 'Tipo: peso-Vida', 'imagens/poderes_ritual4.png', 'Um Ritual complexo que permite o invocador criar portais que possam atravessar outras situações ou criar momentos especificos que o ajudarão em uma batalha, podendo invocar para se transportar, criar oponentes para se defender como reação e também usar ataques que passaram pelo portal, +10 manipulação arcana, +10 pontaria arcana, +10 bloqueio arcana.')">
                 <img src="imagens/poderes_ritual4.png">
                 <div class="title">Criar Fenda</div>
                 <div class="type">Peso-Vida</div>
@@ -223,7 +219,7 @@
         </div>
         <div class="cards">
             <div class="cards">
-                <div class="card" onclick="openModal('Grimório das Graças', 'Tipo: Ciclo-Medo', 'imagens/poderes_feito1.png', 'Um Feitiço Antigo preso em um grimóiro que permite o invocador ter um fluxo Arcano mais controlado, ganhdo +20 manipulação Arcana, +15 em controle Mental,  a cada rodada que fori reiniciada em um combate o invocador pode rolar 1d4 para ter o total de ações extras para usar rituais.')">
+                <div class="card" onclick="openModal('Grimório das Graças', 'Tipo: Ciclo-Medo', 'imagens/poderes_feito1.png', 'Um Feitiço Antigo preso em um grimóiro que permite o invocador ter um fluxo Arcano mais controlado, ganhdo +20 manipulação Arcana, +15 em controle Mental,  a cada rodada que fori reiniciada em um combate o invocador pode rolar 1d4 para ter o total de ações extras para usar rituais.')">
                     <img src="imagens/poderes_feito1.png">
                     <div class="title">Grimório das Graças</div>
                     <div class="type">Ciclo-Medo</div>
@@ -250,7 +246,7 @@
                 <div class="title">Juramento ao Fogo</div>
                 <div class="type">Fogo-Amor</div>
             </div>
-              
+
 
 
 
@@ -259,7 +255,7 @@
         </div>
     </div>
 
-    <div class="modal-overlay" onclick="closeModal(event)">
+    <div class="modal-overlay" onclick="closeModal()">
         <div class="modal" onclick="event.stopPropagation()">
             <h3 id="modal-title">Título</h3>
             <img id="modal-img" src="" alt="Imagem do ritual">
@@ -267,7 +263,7 @@
             <p id="modal-description">Descrição</p> <button class="close-modal" onclick="closeModal()">Fechar</button>
         </div>
     </div>
-</div>
+
 
 <footer>
     <div class="footer-content">
@@ -298,7 +294,6 @@
     </div>
 </footer>
 
- <!-- Inclui o arquivo de script -->
- <script src="js/poderes.js"></script>
+<script src="js/poderes.js"></script>
 </body>
 </html>
