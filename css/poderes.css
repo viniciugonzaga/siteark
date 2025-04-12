@@ -1595,6 +1595,76 @@ to   { opacity: 1; transform: translateY(0); }
   opacity: 0.7;
 }
 } 
+
+/* Estilos para telas menores (celulares) */
+@media (max-width: 600px) {
+  .titulo_efeito2 {
+    font-size: 1.2rem; /* Reduz ainda mais o tamanho do título */
+    width: 90%; /* Ocupa mais largura em telas pequenas */
+    padding: 5%;
+  }
+
+  .icon-bar {
+    flex-direction: column; /* Coloca os ícones em coluna */
+    align-items: stretch; /* Estica os ícones para ocupar a largura */
+    gap: 8px; /* Reduz o espaço entre os ícones */
+    margin-top: 3%;
+    margin-bottom: 3%;
+    padding: 8px;
+  }
+
+  .icon {
+    font-size: 0.9rem; /* Reduz o tamanho da fonte dos ícones */
+    padding: 10px 15px; /* Reduz o padding dos ícones */
+    border-radius: 8px;
+  }
+
+  .container {
+    width: 95%; /* O container ocupa mais largura */
+    padding: 60px 15px; /* Reduz o padding interno do container */
+  }
+
+  .container::before {
+    background-size: 80px;
+    width: 80px;
+    height: 80px;
+    top: 5px;
+  }
+
+  .cards {
+    margin-top: 20px; /* Reduz a margem superior dos cards */
+    gap: 15px; /* Reduz o espaço entre os cards */
+  }
+
+  .card {
+    width: 140px; /* Cards menores */
+    height: 180px;
+    padding: 8px;
+  }
+
+  .card img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .card .title {
+    font-size: 0.9rem;
+    margin-top: 8px;
+  }
+
+  .card .type {
+    font-size: 0.8rem;
+    padding: 3px 6px;
+  }
+}
+
+/* Ajustes adicionais para telas muito pequenas (opcional) */
+@media (max-width: 400px) {
+  .icon {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {
