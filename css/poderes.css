@@ -670,46 +670,6 @@ pointer-events: none;
 100% { opacity: 0; }
 }
 
-@media (max-width: 700px) {
-#container-geral2 {
-  width: 90%;
-  padding: 10px;
-  border-width: 1px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-  margin: 0 auto;
-  align-items: center;
-}
-
-#texto2 {
-  font-size: 1rem;
-}
-
-.ritual-subtitle {
-  margin-top: 5%;
-  font-size: 1rem;
-  padding: 8px;
-}
-
-.ritual-intro h2 {
-  margin-top: 0;
-  font-size: 0.8rem;
-  padding: 8px;
-}
-
-#container-geral2::before {
-  background-size: cover;
-  background-position: center;
-  animation: darkenOscillate 2s infinite alternate;
-}
-}
-
-
-
-
-
-
-
 
 /* Container geral dos cards */
 .ritual-cards {
@@ -818,49 +778,6 @@ pointer-events: none;
   box-shadow: 0 0 10px #9b59b633;
 }
 
-/* Versão pequena, 4 por linha até 700px */
-@media (max-width: 700px) {
-.ritual-cards {
-  justify-content: center;
-  gap: 1rem;
-  padding: 1.5rem;
-  margin-bottom: 2%;
-}
-
-.ritual-card {
-  flex: 1 1 calc(15% - 0.7rem);
-  max-width: calc(15% - 0.7rem);
-  min-width: 160px;
-  flex: 0 1 150px; /* Tamanho fixo com quebra automática */
-}
-}
-@media (max-width: 1080px) and (max-height: 700px) {
-.icon-bar {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  margin-bottom: 1.5%;
-}
-
-.icon {
-  flex: 1 1 calc(33.33% - 20px); /* 3 por linha com gap */
-  max-width: calc(33.33% - 20px);
-  min-width: 100px;
-  padding: 8px 14px;
-  font-size: 12px; /* fonte menor */
-  border-radius: 8px;
-  text-align: center;
-  box-shadow: 0 0 6px rgba(255, 239, 17, 0.12);
-  transition: all 0.2s ease-in-out;
-}
-
-.icon:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px rgba(255, 239, 17, 0.3), inset 0 0 4px #ffef11a3;
-}
-}
 
 /* Introdução */
 .ritual-intro h2 {
@@ -1149,54 +1066,6 @@ to   { opacity: 1; transform: translateY(0); }
   white-space: nowrap; /* Evita quebra de linha */
 }
 
-/* Estilos para telas com largura máxima de 1080px */
-@media (max-width: 1080px) {
-.titulo_efeito2 {
-    font-size: 1.6rem; /* Reduz um pouco a fonte */
-    width: 45%; /* Aumenta a largura para telas menores */
-    padding: 3%; /* Aumenta um pouco o padding */
-}
-}
-
-/* Estilos para telas com largura máxima de 700px */
-@media (max-width: 700px) {
-.titulo_efeito2 {
-    font-size: 1.4rem; /* Reduz ainda mais a fonte */
-    width: 70%; /* Aumenta ainda mais a largura */
-    padding: 4%; /* Aumenta mais o padding */
-}
-}
-
-@media (max-width: 1080px) and (max-height: 700px) {
-.container-wrapper {
-  margin-top: 60px;
-  padding: 10px;
-}
-
-.container {
-  width: 90%;
-
-}
-
-.container::before {
-  background-size: 120px;
-  width: 120px;
-  height: 120px;
-  top: 6px;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  margin-left: 10px;
-  filter: drop-shadow(0 0 4px #ff0000);
-}
-
-.container::after {
-  opacity: 0.1;
-  background-size: 200%;
-}
-
-
-}
-
 
 .cards {
   display: flex;
@@ -1309,57 +1178,7 @@ z-index: 1;
 }
 
 
-@media (max-width: 1080px) {
-.card {
-  width: 160px;
-  height: 200px;
-  padding: 10px;
-}
 
-.card img {
-  width: 75px;
-  height: 75px;
-  margin-top: 10px;
-}
-
-.card .title {
-  font-size: 0.95em;
-  margin-top: 10px;
-}
-
-.card .type {
-  font-size: 0.85em;
-  padding: 3px 6px;
-}
-}
-
-@media (max-width: 700px) {
-.card {
-  width: 140px;
-  height: 180px;
-  padding: 8px;
-}
-
-.card img {
-  width: 65px;
-  height: 65px;
-  margin-top: 8px;
-}
-
-.card .title {
-  font-size: 0.85em;
-  margin-top: 8px;
-}
-
-.card .type {
-  font-size: 0.75em;
-  padding: 2px 5px;
-}
-
-.cards {
-  gap: 20px;
-}
-}
 
 /* Botões de navegação - mais estilizados, com transição e efeito reluzente */
 .nav-buttons {
@@ -1595,6 +1414,8 @@ to   { opacity: 1; transform: translateY(0); }
   opacity: 0.7;
 }
 } 
+
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {
