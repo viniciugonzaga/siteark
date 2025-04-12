@@ -140,67 +140,42 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
-
-
-
-
-let currentIndex = 0;
-
-function showContainer(index) {
+function showContainer(containerId) {
     const containers = document.querySelectorAll('.container');
-    containers.forEach(c => c.classList.remove('active'));
-    document.getElementById(`container-${index}`).classList.add('active');
-    currentIndex = index;
+    containers.forEach(container => {
+        container.classList.remove('active');
+    });
+    document.getElementById(`container-${containerId}`).classList.add('active');
 }
 
-function prevContainer() {
-    currentIndex = (currentIndex - 1 + 5) % 5;
-    showContainer(currentIndex);
-}
+function openModal(title, type, imageSrc, description) {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalType = document.getElementById('modal-type');
+    const modalDescription = document.getElementById('modal-description');
 
-function nextContainer() {
-    currentIndex = (currentIndex + 1) % 5;
-    showContainer(currentIndex);
-}
-
-function openModal(title, type, imgSrc, description) {
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-type').textContent = type;
-    document.getElementById('modal-img').src = imgSrc;
-    document.getElementById('modal-description').textContent = description;
-    document.querySelector('.modal-overlay').style.display = 'flex';
+    modalTitle.textContent = title;
+    modalImg.src = imageSrc;
+    modalImg.alt = title; // Adiciona texto alternativo para a imagem
+    modalType.textContent = type;
+    modalDescription.textContent = description;
+    modalOverlay.style.display = 'flex'; // ou 'block', dependendo do seu layout
 }
 
 function closeModal() {
-    document.querySelector('.modal-overlay').style.display = 'none';
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modalOverlay.style.display = 'none';
 }
 
-function filterCards(searchInputId, containerId) {
-    const searchTerm = document.getElementById(searchInputId).value.toLowerCase();
-    const container = document.getElementById(containerId);
-    const cards = container.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        const title = card.querySelector('.title').textContent.toLowerCase();
-        const type = card.querySelector('.type').textContent.toLowerCase();
-        if (title.includes(searchTerm) || type.includes(searchTerm)) {
-            card.style.display = ''; // Mostrar o card
-        } else {
-            card.style.display = 'none'; // Esconder o card
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    for (let i = 0; i < 5; i++) {
-        const searchInputId = `search-container-${i}`;
-        const containerId = `container-${i}`;
-        const searchInput = document.getElementById(searchInputId);
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                filterCards(searchInputId, containerId);
-            });
-        }
+// Adiciona um ouvinte de evento para fechar o modal ao clicar fora dele
+document.querySelector('.modal-overlay').addEventListener('click', function(event) {
+    if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
+        closeModal();
     }
+});
+
+// Inicialmente, mostra o primeiro container (Rituais)
+document.addEventListener('DOMContentLoaded', function() {
+    showContainer(0);
 });
