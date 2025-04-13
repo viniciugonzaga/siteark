@@ -633,7 +633,6 @@ pointer-events: none;
 }
 
 @media (max-width: 1080px) and (max-height: 780px) {
-<<<<<<< HEAD
 #container-geral2 {
 width: 90%;
 padding: 10px;
@@ -674,8 +673,6 @@ animation: darkenOscillate 2s infinite alternate;
 }
 }
 @media (max-height: 780px ) and (max-height: 580px) {
-=======
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 #container-geral2 {
   width: 90%;
   padding: 10px;
@@ -715,46 +712,7 @@ animation: darkenOscillate 2s infinite alternate;
   animation: darkenOscillate 2s infinite alternate;
 }
 }
-@media (max-height: 500px ) and (max-height: 380px) {
-  #container-geral2 {
-    width: 90%;
-    padding: 10px;
-    border-width: 1px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-    margin: 0 auto;
-    align-items: center;
-  }
-  
-  #texto2 {
-    font-size: 1rem;
-  }
-  
-  .ritual-subtitle {
-    margin-top: 5%;
-    font-size: 1rem;
-    padding: 8px;
-  }
-  
-  .ritual-intro h2 {
-    margin-top: 0;
-    font-size: 0.5rem;
-    padding: 8px;
-  }
-  .h2{
-  
-   margin-top: 0;
-    font-size: 0.5rem;
-    padding: 8px;
-  
-  
-  }
-  #container-geral2::before {
-    background-size: cover;
-    background-position: center;
-    animation: darkenOscillate 2s infinite alternate;
-  }
-}
+
 
 
 
@@ -778,7 +736,6 @@ margin: 0 auto;
 
 /* Estilo base dos cards */
 .ritual-card {
-<<<<<<< HEAD
 flex: 0 1 250px; /* Tamanho fixo com quebra automática */
 background: linear-gradient(to bottom right, #1a1a1a, #2b002b);
 padding: 1rem;
@@ -794,23 +751,6 @@ justify-content: flex-start;
 height: auto;
 max-width: 300px;
 backdrop-filter: blur(2px);
-=======
-  flex: 0 1 250px; /* Tamanho fixo com quebra automática */
-  background: linear-gradient(to bottom right, #1a1a1a, #2b002b);
-  padding: 1rem;
-  border-left: 6px solid #444;
-  border-radius: 20px;
-  box-shadow: 0 0 12px rgba(172, 72, 6, 0.651);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: auto;
-  max-width: 300px;
-  backdrop-filter: blur(2px);
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 /* Título do card */
@@ -1237,13 +1177,8 @@ white-space: nowrap; /* Evita quebra de linha */
 
 @media (max-width: 1080px) and (max-height: 700px) {
 .container-wrapper {
-<<<<<<< HEAD
 margin-top: 2px;
 padding: 10px;
-=======
-  margin-top: 2px;
-  padding: 10px;
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 .container {
@@ -1269,12 +1204,8 @@ background-size: 200%;
 #texto2 {
 font-size: 2.5rem;
 }
-#texto2 {
-  font-size: 2.5rem;
-}
 
 .ritual-subtitle {
-<<<<<<< HEAD
 font-size: 1rem;
 }
 
@@ -1334,74 +1265,12 @@ gap: 15px;
 .card {
 width: 100%;
 max-width: none;
-=======
-  font-size: 1rem;
-}
-
-.ritual-intro h2 {
-  font-size: 1.8rem;
-}
-
-#container-geral2 {
-  width: 95%;
-  padding: 15px;
-  margin: 10px auto;
-}
-
-.ritual-cards {
-  width: 98%;
-  padding: 1rem;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-  display: flex; /* Garante que seja flex para o 2x2 */
-  flex-wrap: wrap;
-}
-
-.ritual-card {
-  flex-basis: calc(50% - 0.8rem); /* 2 cards por linha com espaçamento */
-  max-width: none;
-}
-
-.ritual-card h3 {
-  font-size: 1.2rem;
-}
-
-.ritual-card p {
-  font-size: 0.9rem;
-}
-
-.ritual-card:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 0 15px #ff00aa88;
-  border-left-width: 6px;
-}
-
-.ritual-intro h2 {
-  font-size: 1.6rem;
-}
-
-.ritual-subtitle {
-  font-size: 1rem;
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Cria duas colunas */
-  gap: 15px;
-}
-
-.card {
-  width: 100%;
-  max-width: none;
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 .card:nth-child(1),
 .card:nth-child(2),
 .card:nth-child(3),
 .card:nth-child(4) {
-<<<<<<< HEAD
 /* Os primeiros 4 cards ficam nas primeiras duas linhas */
 grid-column: span 1;
 }
@@ -1477,88 +1346,10 @@ line-height: 1.5;
 .close-modal {
 padding: 8px 18px;
 font-size: 14px;
-=======
-  /* Os primeiros 4 cards ficam nas primeiras duas linhas */
-  grid-column: span 1;
-}
-
-.card:nth-child(5) {
-  /* O quinto card ocupa a largura total e fica abaixo */
-  grid-column: 1 / -1;
-}
-
-.card img {
-  width: 70px;
-  height: 70px;
-}
-
-.card .title {
-  font-size: 1em;
-}
-
-.card .type {
-  font-size: 0.9em;
-  padding: 3px 6px;
-}
-
-.card:hover {
-  transform: scale(1.05) translateY(-4px);
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.4), 0 0 8px #ffef11b9 inset;
-}
-
-.nav-buttons {
-  margin-top: 30px;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.nav-button {
-  padding: 10px 20px;
-  font-size: 12px;
-  border-radius: 10px;
-}
-
-.icon-bar {
-  margin-top: 8%;
-  gap: 10px;
-  padding: 10px;
-  z-index: 3; /* Garante que a barra de ícones fique acima do container */
-}
-
-.icon {
-  padding: 10px 18px;
-  font-size: 0.9rem;
-  border-radius: 10px;
-}
-
-.titulo_efeito2 {
-  font-size: 1.4rem;
-  width: 80%;
-  padding: 3%;
-}
-
-.modal {
-  padding: 20px;
-}
-
-.modal h3 {
-  font-size: 20px;
-}
-
-.modal p {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.close-modal {
-  padding: 8px 18px;
-  font-size: 14px;
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 /* Diminuindo pixels de alguns efeitos */
 .card {
-<<<<<<< HEAD
 box-shadow: 0 0 8px rgba(255, 17, 88, 0.2), inset 0 0 4px rrgba(255, 17, 17, 0.05);
 }
 
@@ -1596,45 +1387,6 @@ z-index: 2; /* Garante que a rachadura fique acima do fundo */
 
 .container-wrapper {
 z-index: 0; /* Mantém o wrapper com z-index baixo */
-=======
-  box-shadow: 0 0 8px rgba(255, 17, 88, 0.2), inset 0 0 4px rrgba(255, 17, 17, 0.05);
-}
-
-.card:hover {
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.4), 0 0 6px #ffef11b9 inset;
-}
-
-.card::before {
-  animation: floatGlow 8s infinite ease-in-out;
-}
-
-.nav-button {
-  box-shadow: 0 0 6px rgba(255, 239, 17, 0.15);
-}
-
-.nav-button:hover {
-  box-shadow: 0 0 10px rgba(255, 239, 17, 0.35), inset 0 0 4px #ffef11a1;
-}
-
-.modal {
-  box-shadow: 0 0 20px rgba(255, 239, 17, 0.4), 0 0 40px rgba(255, 0, 85, 0.25), inset 0 0 8px #700404;
-}
-
-.container {
-  z-index: 1; /* Garante que o container fique acima do wrapper */
-}
-
-.container::before {
-  z-index: -1; /* Garante que a imagem de fundo do container fique atrás dos ícones */
-}
-
-.container::after {
-  z-index: 2; /* Garante que a rachadura fique acima do fundo */
-}
-
-.container-wrapper {
-  z-index: 0; /* Mantém o wrapper com z-index baixo */
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 }
 
@@ -1708,69 +1460,6 @@ margin-top: 40px;
 }
 
 /* Estilos para os outros elementos abaixo dos ícones, se necessário */
-}
-@media (max-width: 780px) {
-  /* Centralizar o container geral */
-  .container-wrapper {
-    width: 90%; /* Ou a largura desejada */
-    margin: 20px auto; /* Centraliza horizontalmente com um pouco de margem superior/inferior */
-    overflow: visible; /* Permite que o before saia um pouco */
-  }
-
-  .container {
-    width: 100%; /* O container agora ocupa a largura do wrapper */
-    position: relative;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 10px;
-    box-sizing: border-box;
-    margin: 0; /* Remove a margem que estava centralizando o container individualmente */
-  }
-
-  .container::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 51%;
-    transform: translateX(-50%);
-    width: 70%; /* Diminui um pouco a largura da imagem */
-    height: 70px; /* Diminui um pouco a altura da imagem */
-    background-image: url('../imagens/poderes_icon_container.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    z-index: 2;
-  }
-
-  .icon-bar {
-    display: flex;
-    flex-direction: column; /* Enfileira os ícones verticalmente */
-    justify-content: center; /* Centraliza verticalmente os ícones (pode ajustar conforme necessário) */
-    align-items: center; /* Centraliza horizontalmente os ícones */
-    gap: 8px; /* Espaçamento entre os ícones na vertical */
-    padding: 15px;
-    width: 80%; /* Diminui a largura da barra de ícones */
-    margin: 10px auto; /* Centraliza a barra de ícones */
-    box-sizing: border-box;
-    z-index: 3;
-  }
-
-  .icon {
-    background-color: rgba(54, 9, 5, 0.9);
-    color: #fff8e1;
-    padding: 8px 12px; /* Diminui o padding dos ícones */
-    border-radius: 6px; /* Diminui um pouco o raio da borda */
-    font-size: 0.8rem; /* Diminui o tamanho da fonte dos ícones */
-    text-align: center;
-    cursor: pointer;
-    white-space: nowrap;
-    border: 1px solid #ffef1133;
-    box-sizing: border-box;
-    min-width: unset; /* Permite que a largura seja controlada pelo conteúdo e padding */
-    width: 80%; /* Define uma largura para os ícones */
-  }
-
-  /* Estilos para os outros elementos abaixo dos ícones, se necessário */
 }
 
 /* Container do Card */
@@ -1975,7 +1664,6 @@ text-shadow: 0 0 6px #ffef11c7;
 
 /* Botões de navegação para telas de 1080x700 */
 @media (max-width: 780px) {
-<<<<<<< HEAD
 /* ... outros estilos para telas menores ... */
 
 .nav-buttons {
@@ -2016,48 +1704,6 @@ text-shadow: 0 0 6px #ffef11c7;
   color: #fffbe6;
   text-shadow: 0 0 4px #ffef11c7; /* Reduzi um pouco a sombra no hover */
 }
-=======
-  /* ... outros estilos para telas menores ... */
-
-  .nav-buttons {
-    margin-top: 30px;
-    gap: 10px;
-    flex-wrap: wrap;
-    z-index: 4; /* Garante que os botões fiquem acima de outros elementos */
-    position: relative; /* Necessário para o z-index funcionar */
-  }
-
-  .nav-button {
-    padding: 10px 20px;
-    font-size: 12px;
-    border-radius: 10px;
-    color: #fff8e1; /* Garante que a cor do texto seja definida */
-    text-shadow: 0 0 3px #ffef11cc; /* Adiciona uma sombra para melhorar a legibilidade */
-    z-index: 5; /* Garante que o texto do botão fique acima do before */
-    position: relative; /* Necessário para o z-index funcionar */
-  }
-
-  .nav-button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 239, 17, 0.05), transparent 70%);
-    animation: pulseLight 6s infinite linear;
-    z-index: -1; /* Coloca a animação de fundo atrás do texto */
-  }
-
-  .nav-button:hover {
-    background: linear-gradient(145deg, #700404, #3c0000);
-    transform: scale(1.05); /* Reduzi um pouco o scale no hover para telas menores */
-    box-shadow: 0 0 10px rgba(255, 239, 17, 0.35), inset 0 0 4px #ffef11a1;
-    border-color: #ffef11;
-    color: #fffbe6;
-    text-shadow: 0 0 4px #ffef11c7; /* Reduzi um pouco a sombra no hover */
-  }
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 
 }
 
@@ -2074,7 +1720,6 @@ text-shadow: 0 0 6px #ffef11c7;
 
 /* Botões de navegação para telas menores que 600px */
 @media (max-width: 600px) {
-<<<<<<< HEAD
 .nav-buttons {
   margin-top: 20px; /* Reduzindo a margem superior */
   gap: 8px; /* Reduzindo o espaçamento entre os botões */
@@ -2163,109 +1808,18 @@ max-height: 90vh; /* Altura máxima base com scroll */
 overflow-y: auto;
 scrollbar-width: thin;
 scrollbar-color: #ffef11 #1a0000;
-=======
-  .nav-buttons {
-    margin-top: 20px; /* Reduzindo a margem superior */
-    gap: 8px; /* Reduzindo o espaçamento entre os botões */
-    flex-wrap: wrap;
-    z-index: 4;
-    position: relative;
-    justify-content: center; /* Centralizando os botões em telas menores */
-  }
-
-  .nav-button {
-    padding: 8px 16px; /* Reduzindo o padding */
-    font-size: 8px; /* Reduzindo o tamanho da fonte */
-    border-radius: 8px; /* Reduzindo o raio da borda */
-    color: #fff8e1;
-    text-shadow: 0 0 2px #ffef11cc; /* Reduzindo a sombra do texto */
-    z-index: 5;
-    position: relative;
-  }
-
-  .nav-button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 239, 17, 0.03), transparent 70%); /* Sutilizando o efeito de brilho */
-    animation: pulseLight 6s infinite linear;
-    z-index: -1;
-  }
-
-  .nav-button:hover {
-    background: linear-gradient(145deg, #700404, #3c0000);
-    transform: scale(1.02); /* Reduzindo ainda mais o scale no hover */
-    box-shadow: 0 0 8px rgba(255, 239, 17, 0.3), inset 0 0 3px #ffef11a1; /* Reduzindo a sombra */
-    border-color: #ffef11;
-    color: #fffbe6;
-    text-shadow: 0 0 3px #ffef11c7; /* Reduzindo a sombra do texto no hover */
-  }
-}
-
-@keyframes pulseLight {
-  0% {
-    opacity: 0.8;
-    transform: rotate(0deg) scale(0.9);
-  }
-  50% {
-    opacity: 1;
-    transform: rotate(180deg) scale(1);
-  }
-  100% {
-    opacity: 0.8;
-    transform: rotate(360deg) scale(0.9);
-  }
-}
-/* Modal Decorado - Base */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  backdrop-filter: blur(5px);
-}
-
-.modal {
-  background: linear-gradient(145deg, #1a0000, #3a0d0d);
-  border: 2px solid #ffef11b9;
-  padding: 40px;
-  border-radius: 16px;
-  max-width: 450px; /* Tamanho base */
-  width: 90%;
-  text-align: center;
-  box-shadow:
-      0 0 30px rgba(255, 239, 17, 0.4),
-      0 0 60px rgba(255, 0, 85, 0.25),
-      inset 0 0 10px #700404;
-  position: relative;
-  overflow: hidden;
-  max-height: 90vh; /* Altura máxima base com scroll */
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #ffef11 #1a0000;
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 .modal::-webkit-scrollbar {
-  width: 8px;
+width: 8px;
 }
 
 .modal::-webkit-scrollbar-track {
-  background: #1a0000;
-  border-radius: 10px;
+background: #1a0000;
+border-radius: 10px;
 }
 
 .modal::-webkit-scrollbar-thumb {
-<<<<<<< HEAD
 background-color: #ffef11;
 border-radius: 10px;
 border: 2px solid #1a0000;
@@ -2313,68 +1867,18 @@ font-family: 'Spectral', serif;
 margin-top: 10px;
 color: #f8f0ff;
 font-style: italic;
-=======
-  background-color: #ffef11;
-  border-radius: 10px;
-  border: 2px solid #1a0000;
-}
-
-.modal::before {
-  content: "";
-  position: absolute;
-  top: -30%;
-  left: -30%;
-  width: 160%;
-  height: 160%;
-  background: radial-gradient(circle, rgba(255, 0, 85, 0.15), transparent 70%);
-  z-index: 0;
-  animation: floatGlow 5s ease-in-out infinite;
-}
-
-.modal h3 {
-  margin-top: 0;
-  font-size: 28px;
-  color: #ffef11;
-  z-index: 1;
-  position: relative;
-  font-family: 'Cinzel', serif;
-  text-shadow: 0 0 8px #ffef11a2;
-}
-
-.modal p {
-  color: #f4f4f4;
-  z-index: 1;
-  position: relative;
-  font-size: 16px;
-  line-height: 1.7;
-  font-family: 'EB Garamond', serif;
-}
-
-#modal-type {
-  color: #f1aec0;
-  font-weight: bold;
-  margin-top: 16px;
-  font-family: 'Spectral', serif;
-}
-
-#modal-description {
-  margin-top: 10px;
-  color: #f8f0ff;
-  font-style: italic;
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 .modal img {
-  max-width: 100%;
-  border-radius: 8px;
-  margin: 20px 0;
-  box-shadow: 0 0 14px rgba(255, 0, 85, 0.3);
-  z-index: 1;
-  position: relative;
+max-width: 100%;
+border-radius: 8px;
+margin: 20px 0;
+box-shadow: 0 0 14px rgba(255, 0, 85, 0.3);
+z-index: 1;
+position: relative;
 }
 
 .close-modal {
-<<<<<<< HEAD
 margin-top: 30px;
 background: #700404;
 padding: 12px 28px;
@@ -2394,36 +1898,14 @@ box-shadow: 0 0 12px rgba(255, 239, 17, 0.3);
 background: #a00000;
 box-shadow: 0 0 20px #ffef11a0;
 transform: scale(1.05);
-=======
-  margin-top: 30px;
-  background: #700404;
-  padding: 12px 28px;
-  color: white;
-  border: 2px solid #ffef116b;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
-  z-index: 1;
-  position: relative;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease-in-out;
-  box-shadow: 0 0 12px rgba(255, 239, 17, 0.3);
-}
-
-.close-modal:hover {
-  background: #a00000;
-  box-shadow: 0 0 20px #ffef11a0;
-  transform: scale(1.05);
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 @keyframes fadeInModal {
-  from { opacity: 0; transform: translateY(-20px); }
-  to   { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(-20px); }
+to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes floatGlow {
-<<<<<<< HEAD
 0%, 100% {
     transform: rotate(0deg) scale(1);
     opacity: 0.4;
@@ -2562,31 +2044,6 @@ transform: scale(1.05);
 
   .card .type {
       font-size: 0.7em; /* Reduz a fonte do tipo do card */
-=======
-  0%, 100% {
-      transform: rotate(0deg) scale(1);
-      opacity: 0.4;
-  }
-  50% {
-      transform: rotate(3deg) scale(1.03);
-      opacity: 0.7;
-  }
-}
-
-/* Estilos para telas com largura máxima de 1080px */
-@media (max-width: 1080px) {
-  .modal {
-      max-width: 600px; /* Aumenta um pouco o tamanho máximo */
-      max-height: 85vh; /* Reduz um pouco a altura máxima */
-  }
-}
-
-/* Estilos para telas com largura máxima de 780px */
-@media (max-width: 780px) {
-  .modal {
-      max-width: 95%; /* Ocupa mais largura */
-      max-height: 75vh; /* Reduz mais a altura máxima */
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
   }
 }
 /* Geral do footer ------------------------------------------------------------------------------*/
@@ -2679,13 +2136,5 @@ footer {
 }
 
 /* Responsividade para telas menores */
+/* bah */
 
-<<<<<<< HEAD
-=======
-
-
-  
-
-
-  
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3

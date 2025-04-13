@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 function showContainer(containerId) {
-<<<<<<< HEAD
     const containers = document.querySelectorAll('.container');
     containers.forEach(container => {
         container.classList.remove('active');
@@ -131,54 +130,17 @@ function openModal(title, type, imageSrc, description) {
 function closeModal() {
     const modalOverlay = document.querySelector('.modal-overlay');
     modalOverlay.style.display = 'none';
-=======
-    const containers = document.querySelectorAll('.container');
-    containers.forEach(container => {
-        container.classList.remove('active');
-    });
-    document.getElementById(`container-${containerId}`).classList.add('active');
-}
-
-function openModal(title, type, imageSrc, description) {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const modalTitle = document.getElementById('modal-title');
-    const modalImg = document.getElementById('modal-img');
-    const modalType = document.getElementById('modal-type');
-    const modalDescription = document.getElementById('modal-description');
-
-    modalTitle.textContent = title;
-    modalImg.src = imageSrc;
-    modalImg.alt = title; // Adiciona texto alternativo para a imagem
-    modalType.textContent = type;
-    modalDescription.textContent = description;
-    modalOverlay.style.display = 'flex'; // ou 'block', dependendo do seu layout
-}
-
-function closeModal() {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    modalOverlay.style.display = 'none';
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 }
 
 // Adiciona um ouvinte de evento para fechar o modal ao clicar fora dele
 document.querySelector('.modal-overlay').addEventListener('click', function(event) {
-<<<<<<< HEAD
     if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
         closeModal();
     }
-=======
-    if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
-        closeModal();
-    }
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 });
 
 // Inicialmente, mostra o primeiro container (Rituais)
 document.addEventListener('DOMContentLoaded', function() {
-<<<<<<< HEAD
     showContainer(0);
 });
-=======
-    showContainer(0);
-});
->>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
+// bah
