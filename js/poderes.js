@@ -1,6 +1,3 @@
-
-
-
 // ========================
 // Menu (Navbar)
 // ========================
@@ -19,188 +16,169 @@ let playerScores = {}; // Armazena as somas dos dados por jogador
 
 // Função para abrir o menu
 openMenuButton.addEventListener('click', () => {
-    menu.classList.remove('hidden'); // Exibe o menu
+    menu.classList.remove('hidden'); // Exibe o menu
 });
 
 // Função para fechar o menu
 closeMenuButton.addEventListener('click', () => {
-    menu.classList.add('hidden'); // Oculta o menu
+    menu.classList.add('hidden'); // Oculta o menu
 });
 
 // ========================
 // Função de rolagem de dados
 // ========================
 rollDiceButton.addEventListener('click', () => {
-    const playerName = playerNameInput.value.trim(); // Nome do jogador
-    const diceType = parseInt(diceSelect.value); // Tipo de dado selecionado
-    const roll = Math.floor(Math.random() * diceType) + 1; // Rolagem aleatória do dado
+    const playerName = playerNameInput.value.trim(); // Nome do jogador
+    const diceType = parseInt(diceSelect.value); // Tipo de dado selecionado
+    const roll = Math.floor(Math.random() * diceType) + 1; // Rolagem aleatória do dado
 
-    // Validação: O nome do jogador deve ser preenchido
-    if (!playerName) {
-        alert("Por favor, insira o nome do jogador!");
-        return;
-    }
+    // Validação: O nome do jogador deve ser preenchido
+    if (!playerName) {
+        alert("Por favor, insira o nome do jogador!");
+        return;
+    }
 
-    // Atualiza o total do jogador
-    if (!playerScores[playerName]) {
-        playerScores[playerName] = 0; // Inicializa o jogador, caso não exista
-    }
-    playerScores[playerName] += roll;
+    // Atualiza o total do jogador
+    if (!playerScores[playerName]) {
+        playerScores[playerName] = 0; // Inicializa o jogador, caso não exista
+    }
+    playerScores[playerName] += roll;
 
-    // Adiciona o registro da rolagem na lista
-    const listItem = document.createElement('li');
-    listItem.textContent = `${playerName} = D${diceType}: ${roll} (Total: ${playerScores[playerName]})`;
-    rollList.appendChild(listItem);
+    // Adiciona o registro da rolagem na lista
+    const listItem = document.createElement('li');
+    listItem.textContent = `${playerName} = D${diceType}: ${roll} (Total: ${playerScores[playerName]})`;
+    rollList.appendChild(listItem);
 
-    // Atualiza o total geral
-    totalDisplay.textContent = `Total geral: ${Object.values(playerScores).reduce((a, b) => a + b, 0)}`;
+    // Atualiza o total geral
+    totalDisplay.textContent = `Total geral: ${Object.values(playerScores).reduce((a, b) => a + b, 0)}`;
 });
 
 // ========================
 // Limpar registro de rolagens
 // ========================
 clearRollsButton.addEventListener('click', () => {
-    playerScores = {}; // Reinicia os totais por jogador
-    rollList.innerHTML = ''; // Limpa a lista de rolagens
-    totalDisplay.textContent = 'Total geral: 0'; // Zera o total exibido
+    playerScores = {}; // Reinicia os totais por jogador
+    rollList.innerHTML = ''; // Limpa a lista de rolagens
+    totalDisplay.textContent = 'Total geral: 0'; // Zera o total exibido
 });
 
- // Função que redireciona com base no argumento recebido
- function goToPage(page) {
-    window.location.href = page; // Redireciona para a página passada como argumento
+ // Função que redireciona com base no argumento recebido
+ function goToPage(page) {
+    window.location.href = page; // Redireciona para a página passada como argumento
 }
 
 // ========================
 // Footer dinâmico
 // ========================
 document.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer"); // Seleciona o rodapé
+    const footer = document.querySelector("footer"); // Seleciona o rodapé
 
-    // Se o usuário rolar até o fim da página
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Altera a cor do rodapé
-    } else {
-        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Mantém a cor padrão
-    }
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const body = document.body;
-    body.classList.add('changing-background'); // Adiciona a classe imediatamente para teste
-    const pontoDeMudancaBurnout = document.querySelector('.ritual-card'); // Seleciona a div com a classe ritual-card
-    if (pontoDeMudanca) {
-        const alturaPontoDeMudanca = pontoDeMudanca.offsetTop;
-        let backgroundChanged = false;
-
-        window.addEventListener('scroll', function() {
-            const scrollY = window.scrollY || window.pageYOffset;
-
-            if (scrollY > alturaPontoDeMudanca && !backgroundChanged) {
-                backgroundChanged = true;
-                body.classList.add('changing-background'); // Adiciona a classe para iniciar a animação
-
-                // Após a animação, troca o fundo do body (opcional)
-                setTimeout(() => {
-                    body.style.backgroundImage = "url('../imagens/lobby_rituais.jpg')";
-                    body.classList.remove('changing-background'); // Remove a classe de animação
-                }, 1000); // Tempo da animação
-            } else if (scrollY <= alturaPontoDeMudanca && backgroundChanged) {
-                backgroundChanged = false;
-                body.style.backgroundImage = "url('../imagens/lobby_rituais2.jpg')"; // Reverte o fundo
-                body.classList.remove('changing-background'); // Remove a classe de animação
-                // Opcional: Se quiser uma animação de volta, você precisaria criar outra classe e animação
-            }
-        });
-    } else {
-        console.error("Elemento com a classe 'titulo_principal' não encontrado.");
-    }
+    // Se o usuário rolar até o fim da página
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Altera a cor do rodapé
+    } else {
+        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Mantém a cor padrão
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('container-geral2');
-    let isDarkening = true;
-    const animationDuration = 4000; // Duração da animação em milissegundos
+    const container = document.getElementById('container-geral2');
+    let isDarkening = true;
+    const animationDuration = 4000; // Duração da animação em milissegundos
 
-    container.addEventListener('animationiteration', function(event) {
-        if (event.target === container && (event.animationName === 'darkenOscillate' || event.animationName === 'lightenOscillate')) {
-            isDarkening = !isDarkening;
-            const animationName = isDarkening ? 'darkenOscillate' : 'lightenOscillate';
-            container.style.setProperty('--before-animation', `${animationName} ${animationDuration / 1000}s infinite alternate`);
-        }
-    });
+    container.addEventListener('animationiteration', function(event) {
+        if (event.target === container && (event.animationName === 'darkenOscillate' || event.animationName === 'lightenOscillate')) {
+            isDarkening = !isDarkening;
+            const animationName = isDarkening ? 'darkenOscillate' : 'lightenOscillate';
+            container.style.setProperty('--before-animation', `${animationName} ${animationDuration / 1000}s infinite alternate`);
+        }
+    });
 
-    // Define uma variável CSS customizada para a animação no ::before
-    container.style.setProperty('--before-animation', `darkenOscillate ${animationDuration / 1000}s infinite alternate`);
+    // Define uma variável CSS customizada para a animação no ::before
+    container.style.setProperty('--before-animation', `darkenOscillate ${animationDuration / 1000}s infinite alternate`);
 
-    // Adiciona um estilo para aplicar a animação ao ::before usando a variável
-    const style = document.createElement('style');
-    style.textContent = `#container-geral2::before { animation: var(--before-animation); }`;
-    document.head.appendChild(style);
+    // Adiciona um estilo para aplicar a animação ao ::before usando a variável
+    const style = document.createElement('style');
+    style.textContent = `#container-geral2::before { animation: var(--before-animation); }`;
+    document.head.appendChild(style);
 });
 
 
-
-
-
-
-
-let currentIndex = 0;
-
-function showContainer(index) {
-    const containers = document.querySelectorAll('.container');
-    containers.forEach(c => c.classList.remove('active'));
-    document.getElementById(`container-${index}`).classList.add('active');
-    currentIndex = index;
+function showContainer(containerId) {
+<<<<<<< HEAD
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.classList.remove('active');
+    });
+    document.getElementById(`container-${containerId}`).classList.add('active');
 }
 
-function prevContainer() {
-    currentIndex = (currentIndex - 1 + 5) % 5;
-    showContainer(currentIndex);
-}
+function openModal(title, type, imageSrc, description) {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalType = document.getElementById('modal-type');
+    const modalDescription = document.getElementById('modal-description');
 
-function nextContainer() {
-    currentIndex = (currentIndex + 1) % 5;
-    showContainer(currentIndex);
-}
-
-function openModal(title, type, imgSrc, description) {
-    document.getElementById('modal-title').textContent = title;
-    document.getElementById('modal-type').textContent = type;
-    document.getElementById('modal-img').src = imgSrc;
-    document.getElementById('modal-description').textContent = description;
-    document.querySelector('.modal-overlay').style.display = 'flex';
+    modalTitle.textContent = title;
+    modalImg.src = imageSrc;
+    modalImg.alt = title; // Adiciona texto alternativo para a imagem
+    modalType.textContent = type;
+    modalDescription.textContent = description;
+    modalOverlay.style.display = 'flex'; // ou 'block', dependendo do seu layout
 }
 
 function closeModal() {
-    document.querySelector('.modal-overlay').style.display = 'none';
-}
-
-function filterCards(searchInputId, containerId) {
-    const searchTerm = document.getElementById(searchInputId).value.toLowerCase();
-    const container = document.getElementById(containerId);
-    const cards = container.querySelectorAll('.card');
-
-    cards.forEach(card => {
-        const title = card.querySelector('.title').textContent.toLowerCase();
-        const type = card.querySelector('.type').textContent.toLowerCase();
-        if (title.includes(searchTerm) || type.includes(searchTerm)) {
-            card.style.display = ''; // Mostrar o card
-        } else {
-            card.style.display = 'none'; // Esconder o card
-        }
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modalOverlay.style.display = 'none';
+=======
+    const containers = document.querySelectorAll('.container');
+    containers.forEach(container => {
+        container.classList.remove('active');
     });
+    document.getElementById(`container-${containerId}`).classList.add('active');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    for (let i = 0; i < 5; i++) {
-        const searchInputId = `search-container-${i}`;
-        const containerId = `container-${i}`;
-        const searchInput = document.getElementById(searchInputId);
-        if (searchInput) {
-            searchInput.addEventListener('input', function() {
-                filterCards(searchInputId, containerId);
-            });
-        }
+function openModal(title, type, imageSrc, description) {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    const modalTitle = document.getElementById('modal-title');
+    const modalImg = document.getElementById('modal-img');
+    const modalType = document.getElementById('modal-type');
+    const modalDescription = document.getElementById('modal-description');
+
+    modalTitle.textContent = title;
+    modalImg.src = imageSrc;
+    modalImg.alt = title; // Adiciona texto alternativo para a imagem
+    modalType.textContent = type;
+    modalDescription.textContent = description;
+    modalOverlay.style.display = 'flex'; // ou 'block', dependendo do seu layout
+}
+
+function closeModal() {
+    const modalOverlay = document.querySelector('.modal-overlay');
+    modalOverlay.style.display = 'none';
+>>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
+}
+
+// Adiciona um ouvinte de evento para fechar o modal ao clicar fora dele
+document.querySelector('.modal-overlay').addEventListener('click', function(event) {
+<<<<<<< HEAD
+    if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
+        closeModal();
+    }
+=======
+    if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
+        closeModal();
     }
+>>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
 });
+
+// Inicialmente, mostra o primeiro container (Rituais)
+document.addEventListener('DOMContentLoaded', function() {
+<<<<<<< HEAD
+    showContainer(0);
+});
+=======
+    showContainer(0);
+});
+>>>>>>> 52d6bdac51c25405da5e63ba786d275879aa95f3
