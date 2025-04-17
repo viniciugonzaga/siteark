@@ -901,7 +901,8 @@ img {
     text-align: center;
     width: 60%;
     max-width: 500px;
-    margin-top: 6%;
+    margin-top: 1%;
+    border: 2px solid #f7e70a;
    
 }
 .modal h2{
@@ -1316,5 +1317,3 @@ footer {
   }
   
 /* Responsividade para telas menores */
-
-

@@ -1,4 +1,3 @@
-
 // ========================
 // Menu (Navbar)
 // ========================
@@ -141,6 +140,18 @@ const dinossauros = {
         valorDano: "Mordida 0",
         classe: "Galinha"
     },
+    "dino6": {
+      nome: "Quillshot",
+      especie: "PituFO",
+      imagem: "imagens/dinos_quillshot.jpg",
+      vida: 275,
+      armadura: 150,
+      funcao: "Apex Porco Espinhoso",
+      valorVida: "Couro 4",
+      valorDano: "Mordida 8",
+      classe: "Javali"
+  },
+
     
     // Adicione mais dinossauros aqui conforme necessário
 };
@@ -305,3 +316,7 @@ const contents = [
     document.getElementById("gif").src = content.gif;
     document.getElementById("imagem-fundo").src = content.background;
   }
+
+
+
+

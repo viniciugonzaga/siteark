@@ -5571,7 +5571,7 @@ const dinoFichas = {
         "image": "imagens/dinos_warden.jpg",
         "weight": "10 toneladas", 
         "height": "4 M",
-        "width": "6 M",
+        length: '6 M',
         "attributes": { "agi": 4, "for": 7, "int": 2, "pre": 6, "vig": 7 },
         "life": 700,
         "armor": 500,
@@ -5591,9 +5591,9 @@ const dinoFichas = {
     "kukulkan": {
         "title": "O Deus Maia",
         "image": "imagens/dinos_kukulkan.jpg",
-        "weight": "8 toneladas", 
+        "weight": "15 toneladas", 
         "height": "4 M",
-        "width": "18 M",
+        length: '18 M',
         "attributes": { "agi": 4, "for": 4, "int": 5, "pre": 6, "vig": 4 },
         "life": 450,
         "armor": 400,
@@ -5609,6 +5609,28 @@ const dinoFichas = {
         ],
         "passiva": "Deus Maia: Sua divindade provoca a região de forma intensa, as tempestades e mares ficam interso quando sua presença é anunciada, quando kukulkan aparece na região todos são revelados durante a cena e tiros de armas são perdidos no meio do ar, por tamanah força arcana que controla os ventos. Toda vez que um ser é marcado por efeito Tempestade, recebe 2d8 4x por rodada, até apagar ou eliminar a origem dessa marca.",
         "passivaElemental": "Seu efeito tempestade pode ter interações adicionais em mutações, como queimar, descaraga elétrica, radiaçãoe e outros tipos de interações que a mutação elemental forneça."
+    },
+    "Quillshot": {
+        "title": "O Javali de Espinhos",
+        "image": "imagens/dinos_quillshot.jpg",
+        "weight": "6 toneladas", 
+        "height": "3,5 M",
+        length: '5 M',
+        "attributes": { "agi": 3, "for": 3, "int": 2, "pre": 3, "vig": 4 },
+        "life": 275,
+        "armor": 150,
+        "actionBonus": "+20 resitência, +20 encontrão, +20 atordoamento +15 pontaria, +15 percepção visual, +10 percepção de ferômonios, +10 Indentificar ferômonios, +10 Urinar, +5 resiliência, +15 cabeçada, +10 quebrar estruturar, +10 froça bruta  +15 chifres, +15 mordida, +10 rabada ",
+        "attacks": [
+            "Mordida de Touro: 6d10+25 (pode mastigar pastos)",
+            "Chifrada: 7d10+15 2x + Atordoamento (causa 300% de dano em estruturas)",
+            "Rabada: 6d12+25 + Atordoamento (Causa um torpor leve em criaturas)"
+        ],
+        "abilities": [
+            "Pontaria de Espinhos: Quillshot após ficar parado recarrega seus espinhos de 1d4 de munição, durante a rodada, quillshot pode atirar espinhos enormes que causam 3d12+15 de dano perfurante que injeta um ferômonio provocador. Cada espinho pode ser jogado de forma diferente e considerado ataques diferentes.",
+            "Raiva de Touro: Quillshot após perder grande quantidade de vida ou cheirar seu ferômonio de forma descontrolada ganha o efeito rage e aumenta sua muinição de espinhos para 6. Aumentando também +1 agi, +1 for, +1 vig."
+        ],
+        "passiva": "Touro de Espinhos: Quillshot sempre que acertar um alvo diferente com um espinho ganha uma margem de ameaça +1, diminuindo seu critíco durante a cena. Além de também ganhar +5 em pontaria para cada espinho próximo ou que quase acertou um alvo. Sempre que fica parado seu espinho do meio ganha o efeito de certeiro.",
+        "passivaElemental": "Seus Espinhos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, aumentar a fatalidade, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça. "
     },
 
 
