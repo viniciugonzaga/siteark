@@ -100,6 +100,8 @@ const senhas = {
     "npc12": "Escravo",
 };
 
+
+
 // Dados dos NPCs
 const npcs = {
     "npc1": {

@@ -144,3 +144,44 @@ document.addEventListener('DOMContentLoaded', function() {
     showContainer(0);
 });
 // bah
+function abrirExplicacao(id) {
+    document.getElementById("modal-explicacao-" + id).style.display = "block";
+  }
+  
+  function fecharExplicacao(id) {
+    document.getElementById("modal-explicacao-" + id).style.display = "none";
+  }
+  // Inicialmente, mostra o primeiro container (Rituais)
+document.addEventListener('DOMContentLoaded', function() {
+    showContainer(0);
+
+    // Adiciona event listeners para os modals de explicação
+    // Ajuste o loop para o número total de modals de explicação que você tem (ex: 0 a 4)
+    for (let i = 0; i < 5; i++) { // O loop vai de 0 a 4, cobrindo modal-explicacao-0, -1, -2, -3, -4
+        const modalOverlay = document.getElementById(`modal-explicacao-${i}`);
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', function(event) {
+                // Verifica se o clique ocorreu diretamente no overlay, não no conteúdo do modal
+                if (event.target === modalOverlay) {
+                    fecharExplicacao(i);
+                }
+            });
+        }
+    }
+});
+
+// Função para abrir o modal de explicação
+function abrirExplicacao(id) {
+    const modal = document.getElementById("modal-explicacao-" + id);
+    if (modal) {
+        modal.style.display = "flex"; // Alterado para flex para usar a centralização do CSS
+    }
+}
+
+// Função para fechar o modal de explicação
+function fecharExplicacao(id) {
+    const modal = document.getElementById("modal-explicacao-" + id);
+    if (modal) {
+        modal.style.display = "none";
+    }
+}

@@ -110,21 +110,25 @@
 
    
 <div class="container active" id="container-0">
+
     <div class="icon-bar">
-        <div class="icon" onclick="showContainer(0)">Rituais</div>
-        <div class="icon" onclick="showContainer(1)">Transformações</div>
-        <div class="icon" onclick="showContainer(2)">Invocações</div>
-        <div class="icon" onclick="showContainer(3)">Feitiços</div>
-        <div class="icon" onclick="showContainer(4)">Pactos</div>
+        <div class="icon-bar">
+            <div class="icon" id="icon-0" onclick="showContainer(0)">Rituais</div>
+            <div class="icon" id="icon-1" onclick="showContainer(1)">Transformações</div>
+            <div class="icon" id="icon-2" onclick="showContainer(2)">Invocações</div>
+            <div class="icon" id="icon-3" onclick="showContainer(3)">Feitiços</div>
+            <div class="icon" id="icon-4" onclick="showContainer(4)">Pactos</div>
+        </div>
     </div>
     <div class="search-bar-container">
         <input type="text" id="search-container-0" class="search-input" placeholder="Buscar Rituais...">
+        <img src="imagens/chave_caveira.png"  alt="Explicação" class="explicacao-icone" onclick="abrirExplicacao(0)"/>
     </div>
     <div class="cards">
         <div class="card" onclick="openModal('Crescer Carne', 'Tipo: Peso-Ferocidade', 'imagens/poderes_ritual1.jpg', 'Um ritual que provoca o corpo da fera ou criatura, aumentando seu tamanho de forma considerável, tornando-a maior e mais aterrorizante. Ganha +5 em Intimidação, +5 em qualquer teste de Força e Vigor, além de aumentar todas as fontes de dano em 50%.')">
             <img src="imagens/poderes_ritual1.jpg">
             <div class="title">Crescer Fera</div>
-            <div class="type">Peso</div>
+            <div class="type">Peso-Vida</div>
         </div>
         
         <div class="card" onclick="openModal('Estímulo da Dor', 'Tipo: Ódio-Ferocidade', 'imagens/poderes_ritual2.jpg', 'Um ritual brutal que coloca o alvo sob o efeito de Fúria Aprimorada, ganhando cura acelerada de 30 pontos de vida, +1 em Força, +1 em Vigor e +3 dados de dano em ataques físicos.')">
@@ -136,7 +140,7 @@
         <div class="card" onclick="openModal('Observar Alma', 'Tipo: Alma-Código', 'imagens/poderes_ritual3.png', 'Um ritual que permite ao invocador enxergar mutações ou poderes do inimigo, revelando seu maior dano, atributos e qualquer aura arcana emitida. Ganha +5 em Exposição Arcana e +5 em Percepção Arcana.')">
             <img src="imagens/poderes_ritual3.png">
             <div class="title">Observar Alma</div>
-            <div class="type">Alma</div>
+            <div class="type">Alma-Código</div>
         </div>
         
         <div class="card" onclick="openModal('Criar Fenda', 'Tipo: Peso-Vida', 'imagens/poderes_ritual4.png', 'Um ritual complexo que permite ao invocador criar portais para atravessar situações ou momentos específicos. Pode se transportar, invocar oponentes como reação ou atacar através do portal. Ganha +10 em Manipulação Arcana, +10 em Pontaria Arcana e +10 em Bloqueio Arcano.')">
@@ -294,15 +298,21 @@
 </div>
 
 <div class="container" id="container-1">
+
+
+
     <div class="icon-bar">
-        <div class="icon" onclick="showContainer(0)">Rituais</div>
-        <div class="icon" onclick="showContainer(1)">Transformações</div>
-        <div class="icon" onclick="showContainer(2)">Invocações</div>
-        <div class="icon" onclick="showContainer(3)">Feitiços</div>
-        <div class="icon" onclick="showContainer(4)">Pactos</div>
+        <div class="icon-bar">
+            <div class="icon" id="icon-0" onclick="showContainer(0)">Rituais</div>
+            <div class="icon" id="icon-1" onclick="showContainer(1)">Transformações</div>
+            <div class="icon" id="icon-2" onclick="showContainer(2)">Invocações</div>
+            <div class="icon" id="icon-3" onclick="showContainer(3)">Feitiços</div>
+            <div class="icon" id="icon-4" onclick="showContainer(4)">Pactos</div>
+        </div>
     </div>
     <div class="search-bar-container">
         <input type="text" id="search-container-1" class="search-input" placeholder="Buscar Transformações...">
+        <img src="imagens/chave_caveira2.png"  alt="Explicação" class="explicacao-icone" onclick="abrirExplicacao(1)"/>
     </div>
     <div class="cards">
         <div class="card" onclick="openModal('Virar Besta', 'Tipo: Vida-Ferocidade', 'imagens/poderes_trans1.png', 'Uma transformação diabólica que faz o invocador assumir a forma da criatura mais próxima da sua essência interior, ganhando +5 em todos os atributos e habilidades dessa criatura. A forma assume traços semelhantes à aparência original. O efeito dura por toda a cena.')">
@@ -319,15 +329,20 @@
 
 
 <div class="container" id="container-2">
+
+
     <div class="icon-bar">
-        <div class="icon" onclick="showContainer(0)">Rituais</div>
-        <div class="icon" onclick="showContainer(1)">Transformações</div>
-        <div class="icon" onclick="showContainer(2)">Invocações</div>
-        <div class="icon" onclick="showContainer(3)">Feitiços</div>
-        <div class="icon" onclick="showContainer(4)">Pactos</div>
+        <div class="icon-bar">
+            <div class="icon" id="icon-0" onclick="showContainer(0)">Rituais</div>
+            <div class="icon" id="icon-1" onclick="showContainer(1)">Transformações</div>
+            <div class="icon" id="icon-2" onclick="showContainer(2)">Invocações</div>
+            <div class="icon" id="icon-3" onclick="showContainer(3)">Feitiços</div>
+            <div class="icon" id="icon-4" onclick="showContainer(4)">Pactos</div>
+        </div>
     </div>
     <div class="search-bar-container">
         <input type="text" id="search-container-2" class="search-input" placeholder="Buscar Invocações...">
+        <img src="imagens/chave_caveira3.png"  alt="Explicação" class="explicacao-icone" onclick="abrirExplicacao(2)"/>
     </div>
     <div class="cards">
         <div class="card" onclick="openModal('Escultura de Cthulhu', 'Tipo: Medo-Liberdade', 'imagens/poderes_invoca1.png', 'Um invocador que cria a forma de cthulhu para seguir uma ordem do Invocador por uma cena ou o Invocador pode pegar uma parte de seus poderes ou essência, ganahndo seus dados da habilidade especial ou mais usada da criatura durante a cena.')">
@@ -368,15 +383,21 @@
 </div>
 
 <div class="container" id="container-3">
+
+  
+
     <div class="icon-bar">
-        <div class="icon" onclick="showContainer(0)">Rituais</div>
-        <div class="icon" onclick="showContainer(1)">Transformações</div>
-        <div class="icon" onclick="showContainer(2)">Invocações</div>
-        <div class="icon" onclick="showContainer(3)">Feitiços</div>
-        <div class="icon" onclick="showContainer(4)">Pactos</div>
+        <div class="icon-bar">
+            <div class="icon" id="icon-0" onclick="showContainer(0)">Rituais</div>
+            <div class="icon" id="icon-1" onclick="showContainer(1)">Transformações</div>
+            <div class="icon" id="icon-2" onclick="showContainer(2)">Invocações</div>
+            <div class="icon" id="icon-3" onclick="showContainer(3)">Feitiços</div>
+            <div class="icon" id="icon-4" onclick="showContainer(4)">Pactos</div>
+        </div>
     </div>
     <div class="search-bar-container">
         <input type="text" id="search-container-3" class="search-input" placeholder="Buscar Feitiços...">
+        <img src="imagens/chave_caveira4.png"  alt="Explicação" class="explicacao-icone" onclick="abrirExplicacao(3)"/>
     </div>
     <div class="cards">
         <div class="card" onclick="openModal('Grimório das Graças', 'Tipo: Ciclo-Medo', 'imagens/poderes_feito1.png', 'Um feitiço antigo contido num grimório que concede ao invocador um fluxo arcano mais controlado, ganhando +20 em Manipulação Arcana e +15 em Controle Mental. A cada nova rodada iniciada em combate, o invocador pode rolar 1d4 para determinar o número de ações extras disponíveis para lançar rituais.')">
@@ -439,15 +460,21 @@
 </div>
 
 <div class="container" id="container-4">
+    
+    
+
     <div class="icon-bar">
-        <div class="icon" onclick="showContainer(0)">Rituais</div>
-        <div class="icon" onclick="showContainer(1)">Transformações</div>
-        <div class="icon" onclick="showContainer(2)">Invocações</div>
-        <div class="icon" onclick="showContainer(3)">Feitiços</div>
-        <div class="icon" onclick="showContainer(4)">Pactos</div>
+        <div class="icon-bar">
+            <div class="icon" id="icon-0" onclick="showContainer(0)">Rituais</div>
+            <div class="icon" id="icon-1" onclick="showContainer(1)">Transformações</div>
+            <div class="icon" id="icon-2" onclick="showContainer(2)">Invocações</div>
+            <div class="icon" id="icon-3" onclick="showContainer(3)">Feitiços</div>
+            <div class="icon" id="icon-4" onclick="showContainer(4)">Pactos</div>
+        </div>
     </div>
     <div class="search-bar-container">
         <input type="text" id="search-container-4" class="search-input" placeholder="Buscar Pactos...">
+        <img src="imagens/chave_caveira5.png"  alt="Explicação" class="explicacao-icone" onclick="abrirExplicacao(4)"/>
     </div>
     <div class="cards">
         <div class="card" onclick="openModal('Juramento ao Fogo', 'Tipo: Fogo-Amor', 'imagens/poderes_pactos1.png', 'Um juramento de amor e lealdade ao fogo, a chama mais intensa e ardente da ilha: o Fogo Eterno. Aqueles que jurarem fidelidade recebem +5 em todas as ações relacionadas ao fogo, além de +10 em Resistência ao Fogo, +10 em Manipulação de Fogo, +5 Ataques Arcanos, +5 Luta, +5 Pontaria, +5 Contra-Ataque. Além de dobrar danos de fogo e 1 evolução de mutação passiva ligada ao fogo.')">
@@ -506,8 +533,6 @@
         
       
       
-
-
     
         </div>
 </div>
@@ -520,7 +545,66 @@
         <p id="modal-description">Descrição</p> <button class="close-modal" onclick="closeModal()">Fechar</button>
     </div>
 </div>
+<!-- MODAL DE EXPLICAÇÃO DO CONTAINER-0 -->
+<div class="modal-explicacao" id="modal-explicacao-0">
+  <div class="modal-explicacao-content">
+    <span class="close" onclick="fecharExplicacao(0)">&times;</span>
+    <h3>Como os Rituais são aplicados?</h3>
+     <p id="font">Rituais são manifestações arcanas complexas que exigem preparação, tempo e intenção. Eles alteram a realidade de forma profunda, canalizando forças ocultas com efeitos intensos e duradouros.</p>
 
+        <p>Os rituais são classificados como normais (não possuem nível alto de complexidade), rituais brutais (possuem um nível intermediário de complexidade), rituais diabólicos (possuem um dos níveis mais difíceis de complexidade) e rituais complexos (que são os mais antigos envolvendo o arcano).</p>
+    
+        <p>Toda condição que é aplicada em um inimigo ou ser, que queira se defender dessa condição, possui uma maneira de resistir ao efeito do ritual (dano, condição ou até mesmo controle). Podendo usar Reflexo ou Esquiva para projéteis, Vontade ou Percepção para efeitos mentais, Fortitude ou Resistência para efeitos físicos. Tudo depende do efeito ou condição que o ritual proporciona.</p>
+</div>
+</div>
+
+<div class="modal-explicacao" id="modal-explicacao-1">
+    <div class="modal-explicacao-content">
+      <span class="close" onclick="fecharExplicacao(1)">&times;</span>
+      <h3>Como as Transformações funcionam?</h3>
+       <p id="font">Transformações são a fusão profunda e visceral do Arcano com o corpo, reestruturando a biologia de forma imprevisível e por vezes dolorosa, manifestando a magia através da carne e do sangue.</p>
+  
+          <p>Elas se manifestam de várias formas: Alterações Efêmeras (bônus temporários para ações), Formas Estáveis (mudanças duradouras com alteração de atributos e habilidades) e Fusões Simbióticas (integração com entidades, compartilhando poderes e riscos de controle).</p>
+      
+          <p>Transformações impõem um Estresse Arcano ao corpo, com custos em Vigor/Sanidade e chance de Reações de Carne ou Aberrações Permanentes, além do risco inerente de perder o controle sobre a forma alterada.</p>
+  </div>
+  </div>
+
+  <div class="modal-explicacao" id="modal-explicacao-2">
+    <div class="modal-explicacao-content">
+      <span class="close" onclick="fecharExplicacao(2)">&times;</span>
+      <h3>Como as Invocações são feitas?</h3>
+       <p id="font">Invocações são rituais arcanos que usam gestos, palavras e artefatos para abrir portais para entidades incompreensíveis do Arcano, com o tipo de entidade influenciado pela conjunção, o invocador e o artefato usado.</p>
+  
+          <p>As entidades invocadas variam de Auxiliares Efêmeros (suporte temporário com efeitos únicos), Servos Vinculados (aliados temporários controlados pelo invocador) a Espíritos Possessores (concedem grande poder ao custo da sanidade e controle do corpo). </p>
+      
+          <p>Errar uma Invocação não apenas falha em trazer a entidade desejada, mas desencadeia a Pior Situação Possível para a tribo, resultando em uma Cena da Caveira mortal, tornando o fracasso uma consequência devastadora.</p>
+  </div>
+  </div>
+
+  <div class="modal-explicacao" id="modal-explicacao-3">
+    <div class="modal-explicacao-content">
+      <span class="close" onclick="fecharExplicacao(3)">&times;</span>
+      <h3>Como os Feitiços funcionam?</h3>
+       <p id="font">Feitiços são a manifestação do Arcano no mundo material pela infusão de energias primais em matéria (mineral, sintética ou viva), transformando itens comuns em veículos de poder arcano através de um processo de alquimia mística.</p>
+  
+          <p> Feitiços se classificam por duração: Temporários (efeitos fugazes para uso imediato), Sustentados (mantidos por foco ou recurso contínuo) e Permanentes (integrados ao item, ativos constantemente). A aplicação em outros itens requer que o usuário domine a essência do feitiço.</p>
+      
+          <p>A versatilidade dos feitiços permite encantar não só armas e armaduras, mas também ferramentas e até matéria viva, concedendo bônus, habilidades defensivas ou efeitos únicos, limitados apenas pela compreensão do conjurador e a natureza da matéria. </p>
+  </div>
+  </div>
+
+  <div class="modal-explicacao" id="modal-explicacao-4">
+    <div class="modal-explicacao-content">
+      <span class="close" onclick="fecharExplicacao(4)">&times;</span>
+      <h3>Como os Pactos funcionam?</h3>
+       <p id="font">Pactos são acordos profundos e únicos selados com o Arcano através de promessas e emoções, conectando o indivíduo a forças ancestrais com base nas intenções originais dos criadores do Pacto.</p>
+  
+          <p> Selar um Pacto é um ritual de entrega que concede Habilidades, Patrocínio Sobrenatural ou um Estado de Ser Alterado, mas apenas um Pacto pode ser feito por indivíduo.</p>
+      
+          <p>Quebrar um Pacto invoca uma maldição que corrompe o Arauto internamente, transformando as vantagens concedidas pelo Pacto em efeitos prejudiciais que drenam sua vida.</p>
+  </div>
+  </div>
 
 <footer>
     <div class="footer-content">
