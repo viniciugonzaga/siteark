@@ -2048,10 +2048,11 @@ to   { opacity: 1; transform: translateY(0); }
 }
 
 .explicacao-icone {
+  margin-left: 30px;
   width: 70px;
   height: 70px;
   cursor: pointer;
-  margin-left: 30px;
+  /* margin-left: 30px; /* Este margin-left pode ser removido se estiver usando top/right para posicionamento absoluto */
   filter: drop-shadow(0 0 1px red) drop-shadow(0 0 2px red);
 
   /* Transição e efeito de rotação */
@@ -2066,9 +2067,9 @@ to   { opacity: 1; transform: translateY(0); }
 /* Estilos para telas com largura máxima de 1080px */
 @media (max-width: 1080px) {
   .explicacao-icone {
-    margin-left: 15px;
     width: 60px;     /* Reduz a largura */
     height: 60px;    /* Reduz a altura */
+    /* margin-left: 15px; /* Ajusta margin-left se ainda estiver sendo usado */
     filter: drop-shadow(0 0 1px red) drop-shadow(0 0 2px red); /* Mantém ou ajusta o filtro base */
   }
 
@@ -2080,9 +2081,9 @@ to   { opacity: 1; transform: translateY(0); }
 /* Estilos para telas com largura máxima de 780px */
 @media (max-width: 780px) {
   .explicacao-icone {
-    margin-left: 10px;
     width: 50px;     /* Reduz ainda mais a largura */
     height: 50px;    /* Reduz ainda mais a altura */
+    /* margin-left: 10px; /* Ajusta margin-left se ainda estiver sendo usado */
     filter: drop-shadow(0 0 0.5px red) drop-shadow(0 0 1px red); /* Reduz o filtro base */
   }
 
@@ -2091,6 +2092,19 @@ to   { opacity: 1; transform: translateY(0); }
   }
 }
 
+/* Estilos para telas de celular (ex: até 600px de largura) */
+@media (max-width: 600px) {
+  .explicacao-icone {
+    width: 40px;     /* Reduz o tamanho para celular */
+    height: 40px;    /* Reduz o tamanho para celular */
+    /* margin-left: 0; /* Remove potential conflicting margin se estiver usando top/right */
+    filter: drop-shadow(0 0 0.2px red) drop-shadow(0 0 0.5px red); /* Reduz o filtro para celular */
+  }
+
+  .explicacao-icone:hover {
+    filter: drop-shadow(0 0 1px red) drop-shadow(0 0 2px red); /* Reduz o filtro no hover para celular */
+  }
+}
 /* Text Shadows Reluzentes e Suaves para os Ícones */
 #icon-0 { /* Rituais - Vermelho */
   text-shadow:
@@ -2377,4 +2391,6 @@ footer {
 
 /* Responsividade para telas menores */
 /* bah */
+
+
 
