@@ -151,6 +151,94 @@ const dinossauros = {
       valorDano: "Mordida 8",
       classe: "Javali"
   },
+  "dino7": {
+    nome: "Foca",
+    especie: "Grupo de 3",
+    imagem: "imagens/dino6_foca.jpg",
+    vida: 45,
+    armadura: 25,
+    funcao: "Exploradora do Mar",
+    valorVida: "Couro 1",
+    valorDano: "Mordida 1",
+    classe: "Esquilo"
+},
+"dino8": {
+  nome: "Basilossauro",
+  especie: "Zoen",
+  imagem: "imagens/dino7_basilossauro.jpg",
+  vida: 325,
+  armadura: 225,
+  funcao: "Colosso Marinho",
+  valorVida: "Couro 5",
+  valorDano: "Mordida 4",
+  classe: "Elefante"
+},
+"dino9": {
+  nome: "Alossauro",
+  especie: "Pichau",
+  imagem: "imagens/dino8_alossauro.jpg",
+  vida: 190,
+  armadura: 125,
+  funcao: "Caçador de Presas",
+  valorVida: "Couro 3",
+  valorDano: "Mordida 6",
+  classe: "Lobo"
+},
+"dino10": {
+  nome: "Sinoceratops",
+  especie: "Vhagar",
+  imagem: "imagens/dinos9_sinoceratops.jpg",
+  vida: 320,
+  armadura: 230,
+  funcao: "Tanque do Campos",
+  valorVida: "Couro 6",
+  valorDano: "Mordida 3",
+  classe: "Elefante"
+},
+"dino11": {
+  nome: "Sinomacrops",
+  especie: "grupo de 2",
+  imagem: "imagens/dino11_sinomacrops.jpg",
+  vida: 35,
+  armadura: 15,
+  funcao: "Ave Curiosa",
+  valorVida: "Couro 1",
+  valorDano: "Mordida 1",
+  classe: "Águia"
+},
+"dino12": {
+  nome: "Tapejara",
+  especie: "Ártemis",
+  imagem: "imagens/dino12_tapejara.jpg",
+  vida: 105,
+  armadura: 15,
+  funcao: "Voadora Medrosa",
+  valorVida: "Couro 2",
+  valorDano: "Mordida 2",
+  classe: "Labradora"
+},
+"dino13": {
+  nome: "Majugassauro",
+  especie: "Cós",
+  imagem: "imagens/dinos13_majugassauro.jpg",
+  vida: 180,
+  armadura: 130,
+  funcao: "Caçador Canibal",
+  valorVida: "Couro 3",
+  valorDano: "Mordida 3",
+  classe: "Coiote"
+},
+"dino14": {
+  nome: "Deinonico",
+  especie: "Niva",
+  imagem: "imagens/dinos_deinonico.webp",
+  vida: 125,
+  armadura: 45,
+  funcao: "Raptor de Penas",
+  valorVida: "Couro 2",
+  valorDano: "Mordida 3",
+  classe: "Lobo"
+},
 
     
     // Adicione mais dinossauros aqui conforme necessário

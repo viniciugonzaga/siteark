@@ -89,7 +89,6 @@ document.addEventListener("scroll", () => {
 
 const creatures = {
     'Carnívoros': [
-    'T-Rex',
     'Dilofossauro',
     'Compsognathus',
     'Celófode',
@@ -102,7 +101,8 @@ const creatures = {
     'Moros-Intrepidus',
     'Criolofossauro',
     'Pinguim',
-    'arqueopterix',
+    'Arqueopterix',
+    'Microraptor',
     'Piranha',
     'Parasitas',
     'Tubarões',
@@ -113,6 +113,10 @@ const creatures = {
     'Mossasauros',
     'liopleurodonte',
     'helicoprion',
+    'Basilossauro',
+    'Xiphactinus',
+    'Kronossauro',
+    'Elasmosauros',
     'poraque',
     'peixe-pescador',
     'Carnotauro',
@@ -121,6 +125,7 @@ const creatures = {
     'Carcharodontossauro',
     'Acrocantossauros',
     'Giganotossauros',
+    'T-Rex',
     'Alossauros',
     'Ceratossauro',
     'Deinonico',
@@ -144,7 +149,7 @@ const creatures = {
     'Dente de sabre',
     'Lobo-terrível',
     'Andreorsachus',
-    'Velociraptor',
+    'Utahraptor' ,
     'Antrorraptor',
     'Pyroraptor',
     'Ptero',
@@ -172,9 +177,6 @@ const creatures = {
     'Louva-a-deus',
     'gorgossauro',
     'Concavenator',
-    'Xiphactinus',
-    'Kronossauro',
-    'Elasmosauros',
     'Titanoboa',
     'Gigantophis',
     'Nothosauros',
@@ -200,7 +202,7 @@ const creatures = {
         'Nigersauro', 'Dreadnoughtus', 'Camarassauro', 'Girafotitã', 'Paraceratério', 'Sea Treader', 
         'Trike', 'Torossauro', 'Chasmossauro', 'Dracorex', 'Nasuceratops', 'Sinoceratops', 'Estiracossauro', 
         'Estegossauro', 'Kentrossauro', 'Nodossauro', 'Anquilossauro', 'Tatu', 'Castor', 'Carbonemy', 'Mamute', 
-        'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Basilossauro', 'Golfinho', 'Baleia', 'Foca', 
+        'Rinoceronte', 'Therezinossauro', 'Magatério', 'Chalicotério', 'Golfinho', 'Baleia', 'Foca', 
         'Ichitiossauro', 'Água-viva', 'Manta', 'Grifo', 'Sinomacrops','Listrossauro','Mariposa', 'Porco', 'gado comum','Pulgão','Gorgulho', 'Abelha','Inseto Escudo Verde', 'Crabsquid','leedsichthys','Archelon',
         'Coruja das neves','Deynocheirus',
 
@@ -217,27 +219,30 @@ const dinoFichas = {
     'T-Rex': {
         title: 'Rei da Ilha',
         image: 'imagens/dinos_T-rex_ficha.jpg', // Caminho válido
-        weight: '8 toneladas',
+        weight: '10 toneladas',
         height: '7 M',
         length: '13,5 M',
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 luta, +15 cabeçada, +20 contra-ataque, +10 esquiva, +10 bloquear +5 corrida, -5 alvos parados. ', // Bônus de ação de criatura
-        attacks: ['Mordida Poderosa: 16d10+60 + quebrado (causa 200% de dano em armadura)', 
+        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 rugido, +20 finalizar, +20 agarrão, +20 encontrão, +20 luta, +20 contra-ataque, +15 cabeçada, +10 esquiva, +15 bloquear +10 corrida, +5 perseguição,  -5 alvos parados. ', // Bônus de ação de criatura
+        attacks: [
+            'Mordida Poderosa: 16d10+60 + quebrado (causa 200% de dano em armadura)', 
             'Investida: 8d10+40 (200% em construções) ',
-             'Ataque de cauda: 7d10+30'],
+             'Ataque de cauda: 7d10+30(Causa Atordoamento em criaturas pequenas)'],
         abilities: [
-            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Devorar por 1 rodada, parte do dano que ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
-            'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação.'
+            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Rasgo de Vida por 1 rodada, parte do dano que ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
+            'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação. Ao tentar ser intimidado por qualquer outra criatura menor que o T-rex, ele aplica efeito de medo em seu rugido, reduzindo o dano dos alvos em 1 rodada em 50%.'
         ],
-        passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar efeitos de quebrado, sangramento ou dilacerado para toda mordida.',
-        passivaElemental: 'Seu rugido ou grito pode ter interações adicionais de acordo com a mutação, podendo queimar, criar portais, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.'
+        passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar dano extra em alvos que estejam quebrados, ganhando + 3 dados de dano na mordida e acumulando coragem conforme cada rodada se passa, ganhando vida extra para cada alvo em sua frente,  sendo 20 de vida cada regeneração.',
+        passivaElemental: 'Seu rugido ou grito pode ter interações adicionais de acordo com a mutação, podendo queimar, criar portais, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+        biome: ['Montanha', 'Bosque', 'Planície'], // Exemplo: múltiplos biomas
+
     },
 'Dilofossauro': {
     title: 'O Mestre da Distração',
     image: 'imagens/dinos_dilofossauro.webp', // Substitua pelo caminho correto
-    weight: '300 kg',
+    weight: '80 kg',
     height: '1,7 M / 2,4 M',
     length: '4,5 M',
     attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2 },
@@ -245,33 +250,33 @@ const dinoFichas = {
     armor: 20, // Base de armadura
     actionBonus: '+5 mordida, +10 garra, +5 luta, +5 reflexo, +5 pontaria, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade, +5 agachar, +5 socializar, +5 enganação, +5 farejar, +5 agarrão',
     attacks: [
-        'Mordida: 1d10+10 / 2d12+10 ',
-        'Garra: 1d10+10 / 2d12+10 ',
+        'Mordida: 1d10+10 (Cada dilofossauro que estiver no grupo aumenta em +10 o dano)',
+        'Garra: 2d6+5 2x (Cada dilofossauro que estiver no grupo ganha +5 em agarrão)',
         'Veneno Paralisante: 2d8 ácido (cegueira por 1d4 rodadas)'
        
     ],
     abilities: [
         'Distração Fatal: Quando a vítima está envenenada ou distraida, o Dilofossauro ganha um bônus de +5 em pontaria e +1d10 em ataques diretos.',
-        'Intimidar: ganha +10 em intimidar quando está em grupo maior ou sozinho com apenas um alvo, usado para assustar ou distrair oponentes em menor número.'
+        'Coroa de Susto: ganha +10 em intimidar quando está em grupo maior ou sozinho com apenas um alvo, usado para assustar ou distrair oponentes em menor número.'
     ],
-    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente (1d4), permitindo ataques críticos em todos os ataques e desvantagem em inimigos (-5) em testes de percepção e reações.',
+    passiva: 'O veneno do Dilofossauro cega suas presas temporariamente (1d4), permitindo ataques desprevinidos e que causam 2d6 de dano em todos os ataques.',
     passivaElemental: 'Seu jato de veneno pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-
+    biome: ['Campos', 'Bosque', 'Planície', 'Dunas', 'Praia', 'Taiga'  ], // Exemplo: múltiplos biomas
 
     // Adicione outras fichas aqui
 },
 'Compsognathus': {
     title: 'O Pequeno Caçador',
     image: 'imagens/dinos_comp.png', // Substitua pelo caminho correto
-    weight: '3 kg',
+    weight: '5 kg',
     height: '30 cm',
     length: '1,5 M',
     attributes: { agi: 5, for: 1, int: 2, pre: 2, vig: 1 },
     life: 20, // Escalável por nível ou estágio
-    armor: 0, // Armadura leve
+    armor: 1, // Armadura leve
     actionBonus: '+5 mordida, +15 reflexo, +15 esquiva, +5 garra, +10 furtividade, +10 trabalho em grupo, +5 corrida, +10 socializar, +5 rastrear, +5 saltar, +5 reproduzir, +5 flexível',
     attacks: [
-        'Mordida: 1d6++2 veneno',
+        'Mordida: 1d6+2 veneno(Um veneno paralisante, fazendo o torpor do alvo subir)',
         'Garra: 1d6+2 corte',
         'Ataque em Grupo: Se houver 3 ou mais compsognathus, cada um ganha +5 em ataques diretos e +1d6 no ataque e no dano.'
     ],
@@ -279,9 +284,9 @@ const dinoFichas = {
         'Pequeno Predador: Apesar de seu tamanho, o compsognathus pode desferir ataques rápidos e precisos, dificultando a reação do inimigo, caso um grupo todo ataque um alvo, o alvo precisa fazer um teste de fortitude para não ser derrubado e receber o dano total, caso ele passe reduz 30% do dano para cada reação usada e sucedida  ',
         'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir inimigos, aplicando torpor em suas mordidas, cada ataque de +2 de veneno vai somando junto com os outros membros do grupo, derrubando e deixando o alvo incosciente por 1d4 de rodadas.'
     ],
-    passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
+    passiva: 'Caçador Ágil: Ganha +1d8 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
     passivaElemental: 'Suas mordidas com venenos poossuem interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-  
+    biome: ['Campos', 'Bosque', 'Planície', 'Praia',  ], // Exemplo: múltiplos biomas
 },
 'Celófode': {
     title: 'O Médio Caçador',
@@ -294,9 +299,9 @@ const dinoFichas = {
     armor: 15, // Armadura leve
     actionBonus: '+10 mordida, +5 combo, +5 agarrão, +5 contra-ataque, +5 cheirar, +5 esquiva, +5 rasgar carne, +5 resistência, +5 reflexo, +5 escalar +5 garra, +5 furtividade, +10 trabalho em grupo, +5 corrida',
     attacks: [
-        'Mordida: 1d10 + sangramento',
+        'Mordida: 1d10 + (sangramento)',
         'Garra: 1d8+2',
-        'Ataque em Grupo: Se houver 3 ou mais Celófode, cada um pode atacar com +5 no ataque e 1d12 de sangramento no dano.'
+        'Ataque em Grupo: Se houver 3 ou mais Celófode, cada um pode atacar com Mordida por +5 no ataque e 1d12 de sangramento no dano.'
     ],
     abilities: [
         'Médio Predador: Grupos de Celófode ganham +1d6 de dano em suas mordidas contra alvos que estão sangrando enquanto correm.',
@@ -304,12 +309,12 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
     passivaElemental: 'Suas mordidas com Sangramento podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-  
+    biome: ['Campos', 'Dunas', 'Montanha', 'Taiga'  ], // Exemplo: múltiplos biomas
 },
 'Proceratossauro': {
     title: 'O ágil Caçador',
     image: 'imagens/dinos_procerato.png', // Substitua pelo caminho correto
-    weight: '40 kg',
+    weight: '70 kg',
     height: '80 cm',
     length: '1,3 M',
     attributes: { agi: 2, for: 2, int: 2, pre: 2, vig: 2 },
@@ -327,12 +332,12 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
     passivaElemental: 'Sua crista pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-  
+    biome: [ 'Bosque', 'Planície', 'Taiga', 'Floresta Fria'], // Exemplo: múltiplos biomas
 },
 'Trodonte': {
     title: 'O Caçador Noturno',
     image: 'imagens/dinos_trodonte.jpeg', // Substitua pelo caminho correto
-    weight: '25 kg',
+    weight: '30 kg',
     height: '60 cm',
     length: '2 M',
     attributes: { agi: 2, for: 2, int: 3, pre: 3, vig: 2 },
@@ -351,12 +356,13 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Silencioso: Quando está no escuro, o Troodonte pode atacar de surpresa, forçando o inimigo a realizar um teste de percepção com desvantagem. Caso o inimigo falhe, o ataque causa dano adicional de +1d6.',
     passivaElemental: 'Suas Mordidas de torpor podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Campos', 'Bosque', 'Planície', 'Taiga'  ], // Exemplo: múltiplos biomas
 },
 
 'Oviraptor': {
     title: 'O Ladrão de Ovos',
     image: 'imagens/dinos_oviraptor.webp', // Substitua pelo caminho correto
-    weight: '30 kg',
+    weight: '35 kg',
     height: '80 cm',
     length: '2 M',
     attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 2 },
@@ -375,13 +381,13 @@ const dinoFichas = {
     ],
     passiva: 'Furtador: O Oviraptor Consegue carregar itens enquanto corre com suas mãos, segurando qualquer tipo de item que posso carregar, caso o objetivo seja roubar um ovo, o oviraptor ganha +1 int e +5 em ações de pensar, para usar o item.',
     passivaElemental: 'Seus encontrões podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    
+    biome: ['Campos', 'Planície',   ], // Exemplo: múltiplos biomas
 },
 
 'Hiena': {
     title: 'Aproveitadora Implacável',
     image: 'imagens/dinos_hiena.webp', // Insira um caminho válido
-    weight: '50 kg',
+    weight: '90 kg',
     height: '1,2 M',
     length: '1,5 M',
     attributes: { agi: 2, for: 3, int: 3, pre: 2, vig: 2 },
@@ -390,7 +396,7 @@ const dinoFichas = {
     actionBonus: '+10 em ataques coordenados, +10 mordida, +10 em garras, +10 socializar, +10 furtividade, +10 rastrear, +10 percepção, +10 agachar, +10 contra-ataque, +10 risada(Provocar-Intimidar), +10 cheirar, +5 esquiva, +5 ocultar cheiro, +5 luta, +5 mastigar, +5 quebrar, +5 resistência, +5 fortitude, +5 pensar, +5 reflexo, +5 agarrão, +5 percpeção de inimigo, +5 flanquear.  ',
     attacks: ['Mordida: 2d12+10',
          'Investida de Caça: 1d10+10',
-        'Golpe de Grupo: 2d10+(10 por hiena)'],
+        'Golpe de Grupo: 2d10+10 (Cada hiena que estiver atacando adiciona +15 de dano. Além de forncer ao grupo +2 em agarrar, para cada hiena)'],
     abilities: [
         'Carniceira Oportunista: Hienas em grupo podem executar ataques coordenados, ganhando um bônus de +5 pensar em planos para separar ou atingir o objetivo de elminar um alvo isolado ou sangrando de um grupo.',
         'Caçadora Astuta: As hienas podem causar mordidas que ignoram metade da armadura do alvo.',
@@ -398,11 +404,12 @@ const dinoFichas = {
     ],
     passiva: 'Estratégia de Grupo: Hienas que estavam se preparando no combate podem deixar bactérias na região da boca ou língua, faznedo com que suas mordidas causem o efeito Anti-Cura.',
     passivaElemental: 'Seus ataques de Mordida podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Campos', 'Dunas', ], // Exemplo: múltiplos biomas
 },
 'Ave-do-Terror': {
     title: 'Predadora Implacável',
     image: 'imagens/dinos_ave_do_terror.jpeg', // Insira um caminho válido
-    weight: '90 kg',
+    weight: '350 kg',
     height: '1,8 M',
     length: '2,5 M',
     attributes: { agi: 3, for: 3, int: 2, pre: 2, vig: 2 },
@@ -421,12 +428,13 @@ const dinoFichas = {
     ],
     passiva: 'Puxar Carne: Sempre que causar dano crítico, pode ter a chance de agarrar o alvo ou empurra-lo durante o ataque.',
     passivaElemental: 'Suas garras podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Bosque', 'Taiga'  ], // Exemplo: múltiplos biomas
 },
 
  'Austroraptor': {
     title: 'O Ardiloso Pescador',
     image: 'imagens/dinos_austro.jpg', // Substitua pelo caminho correto
-    weight: '45 kg',
+    weight: '70 kg',
     height: ' 1,2 M',
     length: '1,5 M',
     attributes: { agi: 3, for: 1, int: 2, pre: 3, vig: 2 },
@@ -444,123 +452,275 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Ágil: Todos os Austros em terrenos próximos de água ou úmidos vão ter o efeito Ágil durante a cena.',
     passivaElemental: 'Suas táticas de pescaria podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-  
+    biome: [ 'Praia', 'Tundra'  ], // Exemplo: múltiplos biomas
+},
+
+'Microraptor': {
+    title: 'O Ardiloso Raptor',
+    image: 'imagens/dinos_microraptor.jpg', // Substitua pelo caminho correto
+    weight: '35 kg',
+    height: ' 0,5 M',
+    length: '1 M',
+    attributes: { agi: 4, for: 1, int: 2, pre: 2, vig: 1 },
+    life: 35, // Escalável por nível ou estágio
+    armor: 10, // Armadura leve
+    actionBonus: '+10 garras, +10 correr, +10 salto, +10 furtividade, +5 percepção, +5 socialização, +5 flanquear, +5 fortitude, +5 cheirar, +5 analisar alvo, +5 enganação, +5 agachar, +5 escalar, +5 planar, +5 pensar, +5 mordida, +5 intimidar, +5 esquiva, +5 contra-ataque',
+    attacks: [
+        'Mordida: 1d8+5 (Ganha +5 em agarrar depois de morder)',
+        'Garra: 2d6+4 2x (Causa um veneno de paralisia, causando 1d8 de torpor)',
+        'Ataque em Grupo: 2d6+5 (Se houver 2 ou mais Microraptores, cada um ganha +5 em flanquear e aumenta o 1d8 do veneno)'
+    ],
+    abilities: [
+        'Pequeno Raptor: O Microraptor é um caçador astuto e ágil, capaz de ganhar +5 em pensar, para caçar alvos isolados ou que estejam distraidos, tendo maior preparo para uma emboscada com o grupo',
+        'Plano Raptor: Quando em grupo, eles podem cercar e confundir animais, sempre que alvos incoscientes estiverem por perto, o seu grupo ganha +5 em percepção, +5 em furtividade.'
+    ],
+    passiva: 'Veneno Raptor: Microraptores causam dano com seu veneno através da armadura e também desarmando os alvos .',
+    passivaElemental: 'Suas táticas de Emboscadas e seu Veneno podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Bosque', 'Taiga', 'Campos', 'Dunas', 'Deserto Frio' ], // Exemplo: múltiplos biomas
 },
 
 'Moros-Intrepidus': {
     title: 'Faxineiro dos Carnívoros',
     image: 'imagens/dinos_moros.webp', // Insira um caminho válido
-    weight: '78 kg',
-    height: '1,2 M',
-    length: '2 M',
-    attributes: { agi: 4, for: 2, int: 2, pre: 3, vig: 2 },
-    life: 30, // Vida do Moros Intrepidus
-    armor: 5, // Armadura do Moros Intrepidus
-    actionBonus: '+20 em esquiva, +15 em correr, +10 em furtividade, +15 em gritar para alertar aliados, +10 em detectar ameaças, +5 em ações rápidas',
+    weight: '35 kg',
+    height: '0,8 M',
+    length: '1 M',
+    attributes: { agi: 4, for: 1, int: 4, pre: 3, vig: 1 },
+    life: 20, // Vida do Moros Intrepidus
+    armor: 15, // Armadura do Moros Intrepidus
+    actionBonus: '+15 limpeza , +10 em correr, +10 em furtividade, +10 em socializar, +10 rastrear, +10 esquiva, +10 diplomacia, +10 enganação, +10 percepção de predadores, +10 agachar, +10 reflexo, +5 morder, +5 cheirar, +5 fortitude,+5 comer ossos, +5 brincar, +5 dançar, +5 pensar',
     attacks: [
-        'Mordida Fraca: 2d6+5 (dano mínimo, usado apenas em desespero)', 
-        'Investida Ágil: 2d10+10 (permite reposicionamento em combate, ganha +1 na próxima esquiva)'
+        'Mordida Fraca: 2d6+5 (Provoca a atenção dos predadores)', 
+        'Rabada ágil: 1d10+5 (Irrita predadores liberando feromônios)',
+        'Grito de Desespero: (Aumenta a agressividade de predadores maiores, ganhando +5 em diplomacia. O efeito nos predadores persiste por 1d4 de rodadas, fazendo eles perderem -5 em socialização e +5 em percepção ',
     ],
     abilities: [
-        'Faxina Útil: Quando próximo a grandes carnívoros aliados, o Moros Intrepidus pode limpar restos de carne e parasitas, reduzindo seus efeitos negativos e regenerando 1d6 de vida por rodada do aliado.',
-        'Grito de Alerta: Quando ameaçado, o Moros Intrepidus pode soltar um grito que chama grandes predadores aliados em um raio de até 100 metros. Alerta predadores para o perigo, forçando um teste de intimidação contra os oponentes (+3d6).',
+        'Oportunista: Consegue extrair comida até dos pequenos vestigios de comida nos dentes dos predadores, tirando pragas, pedaços de carne, ossos ou diminuir dores em dentes quebrados ou retorcidos, ganhando +5 em percepção e +5 em ações na área Odontologia ',
+        'Grito de Alerta: Quando ameaçado, o Moros Intrepidus pode soltar um grito que chama grandes predadores aliados em um raio de até 50 metros. Alerta predadores para o perigo, fazendo eles brigarem por ele.',
         
     ],
-    passiva: 'Proteção de Predadores: Quando próximo a grandes carnívoros aliados, o Moros Intrepidus recebe um bônus de +10 na esquiva e intimidação, pois os predadores tendem a protegê-lo instintivamente.',
-    passivaElemental: 'Morte: pode se camuplar.Nuclear: coleta dna dos ultimos bichos sobre seus cuidados'
+    passiva:   'Limpeza de Predador: Após convencer os seus laços e serviços de limpeza a um predador, cria um laço de afinidade com ele, fazendo a criatura lutar pela sua vontade ou proteção em cenas, convencendo durante o tempo.',
+    passivaElemental: 'Suas habilidades de persuação de predadores podem ter interações adicionais de acordo com a mutação, podendo ajudar aliados a queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Campos', 'Bosque', 'Tundra', 'Taiga' ], // Exemplo: múltiplos biomas
 },
 'Criolofossauro': {
     title: 'Caçador Congelado',
     image: 'imagens/dinos_criolofossauros.jpg', // Insira um caminho válido
-    weight: '50 kg',
-    height: '1,5 M',
-    length: '3 M',
-    attributes: { agi: 4, for: 3, int: 2, pre: 2, vig: 3 },
-    life: 45, // Vida do Criolofossauro
-    armor: 10, // Armadura do Criolofossauro
-    actionBonus: '+15 em esquiva, +15 em escalar, +10 em caçar, +5 em furtividade, +10 em ataques rápidos',
+    weight: '2 toneldas',
+    height: '2,3 M',
+    length: '2,5 M',
+    attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2},
+    life: 125, // Vida do Criolofossauro
+    armor: 65, // Armadura do Criolofossauro
+    actionBonus: '+15 bafo, +10 pontaria, +10 esquiva, +10 reflexo, +10 mordida, +10 garra, +10 cheirar, +10 fortitude, +5 escalar, +5 bloqueio, +5 rastro, +5 agachar, +5 correr, +5 socializar, +5 resistência, +5 intimidação ',
     attacks: [
-        'Mordida Congelante: 4d6+10 (causa sangramento, podendo reduzir a agilidade do alvo)',
-        'Investida Rápida: 5d10+5 (não deixa o alvo reagir, mas reduz a esquiva do Criolofossauro por 1 rodada)',
-        'Corte de Garras: 2d12+10 (golpe rápido com garras afiadas, pode desarmar o inimigo)'
+        'Mordida Congelante: 4d10+20 (Deixa o alvo com frio ou caso já esteja, congelando)',
+        'Investida Rápida: 5d10+5 (Deixa o alvo lento por 1d2 rodadas)',
+        'Corte de Garras: 2d12+10 2x(Causa +20 dano extra em criaturas congeladas)'
     ],
     abilities: [
-        'Sobrevivência no Frio: O Criolofossauro possui resistência ao frio, reduzindo o dano causado por ataques elementais de gelo ou frio em 50%.',
-        'Garras Congelantes: Ao atacar com suas garras, o Criolofossauro pode causar uma redução de 1d4 na velocidade do inimigo por 2 rodadas.',
+        'Sobrevivência no Frio: O Criolofossauro possui resistência ao frio, sendo quase praticamente imune a frio e tendo um suporte de regulamento do corpo, deixando a montaria protegida a frio, além de se mover com facilidade na neve, ganahndo +5 em correr ou andar em terrenos de neve. ',
+        'Bafo gélido: O Criolofossauro pode beber água e usar parte dela como combustivel para despejar um bafo frio que congela ou deixa alvos lentos, causando 4d6 de dano gélido, imobilizando um alvo médio caso fracasse em um teste de fortitude.',
        
     ],
-    passiva: 'Agilidade no Gelo: Quando em áreas frias ou com neve, o Criolofossauro ganha +15 em esquiva e pode se mover até duas vezes por rodada.',
-    passivaElemental: 'Hypo-Gelo: Ganha resistência a dano de frio e pode fazer ataques elementais de gelo a cada 3 rodadas, causando 3d6 de dano extra.'
+    passiva: 'Agilidade no Gelo: Seu gelo é feito de forma natural e rápida na cristalização dos pedaços de gelo, acelerando o processo do gelo e causando o dano de 6d6 pontos de dano de gelo para criaturas que estejam congelando.',
+    passivaElemental: 'Suas habilidades gélidas ou seu bafo podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Campos', 'Bosque', 'Tundra', 'Taiga' ], // Exemplo: múltiplos biomas
 },
 'Pinguim': {
     title: 'Viajante do Gelo',
     image: 'imagens/dinos_pinguin.webp', // Insira um caminho válido
-    weight: '15 kg',
-    height: '1 M',
+    weight: '35 kg',
+    height: '0,3 M',
     length: '1,2 M',
-    attributes: { agi: 5, for: 2, int: 2, pre: 1, vig: 3 },
+    attributes: { agi: 3, for: 1, int: 3, pre: 2, vig: 1 },
     life: 35, // Vida do Pinguim
-    armor: 5, // Armadura do Pinguim
-    actionBonus: '+25 em natação, +15 em furtividade, +5 em esquiva',
+    armor: 10, // Armadura do Pinguim
+    actionBonus: '+10 pescar, +10 nadar, +10 salto na água, +10 socializar, +10 fortitude, +10 quebrar gelo, +10 abraçar, +10 grito, +5 esquiva, +5 contra-ataque, +5 furtividade, +5 acasalmento, +5 dormir, +5 rolar, +5 ficar parado, +5 digestão. ',
     attacks: [
-        'Bico Cortante: 3d6+5 (golpe rápido, pode cortar com o bico e gerar sangramento)',
-        'Mergulho: 3d10+5 (ataque rápido enquanto se move de baixo para cima, pode causar dano e empurrar o inimigo)',
-        'Golpe de Asa: 2d12+5 (golpe de asa que empurra o inimigo para longe)'
+        'Bico Cortante: 2d6+5 (Ganha +5 contra alvos que estiverem na água)',
+        'Mergulho: 1d6+5 (Ataque giratório que atordoa peixes pequenos)',
+        'garras: 1d4+2 2x (Ganha +5 corte em criaturas que sejam peixes.)'
     ],
     abilities: [
-        'Adaptado ao Frio: O Pinguim não sofre efeitos negativos de temperaturas extremamente baixas e pode se mover rapidamente em ambientes gelados.',
-        'Mergulho Ágil: Ao mergulhar na água, o Pinguim ganha +10 de esquiva e pode atravessar qualquer área aquática com facilidade.',
-       
+        'Adaptado ao Frio: O Pinguim não sofre efeitos negativos de temperaturas extremamente baixas e pode se mover tranquilamnete nesses terrenos frios, ganhando +5 em furtividade pelo ambientes na neve.',
+        'Mergulho Ágil: Ao mergulhar na água, o Pinguim pode procurar itens aleatórios ao ser treinado, podendo fazer viagens com o grupo para buscar algo de interesse, além de ser muito inteligente em tarefas que envolvam pescar ou coletar itens, ganahndo +5 em pensar.',
+        
     ],
-    passiva: 'Corpo Resistente: Ganha resistência a ataques que causam sangramento ou queimaduras devido ao seu corpo adaptado ao frio.',
-    passivaElemental: 'Hypo-abismoelétrico: Pode reduzir o dano de ataques de fogo em 25% e é imune a desidratação em ambientes gelados e consegue mergulhar nas profundezas.'
+    passiva: 'Sobrevivente da Neve: Ganha +5 de regeneração de vida e resitência ao consumir peixes em cenas de descanso, aumentando confome o pinguim descansa, se recupernado de efeitos negativos e fadigas. ',
+    passivaElemental: 'Suas habilidades de sobrevivência e mergulho podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Praia', 'Tundra', 'Floresta Fria', 'Deserto frio', ], // Exemplo: múltiplos biomas
+
 },
-'arqueopterix': {
+'Arqueopterix': {
     title: 'Escalador dos Céus',
     image: 'imagens/dinos_archaeopteryx.jpeg', // Insira um caminho válido
-    weight: '2,5 kg',
-    height: '0,4 M',
+    weight: '20 kg',
+    height: '0,3 M',
     length: '1 M',
-    attributes: { agi: 5, for: 1, int: 3, pre: 2, vig: 1 },
-    life: 20, // Vida do Archaeopteryx
-    armor: 3, // Armadura do Archaeopteryx
-    actionBonus: '+20 em escalar, +15 em furtividade, +10 em voo, +5 em ataque aéreo',
+    attributes: { agi: 3, for: 1, int: 3, pre: 2, vig: 1 },
+    life: 30, // Vida do Archaeopteryx
+    armor: 15, // Armadura do Archaeopteryx
+    actionBonus: '+10 planar, +10 escalar, +10 furtividade, +10 saltar, +10 correr, +10 esquiva, +10 reflexo, +5 pontaria, +5 socialziar, +5 mordida +5 garras, +5 agachar, +5 contra-ataque, +5 pensar, +5 fortitude',
     attacks: [
-        'Golpe de Garras: 2d6+5 (golpe rápido com as garras, pode rasgar a pele e causar sangramento)',
-        'Bico Perfurante: 3d6+10 (golpe com o bico que pode atingir pontos vulneráveis)',
-        'Ataque Aéreo: 2d10+5 (ataque enquanto está voando, ganha +10 de esquiva após o ataque)'
+        'Golpe de Garras: 2d6+5 (Ganha o efeito Ágil)',
+        'Bico Perfurante: 3d6+10',
+        'Ataque Aéreo: 2d10+5 (Causa dano em área em seu rastro onde passou)'
     ],
     abilities: [
-        'Escalador Ágil: O Archaeopteryx pode escalar superfícies verticais com facilidade, ganhando +20 em testes de escalada.',
-        'Voo Rápido: Pode voar por até 30 metros em um turno, causando 2d10+5 de dano ao aterrissar em um inimigo.',
+        'Escalador Ágil: O Archaeopteryx pode escalar superfícies verticais com facilidade, podedno usar o bônus de correr junto a sua escalada, e saltar de superficies planando. Ganhando +5 em precisão de seus acertos, e ataques enquanto plana.',
+        'Pequeno Sobreivente: Suas tentativas de fuga ficam cada vez mais rápidas em uma perseguição ou corrida, podendo fugir e correr. A cada fracasso recebe um bônus de +5 em suas próximas tentativas.',
      
     ],
-    passiva: 'Escalada Perfeita: Ao escalar ou voar, o Archaeopteryx ganha +10 em esquiva e +5 em furtividade.',
-    passivaElemental: 'Elétrico: Pode aumentar a velocidade de voo em áreas com ventos fortes, permitindo que o Archaeopteryx se mova 1,5 vezes mais rápido.'
+    passiva:  'Corvo das árvores: Archaeopteryx possui uma ampla habilidade de uso de armas e ferramentas, principalmente com armas arremessáveis.  ',
+    passivaElemental: 'Suas habilidades de fuga e planar podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Tundra', 'Bosque', 'Taiga', ], // Exemplo: múltiplos biomas
 },
 'Piranha': {
     title: 'O Peixe Endiabrado',
     image: 'imagens/dinos_piranha.webp', // Insira um caminho válido
-    weight: '0,5 kg',
-    height: '0,4 M',
-    length: '0,4 M',
-    attributes: { agi: 4, for: 3, int: 1, pre: 1, vig: 3 },
-    life: 35, // Vida da Piranha
-    armor: 2, // Armadura da Piranha
-    actionBonus: '+15 em ataque rápido, +10 em mordida, +5 em esquiva',
+    weight: '30 kg',
+    height: '0,3 M',
+    length: '0,2 M',
+    attributes: { agi: 3, for: 3, int: 1, pre: 1, vig: 1 },
+    life: 30, // Vida da Piranha
+    armor: 5, // Armadura da Piranha
+    actionBonus: '+10 mordida, +10 esquiva, +10 nadar, +5 cortar, +5 acasalar +5 intimidação, +5 saltar da água, +5 digestão, +5 socializar, +5 cheirar, +5 combo, +5 agarrar, +5 contra-ataque',
     attacks: [
-        'Mordida Devastadora: 4d6+5 (destrói pedaços de carne, causando sangramento e acumulando desvantagens no alvo, como quebrado e hemorragia)',
-        'Ataque em Grupo: 5d6+5 (se houver aliados próximos, a Piranha ganha +1d6 de dano por criatura adicional)',
-        'Investida Aquática: 3d10+5 (investida rápida enquanto a Piranha se move através da água, pode atingir o inimigo e causar dano adicional ao contato)'
+        'Mordida cortante: 1d12+5 (Causa sangramento no alvo)',
+        'Cardume do Diabo: 2d6+6 (O dano do +6 aumenta por número de Piranhas. Cada piranha que estiver no cardume, aumenta o +5 de agarrão contra o alvo)',
+        'Cardume de dentes: 1d12+5 (Aumenta o número de dados conforme a mais números de piranhas. O sangramento escala com o número de mordidas, diminuindo por quantos +5 de fortidue a presa alcance. Inicialmente começa com 1d12 de sangramento.)'
     ],
     abilities: [
-        'Destruição Implacável: Cada mordida da Piranha causa um efeito acumulativo no inimigo. Cada ataque de mordida aumenta a desvantagem do alvo (sangrando, quebrado, hemorragia).',
-        'Caçadora de Cardumes: A Piranha é mais forte em grupos, ganhando bônus de dano e ataque enquanto estiver próxima de outras piranhas.',
+        'Criatura do Sangue: Piranhas ao sentirem cheiro de sangue, ganham +5 em nadar temporáriamente e 1d6 adiconal de dano em Cardume do Diabo para cada Piranha. ',
+        'Peixe do Diabo: Quando uma presa invasora entre em sua lagoa ou território, piranhas podem ganhar +5 em percepção para localiza-la e +5 em socialização para avisar o cardume que um inimigo está próximo. ',
       
     ],
-    passiva: 'Sanguinária: A cada ataque bem-sucedido, a Piranha causa um efeito adicional de sangramento (1d6 de dano por rodada) até que o inimigo trate o ferimento.',
-    passivaElemental: 'Morte: A Piranha ganha +5 em esquiva e +10 em ataques quando está dentro da água ou em ambientes cheio de morte.'
+    passiva: 'Matadora da Fome: Em condições extremas de difucldade na caça piranhas narutalmente ficam agressivas com a mesma espécie, perdendo -10 socialização e ganhando o efeito Forte contra piranhas menores ou mais fracas.',
+    passivaElemental: 'Suas habilidades agressivas de consumir a presa podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: ['Praia','Pântano' ], // Exemplo: múltiplos biomas
 },
+'Deinonico': {
+    title: 'O Caçador de Penas',
+    image: 'imagens/dinos_deinonico.webp',
+    weight: '200 kg',
+    height: '1,7 M',
+    length: '2,5 M',
+    attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 2},
+    life: 90,
+    armor: 35,
+    actionBonus: '+10 mordida, +10 garras, +10 saltar, +10 esquiva, +10 socializar +10 correr, +10 contra-ataque, +10 resistência a doenças, +10 percepção, +10 rastreamento, +5 cheirar, +5 fortitude, +5 escalar, +5 furtividade, +5 preparação de ação, +5 pensar, +5 agarrar, +5 digestão, +5 lutar, +5 dançar, +5 agachar, +5 flanquear ',
+    attacks: [
+        'Mordida infestada: 4d8+15 (Faz o alvo ficar fraco e com uma chance de contrair uma doença ou Praga que é contraida pelo contato a bactérias)',
+        'Garra Saltadora: 3d6+5 2x',
+        'Ataque de grupo: 6d6+20 (Cada Deinonico que estiver atacando o mesmo alvo, aumneta parte do dano do ataque em +20, além de fornecer ao grupo um bônus de flanquear +5 para cada deinonico)'
+    ],
+    abilities: [
+        'Saliva Mortal: O Deinonico ganha bônus de +10 em rastreamento e percepção contra alvos que foram atacados e contrairam alguma doença, ganahndo +4d6 em seus ataques somente contra esses alvos.',
+        'Salto de Garras: Deinonicos após pularem em um alvo pode se grudar nele causando dano de sangramento e atacando com a mordida e as garras, enquanto estão agarrados possui o efeito de Rasgo de Vida'
+    ],
+    passiva: 'Raptor Sujo: Deinonicos possuim grande proteção contra doenças e pragas, usando elas contra suas presas, acumulando bactérias em sua boca e aproveitando que elas estão fracas para finalizar a caça. Após Consumir um alvo ou usar muitos ataques de mordida, ganha +5 em pensar, fazendo o sobreviver de forma mais segura enquanto a sua arma mais mortal se acumula com base no tempo.',
+    passivaElemental: 'Suas habilidades que usam as garras e suas pragas podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Montanha', 'Bosque',  ], // Exemplo: múltiplos biomas
+},
+'Hererassauros': {
+    title: 'O Predador Invisível',
+    image: 'imagens/dinos_heressauros.jpeg',
+    weight: '1,5 toneladas',
+    height: '3 M',
+    length: '6 M',
+    attributes: { agi: 5, for: 2, int: 3, pre: 4, vig: 3 },
+    life: 125,
+    armor: 60,
+    actionBonus: '+15 furtividade, +10 emboscada, +10 esquiva, +10 bloquear, +10 mordida, +10 camuflar, +10 ficar parado, +10 garra, +10 ataque de cauda, +10 contra-ataque, +10 correr, +10 percepção, +10 correr, +10 sobrevivência, +5 escalar, +5 agarrar, +5 rastrear, +5 agachar, +5 flexibilidade, +5 flanquear, +5 resistência ',
+    attacks: [
+        'Mordida Rápida: 4d8+10 (Faz o Alvo não enxegrar cores além de vermelho por 1d4 rodadas)',
+        'Garra Furtiva: 3d8+15 2x(se usado em emboscada, aplica desvantagem no alvo por 1 rodada)',
+        'Ataque de grupo: 3d8+20 (Cada Heressauro que atacar junto acrescenta +25 dano, ignorando armaudra. Além do grupo ganhar +5 em agarrar por cada heressauro)'
+    ],
+    abilities: [
+        'Mestre da Camuflagem: Pode se esconder perfeitamente em áreas de floresta, mudando a cor e textura da pele, sendo uma criatura furtiva, recebendo +10 em furtividade, Quando ficar parado camuflado pode receber +5 de prepação de ataque',
+        'Ataque Surpresa: Quando ataca em furtividade, seu primeiro ataque recebe 1d10+5 no dano e seu dado crítico de 20 cai para 18.'
+    ],
+    passiva: 'Predador Silencioso: Quando está furtivo, não possui nenhuma penalidade de furtividade, álem de possuir maior regeneração de vida em ambientes florestais, regenerando parte da vida lentamente em 10%.',
+    passivaElemental: 'Suas habilidades que usam sua camulfagem podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Campos', 'Planície', 'Bosque'], // Exemplo: múltiplos biomas
+},
+'Utahraptor': {
+    title: 'Predador Ágil e Inteligente',
+    image: 'imagens/dinos_velociraptor.jpeg',
+    weight: '250 kg',
+    height: '1.9 M',
+    length: '2.3 M',
+    attributes: { agi: 3, for: 2, int: 4, pre: 2, vig: 2 },
+    life: 125,
+    armor: 35,
+    actionBonus: '+10 pensar, +10 correr, +10 saltar, +10 socializar, +10 percepção, +10 intimidação, +10 enganação, +10 sabotar, +10 mordida, +10 garras, +10 agachar, +10 rastremaneto, +10 preparar ação, +10 esquiva, +10 reflexo, +10 furtividade, +10 emboscada, +10 flanquear, +10 contra-ataque, +5 diplomacia, +5 cheirar,  +5 escalar, +5 rugir, +5 agarrar, +5 luta, +5 fortitude, +5 resitência',
+    attacks: [
+        'Mordida Raptor: 3d10+25 (Após acertar um ataque ganha +5 em agarrar)',
+        'Garras Cortantes: 2d12+15 2x(Causa sangramento em alvos que estiverem sem armadura)',
+        'Ataque de Grupo: 4d12+20 (Cada Raptor que atacar junto ao grupo ganha +5 em esquiva, +5 contra-ataque e +25 de dano completando o ataque.)'
+    ],
+    abilities: [
+        'Caça em Grupo: Ao lutar com aliados que participarem de um plano de emboscada ou caça, o Raptor alfa pode dar um rugido fazendo todo o grupo ganhar +5 contra-aatque, +5 pensar, +5 luta e +2 dados de dano em ataques físicos..',
+        'Instinto Predatório: Analisa a fraqueza do inimigo, reduzindo a sua reaçãoem -5 caso gaste uma ação pensando ou examinado o alvo, caso um grupo raptor ataque o mesmo alvo em todos os lados diferentes, o alvo fica exposto aos caçadores.'
+    ],
+    passiva: 'Predador Inteligente: Raptores podem graavar ou perceber padrões de criaturas ou humanso em seu território, ganhando +5 em ações contra qualquer inimigo que tenha percebido e examinado',
+    passivaElemental: 'Suas habilidades que usam sua inteligência predatória podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Campos', 'Planície', 'Bosque'], // Exemplo: múltiplos biomas
+},
+'Antrorraptor': {
+    title: 'Raptor Atroz',
+    image: 'imagens/dinos_atrocirraptor.png',
+    weight: '300 kg',
+    height: '2.1 M',
+    length: '2.8 M',
+    attributes: { agi: 3, for: 3, int: 3, pre: 2, vig: 3 },
+    life: 135,
+    armor: 70,
+    actionBonus: '+10 perseguição, +10 pensar, +10 tática, +10 esquiva, +10 correr, +10 bloqueio, +10 contra-ataque, +10 luta, +10 mordida, +10 garras, +10 agachar, +10 flanquear, +10 percepção, +10 cheirar, +10 resistência, +10 socializar, +10 vontade, +10 sobrevivência, +10 intimidação, +10 fortitude, +5 emboscada, +5 furtividade, +5 agarrar, +5 escalar, +5 nadar, +5 cortar, +5 cabeçada, +5 ataque de cauda, +5 enganação, +5 saltar, +5 resiliência  ',
+    attacks: [
+        'Mordida Atroz: 3d10+25 (ganha +5 agarrar após morder)',
+        'Garra Brutal: 3d12+10 2x( Dano extra de +10 em alvos que estiverem fugindo)',
+        'Investida Voraz: 6d4+20 (Desarma inimigos ou os derrurba no chão)'
+    ],
+    abilities: [
+        'Predador Tático: Ganha +5 em qualquer ação que faça perseguir um alvo que foi comandando ou teve uma obssessão na caçada, ganhando o efeito de Rasgo de Vida contra sua obssessão',
+        'Resiliência Atroz: Após sofrer algum efeito de atordoamento ou for derrubada, pode dar um rugido que faz com que todos os aliados do bando ou do grupo ganhem +5 em fortitude, resistência ou +5 correr, podendo evitar de cair ou sofrer efeitos negativos durante a perseguição'
+    ],
+    passiva: 'Tanque Natural: Atrocirraptores podem durante a luta possuir vida extra com o acúmulo de roubo de vida com sua obssessão ou comendo corpos que foram caçados pelo grupo, ganahndo + 50 de vida acumulada',
+    passivaElemental: 'Suas habilidades e ataques de perseguições podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Montanha', 'Bosque', 'Dunas'], // Exemplo: múltiplos biomas
+},
+'Pyroraptor': {
+    title: 'Raptor de Gelo',
+    image: 'imagens/dinos_pyroraptor.png',
+    weight: '250 kg',
+    height: '1,8 M',
+    length: '2.7 M',
+    attributes: { agi: 3, for: 3, int: 3, pre: 2, vig: 3 },
+    life: 130,
+    armor: 65,
+    actionBonus: '+10 esquiva, +10 socialziar, +10 intimidar, +10 contra-ataque, +10 luta, +10 fortitude, +10 salto, +10 encontrão, +10 cavar, +10 mordida, +10 garras, +10 ataque de cauda, +10 percepção, +10 cheirar, +10 rastrear, +10 enganação, +5 nadar, +5 escalar, +5 furtividade, +5 agarrar, +5 resistência, +5 flanco, +5 percepção inimiga, +5 pensar, +5 perseguição, +5 correr, +5 bloqueio, +5 diplomacia, +5 agachar',
+    attacks: [
+        'Mordida do Gelo: 3d10+25 (Causa o efeito de Lentidão no alvo isolado)',
+        'Garra Cortante: 3d12+15 2x(dano extra (+10) contra alvos com Frio ou Congelando)',
+        'Investida Congelante: 4d8+20 (aplica lentidão a todos os alvos no rastro de 1,5 metros)'
+    ],
+    abilities: [
+        'Adaptado ao Gelo: Ganha +15 de sobrevivência quando estiver em biomas congelados ou em situações extremas, além de fazer sua montaria, o sobrevivente, ter proteção ao frio ganahndo +10 fortitude.',
+        'Foco Mortal: Causa o efeito sangrando quando atacar um alvo que estiver congelando ou com frio, reduzindo também 1 Vig até o fim da rodada e deixando lento.'
+    ],
+    passiva: 'Predador Ártico: Sempre que estiver em biomas extremos de temperatura baixa, ganha +5 em pensar para prever tempestades de neve ou qualquer evento que vai acontecer no bioma, além de sempre que atacar um alvo em um bioma frio, causa +2 dados de dano pela sua facilidade em fazer alvos ficarem com frio e cortar quando estiverem lentos.',
+    passivaElemental: 'Suas habilidades de adaptação ao frio junto com sua agressividade nos biomas congelados ou extremos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Tundra', 'Deserto frio', 'Floresta Fria'], // Exemplo: múltiplos biomas
+},
+
+
+
+
+
+
 'Parasitas': {
     title: 'Parasita Sanguinário',
     image: 'imagens/dinos_parasitas.png', // Insira um caminho válido para imagem
@@ -988,29 +1148,6 @@ const dinoFichas = {
     passiva: 'Bactérias Acumulativas: Cada rodada em combate aumenta a intensidade de seus efeitos de infecção, tornando suas mordidas progressivamente mais letais.',
     passivaElemental: 'Fogo: Seus ataques inflamam as bactérias acumuladas, causando uma explosão ao atingir o inimigo e aplicando queimaduras graves que reduzem a eficácia das curas em 50%.'
 },
-'Deinonico': {
-    title: 'O Caçador em Grupo',
-    image: 'imagens/dinos_deinonico.webp',
-    weight: '70 kg',
-    height: '1,8 M',
-    length: '4 M',
-    attributes: { agi: 4, for: 3, int: 3, pre: 4, vig: 3 },
-    life: 90,
-    armor: 15,
-    actionBonus: '+10 mordida ágil, +10 garras rápidas, +15 saltar, +10 esquiva, +10 rastreamento, +5 escalar, +5 rastrear, +5 socializar, +10 contra-ataque, +10 resistência a doenças, + 5 furtividade, +5 preparação de ação.',
-    attacks: [
-        'Mordida Rápida: 4d8+10 (aplica **infecção leve**, causando 1d8 de dano contínuo por rodada por 2 rodadas)',
-        'Garra Saltadora: 5d6+10 (ataca pontos frágeis do alvo, reduzindo armadura em -5 por 2 rodadas)',
-        'Ataque Coordenado: 6d6+15 (só pode ser usado em grupo, causa dano adicional por cada Deinonico atacando o mesmo alvo [+2 por aliado])'
-    ],
-    abilities: [
-        'Rastreador Preciso: O Deinonico ganha bônus de +10 em rastreamento e pode prever movimentos do inimigo, aplicando **desvantagem** no próximo ataque do alvo.',
-        'Ataque em Grupo: Para cada aliado próximo, o Deinonico recebe +5 em agilidade e +5 no bônus de ataque, maximizando a eficiência do grupo.'
-    ],
-    passiva: 'Predador de Matilha: Quando há 3 ou mais Deinonicos atacando juntos, todos recebem um aumento de +10 em resistência contra ataques e regeneram 10 pontos de vida por rodada.',
-    passivaElemental: 'Elétrica: Ganha um aumento de velocidade enquanto ataca, podendo realizar um ataque adicional a cada rodada em grupos com mais de dois aliados.'
-},
-
 'Albertossauro': {
     title: 'O Rastreador Estratégico',
     image: 'imagens/dinos_albertosauros.webp',
@@ -1032,29 +1169,6 @@ const dinoFichas = {
     ],
     passiva: 'Predador Incansável: O Albertossauro recupera 10 pontos de vida sempre que elimina um inimigo, ganhando também +5 no próximo ataque.',
     passivaElemental: 'Fogo: Sua mordida e ataques corpo a corpo causam 2d8 de dano adicional de fogo por rodada enquanto o inimigo estiver queimando.'
-},
-
-'Hererassauros': {
-    title: 'O Predador Invisível',
-    image: 'imagens/dinos_heressauros.jpeg',
-    weight: '350 kg',
-    height: '3 M',
-    length: '6 M',
-    attributes: { agi: 5, for: 3, int: 3, pre: 4, vig: 3 },
-    life: 120,
-    armor: 60,
-    actionBonus: '+15 furtividade, +15 emboscada, +15 esquiva, +10 bloquear, +10 mordida, +10 camuflar, +10 mudar de cor, +10 ficar parado, +10 garra, +10 rabo, +10 contra-ataque, +10 escalar, +5 agarrar, +5 rastrear, +5 agachar, +5 flexibilidade, +5 desarme, +5 perseguir, +5 investida, ',
-    attacks: [
-        'Mordida Rápida: 4d8+10 (causa sangramento leve por 2 rodadas)',
-        'Garra Furtiva: 5d8+15 (se usado em emboscada, aplica desvantagem no alvo por 1 rodada)',
-        'Investida Camuflada: 3d8+10 (ignora a armadura se usado na furtividade)'
-    ],
-    abilities: [
-        'Mestre da Camuflagem: Pode se esconder perfeitamente em áreas de floresta, recebendo +15 em furtividade e anulando percepção visual de inimigos próximos.',
-        'Ataque Surpresa: Quando ataca em furtividade, seus ataques recebem +20 no dano e bônus crítico de 20 para 18.'
-    ],
-    passiva: 'Predador Silencioso: Quando está furtivo causa +2 dados de dano em ataques, não possui nenhuma penalidade de furtividade, álem de regenerar 2d6 fora de combate em florestas. ',
-    passivaElemental: 'Elétrico: Em regiões florestais ou próximas de água, seus ataques geram descargas elétricas de 2d6 adicionais.'
 },
 'Metriacontossauro': {
     title: 'O Observador Estratégico',
@@ -1473,72 +1587,6 @@ const dinoFichas = {
     ],
     passiva: 'Instinto Selvagem: Ganha +5 de velocidade e +10 de força ao atacar de surpresa.',
     passivaElemental: 'Elétrica: Seus ataques ganham um efeito paralisante leve por 1 turno.'
-},
-'Velociraptor': {
-    title: 'Predador Ágil e Inteligente',
-    image: 'imagens/dinos_velociraptor.jpeg',
-    weight: '70 kg',
-    height: '1.8 M',
-    length: '2.5 M',
-    attributes: { agi: 5, for: 3, int: 5, pre: 4, vig: 3 },
-    life: 125,
-    armor: 8,
-    actionBonus: '+25 em grupo, +20 furtividade, +15 mordida, +20 análise de alvos +10 esquiva',
-    attacks: [
-        'Mordida Lacerante: 5d10+20 (causa sangramento contínuo por 2 turnos)',
-        'Garras Cortantes: 6d12+25 (dano extra em alvos imobilizados ou distraídos)',
-        'Investida Coordenada: 5d12+20 (dano aumentado por aliados próximos)'
-    ],
-    abilities: [
-        'Caça em Grupo: Ao lutar com aliados próximos, todos ganham +10 em dano e defesa.',
-        'Instinto Predatório: Analisa a fraqueza do inimigo, reduzindo a resistência em -10 por 2 turnos.'
-    ],
-    passiva: 'Predador Furtivo: Ganha +20 em furtividade e emboscada ao caçar em terrenos florestais ou com cobertura.',
-    passivaElemental: 'Elétrica: Ao atacar, ganha um aumento de velocidade temporário e aplica paralisia leve no alvo.'
-},
-'Antrorraptor': {
-    title: 'Raptor Atroz',
-    image: 'imagens/dinos_atrocirraptor.png',
-    weight: '85 kg',
-    height: '1.9 M',
-    length: '2.8 M',
-    attributes: { agi: 4, for: 4, int: 4, pre: 3, vig: 4 },
-    life: 120,
-    armor: 60,
-    actionBonus: '+20 perseguição, +15 furtividade, +20 em defesa, +15 em localizar, +10 luta, +10 contra-ataque',
-    attacks: [
-        'Mordida Atroz: 6d10+25 (causa sangramento)',
-        'Garra Brutal: 5d12+20 (dano extra em alvos em fuga)',
-        'Investida Voraz: 6d8+20 (impede o alvo de se mover por 1 turno)'
-    ],
-    abilities: [
-        'Predador Tático: Ganha +10 de dano e esquiva ao perseguir um alvo por mais de 2 turnos.',
-        'Resiliência Atroz: Reduz o dano recebido em -10 enquanto estiver em combate com múltiplos inimigos.'
-    ],
-    passiva: 'Tanque Natural: Recebe +15 de resistência contra ataques frontais.',
-    passivaElemental: 'Elétrica: Durante perseguições, ganha um aumento de velocidade e deixa os inimigos mais lentos.'
-},
-'Pyroraptor': {
-    title: 'Raptor de Gelo',
-    image: 'imagens/dinos_pyroraptor.png',
-    weight: '75 kg',
-    height: '2 M',
-    length: '2.7 M',
-    attributes: { agi: 5, for: 3, int: 4, pre: 4, vig: 3 },
-    life: 120,
-    armor: 8,
-    actionBonus: '+25 nadar, +20 ataque no gelo, +15 enfraquecimento +10 esquiva',
-    attacks: [
-        'Mordida Gélida: 6d10+25 (diminui vigor do alvo em -5 por 2 turnos)',
-        'Garra Cortante: 5d12+30 (dano extra contra alvos já enfraquecidos)',
-        'Investida Congelante: 6d8+20 (aplica lentidão no alvo)'
-    ],
-    abilities: [
-        'Adaptado ao Gelo: Ganha +15 de defesa e dano ao lutar em ambientes gelados.',
-        'Foco Mortal: Dano extra contra alvos debilitados ou sangrando.'
-    ],
-    passiva: 'Predador Ártico: Recebe +20 de furtividade e visão perfeita em ambientes nevados.',
-    passivaElemental: 'Gelo: Todos os ataques podem causar dano extra congelante, reduzindo a velocidade do inimigo.'
 },
 'Ptero': {
     title: 'Trapaceiro Aéreo',
@@ -5631,6 +5679,7 @@ const dinoFichas = {
         ],
         "passiva": "Touro de Espinhos: Quillshot sempre que acertar um alvo diferente com um espinho ganha uma margem de ameaça +1, diminuindo seu critíco durante a cena. Além de também ganhar +5 em pontaria para cada espinho próximo ou que quase acertou um alvo. Sempre que fica parado seu espinho do meio ganha o efeito de certeiro.",
         "passivaElemental": "Seus Espinhos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, aumentar a fatalidade, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça. "
+
     },
 
 
@@ -5645,100 +5694,243 @@ const dinoFichas = {
 
 
 
-
-
-function openSearch(category) {
-    document.getElementById('searchContainer').style.display = 'flex';
-    document.getElementById('searchTitle').textContent = `Pesquisar em ${category}`;
-
-    const creatureList = document.getElementById('creatureList');
-    creatureList.innerHTML = '';
-    creatures[category].forEach(creature => {
-        const li = document.createElement('li');
-        li.textContent = creature;
-        li.onclick = () => openDinoFicha(creature);
-        creatureList.appendChild(li);
-    });
-}
-
-function openDinoFicha(dino) {
-    const ficha = dinoFichas[dino];
-    if (!ficha) {
-        alert('Ficha não encontrada');
-        return;
-    }
-
-    // Preencher dados no modal
-    document.getElementById('dinoName').textContent = dino;
-    document.getElementById('dinoTitle').textContent = ficha.title;
-    document.getElementById('dinoImage').src = ficha.image;
-    document.getElementById('dinoWeight').textContent = ficha.weight;
-    document.getElementById('dinoHeight').textContent = ficha.height;
-    document.getElementById('dinoLength').textContent = ficha.length;
-    document.getElementById('dinoAgi').textContent = ficha.attributes.agi;
-    document.getElementById('dinoFor').textContent = ficha.attributes.for;
-    document.getElementById('dinoInt').textContent = ficha.attributes.int;
-    document.getElementById('dinoPre').textContent = ficha.attributes.pre;
-    document.getElementById('dinoVig').textContent = ficha.attributes.vig;
-
-    document.getElementById('dinoLife').textContent = ficha.life;
-    document.getElementById('dinoArmor').textContent = ficha.armor;
-    document.getElementById('dinoActionBonus').textContent = ficha.actionBonus;
-
-    document.getElementById('dinoAtk1').textContent = ficha.attacks[0];
-    document.getElementById('dinoAtk2').textContent = ficha.attacks[1];
-    document.getElementById('dinoAtk3').textContent = ficha.attacks[2];
-    document.getElementById('dinoHab1').textContent = ficha.abilities[0];
-    document.getElementById('dinoHab2').textContent = ficha.abilities[1];
-    document.getElementById('dinoPassiva').textContent = ficha.passiva;
-    document.getElementById('dinoPassivaElemental').textContent = ficha.passivaElemental;
-
-    // Exibir modal
-    document.getElementById('dinoModal').style.display = 'flex';
-}
-function closeDinoModal() {
-    document.getElementById('dinoModal').style.display = 'none';
-}
-function filterCreatures() {
-    const query = document.getElementById('searchInput').value.toLowerCase(); // Pega o valor digitado e converte para minúsculas
-    const items = document.querySelectorAll('#creatureList li'); // Seleciona todos os itens da lista de criaturas
-
-    items.forEach(item => {
-        if (item.textContent.toLowerCase().includes(query)) {
-            item.style.display = 'list-item'; // Mostra o item se corresponder à busca
-        } else {
-            item.style.display = 'none'; // Esconde o item caso não corresponda
-        }
-    });
-}
-document.addEventListener("DOMContentLoaded", () => {
-    const triggers = document.querySelectorAll(".modalTrigger");
-    const modals = document.querySelectorAll(".modal");
-    const closeButtons = document.querySelectorAll(".close");
+  let currentBiomeFilter = 'Todos'; // Armazena o bioma atualmente selecionado ('Todos' ou o nome do bioma)
+  let currentCategory = ''; // Armazena a categoria de criatura atualmente selecionada ('Carnívoros', 'Herbívoros', etc.)
   
-    // Open modal
-    triggers.forEach(trigger => {
-      trigger.addEventListener("click", () => {
-        const modalId = trigger.dataset.modal;
-        document.getElementById(modalId).style.display = "flex";
-      });
-    });
   
-    // Close modal
-    closeButtons.forEach(button => {
-      button.addEventListener("click", () => {
-        button.closest(".modal").style.display = "none";
-      });
-    });
+  // =====================================================
+  // === 3. FUNÇÕES DE CONTROLE DA INTERFACE ===
+  // =====================================================
   
-    // Close modal when clicking outside content
-    modals.forEach(modal => {
-      modal.addEventListener("click", e => {
-        if (e.target === modal) {
-          modal.style.display = "none";
-        }
+  // Função para abrir a visualização de pesquisa para uma categoria específica
+  function openSearch(category) {
+      // Armazena a categoria clicada para uso posterior nos filtros
+      currentCategory = category;
+  
+      // Exibe o contêiner de pesquisa
+      document.getElementById('searchContainer').style.display = 'flex';
+  
+      // Atualiza o título da seção de pesquisa
+      document.getElementById('searchTitle').textContent = `Pesquisar em ${category}`;
+  
+      // Chama a função para exibir a lista de criaturas, aplicando os filtros (bioma e texto)
+      displayFilteredCreatures();
+  
+      // Opcional: Esconder as seções de menu/cards após abrir a pesquisa
+      // document.querySelector('.menu-container').style.display = 'none'; // Descomente se quiser esconder os cards
+  }
+  
+  // Função para fechar a visualização de pesquisa
+  // NOTA: Esta função estava no HTML mas não no JS original.
+  // Adicionei uma versão simples aqui. Ajuste conforme a necessidade de reexibir os cards.
+  function closeSearch() {
+       document.getElementById('searchContainer').style.display = 'none';
+       // Opcional: Reexibir as seções de menu/cards
+       // document.querySelector('.menu-container').style.display = 'flex'; // Descomente se quiser reexibir os cards
+       // Opcional: Limpar a caixa de pesquisa e a lista
+       document.getElementById('searchInput').value = '';
+       document.getElementById('creatureList').innerHTML = '';
+       // Opcional: Resetar o filtro de bioma visual e de estado
+       currentBiomeFilter = 'Todos';
+       const defaultBiomeButton = document.querySelector('.biome-filters button[data-biome="Todos"]');
+       if (defaultBiomeButton) {
+           document.querySelectorAll('.biome-filters button').forEach(btn => btn.classList.remove('active'));
+           defaultBiomeButton.classList.add('active');
+       }
+  }
+  
+  
+  // Função para abrir o modal com a ficha detalhada de uma criatura
+  function openDinoFicha(dino) {
+      const ficha = dinoFichas[dino];
+      if (!ficha) {
+          alert('Ficha da criatura não encontrada.');
+          return;
+      }
+  
+      // Preencher dados no modal usando os IDs dos elementos HTML
+      document.getElementById('dinoName').textContent = dino;
+      document.getElementById('dinoTitle').textContent = ficha.title || 'Sem Título'; // Use fallback
+      document.getElementById('dinoImage').src = ficha.image || ''; // Use fallback
+      document.getElementById('dinoImage').alt = `Imagem de ${dino}`; // Adicionar alt text
+      document.getElementById('dinoWeight').textContent = ficha.weight || 'N/A';
+      document.getElementById('dinoHeight').textContent = ficha.height || 'N/A';
+      document.getElementById('dinoLength').textContent = ficha.length || 'N/A';
+  
+      // Atributos (verificar se attributes existe antes de acessar)
+      document.getElementById('dinoAgi').textContent = ficha.attributes?.agi || 'N/A';
+      document.getElementById('dinoFor').textContent = ficha.attributes?.for || 'N/A';
+      document.getElementById('dinoInt').textContent = ficha.attributes?.int || 'N/A';
+      document.getElementById('dinoPre').textContent = ficha.attributes?.pre || 'N/A';
+      document.getElementById('dinoVig').textContent = ficha.attributes?.vig || 'N/A';
+  
+      // Status e Bônus
+      document.getElementById('dinoLife').textContent = ficha.life || 'N/A';
+      document.getElementById('dinoArmor').textContent = ficha.armor || 'N/A';
+      document.getElementById('dinoActionBonus').textContent = ficha.actionBonus || 'N/A';
+  
+      // Ataques (verificar se attacks existe e tem os elementos)
+      const attacksList = document.querySelectorAll('.dino-attacks li');
+      attacksList.forEach((item, index) => {
+          item.textContent = ficha.attacks?.[index] || 'N/A';
       });
-    });
+  
+      // Habilidades (verificar se abilities existe e tem os elementos)
+      const abilitiesList = document.querySelectorAll('.dino-abilities li');
+       abilitiesList.forEach((item, index) => {
+          item.textContent = ficha.abilities?.[index] || 'N/A';
+      });
+  
+      // Passivas
+      document.getElementById('dinoPassiva').textContent = ficha.passiva || 'N/A';
+      document.getElementById('dinoPassivaElemental').textContent = ficha.passivaElemental || 'N/A';
+  
+  
+      // Exibir modal
+      document.getElementById('dinoModal').style.display = 'flex';
+  }
+  
+  // Função para fechar o modal de ficha detalhada
+  function closeDinoModal() {
+      document.getElementById('dinoModal').style.display = 'none';
+  }
+  
+  
+  // =====================================================
+  // === 4. FUNÇÕES DE FILTRAGEM E EXIBIÇÃO DA LISTA ===
+  // =====================================================
+  
+  // NOVA FUNÇÃO: Popula a lista de criaturas aplicando o filtro de BIOMA
+  function displayFilteredCreatures() {
+      const listElement = document.getElementById('creatureList');
+      listElement.innerHTML = ''; // Limpa a lista atual
+  
+      // Pega as criaturas da categoria atualmente selecionada
+      const categoryCreatures = creatures[currentCategory] || [];
+  
+      // Filtra as criaturas com base no bioma atualmente selecionado
+      const biomeFilteredCreatures = categoryCreatures.filter(creatureName => {
+          const ficha = dinoFichas[creatureName];
+          // Se a ficha não existir ou não tiver informação de bioma, pode optar por incluí-la
+          // ou excluí-la. Aqui, excluímos as que não têm ficha ou bioma definido.
+          if (!ficha || !ficha.biome) {
+               // Opcional: Incluir criaturas sem bioma? return currentBiomeFilter === 'Todos';
+               return false; // Por padrão, exclui criaturas sem ficha ou bioma
+          }
+  
+          // Pega os biomas da criatura. Se ficha.biome for uma string, cria um array com ela.
+          const creatureBiomes = Array.isArray(ficha.biome) ? ficha.biome : [ficha.biome];
+  
+          // Retorna true se o filtro de bioma for 'Todos' OU
+          // se o bioma atualmente selecionado estiver incluído na lista de biomas da criatura
+          return currentBiomeFilter === 'Todos' || creatureBiomes.includes(currentBiomeFilter);
+      });
+  
+      // Popula o elemento UL (creatureList) com os nomes das criaturas que passaram pelo filtro de bioma
+      biomeFilteredCreatures.forEach(creatureName => {
+          const li = document.createElement('li');
+          li.textContent = creatureName;
+          // Define o evento de clique para abrir a ficha
+          li.onclick = () => openDinoFicha(creatureName);
+          listElement.appendChild(li);
+      });
+  
+      // Depois de popular a lista com o filtro de bioma,
+      // chama a função de filtro de texto para aplicar a pesquisa por nome sobre essa lista já filtrada.
+      filterCreatures();
+  }
+  
+  
+  // Função para filtrar a lista VISÍVEL de criaturas com base no texto digitado na caixa de pesquisa
+  // Esta função agora atua sobre a lista já filtrada por bioma por displayFilteredCreatures()
+  function filterCreatures() {
+      const query = document.getElementById('searchInput').value.toLowerCase(); // Pega o valor digitado e converte para minúsculas
+      const items = document.querySelectorAll('#creatureList li'); // Seleciona TODOS os itens LI na lista (visíveis ou escondidos pelo filtro de texto anterior)
+  
+      items.forEach(item => {
+          const creatureName = item.textContent.toLowerCase(); // Pega o nome da criatura do item da lista
+          if (creatureName.includes(query)) {
+              item.style.display = 'list-item'; // Mostra o item se corresponder à busca de texto
+          } else {
+              item.style.display = 'none'; // Esconde o item caso não corresponda
+          }
+      });
+  }
+  
+  
+  // =====================================================
+  // === 5. OUVIDES DE EVENTOS QUANDO O DOM É CARREGADO ===
+  // =====================================================
+  
+  document.addEventListener("DOMContentLoaded", () => {
+  
+      // --- Lógica existente para modais genéricos (pode ser para outros modais além do dinoModal) ---
+      const triggers = document.querySelectorAll(".modalTrigger");
+      const modals = document.querySelectorAll(".modal");
+      // Nota: Seu botão de fechar do dinoModal tem classe .close-button e onclick="closeDinoModal()".
+      // Este seletor .close pode ser para outros modais. Mantenha se tiver outros.
+      const closeButtons = document.querySelectorAll(".close");
+  
+      // Open modal (para botões com classe .modalTrigger)
+      triggers.forEach(trigger => {
+        trigger.addEventListener("click", () => {
+          const modalId = trigger.dataset.modal;
+          const modalElement = document.getElementById(modalId);
+          if (modalElement) {
+             modalElement.style.display = "flex";
+          } else {
+             console.warn(`Modal com ID ${modalId} não encontrado. Verifique seu HTML.`);
+          }
+        });
+      });
+  
+      // Close modal (para botões com classe .close)
+      closeButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          const modal = button.closest(".modal");
+          if (modal) {
+             modal.style.display = "none";
+          }
+        });
+      });
+  
+      // Close modal when clicking outside content (para elementos com classe .modal)
+      modals.forEach(modal => {
+        modal.addEventListener("click", e => {
+          if (e.target === modal) {
+            modal.style.display = "none";
+          }
+        });
+      });
+      // --- Fim da lógica para modais genéricos ---
+  
+  
+      // --- NOVO CÓDIGO PARA FILTROS DE BIOMA ---
+  
+      // Adicionar ouvintes de evento para os botões de filtro de bioma
+      const biomeButtons = document.querySelectorAll('.biome-filters button'); // Seleciona todos os botões na div com classe 'biome-filters'
+      biomeButtons.forEach(button => {
+          button.addEventListener('click', () => {
+              // Atualiza a variável de estado do bioma ativo com o valor do atributo 'data-biome' do botão clicado
+              currentBiomeFilter = button.dataset.biome;
+  
+              // Opcional: Adicionar feedback visual para o botão ativo (adicione CSS para '.active')
+              biomeButtons.forEach(btn => btn.classList.remove('active')); // Remove a classe 'active' de todos os botões de bioma
+              button.classList.add('active'); // Adiciona a classe 'active' apenas no botão que foi clicado
+  
+              // Chama a função para exibir/atualizar a lista, que agora aplicará o filtro de bioma selecionado (e re-aplicará o filtro de texto)
+              displayFilteredCreatures();
+          });
+      });
+  
+      // Opcional: Definir o botão 'Todos' como ativo visualmente quando a página carrega
+      const defaultBiomeButton = document.querySelector('.biome-filters button[data-biome="Todos"]');
+      if (defaultBiomeButton) {
+          defaultBiomeButton.classList.add('active');
+      }
+  
+      // --- FIM DO NOVO CÓDIGO PARA FILTROS DE BIOMA ---
+  
   });
   const slides = [
     {

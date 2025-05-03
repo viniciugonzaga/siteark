@@ -64,53 +64,132 @@
     <!-- Fim Nav-Bar ------------------------------------------------->
     
      
-
-
     <div class="titulo_principal">
-        <h1 class="titulo_efeito">Criaturas</h1>
+      <h1 class="titulo_efeito">Criaturas</h1>
+  </div>
+
+  <div class="centralizar">
+     <div id="modalContainer">
+      <button class="modalTrigger" data-modal="modalCarnivoro">
+        🥩 Carnívoros
+      </button>
+      <button class="modalTrigger" data-modal="modalHerbivoro">
+        🌿 Herbívoros
+      </button>
+      <button class="modalTrigger" data-modal="modalOsso">
+        🦴 Apex Predadores
+      </button>
+     </div>
+   </div>
+
+  <div class="menu-container">
+    <div class="menu-section" id="carnivores">
+         <h3>Carnívoros</h3>
+         <button onclick="openSearch('Carnívoros')">Abrir</button>
+    </div>
+    <div class="menu-section" id="herbivores">
+         <h3>Herbívoros</h3>
+         <button onclick="openSearch('Herbívoros')">Abrir</button>
     </div>
 
-    <div class="centralizar">
-      <div id="modalContainer">
-       <button class="modalTrigger" data-modal="modalCarnivoro">
-         🥩 Carnívoros
-       </button>
-       <button class="modalTrigger" data-modal="modalHerbivoro">
-         🌿 Herbívoros
-       </button>
-       <button class="modalTrigger" data-modal="modalOsso">
-         🦴 Apex Predadores
-       </button>
-      </div>
-     </div>
-
-    <!--------------------------------cards----------------------------------------------------->
-
-    <div class="menu-container">
-      <div class="menu-section" id="carnivores">
-          <h3>Carnívoros</h3>
-          <button onclick="openSearch('Carnívoros')">Abrir</button>
-      </div>
-      <div class="menu-section" id="herbivores">
-          <h3>Herbívoros</h3>
-          <button onclick="openSearch('Herbívoros')">Abrir</button>
-      </div>
-     
-      <div class="menu-section" id="apex">
-          <h3>Apex Criaturas</h3>
-          <button onclick="openSearch('Apex Criaturas')">Abrir</button>
-      </div>
+    <div class="menu-section" id="apex">
+         <h3>Apex Criaturas</h3>
+         <button onclick="openSearch('Apex Criaturas')">Abrir</button>
+    </div>
   </div>
+
+  <div class="biome-filters">
+    <button data-biome="Todos">Todos Biomas</button> <button data-biome="Bosque">Bosque</button>
+    <button data-biome="Planície">Planície</button>
+    <button data-biome="Campos">Campos</button>
+    <button data-biome="Montanha">Montanha</button>
+    <button data-biome="Praia">Praia</button>
+    <button data-biome="Taiga">Taiga</button>
+    <button data-biome="Dunas">Dunas</button>
+    <button data-biome="Pântano">Pântano</button>
+    <button data-biome="Cavernas">Cavernas</button>
+    <button data-biome="Tundra">Tundra</button>
+    <button data-biome="Deserto frio">Deserto frio</button>
+    <button data-biome="Floresta Fria">Floresta Fria</button>
+    <button data-biome="Floresta Fria">Mares</button>
+    <button data-biome="Floresta Fria">Abismo</button>
+    </div>
 
   <div class="search-container" id="searchContainer">
-      <h3 id="searchTitle">Pesquisar</h3>
-      <input type="text" id="searchInput" placeholder="Digite o nome da criatura..." oninput="filterCreatures()">
-    
-      <ul class="creature-list" id="creatureList">
-          <!-- Lista de criaturas será gerada dinamicamente -->
-      </ul>
-      <button class="back-button" onclick="closeSearch()">Voltar</button>
-  </div>
+       <h3 id="searchTitle">Pesquisar</h3>
+       <input type="text" id="searchInput" placeholder="Digite o nome da criatura..." oninput="filterCreatures()">
+
+       <ul class="creature-list" id="creatureList">
+           </ul>
+       <button class="back-button" onclick="closeSearch()">Voltar</button>
+   </div>
+
+  <div id="dinoModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeDinoModal()">&times;</span>
+        <h2 id="dinoName" class="dino-name"></h2>
+        <p id="dinoTitle" class="dino-title"></p>
+        <img id="dinoImage" src="" alt="Imagem da Criatura" class="dino-image" />
+
+        <div class="dino-stats">
+            <div class="Status">
+                <p><strong>Peso:</strong> <span id="dinoWeight" class="dino-weight"></span></p>
+                <p><strong>Altura:</strong> <span id="dinoHeight" class="dino-height"></span></p>
+                <p><strong>Comprimento:</strong> <span id="dinoLength" class="dino-length"></span></p>
+            </div>
+
+            <div class="container-atributos">
+                <div class="Atri">
+                    <p><strong>Atributos/Status:</strong></p>
+                </div>
+                <div class="Status2">
+                    <ul class="dino-attributes">
+                        <li>Agilidade: <span id="dinoAgi" class="dino-agi"></span></li>
+                        <li>Força: <span id="dinoFor" class="dino-for"></span></li>
+                        <li>Inteligência: <span id="dinoInt" class="dino-int"></span></li>
+                        <li>Precisão: <span id="dinoPre" class="dino-pre"></span></li>
+                        <li>Vigor: <span id="dinoVig" class="dino-vig"></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container-status">
+                <div class="Status">
+                  <p class="vida"><strong>Vida:</strong> <span id="dinoLife"></span></p>
+                  <p class="Armor"><strong>Armadura:</strong> <span id="dinoArmor"></span></p>
+                </div>
+            </div>
+
+            <div class="container-bonus">
+                <div class="Status">
+                  <p class="bonus"><strong>Bônus de Ação:</strong> <span id="dinoActionBonus"></span></p>
+                </div>
+            </div>
+
+            <div class="ataques">
+                <p class="ataques2"><strong>Ataques:</strong></p>
+                <ul class="dino-attacks">
+                    <li id="dinoAtk1" class="dino-attack"></li>
+                    <li id="dinoAtk2" class="dino-attack"></li>
+                    <li id="dinoAtk3" class="dino-attack"></li>
+                </ul>
+            </div>
+
+            <p class="habi"><strong>Habilidades:</strong></p>
+            <ul class="dino-abilities">
+                <li id="dinoHab1" class="dino-ability"></li>
+                <li id="dinoHab2" class="dino-ability"></li>
+            </ul>
+
+            <div class="caixa-passiva">
+                <p class="passi"><strong>Passiva:</strong> <span id="dinoPassiva" class="dino-passiva"></span></p>
+                <p class="passi2"><strong>Passiva Elemental:</strong> <span id="dinoPassivaElemental" class="dino-passiva-elemental"></span></p>
+            </div>
+        </div>
+
+        <button class="back-button" onclick="closeDinoModal()">Voltar</button>
+    </div>
+</div>
 
   <div id="dinoModal" class="modal">
     <div class="modal-content">

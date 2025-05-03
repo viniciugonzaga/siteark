@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby.jpeg') no-repeat center center fixed;
+    background: url('../imagens/Logo_Ark_Define.png') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
@@ -24,7 +24,8 @@ body {
 
 /* Estilo da Nav-Bar */
 nav {
-    background: rgba(39, 8, 51, 0.021); /* Transparência com fundo escuro */
+    /* Mantém a cor, aumenta um pouco a transparência para o blur ser mais visível */
+    background: rgba(64, 68, 70, 0.356); 
     color: #ecf0f1;
     display: flex;
     justify-content: space-between;
@@ -35,6 +36,10 @@ nav {
     top: 0;
     z-index: 1000; /* Garante que fique acima de outros elementos */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    /* Adiciona o efeito de blur no fundo */
+    backdrop-filter: blur(2px); /* Ajuste o valor (8px) para mais ou menos blur */
+    -webkit-backdrop-filter: blur(1px); /* Prefixo para compatibilidade com Safari */
 }
 
 
@@ -45,6 +50,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 10%; /* Espaço entre a imagem e o texto */
+    margin-left: 20px;
 }
 
 .logo img {
@@ -62,196 +68,60 @@ nav {
     margin-left: 10px;
 }
 
-
-/* Links da Nav-Bar */
 .nav-links {
     display: flex;
-    gap: 1px; /* Espaço entre os links */
-}
-
-.nav-links a {
-    position: relative;
-    width: 130px;
-    height: 50px;
-    line-height: 48px;
-    background: #ffffff00; /* Fundo transparente */
-    text-transform: uppercase;
-    font-size: 14px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-    overflow: hidden;
-    border-radius: 5px; /* Bordas arredondadas */
-    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-}
-
-.nav-links a span {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 2px;
-    right: 2px;
-    bottom: 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-}
-
-.nav-links a:hover span {
-    color: rgba(255, 255, 255, 1); /* Cor ao passar o mouse */
-}
-
-.nav-links a span::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 50%;
-    background: rgba(199, 71, 250, 0.1);
-    z-index: 10;
-    transition: transform 0.3s ease; /* Transição suave para o efeito */
-}
-.nav-links a span:hover {
-    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-}
-
-.nav-links a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        #bb10b2,
-        #f39c12,
-        #f1c40f,
-        #13e040,
-        #8c17ec,
-        #2980b9,
-        #9b59b6,
-        #8e44ad,
-        #bee418
-    );
-    background-size: 400%;
-    opacity: 0; /* Invisível inicialmente */
-    transition: 2.5s;
-    animation: eff 20s linear infinite;
-    border-radius: 5px;
-}
-
-.nav-links a:hover::before {
-    opacity: 1; /* Visível ao passar o mouse */
-}
-
-/* Animação do Link */
-@keyframes eff {
-    0% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 400% 0;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
-/* Ajustes para telas menores */
-@media (max-width: 780px) {
-    nav {
-        flex-wrap: wrap; /* Permite que os elementos quebrem linha, se necessário */
-        padding: 5px; /* Reduz o padding total */
-    }
-
-    .logo {
-        
-        text-align: center;
-    }
-
-    .nav-links {
-        flex: 2; /* Ajusta o espaço para os links */
-        justify-content: center; /* Centraliza os links */
-    }
-    
-}
-@media (max-width: 1078px) {
+    gap: 11px;
+    margin-left: 34%;
+  }
   
-
-    .logo img {
-        width: 25px; /* Reduz tamanho do ícone */
-        height: 25px;
-    }
-
-    .logo h1 {
-        font-size: 9px; /* Reduz tamanho do texto do logo */
-    }
-
-    .nav-links a {
-        position: relative;
-        width: 10em; /* Largura relativa */
-        height: 3em; /* Altura relativa */
-        line-height: 2.8em; /* Ajusta alinhamento vertical */
-        background: #ffffff00; /* Fundo transparente */
-        text-transform: uppercase;
-        font-size: 1rem; /* Texto relativo ao tamanho padrão */
-        text-align: center;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        color: rgb(255, 255, 255); /* Cor do texto */
-        transition: 0.5s;
-        overflow: hidden;
-        border-radius: 5px; /* Bordas arredondadas */
-        -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-    }
-}
-    /* Responsividade com media queries */
-    @media (max-width: 1080px) {
-        .nav-links a {
-            width: 8em; /* Reduz largura para telas menores */
-            height: 2.6em; /* Reduz altura */
-            line-height: 2.6em; /* Ajusta alinhamento vertical */
-            font-size: 0.8rem; /* Diminui tamanho da fonte */
-           
-        }
-        .nav-links{
-            display: flex;
-            gap: 1px; /* Espaço entre os links */
-          
-        }
-        
-    
-    }
-    @media (max-width: 780px) {
-        .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-           
-        }
-        .nav-links{
-            display: flex;
-            gap: 1px; /* Espaço entre os links */
-        }
-
-    .nav-links a {
-        margin: 5px 0;
-    
-    }
-   
-    }
-/* Botão "Jogar Dados" com efeito Glow */
-/* Dado Container */
+  .sidebar-item {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Para ícone em cima e texto embaixo */
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .sidebar-item .icon {
+    font-size: 18px;
+  }
+  
+  .sidebar-item .highlight-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #b8f1ff, #86eefc, #b8f1ff);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .sidebar-item:hover .highlight-bar {
+    opacity: 1;
+  }
+  
+  .sidebar-item:hover {
+    color: #b3fcff;
+  }
+  
+ 
+/* Mantenha as outras media queries (1078px, 1080px, etc.) e as regras globais */
 .dado-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row; 
+    align-items: center; 
     margin-top: 1rem;
+    margin-right:1%;
+   
+    gap: 1em; /* Adiciona 1em de espaço entre os itens */
 }
 
 /* Imagem do dado */
@@ -260,7 +130,8 @@ nav {
     height: auto;
     margin-bottom: 1rem;
     transition: transform 0.3s ease-in-out; /* Transição suave */
-    margin-right: 3.75em; /* Aproximadamente 60px */
+    margin-right: 0.5em; /* Aproximadamente 60px */
+  
 }
 
 .dado:hover {
@@ -271,8 +142,8 @@ nav {
 .glow-on-hover {
     padding: 0.5rem 1rem;
     font-size: 1rem; /* Tamanho de fonte relativo */
-    background-color: #fa3838; /* Vermelho vibrante */
-    color: white;
+    background-color: #cfcfcf; /* Vermelho vibrante */
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -283,57 +154,241 @@ nav {
 /* Efeito ao passar o mouse */
 .glow-on-hover:hover {
     transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
-    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8); /* Efeito de brilho */
 }
 
-/* Responsividade com media queries */
+.Container-nav { /* Novo div: Agrupa Logo e Links */
+    display: flex; /* Container interno */
+    justify-content: flex-start; /* Alinha Logo e Links ao início */
+}
+
+/* === Estilo Responsivo para 1080px === */
+@media (max-width: 1280px) {
+    .nav-links {
+      gap: 8px;
+    }
+
+    .nav-links {
+        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
+        display: flex;
+        justify-content: center; /* <-- Troque de space-between para center */
+        flex-wrap: wrap;
+        gap: 1rem; /* Ajuste o espaçamento geral */
+        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
+        margin: 0; /* Remove margens externas */
+        flex-basis: auto; /* Deixa a largura base ser automática */
+        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
+        flex-shrink: 1; /* Permite que o bloco de links encolha */
+        gap: 8px; /* Espaço ENTRE os links individuais */
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      margin-left: 6px;
+    }
+  
+    .sidebar-item {
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+  
+    .sidebar-item .icon {
+      font-size: 16px;
+    }
+  
+    .glow-on-hover {
+      font-size: 0.9rem;
+      margin-right: 2em;
+    }
+  
+    .dado {
+      width: 3em;
+    }
+  }
+  
+
+/* === Estilo Responsivo para 1080px === */
 @media (max-width: 1080px) {
-    .glow-on-hover {
-        padding: 0.4rem ; /* Reduz padding em tablets */
-        font-size: 0.6rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 20%;
-        
+    .nav-links {
+      gap: 8px;
     }
 
-    .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 40%;
+    .nav-links {
+        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
+        display: flex;
+        justify-content: center; /* <-- Troque de space-between para center */
+        flex-wrap: wrap;
+        gap: 1rem; /* Ajuste o espaçamento geral */
+        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
+        margin: 0; /* Remove margens externas */
+        flex-basis: auto; /* Deixa a largura base ser automática */
+        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
+        flex-shrink: 1; /* Permite que o bloco de links encolha */
+        gap: 8px; /* Espaço ENTRE os links individuais */
+    }
+
+    .logo h1 {
+      font-size: 20px;
+      margin-left: 6px;
     }
   
-}
+    .sidebar-item {
+      padding: 8px 10px;
+      font-size: 14px;
+    }
+  
+    .sidebar-item .icon {
+      font-size: 16px;
+    }
+  
+    .glow-on-hover {
+      font-size: 0.9rem;
+      margin-right: 2em;
+    }
+  
+    .dado {
+      width: 3em;
+    }
+  }
+  
+ /* Ajustes para telas menores (até 780px) */
 @media (max-width: 780px) {
-    .glow-on-hover {
-        padding: 0.3rem ; /* Reduz padding em tablets */
-        font-size: 0.5rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 10%;
-        
-    } 
+    nav {
+        display: flex; /* Confirma que é um container flex */
+        flex-direction: row; /* Organiza os principais itens em linha */
+        justify-content: center; /* <-- Troque de space-between para center */
+        flex-wrap: wrap;
+        gap: 4rem; /* Ajuste o espaçamento geral */
+        align-items: flex-start; /* Alinha os itens ao topo da linha */
+        padding: 0.5rem; /* Espaçamento interno do nav */
+        gap: 0.5rem; /* Espaço ENTRE os principais itens (se couberem na linha) */
+        box-sizing: border-box; /* Inclui padding e borda na largura total */
+        height: auto; /* Altura automática para se ajustar ao conteúdo quebrado */
+    }
+    .Container-nav { /* Novo div: Agrupa Logo e Links */
+        display: flex; /* Container interno */
+        justify-content: flex-start; /* Alinha Logo e Links ao início */
+        align-items: center; /* Alinha Logo e Links verticalmente no Container-nav */
+        gap: 0.5rem; /* Espaço ENTRE Logo e Links */
+        padding: 0; /* Remova padding interno se não for necessário */
+        margin: 0; /* Remove margens externas, o gap do nav cuida do espaço */
+     
+        /* Opcional: width: 80%; /* Se quiser que ocupe uma largura fixa */
+    }
+
+    /* Ajustes no Logo (Coluna da esquerda - topo) */
+    .logo {
+        display: flex;
+        flex-direction: column; /* Empilha imagem e h1 */
+        align-items: center; /* Centraliza imagem e h1 na coluna */
+        transform: scale(0.9); /* Mantém o redimensionamento do logo */
+        margin: 0; /* Remove margens externas, o gap do nav cuida do espaço */
+        flex-basis: auto; /* Deixa a largura base ser automática */
+        flex-shrink: 0; /* Impede que o logo encolha muito */
+        flex-grow: 0; /* Impede que o logo cresça */
+        /* Opcional: Defina uma largura aproximada se quiser que ele ocupe um "pedaço" fixo da esquerda */
+        /* flex-basis: 120px; */ /* Exemplo: 120px de largura base */
+    }
+
+    .logo img {
+        width: auto; /* Ajusta automaticamente com transform ou flex-basis do pai */
+        height: auto;
+        max-width: 30px; /* Garante que a imagem não fique enorme */
+        max-height: 30px;
+        /* Remova border-radius se não quiser a imagem redonda neste layout */
+        /* border-radius: 0; */
+    }
+
+    .logo h1 {
+        font-size: 14px; /* Tamanho da fonte do título do logo */
+        margin: 0; /* Remove margens */
+        padding: 0 5px; /* Padding lateral ao redor do texto do logo */
+        text-align: center; /* Centraliza o texto se houver quebra de linha */
+    }
+
+    /* Ajustes para o Container do Dado/Botão (Coluna da esquerda - abaixo do logo) */
+    .dado-container {
+        display: flex;
+        flex-direction: column; /* Empilha dado e botão */
+        align-items: center; /* Centraliza dado e botão na coluna */
+        gap: 0.5em; /* Espaço entre dado e botão */
+        margin: 0; /* Remove margens, o gap/layout do nav cuida do espaço */
+        /* margin-top: 0.5rem; /* Se precisar de espaço extra APENAS APÓS o logo na coluna */
+        padding: 5px; /* Padding interno */
+        flex-basis: auto; /* Deixa a largura base ser automática */
+        flex-shrink: 0; /* Impede que o container encolha muito */
+        flex-grow: 0; /* Impede que o container cresça */
+        margin-right: 1%;
+    }
 
     .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 37.5%;
-    }
-  
-}
-@media (max-width: 480px) {
-    .glow-on-hover {
-        padding: 0.4rem ; /* Reduz padding em tablets */
-        font-size: 0.6rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 20%;
-        
+        width: 2.5em; /* Tamanho do dado (relativo ao font-size padrão) */
+        height: auto;
+        margin: 0; /* Remova margens antigas */
     }
 
-    .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 40%;
+    .glow-on-hover {
+        font-size: 0.7rem; /* Tamanho da fonte do botão */
+        padding: 0.3rem 0.6rem; /* Padding do botão */
+        margin: 0; /* Remova margens antigas */
+        /* Simplifique efeitos se estiverem causando problemas de performance/visual */
+        /* transition: none; animation: none; box-shadow: none; */
     }
-  
+
+    /* Ajustes para o Bloco de Links (Lado direito ou linha abaixo) */
+    .nav-links {
+        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
+        display: flex;
+        justify-content: space-around; /* Distribui espaço ENTRE os links individuais DENTRO deste container */
+        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
+        margin: 0; /* Remove margens externas */
+        flex-basis: auto; /* Deixa a largura base ser automática */
+        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
+        flex-shrink: 1; /* Permite que o bloco de links encolha */
+        gap: 8px; /* Espaço ENTRE os links individuais */
+    }
+
+    /* Estilo para CADA link de navegação (.sidebar-item é a classe no <a>) */
+    .sidebar-item { /* Esta é a classe nos seus links <a> */
+        display: flex; /* Torna o link um container flex */
+        flex-direction: column; /* Empilha ícone e texto verticalmente */
+        align-items: center; /* Centraliza ícone e texto na coluna */
+        justify-content: center; /* Centraliza o conteúdo flex */
+        /* Tamanho base para os botões de link - ajusta como eles quebram linha dentro de .nav-links */
+        flex-basis: 60px; /* Sugere uma largura base menor. Ajuste conforme necessário. */
+                         /* Links tentarão ter essa largura, mas encolhem/crescem baseados em flex-shrink/grow */
+        flex-grow: 1; /* Permite que cresçam para preencher a linha (compartilhando espaço) */
+        flex-shrink: 1; /* Permite que encolham se necessário */
+        width: auto; /* Deixa a largura ser flexível */
+        height: auto; /* Deixa a altura ser flexível baseada no conteúdo */
+        padding: 5px 3px; /* Padding interno para espaço ao redor ícone/texto */
+        margin: 0; /* Margem entre links é controlada pelo gap do .nav-links pai */
+
+        font-size: 0.7rem; /* Tamanho da fonte base para o texto */
+        text-decoration: none; /* Remove underline */
+        color: inherit; /* Herda cor */
+        text-align: center; /* Centraliza o texto */
+
+        /* Simplificar estilos visuais complexos que podem causar problemas */
+        transition: none;
+        animation: none;
+        -webkit-box-reflect: none;
+        overflow: visible; /* Mude para visible para ver se o texto está sendo cortado por overflow: hidden */
+    }
+
+    .sidebar-item span {
+        /* Estilo do texto dentro do link */
+        display: block; /* Garante que o span seja um bloco na coluna */
+        margin-top: 3px; /* Espaço entre ícone e texto */
+        font-size: 0.7rem; /* Confirma o tamanho da fonte para o texto */
+        line-height: 1.2; /* Espaçamento entre linhas do texto */
+    }
+
+     /* Ajuste do ícone dentro do link */
+     .sidebar-item .icon {
+        font-size: 1rem; /* Tamanho do ícone */
+        /* margin-bottom: 3px; Removido, gap no .sidebar-item ou margin-top no span cuida disso */
+     }
 }
 
 
@@ -344,13 +399,13 @@ nav {
     top: 1%; /* Define a distância do menu a partir do topo da tela */
     right: 1%; /* Define a distância do menu a partir da borda direita */
     width: 350px; /* Aumenta a largura do menu */
-    background-color: #fd4949a8; /* Cor de fundo */
-    border: 1px solid #fc0404; /* Borda */
+    background-color: #1d1919dc; /* Cor de fundo */
+    border: 1px solid #c0c0c0; /* Borda */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 1.2rem; /* Espaçamento interno maior */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
     z-index: 1000; /* Garante que o menu fique acima de outros elementos */
-    color: #fde796;
+    color: #ffd53c;
     transition: all 0.3s ease;
 }
 
@@ -503,74 +558,21 @@ nav {
 
 /* Main*/
 
-/* Estilo geral do título */
-.titulo_principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   margin-top: 120px;
-  }
-  
-  .titulo_efeito {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #fdd784;
-    position: relative;
-}
 
-.titulo_efeito:after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 4px;
-    background: linear-gradient(90deg, #ebe716, #fca505, #ff7504, #fca505, #fcf805);
-    animation: wave 8s infinite;
-}
-
-
-/* Animação da onda */
-@keyframes wave {
-    0% { width: 50px; }
-    20% { width: 100px; }
-    40% { width: 200px; }
-    60% { width: 200px; }
-    80% { width: 100px; }
-    100% { width: 50px; }
-}
-
-/* Responsividade */
-@media (max-width: 1120px) {
-    .titulo_efeito {
-        font-size: 2.3rem; /* Diminui o tamanho da fonte em telas médias */
-    }
-
-    .titulo_efeito:after {
-        width: 350px; /* Reduz a largura da linha de efeito para telas menores */
-    }
-    @keyframes wave {
-        0% { width: 50px; }
-        20% { width: 100px; }
-        40% { width: 200px; }
-        60% { width: 200px; }
-        80% { width: 100px; }
-        100% { width: 50px; }
-    }
-}
 
 
 
 /* Estilo geral do carrossel */
 .carousel {
-    width: 100%;
-    max-width: 900px;
+    width: 90%;
+    max-width: 1300px;
     margin: 10px auto;
     overflow: hidden; /* Esconde as imagens fora do contêiner */
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(231, 216, 4, 0.534); /* Sombra amarela */
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
     position: relative;
     margin-bottom: 20px;
+    margin-top: 190px;
 }
 
 /* Contêiner de imagens */
@@ -587,204 +589,213 @@ nav {
     border-radius: 10px;
 }
 
-/* Estilo geral do container */
-/* Container dos cards */
 .container-cards {
-    margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
-    gap: 1px; /* Espaço entre os cards */
-    width: 100%;
-    padding: 0px;
-    justify-items: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    margin-bottom: 30px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    padding: 40px;
+    max-width: 1300px;
+    margin: auto;
+    background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
+    border-radius: 20px
 }
-
-/* Estilo base dos cards */
-.card {
+  
+  .card {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
     position: relative;
-    width: 225px; /* Tamanho base ajustado */
-    height: 350px; /* Tamanho base ajustado */
-    color: #ffffff;
-    transition: 0.5s;
-    cursor: pointer;
     overflow: hidden;
-    border-radius: 1.2em;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    min-height: 280px; /* Define uma altura mínima */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os itens horizontalmente */
+    justify-content: flex-start; /* Alinha os itens ao topo */
+    text-decoration: none; /* Garante que o próprio card não tenha decoração de link */
+    border: 2px solid transparent; /* Inicialmente transparente */
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+  }
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 780px) {
+
+    .container-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuste o minmax conforme necessário */
+        gap: 6px;
+        padding: 10px; /* Reduzi um pouco o padding para telas menores */
+        max-width: 1200px;
+        margin: auto;
+      }
+      
+      .card {
+        background: linear-gradient(145deg, #1a1a1a, #000);
+        border-radius: 16px;
+        padding: 15px; /* Reduzi um pouco o padding interno */
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        min-height: 100px; /* Define uma altura mínima para o card */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-decoration: none;
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+        border: 2px solid transparent; /* Inicialmente transparente */
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+      }
+      
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
+        border-color: #aaffff; /* Cor da borda no hover */
+      }
+      
+      .card a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: flex-start;
+        color: inherit;
+      }
+      
+      .card a:hover {
+        opacity: 0.9;
+      }
+      
+      .card h2 {
+        font-size: 0.6em; /* Reduzi um pouco a fonte para telas menores */
+        margin-top: 10px;
+        margin-bottom: 5px;
+        color: #ffffff;
+        background: linear-gradient(to right, #888, #fff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .card img {
+        max-width: 90%;
+        max-height: 140px; /* Defini uma altura máxima em pixels */
+        object-fit: contain;
+        filter: grayscale(100%) brightness(0.8);
+        transition: transform 0.4s ease, filter 0.4s ease;
+        flex-shrink: 0;
+        margin-bottom: auto; /* Empurra a imagem para o topo */
+      }
+      
+      .card:hover img {
+        filter: grayscale(0%) brightness(1);
+        transform: scale(1.1);
+      }
+}
+.card-content {
+  position: relative;
+  transition: transform 0.3s ease-in-out;
 }
 
-.card:hover {
-    transform: translateY(-20px);
+.card:hover .card-content {
+  transform: translateY(-5px); /* Desliza o conteúdo 5px para cima */
+  /* Ou translateX(5px); para deslizar para a direita */
+}
+
+/* Adicione um wrapper para o conteúdo dentro do .card */
+.card > a > * { /* Aplica o estilo aos filhos diretos do link */
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover > a > * {
+  transform: translateY(-5px);
+}
+
+.card {
+  /* ... seus outros estilos ... */
+  position: relative;
+  overflow: hidden;
 }
 
 .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6));
-    z-index: 1;
-    border-radius: 1.2em;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-25deg);
+  transition: left 0.5s ease-in-out;
 }
 
-.card span {
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    right: 6px;
-    bottom: 6px;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s linear infinite;
-    z-index: 2;
-    border-radius: 1em;
-    padding: 2px;
+.card:hover::before {
+  left: 150%;
 }
 
-.card p {
-    font-size: 1.5rem; /* Tamanho de fonte ajustado */
-    font-weight: 800;
-    text-transform: uppercase;
-    text-align: center;
-    background: linear-gradient(45deg, #ecfc15, #a1f716, #f8e002,#a1f716, #fcf809);
-    background-size: 300%;
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
+    border-color: #aaffff; /* Cor da borda no hover */
+  }
+  
+  .card a {
+    text-decoration: none; /* Remove a linha azul dos links */
+    display: flex; /* Garante que os elementos internos do link também usem flexbox */
+    flex-direction: column; /* Organiza os elementos do link em coluna */
+    align-items: center; /* Centraliza os elementos do link horizontalmente */
+    height: 100%; /* Faz o link ocupar toda a altura do card para o clique funcionar em toda a área */
+    justify-content: flex-start; /* Alinha os elementos do link ao topo */
+    color: inherit; /* Herda a cor do texto do card para evitar cores de link padrão */
+  }
+  
+  /* Opcional: Estilo para o hover do link, se desejar alguma indicação visual */
+  .card a:hover {
+    /* Adicione aqui o estilo que você quer para quando o mouse passar por cima do link */
+    opacity: 0.9; /* Exemplo: levemente mais transparente */
+  }
+  
+  .card h2 {
+    font-size: 1.2em;
+    margin-top: 15px; /* Adicionei margem no topo para subir o título */
+    margin-bottom: 10px;
+    color: #ffffff;
+    background: linear-gradient(to right, #d6feff, #cecece);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: gradiente-animado 4s ease infinite;
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-.card a{
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-
-.card .content {
-    position: relative;
-    padding: 10px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.2em;
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-
-/* Gradiente animado */
-@keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
+  }
+  
+  .card img {
+    max-width: 90%;
+    max-height: 150px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.8);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    flex-shrink: 0;
+    margin-bottom: 15px; /* Adicionei margem abaixo da imagem para separá-la do título */
+  }
+  
+  .card:hover img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1.1);
+  }
 
 
-
-@media (max-width: 1078px) {
-    .card {
-        width: 75px; /* Menor tamanho para dispositivos de médio porte */
-        height: 100px;
-    }
-    .card p {
-        font-size: 0.6rem; /* Tamanho de fonte ajustado */
-    }
-}
-
-
-
-
-/* Ajustando o layout para exibição responsiva em várias telas */
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 18px; /* Espaçamento entre os cards */
-}
-
-.card-1 {
-    background-image: url('../imagens/colossos_menu.webp');
-    box-shadow: 0 5px 15px rgba(72, 248, 28, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-    
-}
-
-.card-2 {
-    background-image: url('../imagens/chefes_pangar.jpg');
-    box-shadow: 0 5px 15px rgba(10, 130, 243, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-    
-}
-
-.card-3 {
-    background-image: url('../imagens/efeitos_menu.jpeg');
-    box-shadow: 0 5px 15px rgba(243, 10, 10, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-
-
-
-.card-4 {
-    background-image: url('../imagens/personagens_menu.png');
-    box-shadow: 0 5px 15px rgba(247, 243, 19, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-
-}
-
-.card-5 {
-    background-image: url('../imagens/flora_menu.jpg');
-    box-shadow: 0 5px 15px rgba(106, 252, 113, 0.61);
-}
-
-.card-6 {
-    background-image: url('../imagens/eventos_dodorex_home.webp');
-    box-shadow: 0 5px 15px rgba(179, 1, 250, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-
-.card-7 {
-    background-image: url('../imagens/tribo_home.png');
-    box-shadow: 0 5px 15px rgba(250, 142, 1, 0.61);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-}
-
-.card-8 {
-    background-image: url('../imagens/lobby_doenças2.jpg');
-    box-shadow: 0 5px 15px rgb(82, 7, 12);
-    display: block; /* Garante que o link ocupe toda a área */
-    text-decoration: none;
-
-}
-
-.card-9 {
-    background-image: url('../imagens/lobby_itens2.jpg');
-    box-shadow: 0 5px 15px rgb(114, 1, 1);
-    
-}
-
-.card-10 {
-    background-image: url('../imagens/construções_home.jpg');
-    box-shadow: 0 5px 15px rgb(73, 54, 0);
-}
-
+/* Container geral */
 .main-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
 }
+
   /* Botão para gerar a região */
 .spawn-button {
     background: linear-gradient(45deg, #3c0d92c0, #460c68b7,#3c0d92c0);

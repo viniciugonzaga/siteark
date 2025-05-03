@@ -1,13 +1,21 @@
-/* Estilo Geral----------------------------------------------------------------------- */
-body {
-    margin: 0;
-    font-family: 'Lora', serif;
-    background: url('../imagens/lobby_flora.jpg') no-repeat center center fixed;
-    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
-    scroll-behavior: smooth;
-    overflow-x: hidden; /* Impede o scroll horizontal */
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  object-fit: cover;
+  opacity: 0.8; /* ajuste se quiser mais ou menos visível */
 }
 
+/* Evita sobreposição de scroll lateral */
+body {
+  margin: 0;
+  font-family: 'Lora', serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 /* Estilo inicial para a página */
 .page {
   opacity: 0;

@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="css/home.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,21 +19,47 @@
    <!-- Nav-Bar ------------------------------------------------------>
    <nav>
     <!-- Logo com Ícone e Texto -->
+ <div class="Container-nav "> 
     <div class="logo">
         <img src="imagens/logo v.2.png" alt="Logo"> <!-- Substitua pelo nome da sua imagem -->
         <h1>RPG ARK</h1>
     </div>
     <div class="nav-links">
-        <a href="index.html"><span>Início</span></a>
-        <a href="index_mapas.html"><span>Mapas</span></a>
-        <a href="index_história.html"><span>Lore</span></a>
-        <a href="index_regras.html"><span>Regras</span></a>
-        <a href="index_bloqueado.html"><span>Dinos</span></a>
-        <a href="index_ciencia.html"><span>Ciências</span></a>
-    </div>
+        <a href="index.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-home icon"></i>
+          <span>Início</span>
+        </a>
+        <a href="index_mapas.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-map icon"></i>
+          <span>Mapas</span>
+        </a>
+        <a href="index_história.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-book icon"></i>
+          <span>História</span>
+        </a>
+        <a href="index_regras.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-gavel icon"></i>
+          <span>Regras</span>
+        </a>
+        <a href="index_bloqueado.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-dragon icon"></i>
+          <span>Criaturas</span>
+        </a>
+        <a href="index_ciencia.html" class="sidebar-item">
+          <span class="highlight-bar"></span>
+          <i class="fas fa-dna icon"></i>
+          <span>Ciências</span>
+        </a>
+      </div>
+    </div> 
     <!-- Botão Glow -->
     <div class="dado-container">
-        <img src="imagens/dado_iridescente.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+        <img src="imagens/dado_fantasma.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
     </div>
     
@@ -63,19 +90,15 @@
   </nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
     <main>
-        <!-- Seção Início -->
-        <div class="titulo_principal">
-            <h1 class="titulo_efeito">Home</h1>
-        </div>
-        
+       
           
         <!-- carrossel-->
         <div class="carousel">
             <div class="carousel-images">
                 <!-- Imagem duplicada da última para efeito de transição -->
-                <img src="imagens/t-rex_primal.jpg" alt="Imagem 8 (duplicada)">
+                <img src="imagens/dinos_T-rex_ficha.jpg" alt="Imagem 8 (duplicada)">
                 <!-- Imagens reais -->
-                <img src="imagens/espino_praia.jpg" alt="Imagem 1">
+                <img src="imagens/dinos_T-rex_ficha.jpg" alt="Imagem 1">
                 <img src="imagens/shastassauros.jpg" alt="Imagem 2">
                 <img src="imagens/Shadow-of-the-Colossus-titâ-home.jpg" alt="Imagem 3">
                 <img src="imagens/pyromanes_ macho_fêmea.jpeg" alt="Imagem 4">
@@ -84,86 +107,67 @@
                 <img src="imagens/meraxes_aberration_the_isle.jpg" alt="Imagem 7">
                 <img src="imagens/t-rex_primal.jpg" alt="Imagem 8">
                 <!-- Imagem duplicada da primeira para efeito de transição -->
-                <img src="imagens/espino_praia.jpg" alt="Imagem 1 (duplicada)">
+                <img src="imagens/dinos_T-rex_ficha.jpg" alt="Imagem 1 (duplicada)">
             </div>
         </div>
     
        
 
-<!--cards-->
-<div class="container-cards" >
-    <a href="index_bloqueado.html" class="card card-1">
-        <span></span>
-        <div class="content">
-            <p>Colossos</p>
-        </div>
-    </a>
-    <a href="index_bloqueado.html" class="card card-2">
-        <span></span>
-        <div class="content">
-            <p>Bosses</p>
-        </div>
-    </a>
-    <a href="index_poderes.html" class="card card-3">
-        <span></span>
-        <div class="content">
-            <p>Rituais</p>
-        </div>
-    </a>
-
-    <div class="card card-4" onclick="goToPage('index_personagens.html')">
-    <span></span>
-    <div class="content">
-        <p>Bonecos</p>
-    </div>
-</div>
-
-    <div  class="card card-5" onclick="goToPage('index_flora.html')">
-        <span></span>
-        <div class="content">
-            <p>Flora</p>
-        </div>
-    </div>
-</div>
-
-<div class="container-cards">
-    <div class="card card-6">
-        <a href="index_eventos.html">
-            <span></span>
-            <div class="content">
-                <p>Eventos</p>
+        <div class="container-cards">
+            <a href="index_bloqueado.html" class="card">
+              <h2>Colossos</h2>
+              <img src="imagens/icons_colosso.png" alt="Colossos">
             </a>
-        </div>
-    </div>
-    <div class="card card-7">
-        <a href="index_história.html">
-            <span></span>
-            <div class="content">
-                <p>Tribo</p>
+          
+            <a href="index_bloqueado.html" class="card">
+              <h2>Chefes</h2>
+              <img src="imagens/icon_chefe.png" alt="Chefes">
             </a>
-        </div>
-    </div>
-    <div class="card card-8">
-        <a href="index_efeitos.html">
-        <span></span>
-        <div class="content">
-            <p>Efeitos</p>
-        </a>
-        </div>
-    </div>
-    <div class="card card-9 "onclick="goToPage('index_itens.html')">
-        <span></span>
-        <div class="content">
-            <p>Itens</p>
-        </div>
-    </div>
-    <div class="card card-10" onclick="goToPage('index_itens.html')">
-        <span></span>
-        <div class="content">
-            <p>construções</p>
-        </div>
-    </div>
-</div>
+          
+            <a href="index_poderes.html" class="card">
+              <h2>Rituais</h2>
+              <img src="imagens/icon_rituais.png" alt="Rituais">
+            </a>
+          
+            <a href="index_personagens.html" class="card">
+              <h2>Criação</h2>
+              <img src="imagens/icon_personagens.png" alt="Personagens">
+            </a>
+          
+            <a href="index_flora.html" class="card">
+              <h2>Flora</h2>
+              <img src="imagens/icons_flora.png" alt="Flora">
+            </a>
+          
+            <a href="index_eventos.html" class="card">
+              <h2>Eventos</h2>
+              <img src="imagens/vulcão.png" alt="Ambientes">
+            </a>
+          
+            <a href="index_ficha_status.html" class="card">
+              <h2>Tribos</h2>
+              <img src="imagens/icon_civilização.png" alt="Civilizações">
+            </a>
+          
+            <a href="index_efeitos.html" class="card">
+              <h2>Efeitos</h2>
+              <img src="imagens/icon_Efeitos.png" alt="Efeitos">
+            </a>
+          
+            <a href="index_itens.html" class="card">
+              <h2>Itens</h2>
+              <img src="imagens/icons_itens.png" alt="Itens">
+            </a>
+          
+            <a href="index_regras.html" class="card">
+              <h2>Áreas</h2>
+              <img src="imagens/icon_construções.png" alt="Construções">
+            </a>
+          </div>
+          
+          
+          
+          
 
 <div class="main-container">
     <!-- Botão para abrir o menu de mapas -->
