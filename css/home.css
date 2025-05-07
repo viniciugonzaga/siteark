@@ -71,7 +71,7 @@ nav {
 .nav-links {
     display: flex;
     gap: 11px;
-    margin-left: 34%;
+   
   }
   
   .sidebar-item {
@@ -79,7 +79,7 @@ nav {
     display: flex;
     flex-direction: column; /* Para ícone em cima e texto embaixo */
     align-items: center;
-    gap: 5px;
+    gap: 10px;
     padding: 10px 15px;
     color: #ccc;
     text-decoration: none;
@@ -130,7 +130,7 @@ nav {
     height: auto;
     margin-bottom: 1rem;
     transition: transform 0.3s ease-in-out; /* Transição suave */
-    margin-right: 0.5em; /* Aproximadamente 60px */
+    margin-right: 5em; /* Aproximadamente 60px */
   
 }
 
@@ -148,7 +148,7 @@ nav {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 3.75em; /* Aproximadamente 60px */
+    margin-right: 1em; /* Aproximadamente 60px */
 }
 
 /* Efeito ao passar o mouse */
@@ -251,144 +251,95 @@ nav {
     }
   }
   
- /* Ajustes para telas menores (até 780px) */
+/* Ajustes para telas menores (até 780px) */
 @media (max-width: 780px) {
-    nav {
-        display: flex; /* Confirma que é um container flex */
-        flex-direction: row; /* Organiza os principais itens em linha */
-        justify-content: center; /* <-- Troque de space-between para center */
-        flex-wrap: wrap;
-        gap: 4rem; /* Ajuste o espaçamento geral */
-        align-items: flex-start; /* Alinha os itens ao topo da linha */
-        padding: 0.5rem; /* Espaçamento interno do nav */
-        gap: 0.5rem; /* Espaço ENTRE os principais itens (se couberem na linha) */
-        box-sizing: border-box; /* Inclui padding e borda na largura total */
-        height: auto; /* Altura automática para se ajustar ao conteúdo quebrado */
-    }
-    .Container-nav { /* Novo div: Agrupa Logo e Links */
-        display: flex; /* Container interno */
-        justify-content: flex-start; /* Alinha Logo e Links ao início */
-        align-items: center; /* Alinha Logo e Links verticalmente no Container-nav */
-        gap: 0.5rem; /* Espaço ENTRE Logo e Links */
-        padding: 0; /* Remova padding interno se não for necessário */
-        margin: 0; /* Remove margens externas, o gap do nav cuida do espaço */
-     
-        /* Opcional: width: 80%; /* Se quiser que ocupe uma largura fixa */
-    }
+  nav {
+      display: flex; /* Alinha os três blocos principais horizontalmente */
+      justify-content: space-between; /* Espaço máximo entre os blocos */
+      align-items: center; /* Alinha verticalmente ao centro */
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      height: auto;
+  }
 
-    /* Ajustes no Logo (Coluna da esquerda - topo) */
-    .logo {
-        display: flex;
-        flex-direction: column; /* Empilha imagem e h1 */
-        align-items: center; /* Centraliza imagem e h1 na coluna */
-        transform: scale(0.9); /* Mantém o redimensionamento do logo */
-        margin: 0; /* Remove margens externas, o gap do nav cuida do espaço */
-        flex-basis: auto; /* Deixa a largura base ser automática */
-        flex-shrink: 0; /* Impede que o logo encolha muito */
-        flex-grow: 0; /* Impede que o logo cresça */
-        /* Opcional: Defina uma largura aproximada se quiser que ele ocupe um "pedaço" fixo da esquerda */
-        /* flex-basis: 120px; */ /* Exemplo: 120px de largura base */
-    }
+  .logo {
+      display: flex;
+      align-items: center;
+      transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
+  }
 
-    .logo img {
-        width: auto; /* Ajusta automaticamente com transform ou flex-basis do pai */
-        height: auto;
-        max-width: 30px; /* Garante que a imagem não fique enorme */
-        max-height: 30px;
-        /* Remova border-radius se não quiser a imagem redonda neste layout */
-        /* border-radius: 0; */
-    }
+  .logo img {
+      max-width: 30px;
+      max-height: 30px;
+      margin-right: 0.3rem;
+  }
 
-    .logo h1 {
-        font-size: 14px; /* Tamanho da fonte do título do logo */
-        margin: 0; /* Remove margens */
-        padding: 0 5px; /* Padding lateral ao redor do texto do logo */
-        text-align: center; /* Centraliza o texto se houver quebra de linha */
-    }
+  .logo h1 {
+      font-size: 0.8rem;
+      margin: 0;
+  }
 
-    /* Ajustes para o Container do Dado/Botão (Coluna da esquerda - abaixo do logo) */
-    .dado-container {
-        display: flex;
-        flex-direction: column; /* Empilha dado e botão */
-        align-items: center; /* Centraliza dado e botão na coluna */
-        gap: 0.5em; /* Espaço entre dado e botão */
-        margin: 0; /* Remove margens, o gap/layout do nav cuida do espaço */
-        /* margin-top: 0.5rem; /* Se precisar de espaço extra APENAS APÓS o logo na coluna */
-        padding: 5px; /* Padding interno */
-        flex-basis: auto; /* Deixa a largura base ser automática */
-        flex-shrink: 0; /* Impede que o container encolha muito */
-        flex-grow: 0; /* Impede que o container cresça */
-        margin-right: 1%;
-    }
+  .nav-middle {
+      display: flex;
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      width: 60%; /* Ocupa uma parte da largura para os ícones */
+  }
 
-    .dado {
-        width: 2.5em; /* Tamanho do dado (relativo ao font-size padrão) */
-        height: auto;
-        margin: 0; /* Remova margens antigas */
-    }
+  .nav-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Layout de 3 colunas */
+      gap: 0.6rem; /* Espaçamento menor entre os ícones */
+      width: 100%; /* Ocupa a largura do .nav-middle */
+  }
 
-    .glow-on-hover {
-        font-size: 0.7rem; /* Tamanho da fonte do botão */
-        padding: 0.3rem 0.6rem; /* Padding do botão */
-        margin: 0; /* Remova margens antigas */
-        /* Simplifique efeitos se estiverem causando problemas de performance/visual */
-        /* transition: none; animation: none; box-shadow: none; */
-    }
+  .sidebar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+      padding: 0.3rem;
+      font-size: 0.6rem;
+      text-align: center;
+      overflow: hidden;
+  }
 
-    /* Ajustes para o Bloco de Links (Lado direito ou linha abaixo) */
-    .nav-links {
-        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
-        display: flex;
-        justify-content: space-around; /* Distribui espaço ENTRE os links individuais DENTRO deste container */
-        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
-        margin: 0; /* Remove margens externas */
-        flex-basis: auto; /* Deixa a largura base ser automática */
-        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
-        flex-shrink: 1; /* Permite que o bloco de links encolha */
-        gap: 8px; /* Espaço ENTRE os links individuais */
-    }
+  .sidebar-item .icon {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+  }
 
-    /* Estilo para CADA link de navegação (.sidebar-item é a classe no <a>) */
-    .sidebar-item { /* Esta é a classe nos seus links <a> */
-        display: flex; /* Torna o link um container flex */
-        flex-direction: column; /* Empilha ícone e texto verticalmente */
-        align-items: center; /* Centraliza ícone e texto na coluna */
-        justify-content: center; /* Centraliza o conteúdo flex */
-        /* Tamanho base para os botões de link - ajusta como eles quebram linha dentro de .nav-links */
-        flex-basis: 60px; /* Sugere uma largura base menor. Ajuste conforme necessário. */
-                         /* Links tentarão ter essa largura, mas encolhem/crescem baseados em flex-shrink/grow */
-        flex-grow: 1; /* Permite que cresçam para preencher a linha (compartilhando espaço) */
-        flex-shrink: 1; /* Permite que encolham se necessário */
-        width: auto; /* Deixa a largura ser flexível */
-        height: auto; /* Deixa a altura ser flexível baseada no conteúdo */
-        padding: 5px 3px; /* Padding interno para espaço ao redor ícone/texto */
-        margin: 0; /* Margem entre links é controlada pelo gap do .nav-links pai */
+  .sidebar-item span {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+  }
 
-        font-size: 0.7rem; /* Tamanho da fonte base para o texto */
-        text-decoration: none; /* Remove underline */
-        color: inherit; /* Herda cor */
-        text-align: center; /* Centraliza o texto */
+  .nav-right {
+      display: flex;
+      align-items: center; /* Alinha verticalmente o botão e a imagem */
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+  }
 
-        /* Simplificar estilos visuais complexos que podem causar problemas */
-        transition: none;
-        animation: none;
-        -webkit-box-reflect: none;
-        overflow: visible; /* Mude para visible para ver se o texto está sendo cortado por overflow: hidden */
-    }
+  .dado-container {
+      display: flex;
+      align-items: center; /* Alinha o botão e a imagem horizontalmente */
+      gap: 0.3rem;
+      margin-left: 0.1rem;
+  }
 
-    .sidebar-item span {
-        /* Estilo do texto dentro do link */
-        display: block; /* Garante que o span seja um bloco na coluna */
-        margin-top: 3px; /* Espaço entre ícone e texto */
-        font-size: 0.7rem; /* Confirma o tamanho da fonte para o texto */
-        line-height: 1.2; /* Espaçamento entre linhas do texto */
-    }
+  .glow-on-hover {
+      font-size: 0.6rem;
+      padding: 0.2rem 0.4rem;
+      margin-right: 0; /* Remove margem desnecessária */
+  }
 
-     /* Ajuste do ícone dentro do link */
-     .sidebar-item .icon {
-        font-size: 1rem; /* Tamanho do ícone */
-        /* margin-bottom: 3px; Removido, gap no .sidebar-item ou margin-top no span cuida disso */
-     }
+  .dado {
+      width: 2rem;
+      height: auto;
+      margin-bottom: 0; /* Remove margem desnecessária */
+  }
 }
 
 
@@ -623,7 +574,7 @@ nav {
 
     .container-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Ajuste o minmax conforme necessário */
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); /* Ajuste o minmax conforme necessário */
         gap: 6px;
         padding: 10px; /* Reduzi um pouco o padding para telas menores */
         max-width: 1200px;
@@ -639,7 +590,7 @@ nav {
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         position: relative;
         overflow: hidden;
-        min-height: 100px; /* Define uma altura mínima para o card */
+        min-height: 80px; /* Define uma altura mínima para o card */
         display: flex;
         flex-direction: column;
         align-items: center;

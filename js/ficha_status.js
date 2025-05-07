@@ -101,6 +101,7 @@ const senhas = {
     "npc14": "Demônios",
     "npc15": "Escarlate",
     "npc16": "UmFavor",
+    "npc17": "Justiça",
 
 };
 
@@ -345,6 +346,21 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 95, Existência/Resistência: 25, Fôlego: 6, Armadura: 35",
+      
+    },
+    "npc17": {
+        nome: "Belona",
+        imagem: "imagens/npc17_belona.jpg",
+        historia: "Belona foi uma criada de guerra que foi esquecida em prisões de escravas, depois de um ataque de um grupo de sobreviventes que queriam libertar os prisioneiros, Belona foi esquecida e deixada para trás, depois de um tempo, ela acordou em um lugar diferente, onde não havia mais escravidão e sim liberdade. Agora ela busca libertar todos aqueles que foram acorrentados, mesmo que isso signifique lutar contra todos.",
+        acoes: ["+15 luta, +15 intimidar, +15 flanquear, +15 resiliência,  +15 contra-ataque, +10 combo, +10 furtividade, +10 reflexo, +10 arremesso, +10 enganação, +10 força bruta, +10 rolar, +10 criação de armas, +10 criação primal, +10 sobrevivência, +10 percepção inimiga, +10 coragem, +10 vontade, +10 fortitude, +10 resistência, +10 saltar, +10 agarrar, +10 encontrão, +10 bloqueio, +10 esquiva, +10 percepção."],
+        mutacao: "Benção do Guerrerio: Belona durante em batalhas ganha +5 em ações de acordo quando seus aliados ou parte do grupo começa a perder na batalha, toda vez q um aliado atingir o estado morrendo belona ganha o acesso de mais uma arma, ganhando +5 em luta e +5 em força bruta no uso dela, sendo possivel isso se repetir 3 vzeses, na quarta vez belona pode atacar com cada arma em um inimigo que esteja atordoado, além de causar o dano extra de dados em armas. Se belona estiver em uma guerra ganha +40 pontos de vida extra temporários e mais 3 dados de dano em armas, regenerando parte da armadura sempre que executar um alvo.",
+        classes: "Guerreiro, Sobrevivente",
+        agilidade: 3,
+        forca: 3,
+        inteligencia: 3,
+        sobrevivencia: 3,
+        vigor: 4,
+        status: "Vida: 90, Determinação/Sanidade: 105, Existência/Resistência: 30, Fôlego: 7, Armadura: 45",
       
     },
 
