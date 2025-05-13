@@ -622,7 +622,7 @@ nav {
       }
       
       .card h2 {
-        font-size: 0.6em; /* Reduzi um pouco a fonte para telas menores */
+        font-size: 0.5em; /* Reduzi um pouco a fonte para telas menores */
         margin-top: 10px;
         margin-bottom: 5px;
         color: #ffffff;
@@ -634,7 +634,7 @@ nav {
       
       .card img {
         max-width: 90%;
-        max-height: 140px; /* Defini uma altura máxima em pixels */
+        max-height: 200px; /* Defini uma altura máxima em pixels */
         object-fit: contain;
         filter: grayscale(100%) brightness(0.8);
         transition: transform 0.4s ease, filter 0.4s ease;

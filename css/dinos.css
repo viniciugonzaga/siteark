@@ -1834,27 +1834,23 @@ color: #f7b62b;
     }
 }
 
-/* Estilos para o contêiner dos botões de filtro de bioma */
 .biome-filters {
-    margin-top: 20px; /* Espaço acima do contêiner */
-    margin-bottom: 15px; /* Espaço abaixo do contêiner */
-    text-align: center; /* Centraliza os botões dentro do contêiner */
-    width: 70%; /* Reduz a largura para deixar mais elegante */
-    max-height: 85%; /* Ajusta altura máxima */
-    background: radial-gradient(circle, rgba(60, 0, 100, 0.7), rgba(30, 1, 60, 0.8), rgba(10, 0, 30, 0.9)); /* Gradiente mais sutil */
+    margin: 30px auto;
+    padding: 30px;
+    text-align: center;
+    width: 80%;
+    background: radial-gradient(circle, rgba(60, 0, 100, 0.7), rgba(30, 1, 60, 0.8), rgba(10, 0, 30, 0.9));
     border-radius: 15px;
-    padding: 30px; /* Espaçamento interno maior */
-    border: 2px solid #fcec10; /* Mantém o contorno em amarelo */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Uma leve sombra */
-    display: flex; /* Usa flexbox para alinhar os botões */
-    flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha em telas menores */
-    justify-content: center; /* Centraliza os botões horizontalmente */
-    margin: 0 auto;
+    border: 2px solid #fcec10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: 10px; /* Espaço entre os botões */
-}
-/* Estilos padrão para os botões */
-.biome-filters button {
+    gap: 10px;
+  }
+  
+  .biome-filters button {
     padding: 12px 20px;
     cursor: pointer;
     border-radius: 30px;
@@ -1870,24 +1866,68 @@ color: #f7b62b;
     background: linear-gradient(145deg, rgba(40,0,70,0.9), rgba(10,0,30,0.9));
     color: #ffeb3b;
     backdrop-filter: blur(3px);
-}
-/* Hover bonito com destaque */
-.biome-filters button:hover {
+  }
+  
+  /* Hover */
+  .biome-filters button:hover {
     background: radial-gradient(circle at top left, rgba(255, 235, 59, 0.2), rgba(60, 0, 100, 0.8));
     color: #ffffff;
     transform: scale(1.05) translateY(-2px);
     box-shadow: 0 0 12px rgba(255, 235, 59, 0.4), inset 0 0 10px rgba(255, 235, 59, 0.1);
-}
-
-/* Estado ativo */
-.biome-filters button.active {
+  }
+  
+  /* Ativo */
+  .biome-filters button.active {
     background: linear-gradient(145deg, #ffeb3b, #e0d600);
     color: #1e0030;
     font-weight: 700;
     border: 2px solid #fff176;
     box-shadow: 0 0 20px rgba(255, 235, 59, 0.6);
     transform: scale(1.07);
+  }
+  
+  /* Biomas Marinhos (tom azulado) */
+  .biome-filters button.marine {
+    background: linear-gradient(145deg, rgba(0, 60, 100, 0.8), rgba(0, 20, 40, 0.9));
+    color: #76eaff;
+  }
+  
+  /* Biomas Corrompidos (tom roxo-avermelhado) */
+  .biome-filters button.corrupted {
+    background: linear-gradient(145deg, rgba(100, 0, 40, 0.85), rgba(40, 0, 20, 0.9));
+    color: #ff7eb3;
+  }
+
+  /* REINO FUNGI (verde água) */
+.biome-filters button[data-biome="Reino Fungi"] {
+    background: linear-gradient(145deg, #1eb38e, #165c4f);
+    color: #d0ffee;
 }
+
+/* DESERTO (amarelado) */
+.biome-filters button[data-biome="Deserto"] {
+    background: linear-gradient(145deg, #f5c552, #a67c00);
+    color: #fffbea;
+}
+
+/* VULCÃO (laranja) */
+.biome-filters button[data-biome="Vulcão"] {
+    background: linear-gradient(145deg, #ff6a00, #8b2e00);
+    color: #fff0e0;
+}
+
+/* FLORESTA DE COGUMELO (azul claro) */
+.biome-filters button[data-biome="Floresta de Cogumelo"] {
+    background: linear-gradient(145deg, #76d1ff, #326b87);
+    color: #e8faff;
+}
+
+/* FLORESTA DE SANGUE (rosa avermelhado) */
+.biome-filters button[data-biome="Floresta de Sangue"] {
+    background: linear-gradient(145deg, #ff4f7d, #8b002e);
+    color: #fff0f5;
+}
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {

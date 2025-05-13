@@ -103,6 +103,22 @@ const creatures = {
     'Pinguim',
     'Arqueopterix',
     'Microraptor',
+    'Deinonico',
+    'Hererassauros',
+    'Leão-Marsupial',
+    'Purlovia',
+    'Dente de sabre',
+    'Lobo-terrível',
+    'Andreorsachus',
+    'Utahraptor' ,
+    'Antrorraptor',
+    'Pyroraptor',
+    'Concavenator',
+    'Dracovenator',
+    'Stalker da neve',
+    'Megaraptor',
+
+
     'Piranha',
     'Parasitas',
     'Tubarões',
@@ -128,9 +144,7 @@ const creatures = {
     'T-Rex',
     'Alossauros',
     'Ceratossauro',
-    'Deinonico',
     'Albertossauro',
-    'Hererassauros',
     'Metriacontossauro',
     'Rajassauros',
     'Yutiranos',
@@ -144,14 +158,6 @@ const creatures = {
     'Sarco-imperador',
     'Purussauros',
     'Deinosuchus',
-    'Leão marsupial',
-    'Purlovia',
-    'Dente de sabre',
-    'Lobo-terrível',
-    'Andreorsachus',
-    'Utahraptor' ,
-    'Antrorraptor',
-    'Pyroraptor',
     'Ptero',
     'Quetzal',
     'Tapejara',
@@ -176,19 +182,16 @@ const creatures = {
     'Formiga Soldado Bombeiro',
     'Louva-a-deus',
     'gorgossauro',
-    'Concavenator',
     'Titanoboa',
     'Gigantophis',
     'Nothosauros',
     'Aranha saltadora',
     'Daeodon',
-    'Stalker da neve',
     'Stalker marinho',
     'Urso',
     'Dimetrodonte',
     'Prestosuchus',
     'Pulmonoscorpius',
-    'Dracovenator',
     'Diplocaulos',
 
 
@@ -225,7 +228,7 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+25 mordida, +30 intimidar, +20 cheirar, +20 pisar, +20 imobilizar, +20 rugido, +20 finalizar, +20 agarrão, +20 encontrão, +20 luta, +20 contra-ataque, +15 cabeçada, +10 esquiva, +15 bloquear +10 corrida, +5 perseguição,  -5 alvos parados. ', // Bônus de ação de criatura
+        actionBonus: '+30 intimidar, +25 mordida, +25 encontrão, +25 luta, +25 contra-ataque, +20 pisar, +20 imobilizar, +20 rugido, +20 agarrão, +15 farejar +15 cabeçada, +15 bloquear, +10 esquiva +10 corrida, +5 perseguição,  -5 alvos parados. ', // Bônus de ação de criatura
         attacks: [
             'Mordida Poderosa: 16d10+60 + quebrado (causa 200% de dano em armadura)', 
             'Investida: 8d10+40 (200% em construções) ',
@@ -309,7 +312,7 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Ágil: Ganha +1d6 em testes de esquiva e fuga, devido à sua pequena estatura e agilidade.',
     passivaElemental: 'Suas mordidas com Sangramento podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Campos', 'Dunas', 'Montanha', 'Taiga'  ], // Exemplo: múltiplos biomas
+    biome: ['Campos', 'Dunas', 'Montanha', 'Taiga', 'Floresta de Sangue', 'Deserto'  ], // Exemplo: múltiplos biomas
 },
 'Proceratossauro': {
     title: 'O ágil Caçador',
@@ -356,7 +359,7 @@ const dinoFichas = {
     ],
     passiva: 'Caçador Silencioso: Quando está no escuro, o Troodonte pode atacar de surpresa, forçando o inimigo a realizar um teste de percepção com desvantagem. Caso o inimigo falhe, o ataque causa dano adicional de +1d6.',
     passivaElemental: 'Suas Mordidas de torpor podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Campos', 'Bosque', 'Planície', 'Taiga'  ], // Exemplo: múltiplos biomas
+    biome: ['Campos', 'Bosque', 'Planície', 'Taiga', 'Floresta de Sangue'  ], // Exemplo: múltiplos biomas
 },
 
 'Oviraptor': {
@@ -404,7 +407,7 @@ const dinoFichas = {
     ],
     passiva: 'Estratégia de Grupo: Hienas que estavam se preparando no combate podem deixar bactérias na região da boca ou língua, faznedo com que suas mordidas causem o efeito Anti-Cura.',
     passivaElemental: 'Seus ataques de Mordida podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Campos', 'Dunas', ], // Exemplo: múltiplos biomas
+    biome: ['Campos', 'Dunas','Floresta de Sangue', 'Deserto' ], // Exemplo: múltiplos biomas
 },
 'Ave-do-Terror': {
     title: 'Predadora Implacável',
@@ -428,7 +431,7 @@ const dinoFichas = {
     ],
     passiva: 'Puxar Carne: Sempre que causar dano crítico, pode ter a chance de agarrar o alvo ou empurra-lo durante o ataque.',
     passivaElemental: 'Suas garras podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Bosque', 'Taiga'  ], // Exemplo: múltiplos biomas
+    biome: ['Bosque', 'Taiga', 'Deserto','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
 },
 
  'Austroraptor': {
@@ -476,7 +479,7 @@ const dinoFichas = {
     ],
     passiva: 'Veneno Raptor: Microraptores causam dano com seu veneno através da armadura e também desarmando os alvos .',
     passivaElemental: 'Suas táticas de Emboscadas e seu Veneno podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Bosque', 'Taiga', 'Campos', 'Dunas', 'Deserto Frio' ], // Exemplo: múltiplos biomas
+    biome: [ 'Bosque', 'Taiga', 'Campos', 'Dunas', 'Deserto Frio', 'Floresta de Sangue', 'Deserto' ], // Exemplo: múltiplos biomas
 },
 
 'Moros-Intrepidus': {
@@ -574,7 +577,7 @@ const dinoFichas = {
     ],
     passiva:  'Corvo das árvores: Archaeopteryx possui uma ampla habilidade de uso de armas e ferramentas, principalmente com armas arremessáveis.  ',
     passivaElemental: 'Suas habilidades de fuga e planar podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Tundra', 'Bosque', 'Taiga', ], // Exemplo: múltiplos biomas
+    biome: ['Tundra', 'Bosque', 'Taiga' ], // Exemplo: múltiplos biomas
 },
 'Piranha': {
     title: 'O Peixe Endiabrado',
@@ -598,7 +601,7 @@ const dinoFichas = {
     ],
     passiva: 'Matadora da Fome: Em condições extremas de difucldade na caça piranhas narutalmente ficam agressivas com a mesma espécie, perdendo -10 socialização e ganhando o efeito Forte contra piranhas menores ou mais fracas.',
     passivaElemental: 'Suas habilidades agressivas de consumir a presa podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: ['Praia','Pântano' ], // Exemplo: múltiplos biomas
+    biome: ['Praia','Pântano', 'Floresta de Sangue' ], // Exemplo: múltiplos biomas
 },
 'Deinonico': {
     title: 'O Caçador de Penas',
@@ -621,7 +624,7 @@ const dinoFichas = {
     ],
     passiva: 'Raptor Sujo: Deinonicos possuim grande proteção contra doenças e pragas, usando elas contra suas presas, acumulando bactérias em sua boca e aproveitando que elas estão fracas para finalizar a caça. Após Consumir um alvo ou usar muitos ataques de mordida, ganha +5 em pensar, fazendo o sobreviver de forma mais segura enquanto a sua arma mais mortal se acumula com base no tempo.',
     passivaElemental: 'Suas habilidades que usam as garras e suas pragas podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Montanha', 'Bosque',  ], // Exemplo: múltiplos biomas
+    biome: [ 'Montanha', 'Bosque','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
 },
 'Hererassauros': {
     title: 'O Predador Invisível',
@@ -667,7 +670,7 @@ const dinoFichas = {
     ],
     passiva: 'Predador Inteligente: Raptores podem graavar ou perceber padrões de criaturas ou humanso em seu território, ganhando +5 em ações contra qualquer inimigo que tenha percebido e examinado',
     passivaElemental: 'Suas habilidades que usam sua inteligência predatória podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Campos', 'Planície', 'Bosque'], // Exemplo: múltiplos biomas
+    biome: [ 'Campos', 'Planície', 'Bosque', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
 },
 'Antrorraptor': {
     title: 'Raptor Atroz',
@@ -690,7 +693,7 @@ const dinoFichas = {
     ],
     passiva: 'Tanque Natural: Atrocirraptores podem durante a luta possuir vida extra com o acúmulo de roubo de vida com sua obssessão ou comendo corpos que foram caçados pelo grupo, ganahndo + 50 de vida acumulada',
     passivaElemental: 'Suas habilidades e ataques de perseguições podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Montanha', 'Bosque', 'Dunas'], // Exemplo: múltiplos biomas
+    biome: [ 'Montanha', 'Bosque', 'Dunas', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
 },
 'Pyroraptor': {
     title: 'Raptor de Gelo',
@@ -715,6 +718,77 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades de adaptação ao frio junto com sua agressividade nos biomas congelados ou extremos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Tundra', 'Deserto frio', 'Floresta Fria'], // Exemplo: múltiplos biomas
 },
+'Megaraptor': {
+    title: 'O Monstro Raptor',
+    image: 'imagens/dinos_megaraptor.jpg',
+    weight: '500 kg',
+    height: '2,5 M',
+    length: '3 M',
+    attributes: { agi: 3, for: 3, int: 3, pre: 3, vig: 3 },
+    life: 160,
+    armor: 70,
+    actionBonus: ' +15 luta, +15 perseguir, +15 mordida, +15 garras, +15 contra-ataque, +10 agarrar, +10 enganação, +10 sobrevivência, +10 esquiva, +10 socialziar, +10 intimidar, +10 reflexo, +10 furtividade, +10 pensar, +10 digestão, +10 cheirar, +10 rastrear, +10 emboscada, +10 percepção, +10 percepção inimiga, +10 bloquear, +10 correr, +10 ataque cauda, +10 agachar, +10 resistência, +10 fortitude, +10 saltar, +5 flanquear, +5 escalar',
+    attacks: [
+        'Mordida feroz: 4d12+25 (Causa sangramento na presa, além de ganhar +5 em agarrar)',
+        'Garras ferozes: 3d12+20 2x(dano extra (+15) contra alvos que estiverem sangrando)',
+        'Investida feroz: 6d8+20 (Faz alvos menores ficarem atordoados ou desarmados, além de causar dano extra de sangramento em +1 dado)'
+    ],
+    abilities: [
+        'Garra de Morte: Após causar dano de sangramento em um alvo sangrando, o Megaraptor pode usar uma ação bônus para devorar o alvo, deixando o Dilacerado até ser largado ou fugir de sua boca.',
+        'Foco diabólico:O Megaraptor pode criar planos para caçar ou fazer emboscadas mais motivadas quando a presa for um humano, ganhando +5 em pensar, +5 sobrevivência, +5 percepção inimiga contra presas humanas.'
+    ],
+    passiva: 'Predador de Humanos: Seu sangramento cria uma dose de adrenalina em humanos, fazendo os ficarem mais motivados a sobreviver e não saberem quanto de dano receberam pelo sangramento, escondendo o dano recebeido, esse efeito apenas se aplica a humanos..',
+    passivaElemental: 'Suas habilidades de sangramento contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Dunas', 'Floresta Traiçoeira', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
+},
+'Dracovenator': {
+    title: 'O Dilofossauro Ancião',
+    image: 'imagens/dinos_dracovenator.jpg',
+    weight: '300 kg',
+    height: '2 M',
+    length: '2,5 M',
+    attributes: { agi: 3, for: 2, int: 4, pre: 4, vig: 2 },
+    life: 130,
+    armor: 40,
+    actionBonus: '+15 artes, +15 pensar, +15 sobrevivência, +15 socializar, +15 intimidação, +15 copiar, +10 lembrar, +10 garras, +10 pontaria, +10 mordida, +10 reflexo, +10 esquiva, +10 correr, +10 contra-ataque, +10 furtividade, +10 percepção, +10 saltar, +5 escalar, +5 agachar, +5 resistência, +5 cheirar, +5 flanquear.',
+    attacks: [
+        'Mordida Draco: 2d10+15 (Causa algum efeito de alguma mutação elemental que tenha gravado ou copiado)',
+        'Garras Draco: 1d12+10 2x(Ganha +5 em garras depois de atacar com Veneno)',
+        'Coroa Draco: 4d8+20 (Causa um dano ácido que deixa o alvo cego por 1d4 rodadas, além de causar dano adicional elemnetal de alguma mutação ou simbolo que tenha copiado)'
+    ],
+    abilities: [
+        'Copiar simbolo: Após abrir a Coroa Draco, o Dracovenator depois de cegar um alvo pode copiar um simbolo ou mutação elemental e colocar em suas garras ou mordida, ganhando +5 em flanquear.',
+        'Criatura Inteligente: Dracovenator pode usar sua inteligência para criar armadilhar ou bases de sobrevivência, ganhando +5 em pensar, usnado como bas sua memória de como o ambiente é hostil e quais seriam os lugares mais seguros'
+    ],
+    passiva: 'Copiador do Arcano: Dracovenator pode ser treinado ou gravar com sua memória para desenhar em sua Coroa simbolos ou mutações elementais de outros animais para uso próprio.',
+    passivaElemental: 'Suas habilidades de sangramento e Intimidação Feroz contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Cavernas', 'Reino Fungi'], // Exemplo: múltiplos biomas
+},
+'Leão-Marsupial': {
+    title: 'O Marsupial Feroz',
+    image: 'imagens/dinos_leão-marsupial.webp',
+    weight: '600 kg',
+    height: '2 M',
+    length: '2,3 M',
+    attributes: { agi: 3, for: 3, int: 3, pre: 3, vig: 3 },
+    life: 180,
+    armor: 100,
+    actionBonus: '+15 garras, +15 luta, +10 mordida, +10 garras, +10 esquiva, +10 correr, +10 perseguir, +10 contra-ataque, +10 agarrar, +10 intimidar, +10 furtividade, +10 percepção, +10 sobrevivência, +10 flanquear, +10 bloqeuar, +10 saltar, +10 fortitude, +10 farejar, +10 saltar, +10 emboscada, +5 resitência, +5 pensar, +5 rastrear, +5 agachar, +5 combo ',
+    attacks: [
+        'Mordida do Leão: 4d10+25 (Causa sangramento no alvo)',
+        'Garras de marsupial: 3d12+20 2x(Ganha +5 em luta e garras depois de agarrar um alvo)',
+        'Encontrão: 4d8+20 (Ganha +5 de Intimidação contra o alvo que aingiu)'
+    ],
+    abilities: [
+        'Leão da Montanha: Depois de Intimidar um alvo ganha +5 em luta, +5 em agarrar e +5 perseguir, além de causar lentidão em alvos que estão sangrando.',
+        'Tigre Escalador: Leão Marsupial toda vez que pular de uma altura acima de 3 metros, ganha +5 flanquear, +5 em contra-ataque e +5 em desarme. Causando +3 dados de dano nas garras, caso o inimigo entre estado morrendo ele pode ser finalizado e o Leão Marsupial ganha +30 pv temporários.'
+    ],
+    passiva: 'Leão Primitivo: O sangramento do Leão Marsupial faz com que a presa fique mais fraca com o tempo, aumentando o dano do sangramento com base na vida perdida, sendo +1 dado de dano a cada 30% de vida perdida.',
+    passivaElemental: 'O Sangramento e Intimidação do Leão Marsupial pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Taiga', 'Deserto'], // Exemplo: múltiplos biomas
+},
+
+
 
 
 
@@ -1478,28 +1552,7 @@ const dinoFichas = {
     passiva: 'Guardião das Águas: Ganha +20 em defesa e regeneração ao lutar na água.',
     passivaElemental: 'Água: Reduz em 50% os efeitos negativos de ataques elementais recebidos enquanto submerso.'
 },
-'Leão marsupial': {
-    title: 'Predador Ágil e Astuto',
-    image: 'imagens/dinos_leão-marsupial.webp',
-    weight: '110 kg',
-    height: '2 M',
-    length: '1.5 M',
-    attributes: { agi: 5, for: 4, int: 4, pre: 3, vig: 3 },
-    life: 200,
-    armor: 100,
-    actionBonus: '+20 escalada, +15 mordida,+10 contra-ataque, +10 esquiva, +5 bloqueio, +5 agarrão +15 furtividade, +10 salto, +5 preparar ação, +10 rastrear',
-    attacks: [
-        'Mordida Lacerante: 6d10+25 (causa sangramento e desvantagem em vigor no alvo)',
-        'Garras Cortantes: 5d10+20 (aplica feridas leves que acumulam sangramento)',
-        'Pulo Predatório: 4d12+20 (realiza um ataque surpresa com bônus de +10 ao atingir zonas vitais)'
-    ],
-    abilities: [
-        'Predador Escalador: Consegue escalar paredes e árvores com facilidade, ganhando +20 em escalada.',
-        'Astúcia Predatória: Quando realiza ataques contra alvos com desvantagens, ganha +15 em dano e precisão.'
-    ],
-    passiva: 'Caçador Noturno: Ganha +10 em furtividade e velocidade em ambientes de baixa luz.',
-    passivaElemental: 'Fogo: Suas mordidas inflamam, aplicando um leve dano de queimadura em alvos sangrando.'
-},
+
 'Purlovia': {
     title: 'Tigre Furtivo e Letal',
     image: 'imagens/dinos_purlovia.webp',
@@ -5534,35 +5587,7 @@ const dinoFichas = {
   "passiva": "Resistência Escorpiônica: Imune a venenos e efeitos de paralisia, além de reduzir todo dano perfurante recebido em 50%.",
   "passivaElemental": "Torpor Crescente: Cada vez que um inimigo recebe dano venenoso do Pulmonoscorpius, seu torpor aumenta cumulativamente em 10 pontos adicionais."
 },
-"Dracovenator": {
-  "title": "Dracovenator - O Caçador Sombrio",
-  "image": "imagens/dinos_dracovenator.jpg",
-  "height": "2,5 m",
-  "length": "6 m",
-  "weight": "400 kg",
-  "attributes": {
-    "agi": 4,
-    "for": 3,
-    "int": 3,
-    "pre": 4,
-    "vig": 4
-  },
-  "life": 150,
-  "armor": 40,
-  "actionBonus": "+10 em ataques flanqueando, +15 em furtividade, +10 em esquivas rápidas, +10 em rastreamento, +15 contra efeitos de cegueira, +10 luta, +5 bloqueio, +5 contra-ataque, +10 intimidação",
-  "attacks": [
-    "Mordida Rasteira: 5d10+20 (dano cortante; se atingir, reduz o deslocamento do alvo pela metade por 2 rodadas).",
-    "Garra Afiada: 4d12+18 (dano perfurante; se estiver flanqueando, ignora 50 de armadura do alvo).",
-    "Bote Preciso: 6d8+22 (dano físico; se usado como primeiro ataque contra um alvo desprevenido, acerta automaticamente e tem dano dobrado)."
-  ],
-  "abilities": [
-    "Caça Coordenada: Sempre que atacar um inimigo cercado por outro Dracovenator aliado, o ataque tem vantagem e recebe +1d8 de dano adicional.",
-    "Predador Oportunista: Sempre que um inimigo perder uma ação ou ficar vulnerável, o Dracovenator pode usar uma ação bônus para atacá-lo.",
-   
-  ],
-  "passiva": "Instinto de Alcateia: Se houver pelo menos um aliado Dracovenator próximo, recebe +10 em esquiva e +5 em dano.",
-  "passivaElemental": "Caçador das Sombras: Em ambientes escuros ou com pouca visibilidade, fica invisível a 10 metros de distância e recebe +15 em furtividade."
-},
+
 "Diplocaulos": {
   "title": "Diplocaulus - O Sobrevivente Anfíbio",
   "image": "imagens/dinos_diplocaulos.jpg",
@@ -5908,26 +5933,24 @@ const dinoFichas = {
       // --- NOVO CÓDIGO PARA FILTROS DE BIOMA ---
   
       // Adicionar ouvintes de evento para os botões de filtro de bioma
-      const biomeButtons = document.querySelectorAll('.biome-filters button'); // Seleciona todos os botões na div com classe 'biome-filters'
-      biomeButtons.forEach(button => {
-          button.addEventListener('click', () => {
-              // Atualiza a variável de estado do bioma ativo com o valor do atributo 'data-biome' do botão clicado
-              currentBiomeFilter = button.dataset.biome;
-  
-              // Opcional: Adicionar feedback visual para o botão ativo (adicione CSS para '.active')
-              biomeButtons.forEach(btn => btn.classList.remove('active')); // Remove a classe 'active' de todos os botões de bioma
-              button.classList.add('active'); // Adiciona a classe 'active' apenas no botão que foi clicado
-  
-              // Chama a função para exibir/atualizar a lista, que agora aplicará o filtro de bioma selecionado (e re-aplicará o filtro de texto)
-              displayFilteredCreatures();
-          });
-      });
-  
-      // Opcional: Definir o botão 'Todos' como ativo visualmente quando a página carrega
-      const defaultBiomeButton = document.querySelector('.biome-filters button[data-biome="Todos"]');
-      if (defaultBiomeButton) {
-          defaultBiomeButton.classList.add('active');
-      }
+      const biomeButtons = document.querySelectorAll('.biome-filters button');
+biomeButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        currentBiomeFilter = button.dataset.biome;
+
+        biomeButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        displayFilteredCreatures(); // <- essa função deve aplicar o filtro visual dos dinossauros/criaturas
+    });
+});
+
+// Definir o botão 'Todos' como ativo visualmente ao carregar
+const defaultBiomeButton = document.querySelector('.biome-filters button[data-biome="Todos"]');
+if (defaultBiomeButton) {
+    defaultBiomeButton.classList.add('active');
+}
+      
   
       // --- FIM DO NOVO CÓDIGO PARA FILTROS DE BIOMA ---
   
