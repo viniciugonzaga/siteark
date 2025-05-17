@@ -107,17 +107,18 @@ const creatures = {
     'Hererassauros',
     'Leão-Marsupial',
     'Purlovia',
-    'Dente de sabre',
+    'Dentes de Sabre',
     'Lobo-terrível',
     'Andreorsachus',
     'Utahraptor' ,
     'Antrorraptor',
     'Pyroraptor',
-    'Concavenator',
+    'Concavenator-da-Areia',
     'Dracovenator',
-    'Stalker da neve',
+    'Stalker-da-Neve',
     'Megaraptor',
-
+    'Urso-Primitivo',
+    
 
     'Piranha',
     'Parasitas',
@@ -188,7 +189,6 @@ const creatures = {
     'Aranha saltadora',
     'Daeodon',
     'Stalker marinho',
-    'Urso',
     'Dimetrodonte',
     'Prestosuchus',
     'Pulmonoscorpius',
@@ -228,20 +228,20 @@ const dinoFichas = {
         attributes: { agi: 3, for: 7, int: 2, pre: 2, vig: 4 },
         life: 380, // Vida do dinossauro
         armor: 250, // Armadura do dinossauro
-        actionBonus: '+30 intimidar, +25 mordida, +25 encontrão, +25 luta, +25 contra-ataque, +20 pisar, +20 imobilizar, +20 rugido, +20 agarrão, +15 farejar +15 cabeçada, +15 bloquear, +10 esquiva +10 corrida, +5 perseguição,  -5 alvos parados. ', // Bônus de ação de criatura
+        actionBonus: '+35 intimidar, +35 coragem, +30 força bruta, +25 resistência, +25 mordida, +25 encontrão, +25 luta, +25 contra-ataque, +20 ataque de cauda, +20 pisar, +20 rugido, +20 agarrão, +20 carregar peso, +15 resiliência, +15 farejar +15 cabeçada, +15 sobrevivência, +15 bloquear, +15 vontade, +10 digestão, +10 crítico, +5 furtividade, +5 fortitude, +5 esquiva +5 correr, +5 flanquear, +5 percepção inimiga, +5 perseguição,  -5 alvos parados. ', // Bônus de ação de criatura
         attacks: [
-            'Mordida Poderosa: 16d10+60 + quebrado (causa 200% de dano em armadura)', 
-            'Investida: 8d10+40 (200% em construções) ',
+            'Mordida Poderosa: 16d10+60 (causa 200% de dano em armadura. Ganha +5 em agarrar e ganha o efeito Forte. Além de deixar o alvo quebrado, caso cause um dano maior do que a metade esperada.)', 
+            'Investida: 8d10+40 (200% em construções. Ganha +5 em contra-ataque, recebe o efeito Forte) ',
              'Ataque de cauda: 7d10+30(Causa Atordoamento em criaturas pequenas)'],
         abilities: [
-            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Rasgo de Vida por 1 rodada, parte do dano que ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
-            'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação. Ao tentar ser intimidado por qualquer outra criatura menor que o T-rex, ele aplica efeito de medo em seu rugido, reduzindo o dano dos alvos em 1 rodada em 50%.'
+            'Tirano: O tiranossauro rex é uma criatura implacável que consome todos, no começo da luta o tiranossauro aplica um grito de lentidão e aumenta o seu dano em 3 dados de mordida em 1d6 de rodadas. Sua tirania é implacável, durante a luta quando está machucado o tiranossauro ganha um buff na mordida que causa o efeito de Rasgo de Vida por 1d6 rodada, parte do dano que ele causou é regenerado em 50% e se um dado for extremo ganha mais 1 para cada dano de extremo.',
+            'Coragem do rei: Não sofre efeito de medo e efeitos negativos de qualquer intimidação. Ao tentar ser intimidado por qualquer outra criatura menor que o T-rex, ele aplica efeito de medo em seu rugido, reduzindo o dano em 1d4 rodada em 50%.'
         ],
-        passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar dano extra em alvos que estejam quebrados, ganhando + 3 dados de dano na mordida e acumulando coragem conforme cada rodada se passa, ganhando vida extra para cada alvo em sua frente,  sendo 20 de vida cada regeneração.',
+        passiva: 'Mordida destruidora: A mordida do tiranossauro rex é tão forte que pode causar dano extra em alvos que estejam quebrados, ganhando + 5 dados de dano na mordida e acumulando coragem conforme cada rodada se passa, ganhando vida extra para cada alvo em sua frente, sendo 40 pontos de vida cada regeneração.',
         passivaElemental: 'Seu rugido ou grito pode ter interações adicionais de acordo com a mutação, podendo queimar, criar portais, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
         biome: ['Montanha', 'Bosque', 'Planície'], // Exemplo: múltiplos biomas
-
     },
+
 'Dilofossauro': {
     title: 'O Mestre da Distração',
     image: 'imagens/dinos_dilofossauro.webp', // Substitua pelo caminho correto
@@ -251,7 +251,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2 },
     life: 75, // Escalável por tipo ou estágio
     armor: 20, // Base de armadura
-    actionBonus: '+5 mordida, +10 garra, +5 luta, +5 reflexo, +5 pontaria, +10 veneno, +5 intimidação, +5 corrida, +5 furtividade, +5 agachar, +5 socializar, +5 enganação, +5 farejar, +5 agarrão',
+    actionBonus: ' +10 garra, +10 veneno, +5 esquiva, +5 mordida, +5 luta, +5 reflexo, +5 pontaria, +5 intimidação, +5 corrida, +5 furtividade, +5 agachar, +5 socializar, +5 enganação, +5 farejar, +5 agarrão',
     attacks: [
         'Mordida: 1d10+10 (Cada dilofossauro que estiver no grupo aumenta em +10 o dano)',
         'Garra: 2d6+5 2x (Cada dilofossauro que estiver no grupo ganha +5 em agarrão)',
@@ -277,7 +277,7 @@ const dinoFichas = {
     attributes: { agi: 5, for: 1, int: 2, pre: 2, vig: 1 },
     life: 20, // Escalável por nível ou estágio
     armor: 1, // Armadura leve
-    actionBonus: '+5 mordida, +15 reflexo, +15 esquiva, +5 garra, +10 furtividade, +10 trabalho em grupo, +5 corrida, +10 socializar, +5 rastrear, +5 saltar, +5 reproduzir, +5 flexível',
+    actionBonus: ', +15 reflexo, +15 esquiva, +10 acasalar, +10 enganação, +10 furtividade, +10 socializar, +10 trabalho em grupo, +5 mordida, +5 garra, +5 corrida, +5 rastrear, +5 saltar, +5 reproduzir, +5 flexível',
     attacks: [
         'Mordida: 1d6+2 veneno(Um veneno paralisante, fazendo o torpor do alvo subir)',
         'Garra: 1d6+2 corte',
@@ -418,15 +418,15 @@ const dinoFichas = {
     attributes: { agi: 3, for: 3, int: 2, pre: 2, vig: 2 },
     life: 75, // Vida da Ave do Terror
     armor: 35, // Armadura da Ave do Terror
-    actionBonus: '+10 agarrar, +10 luta, +10 mordida, +10 garra, +10 bloqueio, +10 contra-ataque, +10 esquiva, +10 reflexo, +10 flanquear, +10 percepção inimiga, +5 percepção, +5 furtividade, +5 crítico, +5 planar, +5 dança, +5 gritar, +5 intimidação, +5 socializar, +5 correr, +5 resistência, +5 fortitude. ',
+    actionBonus: '+10 agarrar, +10 luta, +10 mordida, +10 garra, +10 bloqueio, +10 contra-ataque, +10 esquiva, +10 reflexo, +10 flanquear, +10 percepção inimiga, +5 carregar peso, +5 percepção, +5 furtividade, +5 crítico, +5 planar, +5 dança, +5 gritar, +5 intimidação, +5 socializar, +5 correr, +5 resistência, +5 fortitude. ',
     attacks: [
         'Mordida Cruel: 3d12+10+ fraco', 
-        'Garra Destruidora: 2d10+7 + agarrão  2x', 
+        'Garra Destruidora: 2d10+10 + agarrão  2x', 
         'Investida Planada: 1d10+10 (Deixa o alvo lento no caminho que foi feito)'
     ],
     abilities: [
         'Crueldade Inclemente: Ave do Terror sempre que intimidar um alvo ou estiver flaqueando pode observar e perceber os pontos fracos do alvo, ganahndo +5 em um ataque seguinte e garantindo que seja crítico. ',
-        'Carrasco Veloz: Quando derrubar um inimigo no chão ou estiver segurando u malvo, pode dilacerar a presa caso seja menor que ele, se for maior o alvo fica fraco e desarmado.',
+        'Carrasco Veloz: Quando derrubar um inimigo no chão ou estiver segurando um alvo, pode dilacerar a presa caso seja menor que ele, se for maior o alvo fica fraco e desarmado.',
      
     ],
     passiva: 'Puxar Carne: Sempre que causar dano crítico, pode ter a chance de agarrar o alvo ou empurra-lo durante o ataque.',
@@ -515,7 +515,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 2, int: 2, pre: 3, vig: 2},
     life: 125, // Vida do Criolofossauro
     armor: 65, // Armadura do Criolofossauro
-    actionBonus: '+15 bafo, +10 pontaria, +10 esquiva, +10 reflexo, +10 mordida, +10 garra, +10 cheirar, +10 fortitude, +5 escalar, +5 bloqueio, +5 rastro, +5 agachar, +5 correr, +5 socializar, +5 resistência, +5 intimidação ',
+    actionBonus: '+15 bafo, +10 pontaria, +10 esquiva, +10 reflexo, +10 mordida, +10 garra, +10 cheirar, +10 fortitude, +5 escalar, +5 carregar peso, +5 bloqueio, +5 rastro, +5 agachar, +5 correr, +5 socializar, +5 resistência, +5 intimidação ',
     attacks: [
         'Mordida Congelante: 4d10+20 (Deixa o alvo com frio ou caso já esteja, congelando)',
         'Investida Rápida: 5d10+5 (Deixa o alvo lento por 1d2 rodadas)',
@@ -603,29 +603,7 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades agressivas de consumir a presa podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: ['Praia','Pântano', 'Floresta de Sangue' ], // Exemplo: múltiplos biomas
 },
-'Deinonico': {
-    title: 'O Caçador de Penas',
-    image: 'imagens/dinos_deinonico.webp',
-    weight: '200 kg',
-    height: '1,7 M',
-    length: '2,5 M',
-    attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 2},
-    life: 90,
-    armor: 35,
-    actionBonus: '+10 mordida, +10 garras, +10 saltar, +10 esquiva, +10 socializar +10 correr, +10 contra-ataque, +10 resistência a doenças, +10 percepção, +10 rastreamento, +5 cheirar, +5 fortitude, +5 escalar, +5 furtividade, +5 preparação de ação, +5 pensar, +5 agarrar, +5 digestão, +5 lutar, +5 dançar, +5 agachar, +5 flanquear ',
-    attacks: [
-        'Mordida infestada: 4d8+15 (Faz o alvo ficar fraco e com uma chance de contrair uma doença ou Praga que é contraida pelo contato a bactérias)',
-        'Garra Saltadora: 3d6+5 2x',
-        'Ataque de grupo: 6d6+20 (Cada Deinonico que estiver atacando o mesmo alvo, aumneta parte do dano do ataque em +20, além de fornecer ao grupo um bônus de flanquear +5 para cada deinonico)'
-    ],
-    abilities: [
-        'Saliva Mortal: O Deinonico ganha bônus de +10 em rastreamento e percepção contra alvos que foram atacados e contrairam alguma doença, ganahndo +4d6 em seus ataques somente contra esses alvos.',
-        'Salto de Garras: Deinonicos após pularem em um alvo pode se grudar nele causando dano de sangramento e atacando com a mordida e as garras, enquanto estão agarrados possui o efeito de Rasgo de Vida'
-    ],
-    passiva: 'Raptor Sujo: Deinonicos possuim grande proteção contra doenças e pragas, usando elas contra suas presas, acumulando bactérias em sua boca e aproveitando que elas estão fracas para finalizar a caça. Após Consumir um alvo ou usar muitos ataques de mordida, ganha +5 em pensar, fazendo o sobreviver de forma mais segura enquanto a sua arma mais mortal se acumula com base no tempo.',
-    passivaElemental: 'Suas habilidades que usam as garras e suas pragas podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Montanha', 'Bosque','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
-},
+
 'Hererassauros': {
     title: 'O Predador Invisível',
     image: 'imagens/dinos_heressauros.jpeg',
@@ -649,6 +627,29 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades que usam sua camulfagem podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Campos', 'Planície', 'Bosque'], // Exemplo: múltiplos biomas
 },
+'Deinonico': {
+    title: 'O Caçador de Penas',
+    image: 'imagens/dinos_deinonico.webp',
+    weight: '200 kg',
+    height: '1,7 M',
+    length: '2,5 M',
+    attributes: { agi: 3, for: 2, int: 3, pre: 2, vig: 2},
+    life: 90,
+    armor: 35,
+    actionBonus: '+10 mordida, +10 garras, +10 saltar, +10 esquiva, +10 socializar +10 correr, +10 contra-ataque, +10 resistência a doenças, +10 percepção, +10 rastreamento, +5 cheirar, +5 fortitude, +5 escalar, +5 furtividade, +5 preparação de ação, +5 pensar, +5 agarrar, +5 digestão, +5 lutar, +5 dançar, +5 agachar, +5 flanquear ',
+    attacks: [
+        'Mordida infestada: 4d8+15 (Faz o alvo ficar fraco e com uma chance de contrair uma doença ou Praga que é contraida pelo contato a bactérias)',
+        'Garra Saltadora: 3d6+5 2x',
+        'Ataque de grupo: 6d6+20 (Cada Deinonico que estiver atacando o mesmo alvo, aumneta parte do dano do ataque em +20, além de fornecer ao grupo um bônus de flanquear +5 para cada deinonico)'
+    ],
+    abilities: [
+        'Saliva Mortal: O Deinonico ganha bônus de +10 em rastreamento e percepção contra alvos que foram atacados e contrairam alguma doença, ganahndo +4d6 em seus ataques somente contra esses alvos.',
+        'Salto de Garras: Deinonicos após pularem em um alvo pode se grudar nele causando dano de sangramento e atacando com a mordida e as garras, enquanto estão agarrados possui o efeito de Rasgo de Vida'
+    ],
+    passiva: 'Raptor Sujo: Deinonicos possuim grande proteção contra doenças e pragas, usando elas contra suas presas, acumulando bactérias em sua boca e aproveitando que elas estão fracas para finalizar a caça. Após Consumir um alvo ou usar muitos ataques de mordida, ganha +5 em pensar, fazendo o sobreviver de forma mais segura enquanto a sua arma mais mortal se acumula com base no tempo.',
+    passivaElemental: 'Suas habilidades que usam as garras e suas pragas podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Montanha', 'Bosque','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
+},
 'Utahraptor': {
     title: 'Predador Ágil e Inteligente',
     image: 'imagens/dinos_velociraptor.jpeg',
@@ -658,7 +659,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 2, int: 4, pre: 2, vig: 2 },
     life: 125,
     armor: 35,
-    actionBonus: '+10 pensar, +10 correr, +10 saltar, +10 socializar, +10 percepção, +10 intimidação, +10 enganação, +10 sabotar, +10 mordida, +10 garras, +10 agachar, +10 rastremaneto, +10 preparar ação, +10 esquiva, +10 reflexo, +10 furtividade, +10 emboscada, +10 flanquear, +10 contra-ataque, +5 diplomacia, +5 cheirar,  +5 escalar, +5 rugir, +5 agarrar, +5 luta, +5 fortitude, +5 resitência',
+    actionBonus: '+15 pensar, +10 correr, +10 saltar, +10 socializar, +10 percepção, +10 intimidação, +10 enganação, +10 sabotar, +10 mordida, +10 garras, +10 agachar, +10 rastremaneto, +10 preparar ação, +10 esquiva, +10 reflexo, +10 furtividade, +10 emboscada, +10 flanquear, +10 contra-ataque, +5 diplomacia, +5 cheirar,  +5 escalar, +5 rugir, +5 agarrar, +5 luta, +5 fortitude, +5 resitência',
     attacks: [
         'Mordida Raptor: 3d10+25 (Após acertar um ataque ganha +5 em agarrar)',
         'Garras Cortantes: 2d12+15 2x(Causa sangramento em alvos que estiverem sem armadura)',
@@ -680,18 +681,18 @@ const dinoFichas = {
     length: '2.8 M',
     attributes: { agi: 3, for: 3, int: 3, pre: 2, vig: 3 },
     life: 135,
-    armor: 70,
-    actionBonus: '+10 perseguição, +10 pensar, +10 tática, +10 esquiva, +10 correr, +10 bloqueio, +10 contra-ataque, +10 luta, +10 mordida, +10 garras, +10 agachar, +10 flanquear, +10 percepção, +10 cheirar, +10 resistência, +10 socializar, +10 vontade, +10 sobrevivência, +10 intimidação, +10 fortitude, +5 emboscada, +5 furtividade, +5 agarrar, +5 escalar, +5 nadar, +5 cortar, +5 cabeçada, +5 ataque de cauda, +5 enganação, +5 saltar, +5 resiliência  ',
+    armor: 60,
+    actionBonus: '+10 perseguição, +10 pensar, +10 tática, +10 esquiva, +10 correr, +10 bloqueio, +10 contra-ataque, +10 luta, +10 mordida, +10 garras, +10 agachar, +10 flanquear, +10 percepção, +10 cheirar, +10 resistência, +10 socializar, +10 vontade, +10 sobrevivência, +10 intimidação, +10 fortitude, +5 emboscada, +5 furtividade, +5 carregar peso, +5 agarrar, +5 escalar, +5 nadar, +5 cortar, +5 cabeçada, +5 ataque de cauda, +5 enganação, +5 saltar, +5 resiliência  ',
     attacks: [
         'Mordida Atroz: 3d10+25 (ganha +5 agarrar após morder)',
         'Garra Brutal: 3d12+10 2x( Dano extra de +10 em alvos que estiverem fugindo)',
-        'Investida Voraz: 6d4+20 (Desarma inimigos ou os derrurba no chão)'
+        'Investida Voraz: 5d4+20 (Desarma inimigos ou os derrurba no chão)'
     ],
     abilities: [
         'Predador Tático: Ganha +5 em qualquer ação que faça perseguir um alvo que foi comandando ou teve uma obssessão na caçada, ganhando o efeito de Rasgo de Vida contra sua obssessão',
         'Resiliência Atroz: Após sofrer algum efeito de atordoamento ou for derrubada, pode dar um rugido que faz com que todos os aliados do bando ou do grupo ganhem +5 em fortitude, resistência ou +5 correr, podendo evitar de cair ou sofrer efeitos negativos durante a perseguição'
     ],
-    passiva: 'Tanque Natural: Atrocirraptores podem durante a luta possuir vida extra com o acúmulo de roubo de vida com sua obssessão ou comendo corpos que foram caçados pelo grupo, ganahndo + 50 de vida acumulada',
+    passiva: 'Tanque Natural: Atrocirraptores podem durante a luta possuir vida extra com o acúmulo de roubo de vida com sua obssessão ou comendo corpos que foram caçados pelo grupo, acumulando +35 de vida depois da ultrapssar a vida máxima.',
     passivaElemental: 'Suas habilidades e ataques de perseguições podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Montanha', 'Bosque', 'Dunas', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
 },
@@ -701,9 +702,9 @@ const dinoFichas = {
     weight: '250 kg',
     height: '1,8 M',
     length: '2.7 M',
-    attributes: { agi: 3, for: 3, int: 3, pre: 2, vig: 3 },
+    attributes: { agi: 3, for: 3, int: 3, pre: 2, vig: 2 },
     life: 130,
-    armor: 65,
+    armor: 45,
     actionBonus: '+10 esquiva, +10 socialziar, +10 intimidar, +10 contra-ataque, +10 luta, +10 fortitude, +10 salto, +10 encontrão, +10 cavar, +10 mordida, +10 garras, +10 ataque de cauda, +10 percepção, +10 cheirar, +10 rastrear, +10 enganação, +5 nadar, +5 escalar, +5 furtividade, +5 agarrar, +5 resistência, +5 flanco, +5 percepção inimiga, +5 pensar, +5 perseguição, +5 correr, +5 bloqueio, +5 diplomacia, +5 agachar',
     attacks: [
         'Mordida do Gelo: 3d10+25 (Causa o efeito de Lentidão no alvo isolado)',
@@ -718,6 +719,29 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades de adaptação ao frio junto com sua agressividade nos biomas congelados ou extremos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Tundra', 'Deserto frio', 'Floresta Fria'], // Exemplo: múltiplos biomas
 },
+'Concavenator-da-Areia': {
+    title: 'O Raptor da Areia',
+    image: 'imagens/dinos_concavenator.jpg',
+    weight: '300 kg',
+    height: '2,3 M',
+    length: '2,5 M',
+    attributes: { agi: 4, for: 2, int: 3, pre: 3, vig: 2 },
+    life: 145,
+    armor: 35,
+    actionBonus: '+10 rastejar, +10 resistência a areia, +10 cavar, +10 resistência, +10 flanquear, +10 mordida, +10 emboscada, +10 esquiva, +10 contra-ataque, +10 percepção, +10 percepção terrestre, +10 sobrevivência, +10 fortitude(Calor) +10 saltar, +10 correr, +10 pontaria, +10 rastrear, +10 percepção inimiga, +10 farejar, +10 ataque de cauda, +10 atauques coordenados, +10 socializar, +10 enganação, +5 agachar, +5 garras, +5 fortitude, +5 resistência, +5 resiliência, +5 pensar, +5 furtividade, +5 luta, +5 agarrar, +5 bloquear.',
+    attacks: [
+        'Mordida da Areia: 3dd12+15 (Caso acerte o alvo, ganha +5 em agarrar. Se estiver dentro da areia, ganha +5 em agarrar e +5 carregar peso.)',
+        'Garras de Caçador: 2d12+10 2x (Caso acerte ganha o efeito ágil)',
+        'Ataque de Cauda: 1d8+5 (Caso esteja na areia e cause a metade de dano do ataque, joga areia com pontaria, fazendo o alvo ficar cego por 1d4 de rodadas até retirar a areia.)'
+    ],
+    abilities: [
+        'Emboscada Tubarão da Areia: O Concavenator pode se esconder na areia, sendo um ótimo corredor dentro da areia, ganhando +5 em preparar ação e +5 em pensar, Coordenando com o grupo de atacar uma presa ou grupo, sicronizando saltos e vezes em que cada membro ataca o alvo, ganhando +5 em garras e +5 em luta, além de +2 dados de dano para todo o grupo, até o alfa do grupo entrar em estado morrendo ou emboscada tubarão da areia ter 3 fracassos de membros do grupo.',
+        'Criatura Ganânciosa: Concavenator ganha +5 resiliência e +10 em perseguição na areia, caso esteja determinado ou provocado em caçar uma presa isolada, ganhando +5 em fortitude e recbe o efeito Ágil.'
+    ],
+    passiva: 'Tubarão da Areia: O Concavenator toda vez que estiver na areia e precisa descansar ganha +5 em furtividade. Além de que sempre conseguir puxar totalmente um alvo para dentro da areia causa sangramento em suas mordidas, além de puxa-las para dentro da areia, ganhando +5 em flexibilidade e +5 esquiva.',
+    passivaElemental: 'A Locomoção na areia de Concavenator pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Deserto', 'Floresta de Sangue',  ], // Exemplo: múltiplos biomas
+},
 'Megaraptor': {
     title: 'O Monstro Raptor',
     image: 'imagens/dinos_megaraptor.jpg',
@@ -727,7 +751,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 3, int: 3, pre: 3, vig: 3 },
     life: 160,
     armor: 70,
-    actionBonus: ' +15 luta, +15 perseguir, +15 mordida, +15 garras, +15 contra-ataque, +10 agarrar, +10 enganação, +10 sobrevivência, +10 esquiva, +10 socialziar, +10 intimidar, +10 reflexo, +10 furtividade, +10 pensar, +10 digestão, +10 cheirar, +10 rastrear, +10 emboscada, +10 percepção, +10 percepção inimiga, +10 bloquear, +10 correr, +10 ataque cauda, +10 agachar, +10 resistência, +10 fortitude, +10 saltar, +5 flanquear, +5 escalar',
+    actionBonus: ' +15 luta, +15 perseguir, +15 mordida, +15 garras, +15 contra-ataque, +10 agarrar, +10 enganação, +10 sobrevivência, +10 carregar peso, +10 esquiva, +10 socialziar, +10 intimidar, +10 reflexo, +10 furtividade, +10 pensar, +10 digestão, +10 cheirar, +10 rastrear, +10 emboscada, +10 percepção, +10 percepção inimiga, +10 bloquear, +10 correr, +10 ataque cauda, +10 agachar, +10 resistência, +10 fortitude, +10 saltar, +5 flanquear, +5 escalar',
     attacks: [
         'Mordida feroz: 4d12+25 (Causa sangramento na presa, além de ganhar +5 em agarrar)',
         'Garras ferozes: 3d12+20 2x(dano extra (+15) contra alvos que estiverem sangrando)',
@@ -764,6 +788,8 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades de sangramento e Intimidação Feroz contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Cavernas', 'Reino Fungi'], // Exemplo: múltiplos biomas
 },
+
+
 'Leão-Marsupial': {
     title: 'O Marsupial Feroz',
     image: 'imagens/dinos_leão-marsupial.webp',
@@ -773,7 +799,7 @@ const dinoFichas = {
     attributes: { agi: 3, for: 3, int: 3, pre: 3, vig: 3 },
     life: 180,
     armor: 100,
-    actionBonus: '+15 garras, +15 luta, +10 mordida, +10 garras, +10 esquiva, +10 correr, +10 perseguir, +10 contra-ataque, +10 agarrar, +10 intimidar, +10 furtividade, +10 percepção, +10 sobrevivência, +10 flanquear, +10 bloqeuar, +10 saltar, +10 fortitude, +10 farejar, +10 saltar, +10 emboscada, +5 resitência, +5 pensar, +5 rastrear, +5 agachar, +5 combo ',
+    actionBonus: '+15 garras, +15 luta, +10 mordida, +10 garras, +10 esquiva, +10 correr, +10 perseguir, +10 contra-ataque, +10 agarrar, +10 intimidar, +10 furtividade, +10 percepção, +10 sobrevivência, +10 flanquear, +10 bloqeuar, +10 saltar, +10 fortitude, +10 farejar, +10 saltar, +10 emboscada, +10 carregar peso, +5 resitência, +5 pensar, +5 rastrear, +5 agachar, +5 combo, +5 cicatrização(lamber) ',
     attacks: [
         'Mordida do Leão: 4d10+25 (Causa sangramento no alvo)',
         'Garras de marsupial: 3d12+20 2x(Ganha +5 em luta e garras depois de agarrar um alvo)',
@@ -787,6 +813,124 @@ const dinoFichas = {
     passivaElemental: 'O Sangramento e Intimidação do Leão Marsupial pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Taiga', 'Deserto'], // Exemplo: múltiplos biomas
 },
+'Purlovia': {
+    title: 'A Caçadora Traiçoeira',
+    image: 'imagens/dinos_purlovia.webp',
+    weight: '400 kg',
+    height: '1,85 M',
+    length: '2,2 M',
+    attributes: { agi: 3, for: 3, int: 2, pre: 3, vig: 2 },
+    life: 150,
+    armor: 70,
+    actionBonus: ' +15 cavar, +15 garras, +10 agarrar, +10 mordida, +10 furtividade, +10 encontrão, +10 bloqueio, +10 contra-ataque, +10 correr, +10 agachar, +10 percepção, +10 farejar, +1- cheirar, +10 digestão, +10 mastigar, +10 fortitude, +10 saltar, +10 ocultar cheiro, +5 luta, +5 sobrevivência, +5 carregar peso, +5 escalar, +5 pontaria, +5 resitência, +5 resistência a doenças',
+    attacks: [
+        'Mordida Quebra Ossos: Causa 4d10+25 (Causa +2 dados de dano caos ataque inimigos sem armadura ou com armadura quebrada)',
+        'Garras agitadas: 2d12+15 2x(Ganha +5 em luta e garras caso ataque um alvo desprevinido)',
+        'Encontrão: 2d8+20 (Purlovia pula e causa dano extra a armaduras(2x), podendo atordoar e desmontar inimigos que sejam menores que ela, ganha +5 em luta)'
+    ],
+    abilities: [
+        'Ataque Traiçoeiro: Depois de ficar furtiva ao estar enterrada, ganha +5 em percepção terrestre, e ganha +5 em furtividade, podendo atacar um alvo com dois ataques caso ele esteja desprevinido e agarrado.',
+        'Isolar presa: Depois que agarrar um alvo pode puxa-lo ocultando o rastro, ganhando +5 em ocultar rastro e ganhando +5 em pensar, podendo puxar a presa e enterrar junto a ela, ganhando +10 em força bruta e o efeito Rasgo de Vida. '
+    ],
+    passiva: 'Instinto Traiçoeiro: Sempre que perceber inimigos pode criar armadilhas e preparar o campo para sua emboscada, ganhando +5 em sobrevivência, +5 pensar e +5 em preparar ação',
+    passivaElemental: 'O Instinto Traiçoeiro da Purlovia pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Taiga', 'Bosque', 'Deserto', 'Campos', 'Dunas', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
+},
+'Dentes de Sabre': {
+    title: 'O Caçador de Dentes',
+    image: 'imagens/dinos_dente_de_sabre.webp',
+    weight: '350 kg',
+    height: '1,6 M',
+    length: '1,8 M',
+    attributes: { agi: 4, for: 2, int: 3, pre: 3, vig: 2 },
+    life: 140,
+    armor: 55,
+    actionBonus: '+15 flanquear, +15 correr, +10 furtividade, +10 garras, +10 mordida, +10 saltar, +10 reflexo, +10 sobrevivência, +10 percepção, +10 farejar, +10 rastrear, +10 pensar, +10 preparar ação, +10 contra-ataque, +10 fortitude, +10 esquiva, +5 agachar, +5 escalar, +5 intimidação, +5 agarrar, +5 enganação, +5 socialização, +5 resiliência, +5 resistência, +5 cicatrização(lamber)',
+    attacks: [
+        'Mordida rápida: 3d12+15 (Caso acerte a mordida flanqueando garante um dano crítico de +3 dados adicionais e causa sangramento na presa, ganhando +5 agarrar depois que atacar)',
+        'Garras rápidas: 2d12+15 2x (Faz o alvo ficar desarmado depois que receber o ataque, ganhando +5 em esquiva )',
+        'Salto poderoso: 6d12+20 (Deixa a presa desarmada, ganhando +5 em esquiva. Caso acetre um alvo flanqueado, causa sangramento e ganha +5 em correr, +5 em pensar, +5 em contra-ataque)'
+    ],
+    abilities: [
+        'Flanco Preciso: Dentes de Sabre pode observar a presa e análisar os pontos fracos do alvo, caso acerte um ataque flanqueando ignora a armadura do alvo e ganha o efeito Forte.',
+        'Fera primal: Ao atacar um herbivoro, dentes de sabre ganha +5 em pensar, e consegue criar estratégias para caçar essa presa, seu sangramento causa o dobro de dano e seus ataques sempre terão rasgo de vida. além de sempre preservar parte da carne desse animal, sendo o melhor coletor de couro. '
+    ],
+    passiva: 'Instinto do Caçador: Dentes de Sabre possui uma mente adaptada para caçar aniamis que já está acostumado, sempre que for caçar e já tenha caçado esse inimigo é capaz de memorizar golpes, ataques ou estratégias, podendo se aproveitar disso.',
+    passivaElemental: 'O Instinto Primal do Dentes de Sabre pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Deserto', 'Campos', 'Tundra', 'Floresta Fria', 'Montanha'], // Exemplo: múltiplos biomas
+},
+'Lobo-terrível': {
+    title: 'O Caçador da Neve',
+    image: 'imagens/dinos_lobo_terrivel.webp',
+    weight: '75 kg',
+    height: '1,7 M',
+    length: '1,5 M',
+    attributes: { agi: 3, for: 2, int: 4, pre: 4, vig: 2 },
+    life: 125,
+    armor: 65,
+    actionBonus: '+15 farejar, +15 rastrear, +15 socialização, +15 ataque de grupo, +15 diplomacia, +15 pensar, +10 preparar ação, +10 sobrevivência, +10 mordida, +10 garras, +10 percepção inimiga, +10 fortidue, +10 agachar, +10 furtividade, +10 coragem, +10 esquiva, +10 contra-ataque, +10 vontade, +10 tática, +10 brincar, +10 intimidação, +5 saltar, +5 escalar, +5 lamber, +5 reflexo, +5 percepção, +5 cicatrização(lamber).',
+    attacks: [
+        'Mordida de Lobo: 2d10+15 (Caso acerte o alvo, ganha +5 em agarrar)',
+        'Garras de Lobo: 1d12+10 2x (Caso acerte +5 em contra-ataque)',
+        'Ataque de Alcatéia: 2d10+20 (Cada Lobo que participar do ataque, aumenta o dano em +20. Além de quando estiverem em grupo maior ganham +5 em mordida, +5 agarrar, +5 contra-ataque. Se estiverem em menor grupo ganham +5 em resiliência, +5 em garras e o efeito ágil.)'
+    ],
+    abilities: [
+        'Farejar Criaturas: O Lobo-terrível pode farejar alvos a distância próximos do grupo ou quando estão caçando, identificando o cheiro e diferenciando o rastro de sangue, carne, animal e até mesmo saber seu estado de vida, totalmente com vida, machucado, ou morto. Inimigos que estiverem se escondendo o Lobo ganha +5 em percepção e recebe o efeito ágil.',
+        'Uivo do Alfo: O Lobo alfa pode uivar para saber a localização de todo o grupo, tendo o cheiro e o rastro em sua visão de cada membro da alcatéia. Todos os lobos que ouvirem o efeito recebem o efeito corajoso até que o Alfa saia da cena ou entre estado morrendo.'
+    ],
+    passiva: 'Descanso Tático: O Lobo-terrível pode regenerar o dobro de vida quando participar de cenas de interlúdio ou de descnaso do grupo ou da alcatéia, ganhando +5 de sobrevivência para todo o grupo durante a cena.',
+    passivaElemental: 'A liderança de Grupo do Lobo-Terrível pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Tundra', 'Floresta Fria', 'Deserto frio','Taiga' ], // Exemplo: múltiplos biomas
+},
+'Stalker-da-Neve': {
+    title: 'O Predador da Nevasca',
+    image: 'imagens/dinos_stalker_da_neve.jpg',
+    weight: '900 kg',
+    height: '3,4 M',
+    length: '2,0 M',
+    attributes: { agi: 2, for: 4, int: 2, pre: 2, vig: 3 },
+    life: 200,
+    armor: 120,
+    actionBonus: '+15 mordida, +15 luta, +15 rastrear, +15 sobrevivência, +15 bloqueio, +15 agarrar, +15 fortitude, +15 resistência, +15 intimidação, +10 garras, +10 encontrão, +10 força-bruta, +10 contra-ataque, +10 cheirar, +10 socializar, +10 digestão, +5 esquiva, +5 correr, +5 flanquear, +5 emboscada, +5 furtividade, +5 pensar, +5 agachar, +5 escalar, +5 nadar, +5 percepção marinha, +5 perseguir, +5 bioluminescência, +5 ataque de cauda. ',
+    attacks: [
+        'Mordida Bruta: 6d10+25 (Caso acerte o alvo, ganha +5 em agarrar, além de ganhar o efeito forte.)',
+        'Garras de Caçador: 3d12+15 2x (Caso acerte ganha +10 em contra-ataque.)',
+        'Encontrão: 6d8+20 (Após acertar o alvo, ganha +5 em luta, podendo usar as garras e causar sangramento.)'
+    ],
+    abilities: [
+        'Ruigdo da Neve: Stalker pode rugir e causar uma intimidação contra o alvo, quanto mais machucado o alvo estiver mais forte fica o rugido, ganhando +5 em intimidação de acordo com a vida perdida do alvo, sendo a partir de 50% de vida perdida.',
+        'Rasgar Presa: O Stalker depois de usar sua mordida em um inimigo que esteja intimidado, ganha +2 dados em mordida e ganha o causa o efeito dilacerado.'
+    ],
+    passiva: 'Regeneração Preguiçosa: O Stalker pode descansar junto ao bando, fazendo vigias junto com o bando e retirar seus efeitos negativos, congelando suas feridas e ganhando +5 em cicatrização, +5 em resistência e +5 em resistência a doenças. Além de possuir sua Língua que infecções de feridas, podendo curar em cenas de Interlúdio, ganhando +10 tratamento de infecção(língua).',
+    passivaElemental: 'A Força Esmagadora do Stalker-da-Neve pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Tundra', 'Floresta Fria', 'Deserto frio' ], // Exemplo: múltiplos biomas
+},
+'Urso-Primitivo': {
+    title: 'O Predador Primitivo',
+    image: 'imagens/dinos_stalker_da_neve.jpg',
+    weight: '930 kg',
+    height: '3,0 M',
+    length: '2,0 M',
+    attributes: { agi: 2, for: 4, int: 2, pre: 2, vig: 3 },
+    life: 180,
+    armor: 100,
+    actionBonus: '+15 luta, +15 resistência, +15 garras, +15 encontrão, +15 agarrar, +15 força bruta, +10 mordida, +10 contra-ataque, +10 combo, +10 intimidação, +10 lembrar, +10 carregar peso, +10 sobrevivência, +10 resistência a insetos, +10 fortitude, +10 bloqueio, +5 esquiva, +5 rastrear, +5 reliência, +5 dormir, +5 coragem, +5 pensar, +5 correr, +5 flanquear, +5 furtividade, +5 percepção, +5 escalar, ',
+    attacks: [
+        'Mordida Bruta: 3d10+20 (Caso acerte ganha o efeito Forte.)',
+        'Garras de Caçador: 3d12+15 2x (Caso acerte ganha +5 em agarrar)',
+        'Encontrão: 6d8+20 (Após acertar o alvo ganha o efeito Rage. além de uma vida extra temporária de 30 pv.)'
+    ],
+    abilities: [
+        'Ruigdo de Urso: Urso pode rugir e causar uma intimidação em um alvo que seja menor q ele, caso esteja isolado ou sozinho, urso ganha bônus de dano contra ele em suas garras, sendo +2 dados. Caso o inimigo esteja em maior grupo, urso ganha +5 em fortitude e +5 no primeiro acerto de seu encontrão.',
+        'Tanque da Floresta: Urso pode bloquear ataques de armas corpo a corpo e também podendo bloquear flechas, quantos mais dano receber mesmo fracassando no bloqueio, metade do dano que ele recebeu, ele ganha como armadura no próximo bloqueio de dano, caso ele acerte o bloqueio a vida extra é convertida em dano em sua mordida no próximo ataque.'
+    ],
+    passiva: 'Regeneração dorminhoca: Urso quando Hiberna pode descansar e tirat todos os efeitos negativos, além de diminuir o consumo de comida e tem chance de ganhar alguns status difeentes ao acordar ou ganhar uma evolução após completar um sono pesado. Ao dormir normalmente ganha regenera sua vida e sua energia, ganhando +15 em regeneração de vida, +15 em regeneração de estamina.',
+    passivaElemental: 'O Sono do Urso é tão intenso que ele é incapaz de evoluir de outra forma além de receber alguma evolução elemental dormindo. Podendo  ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Bosque', 'Taiga' ], // Exemplo: múltiplos biomas
+},
+
+
+
 
 
 
@@ -1551,73 +1695,6 @@ const dinoFichas = {
     ],
     passiva: 'Guardião das Águas: Ganha +20 em defesa e regeneração ao lutar na água.',
     passivaElemental: 'Água: Reduz em 50% os efeitos negativos de ataques elementais recebidos enquanto submerso.'
-},
-
-'Purlovia': {
-    title: 'Tigre Furtivo e Letal',
-    image: 'imagens/dinos_purlovia.webp',
-    weight: '150 kg',
-    height: '2 M',
-    length: '2.5 M',
-    attributes: { agi: 4, for: 4, int: 3, pre: 3, vig: 4 },
-    life: 140,
-    armor: 70,
-    actionBonus: '+15 emboscada, +15 mordida, +15 furtividade, +15 imobilizar, +10 esquiva, +10 contra-ataque, +10 luta, +10 mordida, +10 encontrão, +10 força bruta, +10 rastrear carniça, +10 quebrar ossos, +10 bloqueio,+10 salto, +10 ficar parado, +10 cavar, +10 escalar, +10 criar armadilha, +5 garras, +5 flanquear, +5 pensar.',
-    attacks: [
-        'Mordida Devastadora: 7d10+30 (aplica desvantagem em vigor e resistência)',
-        'Golpe Surpresa: 6d12+25 (dano dobrado ao atacar furtivamente)',
-        'Imobilização Selvagem: 5d12+20 (impede o alvo de se mover por 1 turno)'
-    ],
-    abilities: [
-        'Furtividade Suprem: Se esconde perfeitamente em vegetações ou terrenos rochosos, ganhando +20 em furtividade.',
-        'Predador Sorrateiro: Ao atacar furtivamente, seus ataques ignoram 50% da armadura do alvo.'
-    ],
-    passiva: 'Emboscador Implacável: Após sair de furtividade, causa +35 de dano no próximo ataque.',
-    passivaElemental: 'Fogo: Ao atacar de surpresa, inflama alvos, aplicando queimaduras moderadas por 2 turnos.'
-},
-'Dente de sabre': {
-    title: 'Tigre Ágil e Mortal',
-    image: 'imagens/dinos_dente_de_sabre.webp',
-    weight: '200 kg',
-    height: '1.6 M',
-    length: '2.8 M',
-    attributes: { agi: 5, for: 4, int: 3, pre: 4, vig: 3 },
-    life: 130,
-    armor: 40,
-    actionBonus: '+20 corrida, +20 mordida, +15 flanqueamento, +15 farejar',
-    attacks: [
-        'Mordida Lacerante: 6d12+25 (causa sangramento contínuo)',
-        'Garras Ágeis: 5d12+20 (dano extra ao atacar pelas costas)',
-        'Ataque em Corrida: 5d10+20 (aplica lentidão no alvo)'
-    ],
-    abilities: [
-        'Flanqueador Mestre: Ganha +20 ao atacar alvos que estão distraídos ou cercados.',
-        'Instinto Afiado: Sempre sabe a localização de alvos até 30 metros de distância.'
-    ],
-    passiva: 'Predador Veloz: Ganha +10 em velocidade e +5 em dano ao correr para atacar.',
-    passivaElemental: 'Fogo: Suas garras inflamam, aplicando dano adicional de queimadura.'
-},
-'Lobo-terrível': {
-    title: 'Caçador Estratégico e Astuto',
-    image: 'imagens/dinos_lobo_terrivel.webp',
-    weight: '90 kg',
-    height: '1.6 M',
-    length: '2.1 M',
-    attributes: { agi: 4, for: 3, int: 5, pre: 4, vig: 4 },
-    life: 140,
-    armor: 12,
-    actionBonus: '+20 mordida, +15 rastrear, +15 estratégia, +20 matilha +10 esquiva',
-    attacks: [
-        'Mordida Precisa: 6d10+20 (aplica sangramento moderado)',
-        'Ataque em Grupo: 5d12+25 (dano extra por cada aliado próximo)',
-        'Rugido Coordenado: Buffa aliados próximos com +10 em ataque e defesa por 2 turnos'
-    ],
-    abilities: [
-        'Estratégia de Matilha: Coordena ataques, concedendo bônus de +10 em ataque para todos aliados próximos.',
-        'Faro Afiado: Pode localizar alvos até 50 metros de distância, independentemente de obstáculos.'
-    ],
-    passiva: 'Instinto de Caçador: Ganha +10 em esquiva ao lutar contra múltiplos alvos.',
-    passivaElemental: 'Elétrica: Seus movimentos ganham agilidade extra, aumentando a evasão e precisão em +10.'
 },
 'Andreorsachus': {
     title: 'Velocista Territorial',
@@ -5304,60 +5381,8 @@ const dinoFichas = {
   "passiva": "Sobrevivente do Frio: Ganha +20 em resistência ao frio e é imune a efeitos de congelamento. Além disso, regenera 10% da vida por rodada enquanto em ambientes gélidos.",
   "passivaElemental": "Coração Indomável: Após cair abaixo de 50% da vida, ganha +5 em força e vigor e reduz todos os danos recebidos em 10% até o final do combate."
 },
-"Stalker da neve": {
-  "title": "Stalker da Neve - A Sombra do Ártico",
-  "image": "imagens/dinos_stalker_da_neve.jpg",
-  "height": "3.5 m",
-  "length": "5 m",
-  "attributes": {
-    "agi": 3,
-    "for": 4,
-    "int": 3,
-    "pre": 4,
-    "vig": 4
-  },
-  "life": 300,
-  "armor": 200,
-  "actionBonus": "+20 em emboscadas, +15 rastreamento, +15 luta,+10 contra-ataque, +10 esquiva, +10 bloqueio, +15 em resistências ao frio e +15 intimidação.",
-  "attacks": [
-    "Garras Gélidas: 7d8+20 (dano cortante; reduz a agilidade do alvo em 15% por 2 rodadas).",
-    "Investida Ártica: 6d12+25 (dano de impacto; aplica atordoamento por 1 rodada caso o alvo falhe em um teste de resistência).",
-    "Mordida Destruidora: 8d10+22 (dano perfurante; em críticos, causa sangramento de 2d6 por 3 rodadas)."
-  ],
-  "abilities": [
-    "Emboscada Glacial: Em ambientes gelados, pode ficar furtivo por 2 rodadas, mesmo após ser detectado, ainda com as vanatagens de estar furtivo. Durante este período, seus ataques têm +5 de precisão e causam +10% de dano adicional.",
-    "Sede de Caça: Quando persegue um alvo por mais de 3 rodadas, ganha +1 em força e agilidade e reduz a velocidade do alvo em 10% até o final do combate."
-  ],
-  "passiva": "Resistência Ártica: Imune a todos os efeitos de congelamento e reduz em 50% o dano de ataques de gelo. Recupera 5% da vida máxima por rodada enquanto em ambientes frios.",
-  "passivaElemental": "Aura Gélida: Em combate, emana uma aura de frio intenso em um raio de 5 metros, causando 2d6 de dano de gelo por rodada a todos os inimigos próximos."
-},
-"Stalker marinho": {
-  "title": "Stalker Marinho - O Predador das Profundezas",
-  "image": "imagens/dinos_stalker_marinho.jpg",
-  "height": "2.8 m",
-  "length": "7 m",
-  "attributes": {
-    "agi": 4,
-    "for": 4,
-    "int": 3,
-    "pre": 4,
-    "vig": 3
-  },
-  "life": 180,
-  "armor": 40,
-  "actionBonus": "+25 em flanquear, +10 em ataques de mordida, +15 esquiva, +10 em ataque surpresa, +10 resistência a dano aquático, +10 contra-ataque",
-  "attacks": [
-    "Mordida Cortante: 6d8+15 (dano cortante; causa sangramento de 1d6 por 3 rodadas).",
-    "Investida Aquática: 5d12+12 (dano de impacto; ao acertar, empurra o alvo 5 metros e aplica desorientação por 1 rodada).",
-    "Rugido do Mar: 4d10+10 (dano sônico; reduz a defesa de todos os inimigos próximos em 10% por 2 rodadas)."
-  ],
-  "abilities": [
-    "Ataque Veloz: Ao atacar um alvo de flanco, o Stalker Marinho tem +1d6 de dano adicional e +10 de precisão.",
-    "Caçada Implacável: Durante 2 rodadas, se o Stalker Marinho acertar um crítico, ele ganha +5 em todas as suas habilidades de ataque e +15% de dano em sua próxima mordida."
-  ],
-  "passiva": "Predador das Profundezas: O Stalker Marinho pode se mover livremente em ambientes aquáticos, ignorando efeitos de terreno e ganhando +10 em todas as ações no oceano.",
-  "passivaElemental": "Fúria Subaquática: Quando em combate submerso, aumenta sua agilidade e dano em 50% e ganha resistência a efeitos de status como atordoamento."
-},
+
+
 
 "Urso": {
   "title": "Urso Grande - O Guardião da Floresta",

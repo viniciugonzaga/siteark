@@ -102,6 +102,8 @@ const senhas = {
     "npc15": "Escarlate",
     "npc16": "UmFavor",
     "npc17": "Justiça",
+    "npc18": "Ghoul",
+    "npc19": "Mentira",
 
 };
 
@@ -173,15 +175,15 @@ const npcs = {
         nome: "Octane",
         imagem: "imagens/npc5_ocatne.jpg",
         historia: "Obcecado por adrenalina, Octane criou uma droga extrema que alterou seu corpo, permitindo-lhe produzir misturas químicas que aumentam sua velocidade e reflexos. Porém, sem certos nutrientes, ele entra em torpor profundo. Acordando misteriosamente no Ark, Octane viu o ambiente hostil como um novo desafio. Entre saltos impossíveis e fugas alucinantes, aprendeu a usar sua velocidade para sobreviver. Agora, busca ingredientes raros para aprimorar suas misturas e continuar correndo—porque para ele, parar nunca foi uma opção.",
-        acoes: ["+15 correr, +15 esquiva, +15 resistência, +15 equilíbrio, +15 contra-ataque, +15 em dança reversa, +15 dança, +15 em escalar, +10 em salto, +10 em acrobacia, +10 em usar drogas, +10 indentificar drogas, +10 fazer drogas, +10 resiliência,  +10 luta, +10 reflexo, +10 impacto, +10 combo, +5 desarmar, +5 agarrão, +5 percepção, +5 sobrevivência, +5 pensar de forma radical, +5 radical, +5 duvidar,  "],
-        mutacao: "Mistura de Drogas : Octane pode usar compostos e misturas de drogas formadas e fabricadas a partir de seu corpo, tendo que se alimentar de certos nutrientes ou ervas para formar seus compostos, caso tenha uma alimentação faltando em poucos dias, ele fica com efeitos de narcolepsia, aumentando o torpor ao máximo por um tempo. Mais pode usar esses compostos de forma natural, sempre com o efeito Ágil, caso ejete de forma excessiva ou apressada, pode converter torpor em  dano ou o acertos por 1 rodada. (3 vezes por dia).",
+        acoes: ["+15 correr, +15 esquiva, +15 resistência, +15 equilíbrio, +15 contra-ataque, +15 em dança reversa, +15 dança, +15 em escalar, +10 em salto, +15 em usar drogas, +10 em acrobacia, +10 criação de drogas, +10 indentificação de ervas(Drogas) +10 indentificar drogas, +10 fazer drogas, +10 resiliência,  +10 luta, +10 reflexo, +10 impacto, +10 combo, +5 desarmar, +5 agarrão, +5 percepção, +5 sobrevivência, +5 pensar de forma radical, +5 radical, +5 duvidar,  "],
+        mutacao: "Mistura de Drogas : Octane pode usar compostos e misturas de drogas formadas e fabricadas a partir de seu corpo, tendo que se alimentar de certos nutrientes ou ervas para formar seus compostos, caso tenha uma alimentação faltando em poucos dias, ele fica com efeitos de narcolepsia, aumentando o torpor ao máximo por um tempo. Mais pode usar esses compostos de forma natural, sempre com o efeito Ágil, caso ejete de forma excessiva ou apressada, pode converter torpor em dano por 1 rodada. Octane pode agora ficar imune a efeitos de neblina, fumaça ou algum gáz que pode interferir em sua visão, além de sempre que acabar suas drogas, pode ativar o modo rage, mais perde 15 de vida para regernar cada seringa de estimulante. (3 vezes por dia).",
         classes: "Sobrevivente, Guerreiro",
         agilidade: 5,
         forca: 2,
         inteligencia: 1,
         sobrevivencia: 2,
         vigor: 3,
-        status: "Vida: 85, Determinação/Sanidade: 70, Existência/Resistência: 25, Fôlego: 6, Armadura: 5",
+        status: "Vida: 70, Determinação/Sanidade: 80, Existência/Resistência: 25, Fôlego: 6, Armadura: 15",
       
     },
     "npc6": {
@@ -361,6 +363,37 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 4,
         status: "Vida: 90, Determinação/Sanidade: 105, Existência/Resistência: 30, Fôlego: 7, Armadura: 45",
+      
+    },
+     "npc18": {
+        nome: "Rize",
+        imagem: "imagens/npc18_rize.jpg",
+        historia: "Rize acordou com gosto de terra e sangue na boca, não o sangue doce e vivo dos humanos de Tóquio, mas algo mais bruto, ancestral, como se o mundo tivesse esquecido o sabor da civilização; ao abrir os olhos, encontrou-se em meio a uma floresta viva, onde árvores colossais cobriam o céu e criaturas jurássicas rugiam ao longe, não havia sinal da cidade, nem do CCG, apenas um silêncio cheio de dentes. Instintivamente, sua kagune se ergueu em defesa, sentindo a presença de algo que nem mesmo ela compreendia. Rize caminhou entre folhas maiores que seu corpo, farejando o ar denso e quente, até que viu um predador de escamas atravessar seu caminho, um dinossauro real, pulsando força bruta, vivo como um pesadelo; ela sorriu, faminta, mas pela primeira vez em muito tempo, sentiu o mundo encará-la de volta. O Ark, como ela viria a descobrir, não era apenas um lugar, era um ciclo fechado, um campo de testes de deuses esquecidos, e mesmo alguém como ela, um ghoul de fome insaciável, teria que lutar para existir. Naquele paraíso primitivo, Rize deixou de ser uma sombra urbana para tornar-se um erro no sistema natural, uma aberração fora do tempo e o Ark, curioso, decidiu deixá-la viva. Por enquanto.",
+        acoes: ["+15 manipulação de Kagunel, +15 pensar, +15 medicina, +15 identificar doença, +15 contra-ataque, +15 percepção, +15 manipulação de vida(Sangue), +10 luta, +10 diplomacia, +10 tratamento de ferida, +10 didática, +10 lembrar, +10 perseguir, +10 resiliência, +10 dissecação, +10 furtividade, +10 correr, +10 esquiva, +10 reflexo, +10 pontaria, +10 ataque de cauda, +10 fortitude, +10 percepção arcana, +10 escalar, +5 agarrar, +5 arremesso, +5 cozinhar, +5 investigação, +5 escrita, +5 percepção inimiga.  "],
+        mutacao: "Kagune de Escamas: Rize pode usar sua kagune como uma armadura, para ativar é preciso consumir sangue, ganhando +30 de armadura e +5 em todas as ações de ataque e defesa que envolvem o ataque da cauda de kagune, além de +1 for, +1 agi e +1 vig. Ganha o efeito ágil e pode usar sempre que quiser deis que seu folêgo dure até a duração. Caso consuma muito sangue, ativa o modo Rage e ganha bônus de duração em seu folêgo. Atacar com kagune é ataque de cauda que causa 3d12+5 4x.",
+        classes: "Guerreiro, Arcano",
+        agilidade: 3,
+        forca: 2,
+        inteligencia: 3,
+        sobrevivencia: 4,
+        vigor: 2,
+        status: "Vida: 85, Determinação/Sanidade: 115, Existência/Resistência: 20, Fôlego: 5, Armadura: 25",
+      
+    },
+
+      "npc19": {
+        nome: "Tasha Rose",
+        imagem: "imagens/npc19_tasha.jpg",
+        historia: "Tasha cresceu alimentada pelo sol, antigamente uma simples flor, se desenvolveu como uma girassol, fez trabalhos domésticos ao seu dono e sempre cuidou de sua residência quando ele não estava ou saia para alguma aventura, na vila do véu antigamente era tudo mais sério e rígido, os espiritos se escondem nas tábuas mais fracas e esperam a tocha do véu, seu chamado, ser ascendida. Quando a Fámilia Rose voltou da grande expedição, grande parte derrotada com o avô morto em guerra, seu filho Senhor Comandante Ghrerius Rose, derrotado e com nenhuma filha em sua fámilia, além de seus 2 filhos, sentiu a necessidade de ter uma criança para passar seus segredos mais sigilosos para alguém que nunca a julgaria, a pequena girassol. O tempo foi se passando e um ritual foi feito para a transformação deum corpo, ela poderia sentir suas pernas, mãos e cabelos ao ar, porém perdeu a memória de tudo que viveu e um sgredo foi estabelecido por todos dentro da fámilia, o segredo de que ela era uma girassol, agora ela é parte da fámilia e sempre será, cuidando dos campos de plantas na onde nunca teria imaginado crescer. ",
+        acoes: ["+15 manipulação de vida(Planta), +15 Manipulação de apodrecer, +15 regar, +15 conhecimentos botânicos, +15 conhecimento de plantas vivas, +10 sobrevivência, +10 criação de medicamnetos, +10 correr, +10 esquiva, +10 percpeção, +10 furtividade, +10 conhecimento de narcótico, +10 diplomacia, +10 vontade, +10 criação de item primal, +10 identificação de flores, +10 dançar, +10 pensar, +10 cavar, +10 arremesso, +10 empatia, +5 escalar, +5 nadar, +5 fortitude(Solar), +5 tratamento de infecção, +5 identificação de doenças, +5 resistência a doença."],
+        mutacao: "Criada na Horta: Tasha pode criar flores de girassol ou de suporte para curar parte do grupo, além de ouvir oq as plantas dizem e entender oq elas sentem ou querem, tendo +20 em comunicação com plantas. Além disso pode curar um alvo com um raio solar, assim como uma girassol, mais o raio só é vísivel pelo companheiro, porém tasha não sabe oq exatamente o cura ou como, cada vez que parte da sua identiddade é revelada, mais forte porém pertubada. Sua cura é de 6d6 de cura por rodada, além de dar amplificar o dano elemental de fontes de liberdade, fogo ou vida em 40%.",
+        classes: "Sobrevivente, Arcano",
+        agilidade: 2,
+        forca: 1,
+        inteligencia: 4,
+        sobrevivencia: 4,
+        vigor: 2,
+        status: "Vida: 70, Determinação/Sanidade: 130, Existência/Resistência: 20, Fôlego: 5, Armadura: 25",
       
     },
 
