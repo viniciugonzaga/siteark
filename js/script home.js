@@ -104,9 +104,9 @@ document.addEventListener("scroll", () => {
 
     // Se o usuário rolar até o fim da página
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg, #0f0c29, #302b63, #24243e)"; // Altera a cor do rodapé
+        footer.style.background = "linear-gradient(45deg,  #1a1a1a, #1a1a1a, #000, #000,#1a1a1a, #1a1a1a)"; // Altera a cor do rodapé
     } else {
-        footer.style.background = "linear-gradient(45deg, #0f0c29, #302b63, #24243e)"; // Mantém a cor padrão
+        footer.style.background = "linear-gradient(45deg, #1a1a1a, #000)"; // Mantém a cor padrão
     }
 });
 

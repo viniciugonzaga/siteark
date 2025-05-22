@@ -2,10 +2,22 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/Logo_Ark_Define.png') no-repeat center center fixed;
-    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
+    background: url('../imagens/lobby_home.jpg') no-repeat center center fixed;
+    background-size: cover;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Impede o scroll horizontal */
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.658); /* 0.5 = 50% sombra */
+    z-index: -1;
 }
 
 /* Estilo inicial para a página */
@@ -25,7 +37,7 @@ body {
 /* Estilo da Nav-Bar */
 nav {
     /* Mantém a cor, aumenta um pouco a transparência para o blur ser mais visível */
-    background: rgba(64, 68, 70, 0.356); 
+    background: rgba(50, 52, 53, 0.548); 
     color: #ecf0f1;
     display: flex;
     justify-content: space-between;
@@ -54,8 +66,8 @@ nav {
 }
 
 .logo img {
-    width: 40px; /* Tamanho do ícone */
-    height: 40px;
+    width: 4.5rem; /* Tamanho do ícone */
+    height: 4.5rem;
     border-radius: 50%; /* Deixa a imagem redonda */
     object-fit: cover; /* Garante que a imagem seja cortada corretamente */
 }
@@ -161,95 +173,308 @@ nav {
     display: flex; /* Container interno */
     justify-content: flex-start; /* Alinha Logo e Links ao início */
 }
-
-/* === Estilo Responsivo para 1080px === */
-@media (max-width: 1280px) {
-    .nav-links {
-      gap: 8px;
+@media (max-width: 480px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0.4rem; /* Padding reduzido para mais espaço */
+        box-sizing: border-box;
+        height: auto;
     }
 
-    .nav-links {
-        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
+    .logo {
         display: flex;
-        justify-content: center; /* <-- Troque de space-between para center */
-        flex-wrap: wrap;
-        gap: 1rem; /* Ajuste o espaçamento geral */
-        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
-        margin: 0; /* Remove margens externas */
-        flex-basis: auto; /* Deixa a largura base ser automática */
-        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
-        flex-shrink: 1; /* Permite que o bloco de links encolha */
-        gap: 8px; /* Espaço ENTRE os links individuais */
+        align-items: center;
+        transform: scale(0.6); /* Logo ainda menor */
+    }
+
+    .nav-left {
+        margin-right: 0.3rem; /* Margem reduzida */
+    }
+
+    .logo img {
+        max-width: 50px; /* Reduzir ainda mais a imagem do logo */
+        max-height: 50px;
+        margin-right: 0.1rem;
     }
 
     .logo h1 {
-      font-size: 20px;
-      margin-left: 6px;
-    }
-  
-    .sidebar-item {
-      padding: 8px 10px;
-      font-size: 14px;
-    }
-  
-    .sidebar-item .icon {
-      font-size: 16px;
-    }
-  
-    .glow-on-hover {
-      font-size: 0.9rem;
-      margin-right: 2em;
-    }
-  
-    .dado {
-      width: 3em;
-    }
-  }
-  
-
-/* === Estilo Responsivo para 1080px === */
-@media (max-width: 1080px) {
-    .nav-links {
-      gap: 8px;
+        font-size: 0.8rem; /* Fonte do título menor */
+        margin: 0;
     }
 
-    .nav-links {
-        width: 100%; /* <--- Faz com que o bloco de links ocupe toda a largura disponível quando quebrar para a próxima linha */
+    .nav-middle {
         display: flex;
-        justify-content: center; /* <-- Troque de space-between para center */
-        flex-wrap: wrap;
-        gap: 1rem; /* Ajuste o espaçamento geral */
-        flex-wrap: wrap; /* Permite que os links individuais quebrem linha DENTRO deste container */
-        margin: 0; /* Remove margens externas */
-        flex-basis: auto; /* Deixa a largura base ser automática */
-        flex-grow: 1; /* Permite que o bloco de links cresça para ocupar a linha */
-        flex-shrink: 1; /* Permite que o bloco de links encolha */
-        gap: 8px; /* Espaço ENTRE os links individuais */
+        justify-content: center;
+        width: 65%; /* Um pouco mais de largura para o nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Em telas muito pequenas, 3 ou 4 colunas podem ser mais eficazes para evitar cortes */
+        grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); /* Min-width menor */
+        gap: 0.2rem; /* Gap ainda menor */
+        width: 100%;
+        padding: 20px 0; /* Padding vertical reduzido */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.3rem; /* Padding reduzido */
+        font-size: 0.5rem; /* Fonte do item menor */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.8rem; /* Tamanho do ícone menor */
+        margin-bottom: 0.1rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.5rem; /* Fonte do texto do item menor */
+        line-height: 1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2rem; /* Ajustar margem para que não corte */
+        margin-bottom: 1rem; /* Ajustar margem */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem; /* Gap menor */
+        margin-left: 0.5rem; /* Margem ajustada */
+    }
+
+    .glow-on-hover {
+        font-size: 0.5rem; /* Fonte do botão menor */
+        padding: 0.1rem 0.3rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.5rem; /* Dado menor */
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ======================================================= */
+/* Ajustes para celulares maiores e tablets pequenos (481px a 767px) */
+/* ======================================================= */
+@media (min-width: 481px) and (max-width: 767px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.6rem; /* Padding ligeiramente ajustado */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.65); /* Escala intermediária para o logo */
+    }
+
+    .nav-left {
+        margin-right: 0.4rem;
+    }
+
+    .logo img {
+        max-width: 55px; /* Tamanho intermediário para a imagem do logo */
+        max-height: 55px;
+        margin-right: 0.1rem;
     }
 
     .logo h1 {
-      font-size: 20px;
-      margin-left: 6px;
+        font-size: 0.85rem; /* Fonte intermediária para o título */
+        margin: 0;
     }
-  
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle como na versão de 780px */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
+        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+        gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
+        width: 100%;
+        padding: 25px 0; /* Padding vertical ajustado */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
     .sidebar-item {
-      padding: 8px 10px;
-      font-size: 14px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.4rem; /* Padding ligeiramente ajustado */
+        font-size: 0.55rem; /* Fonte do item ligeiramente ajustada */
+        text-align: center;
+        overflow: hidden;
     }
-  
+
     .sidebar-item .icon {
-      font-size: 16px;
+        font-size: 0.9rem; /* Tamanho do ícone ligeiramente ajustado */
+        margin-bottom: 0.2rem;
     }
-  
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1.05;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+        margin-bottom: 1.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.8rem;
+    }
+
     .glow-on-hover {
-      font-size: 0.9rem;
-      margin-right: 2em;
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-right: 0;
     }
-  
+
     .dado {
-      width: 3em;
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0;
     }
-  }
+}
+
+/* ================================================= */
+/* Ajustes para tablets maiores e laptops pequenos (768px a 1024px) */
+/* ================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
+        height: auto;
+       
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.7); /* Manter escala do logo igual ao original de 780px */
+    }
+
+    .nav-left {
+        margin-right: 0.5rem;
+    }
+
+    .logo img {
+        max-width: 60px; /* Manter tamanho da imagem do logo */
+        max-height: 60px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.9rem; /* Manter fonte do título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Aqui podemos dar um pouco mais de espaço para cada coluna, ou manter o repeat(6, 1fr) se os textos couberem */
+        /* Vou manter o auto-fit para flexibilidade, com um min-width um pouco maior */
+        grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); /* Min-width ajustado */
+        gap: 0.5rem; /* Ajustar o gap, ligeiramente maior que 767px */
+        width: 100%;
+        padding: 30px 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.5rem;
+        font-size: 0.6rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -3rem;
+        margin-bottom: 2rem;
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-left: 1rem;
+    }
+
+    .glow-on-hover {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.4rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 2rem;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
   
 /* Ajustes para telas menores (até 780px) */
 @media (max-width: 780px) {
@@ -260,6 +485,7 @@ nav {
       padding: 0.5rem 1rem;
       box-sizing: border-box;
       height: auto;
+    
   }
 
   .logo {
@@ -267,15 +493,18 @@ nav {
       align-items: center;
       transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
   }
+  .nav-left{
+ margin-right: 0.5rem;
 
+  }
   .logo img {
-      max-width: 30px;
-      max-height: 30px;
-      margin-right: 0.3rem;
+      max-width: 60px;
+      max-height: 60px;
+      margin-right: 0.1rem;
   }
 
   .logo h1 {
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       margin: 0;
   }
 
@@ -285,12 +514,15 @@ nav {
       width: 60%; /* Ocupa uma parte da largura para os ícones */
   }
 
-  .nav-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* Layout de 3 colunas */
-      gap: 0.6rem; /* Espaçamento menor entre os ícones */
-      width: 100%; /* Ocupa a largura do .nav-middle */
-  }
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(33px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.4rem; /* Reduzir um pouco o gap pode ajudar */
+    width: 100%;
+    padding: 30px 0;
+    margin-left: 0; /* Remover ou reduzir estas margens */
+    margin-right: 0; /* Remover ou reduzir estas margens */
+}
 
   .sidebar-item {
       display: flex;
@@ -298,7 +530,7 @@ nav {
       align-items: center;
       justify-content: center;
       min-width: auto;
-      padding: 0.3rem;
+      padding: 0.5rem;
       font-size: 0.6rem;
       text-align: center;
       overflow: hidden;
@@ -326,7 +558,7 @@ nav {
       display: flex;
       align-items: center; /* Alinha o botão e a imagem horizontalmente */
       gap: 0.3rem;
-      margin-left: 0.1rem;
+      margin-left: 1rem;
   }
 
   .glow-on-hover {
@@ -515,15 +747,31 @@ nav {
 
 /* Estilo geral do carrossel */
 .carousel {
-    width: 90%;
-    max-width: 1300px;
-    margin: 10px auto;
+    width: 65%;
+    max-width: 1200px;
+    margin: 20px auto;
     overflow: hidden; /* Esconde as imagens fora do contêiner */
-    border-radius: 20px;
-    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    border-radius: 15px;
     position: relative;
     margin-bottom: 20px;
-    margin-top: 190px;
+    margin-top: 13rem;
+    animation: fog-pulse 4s infinite alternate ease-in-out; /* Nome da animação, duração, repetição, direção, suavidade */
+  
+}
+
+@keyframes fog-pulse {
+    0% {
+        /* Estado inicial: brilho mais contido */
+        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    }
+    50% {
+        /* Meio da animação: brilho se espalha mais e talvez fique um pouco mais opaco */
+        box-shadow: 0 0 20px rgba(193, 240, 248, 0.6); /* Aumenta o blur e o spread, e a opacidade */
+    }
+    100% {
+        /* Volta ao estado inicial */
+        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    }
 }
 
 /* Contêiner de imagens */
@@ -537,18 +785,54 @@ nav {
 .carousel-images img {
     width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
     flex-shrink: 0; /* Garante que cada imagem ocupe seu espaço */
-    border-radius: 10px;
+    border-radius: 20px;
 }
+
+/* Para telas menores que 768px (tablets e celulares) */
+@media (max-width: 767px) {
+    .carousel {
+        width: 75%; /* Ocupar mais largura em telas menores para ser mais visível */
+        max-width: 700px; /* Reduzir ainda mais o tamanho máximo para tablets */
+        margin-top: 5rem; /* Ajustar o espaçamento superior para telas menores */
+        border-radius: 10px; /* Borda um pouco menor em telas menores */
+        margin-top: 13rem;;
+      }
+
+    .carousel-images img {
+        border-radius: 10px; /* Borda um pouco menor nas imagens também */
+    }
+}
+/* Para telas muito pequenas (celulares) */
+@media (max-width: 480px) {
+    .carousel {
+        width: 70%; /* Ocupar toda a largura disponível em celulares */
+        max-width: none; /* Remover max-width para preencher a tela */
+        margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
+        margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
+        border-radius: 15px; /* Borda mínima em celulares */
+        margin-top: 13rem;;
+      }
+
+    .carousel-images img {
+        border-radius: 5px; /* Borda mínima nas imagens */
+        /* height: 200px; /* Você pode até definir uma altura fixa aqui com object-fit,
+                                 se preferir um carrossel mais compacto em celulares */
+    }
+}
+
+
 
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     padding: 40px;
     max-width: 1300px;
     margin: auto;
     background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
-    border-radius: 20px
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
 }
   
   .card {
@@ -569,85 +853,8 @@ nav {
     border: 2px solid transparent; /* Inicialmente transparente */
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
   }
-/* Ajuste do tamanho do scroll para dispositivos móveis */
-@media (max-width: 780px) {
 
-    .container-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); /* Ajuste o minmax conforme necessário */
-        gap: 6px;
-        padding: 10px; /* Reduzi um pouco o padding para telas menores */
-        max-width: 1200px;
-        margin: auto;
-      }
-      
-      .card {
-        background: linear-gradient(145deg, #1a1a1a, #000);
-        border-radius: 16px;
-        padding: 15px; /* Reduzi um pouco o padding interno */
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-        position: relative;
-        overflow: hidden;
-        min-height: 80px; /* Define uma altura mínima para o card */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-decoration: none;
-        box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
-        border: 2px solid transparent; /* Inicialmente transparente */
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
-      }
-      
-      .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
-        border-color: #aaffff; /* Cor da borda no hover */
-      }
-      
-      .card a {
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
-        justify-content: flex-start;
-        color: inherit;
-      }
-      
-      .card a:hover {
-        opacity: 0.9;
-      }
-      
-      .card h2 {
-        font-size: 0.5em; /* Reduzi um pouco a fonte para telas menores */
-        margin-top: 10px;
-        margin-bottom: 5px;
-        color: #ffffff;
-        background: linear-gradient(to right, #888, #fff);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-      
-      .card img {
-        max-width: 90%;
-        max-height: 200px; /* Defini uma altura máxima em pixels */
-        object-fit: contain;
-        filter: grayscale(100%) brightness(0.8);
-        transition: transform 0.4s ease, filter 0.4s ease;
-        flex-shrink: 0;
-        margin-bottom: auto; /* Empurra a imagem para o topo */
-      }
-      
-      .card:hover img {
-        filter: grayscale(0%) brightness(1);
-        transform: scale(1.1);
-      }
-}
-.card-content {
+  .card-content {
   position: relative;
   transition: transform 0.3s ease-in-out;
 }
@@ -738,6 +945,88 @@ nav {
     transform: scale(1.1);
   }
 
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 780px) {
+
+    .container-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); /* Ajuste o minmax conforme necessário */
+        gap: 6px;
+        padding: 10px; /* Reduzi um pouco o padding para telas menores */
+        max-width: 1200px;
+        margin: auto;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .card {
+        background: linear-gradient(145deg, #1a1a1a, #000);
+        border-radius: 16px;
+        padding: 15px; /* Reduzi um pouco o padding interno */
+        text-align: center;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+        position: relative;
+        overflow: hidden;
+        min-height: 80px; /* Define uma altura mínima para o card */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-decoration: none;
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+        border: 2px solid transparent; /* Inicialmente transparente */
+        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+      }
+      
+      .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
+        border-color: #aaffff; /* Cor da borda no hover */
+      }
+      
+      .card a {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: flex-start;
+        color: inherit;
+      }
+      
+      .card a:hover {
+        opacity: 0.9;
+      }
+      
+      .card h2 {
+        font-size: 0.7em; /* Reduzi um pouco a fonte para telas menores */
+        margin-top: 10px;
+        margin-bottom: 5px;
+        color: #ffffff;
+        background: linear-gradient(to right, #888, #fff);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      .card img {
+        max-width: 90%;
+        max-height: 200px; /* Defini uma altura máxima em pixels */
+        object-fit: contain;
+        filter: grayscale(100%) brightness(0.8);
+        transition: transform 0.4s ease, filter 0.4s ease;
+        flex-shrink: 0;
+        margin-bottom: auto; /* Empurra a imagem para o topo */
+      }
+      
+      .card:hover img {
+        filter: grayscale(0%) brightness(1);
+        transform: scale(1.1);
+      }
+}
+
+
 
 /* Container geral */
 .main-container {
@@ -747,67 +1036,25 @@ nav {
     gap: 20px;
 }
 
-  /* Botão para gerar a região */
-.spawn-button {
-    background: linear-gradient(45deg, #3c0d92c0, #460c68b7,#3c0d92c0);
-    color: white;
-    font-size: 1.2rem;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-   
-    transition: all 0.3s ease-in-out;
-    margin-top: 30px;
-
-}
-
-.spawn-button:hover {
-    background-color: #a119f0d8;
-    box-shadow: 0 0 20px rgb(154, 11, 250);
-}
-  
-.botão_atalho{
-text-decoration: none;
-color: #fcf4ef;
-
-}
-@media (max-width: 1080px) {
-    /* Ajuste geral para o contêiner principal */
-    .main-container {
-        gap: 15px; /* Reduz o espaçamento entre os elementos */
-        padding: 10px; /* Adiciona margem interna */
-    }
-
-    /* Botão de gerar região responsivo */
-    .spawn-button {
-        font-size: 1rem; /* Reduz o tamanho da fonte */
-        padding: 10px 20px; /* Ajusta o espaçamento interno */
-        border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
-    }
-
-    /* Estilo do botão de atalho responsivo */
-    .botão_atalho {
-        font-size: 0.9rem; /* Reduz o tamanho do texto */
-        color: #eae1d8; /* Ajusta a cor para contraste melhor */
-    }
-}
+ 
 .spawn-button-v2 {
-    background: linear-gradient(45deg, #a7890386, #f5e0217e,#81790386);
+   background: linear-gradient(145deg, #1a1a1a, #000);
     color: white;
     font-size: 1.2rem;
     padding: 15px 25px;
     border: none;
     border-radius: 25px;
     cursor: pointer;
-   
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
     transition: all 0.3s ease-in-out;
     margin-top: 5%;
     margin-bottom: 5%;
 }
 
 .spawn-button-v2:hover {
-    background-color: #996403;
+        transform: scale(1.05);
+        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
+       
 }
 
 .botão_atalho_v2 {
@@ -843,7 +1090,7 @@ color: #fcf4ef;
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
 footer {
-    background: linear-gradient(45deg, #3f018fe0,#05219cd5);
+    background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -909,6 +1156,9 @@ footer {
     display: flex;
     justify-content: center;
     gap: 15px;
+    border: 3px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
   }
   
   .social-icons a img {

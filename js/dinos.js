@@ -118,7 +118,10 @@ const creatures = {
     'Stalker-da-Neve',
     'Megaraptor',
     'Urso-Primitivo',
-    
+    'Picada Veloz',
+    'Thanator',
+    'Shadowmane',
+    'Pyromane',
 
     'Piranha',
     'Parasitas',
@@ -215,7 +218,7 @@ const creatures = {
 
 
     'Apex Criaturas': 
-    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Quillshot', 'Trovador', 'Charrog','Boreus','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','kukulkan','Pyromane','Dodorex','Warden']
+    ['Indominus Rex','Indoraptor','E750','Megavore','Indotaurus','Espinoraptor','Espinoceratops','Espécime 000','Estegoceratopes','Tiranolofossauro','Ultimssauros','Espinossauro ger 3','Tusotheuthis','Reaper-leviatã','Dragão-leviatã','fantasma-leviatã','Sombra-leviatã','Chelicerate','Imperador','Leviatã-Coral','Embermane','Stormclaw','Drask','Koshai','Riftstalkear','Gnasher','Pangar','Hellion','Nayzaga','Valomyr','Shrike','Quillshot', 'Trovador', 'Charrog','Boreus','Skullcrawler','Golias','Kraken','Espectro','Górgona','Behemoth', 'Golias Meteoro','Kraken Ancião','Espectro Rubro','Behemoth congelado','Górgona rubra', 'Peixe-jaula','Gargantua','Rudy','Carnotauro Rex','Desolatitan','Giga ger 2','Verme da areia','Rodan','Camazotz','Acro ger 2','Cão da lua','kukulkan','Dodorex','Warden']
 };
 
 const dinoFichas = {
@@ -267,6 +270,29 @@ const dinoFichas = {
     biome: ['Campos', 'Bosque', 'Planície', 'Dunas', 'Praia', 'Taiga'  ], // Exemplo: múltiplos biomas
 
     // Adicione outras fichas aqui
+},
+'Dracovenator': {
+    title: 'O Dilofossauro Ancião',
+    image: 'imagens/dinos_dracovenator.jpg',
+    weight: '300 kg',
+    height: '2 M',
+    length: '2,5 M',
+    attributes: { agi: 3, for: 2, int: 4, pre: 4, vig: 2 },
+    life: 130,
+    armor: 40,
+    actionBonus: '+15 artes, +15 pensar, +15 sobrevivência, +15 socializar, +15 intimidação, +15 copiar, +10 lembrar, +10 garras, +10 pontaria, +10 mordida, +10 reflexo, +10 esquiva, +10 correr, +10 contra-ataque, +10 furtividade, +10 percepção, +10 saltar, +5 escalar, +5 agachar, +5 resistência, +5 cheirar, +5 flanquear.',
+    attacks: [
+        'Mordida Draco: 2d10+15 (Causa algum efeito de alguma mutação elemental que tenha gravado ou copiado)',
+        'Garras Draco: 1d12+10 2x(Ganha +5 em garras depois de atacar com Veneno)',
+        'Coroa Draco: 4d8+20 (Causa um dano ácido que deixa o alvo cego por 1d4 rodadas, além de causar dano adicional elemnetal de alguma mutação ou simbolo que tenha copiado)'
+    ],
+    abilities: [
+        'Copiar simbolo: Após abrir a Coroa Draco, o Dracovenator depois de cegar um alvo pode copiar um simbolo ou mutação elemental e colocar em suas garras ou mordida, ganhando +5 em flanquear.',
+        'Criatura Inteligente: Dracovenator pode usar sua inteligência para criar armadilhar ou bases de sobrevivência, ganhando +5 em pensar, usnado como bas sua memória de como o ambiente é hostil e quais seriam os lugares mais seguros'
+    ],
+    passiva: 'Copiador do Arcano: Dracovenator pode ser treinado ou gravar com sua memória para desenhar em sua Coroa simbolos ou mutações elementais de outros animais para uso próprio.',
+    passivaElemental: 'Suas habilidades de sangramento e Intimidação Feroz contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Cavernas', 'Reino Fungi'], // Exemplo: múltiplos biomas
 },
 'Compsognathus': {
     title: 'O Pequeno Caçador',
@@ -433,31 +459,6 @@ const dinoFichas = {
     passivaElemental: 'Suas garras podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: ['Bosque', 'Taiga', 'Deserto','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
 },
-
- 'Austroraptor': {
-    title: 'O Ardiloso Pescador',
-    image: 'imagens/dinos_austro.jpg', // Substitua pelo caminho correto
-    weight: '70 kg',
-    height: ' 1,2 M',
-    length: '1,5 M',
-    attributes: { agi: 3, for: 1, int: 2, pre: 3, vig: 2 },
-    life: 50, // Escalável por nível ou estágio
-    armor: 10, // Armadura leve
-    actionBonus: '+10 pescar, +10 nadar, +10 flanquear, +10 correr, +5 reflexo, +5 salto +5 esquiva, +5 contra-ataque, +5 socializar, +5 pensar, +5 identificar, +5 rastretar peixes, +5 fortitude, +5 acasalar, +5 dançar, +5 agarrar, +5 intimidar',
-    attacks: [
-        'Mordida: 1d10+5 (Causa 300% de dano em peixes)',
-        'Garra: 2d6 2x',
-        'Ataque em Grupo: 2d8 +5 (se houver 2 ou mais Austro, cada um ganha +5 em flanquear)'
-    ],
-    abilities: [
-        'Pescador Raptor: O Austro é um caçador astuto e ágil, capaz de ganhar +5 em ações de movimento por 1 rodada após sair de ambientes aquáticos, ',
-        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir peixes, tendo conhecimento de cada peixe e quais efeitos positivos cada presa do cotidiado pode fornecer.'
-    ],
-    passiva: 'Caçador Ágil: Todos os Austros em terrenos próximos de água ou úmidos vão ter o efeito Ágil durante a cena.',
-    passivaElemental: 'Suas táticas de pescaria podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Praia', 'Tundra'  ], // Exemplo: múltiplos biomas
-},
-
 'Microraptor': {
     title: 'O Ardiloso Raptor',
     image: 'imagens/dinos_microraptor.jpg', // Substitua pelo caminho correto
@@ -650,6 +651,29 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades que usam as garras e suas pragas podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Montanha', 'Bosque','Floresta de Sangue'  ], // Exemplo: múltiplos biomas
 },
+ 'Austroraptor': {
+    title: 'O Ardiloso Pescador',
+    image: 'imagens/dinos_austro.jpg', // Substitua pelo caminho correto
+    weight: '70 kg',
+    height: ' 1,2 M',
+    length: '1,5 M',
+    attributes: { agi: 3, for: 1, int: 2, pre: 3, vig: 2 },
+    life: 50, // Escalável por nível ou estágio
+    armor: 10, // Armadura leve
+    actionBonus: '+10 pescar, +10 nadar, +10 flanquear, +10 correr, +5 reflexo, +5 salto +5 esquiva, +5 contra-ataque, +5 socializar, +5 pensar, +5 identificar, +5 rastretar peixes, +5 fortitude, +5 acasalar, +5 dançar, +5 agarrar, +5 intimidar',
+    attacks: [
+        'Mordida: 1d10+5 (Causa 300% de dano em peixes)',
+        'Garra: 2d6 2x',
+        'Ataque em Grupo: 2d8 +5 (se houver 2 ou mais Austro, cada um ganha +5 em flanquear)'
+    ],
+    abilities: [
+        'Pescador Raptor: O Austro é um caçador astuto e ágil, capaz de ganhar +5 em ações de movimento por 1 rodada após sair de ambientes aquáticos, ',
+        'Trabalho em Grupo: Quando em grupo, eles podem cercar e confundir peixes, tendo conhecimento de cada peixe e quais efeitos positivos cada presa do cotidiado pode fornecer.'
+    ],
+    passiva: 'Caçador Ágil: Todos os Austros em terrenos próximos de água ou úmidos vão ter o efeito Ágil durante a cena.',
+    passivaElemental: 'Suas táticas de pescaria podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Praia', 'Tundra'  ], // Exemplo: múltiplos biomas
+},
 'Utahraptor': {
     title: 'Predador Ágil e Inteligente',
     image: 'imagens/dinos_velociraptor.jpeg',
@@ -742,6 +766,29 @@ const dinoFichas = {
     passivaElemental: 'A Locomoção na areia de Concavenator pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Deserto', 'Floresta de Sangue',  ], // Exemplo: múltiplos biomas
 },
+'Picada Veloz': {
+    title: 'O Dragão Raptor',
+    image: 'imagens/dinos_picada_veloz.jpg',
+    weight: '250 kg',
+    height: '1,9 M',
+    length: '2,5 M',
+    attributes: { agi: 4, for: 2, int: 3, pre: 2, vig: 2 },
+    life: 95,
+    armor: 45,
+    actionBonus: '+15 correr, +10 pontaria, +10 mordida, +10 garras, +10 ataque de grupo, +10 esquiva, +10 contra-ataque, +10 emboscada, +10 percepção, +10 percepção inimiga, +10 resistência a torpor, +10 resistência a corte, +10 sobrevivência, +10 saltar, +10 socializar, +10 ataque de cauda, +10 rugido, +10 enganação, +10 resistência ao gelo, +10 congelar, +10 manipulação de gelo, +10 percepção arcana, +10 congelar, +5 reistência, +5 cheirar, +5 pensar, +5 furtividade, +5 luta, +5 agarrar, +5 escalar, +5 equilibrio, +5 cavar, +5 intimidação, +5 agachar, +5 dormir, +5 rastrear. ',
+    attacks: [
+        'Mordida veloz: 3d10+10 (Caso acerte o alvo deixa ele fraco)',
+        'Garras de Caçador: 2d12+10 2x (Caso acerte deixa o alvo lento)',
+        'Ataque de Cauda: 3d12+20 (Caso acerte deixa o alvo congelado e imobilizado por 1d4 rodadas, com o efeito da Picada Congelante)'
+    ],
+    abilities: [
+        'Emboscada Veloz: O Picada Veloz quando está em grupo, ganha +5 em preparar ação e +5 em pensar, pensando em planos de como atacar a sua presa, quando atacarem o alvo recebe: 3d12+20 (Sendo +20 para cada golpe de Picada Veloz,caso algum do grupo acerte o alvo, todos ganha o efeito ágil)',
+        'Grito Ofensivo:  O alfa do bando pode dar um rugido que faz com que todos os membros do grupo ganhem +5 em contra-ataque e +5 mordida, além de sempre causarem bônus dobrado em danos de críticos, sendo +3 dados na cauda.'
+    ],
+    passiva: 'Picada Congelante: Ao deixar um alvo completamente congelado, o Picada Veloz pode consumir o alvo e ganhar um bônus de regeneração de vida de 20 pontos, além de reconstruir a armadura, Todos os seres que estiverem com o efeito de sua picada, recebem o dobro de dano de efeitos de gelo e ficam com -10 fortitude',
+    passivaElemental: 'O Efeito do Picada Veloz pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Deserto frio', 'Floresta de Sangue', 'Tundra'  ], // Exemplo: múltiplos biomas
+},
 'Megaraptor': {
     title: 'O Monstro Raptor',
     image: 'imagens/dinos_megaraptor.jpg',
@@ -765,31 +812,6 @@ const dinoFichas = {
     passivaElemental: 'Suas habilidades de sangramento contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Dunas', 'Floresta Traiçoeira', 'Floresta de Sangue'], // Exemplo: múltiplos biomas
 },
-'Dracovenator': {
-    title: 'O Dilofossauro Ancião',
-    image: 'imagens/dinos_dracovenator.jpg',
-    weight: '300 kg',
-    height: '2 M',
-    length: '2,5 M',
-    attributes: { agi: 3, for: 2, int: 4, pre: 4, vig: 2 },
-    life: 130,
-    armor: 40,
-    actionBonus: '+15 artes, +15 pensar, +15 sobrevivência, +15 socializar, +15 intimidação, +15 copiar, +10 lembrar, +10 garras, +10 pontaria, +10 mordida, +10 reflexo, +10 esquiva, +10 correr, +10 contra-ataque, +10 furtividade, +10 percepção, +10 saltar, +5 escalar, +5 agachar, +5 resistência, +5 cheirar, +5 flanquear.',
-    attacks: [
-        'Mordida Draco: 2d10+15 (Causa algum efeito de alguma mutação elemental que tenha gravado ou copiado)',
-        'Garras Draco: 1d12+10 2x(Ganha +5 em garras depois de atacar com Veneno)',
-        'Coroa Draco: 4d8+20 (Causa um dano ácido que deixa o alvo cego por 1d4 rodadas, além de causar dano adicional elemnetal de alguma mutação ou simbolo que tenha copiado)'
-    ],
-    abilities: [
-        'Copiar simbolo: Após abrir a Coroa Draco, o Dracovenator depois de cegar um alvo pode copiar um simbolo ou mutação elemental e colocar em suas garras ou mordida, ganhando +5 em flanquear.',
-        'Criatura Inteligente: Dracovenator pode usar sua inteligência para criar armadilhar ou bases de sobrevivência, ganhando +5 em pensar, usnado como bas sua memória de como o ambiente é hostil e quais seriam os lugares mais seguros'
-    ],
-    passiva: 'Copiador do Arcano: Dracovenator pode ser treinado ou gravar com sua memória para desenhar em sua Coroa simbolos ou mutações elementais de outros animais para uso próprio.',
-    passivaElemental: 'Suas habilidades de sangramento e Intimidação Feroz contra humanos podem ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar estruturar de gelo, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
-    biome: [ 'Cavernas', 'Reino Fungi'], // Exemplo: múltiplos biomas
-},
-
-
 'Leão-Marsupial': {
     title: 'O Marsupial Feroz',
     image: 'imagens/dinos_leão-marsupial.webp',
@@ -798,7 +820,7 @@ const dinoFichas = {
     length: '2,3 M',
     attributes: { agi: 3, for: 3, int: 3, pre: 3, vig: 3 },
     life: 180,
-    armor: 100,
+    armor: 70,
     actionBonus: '+15 garras, +15 luta, +10 mordida, +10 garras, +10 esquiva, +10 correr, +10 perseguir, +10 contra-ataque, +10 agarrar, +10 intimidar, +10 furtividade, +10 percepção, +10 sobrevivência, +10 flanquear, +10 bloqeuar, +10 saltar, +10 fortitude, +10 farejar, +10 saltar, +10 emboscada, +10 carregar peso, +5 resitência, +5 pensar, +5 rastrear, +5 agachar, +5 combo, +5 cicatrização(lamber) ',
     attacks: [
         'Mordida do Leão: 4d10+25 (Causa sangramento no alvo)',
@@ -821,7 +843,7 @@ const dinoFichas = {
     length: '2,2 M',
     attributes: { agi: 3, for: 3, int: 2, pre: 3, vig: 2 },
     life: 150,
-    armor: 70,
+    armor: 50,
     actionBonus: ' +15 cavar, +15 garras, +10 agarrar, +10 mordida, +10 furtividade, +10 encontrão, +10 bloqueio, +10 contra-ataque, +10 correr, +10 agachar, +10 percepção, +10 farejar, +1- cheirar, +10 digestão, +10 mastigar, +10 fortitude, +10 saltar, +10 ocultar cheiro, +5 luta, +5 sobrevivência, +5 carregar peso, +5 escalar, +5 pontaria, +5 resitência, +5 resistência a doenças',
     attacks: [
         'Mordida Quebra Ossos: Causa 4d10+25 (Causa +2 dados de dano caos ataque inimigos sem armadura ou com armadura quebrada)',
@@ -843,8 +865,8 @@ const dinoFichas = {
     height: '1,6 M',
     length: '1,8 M',
     attributes: { agi: 4, for: 2, int: 3, pre: 3, vig: 2 },
-    life: 140,
-    armor: 55,
+    life: 120,
+    armor: 25,
     actionBonus: '+15 flanquear, +15 correr, +10 furtividade, +10 garras, +10 mordida, +10 saltar, +10 reflexo, +10 sobrevivência, +10 percepção, +10 farejar, +10 rastrear, +10 pensar, +10 preparar ação, +10 contra-ataque, +10 fortitude, +10 esquiva, +5 agachar, +5 escalar, +5 intimidação, +5 agarrar, +5 enganação, +5 socialização, +5 resiliência, +5 resistência, +5 cicatrização(lamber)',
     attacks: [
         'Mordida rápida: 3d12+15 (Caso acerte a mordida flanqueando garante um dano crítico de +3 dados adicionais e causa sangramento na presa, ganhando +5 agarrar depois que atacar)',
@@ -867,7 +889,7 @@ const dinoFichas = {
     length: '1,5 M',
     attributes: { agi: 3, for: 2, int: 4, pre: 4, vig: 2 },
     life: 125,
-    armor: 65,
+    armor: 35,
     actionBonus: '+15 farejar, +15 rastrear, +15 socialização, +15 ataque de grupo, +15 diplomacia, +15 pensar, +10 preparar ação, +10 sobrevivência, +10 mordida, +10 garras, +10 percepção inimiga, +10 fortidue, +10 agachar, +10 furtividade, +10 coragem, +10 esquiva, +10 contra-ataque, +10 vontade, +10 tática, +10 brincar, +10 intimidação, +5 saltar, +5 escalar, +5 lamber, +5 reflexo, +5 percepção, +5 cicatrização(lamber).',
     attacks: [
         'Mordida de Lobo: 2d10+15 (Caso acerte o alvo, ganha +5 em agarrar)',
@@ -882,6 +904,60 @@ const dinoFichas = {
     passivaElemental: 'A liderança de Grupo do Lobo-Terrível pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Tundra', 'Floresta Fria', 'Deserto frio','Taiga' ], // Exemplo: múltiplos biomas
 },
+'Thanator': {
+    title: 'O Caçador da Selva',
+    image: 'imagens/dinos_thanator.jpg',
+    weight: '650 kg',
+    height: '2,7 M',
+    length: '1,5 M',
+    attributes: { agi: 3, for: 3, int: 4, pre: 2, vig: 3 },
+    life: 185,
+    armor: 65,
+    actionBonus: '+15 garras, +15 mordida, +15 luta, +15 sobrevivência, +10 farejar, +10 equilibrio, +10 rastrear, +10 percepção, +10 emboscada, +10 correr, +10 saltar, +10 percepção inimiga, +10 preaparar ação, +10 esquiva, +10 contra-ataque, +10 força bruta, +10 carregar peso, +10 ataque de cauda, +10 bloqueio, +10 resiliência, +10 intimidação, +10 fortitude, +10 resistência, +10 agachar, +10 furtividade, +10 pensar, +5 nadar, +5 escalar, +5 enganação, +5 flanquear, +5 resitência veneno, +5 resitência a corte, +5 cicatrização(Lamber)',
+    attacks: [
+        'Mordida Thanator: 4d10+15 (Caso acerte o alvo, ganha +5 em agarrar)',
+        'Garras de Thanator: 3d12+15 2x (Caso acerte +5 em contra-ataque)',
+        'Encontrão de Fera: 6d8+25 (Faz o alvo ficar desarmado e atordoado, ganha +5 em agarrar e o efeito ágil.)'
+    ],
+    abilities: [
+        'Coroa de Espinhos: Thanator pode abrir a coroa e fazer um teste de intimidação, fazendo ele poder copiar os efeitos que o inimigo pode usar em si mesmo ou causar, aplicando em suas garras, ganhando +5 em encontrão.',
+        'Golpe de Pulo: Ao Thanator pular de uma altura acima de 3 metros, ganha +10 em acerto arcano, +10 em manipulação de luta e aumenta o dano e a área de seu encontrão em 4,5 metros, fazendo todos os inimigos receberem +4 dados de dano e ficarem lentos '
+    ],
+    passiva: 'Espírito de Guerreiro: O Thanator pode regenerar vida de acordo quando sus opononetes fracassam nas tentativas de o acertar durante a luta, ganhando ou recuperando +30 pontos de vida, podendo acumular até o total da sua armadura em vida máxima acumulada.',
+    passivaElemental: 'A Essência Lutadora do Thanator pode ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
+    biome: [ 'Bosque', 'Floresta Traiçoeira','Floresta de Sangue' ], // Exemplo: múltiplos biomas
+},
+'Shadowmane': {
+    title: 'O Caçador da Selva',
+    image: 'imagens/dinos_shadowmane.jpg',
+    weight: '650 kg',
+    height: '2,5 M',
+    length: '1,5 M',
+    attributes: { agi: 3, for: 2, int: 4, pre: 3, vig: 3 },
+    life: 185,
+    armor: 65,
+    actionBonus: '+15 garras, +15 luta, +15 sobrevivência, +15 reflexo, +10 farejar, +10 rastrear, +10 pensar, +10 manipulação de Morte, +10 manipulação de Liberdade, +10 conjuração, +10 pontaria arcana, +10 percepção arcana,  +10 emboscada, +10 percepção, +10 percepção inimiga, +10 bloqueio, +10 esquiva, +10 contra-ataque, +10 mordida, +10 intimidação +10 resitência a doença, +10 resitência a elemento, +10 resistência a corte, +10 fortitude, +10 resiliência, +10 nadar, +10 correr, +10 ataque de cauda, +10 carregar peso, +5 agachar, +5 pescar, +5 escalar, +5 cicatrizaçaõ(lamber)',
+    attacks: [
+        'Mordida shadow: 3d10+15 (Caso acerte o alvo, ganha +5 em agarrar)',
+        'Garras de Thanator: 3d12+5 2x (Caso acerte +5 em pensar, +5 percepão innimiga)',
+        'Encontrão de Fera: 5d8+20 (Faz o alvo ficar desmontado, atordoado e ganha +5 em ataque com mordida)'
+    ],
+    abilities: [
+        'Coroa de Espinhos: Shadowmane pode abrir sua coroa e colocar espinhos em volto do corpo como forma de defesa, ao receber dano físico corpo a copro, o alvo deve esquivar de um teste de reflexo, caso fracasse recebe 2d12+5 pontos de dano de veneno.',
+        'Encontrão Elemental: Shadowmane pode usar uma corrida a longa distância para dar um encontrão em vários alvos, causando 3d8+10 pontos de dano elétrico, aumnetando o raio de dano em 4,5 metros, para cada próximo ser atacado em sequência recebe + 1 dado para causar dano. '
+    ],
+    passiva: 'Espírito Anti Arcano: O Shadowmane quando acerta inimigos com seu veneno e eles tentam usar algum ritual arcano ou feitiço, o poder arcano é cancelado e recebem o efeito Anti-Cura durante a Cena.',
+    passivaElemental: 'O espírito de shadowmane somente pode ter chances com o fogo e a liberdade para nutrir seu corpo no desenvolvimento, podendo ter interações adicionais de acordo com a lgums das duas mutações, podendo queimar ou causar uma descarga elétrica.',
+    biome: [ 'Bosque', 'Reino Fungi','Praia' ], // Exemplo: múltiplos biomas
+},
+
+
+
+
+
+
+
+
 'Stalker-da-Neve': {
     title: 'O Predador da Nevasca',
     image: 'imagens/dinos_stalker_da_neve.jpg',
@@ -928,13 +1004,6 @@ const dinoFichas = {
     passivaElemental: 'O Sono do Urso é tão intenso que ele é incapaz de evoluir de outra forma além de receber alguma evolução elemental dormindo. Podendo  ter interações adicionais de acordo com a mutação, podendo queimar, causar uma descarga elétrica, criar alucinações, fortalecer seu copro ainda mais e outros tipos de interações que a mutação elemental forneça.',
     biome: [ 'Bosque', 'Taiga' ], // Exemplo: múltiplos biomas
 },
-
-
-
-
-
-
-
 
 
 
@@ -5975,6 +6044,7 @@ const defaultBiomeButton = document.querySelector('.biome-filters button[data-bi
 if (defaultBiomeButton) {
     defaultBiomeButton.classList.add('active');
 }
+
       
   
       // --- FIM DO NOVO CÓDIGO PARA FILTROS DE BIOMA ---
@@ -6070,4 +6140,52 @@ if (defaultBiomeButton) {
     texto.textContent = slide.texto;
     texto.style.color = slide.corTexto;
   }
-  
+
+  const dinoListEl = document.getElementById("dinoList");
+const toggleViewBtn = document.getElementById("toggleView");
+let isCardView = false;
+
+toggleViewBtn.addEventListener("click", () => {
+  isCardView = !isCardView;
+  renderDinos(); // Atualiza a visualização com base no modo
+});
+
+// Função que renderiza os dinos
+function renderDinos() {
+  dinoListEl.innerHTML = "";
+
+  // Adiciona ou remove classe de grid
+  if (isCardView) {
+    dinoListEl.classList.add("cards");
+  } else {
+    dinoListEl.classList.remove("cards");
+  }
+
+  dinos.forEach(dino => {
+    if (isCardView) {
+      // Card View
+      const card = document.createElement("div");
+      card.className = "card-view";
+
+      const img = document.createElement("img");
+      img.src = dino.image;
+      img.alt = dino.nome;
+
+      const name = document.createElement("h3");
+      name.textContent = dino.nome;
+
+      card.appendChild(img);
+      card.appendChild(name);
+      dinoListEl.appendChild(card);
+    } else {
+      // Lista normal
+      const item = document.createElement("div");
+      item.textContent = dino.nome;
+      dinoListEl.appendChild(item);
+    }
+  });
+}
+
+
+
+

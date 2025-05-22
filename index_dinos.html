@@ -140,13 +140,17 @@
 </div>
 
   <div class="search-container" id="searchContainer">
-       <h3 id="searchTitle">Pesquisar</h3>
-       <input type="text" id="searchInput" placeholder="Digite o nome da criatura..." oninput="filterCreatures()">
+  <h3 id="searchTitle">Pesquisar</h3>
 
-       <ul class="creature-list" id="creatureList">
-           </ul>
-       <button class="back-button" onclick="closeSearch()">Voltar</button>
-   </div>
+
+  <input type="text" id="searchInput" placeholder="Digite o nome da criatura..." oninput="filterCreatures()">
+
+  <!-- Lista padrão -->
+  <ul class="creature-list" id="creatureList"></ul>
+  <button class="back-button" onclick="closeSearch()">Voltar</button>
+</div>
+
+
 
   <div id="dinoModal" class="modal">
     <div class="modal-content">

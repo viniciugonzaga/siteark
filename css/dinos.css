@@ -1302,6 +1302,10 @@ nav {
 .back-button:hover {
     background-color: #bbb;
 }
+
+
+
+
 @media (max-width: 1080px) {
     .menu-container {
         flex-direction: column;
@@ -1895,7 +1899,7 @@ color: #f7b62b;
   /* Biomas Corrompidos (tom roxo-avermelhado) */
   .biome-filters button.corrupted {
     background: linear-gradient(145deg, rgba(100, 0, 40, 0.85), rgba(40, 0, 20, 0.9));
-    color: #ff7eb3;
+    color: #fcc9de;
   }
 
   /* REINO FUNGI (verde água) */
@@ -1927,6 +1931,7 @@ color: #f7b62b;
     background: linear-gradient(145deg, #ff4f7d, #8b002e);
     color: #fff0f5;
 }
+
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer */
