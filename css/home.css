@@ -314,7 +314,7 @@ nav {
     .nav-links {
         display: grid;
         /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
-        grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
         gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
         width: 100%;
         padding: 25px 0; /* Padding vertical ajustado */
@@ -498,26 +498,26 @@ nav {
 
   }
   .logo img {
-      max-width: 60px;
-      max-height: 60px;
+      max-width: 45px;
+      max-height: 45px;
       margin-right: 0.1rem;
   }
 
   .logo h1 {
-      font-size: 0.9rem;
+      font-size: 0.7rem;
       margin: 0;
   }
 
   .nav-middle {
       display: flex;
       justify-content: center; /* Centraliza o conteúdo horizontalmente */
-      width: 60%; /* Ocupa uma parte da largura para os ícones */
+      width: 70%; /* Ocupa uma parte da largura para os ícones */
   }
 
 .nav-links {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(33px, 1fr)); /* Tente 90px ou 100px */
-    gap: 0.4rem; /* Reduzir um pouco o gap pode ajudar */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Tente 90px ou 100px */
+    gap: 1.6rem; /* Reduzir um pouco o gap pode ajudar */
     width: 100%;
     padding: 30px 0;
     margin-left: 0; /* Remover ou reduzir estas margens */
@@ -557,13 +557,13 @@ nav {
   .dado-container {
       display: flex;
       align-items: center; /* Alinha o botão e a imagem horizontalmente */
-      gap: 0.3rem;
+      gap: 0.1rem;
       margin-left: 1rem;
   }
 
   .glow-on-hover {
       font-size: 0.6rem;
-      padding: 0.2rem 0.4rem;
+      padding: 0.2rem 0.3rem;
       margin-right: 0; /* Remove margem desnecessária */
   }
 
@@ -747,16 +747,15 @@ nav {
 
 /* Estilo geral do carrossel */
 .carousel {
-    width: 65%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 750px;
     margin: 20px auto;
     overflow: hidden; /* Esconde as imagens fora do contêiner */
     border-radius: 15px;
     position: relative;
     margin-bottom: 20px;
-    margin-top: 13rem;
+    margin-top: 10rem;
     animation: fog-pulse 4s infinite alternate ease-in-out; /* Nome da animação, duração, repetição, direção, suavidade */
-  
 }
 
 @keyframes fog-pulse {
@@ -791,11 +790,11 @@ nav {
 /* Para telas menores que 768px (tablets e celulares) */
 @media (max-width: 767px) {
     .carousel {
-        width: 75%; /* Ocupar mais largura em telas menores para ser mais visível */
+        width: 65%; /* Ocupar mais largura em telas menores para ser mais visível */
         max-width: 700px; /* Reduzir ainda mais o tamanho máximo para tablets */
         margin-top: 5rem; /* Ajustar o espaçamento superior para telas menores */
         border-radius: 10px; /* Borda um pouco menor em telas menores */
-        margin-top: 13rem;;
+        margin-top: 15rem;;
       }
 
     .carousel-images img {
@@ -810,7 +809,7 @@ nav {
         margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
         margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
         border-radius: 15px; /* Borda mínima em celulares */
-        margin-top: 13rem;;
+        margin-top: 15rem;;
       }
 
     .carousel-images img {
@@ -822,20 +821,29 @@ nav {
 
 
 
+/* ======================================================= */
+/* CARD GRID STYLES - DESKTOP FIRST */
+/* ======================================================= */
+
 .container-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    /* Changed from repeat(4, 1fr) to auto-fit for flexible column count */
+    /* Adjust 200px as the minimum width for your cards on larger screens */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     padding: 40px;
     max-width: 1300px;
-    margin: auto;
+    margin: auto; /* Centers the entire container horizontally */
     background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
     border-radius: 20px;
-    flex-direction: column;
-    align-items: center;
+    /* Added to center the grid tracks when there's extra space (e.g., incomplete last row) */
+    justify-content: center;
+    /* Removed flexbox properties as this is a grid container */
+    /* flex-direction: column; */
+    /* align-items: center; */
 }
-  
-  .card {
+
+.card {
     background: linear-gradient(145deg, #1a1a1a, #000);
     border-radius: 16px;
     padding: 20px;
@@ -852,58 +860,50 @@ nav {
     text-decoration: none; /* Garante que o próprio card não tenha decoração de link */
     border: 2px solid transparent; /* Inicialmente transparente */
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
-  }
+}
 
-  .card-content {
-  position: relative;
-  transition: transform 0.3s ease-in-out;
+.card-content {
+    position: relative;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card:hover .card-content {
-  transform: translateY(-5px); /* Desliza o conteúdo 5px para cima */
-  /* Ou translateX(5px); para deslizar para a direita */
+    transform: translateY(-5px); /* Desliza o conteúdo 5px para cima */
 }
 
 /* Adicione um wrapper para o conteúdo dentro do .card */
 .card > a > * { /* Aplica o estilo aos filhos diretos do link */
-  position: relative;
-  transition: transform 0.3s ease-in-out;
+    position: relative;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card:hover > a > * {
-  transform: translateY(-5px);
-}
-
-.card {
-  /* ... seus outros estilos ... */
-  position: relative;
-  overflow: hidden;
+    transform: translateY(-5px);
 }
 
 .card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transform: skewX(-25deg);
-  transition: left 0.5s ease-in-out;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease-in-out;
 }
 
 .card:hover::before {
-  left: 150%;
+    left: 150%;
 }
 
-  
-  .card:hover {
+.card:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
     border-color: #aaffff; /* Cor da borda no hover */
-  }
-  
-  .card a {
+}
+
+.card a {
     text-decoration: none; /* Remove a linha azul dos links */
     display: flex; /* Garante que os elementos internos do link também usem flexbox */
     flex-direction: column; /* Organiza os elementos do link em coluna */
@@ -911,15 +911,14 @@ nav {
     height: 100%; /* Faz o link ocupar toda a altura do card para o clique funcionar em toda a área */
     justify-content: flex-start; /* Alinha os elementos do link ao topo */
     color: inherit; /* Herda a cor do texto do card para evitar cores de link padrão */
-  }
-  
-  /* Opcional: Estilo para o hover do link, se desejar alguma indicação visual */
-  .card a:hover {
-    /* Adicione aqui o estilo que você quer para quando o mouse passar por cima do link */
+}
+
+/* Opcional: Estilo para o hover do link, se desejar alguma indicação visual */
+.card a:hover {
     opacity: 0.9; /* Exemplo: levemente mais transparente */
-  }
-  
-  .card h2 {
+}
+
+.card h2 {
     font-size: 1.2em;
     margin-top: 15px; /* Adicionei margem no topo para subir o título */
     margin-bottom: 10px;
@@ -928,9 +927,9 @@ nav {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
-  
-  .card img {
+}
+
+.card img {
     max-width: 90%;
     max-height: 150px;
     object-fit: contain;
@@ -938,54 +937,58 @@ nav {
     transition: transform 0.4s ease, filter 0.4s ease;
     flex-shrink: 0;
     margin-bottom: 15px; /* Adicionei margem abaixo da imagem para separá-la do título */
-  }
-  
-  .card:hover img {
+}
+
+.card:hover img {
     filter: grayscale(0%) brightness(1);
     transform: scale(1.1);
-  }
+}
 
 /* Ajuste do tamanho do scroll para dispositivos móveis */
 @media (max-width: 780px) {
 
     .container-cards {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); /* Ajuste o minmax conforme necessário */
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Continues to use auto-fit */
         gap: 6px;
-        padding: 10px; /* Reduzi um pouco o padding para telas menores */
-        max-width: 1200px;
-        margin: auto;
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .card {
+        padding: 10px;
+        max-width: 100%; /* It's better to set this to 100% for small screens, or a smaller fixed max-width */
+        margin-left: auto;
+        margin-right: auto;
+        justify-content: center; /* Ensures centering of leftover items on mobile too */
+
+        /* Removed flexbox properties as this is a grid container */
+        /* flex-direction: column; */
+        /* align-items: center;   */
+    }
+
+    .card {
         background: linear-gradient(145deg, #1a1a1a, #000);
         border-radius: 16px;
-        padding: 15px; /* Reduzi um pouco o padding interno */
+        padding: 15px;
         text-align: center;
         transition: transform 0.3s, box-shadow 0.3s;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
         position: relative;
         overflow: hidden;
-        min-height: 80px; /* Define uma altura mínima para o card */
+        min-height: 80px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         text-decoration: none;
         box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
-        border: 2px solid transparent; /* Inicialmente transparente */
+        border: 2px solid transparent;
         transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
-      }
-      
-      .card:hover {
+    }
+
+    .card:hover {
         transform: scale(1.05);
         box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
-        border-color: #aaffff; /* Cor da borda no hover */
-      }
-      
-      .card a {
+        border-color: #aaffff;
+    }
+
+    .card a {
         text-decoration: none;
         display: flex;
         flex-direction: column;
@@ -993,14 +996,14 @@ nav {
         height: 100%;
         justify-content: flex-start;
         color: inherit;
-      }
-      
-      .card a:hover {
+    }
+
+    .card a:hover {
         opacity: 0.9;
-      }
-      
-      .card h2 {
-        font-size: 0.7em; /* Reduzi um pouco a fonte para telas menores */
+    }
+
+    .card h2 {
+        font-size: 0.7em;
         margin-top: 10px;
         margin-bottom: 5px;
         color: #ffffff;
@@ -1008,24 +1011,23 @@ nav {
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-      }
-      
-      .card img {
+    }
+
+    .card img {
         max-width: 90%;
-        max-height: 200px; /* Defini uma altura máxima em pixels */
+        max-height: 200px;
         object-fit: contain;
         filter: grayscale(100%) brightness(0.8);
         transition: transform 0.4s ease, filter 0.4s ease;
         flex-shrink: 0;
-        margin-bottom: auto; /* Empurra a imagem para o topo */
-      }
-      
-      .card:hover img {
+        margin-bottom: auto;
+    }
+
+    .card:hover img {
         filter: grayscale(0%) brightness(1);
         transform: scale(1.1);
-      }
+    }
 }
-
 
 
 /* Container geral */
@@ -1088,99 +1090,198 @@ nav {
 /* Main - final*/
 
 /* Geral do footer ------------------------------------------------------------------------------*/
-/* Estilo Geral do Footer */
+/* Estilo Geral do Footer (Desktop/Default) */
 footer {
     background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
     color: #fff;
     padding: 20px 0;
     text-align: center;
-  }
-  
-  /* Conteúdo Principal */
-  .footer-content {
+}
+
+/* Conteúdo Principal */
+.footer-content {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    flex-wrap: wrap;
-  }
-  
-  /* Seções do Footer */
-  .footer-section {
-    flex: 1;
+    flex-wrap: wrap; /* Allows sections to wrap to the next line on smaller screens */
+}
+
+/* Seções do Footer */
+.footer-section {
+    flex: 1; /* Allows sections to grow and shrink */
     margin: 10px;
-    min-width: 250px;
-  }
-  
-  .footer-section h2 {
+    min-width: 250px; /* Ensures sections don't get too small before wrapping */
+}
+
+.footer-section h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-  }
-  
-  .footer-section p {
+}
+
+.footer-section p {
     font-size: 0.9rem;
     line-height: 1.6;
-  }
-  
-  /* Links */
-  .footer-section ul {
+}
+
+/* Links */
+.footer-section ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-section ul li {
+}
+
+.footer-section ul li {
     margin: 10px 0;
-  }
-  
-  .footer-section ul li a {
-    background: linear-gradient(45deg, #6d00fa, #fc104b, #8e8fff, #2dbdf7, #e05dfa);
+}
+
+.footer-section ul li a {
+    background: linear-gradient(45deg, #fbf9fd, #b6fff3);
     background-size: 300%;
     background-clip: text; /* Faz o gradiente ser aplicado ao texto */
     -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
     animation: gradiente-animado 4s ease infinite;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-  }
-  @keyframes gradiente-animado {
+}
+
+@keyframes gradiente-animado {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-  .footer-section ul li a:hover {
+
+.footer-section ul li a:hover {
     color: #ff9800;
-  }
-  
-  /* Ícones de Redes Sociais */
-  .social-icons {
+}
+
+/* Ícones de Redes Sociais */
+.social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
-    border: 3px solid #fff;
+    border: 2px solid #fff;
     padding: 15px;
     border-radius: 20px;
-  }
-  
-  .social-icons a img {
+}
+
+.social-icons a img {
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .social-icons a img:hover {
+}
+
+.social-icons a img:hover {
     transform: scale(1.2);
-  }
-  
-  /* Rodapé Inferior */
-  .footer-bottom {
+}
+
+/* Rodapé Inferior */
+.footer-bottom {
     margin-top: 20px;
     font-size: 0.8rem;
     border-top: 1px solid #444;
     padding: 10px;
-  }
-  
-/* Responsividade para telas menores */
+}
 
+/* ======================================================= */
+/* RESPONSIVENESS */
+/* ======================================================= */
 
+/* Para telas de Tablet (max-width: 780px) */
+@media (max-width: 780px) {
+    footer {
+        padding: 15px 0; /* Reduz o padding do footer */
+    }
 
-  
+    .footer-content {
+        padding: 15px; /* Reduz o padding interno do conteúdo */
+        /* Flex-wrap is already set, so sections will wrap if they don't fit */
+        justify-content: center; /* Centers sections when they wrap */
+    }
+
+    .footer-section {
+        margin: 10px; /* Mantém a margem entre as seções */
+        min-width: 200px; /* Permite que as seções fiquem um pouco menores antes de empilhar */
+        flex-basis: auto; /* Allow items to determine their own flexible basis */
+    }
+
+    .footer-section h2 {
+        font-size: 1.3rem; /* Reduz o tamanho do título */
+    }
+
+    .footer-section p {
+        font-size: 0.85rem; /* Reduz o tamanho do texto */
+    }
+
+    .footer-section ul li {
+        margin: 8px 0; /* Reduz a margem dos itens da lista */
+    }
+
+    .social-icons {
+        gap: 10px; /* Reduz o espaçamento entre os ícones */
+        padding: 10px; /* Reduz o padding do container de ícones */
+    }
+
+    .social-icons a img {
+        width: 25px; /* Reduz o tamanho dos ícones */
+        height: 25px;
+    }
+
+    .footer-bottom {
+        margin-top: 15px;
+        font-size: 0.75rem; /* Reduz o tamanho da fonte do rodapé inferior */
+        padding: 8px;
+    }
+}
+
+/* Para telas de Celular (max-width: 480px - ajuste conforme necessário) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 0; /* Mais redução de padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Força as seções a empilharem verticalmente */
+        padding: 10px;
+        align-items: center; /* Centraliza as seções empilhadas */
+    }
+
+    .footer-section {
+        margin: 15px 0; /* Aumenta a margem vertical entre as seções empilhadas */
+        width: 90%; /* Ocupa quase toda a largura para cada seção */
+        min-width: unset; /* Remove o min-width para permitir que ocupe a largura total disponível */
+    }
+
+    .footer-section h2 {
+        font-size: 1.2rem; /* Mais redução de tamanho de título */
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem; /* Mais redução de tamanho de texto */
+    }
+
+    .footer-section ul {
+        text-align: center; /* Centraliza os links quando as seções empilham */
+    }
+
+    .footer-section ul li {
+        margin: 6px 0;
+    }
+
+    .social-icons {
+        gap: 8px; /* Última redução de espaçamento */
+        padding: 8px;
+    }
+
+    .social-icons a img {
+        width: 20px; /* Última redução de tamanho de ícones */
+        height: 20px;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}
