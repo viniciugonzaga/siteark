@@ -516,8 +516,8 @@ nav {
 
 .nav-links {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(31px, 1fr)); /* Tente 90px ou 100px */
-    gap: 2.5rem; /* Reduzir um pouco o gap pode ajudar */
+    grid-template-columns: repeat(auto-fit, minmax(29px, 1fr)); /* Tente 90px ou 100px */
+    gap: 2.85rem; /* Reduzir um pouco o gap pode ajudar */
     width: 100%;
     padding: 30px 0;
     margin-left: 0; /* Remover ou reduzir estas margens */
@@ -582,13 +582,13 @@ nav {
     top: 1%; /* Define a distância do menu a partir do topo da tela */
     right: 1%; /* Define a distância do menu a partir da borda direita */
     width: 350px; /* Aumenta a largura do menu */
-    background-color: #1d1919dc; /* Cor de fundo */
+    background-color: #1d1919ec; /* Cor de fundo */
     border: 1px solid #c0c0c0; /* Borda */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 1.2rem; /* Espaçamento interno maior */
     box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
     z-index: 1000; /* Garante que o menu fique acima de outros elementos */
-    color: #ffd53c;
+    color: #defcfd;
     transition: all 0.3s ease;
 }
 
@@ -650,7 +650,7 @@ nav {
     padding-right: 10px; /* Espaço extra para o scroll */
     border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
     border-radius: 5px;
-    background-color: #ffb936b9; /* Fundo levemente diferente para separar visualmente */
+    background-color: #d1972bb9; /* Fundo levemente diferente para separar visualmente */
 }
 
 #rollList {
@@ -662,7 +662,7 @@ nav {
 #rollList li {
     margin: 0.3rem 0;
     font-weight: bold;
-    color: #3d0404;
+    color: #1f0101;
 }
 
 /* Campos de entrada */
@@ -809,7 +809,7 @@ nav {
         margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
         margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
         border-radius: 15px; /* Borda mínima em celulares */
-        margin-top: 15rem;;
+        margin-top: 22rem;;
       }
 
     .carousel-images img {
