@@ -516,8 +516,8 @@ nav {
 
 .nav-links {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(29px, 1fr)); /* Tente 90px ou 100px */
-    gap: 0.7rem; /* Reduzir um pouco o gap pode ajudar */
+    grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.5rem; /* Reduzir um pouco o gap pode ajudar */
     width: 100%;
     padding: 30px 0;
     margin-left: 0; /* Remover ou reduzir estas margens */
