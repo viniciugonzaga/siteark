@@ -517,7 +517,7 @@ nav {
 .nav-links {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(29px, 1fr)); /* Tente 90px ou 100px */
-    gap: 2.85rem; /* Reduzir um pouco o gap pode ajudar */
+    gap: 2rem; /* Reduzir um pouco o gap pode ajudar */
     width: 100%;
     padding: 30px 0;
     margin-left: 0; /* Remover ou reduzir estas margens */
@@ -809,7 +809,7 @@ nav {
         margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
         margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
         border-radius: 15px; /* Borda mínima em celulares */
-        margin-top: 22rem;;
+        margin-top: 17rem;;
       }
 
     .carousel-images img {
