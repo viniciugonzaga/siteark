@@ -33,47 +33,40 @@ body::before {
     transform: translateY(0);
 }
 
-
 /* Estilo da Nav-Bar */
 nav {
-    /* Mantém a cor, aumenta um pouco a transparência para o blur ser mais visível */
-    background: rgba(50, 52, 53, 0.548); 
+    background: rgba(50, 52, 53, 0.548);
     color: #ecf0f1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: fixed; /* Fixa o nav-bar no topo */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    /* Adiciona o efeito de blur no fundo */
-    backdrop-filter: blur(2px); /* Ajuste o valor (8px) para mais ou menos blur */
-    -webkit-backdrop-filter: blur(1px); /* Prefixo para compatibilidade com Safari */
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
 }
-
-
-
 
 /* Estilo do Logo */
 .logo {
     display: flex;
     align-items: center;
-    gap: 10%; /* Espaço entre a imagem e o texto */
+    gap: 10%;
     margin-left: 20px;
 }
 
 .logo img {
-    width: 4.5rem; /* Tamanho do ícone */
+    width: 4.5rem;
     height: 4.5rem;
-    border-radius: 50%; /* Deixa a imagem redonda */
-    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .logo h1 {
-    font-size: 24px; /* Tamanho do texto do logo */
+    font-size: 24px;
     margin: 0;
     color: #ecf0f1;
     margin-right: 20px;
@@ -83,13 +76,12 @@ nav {
 .nav-links {
     display: flex;
     gap: 11px;
-   
-  }
-  
-  .sidebar-item {
+}
+
+.sidebar-item {
     position: relative;
     display: flex;
-    flex-direction: column; /* Para ícone em cima e texto embaixo */
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     padding: 10px 15px;
@@ -98,13 +90,13 @@ nav {
     border-radius: 8px;
     transition: color 0.3s ease;
     overflow: hidden;
-  }
-  
-  .sidebar-item .icon {
+}
+
+.sidebar-item .icon {
     font-size: 18px;
-  }
-  
-  .sidebar-item .highlight-bar {
+}
+
+.sidebar-item .highlight-bar {
     position: absolute;
     bottom: 0;
     left: 20%;
@@ -114,64 +106,90 @@ nav {
     border-radius: 2px;
     opacity: 0;
     transition: opacity 0.3s ease;
-  }
-  
-  .sidebar-item:hover .highlight-bar {
+}
+
+.sidebar-item:hover .highlight-bar {
     opacity: 1;
-  }
-  
-  .sidebar-item:hover {
+}
+
+.sidebar-item:hover {
     color: #b3fcff;
-  }
-  
- 
-/* Mantenha as outras media queries (1078px, 1080px, etc.) e as regras globais */
+}
+
+/* Container do botão de dados e ícones */
 .dado-container {
     display: flex;
-    flex-direction: row; 
-    align-items: center; 
+    flex-direction: row;
+    align-items: center;
     margin-top: 1rem;
-    margin-right:1%;
-   
-    gap: 1em; /* Adiciona 1em de espaço entre os itens */
-}
-
-/* Imagem do dado */
-.dado {
-    width: 3.75em; /* Usando unidade relativa (aprox. 60px) */
-    height: auto;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out; /* Transição suave */
-    margin-right: 5em; /* Aproximadamente 60px */
-  
-}
-
-.dado:hover {
-    transform: scale(1.2); /* Aumentar tamanho ao passar o mouse */
+    margin-right: 1%;
+    gap: 1em; /* Espaço entre os itens (botão, dado, novo ícone) */
 }
 
 /* Botão Glow */
 .glow-on-hover {
     padding: 0.5rem 1rem;
-    font-size: 1rem; /* Tamanho de fonte relativo */
-    background-color: #cfcfcf; /* Vermelho vibrante */
+    font-size: 1rem;
+    background-color: #cfcfcf;
     color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 1em; /* Aproximadamente 60px */
 }
 
 /* Efeito ao passar o mouse */
 .glow-on-hover:hover {
-    transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
-    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8); /* Efeito de brilho */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8);
 }
 
-.Container-nav { /* Novo div: Agrupa Logo e Links */
-    display: flex; /* Container interno */
-    justify-content: flex-start; /* Alinha Logo e Links ao início */
+/* Imagem do dado (estilo existente, mantido aqui para referência) */
+.dado {
+    width: 3.75em; /* Aproximadamente 60px. Usaremos isso como referência de altura. */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dado:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo para o link do novo ícone - Contém as principais mudanças */
+.new-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 5em; /* Mantém o grande espaço à direita da navbar */
+    /* Adições para o círculo (mantidas para manter a estrutura e alinhamento) */
+    width: 4em; /* Define a largura para ser igual à altura do dado para um círculo perfeito */
+    height: 4em; /* Define a altura para ser igual à largura (e altura do dado) */
+    border-radius: 50%; /* Torna o elemento circular */
+    overflow: hidden; /* Garante que a imagem dentro seja cortada para caber no círculo */
+    background-color: rgba(255, 255, 255, 0); /* Fundo totalmente transparente */
+    margin-bottom: 1rem; /* Alinha com o botão e o dado */
+    /* Remova o transition: transform 0.3s ease-in-out; daqui se ele estiver duplicado com .new-icon */
+}
+
+/* Estilo para a imagem dentro do novo ícone */
+.new-icon {
+    width: 80%; /* Ajuste o percentual para a imagem caber bem no círculo */
+    height: 80%; /* Ajuste o percentual */
+    border-radius: 40%; /* Isso criará cantos arredondados na imagem interna, não a tornará circular completa se a imagem não for quadrada */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Adiciona transition para o filter também */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou distorcer no círculo */
+    filter: brightness(1.5); /* Aumenta um pouco o brilho da imagem para destacar */
+}
+
+.new-icon-link:hover .new-icon { /* Aplica o efeito diretamente à imagem quando o link é hover */
+    transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+}
+
+.Container-nav {
+    display: flex;
+    justify-content: flex-start;
 }
 @media (max-width: 480px) {
     nav {
@@ -448,32 +466,45 @@ nav {
         line-height: 1.1;
     }
 
-    .nav-right {
-        display: flex;
-        align-items: center;
-        margin-right: -3rem;
-        margin-bottom: 2rem;
-    }
-
-    .dado-container {
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
-        margin-left: 1rem;
+     .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.3rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0; /* Ajuste se houver margem que atrapalhe o centralizar */
+        margin-right: 0;
     }
 
     .glow-on-hover {
         font-size: 0.6rem;
-        padding: 0.2rem 0.4rem;
-        margin-right: 0;
+        padding: 0.2rem 0.3rem;
+        margin-bottom: 0.2rem; /* Espaço abaixo do botão */
     }
 
     .dado {
         width: 2rem;
         height: auto;
-        margin-bottom: 0;
+        margin-bottom: 0.2rem; /* Espaço abaixo do dado */
+    }
+
+    .new-icon-link {
+        width: 2.5em; /* Ajuste o tamanho do container do ícone */
+        height: 2.5em;
+        margin-bottom: 0; /* Não precisa de margem inferior extra */
+        margin-right: 0; /* Remove a margem direita para centralizar melhor */
+    }
+
+    .new-icon {
+        width: 85%;
+        height: 85%;
+    }
+
+    .nav-right {
+        margin-right: 0; /* Garante que o nav-right não empurre para fora */
+        margin-bottom: 0; /* Ajusta a margem para evitar excesso de espaço */
     }
 }
+
+
 
   
 /* Ajustes para telas menores (até 780px) */
@@ -554,24 +585,41 @@ nav {
       margin-bottom: 2rem;
   }
 
-  .dado-container {
-      display: flex;
-      align-items: center; /* Alinha o botão e a imagem horizontalmente */
-      gap: 0.1rem;
-      margin-left: 1rem;
-  }
+   .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.2rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0;
+        margin-right: 0;
+    }
 
   .glow-on-hover {
-      font-size: 0.6rem;
-      padding: 0.2rem 0.3rem;
-      margin-right: 0; /* Remove margem desnecessária */
-  }
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-bottom: 0.15rem;
+    }
 
-  .dado {
-      width: 2rem;
-      height: auto;
-      margin-bottom: 0; /* Remove margem desnecessária */
-  }
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0.15rem;
+    }
+    .new-icon-link {
+        width: 2.3em;
+        height: 2.3em;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .new-icon {
+        width: 90%;
+        height: 90%;
+    }
+
+    .nav-right {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
 }
 
 
