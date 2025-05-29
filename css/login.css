@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/logo_ark_v3.jpg') no-repeat center center fixed;
+    background: url('../imagens/lobby_login.png') no-repeat center center fixed;
     background-size: cover;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -16,7 +16,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.658); /* 0.5 = 50% sombra */
+    background: rgba(7, 19, 24, 0.521); /* 0.5 = 50% sombra */
     z-index: -1;
 }
 
@@ -813,7 +813,7 @@ main{
 
 .login-particle {
   position: absolute;
-  background-color: rgba(9, 70, 59, 0.37);
+  background-color: rgba(198, 202, 202, 0.63);
   border-radius: 50%;
   animation: login-float 20s linear infinite;
   opacity: 0.6;
@@ -848,14 +848,16 @@ main{
   max-width: 400px;
   padding: 20px;
   margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 200px ;
 }
 
 .login-card-unique {
-  background-color: rgba(20, 30, 35, 0.95);
-  border: 1px solid #00bfa5;
+  background-color: rgba(20, 30, 35, 0.884);
+  border: 1px solid #03b8a9;
   border-radius: 15px;
   padding: 30px;
-  box-shadow: 0 0 20px rgba(0, 191, 165, 0.3);
+  box-shadow: 0 0 20px rgba(101, 245, 245, 0.3);
 }
 
 .login-logo-img {
@@ -863,6 +865,7 @@ main{
   margin: 0 auto 30px;
   display: block;
   border-radius: 35%;
+  border: 1px solid #02756bd3;
 }
 
 #login-form-unique label {
@@ -921,12 +924,13 @@ main{
 }
 
 
+
 /* Main - final*/
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
 footer {
-    background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
+    background: linear-gradient(145deg, #07212b, #063b50,#07212b, #063b50, #07212b); /* Seu degradê */
     color: #fff;
     padding: 20px 0;
     text-align: center;

@@ -796,7 +796,7 @@ nav {
 /* Estilo geral do carrossel */
 .carousel {
     width: 100%;
-    max-width: 750px;
+    max-width: 850px;
     margin: 20px auto;
     overflow: hidden; /* Esconde as imagens fora do contêiner */
     border-radius: 15px;
