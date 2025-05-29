@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início</title>
-    <link rel="stylesheet" href="css/home.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/login.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -61,7 +61,7 @@
     <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
         <img src="imagens/dado_fantasma.webp" alt="Dado" class="dado">
-        <a href="index_login.html" class="new-icon-link">
+        <a href="" class="new-icon-link">
             <img src="imagens/Login_v2.jpg" alt="Link para Nova Página" class="new-icon">
         </a>
     </div>
@@ -93,100 +93,48 @@
      </div>
      
   </nav>
-     <main>
 
-        
-         
-          
-         <div class="carousel">
-             <div class="carousel-images">
-                 <img src="imagens/carroselideia7.jpg" alt="Imagem 8 (duplicada)">
-                 <img src="imagens/logo_ark_v3.jpg" alt="Imagem 1">
-                 <img src="imagens/carroselideia1.jpg" alt="Imagem 2">
-                 <img src="imagens/carroselideia2.jpg" alt="Imagem 3">
-                 <img src="imagens/carroselideia3.jpg" alt="Imagem 4">
-                 <img src="imagens/carroselideia4.jpg" alt="Imagem 5">
-                 <img src="imagens/carroselideia5.jpg" alt="Imagem 6">
-                 <img src="imagens/carroselideia6.jpg" alt="Imagem 7">
-                 <img src="imagens/carroselideia7.jpg" alt="Imagem 8">
-                 <img src="imagens/logo_ark_v3.jpg" alt="Imagem 1 (duplicada)">
-             </div>
-         </div>
+<main class="login-main-section">
+  <div class="login-particle-background">
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+    <div class="login-particle"></div>
+  </div>
 
-         <div class="container-cards">
-             <a href="index_bloqueado.html" class="card">
-                 <h2>Colossos</h2>
-                 <img src="imagens/icons_colosso.png" alt="Colossos">
-             </a>
+  <div class="login-container-unique">
+    <div class="login-card-unique">
+      <h2>
+        <img src="imagens/Icone_logov2.jpg" alt="Projeto Ark" class="login-logo-img" />
+      </h2>
 
-               <a href="index_ficha_status2.html" class="card">
-                 <h2>Feras</h2>
-                 <img src="imagens/icone_feras.png" alt="Feras">
-             </a>
+      <form id="login-form-unique">
+        <label for="login-email-input">Email</label>
+        <input type="email" id="login-email-input" placeholder="exemplo@arkworld.com" required />
 
-                <a href="index_jogadores.html" class="card">
-                 <h2>Criar</h2>
-                 <img src="imagens/icon_criar_perso.png" alt="Criar Personagem">
-             </a>
+        <label for="login-password-input">Senha</label>
+        <input type="password" id="login-password-input" placeholder="••••••••" required />
 
-               <a href="index_bloqueado.html" class="card">
-                 <h2>Chefes</h2>
-                 <img src="imagens/icon_chefe.png" alt="Chefes">
-             </a>
-          
-             <a href="index_poderes.html" class="card">
-                 <h2>Rituais</h2>
-                 <img src="imagens/icon_rituais.png" alt="Rituais">
-             </a>
-          
-             <a href="index_personagens.html" class="card">
-                 <h2>Conceito</h2>
-                 <img src="imagens/icon_personagens.png" alt="Personagens">
-             </a>
-          
-             <a href="index_flora.html" class="card">
-                 <h2>Flora</h2>
-                 <img src="imagens/icons_flora.png" alt="Flora">
-             </a>
-          
-             <a href="index_eventos.html" class="card">
-                 <h2>Eventos</h2>
-                 <img src="imagens/vulcão.png" alt="Ambientes">
-             </a>
-          
-             <a href="index_ficha_status.html" class="card">
-                 <h2>Tribos</h2>
-                 <img src="imagens/icon_civilização.png" alt="Civilizações">
-             </a>
-          
-             <a href="index_efeitos.html" class="card">
-                 <h2>Efeitos</h2>
-                 <img src="imagens/icon_Efeitos.png" alt="Efeitos">
-             </a>
-          
-             <a href="index_itens.html" class="card">
-                 <h2>Itens</h2>
-                 <img src="imagens/icons_itens.png" alt="Itens">
-             </a>
-          
-             <a href="index_regras.html" class="card">
-                 <h2>Áreas</h2>
-                 <img src="imagens/icon_construções.png" alt="Construções">
-             </a>
-          </div>
-          
-          
+        <button type="submit">Entrar</button>
+      </form>
 
-   
-        <div class="main-container">
-            <button id="btnSpawnV2" class="spawn-button-v2">
-                <a class="botão_atalho_v2" href="index_status.html">Status de Ficha</a>
-            </button>
-        </div>
+      <p class="login-register-text">
+        Não tem uma conta?
+        <a href="#">Crie agora</a>
+      </p>
+    </div>
+  </div>
+</main>
 
 
-    </main>
-     <footer>
+
+   <footer>
          <div class="footer-content">
               
            <div class="footer-section about">
@@ -217,6 +165,6 @@
        </footer>
        
 
-    <script src="js/script home.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>

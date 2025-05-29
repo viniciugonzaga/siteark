@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_home.jpg') no-repeat center center fixed;
+    background: url('../imagens/logo_ark_v3.jpg') no-repeat center center fixed;
     background-size: cover;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -788,351 +788,137 @@ nav {
 /* fim do nav-bar---------------------------------------------------------------------------- */
 
 /* Main*/
-
-
-
-
-
-/* Estilo geral do carrossel */
-.carousel {
-    width: 100%;
-    max-width: 750px;
-    margin: 20px auto;
-    overflow: hidden; /* Esconde as imagens fora do contêiner */
-    border-radius: 15px;
-    position: relative;
-    margin-bottom: 20px;
-    margin-top: 10rem;
-    animation: fog-pulse 4s infinite alternate ease-in-out; /* Nome da animação, duração, repetição, direção, suavidade */
+main{
+    margin-top: 140px;;
+    align-items: center
 }
 
-@keyframes fog-pulse {
-    0% {
-        /* Estado inicial: brilho mais contido */
-        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
-    }
-    50% {
-        /* Meio da animação: brilho se espalha mais e talvez fique um pouco mais opaco */
-        box-shadow: 0 0 20px rgba(193, 240, 248, 0.6); /* Aumenta o blur e o spread, e a opacidade */
-    }
-    100% {
-        /* Volta ao estado inicial */
-        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
-    }
+.login-main-section {
+  margin-top: 140px;
+  align-items: center;
 }
 
-/* Contêiner de imagens */
-.carousel-images {
-    display: flex;
-    transition: transform 1s ease-in-out; /* Suaviza a transição */
-    transform: translateX(-100%); /* Ajusta para começar na primeira imagem */
-}
-
-/* Estilo das imagens */
-.carousel-images img {
-    width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
-    flex-shrink: 0; /* Garante que cada imagem ocupe seu espaço */
-    border-radius: 20px;
-}
-
-/* Para telas menores que 768px (tablets e celulares) */
-@media (max-width: 767px) {
-    .carousel {
-        width: 65%; /* Ocupar mais largura em telas menores para ser mais visível */
-        max-width: 700px; /* Reduzir ainda mais o tamanho máximo para tablets */
-        margin-top: 5rem; /* Ajustar o espaçamento superior para telas menores */
-        border-radius: 10px; /* Borda um pouco menor em telas menores */
-        margin-top: 15rem;;
-      }
-
-    .carousel-images img {
-        border-radius: 10px; /* Borda um pouco menor nas imagens também */
-    }
-}
-/* Para telas muito pequenas (celulares) */
-@media (max-width: 480px) {
-    .carousel {
-        width: 70%; /* Ocupar toda a largura disponível em celulares */
-        max-width: none; /* Remover max-width para preencher a tela */
-        margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
-        margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
-        border-radius: 15px; /* Borda mínima em celulares */
-        margin-top: 17rem;;
-      }
-
-    .carousel-images img {
-        border-radius: 5px; /* Borda mínima nas imagens */
-        /* height: 200px; /* Você pode até definir uma altura fixa aqui com object-fit,
-                                 se preferir um carrossel mais compacto em celulares */
-    }
+.login-particle-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background-color: #0a0f1000;
 }
 
 
 
-/* ======================================================= */
-/* CARD GRID STYLES - DESKTOP FIRST */
-/* ======================================================= */
-
-.container-cards {
-    display: grid;
-    /* Changed from repeat(4, 1fr) to auto-fit for flexible column count */
-    /* Adjust 200px as the minimum width for your cards on larger screens */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 40px;
-    max-width: 1300px;
-    margin: auto; /* Centers the entire container horizontally */
-    background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
-    border-radius: 20px;
-    /* Added to center the grid tracks when there's extra space (e.g., incomplete last row) */
-    justify-content: center;
-    /* Removed flexbox properties as this is a grid container */
-    /* flex-direction: column; */
-    /* align-items: center; */
+.login-particle {
+  position: absolute;
+  background-color: rgba(9, 70, 59, 0.37);
+  border-radius: 50%;
+  animation: login-float 20s linear infinite;
+  opacity: 0.6;
 }
 
-.card {
-    background: linear-gradient(145deg, #1a1a1a, #000);
-    border-radius: 16px;
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
-    position: relative;
-    overflow: hidden;
-    min-height: 280px; /* Define uma altura mínima */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centraliza os itens horizontalmente */
-    justify-content: flex-start; /* Alinha os itens ao topo */
-    text-decoration: none; /* Garante que o próprio card não tenha decoração de link */
-    border: 2px solid transparent; /* Inicialmente transparente */
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
+.login-particle:nth-child(1) { width: 20px; height: 20px; left: 10%; animation-delay: 0s; animation-duration: 18s; }
+.login-particle:nth-child(2) { width: 30px; height: 30px; left: 20%; animation-delay: 2s; animation-duration: 22s; }
+.login-particle:nth-child(3) { width: 15px; height: 15px; left: 30%; animation-delay: 4s; }
+.login-particle:nth-child(4) { width: 25px; height: 25px; left: 40%; animation-delay: 1s; }
+.login-particle:nth-child(5) { width: 40px; height: 40px; left: 50%; animation-delay: 3s; }
+.login-particle:nth-child(6) { width: 20px; height: 20px; left: 60%; animation-delay: 6s; }
+.login-particle:nth-child(7) { width: 30px; height: 30px; left: 70%; animation-delay: 5s; }
+.login-particle:nth-child(8) { width: 15px; height: 15px; left: 80%; animation-delay: 8s; }
+.login-particle:nth-child(9) { width: 35px; height: 35px; left: 90%; animation-delay: 10s; }
+.login-particle:nth-child(10) { width: 10px; height: 10px; left: 95%; animation-delay: 12s; }
+
+@keyframes login-float {
+  0% {
+    top: 100%;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    top: -10%;
+    transform: translateY(-100vh) scale(1.2);
+  }
 }
 
-.card-content {
-    position: relative;
-    transition: transform 0.3s ease-in-out;
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+.login-container-unique {
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  margin: 0 auto;
 }
 
-.card:hover .card-content {
-    transform: translateY(-5px); /* Desliza o conteúdo 5px para cima */
+.login-card-unique {
+  background-color: rgba(20, 30, 35, 0.95);
+  border: 1px solid #00bfa5;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 20px rgba(0, 191, 165, 0.3);
 }
 
-/* Adicione um wrapper para o conteúdo dentro do .card */
-.card > a > * { /* Aplica o estilo aos filhos diretos do link */
-    position: relative;
-    transition: transform 0.3s ease-in-out;
+.login-logo-img {
+  width: 160px;
+  margin: 0 auto 30px;
+  display: block;
+  border-radius: 35%;
 }
 
-.card:hover > a > * {
-    transform: translateY(-5px);
+#login-form-unique label {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 5px;
+  display: block;
 }
 
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: skewX(-25deg);
-    transition: left 0.5s ease-in-out;
+#login-form-unique input {
+  width: 100%;
+  padding: 10px;
+  background-color: #0f1e20;
+  border: 1px solid #00bfa5;
+  border-radius: 8px;
+  color: #ffffff;
+  margin-bottom: 15px;
 }
 
-.card:hover::before {
-    left: 150%;
+#login-form-unique input:focus {
+  outline: none;
+  border-color: #26ffd6;
+  box-shadow: 0 0 5px #26ffd6;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
-    border-color: #aaffff; /* Cor da borda no hover */
+#login-form-unique button {
+  width: 100%;
+  padding: 12px;
+  background-color: #00bfa5;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.card a {
-    text-decoration: none; /* Remove a linha azul dos links */
-    display: flex; /* Garante que os elementos internos do link também usem flexbox */
-    flex-direction: column; /* Organiza os elementos do link em coluna */
-    align-items: center; /* Centraliza os elementos do link horizontalmente */
-    height: 100%; /* Faz o link ocupar toda a altura do card para o clique funcionar em toda a área */
-    justify-content: flex-start; /* Alinha os elementos do link ao topo */
-    color: inherit; /* Herda a cor do texto do card para evitar cores de link padrão */
+#login-form-unique button:hover {
+  background-color: #009e87;
 }
 
-/* Opcional: Estilo para o hover do link, se desejar alguma indicação visual */
-.card a:hover {
-    opacity: 0.9; /* Exemplo: levemente mais transparente */
+.login-register-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #ccc;
+  font-size: 13px;
 }
 
-.card h2 {
-    font-size: 1.2em;
-    margin-top: 15px; /* Adicionei margem no topo para subir o título */
-    margin-bottom: 10px;
-    color: #ffffff;
-    background: linear-gradient(to right, #d6feff, #cecece);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.login-register-text a {
+  color: #00bfa5;
+  text-decoration: none;
 }
 
-.card img {
-    max-width: 90%;
-    max-height: 150px;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(0.8);
-    transition: transform 0.4s ease, filter 0.4s ease;
-    flex-shrink: 0;
-    margin-bottom: 15px; /* Adicionei margem abaixo da imagem para separá-la do título */
+.login-register-text a:hover {
+  text-decoration: underline;
 }
-
-.card:hover img {
-    filter: grayscale(0%) brightness(1);
-    transform: scale(1.1);
-}
-
-/* Ajuste do tamanho do scroll para dispositivos móveis */
-@media (max-width: 780px) {
-
-    .container-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Continues to use auto-fit */
-        gap: 6px;
-        padding: 10px;
-        max-width: 100%; /* It's better to set this to 100% for small screens, or a smaller fixed max-width */
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center; /* Ensures centering of leftover items on mobile too */
-
-        /* Removed flexbox properties as this is a grid container */
-        /* flex-direction: column; */
-        /* align-items: center;   */
-    }
-
-    .card {
-        background: linear-gradient(145deg, #1a1a1a, #000);
-        border-radius: 16px;
-        padding: 15px;
-        text-align: center;
-        transition: transform 0.3s, box-shadow 0.3s;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
-        position: relative;
-        overflow: hidden;
-        min-height: 80px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        text-decoration: none;
-        box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
-        border: 2px solid transparent;
-        transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
-        border-color: #aaffff;
-    }
-
-    .card a {
-        text-decoration: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100%;
-        justify-content: flex-start;
-        color: inherit;
-    }
-
-    .card a:hover {
-        opacity: 0.9;
-    }
-
-    .card h2 {
-        font-size: 0.7em;
-        margin-top: 10px;
-        margin-bottom: 5px;
-        color: #ffffff;
-        background: linear-gradient(to right, #888, #fff);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .card img {
-        max-width: 90%;
-        max-height: 200px;
-        object-fit: contain;
-        filter: grayscale(100%) brightness(0.8);
-        transition: transform 0.4s ease, filter 0.4s ease;
-        flex-shrink: 0;
-        margin-bottom: auto;
-    }
-
-    .card:hover img {
-        filter: grayscale(0%) brightness(1);
-        transform: scale(1.1);
-    }
-}
-
-
-/* Container geral */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
- 
-.spawn-button-v2 {
-   background: linear-gradient(145deg, #1a1a1a, #000);
-    color: white;
-    font-size: 1.2rem;
-    padding: 15px 25px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
-    transition: all 0.3s ease-in-out;
-    margin-top: 5%;
-    margin-bottom: 5%;
-}
-
-.spawn-button-v2:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
-       
-}
-
-.botão_atalho_v2 {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-}
-@media (max-width: 1080px) {
-    /* Ajuste geral para o contêiner principal */
-    .main-container {
-        gap: 15px; /* Reduz o espaçamento entre os elementos */
-        padding: 10px; /* Adiciona margem interna */
-    }
-
-    /* Botão de gerar região responsivo (versão 2) */
-    .spawn-button-v2 {
-        font-size: 1rem; /* Reduz o tamanho da fonte */
-        padding: 10px 20px; /* Ajusta o espaçamento interno */
-        border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
-    }
-
-    /* Estilo do botão de atalho responsivo (versão 2) */
-    .botão_atalho_v2 {
-        font-size: 0.9rem; /* Reduz o tamanho do texto */
-        color: #eae1d8; /* Ajusta a cor para contraste melhor */
-    }
-}
-
 
 
 /* Main - final*/
