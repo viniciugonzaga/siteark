@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="css/conta.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,7 +93,6 @@
      </div>
      
   </nav>
-
 <main class="login-main-section">
   <div class="login-particle-background">
     <div class="login-particle"></div>
@@ -110,31 +109,60 @@
 
   <div class="login-container-unique">
     <div class="login-card-unique">
-      <h2>
-        <img src="imagens/Icone_logov2.jpg" alt="Projeto Ark" class="login-logo-img" />
-      </h2>
+      <img src="imagens/Icone_ark_v4.png" alt="Logo da Empresa" class="login-logo-img">
+      <h2 class="login-form-title">Junte-se nessa história!</h2>
 
       <form id="login-form-unique">
-        <label for="login-email-input">Email</label>
-        <input type="email" id="login-email-input" placeholder="exemplo@arkworld.com" required />
+        <div class="campo">
+          <label for="username">Nome do usuário</label>
+          <input type="text" id="username" placeholder="Escolha seu nome de usuário" required />
+        </div>
 
-        <label for="login-password-input">Senha</label>
-        <input type="password" id="login-password-input" placeholder="••••••••" required />
+        <div class="campo">
+          <label for="nicknameRPG">Apelido RPG</label>
+          <input type="text" id="nicknameRPG" placeholder="Seu nome no jogo (ex: Cavaleiro_Sombrio)" />
+        </div>
 
-        <button type="submit">Entrar</button>
+        <div class="campo">
+          <label for="email">E-mail </label>
+          <input type="email" id="email" placeholder="Seu e-mail de contato" required />
+        </div>
+
+        <div class="campo">
+          <label for="role">Você é um...</label>
+          <div class="role-selection">
+            <input type="radio" id="role-master" name="role" value="mestre" required>
+            <label for="role-master">Mestre (DM)</label>
+            <input type="radio" id="role-player" name="role" value="jogador" required>
+            <label for="role-player">Jogador (Player)</label>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="senha">Senha de usuário</label>
+          <input type="password" id="senha" placeholder="Crie uma senha forte" required />
+        </div>
+
+        <div class="campo">
+          <label for="confirmar">Confirmar Senha </label>
+          <input type="password" id="confirmar" placeholder="Repita sua senha" required />
+        </div>
+
+        <button type="submit" class="btn">Criar Conta</button>
+
+        <p id="mensagem-erro" class="erro"></p>
+
+        <p class="login-register-text">
+          Já tem uma conta? <a href="index_login.html">Faça seu Login!</a>
+        </p>
       </form>
-
-      <p class="login-register-text">
-        Não tem uma conta?
-        <a href="index_conta.html">Crie agora</a>
-      </p>
     </div>
   </div>
 </main>
 
 
 
-   <footer>
+<footer>
          <div class="footer-content">
               
            <div class="footer-section about">
@@ -162,9 +190,9 @@
          <div class="footer-bottom">
            <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
          </div>
-       </footer>
+ </footer>
        
 
-    <script src="js/login.js"></script>
+    <script src="js/conta.js"></script>
 </body>
 </html>

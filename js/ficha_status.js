@@ -76,9 +76,9 @@ document.addEventListener("scroll", () => {
 
     // Se o usuário rolar até o fim da página
     if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg, #755c08a4,#7c5102c4,#795e09a4)"; // Altera a cor do rodapé
+        footer.style.background = "linear-gradient(45deg,#1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a)"; // Altera a cor do rodapé
     } else {
-        footer.style.background = "linear-gradient(45deg, #755c08a4,#7c5102c4,#795e09a4)"; // Mantém a cor padrão
+        footer.style.background = "linear-gradient(45deg#1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a)"; // Mantém a cor padrão
     }
 });
 
@@ -104,10 +104,10 @@ const senhas = {
     "npc17": "Justiça",
     "npc18": "Ghoul",
     "npc19": "Mentira",
-
+    "npc20": "Enxamedacaveira",
+    "npc21": "EquipeAbatida",
+    "npc22": "Conexãoalua",
 };
-
-
 
 // Dados dos NPCs
 const npcs = {
@@ -115,7 +115,7 @@ const npcs = {
         nome: "Thormond",
         imagem: "imagens/npc1_brok.jpg",
         historia: "Thormond era o terceiro filho da linhagem dos anões, uma família grande e respeitada, com irmãos, primos distantes e muitas gerações que se espalhavam pelas vastas montanhas gélidas do norte da Floresta dos Pinheiros. Seu pai, o grande rei, governava a montanha mais rica e fria da região, um lugar onde seu povo prosperava através da forja de itens raros e da mineração de preciosos minérios. A força e a destreza dos anões eram admiradas por todas as civilizações ao redor, que os viam como mestres em seu ofício. No entanto, tudo mudou quando a batalha nas estradas de ferro, contra os orcs e outras forças unidas, trouxe a queda do rei. A derrota foi devastadora, e a montanha que antes era o coração pulsante de seu povo se tornou um símbolo de derrota. Com a morte do rei, a confiança foi abalada e os anões perderam o foco. O povo, desmotivado e com os ânimos fragilizados, se dispersou. A montanha gélida, que um dia fora um local de prosperidade, agora estava nas mãos dos Gladius, um grupo cruel e implacável que dominava a região. Thormond, o último herdeiro legítimo da linhagem real, viu-se sozinho. Seus irmãos, seus primos e todos aqueles a quem ele confiara seu futuro desapareceram: mortos em um trágico acidente no mar. A confiança de Thormond na possibilidade de reconquistar a grande montanha e restaurar o legado de sua família foi testada até seus limites. Ele sabia que sua única chance de salvar o que restava de seu povo repousava sobre seus ombros. E, agora, com os olhares agressivos de seu novo povo, que o aguardava com desesperança e desconfiança, Thormond precisava provar que ainda era capaz de conduzir sua linhagem à grandeza perdida.",
-        acoes: ["+15 construir, +15 mecânica civil, +10 esquiva, +10 esculpir, +10 crime, +10 saquear, +10 peso criminoso, +10 organização de planta residêncial, +10 formação, +10 construção primal, +5 construção industrialziada, +10 construção de muros, + 5 luta, +5 percpeção, +5 furtividade, +5 reclaamr, +5 força bruta, +5 pontaria, +5 indentificação de minério, +5 sobrevivência, +5 pensar em construção.    "],
+        acoes: ["+15 construir, +15 mecânica civil, +10 esquiva, +10 esculpir, +10 crime, +10 saquear, +10 peso criminoso, +10 organização de planta residêncial, +10 formação, +10 construção primal, +5 construção industrialziada, +10 construção de muros, + 5 luta, +5 percpeção, +5 furtividade, +5 reclaamr, +5 força bruta, +5 pontaria, +5 indentificação de minério, +5 sobrevivência, +5 pensar em construção.    "],
         mutacao: "Raiva Anã: Quando Thormond está com raiva faz todas as construções com +5 em testes de vig, for, int, além de aumentar a vida máxima e a rigidez da cosnrução em 1 nivel de resistência. Pode usar pontos de esforço em suas construções, para adicionar vida ou + dados no teste.",
         classes: "Construtor, Sobrevivente ",
         agilidade: 2,
@@ -124,12 +124,12 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 3,
         status: "Vida: 100, Determinação/Sanidade: 90, Existência/Resistência: 30, Fôlego: 7, Armadura: 15",
-       
+        requiresPassword: false // THORMOND DOES NOT REQUIRE PASSWORD
     },
     "npc2": {
         nome: "Dante",
         imagem: "imagens/npc2_dante.jpg",
-        historia: " Dante sempre foi um garoto curioso, fascinado pelos mistérios da fé e das escrituras. Criado sob a rigidez de pais devotos, teve sua infância moldada por orações e disciplina, mas a guerra não esperou ele crescer. Ainda menino, foi arrancado de casa e enviado aos campos de batalha na Guerra do Paraguai, onde aprendeu a sobreviver antes mesmo de entender a vida. Cresceu entre trincheiras e cadáveres, estudando livros de anatomia e religião nos raros momentos de paz, buscando entender tanto os limites da perfeição humana quanto os segredos ocultos da fé. Aprendeu a manejar armas e tratar feridas, tornando-se um médico improvisado no campo de batalha. À noite, sob a luz das fogueiras, ensinava outros soldados a ler e escrever, acreditando que o conhecimento era a única dádiva que a guerra não poderia roubar. Mas nada o preparou para o dia em que viu crianças como ele serem mortas sem piedade. Tomado pela raiva, Dante tirou a vida de um homem, e naquele momento, compreendeu o peso do pecado. Chorou, não pelo inimigo, mas por si mesmo. Naquela noite, jurou que jamais mataria novamente. Se a guerra queria sua alma, que tomasse tudo, mas ele não derramaria mais sangue. Então, veio o impossível. Ao abrir os olhos, não estava mais no campo de batalha. O céu era diferente, o ar estranho, e nada ao seu redor fazia sentido. De alguma forma, despertara em um novo mundo, onde a sobrevivência era a única certeza. Agora, ao lado de um grupo de desconhecidos, Dante se agarrava à sua promessa, disposto a protegê-los sem recorrer à violência, pois, mesmo diante do desconhecido, ainda acreditava que poderia salvar alguém — nem que, para isso, tivesse que enfrentar o próprio julgamento dos pecados.   ",
+        historia: " Dante sempre foi um garoto curioso, fascinado pelos mistérios da fé e das escrituras. Criado sob a rigidez de pais devotos, teve sua infância moldada por orações e disciplina, mas a guerra não esperou ele crescer. Ainda menino, foi arrancado de casa e enviado aos campos de batalha na Guerra do Paraguai, onde aprendeu a sobreviver antes mesmo de entender a vida. Cresceu entre trincheiras e cadáveres, estudando livros de anatomia e religião nos raros momentos de paz, buscando entender tanto os limites da perfeição humana quanto os segredos ocultos da fé. Aprendeu a manejar armas e tratar feridas, tornando-se um médico improvisado no campo de batalha. À noite, sob a luz das fogueiras, ensinava outros soldados a ler e escrever, acreditando que o conhecimento era a única dádiva que a guerra não poderia roubar. Mas nada o preparou para o dia em que viu crianças como ele serem mortas sem piedade. Tomado pela raiva, Dante tirou a vida de um homem, e naquele momento, compreendeu o peso do pecado. Chorou, não pelo inimigo, mas por si mesmo. Naquela noite, jurou que jamais mataria novamente. Se a guerra queria sua alma, que tomasse tudo, mas ele não derramaria mais sangue. Então, veio o impossível. Ao abrir os olhos, não estava mais no campo de batalha. O céu era diferente, o ar estranho, e nada ao seu redor fazia sentido. De alguma forma, despertara em um novo mundo, onde a sobrevivência era a única certeza. Agora, ao lado de um grupo de desconhecidos, Dante se agarrava à sua promessa, disposto a protegê-los sem recorrer à violência, pois, mesmo diante do desconhecido, ainda acreditava que poderia salvar alguém — nem que, para isso, tivesse que enfrentar o próprio julgamento dos pecados.   ",
         acoes: ["+15 medicina, +15 cura arcana, +15 tratamento de feridas, +15 cirurgia de remoção de balas, +10 pontaria, +10 correr, +10 diplomacia, +10 psicologia, +10 ler, +10 diplomata, +10 área da educação, +10 religião, +5 furtividade, +5 esquiva, +5 reflexo, +5 contra-ataque, +5 identificação de veneno, +5 sobrevivência, +5 pensar em grupo."],
         mutacao: "Dádiva de Deus: Pode usar uma benção arcana de cura que acumula de acordo com os dias da semana, sendo +1 (d20) de cura para cade que dia passa, onde o último dia é o dia de descanso, voltando a contagem de cura. Sesu despertar provoca um efeito que quebra o espelho entre a divisão do que é alma e corpo, podendo reviver todo alvo que passar do estado morrendo próximo ao dante por 1 rodada.",
         classes: "Sobrevivente, Curandeiro ",
@@ -139,7 +139,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 115, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
-      
+        requiresPassword: false // DANTE REQUIRES PASSWORD
     },
     "npc3": {
         nome: "Capitão",
@@ -154,7 +154,7 @@ const npcs = {
         sobrevivencia: 4,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 120, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
-      
+        requiresPassword: true // CAPTAIN REQUIRES PASSWORD
     },
     "npc4": {
         nome: "Guga",
@@ -169,7 +169,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 115, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
-      
+        requiresPassword: false 
     },
     "npc5": {
         nome: "Octane",
@@ -184,7 +184,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 3,
         status: "Vida: 70, Determinação/Sanidade: 80, Existência/Resistência: 25, Fôlego: 6, Armadura: 15",
-      
+       requiresPassword: true 
     },
     "npc6": {
         nome: "Dito",
@@ -199,7 +199,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 95, Existência/Resistência: 25, Fôlego: 6, Armadura: 5",
-      
+      requiresPassword: true
     },
     "npc7": {
         nome: "Wall-E",
@@ -214,7 +214,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 115, Existência/Resistência: 25, Fôlego: 6, Armadura: 5",
-      
+       requiresPassword: false 
     },
     "npc8": {
         nome: "Melarys",
@@ -229,7 +229,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 4,
         status: "Vida: 130, Determinação/Sanidade: 70, Existência/Resistência: 30, Fôlego: 7, Armadura: 35",
-      
+       requiresPassword: true
     },
     "npc9": {
         nome: "Anel de Morgoth",
@@ -244,7 +244,7 @@ const npcs = {
         sobrevivencia: 5,
         vigor: 1,
         status: "Vida: 25, Determinação/Sanidade: -, Existência/Resistência: 100, Fôlego: -, Armadura: -",
-      
+       requiresPassword: true
     },
     "npc10": {
         nome: "Alfredo Alexander Santos",
@@ -259,7 +259,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 90, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
-      
+       requiresPassword: false 
     },
      "npc11": {
         nome: "Gorki",
@@ -274,6 +274,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 3,
         status: "Vida: 125, Determinação/Sanidade: 70, Existência/Resistência: 20, Fôlego: 5, Armadura: 30",
+        requiresPassword: false 
     },
     "npc12": {
         nome: "Baraka",
@@ -288,6 +289,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 2,
         status: "Vida: 90, Determinação/Sanidade: 70, Existência/Resistência: 20, Fôlego: 5, Armadura: 20",
+        requiresPassword: false 
       
     },
     "npc13": {
@@ -303,6 +305,7 @@ const npcs = {
         sobrevivencia: 2,
         vigor: 3,
         status: "Vida: 90, Determinação/Sanidade: 105, Existência/Resistência: 25, Fôlego: 6, Armadura: 25",
+        requiresPassword: false 
       
     },
     "npc14": {
@@ -318,6 +321,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 105, Existência/Resistência: 20, Fôlego: 5, Armadura: 5",
+        requiresPassword: false 
       
     },
     "npc15": {
@@ -333,6 +337,7 @@ const npcs = {
         sobrevivencia: 4,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 130, Existência/Resistência: 25, Fôlego: 6, Armadura: 25",
+        requiresPassword: true
       
     },
     "npc16": {
@@ -348,7 +353,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 3,
         status: "Vida: 85, Determinação/Sanidade: 95, Existência/Resistência: 25, Fôlego: 6, Armadura: 35",
-      
+        requiresPassword: true
     },
     "npc17": {
         nome: "Belona",
@@ -363,7 +368,7 @@ const npcs = {
         sobrevivencia: 3,
         vigor: 4,
         status: "Vida: 90, Determinação/Sanidade: 105, Existência/Resistência: 30, Fôlego: 7, Armadura: 45",
-      
+       requiresPassword: true
     },
      "npc18": {
         nome: "Rize",
@@ -378,7 +383,7 @@ const npcs = {
         sobrevivencia: 4,
         vigor: 2,
         status: "Vida: 85, Determinação/Sanidade: 115, Existência/Resistência: 20, Fôlego: 5, Armadura: 25",
-      
+       requiresPassword: false
     },
 
       "npc19": {
@@ -394,32 +399,72 @@ const npcs = {
         sobrevivencia: 4,
         vigor: 2,
         status: "Vida: 70, Determinação/Sanidade: 130, Existência/Resistência: 20, Fôlego: 5, Armadura: 25",
-      
+       requiresPassword: true
+    },
+    "npc20": {
+        nome: "",
+        imagem: "",
+        historia: "",
+        acoes: [""],
+        mutacao: "",
+        classes: "",
+        agilidade: 0,
+        forca: 0,
+        inteligencia: 0,
+        sobrevivencia: 0,
+        vigor: 0,
+        status: "",
+       requiresPassword: true
+    },
+    "npc21": {
+        nome: "",
+        imagem: "",
+        historia: "",
+        acoes: [""],
+        mutacao: "",
+        classes: "",
+        agilidade: 0,
+        forca: 0,
+        inteligencia: 0,
+        sobrevivencia: 0,
+        vigor: 0,
+        status: "",
+       requiresPassword: true
+    },
+     "npc22": {
+        nome: "",
+        imagem: "",
+        historia: "",
+        acoes: [""],
+        mutacao: "",
+        classes: "",
+        agilidade: 0,
+        forca: 0,
+        inteligencia: 0,
+        sobrevivencia: 0,
+        vigor: 0,
+        status: "",
+       requiresPassword: true
     },
 
 
+
 };
-
-function filtrarNPCs() {
-    const termoPesquisa = document.getElementById("pesquisa").value.toLowerCase();
-    const npcs = document.querySelectorAll(".npc-grid .npc");
-
-    npcs.forEach(npc => {
-        const nome = npc.querySelector("h2").textContent.toLowerCase();
-        const classe = npc.querySelector(".info2").textContent.toLowerCase();
-        
-        // Se o nome ou a classe contiver o termo pesquisado, mostra; senão, esconde
-        npc.style.display = (nome.includes(termoPesquisa) || classe.includes(termoPesquisa)) ? "block" : "none";
-    });
-}
-
+// MODIFICADA: openModal function
 function openModal(npcId) {
     npcAtual = npcId;
-    document.getElementById("modalSenha").style.display = "flex";
+    const npc = npcs[npcId]; // Get the NPC data
+
+    if (npc && !npc.requiresPassword) { // Check if NPC exists and doesn't require password
+        abrirFicha(npcId); // Directly open ficha if no password needed
+    } else {
+        document.getElementById("modalSenha").style.display = "flex"; // Show password modal
+    }
 }
 
 function fecharModal() {
     document.getElementById("modalSenha").style.display = "none";
+    document.getElementById("senha").value = ""; // Clear password input
 }
 
 function verificarSenha() {
@@ -442,19 +487,54 @@ function abrirFicha(npcId) {
     document.getElementById("npcClasses").innerText = npc.classes;
     document.getElementById("npcStatus").innerText = npc.status;
     document.getElementById("npcAcoes").innerHTML = npc.acoes.map(acao => `<li>${acao}</li>`).join("");
-    
+
     document.getElementById("npcAgilidade").innerText = npc.agilidade;
     document.getElementById("npcForca").innerText = npc.forca;
     document.getElementById("npcInteligencia").innerText = npc.inteligencia;
     document.getElementById("npcSobrevivencia").innerText = npc.sobrevivencia;
     document.getElementById("npcVigor").innerText = npc.vigor;
-    
+
     document.getElementById("modalFicha").style.display = "flex";
 }
 
 function fecharFicha() {
     document.getElementById("modalFicha").style.display = "none";
 }
+
+// Keep your existing filtrarNPCs function as is:
+function filtrarNPCs() {
+    const termoPesquisa = document.getElementById("pesquisa").value.toLowerCase();
+    const npcs = document.querySelectorAll(".npc-grid .npc");
+
+    npcs.forEach(npc => {
+        const nome = npc.querySelector("h2").textContent.toLowerCase();
+        const classe = npc.querySelector(".info2").textContent.toLowerCase();
+
+        // Se o nome ou a classe contiver o termo pesquisado, mostra; senão, esconde
+        npc.style.display = (nome.includes(termoPesquisa) || classe.includes(termoPesquisa)) ? "block" : "none";
+    });
+}
+function openModal(npcId) {
+    npcAtual = npcId;
+    const npc = npcs[npcId]; // <--- Get the NPC data
+
+    if (npc && !npc.requiresPassword) { // <--- Check the new flag
+        abrirFicha(npcId); // Directly open ficha if no password needed
+    } else {
+        document.getElementById("modalSenha").style.display = "flex"; // Show password modal
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 // Conteúdo dinâmico para cada ícone
 const contents = [
     {

@@ -12,11 +12,6 @@ document.addEventListener("scroll", () => {
     }
 });
 
-// Toggle para o menu no celular
-document.querySelector('.hamburger').addEventListener('click', function() {
-    document.querySelector('.nav-links').classList.toggle('active');
-});
-
 // ========================
 // Menu (Navbar)
 // ========================
@@ -85,6 +80,25 @@ clearRollsButton.addEventListener('click', () => {
  function goToPage(page) {
     window.location.href = page; // Redireciona para a página passada como argumento
 }
+
+// ========================
+// Footer dinâmico
+// ========================
+document.addEventListener("scroll", () => {
+    const footer = document.querySelector("footer"); // Seleciona o rodapé
+
+    // Se o usuário rolar até o fim da página
+    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
+        footer.style.background = "linear-gradient(45deg,  #1a1a1a, #1a1a1a, #000, #000,#1a1a1a, #1a1a1a)"; // Altera a cor do rodapé
+    } else {
+        footer.style.background = "linear-gradient(45deg, #1a1a1a, #000)"; // Mantém a cor padrão
+    }
+});
+
+ // Função que redireciona com base no argumento recebido
+ function goToPage(page) {
+    window.location.href = page; // Redireciona para a página passada como argumento
+}
 document.getElementById("login-form").addEventListener("submit", function (e) {
   e.preventDefault()
 
@@ -97,4 +111,12 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
   alert("Login enviado! (simulado)")
 })
 
+const emailInput = document.getElementById("login-email-input");
+emailInput.addEventListener("input", () => {
+  if (!emailInput.validity.valid) {
+    emailInput.style.borderColor = "red";
+  } else {
+    emailInput.style.borderColor = "#00bfa5";
+  }
+});
 

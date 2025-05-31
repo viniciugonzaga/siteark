@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_home.jpg') no-repeat center center fixed;
+      background: url('../imagens/lobby_homev2.jpg') no-repeat center center fixed;
     background-size: cover;
     scroll-behavior: smooth;
     overflow-x: hidden;
@@ -16,7 +16,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.658); /* 0.5 = 50% sombra */
+    background: linear-gradient(45deg, #2325256b, #2229286c, #1f222279);
     z-index: -1;
 }
 
