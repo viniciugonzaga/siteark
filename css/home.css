@@ -790,7 +790,142 @@ nav {
 /* Main*/
 
 
+/* General Title Style */
+.titulo_principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    perspective: 1000px; /* For 3D rotation */
+}
 
+.titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a); /* Dark gray to black gradient */
+    border-radius: 25px; /* Slightly more rounded */
+    padding: 25px 40px; /* More padding */
+    border: 3px solid #333333; /* Darker gray border */
+    color: #e0e0e0; /* Lighter, subtle gray glow */
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.6), /* Light blue/cyan glow */
+        0 0 30px rgba(193, 240, 248, 0.4), /* Wider blue/cyan glow */
+        0 0 60px rgba(193, 240, 248, 0.2); /* Even wider light blue/cyan glow */
+    position: relative;
+    max-width: 380px; /* Slightly increased max-width */
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes pulseGlowCyan {
+    0% {
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
+    }
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+.titulo_efeito:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px; /* Thicker line */
+    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999); /* Animated light cyan/gray wave */
+    animation: wave 8s infinite linear;
+    transform-origin: bottom center;
+}
+
+@keyframes wave {
+    0% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+    25% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0.1);
+        left: 90%;
+        background-position: 0% 0%;
+    }
+    75% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    100% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+}
+
+@media (max-width: 780px) {
+    .titulo_principal {
+        margin-top: 130px; /* Reduz a margem superior */
+    }
+
+    .titulo_efeito {
+        font-size: 3rem; /* Reduz o tamanho da fonte */
+        padding: 20px 30px; /* Ajusta o padding */
+        max-width: 320px; /* Reduz o max-width */
+        /* O efeito de sombra e animações geralmente funcionam bem,
+           mas você pode ajustá-los se notar problemas de desempenho. */
+        text-shadow:
+            0 0 8px rgba(193, 240, 248, 0.6),
+            0 0 20px rgba(193, 240, 248, 0.4),
+            0 0 40px rgba(193, 240, 248, 0.2);
+    }
+
+    .titulo_efeito:after {
+        height: 5px; /* Ajusta a altura da linha de efeito */
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo_principal {
+        margin-top: 140px; /* Reduz ainda mais a margem superior */
+    }
+
+    .titulo_efeito {
+        font-size: 2rem; /* Reduz significativamente o tamanho da fonte para caber */
+        padding: 15px 20px; /* Reduz o padding */
+        max-width: 280px; /* Garante que o título não estoure a tela */
+        border-radius: 15px; /* Menos arredondado para economizar espaço */
+        border: 2px solid #333333; /* Borda mais fina */
+        text-shadow:
+            0 0 5px rgba(193, 240, 248, 0.6),
+            0 0 15px rgba(193, 240, 248, 0.4),
+            0 0 30px rgba(193, 240, 248, 0.2); /* Reduz o tamanho das sombras */
+        
+        /* Em telas muito pequenas, pode ser melhor desabilitar algumas animações mais pesadas */
+        /* animation: pulseGlowCyan 3s infinite alternate; /* Mantenha apenas o glow */
+        /* transform-style: flat; /* Desabilita o 3D para evitar problemas */
+    }
+
+    .titulo_efeito:after {
+        height: 4px; /* Linha de efeito ainda mais fina */
+    }
+}
 
 
 /* Estilo geral do carrossel */
@@ -802,7 +937,6 @@ nav {
     border-radius: 15px;
     position: relative;
     margin-bottom: 20px;
-    margin-top: 10rem;
     animation: fog-pulse 4s infinite alternate ease-in-out; /* Nome da animação, duração, repetição, direção, suavidade */
 }
 
@@ -840,9 +974,9 @@ nav {
     .carousel {
         width: 65%; /* Ocupar mais largura em telas menores para ser mais visível */
         max-width: 700px; /* Reduzir ainda mais o tamanho máximo para tablets */
-        margin-top: 5rem; /* Ajustar o espaçamento superior para telas menores */
+       
         border-radius: 10px; /* Borda um pouco menor em telas menores */
-        margin-top: 15rem;;
+       
       }
 
     .carousel-images img {
@@ -855,9 +989,9 @@ nav {
         width: 70%; /* Ocupar toda a largura disponível em celulares */
         max-width: none; /* Remover max-width para preencher a tela */
         margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
-        margin-top: 3rem; /* Ajustar ainda mais o espaçamento superior */
+        margin-top: 1rem; /* Ajustar ainda mais o espaçamento superior */
         border-radius: 15px; /* Borda mínima em celulares */
-        margin-top: 17rem;;
+       
       }
 
     .carousel-images img {
