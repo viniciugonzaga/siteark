@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mapas</title>
+    <link rel="stylesheet" href="/css/mapas.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--fim da fonte-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
+    <!-- Alternativa para .png -->
+    <link rel="icon" href="/imagens/Icone_ark_v4.png" type="image/png">
+</head>
+<body>
+   <!-- Nav-Bar ------------------------------------------------------>
+    <nav>
+     <div class="nav-left">
+      <div class="logo">
+          <img src="/imagens/Icone_ark_v4.png" alt="Logo">
+          <h1>RPG ARK</h1>
+      </div>
+   </div>
+
+ 
+ <div class="nav-middle">
+      <div class="nav-links">
+          <a href="../index.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-home icon"></i>
+              <span>Início</span>
+          </a>
+          <a href="/index/index_mapas.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-map icon"></i>
+              <span>Mapas</span>
+          </a>
+          <a href="/index/index_história.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-book icon"></i>
+              <span>Lore</span>
+          </a>
+          <a href="/index/index_regras.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-gavel icon"></i>
+              <span>Regras</span>
+          </a>
+          <a href="/index/index_bloqueado.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-dragon icon"></i>
+              <span>Feras</span>
+          </a>
+          <a href="/index/index_ciencia.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-dna icon"></i>
+              <span>Lab</span>
+          </a>
+      </div>
+ </div>
+<div class="nav-right">
+    <div class="dado-container">
+        <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img src="/imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+            <img src="/imagens/Login_v2.jpg" alt="Link para Nova Página" class="new-icon">
+        </a>
+    </div>
+</div>
+
+
+     <div id="diceMenu" class="menu hidden">
+         <button id="closeMenu">Fechar</button>
+         <h3>Rolar Dados</h3>
+         <label for="playerName">Nome do Jogador:</label>
+         <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+         <label for="diceSelect">Selecione o tipo de dado:</label>
+         <select id="diceSelect">
+             <option value="20">D20</option>
+             <option value="12">D12</option>
+             <option value="10">D10</option>
+             <option value="8">D8</option>
+             <option value="6">D6</option>
+             <option value="4">D4</option>
+             <option value="2">D2</option>
+         </select>
+         <button id="rollDice">Rolar Dados</button>
+         <div id="rolls">
+             <h4>Registro de Rolagens:</h4>
+             <ul id="rollList"></ul>
+             <p id="total">Total: 0</p>
+         </div>
+         <button id="clearRolls">Limpar Registro</button>
+     </div>
+  </nav>
+    <!-- Fim Nav-Bar ------------------------------------------------->
+   <main>
+    <div class="titulo_principal">
+        <h1 class="titulo_efeito">Mapas</h1>
+    </div>
+
+    <div class="container-1">
+        <div class="descricao">
+            <p> A adaptação da ilha, denominada Ciclo do Ark, é intrínseca às alterações ambientais causadas por eventos naturais e pela ação de civilizações, mantendo-a em constante evolução e sempre à frente da humanidade. Sua longevidade e o número de ciclos passados permanecem um mistério, mas cada estação anuncia a iminência de novas transformações.</p>
+        </div>
+
+        <div class="mapa-container1">
+            <button class="prev">&#9665;</button> <div class="mapa" id="mapa">
+                <img id="mapaImg" src="/imagens/Ilha_Ark_Ciclo1.png" alt="Mapa do RPG">
+                <button class="zoom-button" id="zoomMapBtn">🔎</button> </div>
+
+            <button class="next">&#9655;</button> </div>
+
+        <div class="descricao2">
+            <p> O Ark pulsa com vida própria, um ciclo incessante de metamorfose forjado pelas próprias mudanças que o moldam. Uma entidade ancestral, cuja idade e ciclos são um enigma, mas cujo futuro se revela a cada estação. Prepare-se: a ilha está sempre um passo à frente.</p>
+        </div>
+        <div class="main-container">
+            <button id="btnSpawn" class="spawn-button">Nascer na Ilha</button>
+
+            <div id="mapMenu" class="map-menu hidden">
+                <button id="closeMapMenu" class="close-menu-btn">Fechar Menu</button>
+                <h2>Mapa Gerado</h2>
+                <p id="mapRegion">Região: </p>
+                <p id="mapLocation">Localização: </p>
+                <button id="resetMap" class="reset-button">Resetar Região</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="carrossel-container">
+    <h2 class="descricao3">Campos de Ouro</h2>
+    <div class="carrossel">
+        <button id="prev" class="nav-button">&#8592;</button>
+
+        <img id="imagem2" src="/imagens/campos_de_ouro.PNG" alt="Imagem 1">
+
+        <button id="next" class="nav-button">&#8594;</button>
+    </div>
+
+    <div class="texto-descricao">
+        <p id="texto"></p>
+    </div>
+</div>
+
+
+<div class="terceiro-container2">
+    <img src="/imagens/Icone_abrigo.png" alt="Imagem ilustrativa" class="terceira-imagem2">
+    <div class="terceiro-texto2">
+        <h2>Elementos do Mapas</h2>
+        <p>Os elementos do mapa são locais com mecânicas e eventos exclusivos, podendo ser construções antigas ou erguidas ao longo dos ciclos do Ark. Vilas, fortalezas, arenas e reinos são habitados por civilizações que realizam reuniões e acordos políticos, enquanto torres podem servir como vigias ou bases de chefes caçadores de sobreviventes. Já templos, fortalezas, masmorras e minas são áreas de exploração ou esconderijos de tesouros protegidos contra saqueadores.</p>
+    </div>
+</div>
+
+
+<div class="terceiro-container">
+    <img src="/imagens/Cristal_da_Caveira.png" alt="Imagem ilustrativa" class="terceira-imagem">
+    <div class="terceiro-texto">
+        <h2>Ambientes Da caveira</h2>
+        <p>O Cristal da Caveira é um minério carregado de energia arcana, originado das criaturas da caveira, seres extremamente fortes e resistentes. Sua simples presença altera o bioma, forçando adaptações às catástrofes causadas pela criatura. O bioma tenta combatê-la usando predadores locais, mas se falhar, a criatura assume o domínio como novo alfa, transformando a região em um bioma de dunas terrestres. A energia acumulada durante sua evolução gera o Cristal da Caveira, e, se destruído ou desativado, o bioma retorna lentamente ao seu estado original.</p>
+    </div>
+</div>
+  
+  <footer>
+         <div class="footer-content">
+              
+           <div class="footer-section about">
+               <h2>Sobre o RPG</h2>
+               <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
+           </div>
+           <div class="footer-section links">
+               <h2>Links Úteis</h2>
+               <ul>
+                   <li><a href="/index/index_mapas.html">Mapas</a></li>
+                   <li><a href="/index/index_tribos.html">Tribos</a></li>
+                   <li><a href="/index/index_regras.html">Regras</a></li>
+                   <li><a href="/index/index_itens.html">Itens</a></li>
+               </ul>
+           </div>
+           <div class="footer-section social">
+               <h2>Conecte-se</h2>
+               <div class="social-icons">
+                   <a href="https://instagram.com/vindinossauro" target="_blank"><img src="/imagens/insta_home.png" alt="Instagram"></a>
+                   <a href="https://github.com" target="_blank"><img src="/imagens/git_home.png" alt="GitHub"></a>
+                   <a href="mailto:vinigonzagap@gmail.com"><img src="/imagens/gmail_home.png" alt="E-mail"></a>
+               </div>
+           </div>
+         </div>
+         <div class="footer-bottom">
+           <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+         </div>
+       </footer>
+
+
+ <!-- Inclui o arquivo de script -->
+ <script src="/js/script_mapas.js"></script>
+</body>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas</title>
+    <link rel="stylesheet" href="/css/ficha_status.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--fim da fonte-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
+    <!-- Alternativa para .png -->
+    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+</head>
+<body>
+  <div class="starfall">
+        </div>
+    <nav>
+     <div class="nav-left">
+      <div class="logo">
+          <img src="imagens/Icone_ark_v4.png" alt="Logo">
+          <h1>RPG ARK</h1>
+      </div>
+   </div>
+
+ 
+ <div class="nav-middle">
+      <div class="nav-links">
+          <a href="index.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-home icon"></i>
+              <span>Início</span>
+          </a>
+          <a href="index_mapas.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-map icon"></i>
+              <span>Mapas</span>
+          </a>
+          <a href="index_história.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-book icon"></i>
+              <span>Lore</span>
+          </a>
+          <a href="index_regras.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-gavel icon"></i>
+              <span>Regras</span>
+          </a>
+          <a href="index_bloqueado.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-dragon icon"></i>
+              <span>Feras</span>
+          </a>
+          <a href="index_ciencia.html" class="sidebar-item">
+              <span class="highlight-bar"></span>
+              <i class="fas fa-dna icon"></i>
+              <span>Lab</span>
+          </a>
+      </div>
+ </div>
+<div class="nav-right">
+    <div class="dado-container">
+        <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img src="imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+            <img src="imagens/Login_v2.jpg" alt="Link para Nova Página" class="new-icon">
+        </a>
+    </div>
+</div>
+
+
+     <div id="diceMenu" class="menu hidden">
+         <button id="closeMenu">Fechar</button>
+         <h3>Rolar Dados</h3>
+         <label for="playerName">Nome do Jogador:</label>
+         <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+         <label for="diceSelect">Selecione o tipo de dado:</label>
+         <select id="diceSelect">
+             <option value="20">D20</option>
+             <option value="12">D12</option>
+             <option value="10">D10</option>
+             <option value="8">D8</option>
+             <option value="6">D6</option>
+             <option value="4">D4</option>
+             <option value="2">D2</option>
+         </select>
+         <button id="rollDice">Rolar Dados</button>
+         <div id="rolls">
+             <h4>Registro de Rolagens:</h4>
+             <ul id="rollList"></ul>
+             <p id="total">Total: 0</p>
+         </div>
+         <button id="clearRolls">Limpar Registro</button>
+     </div>
+     
+  </nav>
+    <!-- Fim Nav-Bar ------------------------------------------------->
+    <div class="titulo_principal">
+        <h1 class="titulo_efeito">Npcs</h1>
+        <h1 class="titulo_efeito2"> <a class="botão_atalho_v2" href="index_ficha_status2.html">Feras</a></h1>
+    </div>
+
+      
+    <div class="container">
+        <input type="text" id="pesquisa" placeholder="Buscar NPC..." onkeyup="filtrarNPCs()">
+        <h1>Fichas de NPCs</h1>
+        <div class="npc-grid">
+            <!-- Ícone do NPC -->
+            <div class="npc" onclick="openModal('npc1')">
+                <img src="imagens/npc1_brok.jpg" alt="NPC 1">
+                <div class="info">
+                    <h2>Thormond</h2>
+                    <p class="info2">Guerreiro</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc2')">
+                <img src="imagens/npc2_dante.jpg" alt="NPC 2">
+                <div class="info">
+                    <h2>Dante</h2>
+                    <p class="info2">Suporte</p>
+                </div>
+            </div>
+
+             <div class="npc" onclick="openModal('npc3')">
+                <img src="imagens/npc3_capitao.jpg" alt="NPC 3">
+                <div class="info">
+                    <h2>Capitão</h2>
+                    <p class="info2">Atirador</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc4')">
+                <img src="imagens/npc4_guga.jpg" alt="NPC 4">
+                <div class="info">
+                    <h2>Guga</h2>
+                    <p class="info2">Suporte</p>
+                </div>
+            </div>
+            <div class="npc" onclick="openModal('npc5')">
+                <img src="imagens/npc5_ocatne.jpg" alt="NPC 5">
+                <div class="info">
+                    <h2>Octane</h2>
+                    <p class="info2">Duelista</p>
+                </div>
+            </div>
+            
+            <div class="npc" onclick="openModal('npc6')">
+                <img src="imagens/npc6_dito.jpg" alt="NPC 6">
+                <div class="info">
+                    <h2>Dito</h2>
+                    <p class="info2">Suporte</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc7')">
+                <img src="imagens/npc7_Wall-E.jpg" alt="NPC 7">
+                <div class="info">
+                    <h2>Wall-E</h2>
+                    <p class="info2">Suporte</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc8')">
+                <img src="imagens/npc8_meleys.jpg" alt="NPC 8">
+                <div class="info">
+                    <h2>Melarys</h2>
+                    <p class="info2">Colosso</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc9')">
+                <img src="imagens/npc9_anel_ganância.jpg" alt="NPC 9">
+                <div class="info">
+                    <h2>Anel Orc</h2>
+                    <p class="info2">Suporte-Endiabrado</p>
+                </div>
+            </div>
+
+             <div class="npc" onclick="openModal('npc10')">
+                <img src="imagens/npc10_alfredo.jpg" alt="NPC 10">
+                <div class="info">
+                    <h2>Alfredo</h2>
+                    <p class="info2">Suporte-Endiabrado</p>
+                </div>
+            </div>
+
+            <div class="npc" onclick="openModal('npc11')">
+              <img src="imagens/npc11_gorki.jpg" alt="NPC 11">
+              <div class="info">
+                <h2>Gorki </h2>
+                  <p class="info2">Guerreiro</p>
+              </div>
+           </div> 
+
+          <div class="npc" onclick="openModal('npc12')">
+            <img src="imagens/npc12_baraka.jpg" alt="NPC 12">
+            <div class="info">
+                <h2>Baraka</h2>
+                <p class="info2">Duelista</p>
+            </div>
+          </div>
+
+        <div class="npc" onclick="openModal('npc13')">
+          <img src="imagens/npc13_alexei.jpg" alt="NPC 13">
+          <div class="info">
+              <h2>Alexei Stukov</h2>
+              <p class="info2">Suporte-Endiabrado</p>
+          </div>
+        </div>
+
+
+      <div class="npc" onclick="openModal('npc14')">
+        <img src="imagens/npc14_kenshi.jpg" alt="NPC 14">
+        <div class="info">
+            <h2>Kenshi</h2>
+            <p class="info2">Duelista</p>
+        </div>
+      </div>
+
+    <div class="npc" onclick="openModal('npc15')">
+      <img src="imagens/npc15_fada_morgana.jpg" alt="NPC 15">
+      <div class="info">
+          <h2>Morgana Lefray</h2>
+          <p class="info2">Mago</p>
+      </div>
+   </div>
+
+
+   <div class="npc" onclick="openModal('npc16')">
+    <img src="imagens/npc16_john_vanguard.jpg" alt="NPC 16">
+      <div class="info">
+        <h2>Jonh Vanguard</h2>
+        <p class="info2">Tanque</p>
+      </div>
+    </div>
+
+
+    <div class="npc" onclick="openModal('npc17')">
+      <img src="imagens/npc17_belona.jpg" alt="NPC 17">
+      <div class="info">
+        <h2>Belona</h2>
+        <p class="info2">Guerreira</p>
+      </div>
+    </div>
+
+    <div class="npc" onclick="openModal('npc18')">
+       <img src="imagens/npc18_rize.jpg" alt="NPC 18">
+        <div class="info">
+            <h2>Rize</h2>
+             <p class="info2">Guerreira</p>
+        </div>
+    </div>
+
+    <div class="npc" onclick="openModal('npc19')">
+       <img src="imagens/npc19_tasha.jpg" alt="NPC 19">
+        <div class="info">
+            <h2>Tasha Rose</h2>
+             <p class="info2">Suporte</p>
+        </div>
+    </div>
+
+     <div class="npc" onclick="openModal('npc20')">
+       <img src="imagens/npc20_klurkr.jpg" alt="NPC 20">
+        <div class="info">
+            <h2>klurkr</h2>
+             <p class="info2">Suporte</p>
+        </div>
+    </div>
+
+    <div class="npc" onclick="openModal('npc21')">
+       <img src="imagens/npc21_August.jpg" alt="NPC 21">
+        <div class="info">
+            <h2>August Grave</h2>
+             <p class="info2">Atirador</p>
+        </div>
+    </div>
+
+    <div class="npc" onclick="openModal('npc22')">
+       <img src="imagens/npc22_xbalanque.jpg" alt="NPC 22">
+        <div class="info">
+            <h2>Xbalanque</h2>
+             <p class="info2">Atirador</p>
+        </div>
+    </div>
+
+
+
+        </div>
+  </div>
+
+    <!-- Modal de senha -->
+    <div id="modalSenha" class="modal">
+        <div class="modal-content">
+            <h2>Insira a chave de acesso</h2>
+            <input type="password" id="senha" placeholder="Digite a senha">
+            <button onclick="verificarSenha()">Acessar</button>
+            <button class="fechar" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
+    <!-- Modal da Ficha -->
+    <div id="modalFicha" class="modal ficha">
+        <div class="modal-content">
+            <h2 id="npcNome">Nome do NPC</h2>
+            <img id="npcImagem" src="" alt="Imagem do NPC">
+            <p id="npcHistoria">História do NPC...</p>
+
+            <h3>Bônus de Ações</h3>
+            <ul id="npcAcoes"></ul>
+
+            <h3>Mutação</h3>
+            <p id="npcMutacao"></p>
+
+            <h3>Classes</h3>
+            <p id="npcClasses"></p>
+
+            <h3>Atributos</h3>
+            <p>Agilidade: <span id="npcAgilidade"></span></p>
+            <p>Força: <span id="npcForca"></span></p>
+            <p>Inteligência: <span id="npcInteligencia"></span></p>
+            <p>Sobrevivência: <span id="npcSobrevivencia"></span></p>
+            <p>Vigor: <span id="npcVigor"></span></p>
+
+            <h3>Status</h3>
+            <p id="npcStatus"></p>
+
+            <button class="fechar" onclick="fecharFicha()">Fechar</button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Botão para abrir o menu de mapas -->
+        <button id="btnSpawnV2" class="spawn-button-v2">
+            <a class="botão_atalho_v2" href="index_npcs.html">Criação de Npc</a>
+        </button>
+    </div>
+       
+    <div class="desafio">
+        <h1 class="titulo_efeito3">Luta Brutal</h1>
+          <p>
+            <p class="explicacao-regras"> Na divisão das regras do jogo de Luta Brutal, os Jogadores de cada equipe batalham e atacam em turnos, sendo sempre a equipe com maior agilidade em coordenar os seus ataques e criar o time que vai defender o ataque e sendo sempre os primeiros a agir os últimos da fileira da equipe, sendo o primeiro  o time de defesa e por último deixar o time reserva de ataque. Nessas lutas os perosnagens terão maneiras e mecanicas diferentes para cada classe do personagem nesse combate. O combate chega ao seu fim quando uma das equipe fica em menor número por 1 rodada, estado morrendo aplica desvantagem de grupo, mais é possivel fazer trocas de aliados no meio do combate para os menos feridos. </p>
+          </p>
+        </div>
+  
+      <div id="container-central">
+          <h1 id="titulo">Classes de Personagens</h1>
+          <div id="icones">
+              <!-- Ícones com imagens -->
+              <div class="icone" onclick="changeContent(1)">
+                <img src="imagens/brutal1_icon.jpg" alt="Ícone 1">
+              </div>
+              <div class="icone" onclick="changeContent(2)">
+                <img src="imagens/brutal2_icon.jpg" alt="Ícone 2">
+              </div>
+              <div class="icone" onclick="changeContent(3)">
+                <img src="imagens/brutal3_icon.jpg" alt="Ícone 3">
+              </div>
+              <div class="icone" onclick="changeContent(4)">
+                <img src="imagens/brutal4_icon.jpg" alt="Ícone 4">
+              </div>
+              <div class="icone" onclick="changeContent(5)">
+                <img src="imagens/brutal5_icon.jpg" alt="Ícone 5">
+              </div>
+              <div class="icone" onclick="changeContent(6)">
+                <img src="imagens/brutal6_icon.jpg" alt="Ícone 6">
+              </div>
+              <div class="icone" onclick="changeContent(7)">
+                <img src="imagens/brutal7_icon.jpg" alt="Ícone 7">
+              </div>
+              <div class="icone" onclick="changeContent(8)">
+                <img src="imagens/brutal8_icon.jpg" alt="Ícone 8">
+              </div>
+              <div class="icone" onclick="changeContent(9)">
+                  <img src="imagens/brutal9_icon.jpg" alt="Ícone 1">
+                </div>
+                <div class="icone" onclick="changeContent(10)">
+                  <img src="imagens/brutal10_icon.jpg" alt="Ícone 2">
+                </div>
+            </div>
+          <div id="conteudo">
+            <img id="gif" src="imagens/brutal_lobby_gif3.jpg" alt="GIF" />
+          
+            <p id="texto">Em Luta Brutal, equipes batalham em turnos, onde a mais ágil dita o ritmo e inicia com a defesa, seguida pelo ataque estratégico da retaguarda e reforçada por reservas táticas, explorando as mecânicas únicas de cada classe de personagem em combates que terminam quando o desvantagem numérica impõe o estado "Morrendo",  abrindo espaço para trocas de aliados e testando a coordenação e astúcia estratégica de cada time em busca da vitória.</p>
+          </div>
+          <div id="fundo">
+            <img id="imagem-fundo" src="imagens/regras_fatalidade.jpeg" alt="Imagem de Fundo" />
+          </div>
+        </div>
+
+
+
+      <!--footer----------------------------------------------------------------------------->
+ <footer>
+         <div class="footer-content">
+              
+           <div class="footer-section about">
+               <h2>Sobre o RPG</h2>
+               <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
+           </div>
+           <div class="footer-section links">
+               <h2>Links Úteis</h2>
+               <ul>
+                   <li><a href="index_mapas.html">Mapas</a></li>
+                   <li><a href="index_tribos.html">Tribos</a></li>
+                   <li><a href="index_regras.html">Regras</a></li>
+                   <li><a href="index_itens.html">Itens</a></li>
+               </ul>
+           </div>
+           <div class="footer-section social">
+               <h2>Conecte-se</h2>
+               <div class="social-icons">
+                   <a href="https://instagram.com/vindinossauro" target="_blank"><img src="imagens/insta_home.png" alt="Instagram"></a>
+                   <a href="https://github.com" target="_blank"><img src="imagens/git_home.png" alt="GitHub"></a>
+                   <a href="mailto:vinigonzagap@gmail.com"><img src="imagens/gmail_home.png" alt="E-mail"></a>
+               </div>
+           </div>
+         </div>
+         <div class="footer-bottom">
+           <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+         </div>
+       </footer>
+      
+
+ <!-- Inclui o arquivo de script -->
+ <script src="js/ficha_status.js"></script>
+</body>
+</html>

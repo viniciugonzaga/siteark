@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regras
+    </title>
+    <link rel="stylesheet" href="/css/regras.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--fim da fonte-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
+    <!-- Alternativa para .png -->
+    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+</head>
+<body>
+   <!-- Nav-Bar ------------------------------------------------------>
+   <nav>
+    <!-- Logo com Ícone e Texto -->
+    <div class="logo">
+        <img src="imagens/logo v.2.png" alt="Logo"> <!-- Substitua pelo nome da sua imagem -->
+        <h1>RPG ARK</h1>
+    </div>
+    <div class="nav-links">
+      <a href="index.html"><span>Início</span></a>
+      <a href="index_mapas.html"><span>Mapas</span></a>
+      <a href="index_história.html"><span>Lore</span></a>
+      <a href="index_regras.html"><span>Regras</span></a>
+      <a href="index_bloqueado.html"><span>Dinos</span></a>
+      <a href="index_ciencia.html"><span>Ciências</span></a>
+    </div>
+    <!-- Botão Glow -->
+    <div class="dado-container">
+        <img src="imagens/dado_calamita.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+        <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+    </div>
+    
+    <div id="diceMenu" class="menu hidden">
+        <button id="closeMenu">Fechar</button>
+        <h3>Rolar Dados</h3>
+        <label for="playerName">Nome do Jogador:</label>
+        <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+        <label for="diceSelect">Selecione o tipo de dado:</label>
+        <select id="diceSelect">
+            <option value="20">D20</option>
+            <option value="12">D12</option>
+            <option value="10">D10</option>
+            <option value="8">D8</option>
+            <option value="6">D6</option>
+            <option value="4">D4</option>
+            <option value="2">D2</option>
+        </select>
+        <button id="rollDice">Rolar Dados</button>
+        <div id="rolls">
+            <h4>Registro de Rolagens:</h4>
+            <ul id="rollList"></ul>
+            <p id="total">Total: 0</p>
+        </div>
+        <button id="clearRolls">Limpar Registro</button>
+    </div>
+    
+  </nav>
+    <!-- Fim Nav-Bar ------------------------------------------------->
+    <div class="titulo_principal">
+        <h1 class="titulo_efeito">Regras</h1>
+      </div>
+
+      <div>
+        <p>
+          <p class="explicacao-regras"> Na divisão das regras do jogo, os conceitos se organizam de maneira a estruturar a narrativa e as ações dos jogadores. Temos as <strong>cenas livres</strong>, momentos em que os participantes podem interagir de forma espontânea e sem restrições narrativas; as <strong>cenas de interlúdio</strong>, que servem de transição e contextualizam a passagem entre os diferentes momentos do jogo; as <strong>rodadas</strong>, que definem a ordem e a dinâmica das ações durante o jogo; as <strong>cenas de luta</strong>, onde se concentram os conflitos e desafios dos personagens; e, por fim, as <strong>cenas de boss fight</strong>, os confrontos decisivos contra inimigos poderosos, que exigem estratégias específicas e culminam os momentos de maior tensão da narrativa. </p>
+        </p>
+      </div>
+
+      <div id="container-central">
+        <div id="icones">
+            <!-- Ícones com imagens -->
+            <div class="icone" onclick="changeContent(1)">
+              <img src="imagens/regras_guerreiro.webp" alt="Ícone 1">
+            </div>
+            <div class="icone" onclick="changeContent(2)">
+              <img src="imagens/regras_atirador.jpeg" alt="Ícone 2">
+            </div>
+            <div class="icone" onclick="changeContent(3)">
+              <img src="imagens/regras_forjador.jpg" alt="Ícone 3">
+            </div>
+            <div class="icone" onclick="changeContent(4)">
+              <img src="imagens/regras_arcano.jpg" alt="Ícone 4">
+            </div>
+            <div class="icone" onclick="changeContent(5)">
+              <img src="imagens/regras_cientista.jpg" alt="Ícone 5">
+            </div>
+            <div class="icone" onclick="changeContent(6)">
+              <img src="imagens/regras_sobrevivente.jpg" alt="Ícone 6">
+            </div>
+            <div class="icone" onclick="changeContent(7)">
+              <img src="imagens/regras_construtor.avif" alt="Ícone 7">
+            </div>
+            <div class="icone" onclick="changeContent(8)">
+              <img src="imagens/regras_médicos.png" alt="Ícone 8">
+            </div>
+          </div>
+        <div id="conteudo">
+          <img id="gif" src="imagens/regras_gif_de_menu.gif" alt="GIF" />
+          <h1 id="titulo">Classes de personagem</h1>
+          <p id="texto">As classes são estruturas que funcionam como árvores de habilidades, permitindo que os personagens dos jogadores desbloqueiem ou aprendam novas competências. Cada classe é projetada para ser especializada em uma área específica, proporcionando vantagens únicas e habilidades exclusivas que afetam a jogabilidade.</p>
+        </div>
+        <div id="fundo">
+          <img id="imagem-fundo" src="imagens/regras_fundo_menu.jpg" alt="Imagem de Fundo" />
+        </div>
+      </div>
+
+      <div class="carrossel">
+        <button class="seta esquerda" onclick="trocarImagem(-1)">&#9664;</button>
+        
+        <div class="conteudo">
+          <h3 id="tituloDescricao">Mecânicas de Situações</h3>
+            <div class="fundo-blur"></div>
+            <img id="imagemPrincipal" src="imagens/regras_fundo1.jpg" alt="Classe">
+            <p id="textoDescricao"> O Ark reage ativamente às decisões dos personagens, criando momentos inesperados de perigo intenso ou alívio momentâneo.
+
+              Cada situação pode desencadear uma nova mecânica, adaptando-se à tensão crescente ou oferecendo respiros estratégicos antes da próxima ameaça. O desconhecido não é apenas um elemento narrativo, mas uma força viva que molda a experiência dos jogadores.</p>
+        </div>
+
+        <button class="seta direita" onclick="trocarImagem(1)">&#9654;</button>
+    </div>
+
+      
+    <!-- Botões interativos -->
+    <div class="container-botoes">
+      <a href="index_mecanicas.html">
+        <button class="botao-interativo" id="botao1" data-index="0" style="background-image: url('imagens/regras_icon1.jpg');"></button>
+      </a>
+      <a href="index_perigos.html">
+        <button class="botao-interativo" id="botao2" data-index="1" style="background-image: url('imagens/regras_icon2.jpg');"></button>
+      </a>
+      <a href="pagina3.html">
+        <button class="botao-interativo" id="botao3" data-index="2" style="background-image: url('imagens/regras_icon3.jpg');"></button>
+      </a>
+      <a href="pagina4.html">
+        <button class="botao-interativo" id="botao4" data-index="3" style="background-image: url('imagens/regras_icon4.jpg');"></button>
+      </a>
+      <a href="pagina5.html">
+        <button class="botao-interativo2" id="botao5" data-index="4" style="background-image: url('imagens/regras_icon5.jpg');"></button>
+      </a>
+    </div>
+
+<!-- Área onde o conteúdo será exibido -->
+<div id="area-conteudo" class="conteudo-exibido">
+  <div class="centralizar">
+    <img id="imagem-selecionada" src="imagens/regras_icon6.jpg" alt="Imagem do botão selecionado">
+    <h2 id="titulo-conteudo">
+      Escolha sua Mecânica do Rpg: <br>
+      <strong id="mecanica-dinamica">. . .</strong>
+    </h2>
+  </div>
+  <p class="paragrafo-conteudo" id="paragrafo1"></p>
+  <p class="paragrafo-conteudo" id="paragrafo2"></p>
+  <p class="paragrafo-conteudo" id="paragrafo3"></p>
+</div>
+
+        
+    
+<!--footer----------------------------------------------------------------------------->
+<footer>
+    <div class="footer-content">
+        
+      <div class="footer-section about">
+        <h2>Sobre o RPG</h2>
+        <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
+      </div>
+      <div class="footer-section links">
+        <h2>Links Úteis</h2>
+        <ul>
+          <li><a href="index_mapas.html">Mapas</a></li>
+              <li><a href="index_tribos.html">Tribos</a></li>
+              <li><a href="index_regras.html">Regras</a></li>
+              <li><a href="index_itens.html">Itens</a></li>
+        </ul>
+      </div>
+      <div class="footer-section social">
+        <h2>Conecte-se</h2>
+        <div class="social-icons">
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="imagens/insta_home.png" alt="Instagram"></a>
+          <a href="https://github.com" target="_blank"><img src="imagens/git_home.png" alt="GitHub"></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="imagens/gmail_home.png" alt="E-mail"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>RPG Ark: Criado por Vini &copy; 2024</p>
+    </div>
+  </footer>
+  
+
+<!-- Inclui o arquivo de script -->
+<script src="js/regras.js"></script>
+</body>
+</html>
