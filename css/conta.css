@@ -1,0 +1,1348 @@
+/* Estilo Geral----------------------------------------------------------------------- */
+body {
+    margin: 0;
+    font-family: 'Lora', serif;
+    background: url('../imagens/lobby_criarcontav2v2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 16, 19, 0.418); /* 0.5 = 50% sombra */
+    z-index: -1;
+}
+
+/* Estilo inicial para a página */
+.page {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estilo ativo para a página carregada */
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo da Nav-Bar */
+nav {
+    background: rgba(50, 52, 53, 0.548);
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+/* Estilo do Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    margin-left: 1px;
+}
+
+.logo img {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #ecf0f1;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 11px;
+}
+
+.sidebar-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar-item .icon {
+    font-size: 18px;
+}
+
+.sidebar-item .highlight-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #b8f1ff, #86eefc, #b8f1ff);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-item:hover .highlight-bar {
+    opacity: 1;
+}
+
+.sidebar-item:hover {
+    color: #b3fcff;
+}
+
+/* Container do botão de dados e ícones */
+.dado-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+    margin-right: 1%;
+    gap: 1em; /* Espaço entre os itens (botão, dado, novo ícone) */
+}
+
+/* Botão Glow */
+.glow-on-hover {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #cfcfcf;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efeito ao passar o mouse */
+.glow-on-hover:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8);
+}
+
+/* Imagem do dado (estilo existente, mantido aqui para referência) */
+.dado {
+    width: 3.75em; /* Aproximadamente 60px. Usaremos isso como referência de altura. */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dado:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo para o link do novo ícone - Contém as principais mudanças */
+.new-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 5em; /* Mantém o grande espaço à direita da navbar */
+    /* Adições para o círculo (mantidas para manter a estrutura e alinhamento) */
+    width: 4em; /* Define a largura para ser igual à altura do dado para um círculo perfeito */
+    height: 4em; /* Define a altura para ser igual à largura (e altura do dado) */
+    border-radius: 50%; /* Torna o elemento circular */
+    overflow: hidden; /* Garante que a imagem dentro seja cortada para caber no círculo */
+    background-color: rgba(255, 255, 255, 0); /* Fundo totalmente transparente */
+    margin-bottom: 1rem; /* Alinha com o botão e o dado */
+    /* Remova o transition: transform 0.3s ease-in-out; daqui se ele estiver duplicado com .new-icon */
+}
+
+/* Estilo para a imagem dentro do novo ícone */
+.new-icon {
+    width: 80%; /* Ajuste o percentual para a imagem caber bem no círculo */
+    height: 80%; /* Ajuste o percentual */
+    border-radius: 40%; /* Isso criará cantos arredondados na imagem interna, não a tornará circular completa se a imagem não for quadrada */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Adiciona transition para o filter também */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou distorcer no círculo */
+    filter: brightness(1.5); /* Aumenta um pouco o brilho da imagem para destacar */
+}
+
+.new-icon-link:hover .new-icon { /* Aplica o efeito diretamente à imagem quando o link é hover */
+    transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+}
+
+.Container-nav {
+    display: flex;
+    justify-content: flex-start;
+}
+@media (max-width: 480px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0.4rem; /* Padding reduzido para mais espaço */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.6); /* Logo ainda menor */
+    }
+
+    .nav-left {
+        margin-right: 0.3rem; /* Margem reduzida */
+    }
+
+    .logo img {
+        max-width: 50px; /* Reduzir ainda mais a imagem do logo */
+        max-height: 50px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.8rem; /* Fonte do título menor */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 65%; /* Um pouco mais de largura para o nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Em telas muito pequenas, 3 ou 4 colunas podem ser mais eficazes para evitar cortes */
+        grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); /* Min-width menor */
+        gap: 0.2rem; /* Gap ainda menor */
+        width: 100%;
+        padding: 20px 0; /* Padding vertical reduzido */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.3rem; /* Padding reduzido */
+        font-size: 0.5rem; /* Fonte do item menor */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.8rem; /* Tamanho do ícone menor */
+        margin-bottom: 0.1rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.5rem; /* Fonte do texto do item menor */
+        line-height: 1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2rem; /* Ajustar margem para que não corte */
+        margin-bottom: 1rem; /* Ajustar margem */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem; /* Gap menor */
+        margin-left: 0.5rem; /* Margem ajustada */
+    }
+
+    .glow-on-hover {
+        font-size: 0.5rem; /* Fonte do botão menor */
+        padding: 0.1rem 0.3rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.5rem; /* Dado menor */
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ======================================================= */
+/* Ajustes para celulares maiores e tablets pequenos (481px a 767px) */
+/* ======================================================= */
+@media (min-width: 481px) and (max-width: 767px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.6rem; /* Padding ligeiramente ajustado */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.65); /* Escala intermediária para o logo */
+    }
+
+    .nav-left {
+        margin-right: 0.4rem;
+    }
+
+    .logo img {
+        max-width: 55px; /* Tamanho intermediário para a imagem do logo */
+        max-height: 55px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.85rem; /* Fonte intermediária para o título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle como na versão de 780px */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+        gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
+        width: 100%;
+        padding: 25px 0; /* Padding vertical ajustado */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.4rem; /* Padding ligeiramente ajustado */
+        font-size: 0.55rem; /* Fonte do item ligeiramente ajustada */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.9rem; /* Tamanho do ícone ligeiramente ajustado */
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1.05;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+        margin-bottom: 1.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.8rem;
+    }
+
+    .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ================================================= */
+/* Ajustes para tablets maiores e laptops pequenos (768px a 1024px) */
+/* ================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
+        height: auto;
+       
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.7); /* Manter escala do logo igual ao original de 780px */
+    }
+
+    .nav-left {
+        margin-right: 0.5rem;
+    }
+
+    .logo img {
+        max-width: 60px; /* Manter tamanho da imagem do logo */
+        max-height: 60px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.9rem; /* Manter fonte do título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Aqui podemos dar um pouco mais de espaço para cada coluna, ou manter o repeat(6, 1fr) se os textos couberem */
+        /* Vou manter o auto-fit para flexibilidade, com um min-width um pouco maior */
+        grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); /* Min-width ajustado */
+        gap: 0.5rem; /* Ajustar o gap, ligeiramente maior que 767px */
+        width: 100%;
+        padding: 30px 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.5rem;
+        font-size: 0.6rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+     .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.3rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0; /* Ajuste se houver margem que atrapalhe o centralizar */
+        margin-right: 0;
+    }
+
+    .glow-on-hover {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.3rem;
+        margin-bottom: 0.2rem; /* Espaço abaixo do botão */
+    }
+
+    .dado {
+        width: 2rem;
+        height: auto;
+        margin-bottom: 0.2rem; /* Espaço abaixo do dado */
+    }
+
+    .new-icon-link {
+        width: 2.5em; /* Ajuste o tamanho do container do ícone */
+        height: 2.5em;
+        margin-bottom: 0; /* Não precisa de margem inferior extra */
+        margin-right: 0; /* Remove a margem direita para centralizar melhor */
+    }
+
+    .new-icon {
+        width: 85%;
+        height: 85%;
+    }
+
+    .nav-right {
+        margin-right: 0; /* Garante que o nav-right não empurre para fora */
+        margin-bottom: 0; /* Ajusta a margem para evitar excesso de espaço */
+    }
+}
+
+
+
+  
+/* Ajustes para telas menores (até 780px) */
+@media (max-width: 780px) {
+  nav {
+      display: flex; /* Alinha os três blocos principais horizontalmente */
+      justify-content: space-between; /* Espaço máximo entre os blocos */
+      align-items: center; /* Alinha verticalmente ao centro */
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      height: auto;
+    
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+      transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
+  }
+  .nav-left{
+ margin-right: 0.3rem;
+
+  }
+  .logo img {
+      max-width: 45px;
+      max-height: 45px;
+      margin-right: 0.1rem;
+  }
+
+  .logo h1 {
+      font-size: 0.7rem;
+      margin: 0;
+  }
+
+  .nav-middle {
+      display: flex;
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      width: 70%; /* Ocupa uma parte da largura para os ícones */
+  }
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.5rem; /* Reduzir um pouco o gap pode ajudar */
+    width: 100%;
+    padding: 30px 0;
+    margin-left: 0; /* Remover ou reduzir estas margens */
+    margin-right: 0; /* Remover ou reduzir estas margens */
+}
+
+  .sidebar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+      padding: 0.5rem;
+      font-size: 0.6rem;
+      text-align: center;
+      overflow: hidden;
+  }
+
+  .sidebar-item .icon {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+  }
+
+  .sidebar-item span {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+  }
+
+  .nav-right {
+      display: flex;
+      align-items: center; /* Alinha verticalmente o botão e a imagem */
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+  }
+
+   .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.2rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+  .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0.15rem;
+    }
+    .new-icon-link {
+        width: 2.3em;
+        height: 2.3em;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .new-icon {
+        width: 90%;
+        height: 90%;
+    }
+
+    .nav-right {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+/* Menu de Dados */
+/* Menu */
+.menu {
+    position: fixed; /* Fixa o menu em uma posição específica na tela */
+    top: 1%; /* Define a distância do menu a partir do topo da tela */
+    right: 1%; /* Define a distância do menu a partir da borda direita */
+    width: 350px; /* Aumenta a largura do menu */
+    background-color: #1d1919ec; /* Cor de fundo */
+    border: 1px solid #c0c0c0; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 1.2rem; /* Espaçamento interno maior */
+    box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+    color: #defcfd;
+    transition: all 0.3s ease;
+}
+
+/* Menu escondido */
+.hidden {
+    display: none;
+}
+
+.menu button {
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem; /* Texto maior nos botões */
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilo do botão "Fechar" */
+#closeMenu {
+    background-color: #aa0303;
+    color: white;
+    float: right;
+}
+
+#closeMenu:hover {
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo do botão "Rolar Dados" */
+#rollDice {
+    background-color: #fc631c;
+    color: white;
+}
+
+/* Estilo do botão "Limpar Registro" */
+#clearRolls {
+    background-color: #f89f19;
+    color: white;
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#clearRolls:hover {
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo da área de registro */
+#rolls {
+    margin-top: 1rem;
+    max-height: 250px; /* Aumenta a altura da área de registro */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    padding-right: 10px; /* Espaço extra para o scroll */
+    border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
+    border-radius: 5px;
+    background-color: #d1972bb9; /* Fundo levemente diferente para separar visualmente */
+}
+
+#rollList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#rollList li {
+    margin: 0.3rem 0;
+    font-weight: bold;
+    color: #1f0101;
+}
+
+/* Campos de entrada */
+#diceSelect, #playerName {
+    width: 100%;
+    padding: 0.7rem; /* Aumenta o espaço interno */
+    font-size: 1rem; /* Texto maior */
+    border: 1px solid #faa80e;
+    border-radius: 5px;
+    color: #0e0b00;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 1780px) {
+    .menu {
+        width: 300px; /* Diminui o menu em telas menores */
+        top: 3%; /* Ajusta a posição */
+        right: 3%;
+        font-size: 0.9rem; /* Texto menor no menu */
+    }
+
+    #closeMenu {
+        font-size: 0.7rem; /* Ajusta o tamanho do texto no botão */
+    }
+
+    #rolls {
+        max-height: 200px; /* Ajusta a altura da área de registro */
+    }
+
+    #diceSelect, #playerName {
+        padding: 0.5rem; /* Reduz o espaço interno */
+        font-size: 0.9rem; /* Texto menor */
+    }
+
+    .menu button {
+        font-size: 0.6rem; /* Ajusta o tamanho dos botões */
+        padding: 0.5rem 0.5rem; /* Reduz o tamanho */
+    }
+}
+/* Estilo para a barra de rolagem */
+#rolls::-webkit-scrollbar {
+    width: 12px; /* Largura da barra vertical */
+    height: 12px; /* Altura da barra horizontal (caso exista) */
+}
+
+#rolls::-webkit-scrollbar-thumb {
+    background-color: #fc631c; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Deixa os cantos arredondados */
+    border: 3px solid #ffb936; /* Adiciona um contorno para destacar */
+}
+
+#rolls::-webkit-scrollbar-thumb:hover {
+    background-color: #f89f19; /* Cor ao passar o mouse */
+}
+
+#rolls::-webkit-scrollbar-track {
+    background-color: #ffe3a8; /* Fundo do trilho da barra */
+    border-radius: 10px; /* Cantos arredondados do trilho */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Leve sombra interna */
+}
+
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 768px) {
+    #rolls::-webkit-scrollbar {
+        width: 16px; /* Aumenta a largura do scrollbar para ajudar no toque */
+    }
+
+    #rolls::-webkit-scrollbar-thumb {
+        border: 4px solid #ffb936; /* Ajusta o contorno para manter o tamanho visual */
+    }
+}
+/* --- Main Section --- */
+/* --- Main Section --- */
+main {
+  flex-grow: 1; /* Allow main to take up available vertical space */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center content vertically */
+  width: 100%;
+  position: relative; /* Important: context for absolute positioned background */
+  z-index: 1; /* Ensure form is above background */
+  overflow: hidden; /* To contain the absolute background elements */
+  padding-bottom: 50px; /* Add some padding so content doesn't touch footer directly */
+}
+
+/* --- Background com Grid de Energia --- */
+.login-particle-background {
+  position: absolute; /* Changed to absolute, relative to 'main' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0; /* Stays behind the form */
+  background: radial-gradient(circle at center, #0a0f1067 0%, #0507088a 100%); /* Fundo radial mais profundo */
+}
+
+/* Efeito de Grid */
+.login-particle-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(to right, rgba(41, 247, 220, 0.336) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(41, 247, 220, 0.308) 1px, transparent 1px);
+  background-size: 50px 50px; /* Tamanho das células do grid */
+  animation: moveGrid 60s linear infinite; /* Animação lenta do grid */
+  opacity: 0.2; /* Grid sutil */
+  pointer-events: none; /* Garante que não interfere com cliques */
+}
+
+.login-particle-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 168, 142, 0.1) 40%, transparent 70%);
+  animation: pulseLight 15s ease-in-out infinite alternate; /* Luz pulsante no centro */
+  pointer-events: none;
+}
+
+@keyframes moveGrid {
+  from { background-position: 0 0; }
+  to { background-position: 50px 50px; } /* Movimento sutil do grid */
+}
+
+@keyframes pulseLight {
+  0% { transform: scale(0.9); opacity: 0.1; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(0.9); opacity: 0.1; }
+}
+
+
+/* --- Login Container and Card --- */
+.login-container-unique {
+  width: 90%;
+  max-width: 550px; /* Keep your preferred max-width */
+  padding: 25px;
+  margin: 0 auto; /* Center horizontally */
+  position: relative;
+  margin-top: 130px;
+  margin-bottom: 100px;
+  z-index: 1; /* This ensures the card is on top of the effect */
+  /* Remove margin-bottom from here, it's handled by main's padding-bottom */
+}
+
+.login-card-unique {
+  background-color: rgba(15, 20, 25, 0.719); /* Adjusted opacity for better blur effect */
+  border: 1px solid #00a88e; /* Borda principal da nova paleta */
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 30px rgba(0, 168, 142, 0.4), inset 0 0 15px rgba(41, 247, 218, 0.1); /* Sombras alinhadas à nova paleta */
+  backdrop-filter: blur(8px); /* Aumentei o blur para mais destaque no fundo */
+  -webkit-backdrop-filter: blur(8px); /* Compatibilidade Safari */
+}
+
+.login-logo-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  margin: 0 auto 35px;
+  display: block;
+  border-radius: 50%;
+  border: 3px solid #00a88e; /* Cor da borda do logo */
+  box-shadow: 0 0 20px rgba(0, 168, 142, 0.8), 0 0 30px rgba(41, 247, 218, 0.3); /* Duas sombras para mais brilho */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.login-logo-img:hover {
+  transform: scale(1.08) rotate(5deg); /* Efeito mais dinâmico */
+  box-shadow: 0 0 25px rgba(0, 168, 142, 1), 0 0 40px rgba(41, 247, 218, 0.5);
+}
+
+.login-form-title {
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: #29f7da; /* Destaque com o ciano elétrico */
+  text-shadow: 0 0 15px rgba(41, 247, 218, 0.8); /* Brilho mais forte */
+  font-size: 2em; /* Título ainda maior */
+  letter-spacing: 3px;
+  text-transform: uppercase; /* Para um visual mais imponente */
+}
+
+/* --- Campos do Formulário --- */
+.campo {
+  margin-bottom: 1.8rem; /* Mais espaço entre os campos */
+}
+
+.campo label {
+  color: #a0f0d0; /* Cor da label */
+  font-size: 1em; /* Tamanho da fonte ligeiramente maior */
+  margin-bottom: 0.6rem; /* Mais espaço entre label e input */
+  display: block;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+}
+
+.campo input {
+  width: calc(100% - 24px); /* Ajuste para padding */
+  padding: 14px 12px; /* Aumentei o padding */
+  background-color: #0f1a1d; /* Fundo do input mais escuro */
+  border: 1px solid #1e2a30; /* Borda sutil do input */
+  border-radius: 12px; /* Borda mais arredondada */
+  color: #e0ffe0;
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #29f7da; /* Borda de foco vibrante */
+  box-shadow: 0 0 10px rgba(41, 247, 218, 0.7); /* Sombra de foco mais intensa */
+  background-color: #122125; /* Fundo ligeiramente mais claro ao focar */
+}
+
+.campo input::placeholder {
+  color: #60757b; /* Cor do placeholder mais cinza-azulado */
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* --- Role Selection (Mestre/Jogador) --- */
+.role-selection {
+  display: flex;
+  gap: 25px; /* Mais espaço entre as opções */
+  margin-top: 15px;
+}
+
+.role-selection input[type="radio"] {
+  display: none;
+}
+
+.role-selection label {
+  background-color: #1a2a30; /* Fundo padrão das opções */
+  border: 1px solid #1e2a30;
+  border-radius: 10px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  flex-grow: 1;
+  text-align: center;
+  color: #a0f0d0;
+  font-weight: normal;
+  font-size: 0.95em;
+  letter-spacing: 0.5px;
+}
+
+.role-selection input[type="radio"]:checked + label {
+  background-color: #00a88e; /* Fundo quando selecionado */
+  border-color: #29f7da;
+  color: #0f0f0f; /* Texto escuro quando selecionado */
+  box-shadow: 0 0 12px rgba(41, 247, 218, 0.8);
+  font-weight: bold;
+}
+
+.role-selection label:hover {
+  background-color: #1a3a40;
+  border-color: #29f7da;
+  box-shadow: 0 0 8px rgba(41, 247, 218, 0.4);
+}
+
+/* --- Botão --- */
+.btn {
+  width: 100%;
+  padding: 16px; /* Aumentei o padding do botão */
+  background-color: #00a88e; /* Cor do botão principal da nova paleta */
+  border: none;
+  color: #0f0f0f;
+  font-weight: bold;
+  border-radius: 12px; /* Borda mais arredondada */
+  cursor: pointer;
+  font-size: 1.2rem; /* Tamanho da fonte do botão */
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 2rem; /* Mais espaço acima do botão */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0, 168, 142, 0.5); /* Sombra para profundidade */
+}
+
+.btn:hover {
+  background-color: #008f7a; /* Cor ao passar o mouse */
+  transform: translateY(-3px); /* Levantamento maior */
+  box-shadow: 0 10px 25px rgba(0, 168, 142, 0.7); /* Sombra mais intensa */
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 15px rgba(0, 168, 142, 0.4);
+}
+
+/* --- Mensagem de Erro --- */
+.erro {
+  margin-top: 1.8rem;
+  color: #ff6b6b;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(255, 107, 107, 0.7); /* Brilho maior no erro */
+}
+
+/* --- Texto de Registro --- */
+.login-register-text {
+  text-align: center;
+  margin-top: 2.5rem; /* Mais espaço */
+  color: #c0d0d5; /* Cor mais neutra */
+  font-size: 0.9em;
+}
+
+.login-register-text a {
+  color: #29f7da; /* Cor do link da nova paleta */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.login-register-text a:hover {
+  color: #4dfde5; /* Cor do link ao passar o mouse */
+  text-decoration: underline;
+  text-shadow: 0 0 5px rgba(41, 247, 218, 0.5);
+}
+
+
+/* --- Media Queries (Melhoria da Responsividade) --- */
+
+/* Para telas até 1080px (Laptops/Desktops menores) */
+@media (max-width: 1080px) {
+  .login-container-unique {
+    max-width: 400px; /* Um pouco menor */
+    padding: 20px;
+  }
+
+  .login-card-unique {
+    padding: 35px;
+  }
+
+  .login-logo-img {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 30px;
+  }
+
+  .login-form-title {
+    font-size: 2.1em;
+    margin-bottom: 2rem;
+  }
+
+  .campo input {
+    padding: 12px 10px;
+  }
+
+  .btn {
+    padding: 14px;
+    font-size: 1.1em;
+  }
+}
+
+/* Para telas até 780px (Tablets em modo paisagem) */
+@media (max-width: 780px) {
+  .login-container-unique {
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .login-card-unique {
+    padding: 30px;
+  }
+
+  .login-logo-img {
+    width: 110px;
+    height: 110px;
+    margin-bottom: 25px;
+  }
+
+  .login-form-title {
+    font-size: 1.5em; /* Adjusted for better legibility */
+    margin-bottom: 1.8rem;
+  }
+
+  .campo label {
+    font-size: 0.95em;
+  }
+
+  .campo input {
+    font-size: 1em;
+    padding: 10px 8px;
+  }
+
+  .role-selection {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .role-selection label {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+
+  .btn {
+    padding: 12px;
+    font-size: 1em;
+  }
+
+  .login-register-text {
+    font-size: 0.85em;
+  }
+}
+
+.btn-google {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.btn-google img {
+  width: 20px;
+  height: 20px;
+}
+
+
+
+/* Geral do footer ------------------------------------------------------------------------------*/
+/* Estilo Geral do Footer (Desktop/Default) */
+footer {
+    background: linear-gradient(145deg, #072b20, #065037,#072b1f, #063b50, #07212b); /* Seu degradê */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative; /* Ensure it respects flow */
+    z-index: 2; /* Ensure footer is above any background effects in body */
+    width: 100%;
+}
+
+/* Conteúdo Principal */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows sections to wrap to the next line on smaller screens */
+}
+
+/* Seções do Footer */
+.footer-section {
+    flex: 1; /* Allows sections to grow and shrink */
+    margin: 10px;
+    min-width: 250px; /* Ensures sections don't get too small before wrapping */
+}
+
+.footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Links */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 10px 0;
+}
+
+.footer-section ul li a {
+    background: linear-gradient(45deg, #fbf9fd, #b6fff3);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+@keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.footer-section ul li a:hover {
+    color: #ff9800;
+}
+
+/* Ícones de Redes Sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+/* Rodapé Inferior */
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    border-top: 1px solid #444;
+    padding: 10px;
+}
+/* ======================================================= */
+/* RESPONSIVENESS */
+/* ======================================================= */
+
+/* Para telas de Tablet (max-width: 780px) */
+@media (max-width: 780px) {
+    footer {
+        padding: 15px 0; /* Reduz o padding do footer */
+    }
+
+    .footer-content {
+        padding: 15px; /* Reduz o padding interno do conteúdo */
+        /* Flex-wrap is already set, so sections will wrap if they don't fit */
+        justify-content: center; /* Centers sections when they wrap */
+    }
+
+    .footer-section {
+        margin: 10px; /* Mantém a margem entre as seções */
+        min-width: 200px; /* Permite que as seções fiquem um pouco menores antes de empilhar */
+        flex-basis: auto; /* Allow items to determine their own flexible basis */
+    }
+
+    .footer-section h2 {
+        font-size: 1.3rem; /* Reduz o tamanho do título */
+    }
+
+    .footer-section p {
+        font-size: 0.85rem; /* Reduz o tamanho do texto */
+    }
+
+    .footer-section ul li {
+        margin: 8px 0; /* Reduz a margem dos itens da lista */
+    }
+
+    .social-icons {
+        gap: 10px; /* Reduz o espaçamento entre os ícones */
+        padding: 10px; /* Reduz o padding do container de ícones */
+    }
+
+    .social-icons a img {
+        width: 25px; /* Reduz o tamanho dos ícones */
+        height: 25px;
+    }
+
+    .footer-bottom {
+        margin-top: 15px;
+        font-size: 0.75rem; /* Reduz o tamanho da fonte do rodapé inferior */
+        padding: 8px;
+    }
+}
+
+/* Para telas de Celular (max-width: 480px - ajuste conforme necessário) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 0; /* Mais redução de padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Força as seções a empilharem verticalmente */
+        padding: 10px;
+        align-items: center; /* Centraliza as seções empilhadas */
+    }
+
+    .footer-section {
+        margin: 15px 0; /* Aumenta a margem vertical entre as seções empilhadas */
+        width: 90%; /* Ocupa quase toda a largura para cada seção */
+        min-width: unset; /* Remove o min-width para permitir que ocupe a largura total disponível */
+    }
+
+    .footer-section h2 {
+        font-size: 1.2rem; /* Mais redução de tamanho de título */
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem; /* Mais redução de tamanho de texto */
+    }
+
+    .footer-section ul {
+        text-align: center; /* Centraliza os links quando as seções empilham */
+    }
+
+    .footer-section ul li {
+        margin: 6px 0;
+    }
+
+    .social-icons {
+        gap: 8px; /* Última redução de espaçamento */
+        padding: 8px;
+    }
+
+    .social-icons a img {
+        width: 20px; /* Última redução de tamanho de ícones */
+        height: 20px;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}

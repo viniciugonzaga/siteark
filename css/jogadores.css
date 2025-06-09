@@ -1,0 +1,2103 @@
+body {
+    margin: 0;
+    font-family: 'Lora', serif;
+    background: url('../imagens/ark_lobby_conta_versão2.jpg') no-repeat center center fixed;
+    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Impede o scroll horizontal */
+}
+
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2325256b, #2229286c, #1f222279);
+    z-index: -1;
+}
+
+/* Estilo inicial para a página */
+.page {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estilo ativo para a página carregada */
+.page.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estilo da Nav-Bar */
+nav {
+    background: rgba(50, 52, 53, 0.548);
+    color: #ecf0f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+/* Estilo do Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    margin-left: 1px;
+}
+
+.logo img {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.logo h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #ecf0f1;
+    margin-right: 20px;
+    margin-left: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 11px;
+}
+
+.sidebar-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar-item .icon {
+    font-size: 18px;
+}
+
+.sidebar-item .highlight-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #b8f1ff, #86eefc, #b8f1ff);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-item:hover .highlight-bar {
+    opacity: 1;
+}
+
+.sidebar-item:hover {
+    color: #b3fcff;
+}
+
+/* Container do botão de dados e ícones */
+.dado-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+    margin-right: 1%;
+    gap: 1em; /* Espaço entre os itens (botão, dado, novo ícone) */
+}
+
+/* Botão Glow */
+.glow-on-hover {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background-color: #cfcfcf;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Efeito ao passar o mouse */
+.glow-on-hover:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8);
+}
+
+/* Imagem do dado (estilo existente, mantido aqui para referência) */
+.dado {
+    width: 3.75em; /* Aproximadamente 60px. Usaremos isso como referência de altura. */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dado:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo para o link do novo ícone - Contém as principais mudanças */
+.new-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 5em; /* Mantém o grande espaço à direita da navbar */
+    /* Adições para o círculo (mantidas para manter a estrutura e alinhamento) */
+    width: 4em; /* Define a largura para ser igual à altura do dado para um círculo perfeito */
+    height: 4em; /* Define a altura para ser igual à largura (e altura do dado) */
+    border-radius: 50%; /* Torna o elemento circular */
+    overflow: hidden; /* Garante que a imagem dentro seja cortada para caber no círculo */
+    background-color: rgba(255, 255, 255, 0); /* Fundo totalmente transparente */
+    margin-bottom: 1rem; /* Alinha com o botão e o dado */
+    /* Remova o transition: transform 0.3s ease-in-out; daqui se ele estiver duplicado com .new-icon */
+}
+
+/* Estilo para a imagem dentro do novo ícone */
+.new-icon {
+    width: 80%; /* Ajuste o percentual para a imagem caber bem no círculo */
+    height: 80%; /* Ajuste o percentual */
+    border-radius: 40%; /* Isso criará cantos arredondados na imagem interna, não a tornará circular completa se a imagem não for quadrada */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Adiciona transition para o filter também */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou distorcer no círculo */
+    filter: brightness(1.5); /* Aumenta um pouco o brilho da imagem para destacar */
+}
+
+.new-icon-link:hover .new-icon { /* Aplica o efeito diretamente à imagem quando o link é hover */
+    transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+}
+
+.Container-nav {
+    display: flex;
+    justify-content: flex-start;
+}
+@media (max-width: 480px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0.4rem; /* Padding reduzido para mais espaço */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.6); /* Logo ainda menor */
+    }
+
+    .nav-left {
+        margin-right: 0.3rem; /* Margem reduzida */
+    }
+
+    .logo img {
+        max-width: 50px; /* Reduzir ainda mais a imagem do logo */
+        max-height: 50px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.8rem; /* Fonte do título menor */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 65%; /* Um pouco mais de largura para o nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Em telas muito pequenas, 3 ou 4 colunas podem ser mais eficazes para evitar cortes */
+        grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); /* Min-width menor */
+        gap: 0.2rem; /* Gap ainda menor */
+        width: 100%;
+        padding: 20px 0; /* Padding vertical reduzido */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.3rem; /* Padding reduzido */
+        font-size: 0.5rem; /* Fonte do item menor */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.8rem; /* Tamanho do ícone menor */
+        margin-bottom: 0.1rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.5rem; /* Fonte do texto do item menor */
+        line-height: 1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2rem; /* Ajustar margem para que não corte */
+        margin-bottom: 1rem; /* Ajustar margem */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem; /* Gap menor */
+        margin-left: 0.5rem; /* Margem ajustada */
+    }
+
+    .glow-on-hover {
+        font-size: 0.5rem; /* Fonte do botão menor */
+        padding: 0.1rem 0.3rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.5rem; /* Dado menor */
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ======================================================= */
+/* Ajustes para celulares maiores e tablets pequenos (481px a 767px) */
+/* ======================================================= */
+@media (min-width: 481px) and (max-width: 767px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.6rem; /* Padding ligeiramente ajustado */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.65); /* Escala intermediária para o logo */
+    }
+
+    .nav-left {
+        margin-right: 0.4rem;
+    }
+
+    .logo img {
+        max-width: 55px; /* Tamanho intermediário para a imagem do logo */
+        max-height: 55px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.85rem; /* Fonte intermediária para o título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle como na versão de 780px */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+        gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
+        width: 100%;
+        padding: 25px 0; /* Padding vertical ajustado */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.4rem; /* Padding ligeiramente ajustado */
+        font-size: 0.55rem; /* Fonte do item ligeiramente ajustada */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.9rem; /* Tamanho do ícone ligeiramente ajustado */
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1.05;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+        margin-bottom: 1.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.8rem;
+    }
+
+    .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ================================================= */
+/* Ajustes para tablets maiores e laptops pequenos (768px a 1024px) */
+/* ================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
+        height: auto;
+       
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.7); /* Manter escala do logo igual ao original de 780px */
+    }
+
+    .nav-left {
+        margin-right: 0.5rem;
+    }
+
+    .logo img {
+        max-width: 60px; /* Manter tamanho da imagem do logo */
+        max-height: 60px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.9rem; /* Manter fonte do título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Aqui podemos dar um pouco mais de espaço para cada coluna, ou manter o repeat(6, 1fr) se os textos couberem */
+        /* Vou manter o auto-fit para flexibilidade, com um min-width um pouco maior */
+        grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); /* Min-width ajustado */
+        gap: 0.5rem; /* Ajustar o gap, ligeiramente maior que 767px */
+        width: 100%;
+        padding: 30px 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.5rem;
+        font-size: 0.6rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+     .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.3rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0; /* Ajuste se houver margem que atrapalhe o centralizar */
+        margin-right: 0;
+    }
+
+    .glow-on-hover {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.3rem;
+        margin-bottom: 0.2rem; /* Espaço abaixo do botão */
+    }
+
+    .dado {
+        width: 2rem;
+        height: auto;
+        margin-bottom: 0.2rem; /* Espaço abaixo do dado */
+    }
+
+    .new-icon-link {
+        width: 2.5em; /* Ajuste o tamanho do container do ícone */
+        height: 2.5em;
+        margin-bottom: 0; /* Não precisa de margem inferior extra */
+        margin-right: 0; /* Remove a margem direita para centralizar melhor */
+    }
+
+    .new-icon {
+        width: 85%;
+        height: 85%;
+    }
+
+    .nav-right {
+        margin-right: 0; /* Garante que o nav-right não empurre para fora */
+        margin-bottom: 0; /* Ajusta a margem para evitar excesso de espaço */
+    }
+}
+
+
+
+  
+/* Ajustes para telas menores (até 780px) */
+@media (max-width: 780px) {
+  nav {
+      display: flex; /* Alinha os três blocos principais horizontalmente */
+      justify-content: space-between; /* Espaço máximo entre os blocos */
+      align-items: center; /* Alinha verticalmente ao centro */
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      height: auto;
+    
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+      transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
+  }
+  .nav-left{
+ margin-right: 0.3rem;
+
+  }
+  .logo img {
+      max-width: 45px;
+      max-height: 45px;
+      margin-right: 0.1rem;
+  }
+
+  .logo h1 {
+      font-size: 0.7rem;
+      margin: 0;
+  }
+
+  .nav-middle {
+      display: flex;
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      width: 70%; /* Ocupa uma parte da largura para os ícones */
+  }
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.5rem; /* Reduzir um pouco o gap pode ajudar */
+    width: 100%;
+    padding: 30px 0;
+    margin-left: 0; /* Remover ou reduzir estas margens */
+    margin-right: 0; /* Remover ou reduzir estas margens */
+}
+
+  .sidebar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+      padding: 0.5rem;
+      font-size: 0.6rem;
+      text-align: center;
+      overflow: hidden;
+  }
+
+  .sidebar-item .icon {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+  }
+
+  .sidebar-item span {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+  }
+
+  .nav-right {
+      display: flex;
+      align-items: center; /* Alinha verticalmente o botão e a imagem */
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+  }
+
+   .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.2rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+  .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0.15rem;
+    }
+    .new-icon-link {
+        width: 2.3em;
+        height: 2.3em;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .new-icon {
+        width: 90%;
+        height: 90%;
+    }
+
+    .nav-right {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+/* Menu de Dados */
+/* Menu */
+.menu {
+    position: fixed; /* Fixa o menu em uma posição específica na tela */
+    top: 1%; /* Define a distância do menu a partir do topo da tela */
+    right: 1%; /* Define a distância do menu a partir da borda direita */
+    width: 350px; /* Aumenta a largura do menu */
+    background-color: #1d1919ec; /* Cor de fundo */
+    border: 1px solid #c0c0c0; /* Borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 1.2rem; /* Espaçamento interno maior */
+    box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+    color: #defcfd;
+    transition: all 0.3s ease;
+}
+
+/* Menu escondido */
+.hidden {
+    display: none;
+}
+
+.menu button {
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem; /* Texto maior nos botões */
+    margin: 0.5rem 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Estilo do botão "Fechar" */
+#closeMenu {
+    background-color: #aa0303;
+    color: white;
+    float: right;
+}
+
+#closeMenu:hover {
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo do botão "Rolar Dados" */
+#rollDice {
+    background-color: #fc631c;
+    color: white;
+}
+
+/* Estilo do botão "Limpar Registro" */
+#clearRolls {
+    background-color: #f89f19;
+    color: white;
+    padding: 0.7rem 1.2rem; /* Botões maiores */
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+#clearRolls:hover {
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.8); /* Efeito de brilho */
+    transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
+}
+
+/* Estilo da área de registro */
+#rolls {
+    margin-top: 1rem;
+    max-height: 250px; /* Aumenta a altura da área de registro */
+    overflow-y: auto; /* Adiciona rolagem vertical */
+    padding-right: 10px; /* Espaço extra para o scroll */
+    border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
+    border-radius: 5px;
+    background-color: #d1972bb9; /* Fundo levemente diferente para separar visualmente */
+}
+
+#rollList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#rollList li {
+    margin: 0.3rem 0;
+    font-weight: bold;
+    color: #1f0101;
+}
+
+/* Campos de entrada */
+#diceSelect, #playerName {
+    width: 100%;
+    padding: 0.7rem; /* Aumenta o espaço interno */
+    font-size: 1rem; /* Texto maior */
+    border: 1px solid #faa80e;
+    border-radius: 5px;
+    color: #0e0b00;
+    margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 1780px) {
+    .menu {
+        width: 300px; /* Diminui o menu em telas menores */
+        top: 3%; /* Ajusta a posição */
+        right: 3%;
+        font-size: 0.9rem; /* Texto menor no menu */
+    }
+
+    #closeMenu {
+        font-size: 0.7rem; /* Ajusta o tamanho do texto no botão */
+    }
+
+    #rolls {
+        max-height: 200px; /* Ajusta a altura da área de registro */
+    }
+
+    #diceSelect, #playerName {
+        padding: 0.5rem; /* Reduz o espaço interno */
+        font-size: 0.9rem; /* Texto menor */
+    }
+
+    .menu button {
+        font-size: 0.6rem; /* Ajusta o tamanho dos botões */
+        padding: 0.5rem 0.5rem; /* Reduz o tamanho */
+    }
+}
+/* Estilo para a barra de rolagem */
+#rolls::-webkit-scrollbar {
+    width: 12px; /* Largura da barra vertical */
+    height: 12px; /* Altura da barra horizontal (caso exista) */
+}
+
+#rolls::-webkit-scrollbar-thumb {
+    background-color: #fc631c; /* Cor da barra de rolagem */
+    border-radius: 10px; /* Deixa os cantos arredondados */
+    border: 3px solid #ffb936; /* Adiciona um contorno para destacar */
+}
+
+#rolls::-webkit-scrollbar-thumb:hover {
+    background-color: #f89f19; /* Cor ao passar o mouse */
+}
+
+#rolls::-webkit-scrollbar-track {
+    background-color: #ffe3a8; /* Fundo do trilho da barra */
+    border-radius: 10px; /* Cantos arredondados do trilho */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* Leve sombra interna */
+}
+
+/* Ajuste do tamanho do scroll para dispositivos móveis */
+@media (max-width: 768px) {
+    #rolls::-webkit-scrollbar {
+        width: 16px; /* Aumenta a largura do scrollbar para ajudar no toque */
+    }
+
+    #rolls::-webkit-scrollbar-thumb {
+        border: 4px solid #ffb936; /* Ajusta o contorno para manter o tamanho visual */
+    }
+}
+
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 120px;
+    perspective: 1000px;
+    margin-bottom: 50px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
+@media (max-width: 768px) {
+
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 110px;
+    perspective: 600px;
+    margin-bottom: 20px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
+
+.titulo_efeito {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+
+}
+.titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+
+/* Keyframes (mantidos os mesmos) */
+@keyframes pulseGlowCyan {
+    0% {
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
+    }
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+.titulo_efeito::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shineEffect 3s infinite linear;
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+@keyframes shineEffect {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.titulo_efeito::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999);
+    animation: wave 8s infinite linear;
+    transform-origin: bottom center;
+}
+
+@keyframes wave {
+    0% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+    25% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0.1);
+        left: 90%;
+        background-position: 0% 0%;
+    }
+    75% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    100% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+}
+
+
+/* Formulário Container */
+.form-container {
+    background: linear-gradient(135deg, rgba(16, 16, 25, 0.9), rgba(25, 10, 40, 0.9));
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 850px;
+    margin: 40px auto;
+    box-shadow: 0 8px 20px rgba(193, 240, 248, 0.3),
+                0 0 0 2px rgba(193, 240, 248, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 10% 10%, rgba(193, 240, 248, 0.08), transparent 70%),
+                radial-gradient(circle at 90% 90%, rgba(176, 255, 248, 0.08), transparent 70%);
+    animation: backgroundGlow 15s infinite alternate;
+    z-index: -1;
+}
+
+@keyframes backgroundGlow {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+
+/* Título do Formulário */
+.h2-front {
+    font-size: 2.2em;
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow:
+        0 0 8px rgba(193, 240, 248, 0.8),
+        0 0 20px rgba(193, 240, 248, 0.6),
+        0 0 40px rgba(193, 240, 248, 0.4);
+    letter-spacing: 1px;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin: 15px 0 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #b6fff3;
+    text-shadow: 0 0 5px rgba(176, 255, 248, 0.5);
+}
+
+/* Inputs, Selects, Textareas */
+input, select, textarea {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(193, 240, 248, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    color: #d6feff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #b6fff3;
+    box-shadow: 0 0 0 3px rgba(176, 255, 248, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
+}
+
+/* Textareas */
+textarea {
+    resize: vertical;
+    min-height: 50px;
+}
+
+/* Scrollable Textareas */
+.scrollable {
+    max-height: 180px;
+    overflow-y: auto;
+    border: 2px solid rgba(176, 255, 248, 0.4);
+    border-radius: 8px;
+    padding: 10px;
+    background-color: rgba(10, 10, 20, 0.7);
+    color: #d6feff;
+    transition: border-color 0.3s ease;
+}
+
+.scrollable::-webkit-scrollbar {
+    width: 10px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+    background: rgba(16, 16, 25, 0.5);
+    border-radius: 5px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: #5a52e0;
+    border-radius: 5px;
+    border: 2px solid rgba(193, 240, 248, 0.2);
+}
+
+.scrollable::-webkit-scrollbar-thumb:hover {
+    background-color: #6c63ff;
+}
+
+
+/* Botões (Calcular, Salvar e Aplicar Bônus, Adicionar Bônus de Ação) */
+.form-container button[type="button"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 25px;
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    background: linear-gradient(45deg, #6c63ff, #854fff);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(98, 54, 255, 0.4);
+}
+
+.form-container button[type="button"]:hover {
+    background: linear-gradient(45deg, #854fff, #a06eff);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(98, 54, 255, 0.6);
+    border: 1px solid rgba(176, 255, 248, 0.3);
+}
+
+/* Botões específicos para classes e bônus de ação para não ter 100% de largura */
+button[onclick^="applyClassBonus"],
+button[onclick="addActionBonus"] {
+    width: auto; /* Permite que o botão se ajuste ao conteúdo */
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    display: block; /* Garante que cada botão de ação fique em sua própria linha se necessário */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo para o título "Atributos Principais" */
+.decorated-title {
+    font-size: 1.8em;
+    color: #b6fff3; /* Cor ciano */
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-shadow:
+        0 0 10px rgba(176, 255, 248, 0.7),
+        0 0 20px rgba(176, 255, 248, 0.4);
+    border-bottom: 2px solid rgba(176, 255, 248, 0.5);
+    padding-bottom: 10px;
+}
+
+/* Estilo para textos de informação (slots, pontos disponíveis) */
+.info-display {
+    background: rgba(16, 16, 25, 0.6);
+    border: 1px solid rgba(176, 255, 248, 0.3);
+    border-radius: 6px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    color: #d6feff;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.info-display span {
+    font-weight: bold;
+    color: #b6fff3;
+    text-shadow: 0 0 5px rgba(176, 255, 248, 0.5);
+}
+
+
+/* Estilos dos Atributos */
+.attributes {
+    display: grid;
+    /* Ajustado para 5 colunas igualmente espaçadas, se houver espaço. Min de 120px para cada */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* Centraliza os itens no grid */
+}
+
+@media (max-width: 768px) {
+
+   .attributes {
+    display: grid;
+    /* Ajustado para 5 colunas igualmente espaçadas, se houver espaço. Min de 120px para cada */
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* Centraliza os itens no grid */
+} 
+}
+
+@media (max-width: 468px) {
+
+   .attributes {
+    display: grid;
+    /* Ajustado para 5 colunas igualmente espaçadas, se houver espaço. Min de 120px para cada */
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* Centraliza os itens no grid */
+} 
+}
+
+.attribute {
+    text-align: center;
+    background: rgba(10, 10, 20, 0.7);
+    border-radius: 10px;
+    padding: 15px 10px;
+    box-shadow: 0 4px 10px rgba(193, 240, 248, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.1);
+    transition: all 0.3s ease;
+}
+
+.attribute:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(193, 240, 248, 0.25);
+}
+
+.attribute span {
+    display: block;
+    font-size: 1rem;
+    color: #b6fff3;
+    margin-bottom: 8px;
+    line-height: 1.1;
+}
+
+.attribute span:nth-of-type(2) { /* O valor numérico do atributo */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #d6feff;
+    text-shadow: 0 0 8px rgba(176, 255, 248, 0.7);
+    margin: 5px 0;
+}
+
+.attribute button {
+    background-color: #854fff;
+    border: none;
+    color: #d6feff;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin: 0 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.attribute button:hover {
+    background-color: #a06eff;
+    transform: scale(1.15);
+    box-shadow: 0 4px 8px rgba(98, 54, 255, 0.6);
+}
+
+/* Prévia da Imagem */
+#preview {
+    display: none;
+    max-width: 50%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 3px solid #b6fff3;
+    box-shadow: 0 0 15px rgba(176, 255, 248, 0.7);
+    transition: all 0.3s ease-in-out;
+    border-radius: 40px;
+}
+
+#preview:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(176, 255, 248, 1);
+}
+
+/* Bônus de Ação Container (dinâmico) */
+.action-bonus-container {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    gap: 10px; /* Espaço entre os itens */
+    margin-top: 15px;
+    background: rgba(10, 10, 20, 0.7);
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid rgba(193, 240, 248, 0.15);
+}
+
+.action-bonus-item {
+    background: rgba(16, 16, 25, 0.8);
+    border: 1px solid rgba(176, 255, 248, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: calc(30% - 10px); /* 3 colunas em telas maiores, ajustando para gap */
+    min-width: 150px; /* Garante que não fique muito estreito */
+    position: relative;
+}
+@media (max-width: 768px) {
+.action-bonus-item {
+    background: rgba(16, 16, 25, 0.8);
+    border: 1px solid rgba(176, 255, 248, 0.2);
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: calc(30% - 10px); /* 3 colunas em telas maiores, ajustando para gap */
+    min-width: 130px; /* Garante que não fique muito estreito */
+    position: relative;
+}
+
+}
+.action-bonus-item input,
+.action-bonus-item select {
+    width: calc(100% - 16px); /* Ajusta a largura interna */
+    margin-bottom: 0; /* Remove margem inferior padrão */
+    padding: 8px;
+    font-size: 0.9em;
+}
+
+/* Melhoria no botão 'X' de remover bônus */
+.action-bonus-item .remove-bonus-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px; /* Diminuído para ser mais discreto */
+    height: 20px; /* Diminuído para ser mais discreto */
+    font-size: 0.7em; /* Ajustado */
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Sombra mais sutil */
+    display: flex; /* Para centralizar o 'X' */
+    justify-content: center; /* Para centralizar o 'X' */
+    align-items: center; /* Para centralizar o 'X' */
+}
+
+.action-bonus-item .remove-bonus-btn:hover {
+    background: #ff1a1a;
+    transform: scale(1.1);
+}
+
+
+/* Resultados (Ficha Calculada) */
+.result {
+    margin-top: 40px;
+    background: linear-gradient(135deg, rgba(20, 20, 30, 0.9), rgba(30, 15, 50, 0.9), rgba(20, 20, 30, 0.9));
+    background-size: 200% 200%;
+    animation: moveGradient 15s ease infinite alternate;
+    border-radius: 12px;
+    padding: 20px; /* Reduzido o padding geral */
+    color: #d6feff;
+    text-align: left;
+    font-size: 1rem;
+    box-shadow: 0 6px 15px rgba(193, 240, 248, 0.2);
+    border: 1px solid rgba(193, 240, 248, 0.1);
+    line-height: 1.4; /* Ajustado line-height */
+    white-space: pre-wrap;
+    position: relative;
+    overflow: hidden;
+    display: none;
+}
+
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+.result::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(176, 255, 248, 0.05), transparent 60%);
+    animation: resultBackgroundGlow 20s infinite alternate;
+    z-index: 0;
+}
+
+@keyframes resultBackgroundGlow {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.02); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+
+.result h3 {
+    color: #b6fff3;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(176, 255, 248, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+.result p#stats {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    padding: 5px; /* Reduzido padding */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(193, 240, 248, 0.05);
+}
+
+/* Melhorando a visualização de cada item na ficha calculada */
+.result p#stats strong {
+    display: inline-block; /* Altera para inline-block para reduzir quebras de linha forçadas */
+    color: #e0e0e0;
+    font-size: 1em; /* Ajustado o tamanho */
+    margin-top: 5px; /* Reduzido o espaço */
+    margin-bottom: 2px; /* Reduzido o espaço */
+    text-shadow: 0 0 3px rgba(224, 224, 224, 0.3);
+    /* border-bottom: 1px solid rgba(193, 240, 248, 0.1); */ /* Remover borda para menos espaço */
+    padding-bottom: 2px; /* Reduzido o padding */
+}
+.result p#stats p {
+    margin-top: 5px; /* Espaço entre parágrafos */
+    margin-bottom: 5px;
+}
+
+.result p#stats ul {
+    list-style-type: none;
+    padding-left: 10px;
+    margin-top: 0px; /* Reduzido */
+    margin-bottom: 5px;
+}
+
+.result p#stats ul li {
+    margin-bottom: 3px; /* Reduzido */
+    font-size: 0.95em;
+    color: #ccc;
+}
+
+/* Cores e decoração para títulos/subtítulos na ficha calculada */
+.result p#stats .category-title {
+    color: #854fff; /* Cor mais vibrante para títulos de categoria */
+    font-size: 1.2em; /* Reduzido */
+    margin-top: 25px; /* Ajustado espaço */
+    margin-bottom: 10px; /* Ajustado espaço */
+    border-bottom: 2px solid rgba(133, 79, 255, 0.5); /* Linha mais grossa */
+    padding-bottom: 8px;
+    text-shadow: 0 0 10px rgba(133, 79, 255, 0.7);
+    text-align: center;
+}
+
+.result p#stats .sub-category-title {
+    color: #b6fff3; /* Cor do ciano para subtítulos */
+    font-size: 1em; /* Reduzido */
+    margin-top: 8px; /* Reduzido */
+    margin-bottom: 3px;
+    /* border-bottom: 1px dashed rgba(176, 255, 248, 0.3); */ /* Remover borda para menos espaço */
+    padding-bottom: 0px; /* Reduzido */
+    display: inline; /* Para ficar na mesma linha do valor */
+}
+
+/* Esconder as labels dentro da ficha calculada, apenas o texto do strong */
+.result p#stats .sub-category-title::after {
+    content: ': '; /* Adiciona dois pontos para separar o título do valor */
+    color: #b6fff3;
+}
+
+
+/* ===================================================================== */
+/* ESTILOS RESPONSIVOS PARA A FICHA DE PERSONAGEM */
+/* ===================================================================== */
+
+
+.copy-ficha-btn {
+    display: block; /* Ocupa a largura total disponível */
+    width: 100%;
+    padding: 15px 20px;
+    margin-top: 20px; /* Espaçamento acima do botão */
+    background-color: #5a2e96; /* Um tom de roxo semelhante aos outros botões */
+    color: #fff; /* Texto branco */
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+}
+
+.copy-ficha-btn:hover {
+    background-color: #7b4ac9; /* Um roxo um pouco mais claro ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.copy-ficha-btn:active {
+    background-color: #43226b; /* Um roxo mais escuro ao clicar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(1px); /* Pequeno efeito de clique */
+}
+
+
+/* ------------------------------------------- */
+/* ESTILOS DA FICHA CALCULADA (RESULTS SECTION)*/
+/* ------------------------------------------- */
+/* ------------------------------------------- */
+/* ESTILOS DA FICHA CALCULADA (RESULTS SECTION)*/
+/* ------------------------------------------- */
+
+.results-container {
+    background: linear-gradient(135deg, rgba(16, 16, 25, 0.9), rgba(25, 10, 40, 0.9)); /* Fundo do formulário */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(193, 240, 248, 0.3),
+                0 0 0 2px rgba(193, 240, 248, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.15);
+    max-width: 850px; /* Mesma largura do formulário para consistência */
+    width: 100%;
+    margin: 40px auto; /* Centraliza a ficha e dá espaçamento */
+    box-sizing: border-box;
+    display: none; /* Escondido por padrão até que a ficha seja calculada */
+    position: relative; /* Para os efeitos de fundo */
+    overflow: hidden;
+}
+
+/* Efeito de brilho de fundo no container da ficha */
+.results-container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 10% 10%, rgba(193, 240, 248, 0.08), transparent 70%),
+                radial-gradient(circle at 90% 90%, rgba(176, 255, 248, 0.08), transparent 70%);
+    animation: backgroundGlow 15s infinite alternate; /* Reusa o efeito de brilho do fundo */
+    z-index: 0;
+}
+
+/* Keyframe para o efeito de brilho de fundo (necessário para o ::before) */
+@keyframes backgroundGlow {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+.results-container h2 {
+    font-size: 2.2em;
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow:
+        0 0 8px rgba(193, 240, 248, 0.8),
+        0 0 20px rgba(193, 240, 248, 0.6),
+        0 0 40px rgba(193, 240, 248, 0.4);
+    letter-spacing: 1px;
+    position: relative; /* Para garantir que fique acima do ::before */
+    z-index: 1;
+}
+
+.ficha-section {
+    background: rgba(10, 10, 20, 0.7); /* Fundo para cada seção da ficha, harmoniza com atributos */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(193, 240, 248, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.1);
+    text-align: left; /* Conteúdo da seção alinhado à esquerda */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1; /* Garante que a seção fique acima do ::before do container */
+}
+
+.ficha-section:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 8px 20px rgba(193, 240, 248, 0.25);
+}
+
+.ficha-section .section-title {
+    color: #a8f5f8; /* Títulos de seção em amarelo ouro para destaque */
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(122, 252, 245, 0.5); /* Linha de destaque amarela */
+    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
+    text-shadow: 0 0 10px rgba(130, 245, 253, 0.384);
+}
+
+.ficha-section .section-title::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #ffcc00;
+    margin: 10px auto 0;
+    border-radius: 1.5px;
+}
+
+/* Estilo da Imagem do Personagem (Foto) */
+.character-photo {
+    width: 100px; /* Tamanho do ícone */
+    height: 100px;
+    border-radius: 50%; /* Transforma em círculo */
+    object-fit: cover; /* Garante que a imagem preencha o círculo sem distorcer */
+    border: 4px solid #b6fff3; /* Borda ciano ao redor da imagem */
+    box-shadow: 0 0 15px rgba(176, 255, 248, 0.7); /* Brilho ciano */
+    margin: 15px auto; /* Centraliza a imagem */
+    display: block; /* Para que margin: auto funcione */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.character-photo:hover {
+    transform: scale(1.05); /* Pequeno zoom ao passar o mouse */
+    box-shadow: 0 0 25px rgba(176, 255, 248, 0.9), 0 0 40px rgba(176, 255, 248, 0.5); /* Brilho mais intenso */
+}
+
+.photo-display {
+    text-align: center; /* Centraliza a imagem e o título "Foto" */
+    margin-bottom: 20px;
+}
+
+.stats-item {
+    margin-bottom: 12px;
+    padding: 5px 0;
+    border-bottom: 1px dashed rgba(193, 240, 248, 0.1); /* Linha pontilhada ciano sutil */
+    line-height: 1.8; /* Espaçamento entre linhas para legibilidade */
+}
+
+.stats-item:last-child {
+    border-bottom: none; /* Remove a borda do último item */
+}
+
+.sub-category-title {
+    color: #b6fff3; /* Cor ciano para os títulos de sub-categoria (ex: Nome, Idade, Agi) */
+    font-weight: bold;
+    margin-right: 5px;
+    text-shadow: 0 0 5px rgba(176, 255, 248, 0.5);
+}
+
+.attribute-value {
+    color: #ffe375; /* Amarelo ouro para os valores dos atributos e outras estatísticas */
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 0 8px rgba(255, 230, 131, 0.418);
+}
+
+.stats-list {
+    list-style: none; /* Remove marcadores de lista */
+    padding: 0;
+    margin: 10px 0 20px 0;
+}
+
+.stats-list li {
+    background-color: rgba(16, 16, 25, 0.8); /* Fundo para itens de lista (atributos, bônus de ação) */
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between; /* Alinha texto e valor */
+    align-items: center;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.08);
+}
+
+.stats-list li:last-child {
+    margin-bottom: 0;
+}
+
+.no-info {
+    font-style: italic;
+    color: #888; /* Texto em cinza para informações não preenchidas */
+}
+
+
+
+/* ===================================================================== */
+/* ===================================================================== */
+/* ===================================================================== */
+/* ===================================================================== */
+
+.learned-action-bonus-container {
+    display: flex; /* Habilita o Flexbox */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    gap: 10px; /* Espaço entre os itens (horizontal e vertical) */
+    margin-top: 15px;
+    background: rgba(20, 10, 20, 0.7); /* Fundo um pouco mais roxo/avermelhado para diferenciar */
+    border-radius: 8px;
+    padding: 15px;
+    border: 1px solid rgba(248, 193, 240, 0.15); /* Borda em tom rosa/lilás */
+    /* Removido 'align-items: center;' daqui, pois não é necessário para o layout de múltiplas linhas e pode causar desalinhamento indesejado */
+}
+
+.learned-action-bonus-item {
+    background: rgba(25, 16, 25, 0.8); /* Fundo mais escuro roxo/avermelhado */
+    border: 1px solid rgba(255, 176, 248, 0.2); /* Borda rosa claro */
+    border-radius: 8px;
+    padding: 10px;
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+    flex-direction: column; /* Faz com que "Nome da Ação" e "Bônus" fiquem um abaixo do outro dentro do item */
+    gap: 8px;
+     width: calc(30% - 10px); /* Aproximadamente 33.33% menos a metade do gap de cada lado */
+    min-width: 150px; /* Garante que os itens não fiquem muito pequenos em telas menores */
+
+    position: relative;
+    color: #e0e0e0; /* Cor do texto dentro do item */
+}
+
+.learned-action-bonus-item input,
+.learned-action-bonus-item select {
+    width: calc(100% - 16px); /* Ajusta a largura interna */
+    margin-bottom: 0; /* Remove margem inferior padrão */
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid rgba(248, 193, 240, 0.3); /* Borda inicial em tom rosa */
+    background-color: rgba(35, 20, 35, 0.8); /* CORRIGIDO A COR DE FUNDO PARA TOM ROXO */
+    color: #e0e0e0;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learned-action-bonus-item input[type="text"]:focus,
+.learned-action-bonus-item select:focus {
+    border-color: #ff5eff; /* Cor rosa/magenta mais vibrante no foco */
+    box-shadow: 0 0 10px rgba(255, 94, 255, 0.6); /* Sombra mais vibrante no foco */
+}
+
+.learned-action-bonus-item .remove-learned-bonus-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7em;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    padding: 0;
+    margin: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.learned-action-bonus-item .remove-learned-bonus-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.1);
+}
+
+/* O botão 'Adicionar Bônus Aprendido' */
+.add-learned-action-btn {
+   width: 100%;
+    padding: 14px 15px;
+    background: linear-gradient(45deg, #a030a0, #702070); /* Tons de roxo/magenta */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.15em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(160, 48, 160, 0.4);
+    margin-top: 20px;
+}
+
+.add-learned-action-btn:hover {
+    background: linear-gradient(45deg, #702070, #501050);
+    transform: translateY(-3px) scale(1.005);
+    box-shadow: 0 8px 25px rgba(160, 48, 160, 0.6);
+}
+
+.add-learned-action-btn:active {
+    background: linear-gradient(45deg, #501050, #300530);
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos responsivos para quebrar linha em telas pequenas */
+@media (max-width: 600px) {
+    .learned-action-bonus-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 15px 10px;
+        width: 100%; /* Garante que ocupe a largura total em telas pequenas */
+    }
+
+    .learned-action-bonus-item input[type="text"],
+    .learned-action-bonus-item select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .learned-action-bonus-item .remove-learned-bonus-btn {
+        position: static;
+        margin-top: 10px;
+        width: 100%;
+        border-radius: 6px;
+    }
+}
+
+/* Adicione esta regra para o título da seção de bônus aprendidos */
+.form-section h3 {
+    color: #e0e0e0;
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0, 188, 212, 0.4);
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+/* Exemplo de CSS para o nível na ficha calculada */
+.ficha-calculated-level-value {
+    color: #e6c100; /* Um amarelo dourado, ajuste conforme sua preferência */
+    font-weight: bold;
+    font-size: 1.2em; /* Um pouco maior que o texto normal */
+    text-shadow: 0 0 8px rgba(230, 193, 0, 0.5); /* Sombra amarelada */
+}
+
+/* As outras classes que você já deve ter para a ficha calculada: */
+.ficha-section .attribute-value {
+    color: #f8f66e; /* Cor ciano vibrante para todos os valores dinâmicos */
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(94, 255, 236, 0.233);
+}
+
+.ficha-calculated-skin-detail {
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 5px;
+    font-style: italic;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+
+.formatted-text {
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-weight: normal;
+    font-size: 0.95em;
+    color: #e0e0e0;
+    text-shadow: none;
+    padding-top: 5px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    margin-top: 10px;
+}
+
+.no-info {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+/* Inputs, Selects, Textareas - Estilo Geral */
+input, select, textarea {
+    width: calc(100% - 22px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(193, 240, 248, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08); /* Fundo sutilmente claro */
+    color: #d6feff; /* Cor do texto dentro do input/select */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    /* Adicionado para tentar afetar o texto do dropdown quando aberto */
+    -webkit-appearance: none; /* Remove estilos padrão do navegador para mais controle */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #b6fff3;
+    box-shadow: 0 0 0 3px rgba(176, 255, 248, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #888;
+}
+
+/* Estilos para Selects específicos se precisar de setas personalizadas ou mais controle */
+/* Você pode adicionar uma seta SVG de background para melhor personalização */
+/*
+select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23d6feff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    padding-right: 30px; // Espaço para a seta
+}
+*/
+
+/* Estilos dos inputs/selects dentro de .learned-action-bonus-item */
+.learned-action-bonus-item input,
+.learned-action-bonus-item select {
+    width: calc(100% - 16px);
+    margin-bottom: 0;
+    padding: 8px;
+    font-size: 0.9em;
+    border: 1px solid rgba(193, 240, 248, 0.3); /* Borda consistente */
+    background: rgba(255, 255, 255, 0.08); /* Fundo consistente */
+    color: #d6feff; /* Cor do texto consistente */
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.learned-action-bonus-item input[type="text"]:focus,
+.learned-action-bonus-item select:focus {
+    border-color: #b6fff3;
+    box-shadow: 0 0 0 3px rgba(176, 255, 248, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Tentar estilizar as opções do select (pode ter suporte limitado entre navegadores) */
+select option {
+    background-color: rgba(10, 10, 20, 0.9); /* Fundo escuro para as opções */
+    color: #d6feff; /* Cor do texto clara para as opções */
+    font-size: 0.95em; /* Ajuste o tamanho da fonte se desejar */
+    padding: 5px; /* Adicione padding para melhor espaçamento */
+}
+
+/* Estilo para opções selecionadas ou em hover (suporte varia) */
+select option:checked,
+select option:hover {
+    background-color: #6c63ff; /* Cor de destaque ao passar o mouse ou selecionar */
+    color: white;
+}
+/* Geral do footer ------------------------------------------------------------------------------*/
+/* Estilo Geral do Footer (Desktop/Default) */
+footer {
+    background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Conteúdo Principal */
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows sections to wrap to the next line on smaller screens */
+}
+
+/* Seções do Footer */
+.footer-section {
+    flex: 1; /* Allows sections to grow and shrink */
+    margin: 10px;
+    min-width: 250px; /* Ensures sections don't get too small before wrapping */
+}
+
+.footer-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Links */
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 10px 0;
+}
+
+.footer-section ul li a {
+    background: linear-gradient(45deg, #fbf9fd, #b6fff3);
+    background-size: 300%;
+    background-clip: text; /* Faz o gradiente ser aplicado ao texto */
+    -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
+    animation: gradiente-animado 4s ease infinite;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+@keyframes gradiente-animado {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.footer-section ul li a:hover {
+    color: #ff9800;
+}
+
+/* Ícones de Redes Sociais */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.social-icons a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.2);
+}
+
+/* Rodapé Inferior */
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    border-top: 1px solid #444;
+    padding: 10px;
+}
+
+/* ======================================================= */
+/* RESPONSIVENESS */
+/* ======================================================= */
+
+/* Para telas de Tablet (max-width: 780px) */
+@media (max-width: 780px) {
+    footer {
+        padding: 15px 0; /* Reduz o padding do footer */
+    }
+
+    .footer-content {
+        padding: 15px; /* Reduz o padding interno do conteúdo */
+        /* Flex-wrap is already set, so sections will wrap if they don't fit */
+        justify-content: center; /* Centers sections when they wrap */
+    }
+
+    .footer-section {
+        margin: 10px; /* Mantém a margem entre as seções */
+        min-width: 200px; /* Permite que as seções fiquem um pouco menores antes de empilhar */
+        flex-basis: auto; /* Allow items to determine their own flexible basis */
+    }
+
+    .footer-section h2 {
+        font-size: 1.3rem; /* Reduz o tamanho do título */
+    }
+
+    .footer-section p {
+        font-size: 0.85rem; /* Reduz o tamanho do texto */
+    }
+
+    .footer-section ul li {
+        margin: 8px 0; /* Reduz a margem dos itens da lista */
+    }
+
+    .social-icons {
+        gap: 10px; /* Reduz o espaçamento entre os ícones */
+        padding: 10px; /* Reduz o padding do container de ícones */
+    }
+
+    .social-icons a img {
+        width: 25px; /* Reduz o tamanho dos ícones */
+        height: 25px;
+    }
+
+    .footer-bottom {
+        margin-top: 15px;
+        font-size: 0.75rem; /* Reduz o tamanho da fonte do rodapé inferior */
+        padding: 8px;
+    }
+}
+
+/* Para telas de Celular (max-width: 480px - ajuste conforme necessário) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 0; /* Mais redução de padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Força as seções a empilharem verticalmente */
+        padding: 10px;
+        align-items: center; /* Centraliza as seções empilhadas */
+    }
+
+    .footer-section {
+        margin: 15px 0; /* Aumenta a margem vertical entre as seções empilhadas */
+        width: 90%; /* Ocupa quase toda a largura para cada seção */
+        min-width: unset; /* Remove o min-width para permitir que ocupe a largura total disponível */
+    }
+
+    .footer-section h2 {
+        font-size: 1.2rem; /* Mais redução de tamanho de título */
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem; /* Mais redução de tamanho de texto */
+    }
+
+    .footer-section ul {
+        text-align: center; /* Centraliza os links quando as seções empilham */
+    }
+
+    .footer-section ul li {
+        margin: 6px 0;
+    }
+
+    .social-icons {
+        gap: 8px; /* Última redução de espaçamento */
+        padding: 8px;
+    }
+
+    .social-icons a img {
+        width: 20px; /* Última redução de tamanho de ícones */
+        height: 20px;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}
