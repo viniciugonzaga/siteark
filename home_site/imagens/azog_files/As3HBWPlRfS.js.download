@@ -1,4 +1,0 @@
-;/*FB_PKG_DELIM*/
-
-__d("PolarisLoggedOutRelatedSearchesUnitQuery_instagramRelayOperation",[],(function(a,b,c,d,e,f){e.exports="9459675830748631"}),null);
-__d("PolarisLoggedOutRelatedSearchesUnitQuery$Parameters",["PolarisLoggedOutRelatedSearchesUnitQuery_instagramRelayOperation"],(function(a,b,c,d,e,f){"use strict";a={kind:"PreloadableConcreteRequest",params:{id:b("PolarisLoggedOutRelatedSearchesUnitQuery_instagramRelayOperation"),metadata:{is_distillery:!0,root_field_name:["xdt_ayml_logged_out"]},name:"PolarisLoggedOutRelatedSearchesUnitQuery",operationKind:"query",text:null}};e.exports=a}),null);
