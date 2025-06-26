@@ -1904,6 +1904,20 @@ select option:hover {
     background-color: #6c63ff; /* Cor de destaque ao passar o mouse ou selecionar */
     color: white;
 }
+
+.section-title{
+font-size: 1.8em;
+    color: #b6fff3; /* Cor ciano */
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-shadow:
+        0 0 10px rgba(176, 255, 248, 0.7),
+        0 0 20px rgba(176, 255, 248, 0.4);
+    border-bottom: 2px solid rgba(176, 255, 248, 0.5);
+    padding-bottom: 10px;
+
+}
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
 footer {
