@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", function() {
         alert(`Conta de ${selectedRole} (${username} - ${nicknameRPG || 'N/A'}) criada com sucesso! Você já pode fazer login.`);
         
         // Redireciona para a página de login após o cadastro bem-sucedido
-        window.location.href = "/index/index_login.html"; 
+        window.location.href = "../index/index_login.html"; 
     });
 });
 

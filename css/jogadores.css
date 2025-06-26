@@ -1918,6 +1918,62 @@ font-size: 1.8em;
     padding-bottom: 10px;
 
 }
+/* --- Estilos Decorados para a Barra de Nível --- */
+.level-bar-container {
+    width: 90%; /* Largura da barra principal */
+    max-width: 800px; /* Largura máxima para telas maiores */
+    height: 40px; /* Altura da barra */
+    /* Fundo da barra vazio (igual ao form-container) */
+    background: linear-gradient(135deg, rgba(16, 16, 25, 0.9), rgba(25, 10, 40, 0.9)); 
+    border-radius: 12px; /* Cantos arredondados */
+    overflow: hidden; /* Garante que o preenchimento não saia dos cantos */
+    margin: 25px auto; /* Centraliza e adiciona espaço */
+  
+    /* Borda e Box-shadow iguais ao form-container */
+    border: 1px solid rgba(193, 240, 248, 0.15);
+    box-shadow: 
+        0 8px 20px rgba(193, 240, 248, 0.3), /* Sombra externa como no formulário */
+        0 0 0 2px rgba(193, 240, 248, 0.1), /* Borda de brilho como no formulário */
+        inset 0 2px 8px rgba(0, 0, 0, 0.6); /* Sombra interna para profundidade */
+    position: relative; 
+    z-index: 1; 
+    border: #2b1a2b 3px solid;
+}
+
+.level-bar-fill {
+    height: 100%;
+    width: 0%; /* Começa com 0% de preenchimento */
+    border-radius: 12px; /* Mantém os cantos arredondados do container */
+    transition: width 0.6s ease-out; /* Animação suave para o preenchimento */
+    position: relative; /* Para o brilho na ponta */
+    overflow: hidden; /* Para garantir que o brilho da ponta não vaze */
+
+    /* Gradiente de roxo e lilás que altera */
+    background: linear-gradient(90deg, #8bfcf6e8, #b6fff9, #c3f1ee, #89ebf8);
+    background-size: 200% 100%; /* Duplica o tamanho para permitir a animação de movimento */
+    animation: gradientShift 4s linear infinite; /* Animação do gradiente */
+    
+    /* Sombra na ponta (Overlay para ser visível apenas na parte preenchida) */
+    box-shadow: 
+        0 0 65px rgba(109, 72, 156, 0.863), /* Brilho principal roxo/magenta */
+        0 0 120px rgb(154, 93, 224); /* Brilho mais espalhado */
+}
+
+
+
+/* Se a barra estiver preenchida (width > 0), mostra o brilho da ponta */
+.level-bar-fill[style*="width"]:not([style*="width: 0%"])::after {
+    opacity: 1; /* Torna o brilho visível */
+}
+
+
+/* Animação para o gradiente da barra de preenchimento */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
 footer {

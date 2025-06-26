@@ -242,6 +242,7 @@ function loadCharacterLocal() {
     validateLevelInput(); // Isso vai chamar updateAttributePointsDisplay e updateActionBonusLimits
     
     calculateStats(); // Recalcula e exibe a ficha
+    updateLevelBar();
 
     alert(`Ficha "${data.savedName || 'Sem Nome'}" carregada automaticamente!`);
     document.getElementById("results").scrollIntoView({ behavior: 'smooth' }); // Rola para os resultados
@@ -336,6 +337,7 @@ function validateLevelInput() {
     updateAttributePointsDisplay();
     updateActionBonusLimits();
     renderLearnedActionBonuses(); // Chamar para atualizar os limites dos bônus aprendidos
+    updateLevelBar(); // *** ADICIONE ESTA LINHA *** **
 }
 
 // Função para atualizar a exibição dos pontos de atributo disponíveis
@@ -1089,4 +1091,23 @@ if (hamburger && navLinks) { // Verifique se os elementos existem
     hamburger.addEventListener('click', function() {
         navLinks.classList.toggle('active');
     });
+}
+
+// --- NOVO: Função para atualizar a barra de nível visualmente ---
+function updateLevelBar() {
+    // Pega o valor do nível do input existente
+    const levelInput = document.getElementById("level");
+    const level = parseInt(levelInput.value) || 1; // Garante que seja um número, padrão 1
+
+    // Pega o elemento da barra de preenchimento que você adicionou no HTML
+    const levelBarFill = document.getElementById("levelBarFill");
+
+    // Calcula a porcentagem de preenchimento (nível atual / nível máximo (100) * 100%)
+    // Math.max/min garantem que a porcentagem fique entre 0 e 100
+    const percentage = Math.max(0, Math.min(100, level)); 
+    
+    // Aplica a largura calculada ao estilo da barra de preenchimento
+    if (levelBarFill) { // Verifica se o elemento existe antes de tentar manipulá-lo
+        levelBarFill.style.width = percentage + '%';
+    }
 }
