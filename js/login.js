@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert(`Bem-vindo, ${foundUser.username}!`);
                 
                 // Redireciona para a página de fichas de personagem
-                window.location.href = "/index/index_jogadores.html"; 
+                window.location.href = "../index/index_jogadores.html"; 
             } else {
                 // Credenciais inválidas
                 if (loginMessage) loginMessage.textContent = "E-mail ou senha inválidos. Tente novamente.";
