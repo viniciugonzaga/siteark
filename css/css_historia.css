@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_mapa.png') no-repeat center center fixed;
+    background: url('../imagens/lobby_mapas.png') no-repeat center center fixed;
     background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
     overflow-x: hidden; /* Impede o scroll horizontal */
@@ -868,9 +868,1027 @@ main {
 }
 
 
+/* Animação para o brilho do campo de texto */
+@keyframes shine-through {
+    0% {
+        transform: skewX(-20deg) translateX(-100%);
+    }
+    100% {
+        transform: skewX(-20deg) translateX(200%);
+    }
+}
+
+/* Animação para a sombra de neblina */
+@keyframes misty-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(193, 240, 248, 0.2),
+                    0 0 20px rgba(193, 240, 248, 0.15),
+                    0 0 30px rgba(193, 240, 248, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(193, 240, 248, 0.4),
+                    0 0 40px rgba(193, 240, 248, 0.3),
+                    0 0 60px rgba(193, 240, 248, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(193, 240, 248, 0.2),
+                    0 0 20px rgba(193, 240, 248, 0.15),
+                    0 0 30px rgba(193, 240, 248, 0.1);
+    }
+}
+
+/* Container principal */
+.intro-ark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(10, 10, 10, 0.9);
+    border: 3px solid rgba(193, 240, 248, 0.3);
+    border-radius: 25px;
+    padding: 40px;
+    width: 85%;
+    max-width: 1000px;
+    margin: 5% auto;
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.3);
+    backdrop-filter: blur(5px);
+    position: relative; /* Necessário para pseudo-elementos e brilho de fundo */
+    overflow: hidden; /* Garante que os efeitos não transbordem */
+}
+
+/* Efeito de brilho de fundo sutil para o container principal */
+.intro-ark::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(193, 240, 248, 0.05) 0%, rgba(193, 240, 248, 0) 70%);
+    animation: pulse-aura 15s infinite ease-in-out alternate;
+    z-index: -1; /* Garante que fique por trás do conteúdo */
+}
+
+@keyframes pulse-aura {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Ícone */
+.intro-icone img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(193, 240, 248, 0.5);
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.4);
+    filter: saturate(1.2) brightness(1.1); /* Um pouco mais vibrante */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, filter 0.4s ease-out;
+}
+
+/* Efeito ao passar o mouse no ícone: Pulsar e levantar */
+.intro-icone img:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(193, 240, 248, 0.8);
+    filter: saturate(1.5) brightness(1.3);
+}
+
+/* Campo de texto */
+.intro-campo {
+    background: rgba(20, 20, 20, 0.85);
+    border: 2px solid rgba(193, 240, 248, 0.3);
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 0 12px rgba(193, 240, 248, 0.2);
+    margin: 0 auto;
+    text-align: center;
+    position: relative; /* Para o efeito de "partículas" */
+    overflow: hidden; /* Para garantir que as partículas fiquem dentro */
+}
+
+/* Efeito de "partículas" no fundo do campo de texto */
+.intro-campo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(193, 240, 248, 0.034) 0%, rgba(193, 240, 248, 0.007) 50%);
+    background-size: 300% 300%; /* Permite movimento do gradiente */
+    animation: subtle-particles 20s infinite linear;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes subtle-particles {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
 
 
+/* Título */
+.intro-titulo {
+    background: rgba(30, 30, 30, 0.95);
+    padding: 12px 24px;
+    display: inline-block;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #C1F0F8;
+    border-radius: 30px;
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    margin: -40px auto 20px auto;
+    box-shadow: 0 0 8px rgba(193, 240, 248, 0.3);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    z-index: 1; /* Garante que o título fique por cima das partículas */
+}
 
+/* Efeito de texto "vibrante" no título */
+.intro-titulo::before {
+    content: attr(data-text); /* Pega o texto do atributo data-text */
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #C1F0F8;
+    text-shadow: 0 0 5px rgba(193, 240, 248, 0.8), 0 0 10px rgba(193, 240, 248, 0.5);
+    animation: text-flicker 3s infinite alternate ease-in-out;
+    filter: blur(0.5px); /* Efeito de leve desfoque para a vibração */
+    z-index: -1;
+}
+
+@keyframes text-flicker {
+    0%, 100% { opacity: 0.7; transform: translateX(0) translateY(0); }
+    25% { opacity: 0.8; transform: translateX(1px) translateY(-1px); }
+    50% { opacity: 0.7; transform: translateX(-1px) translateY(1px); }
+    75% { opacity: 0.9; transform: translateX(0.5px) translateY(0.5px); }
+}
+
+/* Importante: Adicione o data-text ao seu HTML no intro-titulo */
+/* <div class="intro-titulo" data-text="O Que é o ARK?">O Que é o ARK?</div> */
+
+
+/* Efeito ao passar o mouse no título: Leve desfoque e intensificação */
+.intro-titulo:hover {
+    color: white;
+    text-shadow: 0 0 10px #C1F0F8, 0 0 20px rgba(193, 240, 248, 0.7);
+    transform: scale(1.02);
+}
+
+.intro-titulo:hover::before {
+    animation: none; /* Desativa a animação de flicker no hover */
+    opacity: 1;
+    transform: none;
+    filter: none;
+}
+
+
+/* Texto */
+.intro-texto {
+    font-size: 1.1rem;
+    color: #e0e0e0;
+    line-height: 1.6;
+    text-align: justify;
+    text-shadow: 0 0 3px rgba(193, 240, 248, 0.05); /* Sombra de texto mais sutil */
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    position: relative; /* Para garantir z-index */
+    z-index: 1; /* Garante que o texto esteja acima das partículas */
+}
+
+/* Efeito ao passar o mouse no parágrafo de texto: Leve luminescência */
+.intro-texto:hover {
+    color: #f8f8f8; /* Fica mais claro */
+    text-shadow: 0 0 10px rgba(193, 240, 248, 0.4); /* Sombra com mais luminescência */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .intro-titulo {
+        font-size: 1.4rem;
+        padding: 10px 20px;
+        margin: -30px auto 15px auto;
+    }
+
+    .intro-texto {
+        font-size: 1rem;
+    }
+
+    .intro-icone img {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 20px;
+    }
+
+    .intro-ark {
+        padding: 30px;
+    }
+
+    .intro-campo {
+        padding: 20px 15px;
+    }
+}
+
+/* Animações */
+/* Mantida a animação da sombra para um efeito base, se desejar */
+@keyframes card-glow {
+    0% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); }
+    50% { box-shadow: 0 0 25px rgba(193, 240, 248, 0.4), 0 0 50px rgba(193, 240, 248, 0.1); }
+    100% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); }
+}
+
+/*teoria class-------------------------------------------------*/
+
+/* Animações */
+@keyframes card-glow {
+    0% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); }
+    50% { box-shadow: 0 0 15px rgba(193, 240, 248, 0.26), 0 0 20px rgba(193, 240, 248, 0.1); }
+    100% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); }
+}
+
+@keyframes text-shine {
+    0% { background-position: 200% 0%; }
+    100% { background-position: -200% 0%; }
+}
+
+/* NOVA ANIMAÇÃO PARA O MINI FLASH BRANCO */
+@keyframes mini-flash {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(3); opacity: 0.2; } /* Pico do flash, menos opaco para ser sutil */
+    100% { transform: scale(0); opacity: 0; }
+}
+
+
+/* Section Geral */
+.teorias-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(15, 15, 15, 0.9);
+    border: 3px solid rgba(193, 240, 248, 0.3);
+    border-radius: 25px;
+    padding: 50px 30px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 60px auto;
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+/* Título Central */
+.teorias-titulo {
+    background: rgba(30, 30, 30, 0.95);
+    font-size: 2rem;
+    font-weight: bold;
+    color: #C1F0F8;
+    text-align: center;
+    padding: 15px 30px;
+    border-radius: 25px;
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.teorias-titulo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(193, 240, 248, 0.3), transparent);
+    transform: skewX(-20deg);
+    animation: text-shine 3s infinite linear;
+}
+
+/* Grid dos Cards */
+.teorias-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch; /* Estica os cards para terem a mesma altura */
+    width: 100%;
+}
+
+/* Cada Card */
+.teoria-card {
+    background: rgba(25, 25, 25, 0.95);
+    border: 2px solid rgba(193, 240, 248, 0.2); /* Borda padrão mais sutil */
+    border-radius: 20px;
+    width: 300px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); /* Sombra inicial */
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out; /* Adicionado border-color na transição */
+    position: relative;
+    overflow: hidden; /* Necessário para o flash e outros pseudo-elementos */
+    animation: card-glow 5s infinite alternate ease-in-out; /* Sombra pulsante de neblina (mantida) */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pseudo-elemento para o Mini Flash Branco (::after) */
+.teoria-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%; /* Inicia com largura do card */
+    height: 100%; /* Inicia com altura do card */
+    background-color: rgba(255, 255, 255, 0.1); /* Cor branca bem transparente */
+    border-radius: 50%; /* Faz o flash ser um círculo */
+    transform: translate(-50%, -50%) scale(0); /* Centraliza e esconde */
+    opacity: 0;
+    transition: none; /* Não transiciona no hover, apenas anima */
+    z-index: 0; /* Fica abaixo do conteúdo real do card */
+    pointer-events: none; /* Não interfere com cliques */
+}
+
+
+.teoria-card:hover {
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 0 30px rgba(193, 240, 248, 0.6), 0 0 80px rgba(193, 240, 248, 0.2);
+    border-color: #A0EEF8; /* Borda azul bem claro no hover */
+    z-index: 1;
+}
+
+/* Ativa o flash no hover do card */
+.teoria-card:hover::after {
+    animation: mini-flash 0.8s ease-out forwards; /* Animação única, não infinita, para "frente" */
+    /* opacity será controlada pela animação, não precisa de uma transição direta */
+}
+
+
+/* Texto do Card */
+.teoria-texto {
+    font-size: 1.05rem;
+    color: #e0e0e0;
+    line-height: 1.7;
+    text-align: justify;
+    text-shadow: 0 0 3px rgba(193, 240, 248, 0.05);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    z-index: 1; /* Garante que o texto esteja acima de qualquer efeito de fundo */
+    position: relative; /* Necessário para z-index */
+    flex-grow: 1;
+
+    /* Ajustes para o espaçamento do texto */
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.teoria-card:hover .teoria-texto {
+    color: #fcfcfc;
+    text-shadow: 0 0 8px rgba(193, 240, 248, 0.2), 0 0 15px rgba(193, 240, 248, 0.1);
+}
+
+/* Responsivo */
+@media (max-width: 960px) {
+    .teorias-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .teoria-card {
+        width: 90%;
+        max-width: 380px;
+    }
+
+    .teorias-section {
+        padding: 30px 15px;
+    }
+
+    .teorias-titulo {
+        font-size: 1.7rem;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .teorias-titulo {
+        font-size: 1.5rem;
+        padding: 10px 20px;
+    }
+
+    .teoria-card {
+        padding: 20px;
+    }
+
+    .teoria-texto {
+        font-size: 0.95rem;
+    }
+}
+
+/* sessão de origem -------------*/
+/* Animações */
+/* NOVO TEMPO: Animação para o brilho gráfico no título - 8 segundos */
+@keyframes title-graphic-shine {
+    0% { background-position: 0% 0%; }
+    15% { background-position: 30% 0%; } /* Azul começando a aparecer */
+    25% { background-position: 50% 0%; } /* Pico do brilho azul */
+    35% { background-position: 70% 0%; } /* Azul diminuindo, transição para laranja */
+    50% { background-position: 100% 0%; } /* Meio da transição */
+    65% { background-position: 130% 0%; } /* Laranja começando a aparecer */
+    75% { background-position: 150% 0%; } /* Pico do brilho laranja */
+    85% { background-position: 170% 0%; } /* Laranja diminuindo */
+    100% { background-position: 200% 0%; } /* Volta ao início, prepara o próximo ciclo */
+}
+
+/* Mini Flash Branco (mantido rápido para hover) */
+@keyframes mini-flash {
+    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+    50% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+    100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+}
+
+/* Brilho pulsante sutil do texto (um pouco mais lento) */
+@keyframes text-pulse-glow {
+    0% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+    50% { text-shadow: 0 0 10px rgba(193, 240, 248, 0.3); } /* Brilho um pouco mais forte no pico */
+    100% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+}
+
+/* NOVO TEMPO: Animação para o crescimento/box-shadow coordenado dos cards - 8 segundos */
+/* Pangar (Azul) */
+@keyframes card-pangar-grow {
+    0%, 10% { /* Estado normal antes do pico azul */
+        transform: scale(1) translateY(0);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.05);
+        border-color: rgba(193, 240, 248, 0.4);
+    }
+    20%, 30% { /* Durante o pico azul no título */
+        transform: scale(1.04) translateY(-8px);
+        box-shadow: 0 0 35px #85E7F8, 0 0 80px rgba(133, 231, 248, 0.3);
+        border-color: #B1F1FC;
+    }
+    40%, 100% { /* Retorno ao normal e permanece normal até o próximo ciclo */
+        transform: scale(1) translateY(0);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.05);
+        border-color: rgba(193, 240, 248, 0.4);
+    }
+}
+
+/* Hellion (Verde/Laranja) */
+@keyframes card-hellion-grow {
+    0%, 60% { /* Estado normal antes do pico laranja */
+        transform: scale(1) translateY(0);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.05);
+        border-color: rgba(223, 106, 28, 0.4);
+    }
+    70%, 80% { /* Durante o pico laranja no título */
+        transform: scale(1.04) translateY(-8px);
+        box-shadow: 0 0 35px #FFA500, 0 0 80px rgba(255, 165, 0, 0.3);
+        border-color: #b98046;
+    }
+    90%, 100% { /* Retorno ao normal e permanece normal até o próximo ciclo */
+        transform: scale(1) translateY(0);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.05);
+        border-color: rgba(223, 106, 28, 0.4);
+    }
+}
+
+
+/* Section Principal */
+.origem-section {
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.92) 0%, rgba(25, 25, 25, 0.9) 100%);
+    border: none;
+    border-radius: 25px;
+    padding: 50px 30px;
+    max-width: 1000px;
+    margin: 60px auto;
+    box-shadow: 0 0 60px rgba(193, 240, 248, 0.1), inset 0 0 40px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.origem-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    background: radial-gradient(circle at top left, rgba(193, 240, 248, 0.03) 0%, transparent 40%),
+                radial-gradient(circle at bottom right, rgba(193, 240, 248, 0.03) 0%, transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+
+/* Título Principal */
+.origem-titulo {
+    background: rgba(35, 35, 35, 0.95);
+    color: #C1F0F8;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 18px 35px;
+    margin-bottom: 40px;
+    border-radius: 25px;
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.4), inset 0 0 8px rgba(193, 240, 248, 0.15);
+    width: fit-content;
+    max-width: 45%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    z-index: 2;
+
+    background-image: linear-gradient(
+        90deg,
+        #C1F0F8, /* Azul claro */
+        #FFB366, /* Laranja claro */
+        #C1F0F8, /* Azul claro */
+        #FFB366  /* Laranja claro */
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: title-graphic-shine 8s linear infinite; /* NOVO TEMPO: 8 segundos */
+}
+
+
+/* Container dos Cards */
+.origem-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-bottom: 50px;
+    width: 100%;
+    align-items: stretch;
+}
+
+/* Card Individual - Base */
+.card-origem {
+    background: linear-gradient(135deg, rgba(28, 28, 28, 0.98), rgba(35, 35, 35, 0.96));
+    border: 2px solid;
+    border-radius: 20px;
+    width: 330px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.05);
+    transition: none; /* A animação controla a transição */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+
+    transform: scale(1) translateY(0);
+}
+
+/* Mini Flash Branco (ativado por hover) */
+.card-origem::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120%;
+    height: 120%;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.card-origem:hover::after {
+    animation: mini-flash 0.9s ease-out forwards;
+}
+
+/* Classes de Cor e Animações Coordenadas para os Cards */
+.card-origem.azul {
+    animation: card-pangar-grow 8s infinite ease-in-out; /* NOVO TEMPO: 8 segundos */
+}
+
+.card-origem.verde {
+    animation: card-hellion-grow 8s infinite ease-in-out; /* NOVO TEMPO: 8 segundos */
+}
+
+/* Efeito de hover no card para zoom da imagem */
+.card-origem:hover .card-img img {
+    transform: scale(1.05);
+}
+
+/* Título do Card */
+.card-titulo {
+    text-align: center;
+    font-size: 1.5rem; /* Aumentei o tamanho da fonte */
+    color: #f8e857; /* Nova cor: Amarelo Dourado para destaque */
+    background: linear-gradient(45deg, rgba(40, 40, 40, 0.98), rgba(50, 50, 50, 0.96));
+    padding: 12px 18px;
+    border-radius: 15px;
+    border: 1px solid rgba(193, 240, 248, 0.25);
+    box-shadow: inset 0 0 5px rgba(193, 240, 248, 0.1);
+    margin-top: auto;
+    transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-origem:hover .card-titulo {
+    color: #FFFACD; /* Cor mais clara no hover */
+    border-color: rgba(193, 240, 248, 0.5);
+    box-shadow: inset 0 0 10px rgba(193, 240, 248, 0.2);
+}
+
+
+/* Imagem do Card (mantida) */
+.card-img {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    border-radius: 15px;
+    margin-bottom: 18px;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.4s ease;
+}
+
+
+/* Texto de Origem */
+.origem-texto {
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.98), rgba(35, 35, 35, 0.96));
+    color: #F8F8F8;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid rgba(193, 240, 248, 0.25);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3), inset 0 0 5px rgba(193, 240, 248, 0.08);
+    text-align: justify;
+
+    word-spacing: -1px;
+    letter-spacing: 0.1px;
+
+    text-shadow: 0 0 3px rgba(193, 240, 248, 0.05);
+    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Ajustei para 7s, mais lento */
+}
+
+/* Responsivo (mantido) */
+@media (max-width: 960px) {
+    .origem-titulo {
+        max-width: 60%;
+        font-size: 1.9rem;
+        padding: 15px 30px;
+    }
+    .origem-cards {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    .card-origem {
+        width: 90%;
+        max-width: 400px;
+        padding: 18px;
+    }
+    .card-img {
+        height: 200px;
+        margin-bottom: 15px;
+    }
+    .card-titulo {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+    }
+    .origem-texto {
+        padding: 25px;
+    }
+}
+@media (max-width: 600px) {
+    .origem-titulo {
+        font-size: 1.6rem;
+        padding: 10px 20px;
+        max-width: 95%;
+    }
+    .card-origem {
+        width: 95%;
+        padding: 15px;
+    }
+    .card-img {
+        height: 160px;
+        margin-bottom: 12px;
+    }
+    .card-titulo {
+        font-size: 1.05rem;
+        padding: 8px 12px;
+    }
+    .origem-texto {
+        font-size: 0.9rem;
+        line-height: 1.7;
+        padding: 18px;
+    }
+    .origem-section {
+        padding: 30px 15px;
+        margin: 40px auto;
+        border-radius: 20px;
+    }
+}
+
+/*civilizações class------------------------------------*/
+/* Animações (mantenha suas animações existentes aqui, ex: text-pulse-glow) */
+@keyframes text-pulse-glow {
+    0% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+    50% { text-shadow: 0 0 10px rgba(193, 240, 248, 0.3); }
+    100% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+}
+
+/* Section Principal */
+.civilizacoes-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 50px 30px; /* Aumentei o padding */
+    border: none; /* Remove a borda original */
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(25, 25, 25, 0.9) 100%); /* Fundo mais escuro e gradiente */
+    box-shadow: 0 0 60px rgba(193, 240, 248, 0.15), inset 0 0 40px rgba(0, 0, 0, 0.7); /* Sombra mais intensa */
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Mais espaço entre os elementos */
+    position: relative;
+    overflow: hidden; /* Importante para o ::before */
+    
+    /* Variável CSS para a imagem de fundo (definida por JS) */
+    --bg-image-url: none;
+}
+
+/* Pseudo-elemento para a imagem de fundo dinâmica */
+.civilizacoes-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-image-url); /* Usa a variável CSS definida pelo JS */
+    background-size: cover; /* Cobre toda a área */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.15; /* Aumentado de 0.1 para 0.15 - mais visível no estado inicial */
+    z-index: -1; /* Fica atrás do conteúdo */
+    transition: opacity 1s ease-in-out; /* Transição suave na opacidade */
+    filter: grayscale(80%) brightness(50%) blur(1px); /* Blur reduzido de 2px para 1px no estado inicial */
+    border-radius: 25px; /* Para seguir o border-radius da seção */
+}
+
+/* Quando a classe 'has-background-image' é adicionada (pelo JS), a imagem se torna visível */
+.civilizacoes-section.has-background-image::before {
+    opacity: 0.45; /* Aumentado de 0.05 para 0.08 - mais visível quando ativada */
+    filter: grayscale(30%) brightness(55%) blur(2px); /* Menos cinza, mais brilho e um pouco menos de blur ao aparecer */
+}
+
+/* Título das Civilizações */
+.civilizacoes-titulo {
+    font-size: 2.8rem; /* Aumentei um pouco mais */
+    color: #C1F0F8;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px 40px; /* Mais padding */
+    background: linear-gradient(45deg, rgba(35, 35, 35, 0.98), rgba(45, 45, 45, 0.96)); /* Gradiente */
+    border-radius: 25px; /* Mais arredondado */
+    border: 2px solid rgba(193, 240, 248, 0.6); /* Borda mais definida */
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.5), inset 0 0 10px rgba(193, 240, 248, 0.2); /* Sombra mais forte */
+    width: fit-content;
+    max-width: 70%; /* Permite que o título seja um pouco mais largo */
+    position: relative; /* Para z-index se for o caso */
+    z-index: 2; /* Acima do fundo */
+    text-shadow: 0 0 10px rgba(193, 240, 248, 0.4); /* Brilho no texto */
+}
+
+/* Container de textos */
+.civilizacoes-textos-container {
+    position: relative;
+    width: 100%;
+    min-height: 250px; /* Aumentei a altura mínima para acomodar textos maiores */
+    margin-bottom: 50px; /* Mais espaço abaixo dos textos */
+    display: flex; /* Para centralizar o texto internamente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Esconder textos por padrão */
+.civilizacoes-texto.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Transição mais lenta */
+    transform: translateY(20px); /* Começa ligeiramente abaixo */
+}
+
+/* Mostrar texto ativo */
+.civilizacoes-texto.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Volta à posição normal */
+    font-size: 1.05rem; /* Ajustado para melhor legibilidade */
+    color: #F0F0F0; /* Cor mais clara */
+    line-height: 1.7;
+    text-align: justify;
+    padding: 30px; /* Mais padding */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.95)); /* Fundo gradiente */
+    border-radius: 15px; /* Mais arredondado */
+    border: 2px solid rgba(193, 240, 248, 0.3); /* Borda sutil */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.6); /* Sombra mais profunda */
+    max-width: 850px; /* Aumentei a largura máxima do texto */
+    margin: 0 auto;
+    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Aplica o brilho pulsante */
+    text-shadow: 0 0 5px rgba(193, 240, 248, 0.1); /* Sombra de texto mais sutil */
+
+    /* AJUSTES PARA ESPAÇAMENTO DE TEXTO (mantenha os valores que funcionaram melhor para você) */
+    word-spacing: -0.5px;
+    letter-spacing: 0.05px;
+    hyphens: auto;
+}
+
+/* Estilo para títulos internos dos textos de civilização */
+.civilizacoes-texto h2 {
+    color: #affaea; /* Amarelo dourado para o título do texto */
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 16px rgba(115, 220, 228, 0.568); /* Brilho no título interno */
+    border-radius: 20px;
+    border: #7de4f7 2px solid; /* Borda azul clara */
+    margin: 0 auto;
+    width: 60%;
+}
+.civilizacoes-texto p {
+    margin-bottom: 1em; /* Espaço entre parágrafos */
+}
+
+
+/* Container dos Ícones */
+.civilizacoes-icones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px; /* Aumentei o espaçamento entre ícones */
+    margin-top: 30px; /* Mais espaço acima */
+}
+
+/* Item de Ícone Individual */
+.icone-item {
+    width: 90px; /* Aumentei o tamanho do ícone */
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid rgba(193, 240, 248, 0.5); /* Borda mais grossa */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.9), rgba(70, 70, 70, 0.8)); /* Fundo gradiente */
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.5); /* Sombra e brilho internos */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transições mais suaves */
+    cursor: pointer; /* Indica que é clicável */
+    position: relative; /* Para o brilho ao redor */
+}
+
+.icone-item:hover {
+    transform: scale(1.15) translateY(-5px); /* Aumenta mais e levanta */
+    box-shadow: 0 0 25px rgba(193, 240, 248, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.7); /* Brilho e sombra mais fortes */
+    border-color: #B1F1FC; /* Borda mais clara no hover */
+}
+
+/* Animação de brilho sutil ao redor do ícone no hover */
+.icone-item::before {
+    content: '';
+    position: absolute;
+    top: -5px; /* Expande um pouco para fora */
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193, 240, 248, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(0.8);
+    z-index: -1;
+}
+
+.icone-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icone-item img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.4s ease; /* Transição para zoom da imagem */
+}
+.icone-item:hover img {
+    transform: scale(1.05); /* Zoom sutil na imagem do ícone no hover */
+}
+
+
+/* Estilo para o ícone selecionado (que foi clicado) */
+.icone-item.selected {
+    border-color: #91f8f0; /* Borda amarela dourada para o selecionado */
+    box-shadow: 0 0 25px #c4fcf4, inset 0 0 15px rgba(141, 252, 242, 0.5); /* Brilho e sombra internos amarelos */
+    transform: scale(1.18) translateY(-8px); /* Mais destaque ainda para o selecionado */
+    z-index: 3; /* Garante que fique acima de outros ícones */
+}
+/* No ícone selecionado, também podemos manter o brilho pseudo-elemento ativo */
+.icone-item.selected::before {
+    opacity: 1;
+    transform: scale(1);
+    background: radial-gradient(circle, rgba(119, 241, 231, 0.548) 0%, transparent 70%); /* Brilho dourado para o selecionado */
+}
+
+
+/* Responsividade aprimorada */
+@media (max-width: 960px) {
+    .civilizacoes-section {
+        padding: 40px 25px;
+        gap: 30px;
+    }
+    .civilizacoes-titulo {
+        font-size: 2.2rem;
+        padding: 15px 30px;
+        max-width: 80%;
+    }
+    .civilizacoes-textos-container {
+        min-height: 220px;
+        margin-bottom: 40px;
+    }
+    .civilizacoes-texto.active {
+        font-size: 1rem;
+        padding: 25px;
+        max-width: 90%;
+    }
+    .civilizacoes-texto h2 {
+        font-size: 1.6rem;
+    }
+    .civilizacoes-icones {
+        gap: 25px;
+    }
+    .icone-item {
+        width: 75px;
+        height: 75px;
+    }
+}
+@media (max-width: 600px) {
+    .civilizacoes-section {
+        padding: 30px 15px;
+        margin: 40px auto;
+        border-radius: 20px;
+        gap: 25px;
+    }
+    .civilizacoes-titulo {
+        font-size: 1.8rem;
+        padding: 12px 20px;
+        max-width: 95%;
+    }
+    .civilizacoes-textos-container {
+        min-height: 180px;
+        margin-bottom: 30px;
+    }
+    .civilizacoes-texto.active {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        padding: 20px;
+    }
+    .civilizacoes-texto h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    .civilizacoes-icones {
+        gap: 15px;
+    }
+    .icone-item {
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+    }
+    .icone-item.selected {
+        transform: scale(1.1) translateY(-5px);
+    }
+}
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
 footer {
