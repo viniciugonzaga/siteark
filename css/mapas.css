@@ -2136,6 +2136,659 @@ main {
         padding: 12px;
     }
 }
+/* --- Estilos para a Seção de Guerra (war-session) --- */
+
+/* Container principal da sessão de guerra */
+.war-session {
+    width: 90%;
+    max-width: 1000px; /* Largura máxima para desktop */
+    margin: 80px auto; /* Centraliza e adiciona margem vertical */
+    padding: 40px; /* Espaçamento interno */
+    /* Borda e Fundo */
+    border: 3px solid rgba(193, 240, 248, 0.726); /* Borda mais pronunciada */
+    border-radius: 25px; /* Bordas mais arredondadas */
+
+    /* NOVO: Fundo Gradiente Animado */
+    background: linear-gradient(
+        45deg,
+        rgba(10, 10, 10, 0.98), /* Fundo base escuro */
+        rgba(var(--current-theme-primary), 0.15), /* Sutil brilho da cor primária */
+        rgba(20, 20, 20, 0.95), /* Outro ponto escuro */
+        rgba(var(--current-theme-secondary), 0.1) /* Sutil brilho da cor secundária */
+    );
+    background-size: 300% 300%; /* Torna o gradiente muito maior que o container */
+    animation: gradient-fog 20s ease infinite alternate; /* Animação suave */
+
+    /* Múltiplas Sombras para Profundidade e Brilho */
+    box-shadow:
+        0 0 80px rgba(180, 255, 232, 0.082), /* Brilho externo mais forte */
+        0 0 30px rgb(0, 0, 0) inset,  /* Sombra interna para profundidade */
+        0 0 15px rgba(25, 37, 39, 0) inset; /* Brilho interno sutil */
+    backdrop-filter: blur(8px); /* Efeito de desfoque mais intenso */
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; /* Espaço maior entre os elementos filhos */
+    position: relative;
+    overflow: hidden; /* Garante que elementos filhos com efeitos não transbordem */
+    transition: all 0.6s ease-in-out; /* Transição para suavizar mudanças gerais */
+
+    /* Variáveis CSS para o fundo da sessão controladas por JS no hover do ícone */
+    --war-bg-image-url: none;
+    --war-bg-opacity: 0;
+    --war-bg-blur: 5px;
+    --war-bg-grayscale: 80%;
+    --war-bg-brightness: 60%;
+}
+
+/* Pseudo-elemento para a imagem de fundo dinâmica no hover do ícone */
+.war-session::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var("../imagens/diluvio.png"); /* Usa a variável CSS */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: var(--war-bg-opacity); /* Controlado por variável */
+    filter: blur(var(--war-bg-blur)) grayscale(var(--war-bg-grayscale)) brightness(var(--war-bg-brightness)); /* Controlado por variáveis */
+    z-index: -1; /* Abaixo do conteúdo, acima do pulso-aura */
+    border-radius: 25px; /* Para coincidir com o container principal */
+    transition: opacity 0.8s ease-in-out, filter 0.8s ease-in-out; /* Transições suaves */
+}
+
+/* Efeito de brilho de fundo sutil para o war-session (pulso-aura) */
+.war-session::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(193, 240, 248, 0.068) 0%, transparent 90%); /* Mais intenso */
+    animation: pulse-aura 15s infinite ease-in-out alternate;
+    z-index: -2; /* Fica atrás de tudo */
+    pointer-events: none;
+}
+
+/* Keyframes para a nova animação de gradiente */
+@keyframes gradient-fog {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Animações de TRANSFORMAÇÃO COMPLETA da sessão ao trocar o título/conteúdo (via JS) */
+.war-session.fade-out-content {
+    animation: fade-out-blur 0.1s ease-out forwards;
+}
+
+.war-session.fade-in-content {
+    animation: fade-in-blur 0.4s ease-in forwards;
+}
+
+@keyframes fade-out-blur {
+    0% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
+    100% { opacity: 0; filter: blur(15px) brightness(0.4); transform: scale(0.97); } /* Mais desfoque e escurecimento */
+}
+
+@keyframes fade-in-blur {
+    0% { opacity: 0; filter: blur(15px) brightness(0.4); transform: scale(0.97); }
+    100% { opacity: 1; filter: blur(0px) brightness(1); transform: scale(1); }
+}
+
+@keyframes pulse-aura {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* ----------------------------------------------- */
+/* EFEITOS DE ENTRADA PARA ELEMENTOS INTERNOS QUANDO O CONTEÚDO MUDA */
+/* ----------------------------------------------- */
+
+/* Define o estado inicial dos elementos internos para serem animados */
+.war-session.fade-in-content #warTitle,
+.war-session.fade-in-content .war-text,
+.war-session.fade-in-content .war-icons img {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+    animation-fill-mode: backwards;
+}
+
+/* Animação para o slide-in e fade-in */
+@keyframes slide-in-fade {
+    0% { opacity: 0; transform: translateY(30px) scale(0.9); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+
+/* Novo keyframe para a animação de "entrada" do ícone com zoom (uma vez) */
+@keyframes icon-enter-zoom {
+    0% { opacity: 0; transform: translateY(30px) scale(0.8); filter: blur(10px); }
+    70% { transform: translateY(-5px) scale(1.1); filter: blur(0px); } /* Pequeno overshoot para efeito de "salto" */
+    100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0px); }
+}
+
+
+.war-session.fade-in-content #warTitle {
+    animation: slide-in-fade 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 0.2s;
+    color: var(--current-theme-text-color); /* Cor do texto do título dinâmica */
+    text-shadow:
+        0 0 12px var(--current-theme-shadow-color),
+        0 0 25px rgba(var(--current-theme-primary), 0.3);
+    transition: color 0.6s ease-in-out, text-shadow 0.6s ease-in-out;
+}
+
+/* Animação para o brilho do texto (ajustada para usar as novas variáveis) */
+@keyframes text-pulse-glow {
+    0% { text-shadow: 0 0 5px rgba(var(--current-theme-primary), 0.2); }
+    50% { text-shadow: 0 0 20px var(--current-theme-shadow-color), 0 0 30px rgba(var(--current-theme-primary), 0.4); }
+    100% { text-shadow: 0 0 5px rgba(var(--current-theme-primary), 0.2); }
+}
+
+.war-session.fade-in-content .war-text {
+    animation: slide-in-fade 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: 0.4s;
+    color: var(--current-theme-text-color); /* Cor do texto do corpo dinâmica */
+    transition: color 0.6s ease-in-out;
+}
+
+/* Animação para os ícones - eles usarão a nova animação de entrada com zoom */
+.war-session.fade-in-content .war-icons img {
+    /* Removido slide-in-fade, agora usaremos icon-enter-zoom */
+    animation: icon-enter-zoom 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    /* O delay será definido por JS usando style.setProperty */
+    animation-delay: var(--icon-enter-delay); /* Variável CSS controlada por JS */
+}
+
+
+/* Cabeçalho da Seção de Guerra (Contém botões e título) */
+.war-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    max-width: 800px;
+    padding: 18px 30px;
+    background: linear-gradient(90deg, rgba(40, 40, 40, 0.856), rgba(29, 28, 28, 0.98),  rgba(40, 40, 40, 0.856));
+    border: 2px solid var(--current-theme-border-color); /* Borda dinâmica */
+    border-radius: 20px;
+    box-shadow:
+        0 0 20px rgba(154, 243, 243, 0.329),
+        inset 0 0 10px rgba(var(--current-theme-primary), 0.2); /* Brilho interno dinâmico */
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s ease-in-out;
+}
+
+/* Título da Guerra */
+#warTitle {
+    font-size: 2.5rem;
+    color: var(--current-theme-text-color); /* Cor do texto do título dinâmica */
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    text-shadow:
+        0 0 12px var(--current-theme-shadow-color), /* Brilho principal do título dinâmico */
+        0 0 25px rgba(var(--current-theme-primary), 0.3);
+    animation: text-pulse-glow 4s infinite alternate ease-in-out;
+    padding: 0 20px;
+    transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+/* Botões de seta */
+.arrow {
+    background: linear-gradient(135deg, rgba(60, 60, 60, 0.7), rgba(40, 40, 40, 0.7));
+    border: 1px solid var(--current-theme-border-color); /* Borda dinâmica */
+    border-radius: 8px;
+    color: var(--current-theme-secondary); /* Cor da seta dinâmica */
+    font-size: 2.8rem;
+    cursor: pointer;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0 0 8px var(--current-theme-shadow-color); /* Sombra da seta dinâmica */
+    outline: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Efeito de brilho adicional nos botões */
+.arrow::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--current-theme-shadow-color) 0%, transparent 70%); /* Brilho interno dinâmico */
+    border-radius: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.arrow:hover::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(2.5);
+}
+
+.arrow:hover {
+    color: var(--current-theme-primary); /* Cor da seta no hover dinâmica */
+    text-shadow: 0 0 20px var(--current-theme-primary);
+    transform: scale(1.15);
+    background: linear-gradient(135deg, rgba(80, 80, 80, 0.8), rgba(60, 60, 60, 0.8));
+    border-color: var(--current-theme-primary); /* Borda no hover dinâmica */
+}
+
+.arrow:active {
+    transform: scale(1.05);
+    color: var(--color-gold); /* Cor de clique pode ser fixa ou dinâmica */
+    text-shadow: 0 0 10px var(--color-gold);
+}
+
+
+/* Campo de texto-guerra */
+.war-text {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(var(--current-theme-primary), 0.25); /* Borda dinâmica */
+    border-radius: 15px;
+    padding: 30px 35px;
+    width: 95%;
+    max-width: 850px;
+    color: var(--current-theme-text-color); /* Cor do texto do corpo dinâmica */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: justify;
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.8),
+                inset 0 0 5px rgba(var(--current-theme-primary), 0.05); /* Brilho interno dinâmico */
+    transition: all 0.6s ease-in-out, border-color 0.6s ease-in-out, color 0.6s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Efeito de "partículas" no fundo do campo de texto */
+.war-text::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(var(--current-theme-primary), 0.03) 0%, transparent 60%); /* Partículas dinâmicas */
+    background-size: 400% 400%;
+    animation: subtle-particles 30s infinite linear;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes subtle-particles {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+
+/* Container dos Ícones */
+.war-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Estilo individual dos ícones */
+.war-icons img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--current-theme-icon-border); /* Borda do ícone dinâmica */
+    box-shadow:
+        0 0 20px var(--current-theme-icon-glow), /* Sombra externa do ícone dinâmica */
+        inset 0 0 10px rgba(127, 247, 247, 0.6),
+        inset 0 0 5px rgba(var(--current-theme-primary), 0.2); /* Brilho interno do ícone dinâmico */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, border-color 0.4s ease, filter 0.4s ease;
+    cursor: pointer;
+    filter: grayscale(90%) brightness(50%) contrast(120%); /* Mantém o filtro padrão */
+    position: relative;
+    overflow: hidden;
+    /* Adiciona a propriedade para o atraso da animação de entrada */
+    animation-delay: var(--icon-enter-delay, 0s);
+}
+
+/* Brilho pulsante nos ícones (ajustado para usar as novas variáveis, ainda sutis) */
+.war-icons img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(var(--current-theme-primary), 0.15) 0%, transparent 70%); /* Brilho interno do ::before dinâmico */
+    border-radius: 50%;
+    animation: icon-pulse-glow 8s infinite ease-in-out alternate;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 0.4s ease, transform 0.4s ease, background 0.4s ease; /* Adiciona background à transição */
+}
+
+@keyframes icon-pulse-glow {
+    0% { opacity: 0.3; transform: scale(0.9); }
+    50% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0.3; transform: scale(0.9); }
+}
+
+/* Removemos o :hover para o efeito de zoom e azul claro */
+/* O hover agora será mais sutil, apenas mudando a borda e brilho para o tema atual */
+.war-icons img:hover {
+    transform: scale(1.05) translateY(-2px); /* Pequeno lift, sem zoom grande */
+    box-shadow:
+        0 0 30px var(--current-theme-icon-glow), /* Brilho do tema mais forte */
+        inset 0 0 15px rgba(152, 241, 253, 0.514); /* Sombra interna mais forte */
+    border-color: var(--current-theme-primary); /* Borda do tema */
+    filter: grayscale(20%) brightness(80%) contrast(100%); /* Filtro sutil no hover */
+    z-index: 2;
+}
+
+.war-icons img:hover::before {
+    opacity: 1;
+    animation: none;
+    transform: scale(1.1);
+    background: radial-gradient(circle at center, rgba(var(--current-theme-primary), 0.25) 0%, transparent 70%);
+}
+
+
+/* Estilo para o ícone ativo (selecionado) */
+.war-icons img.active-icon {
+    transform: scale(1.1) translateY(-3px); /* Levemente maior que o hover, mas sem o zoom exagerado */
+    box-shadow:
+        0 0 40px var(--current-theme-icon-glow),
+        inset 0 0 18px rgba(var(--current-theme-primary), 0.7);
+    border-color: var(--current-theme-primary);
+    filter: grayscale(0%) brightness(100%) contrast(100%);
+    z-index: 2;
+    animation: active-icon-pulse 2s infinite ease-in-out alternate; /* Animação sutil para o ícone ativo */
+}
+
+@keyframes active-icon-pulse {
+    0% { transform: scale(1.1) translateY(-3px); box-shadow: 0 0 40px var(--current-theme-icon-glow), inset 0 0 18px rgba(var(--current-theme-primary), 0.8); }
+    50% { transform: scale(1.12) translateY(-4px); box-shadow: 0 0 45px var(--current-theme-icon-glow), inset 0 0 20px rgba(var(--current-theme-primary), 0.9); }
+    100% { transform: scale(1.1) translateY(-3px); box-shadow: 0 0 40px var(--current-theme-icon-glow), inset 0 0 18px rgba(var(--current-theme-primary), 0.8); }
+}
+
+/* --- RESPONSIVIDADE --- */
+
+/* Telas menores que 960px */
+@media (max-width: 960px) {
+    .war-session {
+        padding: 35px;
+        gap: 30px;
+        margin: 60px auto;
+        border-radius: 20px;
+    }
+    .war-header {
+        width: 95%;
+        padding: 15px 25px;
+        border-radius: 18px;
+    }
+    #warTitle {
+        font-size: 2.2rem;
+    }
+    .arrow {
+        font-size: 2.5rem;
+        padding: 6px 12px;
+    }
+    .war-text {
+        font-size: 1rem;
+        padding: 25px 30px;
+        border-radius: 12px;
+    }
+    .war-icons {
+        gap: 25px;
+        margin-top: 25px;
+    }
+    .war-icons img {
+        width: 70px;
+        height: 70px;
+        border-width: 3px;
+    }
+    .war-icons img:hover {
+        transform: scale(1.2); /* Menor aumento no hover para telas menores */
+        transform: translateY(-5px);
+    }
+    .war-icons img.active-icon {
+        transform: scale(1.15) translateY(-3px);
+    }
+}
+
+/* Telas menores que 780px */
+@media (max-width: 780px) {
+    .war-session {
+        padding: 30px 25px;
+        gap: 25px;
+        margin: 50px auto;
+        border-radius: 18px;
+    }
+    .war-header {
+        width: 100%;
+        padding: 12px 20px;
+        border-radius: 15px;
+    }
+    #warTitle {
+        font-size: 1.8rem;
+    }
+    .arrow {
+        font-size: 2.2rem;
+        padding: 5px 10px;
+    }
+    .war-text {
+        font-size: 0.95rem;
+        padding: 20px 25px;
+        border-radius: 10px;
+    }
+    .war-icons {
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .war-icons img {
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+    }
+    .war-icons img:hover {
+        transform: scale(1.15) translateY(-4px);
+    }
+    .war-icons img.active-icon {
+        transform: scale(1.1) translateY(-2px);
+    }
+}
+
+/* Telas menores que 480px */
+@media (max-width: 480px) {
+    .war-session {
+        padding: 20px 15px;
+        gap: 20px;
+        margin: 30px auto;
+        border-radius: 15px;
+    }
+    .war-header {
+        padding: 10px 15px;
+    }
+    #warTitle {
+        font-size: 1.5rem;
+    }
+    .arrow {
+        font-size: 1.8rem;
+        padding: 4px 8px;
+    }
+    .war-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        padding: 15px 15px;
+        text-align: left;
+    }
+    .war-icons {
+        gap: 15px;
+        margin-top: 15px;
+    }
+    .war-icons img {
+        width: 45px;
+        height: 45px;
+        border-width: 1px;
+    }
+    .war-icons img:hover {
+        transform: scale(1.1) translateY(-3px);
+    }
+    .war-icons img.active-icon {
+        transform: scale(1.08) translateY(-1px);
+    }
+}
+
+/* Container para o botão (mantido para posicionamento) */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 90px;
+}
+
+/* Estilo do Botão de Ação - MAIS DECORADO */
+.action-button {
+    display: inline-block;
+    padding: 16px 35px; /* Um pouco maior para mais impacto */
+    font-size: 1.2rem; /* Aumenta levemente a fonte */
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--current-theme-text-color); /* Cor do texto principal do tema */
+
+    /* Fundo mais elaborado */
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a); /* Dark gray to black gradient */
+    position: relative; /* Para camadas de borda e brilho */
+    overflow: hidden; /* Garante que os efeitos não transbordem */
+    z-index: 1; /* Garante que o botão esteja sobre os elementos de fundo */
+
+    /* Borda principal com cor do tema */
+    border: 3px solid #758f94d5; /* Darker gray border */
+    border-radius: 18px; /* Cantos mais arredondados */
+
+    /* Sombra externa inspirada no seu war-header e ícones */
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.9), /* Sombra principal mais forte */
+        0 0 25px rgba(var(--current-theme-primary), 0.3), /* Brilho suave da cor primária */
+        inset 0 0 15px rgba(0, 0, 0, 0.7); /* Sombra interna para profundidade */
+    
+     color: #8febebd5; /* Lighter, subtle gray glow */
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.6), /* Light blue/cyan glow */
+        0 0 30px rgba(193, 240, 248, 0.4), /* Wider blue/cyan glow */
+        0 0 60px rgba(193, 240, 248, 0.2); /* Even wider light blue/cyan glow *
+    /* Transição geral mais fluida */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    
+}
+
+/* Efeito de Borda Interna / Secondária (inspirado nos seus elementos) */
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 2px; /* Ajuste para criar a borda interna */
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 2px solid rgba(var(--current-theme-primary), 0.5); /* Cor primária semi-transparente */
+    border-radius: 16px; /* Menor que a borda externa */
+    box-shadow: inset 0 0 10px rgba(var(--current-theme-primary), 0.2); /* Brilho interno na borda */
+    transition: all 0.4s ease-in-out;
+    z-index: -1; /* Fica abaixo do conteúdo do botão */
+    opacity: 0.8;
+}
+
+/* Efeito de Brilho "Scanline" ou "Varredura" (mais dinâmico) */
+.action-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.233), transparent); /* Brilho sutil */
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    z-index: 2; /* Acima do conteúdo para o efeito de brilho */
+    pointer-events: none; /* Garante que o brilho não impeça cliques */
+}
+
+
+/* Hover State - Mais Intenso */
+.action-button:hover {
+    transform: translateY(-8px) scale(1.08); /* Lift e scale mais pronunciados */
+     background: linear-gradient(135deg, #1a1a1adc, #000000e5, #1a1a1ada); /* Dark gray to black gradient */
+    border-color: var(--current-theme-primary); /* Borda fica com a cor primária */
+    box-shadow: 
+        0 12px 40px rgba(173, 252, 248, 0.767), /* Sombra mais forte */
+        0 0 40px var(--current-theme-shadow-color), /* Brilho principal mais forte */
+        inset 0 0 20px rgba(var(--current-theme-primary), 0.4); /* Brilho interno mais intenso */
+     color: #8febebd5; /* Lighter, subtle gray glow */
+    text-shadow: 
+        0 0 15px var(--current-theme-primary),
+        0 0 30px var(--current-theme-shadow-color); /* Brilho de texto mais forte */
+}
+
+/* Efeito de Borda Interna no Hover */
+.action-button:hover::before {
+    border-color: var(--current-theme-primary); /* Borda interna fica mais visível */
+    box-shadow: inset 0 0 15px rgba(var(--current-theme-primary), 0.4);
+    opacity: 1;
+}
+
+/* Ativa o brilho "scanline" no hover */
+.action-button:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translateX(100%); /* Move o brilho através do botão */
+}
+
+
+/* Active State - Feedback de Clique */
+.action-button:active {
+    transform: translateY(0); /* Volta para a posição original */
+    background: linear-gradient(160deg, rgba(20, 20, 20, 0.98) 0%, rgba(40, 40, 40, 0.95) 50%, rgba(20, 20, 20, 0.98) 100%); /* Fundo mais escuro */
+    box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.8), /* Sombra menor */
+        inset 0 0 8px rgba(0, 0, 0, 0.9); /* Sombra interna mais escura */
+    border-color: var(--current-theme-secondary); /* Borda com a cor secundária */
+    color: var(--current-theme-secondary); /* Texto com a cor secundária */
+    text-shadow: none; /* Remove o brilho do texto no clique */
+}
+
+/* Remove brilho interno e scanline no active */
+.action-button:active::before {
+    border-color: rgba(var(--current-theme-secondary), 0.5);
+    box-shadow: inset 0 0 5px rgba(var(--current-theme-secondary), 0.2);
+    opacity: 0.6;
+}
+
+.action-button:active::after {
+    opacity: 0;
+    transition: none; /* Desabilita transição para desaparecimento imediato */
+}
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */

@@ -965,6 +965,7 @@ main {
     box-shadow: 0 0 12px rgba(193, 240, 248, 0.2);
     margin: 0 auto;
     text-align: center;
+    margin: 0 auto;
     position: relative; /* Para o efeito de "partículas" */
     overflow: hidden; /* Para garantir que as partículas fiquem dentro */
 }
@@ -1064,33 +1065,6 @@ main {
     text-shadow: 0 0 10px rgba(193, 240, 248, 0.4); /* Sombra com mais luminescência */
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-    .intro-titulo {
-        font-size: 1.4rem;
-        padding: 10px 20px;
-        margin: -30px auto 15px auto;
-    }
-
-    .intro-texto {
-        font-size: 1rem;
-    }
-
-    .intro-icone img {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 20px;
-    }
-
-    .intro-ark {
-        padding: 30px;
-    }
-
-    .intro-campo {
-        padding: 20px 15px;
-    }
-}
-
 /* Animações */
 /* Mantida a animação da sombra para um efeito base, se desejar */
 @keyframes card-glow {
@@ -1098,7 +1072,89 @@ main {
     50% { box-shadow: 0 0 25px rgba(193, 240, 248, 0.4), 0 0 50px rgba(193, 240, 248, 0.1); }
     100% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.15); }
 }
+/* --- RESPONSIVIDADE APRIMORADA --- */
 
+/* Breakpoint para telas até 780px de largura */
+@media (max-width: 780px) {
+    /* Container principal */
+       .intro-ark {
+        padding: 20px;    /* Padding reduzido */
+        width: 100%;      /* Ocupa a largura total da tela */
+        max-width: 100%;  /* Sem limite */
+        margin: 20px auto;/* Centraliza vertical e horizontalmente */
+        box-sizing: border-box; /* Garante que padding não cause overflow */
+    }
+
+    /* Ícone */
+    .intro-icone img {
+        width: 140px; /* Reduzir o tamanho do ícone */
+        height: 140px;
+        margin-bottom: 25px; /* Ajustar margem */
+    }
+
+    /* Campo de texto */
+    .intro-campo {
+        padding: 25px 20px; /* Reduzir o padding do campo de texto */
+        max-width: 85%; /* Permitir que o campo de texto ocupe mais largura */
+       margin: 0 auto;
+    }
+
+    /* Título */
+    .intro-titulo {
+        font-size: 1.6rem; /* Reduzir o tamanho da fonte do título */
+        padding: 10px 20px; /* Ajustar padding */
+        margin: -35px auto 18px auto; /* Ajustar margem superior e inferior */
+    }
+
+    /* Texto */
+    .intro-texto {
+        font-size: 0.85rem; /* Reduzir o tamanho da fonte do texto */
+        line-height: 1.5; /* Ajustar line-height para melhor leitura */
+    }
+}
+
+/* Breakpoint para telas até 480px de largura */
+@media (max-width: 480px) {
+    /* Container principal */
+     .intro-ark {
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        margin: 15px auto;
+        border-radius: 15px;  /* Ajuste visual */
+        box-sizing: border-box;
+    }
+
+    /* Ícone */
+    .intro-icone img {
+        width: 100px; /* Reduzir significativamente o tamanho do ícone */
+        height: 100px;
+        margin-bottom: 20px; /* Ajustar margem */
+    }
+
+    /* Campo de texto */
+    .intro-campo {
+        padding: 18px 12px; /* Padding menor */
+        max-width: 100%; /* Largura total */
+        border-radius: 15px; /* Menos arredondado */
+    }
+
+    /* Título */
+    .intro-titulo {
+        font-size: 1.3rem; /* Título bem menor */
+        padding: 8px 15px; /* Padding menor */
+        margin: -25px auto 12px auto; /* Ajustar margem */
+        border-radius: 20px; /* Menos arredondado */
+    }
+
+    /* Texto */
+    .intro-texto {
+        font-size: 0.85rem; /* Texto bem pequeno para leitura em telas minúsculas */
+        line-height: 1.4; /* Ajustar line-height */
+        /* Considerar remover text-align: justify para evitar "rios" em telas muito estreitas,
+           ou usar hyphens: auto; se o navegador suportar bem */
+    }
+}
 /*teoria class-------------------------------------------------*/
 
 /* Animações */
@@ -1247,7 +1303,7 @@ main {
 }
 
 /* Responsivo */
-@media (max-width: 960px) {
+@media (max-width: 780px) {
     .teorias-cards {
         flex-direction: column;
         align-items: center;
