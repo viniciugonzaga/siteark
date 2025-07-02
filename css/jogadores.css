@@ -1973,6 +1973,94 @@ font-size: 1.8em;
     100% { background-position: 100% 50%; }
 }
 
+/* Container geral das armas */
+#weaponsContainer {
+    display: flex;
+    flex-wrap: wrap; /* Permite que as armas quebrem para a próxima linha */
+    gap: 15px; /* Espaçamento entre as armas */
+    margin-top: 15px;
+}
+
+/* Estilo para cada item de arma */
+.weapon-item {
+    background-color: #2a2a2a; /* Cor de fundo um pouco mais clara que o fundo principal */
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 15px;
+    position: relative; /* Importante para posicionar o botão 'X' */
+    width: calc(50% - 7.5px); /* Duas colunas com espaçamento */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+    display: flex; /* Habilita flexbox para alinhar o botão X e os campos */
+    flex-direction: column; /* Coloca itens um abaixo do outro */
+}
+
+/* Cabeçalho que contém o botão de remover */
+.weapon-header {
+    display: flex;
+    justify-content: flex-end; /* Alinha o botão X à direita */
+    margin-bottom: 10px; /* Espaçamento entre o botão X e os campos abaixo */
+}
+
+
+/* Botão de remover (o "X") */
+.remove-item-btn {
+    background-color: #dc3545; /* Vermelho para remover */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Torna o botão redondo */
+    width: 25px; /* Largura do botão */
+    height: 25px; /* Altura do botão */
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* Posicionamento absoluto dentro do .weapon-item */
+    top: 5px; /* Distância do topo */
+    right: 5px; /* Distância da direita */
+    z-index: 10; /* Garante que esteja acima do input */
+    transition: background-color 0.2s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para os campos de entrada dentro do item da arma */
+.weapon-fields label {
+    display: block; /* Garante que o label ocupe sua própria linha */
+    margin-bottom: 5px;
+    color: #ccc;
+    font-weight: bold;
+}
+
+.weapon-fields input[type="text"],
+.weapon-fields select {
+    width: calc(100% - 10px); /* Ocupa quase toda a largura, com padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: white;
+    border-radius: 4px;
+    box-sizing: border-box; /* Inclui padding e border na largura total */
+}
+
+/* Ajuste para telas menores (responsividade) */
+@media (max-width: 768px) {
+    .weapon-item {
+        width: 100%; /* Uma coluna em telas menores */
+    }
+}
+
+#Armas{
+    color: #d6feff; /* Cor do texto consistente */
+}
+
+.h3{
+
+    color: #d6feff; /* Cor do texto consistente */
+}
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */

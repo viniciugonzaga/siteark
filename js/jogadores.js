@@ -13,6 +13,32 @@ let actionBonuses = [];
 // Objeto para armazenar os bônus de ação aprendidos (lista de objetos {action: '', value: 5})
 let learnedActionBonuses = []; // Array para bônus de ações aprendidos
 
+// --- NOVO: Variável para armazenar as armas (lista de objetos {name: '', damageDice: '', condition: ''}) ---
+let weapons = [];
+
+// --- NOVO: Lista de condições pré-definidas para as armas ---
+const predefinedConditions = [
+    "Nula", // Opção padrão para nenhuma condição
+    "Sangramento",
+    "Envenenado",
+    "Queimando",
+    "Atordoado",
+    "Amedrontado",
+    "Marcado",
+    "Vulnerável",
+    "Enfraquecido",
+    "Imobilizado",
+    "Cego",
+    "Protegido",
+    "Revelado",
+    "Silenciado",
+    "Exposto",
+    "Abalado",
+    "Fortalecido",
+    "Rage"
+];
+
+
 // Pontos de atributo iniciais disponíveis para o jogador distribuir
 let initialDistributablePoints = 5;
 let bonusPointsFromLevel = 0; // Pontos ganhos por nível
@@ -137,11 +163,13 @@ function saveCharacterLocal() {
         attributes: { ...attributes }, // Copia o objeto global 'attributes'
         mutation: document.getElementById("mutation").value,
         class1: document.getElementById("class1").value,
-        class2: document.getElementById("class2").value,
+        class2: document.getElementById("class2").value, // Classe 2 agora considerada obrigatória para salvar
         combatClass: document.getElementById("combatClass").value,
         inventory: document.getElementById("inventory").value,
         actionBonuses: [...actionBonuses], // Copia o array global 'actionBonuses'
         learnedActionBonuses: [...learnedActionBonuses], // Copia o array global 'learnedActionBonuses'
+        // --- NOVO: Salva o array de armas ---
+        weapons: [...weapons],
         appliedClassBonuses: { // Copia o objeto global 'appliedClassBonuses'
             class1: { ...appliedClassBonuses.class1 },
             class2: { ...appliedClassBonuses.class2 }
@@ -197,8 +225,9 @@ function loadCharacterLocal() {
         Object.assign(appliedClassBonuses.class1, data.appliedClassBonuses.class1);
         Object.assign(appliedClassBonuses.class2, data.appliedClassBonuses.class2);
 
-        if (appliedClassBonuses.class1.className) bonusPointsFromClasses++;
-        if (appliedClassBonuses.class2.className) bonusPointsFromClasses++;
+        // Recalcula bonusPointsFromClasses com base no que foi carregado
+        if (appliedClassBonuses.class1.className && appliedClassBonuses.class1.attribute) bonusPointsFromClasses++;
+        if (appliedClassBonuses.class2.className && appliedClassBonuses.class2.attribute) bonusPointsFromClasses++;
     }
 
     // Atualiza o estado dos botões "Aplicar Bônus"
@@ -206,6 +235,7 @@ function loadCharacterLocal() {
     document.getElementById('applyClass2Btn').disabled = !!appliedClassBonuses.class2.className;
     
     // Dispara eventos para que a lógica de desabilitar/habilitar botões de classe funcione
+    // Isto é crucial para que a validação de classe duplicada funcione ao carregar
     document.getElementById("class1").dispatchEvent(new Event('change'));
     document.getElementById("class2").dispatchEvent(new Event('change'));
 
@@ -231,6 +261,11 @@ function loadCharacterLocal() {
 
     learnedActionBonuses = data.learnedActionBonuses || [];
     renderLearnedActionBonuses();
+
+    // --- NOVO: Carrega e renderiza as armas ---
+    weapons = data.weapons || [];
+    renderWeapons(); // <--- CHAMA A NOVA FUNÇÃO DE RENDERIZAÇÃO
+
 
     // Define o nome da ficha no input de nome da ficha
     const characterNameInput = document.getElementById("characterNameInput");
@@ -283,6 +318,10 @@ function resetForm() {
     learnedActionBonuses = [];
     renderLearnedActionBonuses();
 
+    // --- NOVO: Reseta o array de armas e re-renderiza ---
+    weapons = [];
+    renderWeapons();
+
     const characterNameInput = document.getElementById("characterNameInput");
     if (characterNameInput) characterNameInput.value = ''; // Limpa o nome da ficha no input
 
@@ -309,6 +348,7 @@ function loadForm() {
     updateAttributePointsDisplay(); // Garante que a exibição inicial esteja correta
     updateActionBonusLimits(); // Garante que os limites de bônus estejam corretos
     renderLearnedActionBonuses(); // Garante que a renderização de bônus aprendidos esteja correta
+    renderWeapons(); // <--- NOVO: Garante que as armas sejam renderizadas ao carregar o formulário
     document.getElementById("results").style.display = "none"; // Garante que a ficha calculada não apareça vazia inicialmente
 }
 
@@ -396,6 +436,7 @@ function changeAttribute(attributeName, change) {
 function isClassAlreadyUsed(className, currentClassId) {
     if (!className) return false; // Nenhuma classe selecionada não conta como usada
 
+    // CORRIGIDO: appliedClassBonuses.class1 e class2 eram usados incorretamente
     if (currentClassId === 'class1' && appliedClassBonuses.class2.className === className) {
         return true;
     }
@@ -408,13 +449,23 @@ function isClassAlreadyUsed(className, currentClassId) {
 function resetClassBonus(classId) {
     const previousBonus = appliedClassBonuses[classId];
     if (previousBonus.className && previousBonus.attribute) {
+        // CORRIGIDO: Ao resetar, devemos tentar decrementar o atributo,
+        // mas só se o valor do atributo for maior que 1. Se foi o único +1
+        // da classe, ele pode voltar para 1, mas não abaixo disso.
         if (attributes[previousBonus.attribute] > 1) { 
             attributes[previousBonus.attribute]--;
             document.getElementById(`${previousBonus.attribute}Value`).textContent = attributes[previousBonus.attribute];
         } else {
-            console.warn(`Tentativa de decrementar ${previousBonus.attribute} abaixo de 1. Ignorado.`);
+            // Se o atributo já está em 1 e o bônus de classe foi o único a aumentá-lo,
+            // e estamos resetando, ele não deve ir abaixo de 1.
+            // Para garantir que o contador de pontos distribuídos esteja correto,
+            // precisamos assegurar que bonusPointsFromClasses seja decrementado apenas se
+            // o bônus realmente foi aplicado e o atributo era > 1 ANTES do decremento
+            // ou se o bônus fosse para ser aplicado a um atributo que já estava em 1.
+            // A forma mais segura é sempre decrementar bonusPointsFromClasses aqui se havia um bônus.
+            console.warn(`Tentativa de decrementar ${previousBonus.attribute} abaixo de 1 ao resetar bônus da classe. Pode ser normal.`);
         }
-        bonusPointsFromClasses--;
+        bonusPointsFromClasses--; // Sempre decrementa o contador de pontos de classe
         appliedClassBonuses[classId] = { className: '', attribute: '' };
 
         updateAttributePointsDisplay();
@@ -474,7 +525,8 @@ function applyClassBonus(classId) {
         const otherClassId = classId === 'class1' ? 'class2' : 'class1';
         const otherSelectElement = document.getElementById(otherClassId);
         const otherApplyButton = document.getElementById(`apply${otherClassId.replace('class', 'Class')}Btn`);
-        if (otherSelectElement && otherSelectElement.value === selectedClass) {
+        // CORRIGIDO: Verifica se a outra classe já tem um bônus aplicado para não sobrescrever o disabled
+        if (otherSelectElement.value === selectedClass && selectedClass !== '') {
             otherApplyButton.disabled = true;
         }
 
@@ -490,9 +542,11 @@ function applyClassBonus(classId) {
 document.getElementById('class1').addEventListener('change', function() {
     const class2Select = document.getElementById('class2');
     const class2ApplyBtn = document.getElementById('applyClass2Btn');
-    if (class2Select.value === this.value && this.value !== '') {
+    // CORRIGIDO: Se a classe selecionada for igual à da class2, desabilita o botão da class2
+    // Mas só se a class2 AINDA NÃO tiver um bônus aplicado (para permitir mudança de escolha)
+    if (this.value !== '' && class2Select.value === this.value) {
         class2ApplyBtn.disabled = true;
-    } else if (!appliedClassBonuses.class2.className) { // Só re-habilita se não tiver bônus aplicado
+    } else if (!appliedClassBonuses.class2.className) { // Se não houver bônus aplicado na class2, habilita
         class2ApplyBtn.disabled = false;
     }
 });
@@ -500,9 +554,11 @@ document.getElementById('class1').addEventListener('change', function() {
 document.getElementById('class2').addEventListener('change', function() {
     const class1Select = document.getElementById('class1');
     const class1ApplyBtn = document.getElementById('applyClass1Btn');
-    if (class1Select.value === this.value && this.value !== '') {
+    // CORRIGIDO: Se a classe selecionada for igual à da class1, desabilita o botão da class1
+    // Mas só se a class1 AINDA NÃO tiver um bônus aplicado (para permitir mudança de escolha)
+    if (this.value !== '' && class1Select.value === this.value) {
         class1ApplyBtn.disabled = true;
-    } else if (!appliedClassBonuses.class1.className) { // Só re-habilita se não tiver bônus aplicado
+    } else if (!appliedClassBonuses.class1.className) { // Se não houver bônus aplicado na class1, habilita
         class1ApplyBtn.disabled = false;
     }
 });
@@ -760,6 +816,83 @@ function updateLearnedActionBonus(index, field, newValue) {
 // FIM DO NOVO CÓDIGO PARA BÔNUS DE AÇÕES APRENDIDOS
 
 
+// --- NOVO: Funções CRUD para Armas ---
+
+/**
+ * Adiciona uma nova arma vazia ao array de armas.
+ * @param {string} name - Nome inicial da arma (opcional).
+ * @param {string} damageDice - Dano inicial da arma (ex: '1d6') (opcional).
+ * @param {string} condition - Condição inicial da arma (opcional, padrão 'Nula').
+ */
+function addWeapon(name = '', damageDice = '', condition = 'Nula') {
+    weapons.push({ name: name, damageDice: damageDice, condition: condition });
+    renderWeapons();
+}
+
+/**
+ * Remove uma arma do array pelo seu índice.
+ * @param {number} index - O índice da arma a ser removida.
+ */
+function removeWeapon(index) {
+    if (confirm("Tem certeza que deseja remover esta arma?")) {
+        weapons.splice(index, 1);
+        renderWeapons();
+    }
+}
+
+/**
+ * Atualiza um campo específico de uma arma no array.
+ * @param {number} index - O índice da arma a ser atualizada.
+ * @param {string} field - O campo a ser atualizado ('name', 'damageDice', 'condition').
+ * @param {*} value - O novo valor para o campo.
+ */
+function updateWeapon(index, field, value) {
+    if (weapons[index]) {
+        weapons[index][field] = value;
+    }
+}
+
+/**
+ * Renderiza todas as armas no container HTML.
+ * CORRIGIDO: Estrutura HTML para melhor layout do botão X.
+ */
+function renderWeapons() {
+    const container = document.getElementById('weaponsContainer');
+    if (!container) return; // Garante que o container existe
+
+    container.innerHTML = ''; // Limpa o conteúdo atual
+
+    weapons.forEach((weapon, index) => {
+        const weaponDiv = document.createElement('div');
+        weaponDiv.classList.add('weapon-item'); // Adicione uma classe para estilização
+
+        // Cria as opções do select de condições
+        const conditionOptions = predefinedConditions.map(cond =>
+            `<option value="${cond}" ${weapon.condition === cond ? 'selected' : ''}>${cond}</option>`
+        ).join('');
+
+        weaponDiv.innerHTML = `
+            <div class="weapon-header">
+                <button type="button" class="remove-item-btn" onclick="removeWeapon(${index})">X</button>
+            </div>
+            <div class="weapon-fields">
+                <label for="weaponName${index}">Nome da Arma:</label>
+                <input type="text" id="weaponName${index}" value="${weapon.name}" onchange="updateWeapon(${index}, 'name', this.value)" placeholder="Ex: Espada Larga">
+
+                <label for="weaponDamage${index}">Dano:</label>
+                <input type="text" id="weaponDamage${index}" value="${weapon.damageDice}" onchange="updateWeapon(${index}, 'damageDice', this.value)" placeholder="Ex: 4d10">
+
+                <label for="weaponCondition${index}">Condição:</label>
+                <select id="weaponCondition${index}" onchange="updateWeapon(${index}, 'condition', this.value)">
+                    ${conditionOptions}
+                </select>
+            </div>
+        `;
+        container.appendChild(weaponDiv);
+    });
+}
+
+
 function calculateStats() {
     // 1. Obter valores dos inputs estáticos (do HTML)
     const name = document.getElementById("name").value;
@@ -769,7 +902,7 @@ function calculateStats() {
     const lore = document.getElementById("lore").value;
     const mutation = document.getElementById("mutation").value;
     const class1 = document.getElementById("class1").value;
-    const class2 = document.getElementById("class2").value;
+    const class2 = document.getElementById("class2").value; // Classe 2 agora é sempre lida
     const combatClass = document.getElementById("combatClass").value;
     const inventory = document.getElementById("inventory").value;
 
@@ -819,6 +952,23 @@ function calculateStats() {
     } else {
         learnedBonusAcoesHtml = '<p class="no-info">Nenhum bônus de ação aprendido registrado.</p>';
     }
+
+    // --- NOVO: Geração da lista de Armas ---
+    let weaponsHtml = '';
+    if (weapons.length > 0) {
+        weaponsHtml = `<ul class="stats-list weapon-list">`;
+        weapons.forEach(weapon => {
+            weaponsHtml += `<li><strong class="sub-category-title">${weapon.name || '<span class="no-info">Arma sem nome</span>'}</strong>: <span class="attribute-value">${weapon.damageDice || '<span class="no-info">Dano não especificado</span>'}</span>`;
+            if (weapon.condition && weapon.condition !== 'Nula') {
+                weaponsHtml += `<span class="attribute-value">${weapon.condition}</span>`;
+            }
+            weaponsHtml += `</li>`;
+        });
+        weaponsHtml += `</ul>`;
+    } else {
+        weaponsHtml = '<p class="no-info">Nenhuma arma registrada.</p>';
+    }
+
 
     // Listas de recompensas por nível
     let levelRewardsList = [];
@@ -901,8 +1051,7 @@ function calculateStats() {
         <div class="ficha-section">
             <h4 class="section-title">Classes e Mutação</h4>
             <p class="stats-item"><strong class="sub-category-title">Classe Primitiva 1</strong>: <span class="attribute-value">${class1 || '<span class="no-info">Não selecionado</span>'}</span></p>
-            ${class2 ? `<p class="stats-item"><strong class="sub-category-title">Classe Primitiva 2</strong>: <span class="attribute-value">${class2}</span></p>` : ''}
-            <p class="stats-item"><strong class="sub-category-title">Classe de Combate</strong>: <span class="attribute-value">${combatClass || '<span class="no-info">Não selecionado</span>'}</span></p>
+            <p class="stats-item"><strong class="sub-category-title">Classe Primitiva 2</strong>: <span class="attribute-value">${class2 || '<span class="no-info">Não selecionado</span>'}</span></p> <p class="stats-item"><strong class="sub-category-title">Classe de Combate</strong>: <span class="attribute-value">${combatClass || '<span class="no-info">Não selecionado</span>'}</span></p>
             <p class="stats-item"><strong class="sub-category-title">Mutação de Personagem</strong>:<br><span class="attribute-value formatted-text">${mutation ? mutation.replace(/\n/g, '<br>') : '<span class="no-info">Não preenchido</span>'}</span></p>
             ${mutationRewardsList.length > 0 ? `<div class="stats-item"><strong class="sub-category-title">Recompensas de Mutação</strong>: <ul class="stats-list">${mutationRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul></div>` : ''}
         </div>
@@ -918,11 +1067,10 @@ function calculateStats() {
         </div>
         
         <div class="ficha-section">
-            <h4 class="section-title">Lore e Inventário</h4>
-            <p class="stats-item"><strong class="sub-category-title">Lore - História</strong>:<br><span class="attribute-value formatted-text">${lore ? lore.replace(/\n/g, '<br>') : '<span class="no-info">Não preenchido</span>'}</span></p>
-            <p class="stats-item"><strong class="sub-category-title">Itens Atuais</strong>:<br><span class="attribute-value formatted-text">${inventory ? inventory.replace(/\n/g, '<br>') : '<span class="no-info">Nenhum item registrado.</span>'}</span></p>
+            <h4 class="section-title">Inventário e Armas</h4> <p class="stats-item"><strong class="sub-category-title">Itens Atuais</strong>:<br><span class="attribute-value formatted-text">${inventory ? inventory.replace(/\n/g, '<br>') : '<span class="no-info">Nenhum item registrado.</span>'}</span></p>
             ${inventoryRewardsList.length > 0 ? `<div class="stats-item"><strong class="sub-category-title">Recompensas Adicionais no Inventário por Nível</strong>: <ul class="stats-list">${inventoryRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul></div>` : ''}
-        </div>
+
+            <h4 class="sub-section-title"></h4> ${weaponsHtml} </div>
         
         ${levelRewardsList.length > 0 ? `<div class="ficha-section"><h4 class="section-title">Recompensas Gerais por Nível</h4><ul class="stats-list">${levelRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul></div>` : ''}
     `;
@@ -943,7 +1091,7 @@ function copyFicha() {
     // Clonar o elemento para evitar modificações no DOM visível
     const tempDiv = statsDiv.cloneNode(true);
 
-    // Remover a imagem se existir no clone
+    // --- NOVO: Remover a imagem se existir no clone ---
     const photoDisplay = tempDiv.querySelector('.photo-display');
     if (photoDisplay) {
         photoDisplay.remove();
@@ -957,6 +1105,12 @@ function copyFicha() {
         if (sectionTitleElement) {
             fichaText += `=== ${sectionTitleElement.textContent.trim()} ===\n\n`;
         }
+
+        // Adiciona subtítulos específicos como "Armas"
+        section.querySelectorAll('.sub-section-title').forEach(subTitleElement => {
+            fichaText += `-- ${subTitleElement.textContent.trim()} --\n\n`;
+        });
+
 
         section.querySelectorAll('.stats-item').forEach(item => {
             const strongElement = item.querySelector('strong');
@@ -1111,3 +1265,49 @@ function updateLevelBar() {
         levelBarFill.style.width = percentage + '%';
     }
 }
+
+// O event listener DOMContentLoaded já está presente no final do arquivo,
+// garantindo que as funções de renderização de armas, bônus e o loadForm sejam chamados.
+
+// --- NOVO: Objeto para armazenar as armas (lista de objetos {name: '', damageDice: '', condition: ''}) ---
+// Esta declaração já estava na primeira parte que você enviou.
+// Apenas para garantir que não haja duplicação, ela deve estar apenas UMA VEZ no seu código final.
+// let weapons = []; 
+
+// --- NOVO: Lista de condições pré-definidas ---
+// Esta declaração já estava na primeira parte que você enviou.
+// Apenas para garantir que não haja duplicação, ela deve estar apenas UMA VEZ no seu código final.
+/*
+const predefinedConditions = [
+    "Nula", // Opção padrão para nenhuma condição
+    "Sangramento",
+    "Envenenado",
+    "Queimando",
+    "Atordoado",
+    "Amedrontado",
+    "Marcado",
+    "Vulnerável",
+    "Enfraquecido",
+    "Imobilizado",
+    "Cego",
+    "Protegido",
+    "Revelado",
+    "Silenciado",
+    "Exposto",
+    "Abalado",
+    "Fortalecido",
+    "Rage"
+];
+*/
+
+// Carrega a ficha salva no localStorage ao iniciar
+// Este event listener já estava na primeira parte que você enviou, mas com a adição da renderização de armas.
+// Para garantir que ele seja o único, o `renderWeapons()` já foi incluído na primeira parte.
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    loadCharacterLocal();
+    renderActionBonuses();
+    renderLearnedActionBonuses();
+    renderWeapons(); // <--- NOVO: Garante que as armas sejam renderizadas
+});
+*/

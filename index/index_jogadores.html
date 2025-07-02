@@ -151,7 +151,7 @@
       </select>
       <button type="button" id="applyClass1Btn" onclick="applyClassBonus('class1')">Aplicar Bônus Classe 1</button>
 
-      <label for="class2">Classe Primitiva 2 (Opcional):</label>
+      <label for="class2">Classe Primitiva 2:</label>
       <select id="class2" onchange="resetClassBonus('class2')">
         <option value="">Nenhuma</option>
         <option value="guerreiro">Guerreiro (+1 For/Vig)</option>
@@ -188,9 +188,14 @@
       <div id="learnedActionBonusContainer" class="action-bonus-list"></div>
       <button type="button" class="add-learned-action-btn" onclick="addLearnedActionBonus()">Adicionar Bônus Aprendido</button>
 
-      <!-- Inventário -->
       <label for="inventory">Inventário:</label>
-      <textarea id="inventory" class="scrollable" placeholder="Descreva os itens do seu personagem."></textarea>
+    <textarea id="inventory" class="scrollable" placeholder="Descreva seus itens, cosméticos, recursos e outros pertences."></textarea>
+
+   
+    <h3 class="decorated-title" id="Armas">Armas:</h3>
+    <div id="weaponsContainer" class="weapons-container">
+        </div>
+    <button type="button" onclick="addWeapon()">Adicionar Arma</button>
 
       <!-- Botões -->
       <button type="button" onclick="calculateStats()">Calcular Ficha</button>
