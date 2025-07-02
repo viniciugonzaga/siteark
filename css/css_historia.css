@@ -1075,11 +1075,11 @@ main {
 /* --- RESPONSIVIDADE APRIMORADA --- */
 
 /* Breakpoint para telas até 780px de largura */
-@media (max-width: 780px) {
+@media (max-width: 760px) {
     /* Container principal */
        .intro-ark {
         padding: 20px;    /* Padding reduzido */
-        width: 100%;      /* Ocupa a largura total da tela */
+        width: 95%;      /* Ocupa a largura total da tela */
         max-width: 100%;  /* Sem limite */
         margin: 20px auto;/* Centraliza vertical e horizontalmente */
         box-sizing: border-box; /* Garante que padding não cause overflow */
@@ -1118,7 +1118,7 @@ main {
     /* Container principal */
      .intro-ark {
         padding: 15px;
-        width: 100%;
+        width: 90%;
         max-width: 100%;
         margin: 15px auto;
         border-radius: 15px;  /* Ajuste visual */
@@ -1135,7 +1135,7 @@ main {
     /* Campo de texto */
     .intro-campo {
         padding: 18px 12px; /* Padding menor */
-        max-width: 100%; /* Largura total */
+        max-width: 95%; /* Largura total */
         border-radius: 15px; /* Menos arredondado */
     }
 
@@ -1878,7 +1878,7 @@ main {
 
 
 /* Responsividade aprimorada */
-@media (max-width: 960px) {
+@media (max-width: 760px) {
     .civilizacoes-section {
         padding: 40px 25px;
         gap: 30px;
@@ -1899,6 +1899,9 @@ main {
     }
     .civilizacoes-texto h2 {
         font-size: 1.6rem;
+    }
+    .civilizacoes-texto{
+        font-size: 0.7rem;
     }
     .civilizacoes-icones {
         gap: 25px;
@@ -1925,7 +1928,7 @@ main {
         margin-bottom: 30px;
     }
     .civilizacoes-texto.active {
-        font-size: 0.9rem;
+        font-size: 0.8rem;
         line-height: 1.6;
         padding: 20px;
     }

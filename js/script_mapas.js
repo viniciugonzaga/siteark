@@ -338,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
   {
     title: "Guerra das Colinas de Ferro",
     text: "A Guerra das Colinas de Ferro eclodiu entre o Império sobre a Montanha, formado por anões, e os orcs liderados pelo General Pálido. Os anões, conhecidos por sua coragem, enfrentaram dificuldades devido à falta de táticas adequadas e paciência em combate. Armados com machados e martelos, eles avançavam sem estratégia, enquanto os orcs utilizavam arcos com flechas envenenadas e montarias ferozes, como Ravagers e tigres, para atacar de longe enquantos se deslocavam rápidamente. A batalha foi longa e desgastante, culminando em um duelo decisivo entre o Rei dos Anões e o General Pálido, que resultou na morte do rei e na fuga de muitos anões, abandonando a fortaleza repleta de recursos. Com a fortaleza desprotegida, os Morgoths, elfos transformados em criaturas insanas, se tornaram os Orcs, elfos caídos depois de uma grande mistura de raças, formando uma aliança sombria. O castelo dos anões tornou-se um símbolo de derrota, e o herdeiro do rei, agora encarregado de reunir os sobreviventes e vingar seu pai, se deparou com o mistério de um castelo vazio. A guerra não apenas resultou na derrota dos anões, mas também na ascensão do império Orc, criando um novo equilíbrio de poder e uma ameaça crescente na região.",
-    icons: ["../imagens/icon_anao.jpg",  "../imagens/Orc_icon.png"]
+    icons: ["../imagens/icon_anao.jpg",  "../imagens/Orc_icon.PNG"]
   }
     ];
 
