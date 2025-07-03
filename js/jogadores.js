@@ -1,3 +1,4 @@
+
 // Objeto para armazenar os valores dos atributos
 const attributes = {
     agi: 1,
