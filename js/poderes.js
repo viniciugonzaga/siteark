@@ -68,121 +68,52 @@ clearRollsButton.addEventListener('click', () => {
     window.location.href = page; // Redireciona para a página passada como argumento
 }
 
-// ========================
-// Footer dinâmico
-// ========================
-document.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer"); // Seleciona o rodapé
 
-    // Se o usuário rolar até o fim da página
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Altera a cor do rodapé
-    } else {
-        footer.style.background = "linear-gradient(45deg, #700404ec, #3c0000)"; // Mantém a cor padrão
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
-    const container = document.getElementById('container-geral2');
-    let isDarkening = true;
-    const animationDuration = 4000; // Duração da animação em milissegundos
+    const animatedElements = document.querySelectorAll('.animated-element, .section-wrapper');
+    const animatedTexts = document.querySelectorAll('.animated-text');
 
-    container.addEventListener('animationiteration', function(event) {
-        if (event.target === container && (event.animationName === 'darkenOscillate' || event.animationName === 'lightenOscillate')) {
-            isDarkening = !isDarkening;
-            const animationName = isDarkening ? 'darkenOscillate' : 'lightenOscillate';
-            container.style.setProperty('--before-animation', `${animationName} ${animationDuration / 1000}s infinite alternate`);
-        }
-    });
-
-    // Define uma variável CSS customizada para a animação no ::before
-    container.style.setProperty('--before-animation', `darkenOscillate ${animationDuration / 1000}s infinite alternate`);
-
-    // Adiciona um estilo para aplicar a animação ao ::before usando a variável
-    const style = document.createElement('style');
-    style.textContent = `#container-geral2::before { animation: var(--before-animation); }`;
-    document.head.appendChild(style);
-});
-
-
-function showContainer(containerId) {
-    const containers = document.querySelectorAll('.container');
-    containers.forEach(container => {
-        container.classList.remove('active');
-    });
-    document.getElementById(`container-${containerId}`).classList.add('active');
-}
-
-function openModal(title, type, imageSrc, description) {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    const modalTitle = document.getElementById('modal-title');
-    const modalImg = document.getElementById('modal-img');
-    const modalType = document.getElementById('modal-type');
-    const modalDescription = document.getElementById('modal-description');
-
-    modalTitle.textContent = title;
-    modalImg.src = imageSrc;
-    modalImg.alt = title; // Adiciona texto alternativo para a imagem
-    modalType.textContent = type;
-    modalDescription.textContent = description;
-    modalOverlay.style.display = 'flex'; // ou 'block', dependendo do seu layout
-}
-
-function closeModal() {
-    const modalOverlay = document.querySelector('.modal-overlay');
-    modalOverlay.style.display = 'none';
-}
-
-// Adiciona um ouvinte de evento para fechar o modal ao clicar fora dele
-document.querySelector('.modal-overlay').addEventListener('click', function(event) {
-    if (event.target === this) { // Verifica se o clique ocorreu diretamente no overlay
-        closeModal();
-    }
-});
-
-// Inicialmente, mostra o primeiro container (Rituais)
-document.addEventListener('DOMContentLoaded', function() {
-    showContainer(0);
-});
-// bah
-function abrirExplicacao(id) {
-    document.getElementById("modal-explicacao-" + id).style.display = "block";
-  }
-  
-  function fecharExplicacao(id) {
-    document.getElementById("modal-explicacao-" + id).style.display = "none";
-  }
-  // Inicialmente, mostra o primeiro container (Rituais)
-document.addEventListener('DOMContentLoaded', function() {
-    showContainer(0);
-
-    // Adiciona event listeners para os modals de explicação
-    // Ajuste o loop para o número total de modals de explicação que você tem (ex: 0 a 4)
-    for (let i = 0; i < 5; i++) { // O loop vai de 0 a 4, cobrindo modal-explicacao-0, -1, -2, -3, -4
-        const modalOverlay = document.getElementById(`modal-explicacao-${i}`);
-        if (modalOverlay) {
-            modalOverlay.addEventListener('click', function(event) {
-                // Verifica se o clique ocorreu diretamente no overlay, não no conteúdo do modal
-                if (event.target === modalOverlay) {
-                    fecharExplicacao(i);
+    // Intersection Observer para animações de entrada de divs e sections
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                const animation = element.getAttribute('data-animation');
+                if (animation) {
+                    element.style.opacity = '1'; // Torna visível para a animação
+                    element.style.animationName = animation;
+                    element.style.animationDuration = element.dataset.duration || '1s'; // Permite duração customizada
+                    element.style.animationDelay = element.dataset.delay || '0s'; // Permite delay customizado
                 }
-            });
+                observer.unobserve(element); // Para de observar depois que a animação é acionada
+            }
+        });
+    }, {
+        threshold: 0.1 // A animação dispara quando 10% do elemento está visível
+    });
+
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+
+    // Para o brilho de texto que passa (glowing-sweep-text)
+    animatedTexts.forEach(textElement => {
+        if (textElement.dataset.animation === 'glowing-sweep-text') {
+            // A animação glowingSweep já é controlada via CSS e 'infinite'
+            // Não precisamos de JS para ativá-la, apenas para garantir que o elemento está visível
+            // (que é coberto pelo Intersection Observer para as .animated-element e .section-wrapper)
+        } else if (textElement.dataset.animation === 'flicker-text') {
+            // A animação flickerText é puramente CSS e 'infinite'
         }
-    }
+    });
+
+    // Correção para o brilho de varredura do texto ao recarregar
+    // Se você notar que o brilho não está animando corretamente após o carregamento inicial em alguns casos,
+    // pode ser necessário forçar um reflow ou reiniciar a animação.
+    // No entanto, para animações CSS "infinite", elas geralmente iniciam automaticamente.
 });
-
-// Função para abrir o modal de explicação
-function abrirExplicacao(id) {
-    const modal = document.getElementById("modal-explicacao-" + id);
-    if (modal) {
-        modal.style.display = "flex"; // Alterado para flex para usar a centralização do CSS
-    }
-}
-
-// Função para fechar o modal de explicação
-function fecharExplicacao(id) {
-    const modal = document.getElementById("modal-explicacao-" + id);
-    if (modal) {
-        modal.style.display = "none";
-    }
-}
+ function girarPainel() {
+    const painel = document.querySelector('.painel-flip');
+    painel.classList.toggle('girar');
+  }
