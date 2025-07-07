@@ -113,7 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // pode ser necessário forçar um reflow ou reiniciar a animação.
     // No entanto, para animações CSS "infinite", elas geralmente iniciam automaticamente.
 });
- function girarPainel() {
-    const painel = document.querySelector('.painel-flip');
-    painel.classList.toggle('girar');
+function abrirModal() {
+    document.getElementById('modalRegras').style.display = 'flex';
+  }
+
+  function fecharModal() {
+    document.getElementById('modalRegras').style.display = 'none';
   }

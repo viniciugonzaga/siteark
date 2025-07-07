@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rituais</title>
-    <link rel="stylesheet" href="/css/poderes.css">
+    <link rel="stylesheet" href="../css/poderes.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js"></script>
     <!-- Fonte -->
@@ -70,62 +70,45 @@
   </nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
  <!-- Seção Início -->
- <!-- Seção Início -->
   
   <div class="titulo_principal">
-    <h1 class="titulo_efeito">Rituais</h1>
+    <h1 class="titulo_efeito">Rituais<h1>
   </div>
 
   <!-- ░░░ CONTEÚDO PRINCIPAL ░░░ -->
 
- <main class="rituals-page-content">
-         <session>
-    <!-- Introdução -->
-    <div class="div-introducao">
-      <div class="icone-introducao">
-        <img src="../imagens/lich_icon_normal.png" alt="Ícone Introdução">
+<main class="rituals-page-content">
+    
+  <section class="session-fundo">
+    <div class="ritual-container">
+      <h2>introdução ritual</h2>
+      <div class="campo-texto-ritual">
+        <p>No universo do Ark, os rituais desempenham um papel fundamental na vida dos habitantes, servindo como uma ponte entre o mundo físico e as forças arcanas que permeiam a ilha primordial. Esses rituais são práticas cerimoniais que permitem aos indivíduos e comunidades se conectarem com a essência do arcano, influenciando o ambiente e suas próprias existências. Os rituais no Ark são cerimônias que envolvem a invocação de forças arcanas, a realização de gestos simbólicos e a recitação de frases que buscam manifestar ou controlar a energia do arcano. Eles podem variar desde celebrações de criação e transformação até momentos de introspecção e reflexão sobre as consequências das ações dos habitantes. Cada ritual é uma expressão da relação dos habitantes com o arcano e com os titãs, Pangar e Hellion, que moldam o mundo ao seu redor. Os rituais são profundamente enraizados na ambientação do Ark, refletindo a dinâmica entre os ciclos das estações e as forças da natureza. Por exemplo, o "Fenômeno da Criação" celebra a primeira batalha entre os titãs, simbolizando a origem das estações e a adaptação da ilha. Os rituais de domínio, como o "Ritual da Linguagem", permitem que os Caídos interajam com o arcano, criando um padrão que influencia a fauna e a flora do Ark. Assim, os rituais não apenas moldam a cultura dos habitantes, mas também afetam diretamente o ecossistema e as condições climáticas da ilha</p>
       </div>
-      <div class="campo-titulo-central">Introdução</div>
-      <div class="campo-texto-introducao">
-      No universo do Ark, os rituais desempenham um papel fundamental na vida dos habitantes, servindo como uma ponte entre o mundo físico e as forças arcanas que permeiam a ilha primordial. Esses rituais são práticas cerimoniais que permitem aos indivíduos e comunidades se conectarem com a essência do arcano, influenciando o ambiente e suas próprias existências.
-      </div>
-    </div>
 
-    <div class="painel-container">
-  <div class="painel-flip" id="painel">
-    <div class="face face-frente">
-      <!-- Divs frente -->
-      <div class="div-oq-sao">
-        <div class="campo-titulo">O que são rituais?</div>
-        <div class="campo-texto-oq-sao">Os rituais no Ark são cerimônias que envolvem a invocação de forças arcanas, a realização de gestos simbólicos e a recitação de frases que buscam manifestar ou controlar a energia do arcano. Eles podem variar desde celebrações de criação e transformação até momentos de introspecção e reflexão sobre as consequências das ações dos habitantes. Cada ritual é uma expressão da relação dos habitantes com o arcano e com os titãs, Pangar e Hellion, que moldam o mundo ao seu redor.</div>
+      <div class="sangue-barra">
+        <div class="sangue-gota" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="sangue-gota" style="left: 25%; animation-delay: 0.4s;"></div>
+        <div class="sangue-gota" style="left: 40%; animation-delay: 0.2s;"></div>
+        <div class="sangue-gota" style="left: 60%; animation-delay: 0.6s;"></div>
+        <div class="sangue-gota" style="left: 80%; animation-delay: 0.8s;"></div>
       </div>
-      <div class="div-impor">
-        <div class="campo-titulo-importancia">Como funcionam?</div>
-        <div class="campo-texto-importancia">Os rituais são profundamente enraizados na ambientação do Ark, refletindo a dinâmica entre os ciclos das estações e as forças da natureza. Por exemplo, o "Fenômeno da Criação" celebra a primeira batalha entre os titãs, simbolizando a origem das estações e a adaptação da ilha. Os rituais de domínio, como o "Ritual da Linguagem", permitem que os Caídos interajam com o arcano, criando um padrão que influencia a fauna e a flora do Ark. Assim, os rituais não apenas moldam a cultura dos habitantes, mas também afetam diretamente o ecossistema e as condições climáticas da ilha.</div>
-      </div>
-    </div>
 
-    <div class="face face-verso">
-      <!-- Divs verso -->
-      <div class="div-oq-sao">
-        <div class="campo-titulo">Função narrativa</div>
-        <div class="campo-texto-oq-sao">Os rituais no Ark são cruciais tanto para a narrativa quanto para a mecânica do universo. Eles estabelecem uma ligação entre os habitantes e os colossos, os titãs que governam a ilha, e influenciam as condições climáticas e os fenômenos naturais. Além disso, os rituais de pactos e de transformação têm o potencial de provocar mudanças significativas no ambiente e nas pessoas, refletindo a luta constante pela sobrevivência e adaptação. A prática descontrolada do arcano, por outro lado, pode levar à corrupção e ao caos, criando conflitos e desafios que impulsionam a narrativa e o desenvolvimento dos personagens.</div>
+      <div class="icone-regras" onclick="abrirModal()">
+        <img src="../imagens/Icone_Diluvio.png" alt="ícone ritual">
+        <span>Conceito de Rituais</span>
       </div>
-      <div class="div-impor">
-        <div class="campo-titulo-importancia">Tipos de categoria</div>
-        <div class="campo-texto-importancia">Qualquer habitante do Ark pode participar dos rituais, mas a profundidade e a eficácia da execução muitas vezes dependem do conhecimento e da experiência do indivíduo. Os Caídos, como a primeira civilização a explorar o arcano, têm um papel central na realização de muitos rituais, utilizando seu alfabeto e suas práticas para canalizar a energia arcanas. No entanto, líderes comunitários, xamãs e aqueles que possuem uma conexão especial com o arcano são frequentemente os responsáveis por conduzir as cerimônias, guiando os participantes em suas invocações e práticas.</div>
-      </div>
+
+    </div> </section>
+
+  <div class="modal" id="modalRegras">
+    <div class="modal-content">
+      <h3>Conceitos de Rituais</h3>
+      <p>Aqui você pode colocar as regras detalhadas de como os rituais funcionam no seu RPG.</p>
+      <button onclick="fecharModal()">Fechar</button>
     </div>
   </div>
-
-  <!-- Botões fixados após as faces -->
-  <div class="botoes-troca">
-    <button onclick="girarPainel()">⭠</button>
-    <button onclick="girarPainel()">⭢</button>
-  </div>
-</div>
-  </session>
-
+</main>
  
  </main>
 
