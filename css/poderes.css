@@ -884,6 +884,8 @@ nav {
 /* Section Principal - Inspirado em .civilizacoes-section e .origem-section */
 section.session-fundo {
     position: relative;
+    /* Dentro de .session-fundo */
+    overflow: hidden;
     width: 100%;
     margin-top: -50px;
     min-height: 100vh; /* Use min-height para garantir que o conteúdo caiba */
@@ -893,13 +895,7 @@ section.session-fundo {
     padding: 40px 20px; /* Mais padding para o conteúdo não ficar grudado nas bordas */
     box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
     
-    /* Fundo da imagem da sessão - Usando a imagem dfede2.jpg como base */
-    background-image: url('../imagens/image_dfede2.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
-    background-size: cover;
-    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
-    
+   
     position: relative;
     z-index: 0; /* Para que os pseudo-elementos fiquem por cima */
 }
@@ -922,24 +918,44 @@ section.session-fundo::before {
     pointer-events: none;
 }
 
+
+.session-fundo::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: url('../imagens/fundo_rubi.jpg'); /* Coloque um GIF de névoa avermelhada */
+  background-size: cover;
+  opacity: 0.13;
+  animation: moverNevoa 90s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes moverNevoa {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20%, 20%); }
+}
+
 /* Ritual Container - Inspirado em .origem-section, mais sombrio e com brilho vermelho */
 .ritual-container {
     position: relative; /* FUNDAMENTAL: Para que o ícone absoluto se posicione em relação a ele */
-    width: 90%; /* Ajuste a largura para ser mais responsivo */
-    max-width: 1000px; /* Largura máxima para desktops */
-    
+    width: 70%; /* Ajuste a largura para ser mais responsivo */
+    max-width: 1000px; /* Limite máximo para telas grandes */
     /* Estilo do segundo CSS para a div principal, com foco em tons escuros e borda vermelha */
-    background: linear-gradient(135deg, rgba(5, 5, 5, 0.98) 0%, rgba(15, 15, 15, 0.95) 100%); /* Fundo quase preto */
+    background: linear-gradient(135deg, rgba(5, 5, 5, 0.856) 0%, rgba(15, 15, 15, 0.863) 100%); /* Fundo quase preto */
     border-radius: 25px; /* Mais arredondado */
     padding: 40px; /* Mais padding */
     color: #F8F8F8; /* Cor do texto mais clara */
     text-align: center;
     /* Sombra e borda com foco no vermelho */
     box-shadow: 
-        0 0 80px rgba(220, 20, 60, 0.2), /* Brilho externo vermelho mais forte */
-        inset 0 0 50px rgba(0, 0, 0, 0.8); /* Sombra interna mais escura */
+        0 0 80px rgba(220, 20, 60, 0.486), /* Brilho externo vermelho mais forte */
+        inset 0 0 50px rgba(99, 3, 3, 0.8); /* Sombra interna mais escura */
     border: 3px solid #8B0000; /* Borda vermelha escura, mais impactante */
-    backdrop-filter: blur(10px); /* Efeito de vidro fosco mais intenso */
+    backdrop-filter: blur(1px); /* Efeito de vidro fosco mais intenso */
     z-index: 2; /* Garante que fique acima da section */
     display: flex;
     flex-direction: column;
@@ -947,6 +963,12 @@ section.session-fundo::before {
     gap: 30px; /* Espaçamento entre os elementos internos */
     
     /* Removido background-image interno para evitar conflito com a section-fundo */
+   
+}
+
+@keyframes pulsarGota {
+  0% { filter: drop-shadow(0 0 5px #ff0000); }
+  100% { filter: drop-shadow(0 0 15px #ff2d2d); }
 }
 
 /* Efeito de brilho interno no ritual-container - Mais avermelhado */
@@ -971,28 +993,57 @@ section.session-fundo::before {
     font-size: 2.6rem; /* Um pouco maior */
     font-weight: 700; /* Mais negrito */
     font-family: 'Cinzel', serif; /* Fonte mais mística/medieval para o título */
-    
-    /* Removida a imagem de fundo do H2, ele deve ser uma cor ou gradiente */
-    background: linear-gradient(135deg, #100000, #000000, #100000); /* Gradiente de vermelho escuro para preto */
-    
+     /* Fundo da imagem da sessão - Usando a imagem dfede2.jpg como base */
+    background-image: url('../imagens/fundo_rubi.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
+    background-size: cover;
+    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
     border-radius: 25px; /* Ligeiramente mais arredondado */
     padding: 25px 40px; /* Mais padding */
     border: 3px solid #8B0000; /* Borda vermelha escura */
     color: #F0F0F0; /* Cor base para fallback */
     text-align: center;
     text-shadow:
-        0 0 15px rgba(255, 69, 0, 0.8), /* Laranja avermelhado */
+        0 0 15px rgba(114, 1, 1, 0.8), /* Laranja avermelhado */
         0 0 40px rgba(255, 0, 0, 0.6), /* Vermelho vivo */
         0 0 80px rgba(255, 0, 0, 0.3); /* Vermelho mais difuso */
     position: relative;
     max-width: 450px; /* Aumentado para acomodar mais texto */
     overflow: hidden;
-    
     /* Animação de brilho e leve flutuação */
     animation: 
         pulseGlowRed 4s infinite alternate, /* Brilho pulsante vermelho */
         floatEffect 6s ease-in-out infinite; /* Efeito de flutuação */
     transform-style: preserve-3d;
+}
+
+/* Efeito de brilho passando */
+.ritual-container h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%; /* Começa fora da div à esquerda */
+    width: 50%; /* Largura do brilho */
+    height: 100%;
+    background: linear-gradient(to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(255, 255, 255, 0.185) 50%, 
+        rgba(255, 255, 255, 0) 100%
+    ); /* Gradiente transparente para branco transparente */
+    transform: skewX(-20deg); /* Inclina o brilho para dar um efeito de movimento */
+    animation: shineEffect 3s infinite linear; /* Animação para mover o brilho */
+    z-index: 1; /* Garante que o brilho esteja acima da imagem de fundo, mas abaixo do texto se houver*/
+}
+
+/* Definição da animação do brilho */
+@keyframes shineEffect {
+    0% {
+        left: -75%; /* Inicia o brilho fora da esquerda */
+    }
+    100% {
+        left: 100%; /* Move o brilho para fora da direita */
+    }
 }
 
 /* Nova animação de brilho pulsante para o título (foco em vermelho) */
@@ -1013,27 +1064,62 @@ section.session-fundo::before {
 /* Campo de Texto - Inspirado em .origem-texto, mais escuro e com brilho sutil */
 .campo-texto-ritual {
     /* Removida a imagem de fundo do campo de texto, ela deve ser uma cor ou gradiente */
-    background: linear-gradient(135deg, rgba(15, 15, 15, 0.98), rgba(25, 25, 25, 0.96)); /* Gradiente mais escuro */
-    border-radius: 20px; /* Mais arredondado */
-    padding: 30px; /* Mais padding */
-    width: 75%; /* Mantido, se precisar de 100% remova esta linha */
-    max-width: 800px; /* Adicionado um max-width para não ficar muito largo em telas grandes */
-    margin: 0 auto 30px auto; /* Centraliza e mantém o margin-bottom */
-    min-height: 180px; /* Aumentei um pouco a altura mínima */
-    color: #F0F0F0; /* Cor do texto mais clara */
+    background: linear-gradient(135deg, rgba(25, 25, 25, 0.98), rgba(35, 35, 35, 0.96));
+    color: #ffd2d2;
     font-size: 1.05rem;
     line-height: 1.8;
+    padding: 20px;
+    border-radius: 20px;
+    border: 2px solid rgba(218, 6, 6, 0.904);
+    box-shadow: 0 0 15px rgba(56, 2, 2, 0.3), inset 0 0 5px rgba(248, 193, 193, 0.08);
     text-align: justify;
-    border: 2px solid rgba(139, 0, 0, 0.4); /* Borda vermelha sutil */
-    box-shadow: 
-        0 0 15px rgba(83, 11, 11, 0.918), /* Sombra mais forte */
-        inset 0 0 8px rgba(141, 72, 72, 0.2); /* Brilho interno vermelho sutil */
-    
-    word-spacing: -0.5px;
-    letter-spacing: 0.05px;
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.1); /* Brilho de texto mais puxado para vermelho */
-    animation: text-pulse-glow-red 7s infinite alternate ease-in-out; /* Brilho pulsante vermelho */
+    word-spacing: -1px;
+    letter-spacing: 0.1px;
+    text-shadow: 0 0 3px rgba(248, 197, 193, 0.05);
+    background-image: url('../imagens/fundo_rubi_preto.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
+    background-size: cover;
+    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
+    border-radius: 25px; /* Ligeiramente mais arredondado */
+    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Ajustei para 7s, mais lento */
 }
+
+/* Camada escura sobre o fundo de imagem */
+.campo-texto-ritual::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.65); /* Grau de escurecimento */
+    z-index: 0; /* Fica abaixo do conteúdo de texto */
+    border-radius: inherit;
+}
+.campo-texto-ritual > * {
+    position: relative;
+    z-index: 1;
+}
+.campo-texto-ritual {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: aparecerTexto 1.2s ease-out 0.5s forwards;
+}
+
+@keyframes aparecerTexto {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.icone-regras img {
+  animation: rotacaoLenta 20s linear infinite;
+}
+
+@keyframes rotacaoLenta {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
 /* Animação de brilho do texto - Agora avermelhada */
 @keyframes text-pulse-glow-red {
@@ -1069,6 +1155,7 @@ section.session-fundo::before {
     animation: escorrer 2s infinite ease-in; /* Animação existente */
     filter: drop-shadow(0 0 8px rgba(255, 0, 0, 1)); /* Sombra para dar mais volume e brilho */
     opacity: 0.9; /* Não totalmente transparente para maior impacto */
+     animation: escorrer 3s infinite ease-in, pulsarGota 2s infinite alternate;
 }
 
 /* Ajuste das keyframes para o efeito de sangramento */
@@ -1095,8 +1182,8 @@ section.session-fundo::before {
 }
 
 .icone-regras img {
-    width: 140px; /* Ícone ainda maior */
-    height: 140px;
+    width: 100px; /* Ícone ainda maior */
+    height:100px;
     border-radius: 50%;
     border: 3px solid #8B0000; /* Borda vermelha escura */
     background: linear-gradient(135deg, rgba(30, 0, 0, 0.9), rgba(50, 0, 0, 0.8)); /* Fundo avermelhado */
@@ -1134,96 +1221,120 @@ section.session-fundo::before {
     text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
 }
 
-/* Modal - Inspirado em .ritual-container e elementos do segundo CSS, com foco em vermelho/preto */
 .modal {
-    display: none; /* Controlado via JS */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.95); /* Fundo quase opaco para o modal */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Acima de tudo */
-    backdrop-filter: blur(15px); /* Efeito de blur ainda mais intenso para o fundo do modal */
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .modal.active {
-    display: flex;
-    opacity: 1;
+  display: flex;
+  opacity: 1;
 }
 
 .modal-content {
-    background: linear-gradient(135deg, rgba(10, 0, 0, 0.98), rgba(20, 0, 0, 0.95)); /* Fundo gradiente vermelho escuro */
-    color: #F8F8F8;
-    padding: 50px; /* Mais padding */
-    border-radius: 20px; /* Mais arredondado */
-    width: 85%; /* Mais largo para telas menores */
-    max-width: 750px; /* Largura máxima para desktops */
-    text-align: justify; /* Justificado para as regras */
-    border: 3px solid #FF4500; /* Borda laranja avermelhado brilhante */
-    box-shadow: 
-        0 0 60px rgba(255, 69, 0, 0.3), /* Brilho externo laranja avermelhado */
-        inset 0 0 40px rgba(0, 0, 0, 0.9); /* Sombra interna muito escura */
-    transform: translateY(-30px) scale(0.95); /* Começa mais para cima e um pouco menor */
-    opacity: 0;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-    position: relative;
-    max-height: 90vh; /* Limita a altura do modal */
-    overflow-y: auto; /* Adiciona scroll se o conteúdo for grande */
-    font-family: 'Share Tech Mono', monospace; /* Para manter a fonte digital */
+  background: linear-gradient(135deg, #0c0000, #1b0000);
+  color: #f2f2f2;
+  border: 2px solid #ff3b3b;
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow:
+    0 0 30px rgba(255, 0, 0, 0.2),
+    inset 0 0 10px rgba(255, 0, 0, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  font-family: 'Share Tech Mono', monospace;
 }
 
 .modal.active .modal-content {
-    transform: translateY(0) scale(1); /* Volta para a posição normal e tamanho */
-    opacity: 1;
+  transform: scale(1);
+  opacity: 1;
 }
 
-.modal-content h3 { /* Título dentro do modal */
-    color: #FFD700; /* Ouro para o título do modal */
-    font-size: 2.2rem; /* Um pouco maior */
-    margin-bottom: 30px;
-    text-align: center;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8), 0 0 25px rgba(255, 215, 0, 0.4); /* Brilho dourado */
-    font-family: 'Cinzel', serif; /* Fonte mística */
+.modal-content h3 {
+  font-family: 'Cinzel', serif;
+  text-align: center;
+  color: #fffacb;
+  font-size: 2.7rem;
+  margin-bottom: 25px;
+  text-shadow: 0 0 15px #86055b, 0 0 25px #ff0080;
 }
 
 .modal-content p {
-    margin-bottom: 18px; /* Mais espaço entre parágrafos */
-    line-height: 1.7; /* Melhor legibilidade */
-    color: #e0e0e0;
+  margin-bottom: 16px;
+  color: #ffe2e2;
+  line-height: 1.7;
+  padding: 10px;
+  text-align: center;
+  border: 3px solid rgba(148, 5, 76, 0.904);
+  box-shadow: 0 0 15px rgba(56, 2, 2, 0.3), inset 0 0 5px rgba(248, 193, 193, 0.08);
+  background: linear-gradient(135deg, #1f1f1fd3, #350519c9);
+  word-spacing: -1px;
+  letter-spacing: 0.1px;
+  text-shadow: 0 0 3px rgba(99, 8, 99, 0.05);
+  border-radius: 25px; /* Ligeiramente mais arredondado */
+  animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Ajustei para 7s, mais lento */
+}
+
+.modal-content ul.ritual-niveis {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+  border-radius: 20px;
+  padding:10px;
+  text-align: center;
+  background-color: #0000009f;
+}
+
+.modal-content ul.ritual-niveis li {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #ffdfdf;
+  text-shadow: 0 0 6px rgba(206, 124, 124, 0.781);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #130a0ad8, #350519e3, #130a0a);
+  padding: 10px;
+  border: 2px solid rgba(143, 4, 85, 0.904);
 }
 
 .modal-content button {
-    margin-top: 40px; /* Mais espaço acima do botão */
-    padding: 15px 30px; /* Botão maior */
-    background: linear-gradient(45deg, #B22222, #8B0000); /* Gradiente de vermelho fogo para vermelho escuro */
-    border: 2px solid #FF4500; /* Borda laranja avermelhada */
-    color: white;
-    border-radius: 10px; /* Mais arredondado */
-    cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    box-shadow: 
-        0 8px 25px rgba(220, 20, 60, 0.6), /* Sombra mais intensa */
-        inset 0 0 10px rgba(255, 0, 0, 0.5); /* Brilho interno */
-    transition: all 0.3s ease;
-    font-family: 'Orbitron', sans-serif; /* Fonte futurista para o botão */
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  background: linear-gradient(45deg, #8b0000, #b22222);
+  border: 2px solid #ff4d4d;
+  color: #fff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4), inset 0 0 10px rgba(255, 0, 0, 0.3);
+  transition: all 0.3s ease-in-out;
+  position: relative;
 }
 
 .modal-content button:hover {
-    background: linear-gradient(45deg, #FF6347, #DC143C); /* Mudar gradiente para mais vibrante no hover */
-    box-shadow: 
-        0 12px 30px rgba(220, 20, 60, 0.8),
-        inset 0 0 15px rgba(255, 0, 0, 0.8);
-    transform: translateY(-5px) scale(1.02); /* Levanta mais e aumenta levemente */
+  background: linear-gradient(45deg, #ff4d4d, #ff0000);
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.7), inset 0 0 15px rgba(255, 0, 0, 0.7);
 }
 
+
 /* Responsividade Básica (Adaptado do segundo CSS) */
-@media (max-width: 960px) {
+@media (max-width: 780px) {
     .ritual-container {
         width: 95%;
         padding: 30px;
@@ -1235,6 +1346,7 @@ section.session-fundo::before {
     .campo-texto-ritual {
         padding: 20px;
         min-height: 120px;
+        font-size: 1rem;
     }
     .icone-regras {
         bottom: 20px;
@@ -1266,6 +1378,8 @@ section.session-fundo::before {
     }
     .ritual-container h2 {
         font-size: 1.5rem;
+        width: 40%;
+        margin-bottom: -20px;
         padding: 12px 20px;
         border-radius: 15px;
     }
@@ -1273,7 +1387,7 @@ section.session-fundo::before {
         padding: 15px;
         min-height: 100px;
         border-radius: 10px;
-        font-size: 0.95rem;
+        font-size:0.85rem;
     }
     .sangue-barra {
         height: 25px;
@@ -1297,7 +1411,7 @@ section.session-fundo::before {
         font-size: 0.95rem;
     }
     .modal-content h3 {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         margin-bottom: 20px;
     }
     .modal-content button {

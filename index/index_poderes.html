@@ -81,9 +81,9 @@
     
   <section class="session-fundo">
     <div class="ritual-container">
-      <h2>introdução ritual</h2>
+      <h2>Origem</h2>
       <div class="campo-texto-ritual">
-        <p>No universo do Ark, os rituais desempenham um papel fundamental na vida dos habitantes, servindo como uma ponte entre o mundo físico e as forças arcanas que permeiam a ilha primordial. Esses rituais são práticas cerimoniais que permitem aos indivíduos e comunidades se conectarem com a essência do arcano, influenciando o ambiente e suas próprias existências. Os rituais no Ark são cerimônias que envolvem a invocação de forças arcanas, a realização de gestos simbólicos e a recitação de frases que buscam manifestar ou controlar a energia do arcano. Eles podem variar desde celebrações de criação e transformação até momentos de introspecção e reflexão sobre as consequências das ações dos habitantes. Cada ritual é uma expressão da relação dos habitantes com o arcano e com os titãs, Pangar e Hellion, que moldam o mundo ao seu redor. Os rituais são profundamente enraizados na ambientação do Ark, refletindo a dinâmica entre os ciclos das estações e as forças da natureza. Por exemplo, o "Fenômeno da Criação" celebra a primeira batalha entre os titãs, simbolizando a origem das estações e a adaptação da ilha. Os rituais de domínio, como o "Ritual da Linguagem", permitem que os Caídos interajam com o arcano, criando um padrão que influencia a fauna e a flora do Ark. Assim, os rituais não apenas moldam a cultura dos habitantes, mas também afetam diretamente o ecossistema e as condições climáticas da ilha</p>
+        <p>No universo do Ark, os rituais são essenciais para a vida dos habitantes, funcionando como uma conexão entre o mundo físico e as forças arcanas que permeiam a ilha primordial. Essas práticas cerimoniais permitem que indivíduos e comunidades se conectem com a essência do arcano, influenciando tanto o ambiente quanto suas próprias existências. Os rituais variam em forma e propósito, envolvendo a invocação de forças arcanas, gestos simbólicos e recitações que buscam manifestar ou controlar a energia do arcano. Eles podem incluir celebrações de criação e transformação, bem como momentos de introspecção sobre as consequências das ações dos habitantes. Cada ritual reflete a relação dos habitantes com o arcano e com os titãs, Pangar e Hellion, que moldam o mundo ao seu redor.</p>
       </div>
 
       <div class="sangue-barra">
@@ -94,23 +94,39 @@
         <div class="sangue-gota" style="left: 80%; animation-delay: 0.8s;"></div>
       </div>
 
-      <div class="icone-regras" onclick="abrirModal()">
-        <img src="../imagens/Icone_Diluvio.png" alt="ícone ritual">
+      <div class="icone-regras" onclick="abrirModalRituais()">
+        <img src="../imagens/fundo_rubi.jpg" alt="ícone ritual">
         <span>Conceito de Rituais</span>
       </div>
 
     </div> </section>
 
-  <div class="modal" id="modalRegras">
-    <div class="modal-content">
-      <h3>Conceitos de Rituais</h3>
-      <p>Aqui você pode colocar as regras detalhadas de como os rituais funcionam no seu RPG.</p>
-      <button onclick="fecharModal()">Fechar</button>
-    </div>
+  <!-- Modal dos Rituais -->
+<div class="modal" id="modalRituaisInfo">
+  <div class="modal-content">
+    <h3>Regras dos Rituais</h3>
+    <p>
+      Os rituais no universo do Ark podem ser utilizados por todos os personagens que consigam liberá-los, com a eficácia variando conforme a classe e o conhecimento do personagem. A amplificação dos rituais ocorre quando se faz um pacto que tenha afinidade com o ritual em questão.
+    </p>
+    <p>
+      Os rituais são categorizados em diferentes tipos, conforme explorado e corrompido pela civilização dos Caídos. Para que um personagem possa adquirir e registrar um ritual, é necessário seguir regras específicas. Cada ritual pertence a um único tipo, e quanto mais complexo ou poderoso, mais difícil é dominá-lo.
+    </p>
+    <p>
+      Os rituais podem causar dano, controlar, invocar, buffar, nerfar e atender a diversas necessidades, mas o alvo sempre terá a oportunidade de se defender, dependendo do tipo de ataque. Além disso, os rituais exigem níveis específicos para serem utilizados, com permissões concedidas ao atingir os seguintes níveis:
+    </p>
+    <ul class="ritual-niveis">
+      <li><strong>Ritual Normal:</strong> Nível 15</li>
+      <li><strong>Ritual Brutal:</strong> Nível 40</li>
+      <li><strong>Ritual Diabólico:</strong> Nível 70</li>
+      <li><strong>Ritual Complexo:</strong> Nível 99</li>
+      <li><strong>Ritual Ancião:</strong> Nível 100</li>
+    </ul>
+    <button onclick="fecharModalRituais()">Fechar</button>
   </div>
+</div>
 </main>
  
- </main>
+
 
  <!-- ░░░ FOOTER ░░░ -->
   <footer>

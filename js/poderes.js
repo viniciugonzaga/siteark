@@ -114,9 +114,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // No entanto, para animações CSS "infinite", elas geralmente iniciam automaticamente.
 });
 function abrirModal() {
-    document.getElementById('modalRegras').style.display = 'flex';
+    const modal = document.getElementById('modalRegras');
+    modal.classList.add('active');
   }
 
   function fecharModal() {
-    document.getElementById('modalRegras').style.display = 'none';
+    const modal = document.getElementById('modalRegras');
+    modal.classList.remove('active');
   }
+
+  // Fecha o modal se clicar fora do conteúdo
+  window.addEventListener('click', function(event) {
+    const modal = document.getElementById('modalRegras');
+    if (event.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+
+  // Tecla ESC também fecha o modal
+  window.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      fecharModal();
+    }
+  });
+
+  function abrirModalRituais() {
+  const modal = document.getElementById('modalRituaisInfo');
+  modal.classList.add('active');
+}
+
+function fecharModalRituais() {
+  const modal = document.getElementById('modalRituaisInfo');
+  modal.classList.remove('active');
+}
+
+// Fecha se clicar fora
+window.addEventListener('click', function(event) {
+  const modal = document.getElementById('modalRituaisInfo');
+  if (event.target === modal) {
+    modal.classList.remove('active');
+  }
+});
+
+// Fecha com ESC
+window.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    fecharModalRituais();
+  }
+});
