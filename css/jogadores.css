@@ -1983,9 +1983,9 @@ font-size: 1.8em;
 
 /* Estilo para cada item de arma */
 .weapon-item {
-    background-color: #2a2a2a; /* Cor de fundo um pouco mais clara que o fundo principal */
-    border: 1px solid #444;
-    border-radius: 8px;
+   background-image: url('../imagens/fundo_rubi_azul.jpg'); /* Fundo com imagem de arma */
+    border: 2px solid #a0e1ffe5;
+    border-radius: 20px;
     padding: 15px;
     position: relative; /* Importante para posicionar o botão 'X' */
     width: calc(50% - 7.5px); /* Duas colunas com espaçamento */
@@ -2039,8 +2039,8 @@ font-size: 1.8em;
     width: calc(100% - 10px); /* Ocupa quase toda a largura, com padding */
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #555;
-    background-color: #333;
+    border: 1px solid #6005d8;
+    background-color: #292628da;
     color: white;
     border-radius: 4px;
     box-sizing: border-box; /* Inclui padding e border na largura total */
@@ -2060,6 +2060,341 @@ font-size: 1.8em;
 .h3{
 
     color: #d6feff; /* Cor do texto consistente */
+}
+
+/* Estilo para o contêiner geral da seção de ritual/pacto na ficha */
+#selected-ritual-pact-section {
+    /* Reutiliza o estilo base das outras seções da ficha para consistência */
+    background: rgba(10, 10, 20, 0.7); /* Fundo harmonioso */
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 25px; /* Espaço entre as seções */
+    box-shadow: 0 4px 10px rgba(193, 240, 248, 0.1);
+    border: 1px solid rgba(193, 240, 248, 0.1);
+    text-align: center; /* Centraliza o conteúdo dentro desta seção */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1; /* Garante que fique acima de possíveis fundos de efeito */
+}
+
+#selected-ritual-pact-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('../imagens/fundo_rubi_preto.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.30;
+    filter: brightness(1.1) contrast(1.2);
+    z-index: -1; /* <-- aqui está o ajuste! */
+}
+
+
+#selected-ritual-pact-section:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse, como nas outras seções */
+    box-shadow: 0 8px 20px rgba(193, 240, 248, 0.25);
+}
+
+#selected-ritual-pact-section h2 {
+    color: #fee0ff;
+    font-size: 1.6em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgba(183, 122, 252, 0.5);
+    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
+    text-shadow: 0 0 10px rgba(130, 245, 253, 0.384);
+    overflow: hidden;
+    border-radius: 20px;
+}
+.remove-ritual-pact-btn{
+    background: linear-gradient(45deg,   rgba(90, 3, 78, 0.781), rgba(42, 4, 59, 0.836), rgba(90, 3, 78, 0.781)); /* Gradiente */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 2px solid rgba(248, 193, 210, 0.2); /* Borda sutil */
+    align-items: center;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.remove-ritual-pact-btn:hover {
+    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse, como nas outras seções */
+    box-shadow: 0 8px 20px rgba(193, 240, 248, 0.25);
+}
+
+/* Efeito de brilho passando */
+#selected-ritual-pact-section h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 20%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(66, 7, 204, 0.836) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    animation: brilhoDeslizante 5s infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes brilhoDeslizante {
+    0% {
+        left: -75%;
+    }
+    50% {
+        left: 125%;
+    }
+    100% {
+        left: 125%;
+    }
+}
+
+
+
+#selected-ritual-pact-section h2::after {
+    /* Repete o detalhe da linha inferior dos títulos de seção */
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #e100ff;
+    margin: 10px auto 0;
+    border-radius: 1.5px;
+}
+
+/* Contêiner que exibe o ritual/pacto selecionado */
+.selected-item-display {
+    background: rgba(16, 16, 25, 0.8); /* Fundo levemente mais escuro para o conteúdo */
+    border: 1px solid rgba(176, 255, 248, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+    align-items: center;
+    margin: 0 auto; /* Centraliza o display dentro da seção */
+    color: #d6feff; /* Cor do texto principal */
+    text-align: center; /* Centraliza o texto e a imagem dentro do display */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Sutil sombra interna */
+    max-width: 400px; /* Limita a largura para melhor leitura */
+}
+
+.selected-item-display h3 {
+    color: #b6fff3; /* Cor para o nome do ritual/pacto */
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px rgba(176, 255, 248, 0.5);
+}
+
+.selected-item-display img {
+    max-width: 200px; /* Tamanho máximo da imagem */
+    height: auto;
+    border-radius: 8px; /* Cantos arredondados para a imagem */
+    margin: 10px auto 15px auto; /* Espaçamento ao redor da imagem */
+    display: block; /* Garante que margin:auto funcione para centralizar */
+    border: 2px solid rgba(176, 255, 248, 0.3); /* Borda sutil */
+    box-shadow: 0 0 10px rgba(176, 255, 248, 0.2); /* Brilho suave */
+}
+
+.selected-item-display p {
+    font-size: 0.95em;
+    line-height: 1.5;
+    border: 2px solid rgba(115, 8, 187, 0.829); /* Borda sutil ao redor do parágrafo */
+    box-shadow: 0 2px 5px rgba(177, 237, 255, 0.575); /* Sombra sutil para destaque */
+    border-radius: 20px;
+    padding: 20px;
+    align-items: center;
+    margin: 0 auto;;
+    margin-bottom: 15px;
+    
+}
+
+.selected-item-display #clearSelectedRitualPact {
+    /* Estilo para o botão de remover, semelhante aos outros botões de ação */
+    background-color: #a030a0; /* Roxo para o botão */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    align-items: center;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.selected-item-display #clearSelectedRitualPact:hover {
+    background-color: #702070; /* Roxo mais escuro no hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.selected-item-display #clearSelectedRitualPact:active {
+    background-color: #501050;
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para quando não há ritual/pacto selecionado */
+.selected-item-display p.no-info {
+    font-style: italic;
+    color: #888; /* Cor de texto padrão para "nenhuma informação" */
+}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 768px) {
+    .selected-item-display {
+        max-width: 100%; /* Ocupa a largura total em telas menores */
+        padding: 10px;
+    }
+
+    .selected-item-display h3 {
+        font-size: 1.2em;
+    }
+
+    .selected-item-display img {
+        max-width: 120px;
+    }
+
+    .selected-item-display p {
+        font-size: 0.9em;
+    }
+}
+
+/* Container para o botão (mantido para posicionamento) */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 90px;
+}
+
+/* Estilo do Botão de Ação - MAIS DECORADO */
+.action-button {
+    display: inline-block;
+    padding: 16px 35px; /* Um pouco maior para mais impacto */
+    font-size: 1.2rem; /* Aumenta levemente a fonte */
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--current-theme-text-color); /* Cor do texto principal do tema */
+
+    /* Fundo mais elaborado */
+    background: linear-gradient(135deg, #4a015c8a, #4e030391, #06033193, #4a015c93); /* Dark gray to black gradient */
+    position: relative; /* Para camadas de borda e brilho */
+    overflow: hidden; /* Garante que os efeitos não transbordem */
+    z-index: 1; /* Garante que o botão esteja sobre os elementos de fundo */
+
+    /* Borda principal com cor do tema */
+    border: 3px solid #94758cd5; /* Darker gray border */
+    border-radius: 18px; /* Cantos mais arredondados */
+
+    /* Sombra externa inspirada no seu war-header e ícones */
+    box-shadow: 
+        0 8px 30px rgba(0, 0, 0, 0.9), /* Sombra principal mais forte */
+        0 0 25px rgba(var(--current-theme-primary), 0.3), /* Brilho suave da cor primária */
+        inset 0 0 15px rgba(0, 0, 0, 0.7); /* Sombra interna para profundidade */
+    
+     color: #ffd7f2ee; /* Lighter, subtle gray glow */
+    text-shadow:
+        0 0 10px rgba(154, 61, 167, 0.877), /* Light blue/cyan glow */
+        0 0 30px rgba(248, 193, 214, 0.4), /* Wider blue/cyan glow */
+        0 0 60px rgba(248, 193, 193, 0.2); /* Even wider light blue/cyan glow *
+    /* Transição geral mais fluida */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    
+}
+
+/* Efeito de Borda Interna / Secondária (inspirado nos seus elementos) */
+.action-button::before {
+    content: '';
+    position: absolute;
+    top: 2px; /* Ajuste para criar a borda interna */
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 2px solid rgba(var(--current-theme-primary), 0.5); /* Cor primária semi-transparente */
+    border-radius: 16px; /* Menor que a borda externa */
+    box-shadow: inset 0 0 10px rgba(var(--current-theme-primary), 0.2); /* Brilho interno na borda */
+    transition: all 0.4s ease-in-out;
+    z-index: -1; /* Fica abaixo do conteúdo do botão */
+    opacity: 0.8;
+}
+
+/* Efeito de Brilho "Scanline" ou "Varredura" (mais dinâmico) */
+.action-button::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.233), transparent); /* Brilho sutil */
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+    z-index: 2; /* Acima do conteúdo para o efeito de brilho */
+    pointer-events: none; /* Garante que o brilho não impeça cliques */
+}
+
+
+/* Hover State - Mais Intenso */
+.action-button:hover {
+    transform: translateY(-8px) scale(1.08); /* Lift e scale mais pronunciados */
+     background: linear-gradient(135deg, #1a1a1adc, #000000e5, #1a1a1ada); /* Dark gray to black gradient */
+    border-color: var(--current-theme-primary); /* Borda fica com a cor primária */
+    box-shadow: 
+        0 12px 40px rgba(252, 173, 235, 0.767), /* Sombra mais forte */
+        0 0 40px var(--current-theme-shadow-color), /* Brilho principal mais forte */
+        inset 0 0 20px rgba(var(--current-theme-primary), 0.4); /* Brilho interno mais intenso */
+     color: #eb8febd5; /* Lighter, subtle gray glow */
+    text-shadow: 
+        0 0 15px var(--current-theme-primary),
+        0 0 30px var(--current-theme-shadow-color); /* Brilho de texto mais forte */
+}
+
+/* Efeito de Borda Interna no Hover */
+.action-button:hover::before {
+    border-color: var(--current-theme-primary); /* Borda interna fica mais visível */
+    box-shadow: inset 0 0 15px rgba(var(--current-theme-primary), 0.4);
+    opacity: 1;
+}
+
+/* Ativa o brilho "scanline" no hover */
+.action-button:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translateX(100%); /* Move o brilho através do botão */
+}
+
+
+/* Active State - Feedback de Clique */
+.action-button:active {
+    transform: translateY(0); /* Volta para a posição original */
+    background: linear-gradient(160deg, rgba(20, 20, 20, 0.98) 0%, rgba(40, 40, 40, 0.95) 50%, rgba(20, 20, 20, 0.98) 100%); /* Fundo mais escuro */
+    box-shadow: 
+        0 2px 10px rgba(0, 0, 0, 0.8), /* Sombra menor */
+        inset 0 0 8px rgba(0, 0, 0, 0.9); /* Sombra interna mais escura */
+    border-color: var(--current-theme-secondary); /* Borda com a cor secundária */
+    color: var(--current-theme-secondary); /* Texto com a cor secundária */
+    text-shadow: none; /* Remove o brilho do texto no clique */
+}
+
+/* Remove brilho interno e scanline no active */
+.action-button:active::before {
+    border-color: rgba(var(--current-theme-secondary), 0.5);
+    box-shadow: inset 0 0 5px rgba(var(--current-theme-secondary), 0.2);
+    opacity: 0.6;
+}
+
+.action-button:active::after {
+    opacity: 0;
+    transition: none; /* Desabilita transição para desaparecimento imediato */
 }
 
 /* Geral do footer ------------------------------------------------------------------------------*/

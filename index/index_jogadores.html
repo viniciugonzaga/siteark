@@ -72,142 +72,173 @@
     </div>
   </nav>
 
-  <!-- ░░░ CONTEÚDO PRINCIPAL ░░░ -->
-  <div class="titulo_principal"><h1 class="titulo_efeito">Ficha de Personagem</h1></div>
+ <div class="titulo_principal">
+  <h1 class="titulo_efeito">Ficha de Personagem</h1>
+</div>
+
+<div class="titulo_principal">
+  <h1 class="titulo_efeito">Ficha de Personagem</h1>
+</div>
 
 <div class="level-bar-container">
   <div class="level-bar-fill" id="levelBarFill"></div>
 </div>
 
-  <div class="form-container">
-    <h2 class="h2-front">Crie Seu Personagem</h2>
-    <form id="characterForm">
-      <!-- Dados Básicos -->
-      <label for="name">Nome:</label>
-      <input type="text" id="name" placeholder="Nome do personagem" required />
+<div class="form-container">
+  <h2 class="h2-front">Crie Seu Personagem</h2>
+  <form id="characterForm">
+    <label for="name">Nome:</label>
+    <input type="text" id="name" placeholder="Nome do personagem" required />
 
-      <label for="age">Idade:</label>
-      <input type="number" id="age" placeholder="Idade do personagem" min="0" required />
+    <label for="age">Idade:</label>
+    <input type="number" id="age" placeholder="Idade do personagem" min="0" required />
 
-      <label for="photo">Foto:</label>
-      <input type="file" id="photo" accept="image/*" />
-      <img id="preview" src="#" alt="Prévia da Imagem" style="display:none;" />
+    <label for="photo">Foto:</label>
+    <input type="file" id="photo" accept="image/*" />
+    <img id="preview" src="#" alt="Prévia da Imagem" style="display:none;" />
 
-      <label for="level">Nível:</label>
-      <input type="number" id="level" placeholder="Nível" min="1" value="1" max="100" required />
+    <label for="level">Nível:</label>
+    <input type="number" id="level" placeholder="Nível" min="1" value="1" max="100" required />
 
-      <label for="lore">Lore - História:</label>
-      <textarea id="lore" class="scrollable" placeholder="Descreva a história, personalidade e motivações."></textarea>
+    <label for="lore">Lore - História:</label>
+    <textarea id="lore" class="scrollable" placeholder="Descreva a história, personalidade e motivações."></textarea>
 
-      <!-- Atributos -->
-      <h3 class="decorated-title">Atributos Principais:</h3>
-      <p id="attributePointsInfo" class="info-display">Pontos disponíveis: <span id="availableAttributePoints">0</span></p>
+    <h3 class="decorated-title">Atributos Principais:</h3>
+    <p id="attributePointsInfo" class="info-display">
+      Pontos disponíveis: <span id="availableAttributePoints">0</span>
+    </p>
 
-      <div class="attributes">
-        <!-- Um bloco por atributo -->
-        <div class="attribute">
-          <span>Agi</span>
-          <button type="button" onclick="changeAttribute('agi', 1)">+</button>
-          <span id="agiValue">1</span>
-          <button type="button" onclick="changeAttribute('agi', -1)">-</button>
-        </div>
-        <div class="attribute">
-          <span>For</span>
-          <button type="button" onclick="changeAttribute('for', 1)">+</button>
-          <span id="forValue">1</span>
-          <button type="button" onclick="changeAttribute('for', -1)">-</button>
-        </div>
-        <div class="attribute">
-          <span>Int</span>
-          <button type="button" onclick="changeAttribute('int', 1)">+</button>
-          <span id="intValue">1</span>
-          <button type="button" onclick="changeAttribute('int', -1)">-</button>
-        </div>
-        <div class="attribute">
-          <span>Set</span>
-          <button type="button" onclick="changeAttribute('set', 1)">+</button>
-          <span id="setValue">1</span>
-          <button type="button" onclick="changeAttribute('set', -1)">-</button>
-        </div>
-        <div class="attribute">
-          <span>Vig</span>
-          <button type="button" onclick="changeAttribute('vig', 1)">+</button>
-          <span id="vigValue">1</span>
-          <button type="button" onclick="changeAttribute('vig', -1)">-</button>
-        </div>
+    <div class="attributes">
+      <div class="attribute">
+        <span>Agi</span>
+        <button type="button" onclick="changeAttribute('agi', 1)">+</button>
+        <span id="agiValue">1</span>
+        <button type="button" onclick="changeAttribute('agi', -1)">-</button>
       </div>
+      <div class="attribute">
+        <span>For</span>
+        <button type="button" onclick="changeAttribute('for', 1)">+</button>
+        <span id="forValue">1</span>
+        <button type="button" onclick="changeAttribute('for', -1)">-</button>
+      </div>
+      <div class="attribute">
+        <span>Int</span>
+        <button type="button" onclick="changeAttribute('int', 1)">+</button>
+        <span id="intValue">1</span>
+        <button type="button" onclick="changeAttribute('int', -1)">-</button>
+      </div>
+      <div class="attribute">
+        <span>Set</span>
+        <button type="button" onclick="changeAttribute('set', 1)">+</button>
+        <span id="setValue">1</span>
+        <button type="button" onclick="changeAttribute('set', -1)">-</button>
+      </div>
+      <div class="attribute">
+        <span>Vig</span>
+        <button type="button" onclick="changeAttribute('vig', 1)">+</button>
+        <span id="vigValue">1</span>
+        <button type="button" onclick="changeAttribute('vig', -1)">-</button>
+      </div>
+    </div>
 
-      <!-- Classes -->
-      <label for="class1">Classe Primitiva 1:</label>
-      <select id="class1" onchange="resetClassBonus('class1')">
-        <option value="">Selecione uma classe</option>
-        <option value="guerreiro">Guerreiro (+1 For/Vig)</option>
-        <option value="atirador">Atirador (+1 Agi/Int)</option>
-        <option value="forjador">Forjador (+1 Int/For)</option>
-        <option value="arcano">Arcano (+1 Set/Agi)</option>
-        <option value="cientista">Cientista (+1 Int/Agi)</option>
-        <option value="sobrevivente">Sobrevivente (+1 Set/Int)</option>
-        <option value="construtor">Construtor (+1 Int/Vig)</option>
-        <option value="medico">Médico (+1 Int/Agi)</option>
-      </select>
-      <button type="button" id="applyClass1Btn" onclick="applyClassBonus('class1')">Aplicar Bônus Classe 1</button>
+    <label for="class1">Classe Primitiva 1:</label>
+    <select id="class1" onchange="resetClassBonus('class1')">
+      <option value="">Selecione uma classe</option>
+      <option value="guerreiro">Guerreiro</option>
+      <option value="atirador">Atirador</option>
+      <option value="forjador">Forjador</option>
+      <option value="arcano">Arcano</option>
+      <option value="cientista">Cientista</option>
+      <option value="sobrevivente">Sobrevivente</option>
+      <option value="construtor">Construtor</option>
+      <option value="medico">Médico</option>
+    </select>
 
-      <label for="class2">Classe Primitiva 2:</label>
-      <select id="class2" onchange="resetClassBonus('class2')">
-        <option value="">Nenhuma</option>
-        <option value="guerreiro">Guerreiro (+1 For/Vig)</option>
-        <option value="atirador">Atirador (+1 Agi/Int)</option>
-        <option value="forjador">Forjador (+1 Int/For)</option>
-        <option value="arcano">Arcano (+1 Set/Agi)</option>
-        <option value="cientista">Cientista (+1 Int/Agi)</option>
-        <option value="sobrevivente">Sobrevivente (+1 Set/Int)</option>
-        <option value="construtor">Construtor (+1 Int/Vig)</option>
-        <option value="medico">Médico (+1 Int/Agi)</option>
-      </select>
-      <button type="button" id="applyClass2Btn" onclick="applyClassBonus('class2')">Aplicar Bônus Classe 2</button>
+    <label for="class2">Classe Primitiva 2:</label>
+    <select id="class2" onchange="resetClassBonus('class2')">
+      <option value="">Selecione uma classe</option>
+      <option value="guerreiro">Guerreiro</option>
+      <option value="atirador">Atirador</option>
+      <option value="forjador">Forjador</option>
+      <option value="arcano">Arcano</option>
+      <option value="cientista">Cientista</option>
+      <option value="sobrevivente">Sobrevivente</option>
+      <option value="construtor">Construtor</option>
+      <option value="medico">Médico</option>
+    </select>
 
-      <label for="combatClass">Classe de Combate:</label>
-      <select id="combatClass">
-        <option value="">Selecione</option>
-        <option value="duelista">Duelista</option><option value="guerreiro">Guerreiro</option><option value="mago">Mago</option>
-        <option value="suporte_endiabrado">Suporte Endiabrado</option><option value="vanguardista">Vanguardista</option>
-        <option value="adestrador">Adestrador</option><option value="assassino">Assassino</option><option value="suporte">Suporte</option>
-        <option value="atirador">Atirador</option><option value="colosso">Colosso</option>
-      </select>
+    <label for="combatClass">Classe de Combate:</label>
+    <select id="combatClass">
+      <option value="">Selecione</option>
+      <option value="duelista">Duelista</option>
+      <option value="guerreiro">Guerreiro</option>
+      <option value="mago">Mago</option>
+      <option value="suporte_endiabrado">Suporte Endiabrado</option>
+      <option value="vanguardista">Vanguardista</option>
+      <option value="adestrador">Adestrador</option>
+      <option value="assassino">Assassino</option>
+      <option value="suporte">Suporte</option>
+      <option value="atirador">Atirador</option>
+      <option value="colosso">Colosso</option>
+    </select>
 
-      <!-- Mutação -->
-      <label for="mutation">Mutação de Personagem:</label>
-      <textarea id="mutation" class="scrollable" placeholder="Descreva a mutação/habilidade especial."></textarea>
+    <label for="mutation">Mutação de Personagem:</label>
+    <textarea
+      id="mutation"
+      class="scrollable"
+      placeholder="Descreva a mutação/habilidade especial."
+    ></textarea>
 
-      <!-- Bônus de Ações -->
-      <h3 class="decorated-title">Bônus em Ações:</h3>
-      <p class="info-display">Slots: <span id="totalActionSlots">0</span> &nbsp;(Usados <span id="usedActionSlots">0</span> / Restantes <span id="remainingActionSlots">0</span>)</p>
-      <div id="actionBonusContainer" class="action-bonus-container"></div>
-      <button type="button" onclick="addActionBonus()">Adicionar Bônus de Ação</button>
+    <h3 class="decorated-title">Bônus em Ações:</h3>
+    <p class="info-display">
+      Slots: <span id="totalActionSlots">0</span> &nbsp;(Usados
+      <span id="usedActionSlots">0</span> / Restantes <span id="remainingActionSlots">0</span>)
+    </p>
+    <div id="actionBonusContainer" class="action-bonus-container"></div>
+    <button type="button" onclick="addActionBonus()">
+      Adicionar Bônus de Ação
+    </button>
 
-      <h3 class="section-title">Bônus de Ações Aprendidos</h3>
-      <div id="learnedActionBonusContainer" class="action-bonus-list"></div>
-      <button type="button" class="add-learned-action-btn" onclick="addLearnedActionBonus()">Adicionar Bônus Aprendido</button>
+    <h3 class="section-title">Bônus de Ações Aprendidos</h3>
+    <div id="learnedActionBonusContainer" class="action-bonus-list"></div>
+    <button type="button" class="add-learned-action-btn" onclick="addLearnedActionBonus()">
+      Adicionar Bônus Aprendido
+    </button>
 
-      <label for="inventory">Inventário:</label>
-    <textarea id="inventory" class="scrollable" placeholder="Descreva seus itens, cosméticos, recursos e outros pertences."></textarea>
+    <label for="inventory">Inventário:</label>
+    <textarea
+      id="inventory"
+      class="scrollable"
+      placeholder="Descreva seus itens, cosméticos, recursos e outros pertences."
+    ></textarea>
 
-   
+    <section class="session-bloco" id="selected-ritual-pact-section">
+    <h2>Rituais e Pactos</h2>
+    <div id="selectedRitualPactDisplay" class="selected-item-display">
+        <p>Nenhum ritual ou pacto selecionado.</p>
+    </div>
+    <div class="button-container">
+    <a href="../index/index_poderes.html" class="action-button">
+        Veja os Rituais e pactos
+    </a>
+</div>
+    </section>
+
     <h3 class="decorated-title" id="Armas">Armas:</h3>
-    <div id="weaponsContainer" class="weapons-container">
-        </div>
+    <div id="weaponsContainer" class="weapons-container"></div>
     <button type="button" onclick="addWeapon()">Adicionar Arma</button>
+    <button type="button" onclick="calculateStats()">Calcular Ficha</button>
+    <button type="button" onclick="saveForm()">Salvar Ficha</button>
+  </form>
+</div>
 
-      <!-- Botões -->
-      <button type="button" onclick="calculateStats()">Calcular Ficha</button>
-      <button type="button" onclick="saveForm()">Salvar Ficha</button>
-    </form>
-  </div>
+<div id="results" class="results-container">
+  <h2>Ficha Calculada:</h2>
+  <div id="stats"></div>
+  <button type="button" onclick="copyFicha()">Copiar Ficha</button>
+</div>
 
-  <div id="results" class="results-container">
-    <h2>Ficha Calculada:</h2>
-    <div id="stats"></div>
-  </div>
+
 
   <!-- ░░░ FOOTER ░░░ -->
   <footer>

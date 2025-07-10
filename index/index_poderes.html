@@ -94,10 +94,20 @@
         <div class="sangue-gota" style="left: 80%; animation-delay: 0.8s;"></div>
       </div>
 
-      <div class="icone-regras" onclick="abrirModalRituais()">
-        <img src="../imagens/fundo_rubi.jpg" alt="ícone ritual">
-        <span>Conceito de Rituais</span>
+
+      <div class="caixa">
+       <div class="icone-regras" onclick="abrirModalRituais()">
+        <img src="../imagens/fundo_rubi_rosa.jpg" alt="ícone ritual">
+        <span>Rituais</span>
       </div>
+
+      <!-- Botão para abrir o modal dos Pactos -->
+     <div class="icone-regras" onclick="abrirModalPactos()">
+      <img src="../imagens/fundo_rubi_azul.jpg" alt="ícone pactos">
+       <span>Pactos</span>
+      </div>
+      </div>
+     
 
     </div> </section>
 
@@ -124,6 +134,133 @@
     <button onclick="fecharModalRituais()">Fechar</button>
   </div>
 </div>
+
+<!-- Modal dos Pactos -->
+<div class="modal" id="modalPactosInfo">
+  <div class="modal-content">
+    <h3>Regras dos Pactos</h3>
+    <p>
+      No universo do Ark, os pactos são acordos que envolvem poder mágico e requerem um custo de mana entre os membros. Apenas sobreviventes de nível 50, com linhagens ou títulos significativos, podem firmá-los. Baseados nos elementos categorizados pelos Caídos, os pactos permitem a manipulação de um ou mais elementos do arcano, resultando em efeitos que oferecem vantagens e desvantagens para ambos os participantes.
+    </p>
+    <p>
+    Ao firmar um pacto, os envolvidos devem estar cientes das consequências, pois o poder concedido pode amplificar habilidades ou alterar o ambiente, trazendo responsabilidades e riscos. Assim, os pactos são ferramentas poderosas que exigem cautela e consideração nas escolhas feitas.
+    <p>
+     Os pactos no Ark são sustentados pela mente e pela mana do sobrevivente, mas estão sujeitos a regras acordadas entre os membros. O descumprimento dessas regras resulta em consequências para quem falhar, causando desvantagens que afetam a vontade do outro membro. Essas repercussões podem impactar habilidades e a conexão com o arcano, tornando a integridade do pacto essencial. Assim, os pactos exigem lealdade e responsabilidade, funcionando não apenas como acordos de poder, mas como compromissos mútuos.
+    </p>
+   
+    <ul class="ritual-niveis">
+      <li><strong>Pacto de Acordo:</strong> Pode prometer bônus de ação e permissões em rituais.</li>
+      <li><strong>Pacto de Lealdade:</strong> Pode prometer bônus de arcano, afinidade com rituais</li>
+      <li><strong>Pacto de Combate:</strong> Pode prometer bônus de ações de combate, possibilidade de mutações extras.</li>
+      <li><strong>Pacto de Maldição:</strong> Pode prometer  desvantagens de bônus de ação e em mutações, caso não seja controlada.</li>
+      <li><strong>Pacto Ancestral:</strong> Pode Prometer todos os bônus e vantagens dos outros acordos.</li>
+    </ul>
+    <button onclick="fecharModalPactos()">Fechar</button>
+  </div>
+</div>
+
+ <section class="container-geral">
+        <div class="session-bloco" id="rituais-pactos-section">
+            <div class="cabecalho">
+                <h1 class="titulo" id="tituloPrincipal">Rituais</h1>
+                <div class="opcoes-troca">
+                    <button class="btn-switch active" id="btnRituais" onclick="mostrarRituais()">Rituais</button>
+                    <button class="btn-switch" id="btnPactos" onclick="mostrarPactos()">Pactos</button>
+                </div>
+            </div>
+
+            <div class="filtros" id="filtrosRituais">
+                <button class="active" onclick="filtrarCards('todos')">Todos</button>
+                <button onclick="filtrarCards('normal')">Normal</button>
+                <button onclick="filtrarCards('brutal')">Brutal</button>
+                <button onclick="filtrarCards('diabólico')">Diabólico</button>
+                <button onclick="filtrarCards('complexo')">Complexo</button>
+                <button onclick="filtrarCards('ancião')">Ancião</button>
+            </div>
+
+            <div class="filtros" id="filtrosPactos" style="display: none;">
+                <button class="active" onclick="filtrarCards('todos')">Todos</button>
+                <button onclick="filtrarCards('Acordo')">Acordo</button>
+                <button onclick="filtrarCards('Lealdade')">Lealdade</button>
+                <button onclick="filtrarCards('combate')">Combate</button>
+                <button onclick="filtrarCards('Maldição')">Maldição</button>
+                <button onclick="filtrarCards('Ancestral')">Ancestral</button>
+            </div>
+
+            <input type="text" id="searchRituais" class="search-bar" placeholder="Buscar ritual...">
+            <input type="text" id="searchPactos" class="search-bar" placeholder="Buscar pacto..." style="display: none;">
+
+            <div class="button-container">
+                <a href="../index/index_jogadores.html" class="action-button">Veja a sua Ficha</a>
+            </div>
+
+            <div class="cards-wrapper">
+                <div class="card" data-tipo="dano" data-classe="ritual">
+                    <h3><span data-name="Chamas Ancestrais">Chamas Ancestrais</span></h3>
+                    <img src="../imagens/icon_caveria_coroa.png" alt="Ritual Chamas Ancestrais" />
+                    <span class="tipo">Fogo / Dano</span>
+                    <button onclick="abrirModal('modalRitual1')">Descrição</button>
+                </div>
+
+                <div class="card" data-tipo="controle" data-classe="ritual">
+                    <h3><span data-name="Círculo da Prisão">Círculo da Prisão</span></h3>
+                    <img src="https://via.placeholder.com/280x140/0000FF/FFFFFF?text=Ritual+2" alt="Ritual Círculo da Prisão" />
+                    <span class="tipo">Arcano / Controle</span>
+                    <button onclick="abrirModal('modalRitual2')">Descrição</button>
+                </div>
+
+                <div class="card" data-tipo="cura" data-classe="ritual">
+                    <h3><span data-name="Luz Restauradora">Luz Restauradora</span></h3>
+                    <img src="https://via.placeholder.com/280x140/00FF00/FFFFFF?text=Ritual+3" alt="Ritual Luz Restauradora" />
+                    <span class="tipo">Luz / Cura</span>
+                    <button onclick="abrirModal('modalRitual3')">Descrição</button>
+                </div>
+
+                <div class="card" data-tipo="dano" data-classe="pacto">
+                    <h3><span data-name="Pacto de Sangue">Pacto de Sangue</span></h3>
+                    <img src="../imagens/icon_Antrodemus.jpg" alt="Pacto de Sangue" />
+                    <span class="tipo">Físico / Dano</span>
+                    <button onclick="abrirModal('modalPacto1')">Descrição</button>
+                </div>
+
+                <div class="card" data-tipo="controle" data-classe="pacto">
+                    <h3><span data-name="Pacto da Névoa">Pacto da Névoa</span></h3>
+                    <img src="https://via.placeholder.com/280x140/4B0082/FFFFFF?text=Pacto+2" alt="Pacto da Névoa" />
+                    <span class="tipo">Arcano / Controle</span>
+                    <button onclick="abrirModal('modalPacto2')">Descrição</button>
+                </div>
+
+                <div class="card" data-tipo="cura" data-classe="pacto">
+                    <h3><span data-name="Pacto de Cura">Pacto de Cura</span></h3>
+                    <img src="https://via.placeholder.com/280x140/00FFFF/000000?text=Pacto+3" alt="Pacto de Cura" />
+                    <span class="tipo">Mana / Cura</span>
+                    <button onclick="abrirModal('modalPacto3')">Descrição</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Modal dos Rituais -->
+    <div id="modalRitual1" class="modal">
+        <div class="modal-content">
+            <h3></h3>
+            <p>Este ritual invoca fogo ancestral para causar dano em área, incendiando inimigos.</p>
+            <button onclick="fecharModal('modalRitual1')">Fechar</button>
+            <button class="btn-colocar-ficha" onclick="colocarNaFicha('Chamas Ancestrais', 'modalRitual1')">Colocar na Ficha</button>
+        </div>
+    </div>
+
+    
+<!-- Modal dos Pactos -->
+    <div id="modalPacto1" class="modal">
+        <div class="modal-content">
+            <h3>Pacto de Sangue</h3>
+            <p>Um acordo físico que concede força e regeneração a quem oferecer seu sangue em troca.</p>
+            <button onclick="fecharModal('modalPacto1')">Fechar</button>
+            <button class="btn-colocar-ficha" onclick="colocarNaFicha('Pacto de Sangue', 'modalPacto1')">Colocar na Ficha</button>
+        </div>
+    </div>
 </main>
  
 
