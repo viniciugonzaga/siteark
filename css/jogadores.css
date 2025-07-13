@@ -793,7 +793,7 @@ nav {
     margin-bottom: 50px;
     text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
 }
-@media (max-width: 768px) {
+@media (max-width: 788px) {
 
 /* Título Principal - Centralizado */
 .titulo_principal {
@@ -807,7 +807,7 @@ nav {
 }
 
 .titulo_efeito {
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-weight: bold;
     background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
     border-radius: 25px;
@@ -825,10 +825,23 @@ nav {
     transform-style: preserve-3d;
     text-align: center; /* Garante o texto centralizado dentro do elemento */
 }
-
 }
+
+@media (max-width: 480px) {
+
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 110px;
+    perspective: 600px;
+    margin-bottom: 20px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
+
 .titulo_efeito {
-    font-size: 4rem;
+    font-size: 1rem;
     font-weight: bold;
     background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
     border-radius: 25px;
@@ -841,6 +854,29 @@ nav {
         0 0 60px rgba(193, 240, 248, 0.4);
     position: relative;
     max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+}
+
+
+
+.titulo_efeito {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 280px;
     overflow: hidden;
     animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
     transform-style: preserve-3d;
