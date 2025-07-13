@@ -66,107 +66,206 @@ clearRollsButton.addEventListener('click', () => {
  function goToPage(page) {
     window.location.href = page; // Redireciona para a página passada como argumento
 }
-
-// ========================
-// Footer dinâmico
-// ========================
-document.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer"); // Seleciona o rodapé
-
-    // Se o usuário rolar até o fim da página
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg,,#6b6a62a4,#857b7bad,#6b6a62a4)"; // Altera a cor do rodapé
-    } else {
-        footer.style.background = "linear-gradient(45deg,,#630909a4,#360404ad,#630909a4)"; // Mantém a cor padrão
-    }
-});
-const effects = [
-    { "name": "Envenenado", "img": "imagens/efeitos_icon1.jpg", "description": "Recebe dano interno por rodada, que pode variar e ignorar armadura, aplicando outras condições determinadas pelo veneno. Danos básicos: 1d8/3d8/6d8." },
-    { "name": "Congelado", "img": "imagens/efeitos_icon2.jpg", "description": "Recebe dano interno, fica preso e perde 1 de Vigor caso falhe em um teste de Fortitude até se aquecer novamente. Danos básicos: 2d12/3d12/4d12." },
-    { "name": "Em Chamas", "img": "imagens/efeitos_icon3.jpg", "description": "Recebe dano de fogo por rodada até apagar a origem com alguma das ações. Dano básico: 2d6/4d6/6d6." },
-    { "name": "Sobrecarga", "img": "imagens/efeitos_icon4.jpg", "description": "Recebe dano elétrico acumulado por rodadas, causando 2d8 a cada 30 pontos de dano de origem elétrica. (Ótimos Condutores duplicam o dano)." },
-    { "name": "Sangrando", "img": "imagens/efeitos_icon5.jpg", "description": "Recebe dano interno por grande liberação contínua de sangue e deixa mais rastros. Dano básico: 2d12/3d12/4d12." },
-    { "name": "Agarrado", "img": "imagens/efeitos_icon6.jpg", "description": "O alvo recebe desvantagem em reações e perde 1 dado de Força e Agilidade nas rolagens enquanto estiver agarrado. (-5 + efeitos de ataque/habilidade/passiva)." },
-    { "name": "Infectado", "img": "imagens/efeitos_icon7.jpg", "description": "O alvo contraiu uma doença ou vírus. (Os efeitos da desvantagem variam)." },
-    { "name": "Exposto à Radiação", "img": "imagens/efeitos_icon8.jpg", "description": "O alvo está próximo ou interagindo com uma origem radioativa. Seus atributos serão alterados permanentemente conforme o tempo. Danos básicos: +20/+30/+40." },
-    { "name": "Exposto ao Ácido", "img": "imagens/efeitos_icon9.jpg", "description": "O alvo está próximo ou interagindo com uma origem ácida, recebendo dano na armadura e na vida ao mesmo tempo até remover a origem. Danos básicos: 3d8+5 / 6d8+10 / 9d8+15." },
-    { "name": "Corrompido", "img": "imagens/efeitos_icon10.jpg", "description": "O alvo está próximo ou interagindo com uma origem de Aether ou Elemento, recebendo dano na vida. Além disso, deve rolar 1d2: caso caia 1, recebe dano em dobro; caso caia 2, adquire uma habilidade desconhecida permanentemente. Danos básicos: 2d10/4d10/5d10." },
-    { "name": "Lento/Lentidão", "img": "imagens/efeitos_icon11.jpg", "description": "O alvo recebe uma desvantagem de -5 em todos os testes de Agilidade e perde 1 ponto de Agilidade temporariamente." },
-    { "name": "Intimidado", "img": "imagens/efeitos_icon12.jpg", "description": "O alvo intimidado sofre o primeiro ataque ou ação inimiga da rodada com +5 de acerto." },
-    { "name": "Corajoso", "img": "imagens/efeitos_icon13.jpg", "description": "O alvo é imune a efeitos de medo ou controle mental durante a cena ou permanentemente." },
-    { "name": "Ódio/Rage", "img": "imagens/efeitos_icon14.jpg", "description": "O alvo causa +2 dados de dano e recebe +5 em acertos de ataques, mas deve acertar um alvo por rodada ou cena até o efeito acabar. Duração básica: (1d4 + ficha)." },
-    { "name": "Ágil", "img": "imagens/efeitos_icon15.jpg", "description": "O alvo recebe +1 em Agilidade e +5 em todas as ações que envolvem movimentação frenética. Duração básica: (1d4 + ficha)." },
-    { "name": "Dilacerado", "img": "imagens/efeitos_icon16.jpg", "description": "O alvo sofre dano de sangramento interno e recebe apenas metade dos efeitos de cura. Caso esteja sendo engolido, sofre -5 em todos os testes de Força e Vigor até o efeito acabar." },
-    { "name": "Furtivo", "img": "imagens/efeitos_icon17.jpg", "description": "O alvo se torna furtivo a ataques, ganhando +5 em reações e ataques furtivos até o efeito acabar. (+ficha)." },
-    { "name": "Protegido", "img": "imagens/efeitos_icon18.jpg", "description": "O alvo fica protegido contra um determinado ataque, condição ou temperatura, recebendo menos dano ou se tornando imune até o efeito acabar." },
-    { "name": "Rasgo de Vida", "img": "imagens/efeitos_icon19.jpg", "description": "O alvo pode causar dano físico e regenerar parte da vida conforme o dano do ataque. Rasgos básicos: (10%-20% + ficha)." },
-    { "name": "Forte", "img": "imagens/efeitos_icon20.jpg", "description": "O alvo se torna ou se sente mais forte, ganhando +1 em Força e +5 em ações que envolvem Força ou Vigor. Duração básica: (1d4 + ficha)." },
-    { "name": "Imobilizado", "img": "imagens/efeitos_icon21.jpg", "description": "O alvo não pode se mover ou realizar ações de movimento até o efeito acabar." },
-    { "name": "Preparado", "img": "imagens/efeitos_icon22.jpg", "description": "O alvo prepara uma ação, ganhando +5 no teste dessa ação na próxima rodada. (+ficha)." },
-    { "name": "Cego", "img": "imagens/efeitos_icon23.jpg", "description": "O alvo é incapaz de enxergar, sofrendo -1 em Percepção e -5 em testes de Percepção e reações. Duração básica: (1d4 + ficha)." },
-    { "name": "Eficiente", "img": "imagens/efeitos_icon24.jpg", "description": "O alvo ganha +5 em testes de um determinado atributo de forma permanente ou durante a cena." },
-    { "name": "Certeiro", "img": "imagens/icon_certeiro.jpg", "description": "O alvo mira no inimigo e recebe +5 no ataque, ganhando +1 dado de dano e examinando um ponto fraco ou de interesse por 1 rodada. (+ficha)." },
-    { "name": "Fraco", "img": "imagens/icon_fraco.jpg", "description": "O alvo sofre -1 FOR, -5 em testes de Força ou Vigor, e causa menos dano físico, perdendo 2 dados de dano até o efeito acabar. (+ficha)" },
-    { "name": "Sufocando", "img": "imagens/efeitos_icon27.jpg", "description": "O alvo perde 1 VIG por turno caso o fôlego esteja zerado. Após isso, sofre dano proporcional à vida ou torpor em dados. Danos ou torpor básicos: (Dano: 20% / Torpor: 2d8/3d8/5d8 + ficha)" },
-    { "name": "Fadiga", "img": "imagens/icon_fadiga.jpg", "description": "O alvo sofre -1 AGI ou -1 INT, -5 em testes que envolvem Inteligência ou Agilidade. Se o fôlego estiver zerado, fica com as desvantagens de 'Sufocado (Sem Ar)'." },
-    { "name": "Molestado", "img": "imagens/icon_molestado.jpg", "description": "O alvo recebe +5 nos ataques inimigos conforme o número do grupo adversário aumenta em relação ao seu grupo. (+ficha)" },
-    { "name": "Paralisado", "img": "imagens/efeitos_icon30.jpg", "description": "O alvo sofre -5 em todos os testes de Reações, PRE e INT até o efeito acabar. Duração Básica: (+1d4 + ficha)" },
-    { "name": "Atordoado", "img": "imagens/efeitos_icon31.jpg", "description": "O alvo sofre -5 em todos os testes por 1d4 rodadas e não pode agir na primeira rodada. A desvantagem persiste até o efeito acabar. (+ficha)" },
-    { "name": "Inconsciente", "img": "imagens/efeitos_icon32.jpg", "description": "O alvo não pode agir por estar desacordado. Após 3 rodadas, pode tentar acordar com testes de VIG (DT: 25/20/15). (+ficha)" },
-    { "name": "Flanqueado", "img": "imagens/efeitos_icon33.jpg", "description": "O alvo sofre +5 no próximo ataque inimigo por 1 rodada. (+ficha)" },
-    { "name": "Afinidade", "img": "imagens/efeitos_icon34.jpg", "description": "Os afetados por essa condição possuem um laço sentimental ou familiar, aprimorando habilidades combinadas em grupo. (+ficha)" },
-    { "name": "Estado Morrendo", "img": "imagens/efeitos_icon35.jpg", "description": "O alvo não pode agir e apenas rasteja no chão. Durante 3 rodadas, deve fazer testes de VIG para sobreviver. Se falhar, morre. (DT: 10, 15, 20) (+ficha)" },
-    { "name": "Executado", "img": "imagens/efeitos_icon36.jpg", "description": "O alvo morre instantaneamente ou de forma lenta, afetando emocionalmente os que testemunham. Todos devem testar Vontade para evitar ficarem pasmos por 1 rodada." },
-    { "name": "Explodido", "img": "imagens/efeitos_icon37.jpg", "description": "O alvo é completamente destruído, sem deixar vestígios ou restos, incluindo armas e equipamentos." },
-    { "name": "Anti-Cura", "img": "imagens/efeitos_icon38.jpg", "description": "O alvo não pode receber cura até o efeito acabar. Duração Básica: (1d4 + ficha)" },
-    { "name": "Abalado", "img": "imagens/efeitos_icon39.jpg", "description": "O alvo sofre -5 em todos os testes, -1 AGI, FOR, INT, PER e VIG, além de perder a guarda, todos os pontos de determinação e fé. Duração Básica: (1d2 + ficha)" },
-    { "name": "Alheio", "img": "imagens/efeitos_icon40.jpg", "description": "O alvo não possui informações táticas ou de localização sobre a cena. (+ficha)" },
-    { "name": "Desmontado", "img": "imagens/efeitos_icon41.jpg", "description": "O alvo é forçado a sair de sua montaria e fica atordoado por 1d2 rodadas. (+ficha)" },
-    { "name": "Imune", "img": "imagens/efeitos_icon42.jpg", "description": "O alvo é imune ou já foi tão torturado que ignora metade do dano ou não reage à dor, de forma permanente ou durante a cena. (+ficha)" },
-    { "name": "Desprevenido", "img": "imagens/efeitos_icon43.jpg", "description": "O alvo sofre desvantagens contra ataques furtivos ou flanqueados por 1 rodada. (+ficha)" },
-    { "name": "Pasmo", "img": "imagens/efeitos_icon44.jpg", "description": "O alvo não pode reagir, agir, falar ou realizar qualquer ação por 1 rodada. (+ficha)" },
-    { "name": "Exposto", "img": "imagens/efeitos_icon45.jpg", "description": "O alvo recebe o primeiro ataque inimigo com +10 no acerto e o dobro de dano. Duração Básica: (1d2 + ficha)" },
-    { "name": "Revelado", "img": "imagens/icon_revelado.jpg", "description": "O alvo tem sua aura e localização reveladas para todos os inimigos na cena. (+ficha)" },
-    { "name": "Dose de Adrenalina", "img": "imagens/efeitos_icon47.jpg", "description": "O alvo pode tentar ignorar danos mentais ou físicos com testes de resistência, além de usar dados de esforço até o efeito acabar. Duração Básica: (Cena + ficha)" },
-    { "name": "Curado", "img": "imagens/efeitos_icon48.jpg", "description": "O alvo recebe um efeito de cura, podendo recuperar vida por rodada ou por cena, efeitos negativos também podem ser anulados com esse efeito. Duração Básica: (Cena / 1d4 rodadas + ficha)" },
-    { "name": "Trocado", "img": "imagens/efeitos_icon49.jpg", "description": "O alvo troca todos os seus efeitos com outro alvo escolhido. O efeito persiste até acabar. Duração Básica: (1d4 rodadas + ficha)" },
-    { "name": "Marcado", "img": "imagens/efeitos_icon51.jpg", "description": "O alvo é marcado na mira da arma, facilitando acertos e estimulando aliados. Todos ganham +5 no acerto. Duração Básica: (1d2 + ficha)" },
-    { "name": "Diabólico", "img": "imagens/efeitos_icon52.jpg", "description": "O alvo vê a realidade de forma distorcida e perde empatia por sua tribo e aliados, ganhando +5 em ações egoístas, mas sofrendo -5 em diplomacia. Duração Básica: (1d2 + ficha)" },
-    { "name": "Embriagado", "img": "imagens/efeitos_icon53.jpg", "description": "O alvo está confuso e tem dificuldades para pensar, sofrendo -1 dado em todos os testes e -5 em todas as rolagens. Duração Básica: (Cena / 1d6 + ficha)" },
+  const efeitos = [
+  {
+    nome: "Sangramento",
+    dano: "1d12 Sangramento",
+    defesa: "Medicina ou Fortitude",
+    status: "Sangrando",
+    acumulo: "Sim",
+    icon: "../imagens/Icon_sangue.jpg",
+    descricao: "O alvo sofre ferimentos contínuos e perde vitalidade gradualmente, representado por dano recorrente. O efeito se acumula caso múltiplos golpes agravem os cortes. Só pode ser encerrado com tratamento adequado ou superação extrema da dor através de testes físicos ou médicos."
+  },
+  {
+    nome: "Envenenado",
+    dano: "2d6 Peste",
+    defesa: "Medicina ou Resistência",
+    status: "Com Peste",
+    acumulo: "Sim",
+    icon: "../imagens/icon_peste.jpg",
+    descricao: "O corpo do alvo é contaminado por toxinas, doenças ou venenos, causando dano de peste a cada rodada. O veneno pode se acumular, agravando os sintomas até o colapso total, a menos que seja tratado ou vencido por resistência interna."
+  },
+  {
+    nome: "Queimado",
+    dano: "3d6 Fogo",
+    defesa: "Agachar ou Reflexo",
+    status: "Em chamas",
+    acumulo: "Sim",
+    icon: "../imagens/icon_fogo.jpg",
+    descricao: "O alvo é envolto em chamas ou calor extremo, sofrendo dano progressivo enquanto estiver em combustão. O efeito se acumula com novas fontes de fogo e só é removido ao apagar completamente a origem das chamas ou usar ações específicas de proteção."
+  },
+  {
+    nome: "Atordoado",
+    dano: "Dano da Arma",
+    defesa: "Defesa inimiga",
+    status: "Em Stun (1 rodada)",
+    acumulo: "Não",
+    icon: "../imagens/icon_stun.jpg",
+    descricao: "O alvo sofre uma forte interrupção sensorial — como pancadas na cabeça ou impactos repentinos — perdendo a capacidade de agir durante sua vez (1 rodada). Apesar disso, ainda é capaz de se defender. Após passar o efeito, recupera suas ações normalmente."
+  },
+  {
+    nome: "Vulnerável",
+    dano: "Dano da Arma (Raio)",
+    defesa: "Defesa inimiga ou Fortitude",
+    status: "-5 defesas físicas",
+    acumulo: "Sim",
+    icon: "../imagens/icon_vulneravel.jpg",
+    descricao: "O alvo é pego desprevenido, com brechas em sua postura ou armadura, sofrendo -5 em defesas físicas. O efeito pode se acumular e permanece até que a criatura resista com sucesso ou recupere o controle do próprio corpo e mente."
+  },
+  {
+    nome: "Amedrontado",
+    dano: "Estresse",
+    defesa: "Vontade",
+    status: "Com Medo",
+    acumulo: "Não",
+    icon: "../imagens/icon_medo.jpg",
+    descricao: "O medo domina o alvo, provocando dano de estresse a cada instante. Esse estado mental frágil persiste até que ele reúna vontade o suficiente para resistir ou anular completamente os danos sofridos. Ao conseguir isso, o efeito é imediatamente dissipado."
+  },
+  {
+    nome: "Agarrado",
+    dano: "Dano da Arma",
+    defesa: "Defesa do Inimigo",
+    status: "Agarrado",
+    acumulo: "Sim",
+    icon: "../imagens/icon_agarrado.jpg",
+    descricao: "O alvo é dominado fisicamente, sofrendo -3 em todos os testes de defesa. Se o inimigo for maior em tamanho, o redutor é de -5. O efeito é acumulativo. Se o alvo vencer um único teste de defesa contra um dos inimigos que o agarra, ele se liberta de todos. O inimigo pode arrastar o alvo com base em sua força."
+  },
+  {
+    nome: "Marcado",
+    dano: "Arma",
+    defesa: "Defesa do inimigo",
+    status: "Marcado",
+    acumulo: "Não",
+    icon: "../imagens/icon_marcado.jpg",
+    descricao: "Uma marca visível ou energética é colocada sobre o alvo, tornando-o um foco claro no campo de batalha. O próximo ataque contra ele recebe +5 no acerto e é considerado crítico automático. Após esse ataque, a marca desaparece."
+  },
+  {
+    nome: "Fortalecido",
+    dano: "Buff",
+    defesa: "Nulo",
+    status: "Buff Ativo",
+    acumulo: "Sim",
+    icon: "../imagens/icon_forte.jpg",
+    descricao: "O corpo ou mente do alvo é envolto por uma energia amplificadora ligada à sua origem. Ganha vantagens relacionadas à sua classe, linhagem ou condição especial. O efeito dura até que o tempo da habilidade acabe ou a fonte da vantagem se dissipe."
+  },
+  {
+    nome: "Enfraquecido",
+    dano: "Normal",
+    defesa: "Defesa do inimigo",
+    status: "Fraco",
+    acumulo: "Sim",
+    icon: "../imagens/icon_fraco.jpg",
+    descricao: "O alvo está mentalmente ou fisicamente debilitado, sofrendo penalidades e dano se falhar em resistir. Caso não suporte o efeito, ele permanece ativo por um número de rodadas conforme indicado na habilidade ou ataque que o causou. Depois disso, é encerrado."
+  },
+  {
+    nome: "Rage",
+    dano: "Arma e vida",
+    defesa: "Nulo",
+    status: "Bravo",
+    acumulo: "Sim",
+    icon: "../imagens/icon_rage.jpg",
+    descricao: "O alvo entra em estado de fúria instintiva, perdendo o controle de suas emoções. Ganha vantagens ofensivas e mais dano com armas e ataques, mas em troca sofre com desgaste físico, estresse e perda gradual de vida. O efeito dura conforme a habilidade que o ativou."
+  },
+  {
+    nome: "Imobilizado",
+    dano: "Efeito",
+    defesa: "Reflexo ou Contra-ataque",
+    status: "Enraizado",
+    acumulo: "Não",
+    icon: "../imagens/icon_enraizado.jpg",
+    descricao: "O alvo está preso por raízes, correntes ou impedimentos sobrenaturais, incapaz de se mover. Ele pode realizar testes para escapar e, ao ter sucesso, se liberta e o efeito é encerrado."
+  },
+  {
+    nome: "Abalado",
+    dano: "Efeito",
+    defesa: "Bloqueio",
+    status: "Abalado",
+    acumulo: "Não",
+    icon: "../imagens/icon_abalado.jpg",
+    descricao: "O alvo é afetado por um golpe ou acontecimento que o desestabiliza profundamente. Caso não resista, fica impossibilitado de realizar bloqueios por toda a duração do efeito. Após esse tempo, retorna ao normal."
+  },
+  {
+    nome: "Cegueira",
+    dano: "Efeito",
+    defesa: "Fortitude ou Reflexo",
+    status: "Cego",
+    acumulo: "Sim",
+    icon: "../imagens/icon_cegueira.jpg",
+    descricao: "O alvo perde totalmente a capacidade de enxergar, mergulhado em completa escuridão, seja por mágica, dano ocular ou manipulação sensorial. Enquanto o efeito estiver ativo, ele sofre desvantagens severas em testes de percepção visual e ataques à distância ou corpo a corpo. A cegueira pode ser superada com testes apropriados, cura mágica ou quando sua duração natural expira."
+  },
+  {
+    nome: "Protegido",
+    dano: "Proteção",
+    defesa: "Nulo",
+    status: "Protegido",
+    acumulo: "Não",
+    icon: "../imagens/icon_protegido.jpg",
+    descricao: "O alvo é designado como protegido por um aliado. Enquanto o efeito estiver ativo, o aliado assume os ataques direcionados a ele por vontade própria, colocando-se em risco. O efeito se mantém até que o protetor morra, desista ou seja forçado a romper a proteção."
+  },
+  {
+    nome: "Revelado",
+    dano: "Efeito",
+    defesa: "Defesa do inimigo",
+    status: "Revelado",
+    acumulo: "Não",
+    icon: "../imagens/icon_revelado.jpg",
+    descricao: "A camuflagem ou invisibilidade do alvo é anulada. Ele se torna totalmente visível e rastreável, mesmo por meios mágicos ou sensores naturais. O efeito permanece até que sua duração se encerre ou a habilidade seja dissipada."
+  },
+  {
+    nome: "Silenciado",
+    dano: "Efeito",
+    defesa: "Defesa do inimigo",
+    status: "Silenciado",
+    acumulo: "Não",
+    icon: "../imagens/icon_silenciado.jpg",
+    descricao: "O alvo perde a capacidade de se comunicar, entoar magias, gritar ou emitir qualquer som significativo. O efeito permanece até o final da duração ou até que o alvo resista a ele. Ideal contra conjuradores ou criaturas que dependem da fala."
+  },
+  {
+    nome: "Exposto",
+    dano: "Dano x2 e Estresse",
+    defesa: "Defesa do inimigo",
+    status: "Exposto",
+    acumulo: "Não",
+    icon: "../imagens/icon_exposto.jpg",
+    descricao: "A armadura do alvo está destruída, sua mente quebrada ou sua alma despida de proteção. Todo dano físico contra ele é dobrado, e o dano de estresse é igualmente amplificado. O efeito permanece até o fim da duração natural."
+  }
 ];
 
-function renderEffects() {
-    const grid = document.getElementById("effectsGrid");
-    grid.innerHTML = "";
-    effects.forEach((effect, index) => {
-        let effectDiv = document.createElement("div");
-        effectDiv.classList.add("effect");
-        effectDiv.innerHTML = `
-            <img src="${effect.img}" alt="${effect.name}">
-            <h3>${effect.name}</h3>
-        `;
-        effectDiv.onclick = () => openModal(effect);
-        grid.appendChild(effectDiv);
-    });
-}
+            // Adicione os outros efeitos aqui...
+        
+const tabela = document.getElementById("efeito-tabela");
+const modais = document.getElementById("modais-container");
 
-function openModal(effect) {
-    document.getElementById("modalImg").src = effect.img;
-    document.getElementById("modalTitle").innerText = effect.name;
-    document.getElementById("modalDescription").innerText = effect.description;
-    document.getElementById("modal").style.display = "flex";
-}
+efeitos.forEach((efeito, i) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+        <td>${efeito.nome}</td>
+        <td>${efeito.dano}</td>
+        <td>${efeito.defesa}</td>
+        <td>${efeito.status}</td>
+        <td>${efeito.acumulo}</td>
+        <td><button class="effects-table-button" onclick="document.getElementById('effects-modal-${i}').style.display='block'">Detalhes</button></td>
+    `;
+    tabela.appendChild(tr);
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
+    const modal = document.createElement("div");
+    modal.className = "effects-modal";
+    modal.id = `effects-modal-${i}`;
 
-document.getElementById("search").addEventListener("input", function () {
-    const searchValue = this.value.toLowerCase();
-    document.querySelectorAll(".effect").forEach(effect => {
-        const name = effect.querySelector("h3").innerText.toLowerCase();
-        effect.style.display = name.includes(searchValue) ? "block" : "none";
-    });
+    modal.innerHTML = `
+        <div class="effects-modal-content">
+            <span class="effects-modal-close-button" onclick="document.getElementById('effects-modal-${i}').style.display='none'">&times;</span>
+            <img class="icon" src="${efeito.icon}" alt="${efeito.nome}" />
+            <h2 class="effects-modal-title">${efeito.nome}</h2>
+            <p class="effects-modal-description">${efeito.descricao}</p>
+        </div>
+    `;
+    modais.appendChild(modal);
 });
 
-renderEffects();
+// Fecha modal ao clicar fora
+window.onclick = function(event) {
+    if (event.target.classList.contains('effects-modal')) {
+        event.target.style.display = "none";
+    }
+};

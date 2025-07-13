@@ -3,238 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colossos</title>
-    <link rel="stylesheet" href="/css/colossos.css">
+    <title>Área dos Caidos</title>
+    <link rel="stylesheet" href="../css/colossos.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js"></script>
     <!-- Fonte -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!--fim da fonte-->
     <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
     <!-- Alternativa para .png -->
-    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+    <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
 </head>
 <body>
    <!-- Nav-Bar ------------------------------------------------------>
-   <nav>
-    <!-- Logo com Ícone e Texto -->
-    <div class="logo">
-        <img src="imagens/logo v.2.png" alt="Logo"> <!-- Substitua pelo nome da sua imagem -->
+   <!-- ░░░ NAVBAR ░░░ -->
+  <nav>
+    <div class="nav-left">
+      <div class="logo">
+        <img src="../imagens/Icone_ark_v4.png" alt="Logo" />
         <h1>RPG ARK</h1>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="index.html"><span>Início</span></a>
-      <a href="index_mapas.html"><span>Mapas</span></a>
-      <a href="index_história.html"><span>Lore</span></a>
-      <a href="index_regras.html"><span>Regras</span></a>
-      <a href="index_bloqueado.html"><span>Dinos</span></a>
-      <a href="index_ciencia.html"><span>Ciências</span></a>
+
+    <div class="nav-middle">
+      <div class="nav-links">
+        <a href="../index.html"          class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
+        <a href="index_mapas.html"       class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
+        <a href="index_história.html"    class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
+        <a href="index_regras.html"      class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html"   class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html"     class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
+      </div>
     </div>
-    <!-- Botão Glow -->
-    <div class="dado-container">
-        <img src="imagens/dado_planta.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+
+    <div class="nav-right">
+      <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado" />
+        <a href="index_login.html" class="new-icon-link">
+          <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon" />
+        </a>
+      </div>
     </div>
-    
+
+    <!-- ░ MENU DE DADOS ░ -->
     <div id="diceMenu" class="menu hidden">
-        <button id="closeMenu">Fechar</button>
-        <h3>Rolar Dados</h3>
-        <label for="playerName">Nome do Jogador:</label>
-        <input type="text" id="playerName" placeholder="Digite o nome do jogador">
-        <label for="diceSelect">Selecione o tipo de dado:</label>
-        <select id="diceSelect">
-            <option value="20">D20</option>
-            <option value="12">D12</option>
-            <option value="10">D10</option>
-            <option value="8">D8</option>
-            <option value="6">D6</option>
-            <option value="4">D4</option>
-            <option value="2">D2</option>
-        </select>
-        <button id="rollDice">Rolar Dados</button>
-        <div id="rolls">
-            <h4>Registro de Rolagens:</h4>
-            <ul id="rollList"></ul>
-            <p id="total">Total: 0</p>
-        </div>
-        <button id="clearRolls">Limpar Registro</button>
+      <button id="closeMenu">Fechar</button>
+      <h3>Rolar Dados</h3>
+      <label for="playerName">Nome do Jogador:</label>
+      <input type="text" id="playerName" placeholder="Digite o nome do jogador" />
+      <label for="diceSelect">Selecione o tipo de dado:</label>
+      <select id="diceSelect">
+        <option value="20">D20</option><option value="12">D12</option><option value="10">D10</option>
+        <option value="8">D8</option><option value="6">D6</option><option value="4">D4</option><option value="2">D2</option>
+      </select>
+      <button id="rollDice">Rolar Dados</button>
+
+      <div id="rolls">
+        <h4>Registro de Rolagens:</h4>
+        <ul id="rollList"></ul>
+        <p id="total">Total: 0</p>
+      </div>
+      <button id="clearRolls">Limpar Registro</button>
     </div>
-    
   </nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
+
+ <!-- Seção Início -->
     <div class="titulo_principal">
-      <h1 class="titulo_efeito">Colossos</h1>
+      <h1 class="titulo_efeito">Caidos</h1>
   </div>
 
-  <h1 class="Titulo_comentario">"..Uma montanha alta de escalar, mais com uma vista que vale a pena apreciar.."</h1>
-
-  <div class="gallery-container">
-    <div class="display-area">
-        <img id="mainImage" src="imagens/colossos_menu_inicio.jpg" alt="Imagem Principal">
-        <h2 id="imageTitle">Criação</h2>
-        <p id="imageDescription">"Criados e mantidos pelos Caídos, sua civilização de origem, guardados e presos em um ciclo sem sonhos. Condenados a sentir e proteger aquilo que os criou."</p>
+   <section>
+    <div class="overlay">
+      <div class="titulo">Conquistas dos Caídos</div>
+      <div class="div-texto">
+        <p>
+         Os Caídos foram a única civilização a explorar profundamente o arcano, mas essa busca por conhecimento os levou à corrupção. Em sua história, padronizaram as reações do arcano a diversos aspectos da vida e da natureza, criando um alfabeto para sua linguagem.
+         Deixaram vestígios de suas descobertas em pedras, traduções e significados, que foram transmitidos por gerações e civilizações, resultando na criação de rituais e pactos. Os únicos remanescentes da população são templos que se trancaram com a própria linguagem nos códigos de seus portões, escondendo-se para preservar mentes brilhantes e ideias que não poderiam ser mais compartilhadas.
+         Para evitar a perda de conhecimento, os Caídos aprisionaram suas mentes em criaturas de pedras ou estátuas, guardando suas consciências perturbadas e alteradas dentro de colossos e estátuas, como uma forma de preservar seu legado.
+        </p>
+      </div>
     </div>
+  </section>
+
+ 
 
     <div class="container">
       <div class="symbol">
-          <img src="imagens/tokens/ciclo_caidos.PNG" alt="Ciclo">
+          <img src="../imagens/tokens/ciclo_caidos.PNG" alt="Ciclo">
           <p>Ciclo</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/medo_caidos.PNG" alt="Medo">
+          <img src="../imagens/tokens/medo_caidos.PNG" alt="Medo">
           <p>Medo</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/coragem_caidos.PNG" alt="Coragem">
+          <img src="../imagens/tokens/coragem_caidos.PNG" alt="Coragem">
           <p>Coragem</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/luta_caidos.PNG" alt="Luta">
+          <img src="../imagens/tokens/luta_caidos.PNG" alt="Luta">
           <p>Luta</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/liberdade_caidos.PNG" alt="Liberdade">
+          <img src="../imagens/tokens/liberdade_caidos.PNG" alt="Liberdade">
           <p>Liberdade</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/ascensão_caidos.PNG" alt="Ascensão">
+          <img src="../imagens/tokens/ascensão_caidos.PNG" alt="Ascensão">
           <p>Ascensão</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/ódio_caidos.PNG" alt="Ódio">
+          <img src="../imagens/tokens/ódio_caidos.PNG" alt="Ódio">
           <p>Ódio</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/morte_caidos.PNG" alt="Morte">
+          <img src="../imagens/tokens/morte_caidos.PNG" alt="Morte">
           <p>Morte</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/amor_caidos.PNG" alt="Amor">
+          <img src="../imagens/tokens/amor_caidos.PNG" alt="Amor">
           <p>Amor</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/fogo_caidos.PNG" alt="Fogo">
+          <img src="../imagens/tokens/fogo_caidos.PNG" alt="Fogo">
           <p>Fogo</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/esquecer_caidos.PNG" alt="Esquecer">
+          <img src="../imagens/tokens/esquecer_caidos.PNG" alt="Esquecer">
           <p>Esquecer</p>
       </div>
       <div class="symbol">
-          <img src="imagens/tokens/lua_caidos.PNG" alt="Lua">
+          <img src="../imagens/tokens/lua_caidos.PNG" alt="Lua">
           <p>Lua</p>
       </div>
       <div class="symbol">
-        <img src="imagens/tokens/pegada_caidos.PNG" alt="Lua">
+        <img src="../imagens/tokens/pegada_caidos.PNG" alt="Mover">
         <p>Mover</p>
     </div>
     <div class="symbol">
-      <img src="imagens/tokens/sol_caidos.PNG" alt="Lua">
+      <img src="../imagens/tokens/sol_caidos.PNG" alt="Sol">
       <p>Sol</p>
   </div>
   <div class="symbol">
-    <img src="imagens/tokens/eco_caidos.png" alt="Lua">
+    <img src="../imagens/tokens/eco_caidos.png" alt="Eco">
     <p>Eco</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/som_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/som_caidos.png" alt="Som">
   <p>Som</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/água_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/água_caidos.png" alt="Água">
   <p>Água</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/vida_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/vida_caidos.png" alt="Vida">
   <p>Vida</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/peso_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/peso_caidos.png" alt="Peso">
   <p>Peso</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/alma_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/alma_caidos.png" alt="Alma">
   <p>Alma</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/codigo_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/codigo_caidos.png" alt="Código">
   <p>Código</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/perder-apodrecer_caidos.png" alt="Lua">
-  <p>Apodrecer-perder</p>
+  <img src="../imagens/tokens/perder-apodrecer_caidos.png" alt="Apodrecer">
+  <p>Apodrecer</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/ganhar-vitoria_caidos.png" alt="Lua">
-  <p>Ganhar-vitória</p>
+  <img src="../imagens/icon_raio.jpg" alt="Lua">
+  <p>Energia</p>
 </div>
 <div class="symbol">
-  <img src="imagens/tokens/animal_caidos.png" alt="Lua">
+  <img src="../imagens/tokens/animal_caidos.png" alt="Ferocidade">
   <p>Ferocidade</p>
 </div>
   </div>
 
-<!-- Botão centralizado -->
-<div class="button-container">
-  <button id="colossosBtn">Colossos</button>
-</div>
 
-<!-- Modal -->
-<div id="colossosModal" class="modal">
-  <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h2>Lista de Colossos</h2>
-      <ul id="colossosList">
-          <!-- Lista de colossos será populada via JS -->
-      </ul>
-  </div>
-</div>
 
-<!-- Modal de Ficha do Colosso -->
-<div id="fichaModal" class="modal">
-  <div class="modal-content">
-      <span class="close" id="closeFichaModal">&times;</span>
-      <h2 id="fichaTitle">Ficha do Colosso</h2>
-      <div id="colossoFicha">
-          <!-- Ficha do Colosso será preenchida via JS -->
-      </div>
-  </div>
-</div>
-
-     <!--footer----------------------------------------------------------------------------->
-     <footer>
-      <div class="footer-content">
-          
-        <div class="footer-section about">
-          <h2>Sobre o RPG</h2>
-          <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
-        </div>
-        <div class="footer-section links">
-          <h2>Links Úteis</h2>
-          <ul>
-            <li><a href="index_mapas.html">Mapas</a></li>
-            <li><a href="index_tribos.html">Tribos</a></li>
-            <li><a href="index_regras.html">Regras</a></li>
-            <li><a href="index_itens.html">Itens</a></li>
-          </ul>
-        </div>
-        <div class="footer-section social">
-          <h2>Conecte-se</h2>
-          <div class="social-icons">
-            <a href="https://instagram.com/vindinossauro" target="_blank"><img src="imagens/insta_home.png" alt="Instagram"></a>
-            <a href="https://github.com" target="_blank"><img src="imagens/git_home.png" alt="GitHub"></a>
-            <a href="mailto:vinigonzagap@gmail.com"><img src="imagens/gmail_home.png" alt="E-mail"></a>
-          </div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>RPG Ark: Criado por Vini &copy; 2024</p>
-      </div>
-    </footer>
-    
    
 
- <!-- Inclui o arquivo de script -->
- <script src="js/colossos.js"></script>
+ <!-- ░░░ FOOTER ░░░ -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>Sobre o RPG</h2>
+        <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência..."</p>
+      </div>
+
+      <div class="footer-section links">
+        <h2>Links Úteis</h2>
+        <ul>
+          <li><a href="index_mapas.html">Mapas</a></li>
+          <li><a href="index_tribos.html">Tribos</a></li>
+          <li><a href="index_regras.html">Regras</a></li>
+          <li><a href="index_itens.html">Itens</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section social">
+        <h2>Conecte-se</h2>
+        <div class="social-icons">
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="../imagens/insta_home.png" alt="Instagram" /></a>
+          <a href="https://github.com" target="_blank"><img src="../imagens/git_home.png" alt="GitHub" /></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="../imagens/gmail_home.png" alt="E-mail" /></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+    </div>
+  </footer>
+
+<script src="../js/colossos.js"></script>
 </body>
 </html>
+

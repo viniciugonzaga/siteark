@@ -13,7 +13,7 @@
     <!--fim da fonte-->
     <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
     <!-- Alternativa para .png -->
-    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+    <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
 </head>
 <body>
    <!-- Nav-Bar ------------------------------------------------------>
@@ -96,17 +96,16 @@
 
 
       <div class="caixa">
-       <div class="icone-regras" onclick="abrirModalRituais()">
-        <img src="../imagens/fundo_rubi_rosa.jpg" alt="ícone ritual">
-        <span>Rituais</span>
-      </div>
+       <div class="icone-regras" onclick="abrirModal('modalRituaisInfo')">
+  <img src="../imagens/fundo_rubi_rosa.jpg" alt="ícone ritual">
+  <span>Rituais</span>
+</div>
 
-      <!-- Botão para abrir o modal dos Pactos -->
-     <div class="icone-regras" onclick="abrirModalPactos()">
-      <img src="../imagens/fundo_rubi_azul.jpg" alt="ícone pactos">
-       <span>Pactos</span>
-      </div>
-      </div>
+<div class="icone-regras" onclick="abrirModal('modalPactosInfo')">
+  <img src="../imagens/fundo_rubi_azul.jpg" alt="ícone pactos">
+  <span>Pactos</span>
+</div>
+
      
 
     </div> </section>
@@ -131,7 +130,7 @@
       <li><strong>Ritual Complexo:</strong> Nível 99</li>
       <li><strong>Ritual Ancião:</strong> Nível 100</li>
     </ul>
-    <button onclick="fecharModalRituais()">Fechar</button>
+    <button onclick="fecharModal('modalRituaisInfo')">Fechar</button>
   </div>
 </div>
 
@@ -155,9 +154,52 @@
       <li><strong>Pacto de Maldição:</strong> Pode prometer  desvantagens de bônus de ação e em mutações, caso não seja controlada.</li>
       <li><strong>Pacto Ancestral:</strong> Pode Prometer todos os bônus e vantagens dos outros acordos.</li>
     </ul>
-    <button onclick="fecharModalPactos()">Fechar</button>
+    <button onclick="fecharModal('modalPactosInfo')">Fechar</button>
   </div>
 </div>
+
+
+<section class="civilizacoes-section">
+    <div class="civilizacoes-titulo">Tipos de Elementos Especiais</div>
+
+    <div class="civilizacoes-textos-container">
+        <div id="texto-inicial" class="civilizacoes-texto active">
+             
+        </div>
+
+        <div id="texto-civilizacao1" class="civilizacoes-texto hidden">
+            <h2>Criação da Piromância</h2>
+            <p>A Piromância surgiu da tentativa de invocar um poderoso dragão que habitava a dimensão do inferno. Vários magos e aventureiros, especialmente os Caídos, exploraram essa dimensão em busca de conhecimento, mas também para bloquear o acesso a essas informações por outras civilizações. Em meio a rituais ambiciosos, Kahna e seu grupo sacrificaram sua humanidade, resultando na criação acidental da Piromância. Eles utilizaram o fogo dos dragões e a ferocidade desses seres como elementos fundamentais para essa transformação, gerando rituais catastróficos que refletiam a essência do inferno. Assim, a Piromância se tornou um poder temido e reverenciado, marcado pela ambição e pela perda.</p>
+        </div>
+
+        <div id="texto-civilizacao2" class="civilizacoes-texto hidden">
+            <h2>Criação da Escarlate</h2>
+            <p>A Escarlate foi criada no Dia Sangrento, um desastre que deu origem ao Pior Natal da civilização Gladius. O sangue escarlate provoca efeitos de medo e ódio, sendo um ritual ou pacto com tendências obscuras e covardes, explorando a fraqueza do alvo e causando danos únicos que refletem a maldade da antiga família real escarlate. Esse poder surgiu quando a companhia firmou um pacto de sangue, sem envolver magia, mas a crueldade cometida no dia do desastre afetou a ilha de tal forma que a própria natureza gerou uma grande aura escarlate ao redor da região de Gladius. A família, ao perceber que suas promessas e crenças se tornaram reais por suas ações, viu-se imersa em um poder que refletia a escuridão de suas escolhas.</p>
+        </div>
+
+        <div id="texto-civilizacao3" class="civilizacoes-texto hidden">
+            <h2>Criação do Ouro Maldito </h2>
+            <p>A criação do Ouro Maldito foi uma combinação natural estimulada pelos Caídos, que incentivaram a natureza da ilha a infundir efeitos do arcano em seus tesouros. Civilizações, especialmente os porcos, tornaram-se obcecadas por esses minérios e itens preciosos, levando o ouro dourado a adquirir uma importância extrema. No entanto, a maioria desse ouro foi amaldiçoada, resultando em efeitos variados que interferiram com os tesouros. O Ouro Maldito age de forma rápida e contagiante, endurecendo ou criando resistência em rituais que utilizam os conceitos de Ascensão e Alma. Assim, o ouro se tornou não apenas um símbolo de riqueza, mas também um portador de maldição e poder, refletindo a ambição e a avareza das civilizações que o buscavam.</p>
+        </div>
+
+          <div id="texto-civilizacao4" class="civilizacoes-texto hidden">
+            <h2>Criação do Elemento</h2>
+            <p>O Elemento é uma essência natural que reúne todas as mutações dos animais que ocorrem na ilha, resultando em uma força do arcano que corrompe e cria poderes. Essa força foi gerada naturalmente a partir da vida e do apodrecimento, refletindo o ciclo de transformação e decadência. O Elemento possui a capacidade de corroer, causando efeitos de mutações únicas e formas diversas nos seres afetados. Assim, ele se torna um símbolo da dualidade entre a vida e a morte, manifestando-se como uma força poderosa e imprevisível que altera a natureza de tudo que toca.</p>
+         </div>
+     </div>
+
+    <div class="civilizacoes-icones">
+        <div class="icone-item" data-target="texto-civilizacao1">
+            <img src="../imagens/icon_Piromância.jpg" alt="Civilização 1">
+        </div>
+        <div class="icone-item" data-target="texto-civilizacao2">
+            <img src="../imagens/Icon_escarlate.jpg" alt="Civilização 2">
+        </div>
+        <div class="icone-item" data-target="texto-civilizacao3">
+            <img src="../imagens/Icon_Dourado.jpg" alt="Civilização 3"> </div>
+        <div class="icone-item" data-target="texto-civilizacao4">
+            <img src="../imagens/Elemento.jpg" alt="Civilização 4"> </div>
+</section>
 
  <section class="container-geral">
         <div class="session-bloco" id="rituais-pactos-section">
@@ -195,26 +237,32 @@
             </div>
 
             <div class="cards-wrapper">
-                <div class="card" data-tipo="dano" data-classe="ritual">
-                    <h3><span data-name="Chamas Ancestrais">Chamas Ancestrais</span></h3>
-                    <img src="../imagens/icon_caveria_coroa.png" alt="Ritual Chamas Ancestrais" />
-                    <span class="tipo">Fogo / Dano</span>
+                <div class="card" data-tipo="Simples" data-classe="ritual">
+                    <h3><span data-name="Eletrocutar">Eletrocutar</span></h3>
+                    <img src="../imagens/" alt="Ritual Chamas Ancestrais" />
+                    <span class="tipo">Raio / Simples</span>
                     <button onclick="abrirModal('modalRitual1')">Descrição</button>
                 </div>
 
                 <div class="card" data-tipo="controle" data-classe="ritual">
                     <h3><span data-name="Círculo da Prisão">Círculo da Prisão</span></h3>
-                    <img src="https://via.placeholder.com/280x140/0000FF/FFFFFF?text=Ritual+2" alt="Ritual Círculo da Prisão" />
+                    <img src="" alt="Ritual Círculo da Prisão" />
                     <span class="tipo">Arcano / Controle</span>
                     <button onclick="abrirModal('modalRitual2')">Descrição</button>
                 </div>
 
                 <div class="card" data-tipo="cura" data-classe="ritual">
                     <h3><span data-name="Luz Restauradora">Luz Restauradora</span></h3>
-                    <img src="https://via.placeholder.com/280x140/00FF00/FFFFFF?text=Ritual+3" alt="Ritual Luz Restauradora" />
+                    <img src="" alt="Ritual Luz Restauradora" />
                     <span class="tipo">Luz / Cura</span>
                     <button onclick="abrirModal('modalRitual3')">Descrição</button>
                 </div>
+
+
+
+
+
+
 
                 <div class="card" data-tipo="dano" data-classe="pacto">
                     <h3><span data-name="Pacto de Sangue">Pacto de Sangue</span></h3>
@@ -223,19 +271,7 @@
                     <button onclick="abrirModal('modalPacto1')">Descrição</button>
                 </div>
 
-                <div class="card" data-tipo="controle" data-classe="pacto">
-                    <h3><span data-name="Pacto da Névoa">Pacto da Névoa</span></h3>
-                    <img src="https://via.placeholder.com/280x140/4B0082/FFFFFF?text=Pacto+2" alt="Pacto da Névoa" />
-                    <span class="tipo">Arcano / Controle</span>
-                    <button onclick="abrirModal('modalPacto2')">Descrição</button>
-                </div>
-
-                <div class="card" data-tipo="cura" data-classe="pacto">
-                    <h3><span data-name="Pacto de Cura">Pacto de Cura</span></h3>
-                    <img src="https://via.placeholder.com/280x140/00FFFF/000000?text=Pacto+3" alt="Pacto de Cura" />
-                    <span class="tipo">Mana / Cura</span>
-                    <button onclick="abrirModal('modalPacto3')">Descrição</button>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -245,7 +281,7 @@
     <div id="modalRitual1" class="modal">
         <div class="modal-content">
             <h3></h3>
-            <p>Este ritual invoca fogo ancestral para causar dano em área, incendiando inimigos.</p>
+            <p></p>
             <button onclick="fecharModal('modalRitual1')">Fechar</button>
             <button class="btn-colocar-ficha" onclick="colocarNaFicha('Chamas Ancestrais', 'modalRitual1')">Colocar na Ficha</button>
         </div>

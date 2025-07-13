@@ -67,19 +67,6 @@ clearRollsButton.addEventListener('click', () => {
     window.location.href = page; // Redireciona para a página passada como argumento
 }
 
-// ========================
-// Footer dinâmico
-// ========================
-document.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer"); // Seleciona o rodapé
-
-    // Se o usuário rolar até o fim da página
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg #053805e0,#31382dd5, #053805e0)"; // Altera a cor do rodapé
-    } else {
-        footer.style.background = "linear-gradient(45deg,#053805e0,#31382dd5, #053805e0)"; // Mantém a cor padrão
-    }
-});
 // Banco de fichas de Colossos
 const colossos = {
     "Atlas": {

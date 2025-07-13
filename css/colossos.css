@@ -1,12 +1,28 @@
-/* Estilo Geral----------------------------------------------------------------------- */
 body {
-    margin: 0;
-    font-family: 'Lora', serif;
-    background: url('../imagens/lobby_colossos.jpg') no-repeat center center fixed;
-    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
-    scroll-behavior: smooth;
-    overflow-x: hidden; /* Impede o scroll horizontal */
+  margin: 0;
+  font-family: 'Lora', serif;
+  background: url('../imagens/lobby_colosso.png') no-repeat center center fixed;
+  background-size: cover;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  position: relative; /* Necessário para posicionar o pseudo-elemento */
 }
+
+
+/* Estilo inicial para a página */
+.page {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+/* Estilo ativo para a página carregada */
+.page.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
 
 /* Estilo inicial para a página */
 .page {
@@ -21,342 +37,595 @@ body {
     transform: translateY(0);
 }
 
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-    
-
-    .page {
-        padding: 10px; /* Adiciona espaçamento nas laterais para evitar cortes */
-    }
-}
-
-/* Responsividade para smartphones */
-@media (max-width: 480px) {
-    body {
-        background-size: cover;
-        font-size: 14px; /* Ajusta o tamanho da fonte para telas menores */
-    }
-
-    .page {
-        padding: 5px; /* Reduz o espaçamento */
-    }
-
-    h1, h2, h3, p {
-        font-size: 90%; /* Reduz os tamanhos de título e parágrafos */
-        line-height: 1.4; /* Aumenta o espaçamento entre linhas para melhor leitura */
-    }
-
-    img {
-        width: 100%; /* Imagens ocupam toda a largura da tela */
-        height: auto; /* Mantém proporção */
-    }
-}
-
-/* Adiciona quebra de linhas em telas menores para elementos que podem sobrepor */
-@media (max-width: 360px) {
-    h1, h2 {
-        font-size: 85%; /* Reduz ainda mais os tamanhos de fonte */
-    }
-}
 
 /* Estilo da Nav-Bar */
 nav {
-    background: rgba(39, 8, 51, 0.021); /* Transparência com fundo escuro */
+    background: rgba(50, 52, 53, 0.548);
     color: #ecf0f1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: fixed; /* Fixa o nav-bar no topo */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Ajustes para telas menores */
-@media (max-width: 1068px) {
-    nav {
-        padding: 8px 15px; /* Reduzindo o espaçamento para telas menores */
-    }
-
-    nav .logo {
-        font-size: 1.2rem; /* Reduz o tamanho da fonte do logo */
-    }
-
-    nav ul {
-        flex-direction: column; /* Alinha os itens do menu na vertical */
-        padding: 0;
-    }
-
-    nav ul li {
-        margin: 5px 0; /* Espaçamento entre os itens do menu */
-    }
-
-    nav a {
-        font-size: 0.9rem; /* Ajusta o tamanho da fonte dos links */
-    }
-}
-
-/* Ajustes para telas muito pequenas (celulares) */
-@media (max-width: 480px) {
-    nav {
-        padding: 5px 10px; /* Reduzindo ainda mais o padding */
-    }
-
-    nav .logo {
-        font-size: 1rem; /* Tamanho do logo menor */
-    }
-
-    nav ul li {
-        margin: 3px 0; /* Reduz o espaçamento entre os itens */
-    }
-
-    nav a {
-        font-size: 0.8rem; /* Reduz o tamanho da fonte dos links */
-    }
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
 }
 
 /* Estilo do Logo */
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px; /* Espaço entre a imagem e o texto */
+    gap: 10%;
+    margin-left: 1px;
 }
 
 .logo img {
-    width: 40px; /* Tamanho do ícone */
-    height: 40px;
-    border-radius: 50%; /* Deixa a imagem redonda */
-    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .logo h1 {
-    font-size: 24px; /* Tamanho do texto do logo */
+    font-size: 24px;
     margin: 0;
     color: #ecf0f1;
     margin-right: 20px;
     margin-left: 10px;
 }
 
-/* Links da Nav-Bar */
 .nav-links {
     display: flex;
-    gap: 1px; /* Espaço entre os links */
+    gap: 11px;
 }
 
-.nav-links a {
+.sidebar-item {
     position: relative;
-    width: 130px;
-    height: 50px;
-    line-height: 48px;
-    background: #ffffff00; /* Fundo transparente */
-    text-transform: uppercase;
-    font-size: 14px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-    overflow: hidden;
-    border-radius: 5px; /* Bordas arredondadas */
-    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-}
-
-.nav-links a span {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 2px;
-    right: 2px;
-    bottom: 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-}
-
-.nav-links a:hover span {
-    color: rgba(255, 255, 255, 1); /* Cor ao passar o mouse */
-}
-
-.nav-links a span::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 50%;
-    background: rgba(199, 71, 250, 0.1);
-    z-index: 10;
-    transition: transform 0.3s ease; /* Transição suave para o efeito */
-}
-.nav-links a span:hover {
-    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-}
-
-.nav-links a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        #bb10b2,
-        #f39c12,
-        #f1c40f,
-        #13e040,
-        #8c17ec,
-        #2980b9,
-        #9b59b6,
-        #8e44ad,
-        #bee418
-    );
-    background-size: 400%;
-    opacity: 0; /* Invisível inicialmente */
-    transition: 2.5s;
-    animation: eff 20s linear infinite;
-    border-radius: 5px;
-}
-
-.nav-links a:hover::before {
-    opacity: 1; /* Visível ao passar o mouse */
-}
-
-/* Animação do Link */
-@keyframes eff {
-    0% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 400% 0;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
-
-@media (max-width: 1078px) {
-    nav {
-        padding: 5px 8px;
-    }
-
-    .logo img {
-        width: 25px; /* Reduz tamanho do ícone */
-        height: 25px;
-    }
-
-    .logo h1 {
-        font-size: 9px; /* Reduz tamanho do texto do logo */
-    }
-
-    .nav-links a {
-        position: relative;
-        width: 10em; /* Largura relativa */
-        height: 3em; /* Altura relativa */
-        line-height: 2.8em; /* Ajusta alinhamento vertical */
-        background: #ffffff00; /* Fundo transparente */
-        text-transform: uppercase;
-        font-size: 1rem; /* Texto relativo ao tamanho padrão */
-        text-align: center;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        color: rgb(255, 255, 255); /* Cor do texto */
-        transition: 0.5s;
-        overflow: hidden;
-        border-radius: 5px; /* Bordas arredondadas */
-        -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-    }
-    
-    /* Responsividade com media queries */
-    @media (max-width: 1480px) {
-        .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-        }
-    }
-    @media (max-width: 1020px) {
-        .nav-links a {
-            width: 6em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-        }
-    }
-    
-    @media (max-width: 480px) {
-        .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-        }
-    }
-
-    .nav-links a {
-        margin: 5px 0;
-    }
-    
-}
-/* Botão "Jogar Dados" com efeito Glow */
-/* Dado Container */
-.dado-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar-item .icon {
+    font-size: 18px;
+}
+
+.sidebar-item .highlight-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #b8f1ff, #86eefc, #b8f1ff);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-item:hover .highlight-bar {
+    opacity: 1;
+}
+
+.sidebar-item:hover {
+    color: #b3fcff;
+}
+
+/* Container do botão de dados e ícones */
+.dado-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 1rem;
-}
-
-/* Imagem do dado */
-.dado {
-    width: 3.75em; /* Usando unidade relativa (aprox. 60px) */
-    height: auto;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out; /* Transição suave */
-    margin-right: 3.75em; /* Aproximadamente 60px */
-}
-
-.dado:hover {
-    transform: scale(1.2); /* Aumentar tamanho ao passar o mouse */
+    margin-right: 1%;
+    gap: 1em; /* Espaço entre os itens (botão, dado, novo ícone) */
 }
 
 /* Botão Glow */
 .glow-on-hover {
     padding: 0.5rem 1rem;
-    font-size: 1rem; /* Tamanho de fonte relativo */
-    background-color: #504a4a; /* Vermelho vibrante */
-    color: white;
+    font-size: 1rem;
+    background-color: #cfcfcf;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 3.75em; /* Aproximadamente 60px */
 }
 
 /* Efeito ao passar o mouse */
 .glow-on-hover:hover {
-    transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
-    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8);
 }
 
-/* Responsividade com media queries */
-@media (max-width: 1078px) {
+/* Imagem do dado (estilo existente, mantido aqui para referência) */
+.dado {
+    width: 3.75em; /* Aproximadamente 60px. Usaremos isso como referência de altura. */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.dado:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo para o link do novo ícone - Contém as principais mudanças */
+.new-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 5em; /* Mantém o grande espaço à direita da navbar */
+    /* Adições para o círculo (mantidas para manter a estrutura e alinhamento) */
+    width: 4em; /* Define a largura para ser igual à altura do dado para um círculo perfeito */
+    height: 4em; /* Define a altura para ser igual à largura (e altura do dado) */
+    border-radius: 50%; /* Torna o elemento circular */
+    overflow: hidden; /* Garante que a imagem dentro seja cortada para caber no círculo */
+    background-color: rgba(255, 255, 255, 0); /* Fundo totalmente transparente */
+    margin-bottom: 1rem; /* Alinha com o botão e o dado */
+    /* Remova o transition: transform 0.3s ease-in-out; daqui se ele estiver duplicado com .new-icon */
+}
+
+/* Estilo para a imagem dentro do novo ícone */
+.new-icon {
+    width: 80%; /* Ajuste o percentual para a imagem caber bem no círculo */
+    height: 80%; /* Ajuste o percentual */
+    border-radius: 40%; /* Isso criará cantos arredondados na imagem interna, não a tornará circular completa se a imagem não for quadrada */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Adiciona transition para o filter também */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou distorcer no círculo */
+    filter: brightness(1.5); /* Aumenta um pouco o brilho da imagem para destacar */
+}
+
+.new-icon-link:hover .new-icon { /* Aplica o efeito diretamente à imagem quando o link é hover */
+    transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+}
+
+.Container-nav {
+    display: flex;
+    justify-content: flex-start;
+}
+@media (max-width: 480px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0.4rem; /* Padding reduzido para mais espaço */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.6); /* Logo ainda menor */
+    }
+
+    .nav-left {
+        margin-right: 0.3rem; /* Margem reduzida */
+    }
+
+    .logo img {
+        max-width: 50px; /* Reduzir ainda mais a imagem do logo */
+        max-height: 50px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.8rem; /* Fonte do título menor */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 65%; /* Um pouco mais de largura para o nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Em telas muito pequenas, 3 ou 4 colunas podem ser mais eficazes para evitar cortes */
+        grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); /* Min-width menor */
+        gap: 0.2rem; /* Gap ainda menor */
+        width: 100%;
+        padding: 20px 0; /* Padding vertical reduzido */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.3rem; /* Padding reduzido */
+        font-size: 0.5rem; /* Fonte do item menor */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.8rem; /* Tamanho do ícone menor */
+        margin-bottom: 0.1rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.5rem; /* Fonte do texto do item menor */
+        line-height: 1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2rem; /* Ajustar margem para que não corte */
+        margin-bottom: 1rem; /* Ajustar margem */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem; /* Gap menor */
+        margin-left: 0.5rem; /* Margem ajustada */
+    }
+
     .glow-on-hover {
-        padding: 0.4rem 0.5rem; /* Reduz padding em tablets */
-        font-size: 0.6rem; /* Diminui tamanho do texto */
-        margin-right: 4.0em; /* Ajusta margens */
+        font-size: 0.5rem; /* Fonte do botão menor */
+        padding: 0.1rem 0.3rem;
+        margin-right: 0;
     }
 
     .dado {
-        width:2em; /* Reduz largura do dado */
-        margin-right: 2.4em; /* Ajusta margem */
+        width: 1.5rem; /* Dado menor */
+        height: auto;
+        margin-bottom: 0;
     }
 }
 
+/* ======================================================= */
+/* Ajustes para celulares maiores e tablets pequenos (481px a 767px) */
+/* ======================================================= */
+@media (min-width: 481px) and (max-width: 767px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.6rem; /* Padding ligeiramente ajustado */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.65); /* Escala intermediária para o logo */
+    }
+
+    .nav-left {
+        margin-right: 0.4rem;
+    }
+
+    .logo img {
+        max-width: 55px; /* Tamanho intermediário para a imagem do logo */
+        max-height: 55px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.85rem; /* Fonte intermediária para o título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle como na versão de 780px */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+        gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
+        width: 100%;
+        padding: 25px 0; /* Padding vertical ajustado */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.4rem; /* Padding ligeiramente ajustado */
+        font-size: 0.55rem; /* Fonte do item ligeiramente ajustada */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.9rem; /* Tamanho do ícone ligeiramente ajustado */
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1.05;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+        margin-bottom: 1.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.8rem;
+    }
+
+    .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ================================================= */
+/* Ajustes para tablets maiores e laptops pequenos (768px a 1024px) */
+/* ================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
+        height: auto;
+       
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.7); /* Manter escala do logo igual ao original de 780px */
+    }
+
+    .nav-left {
+        margin-right: 0.5rem;
+    }
+
+    .logo img {
+        max-width: 60px; /* Manter tamanho da imagem do logo */
+        max-height: 60px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.9rem; /* Manter fonte do título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Aqui podemos dar um pouco mais de espaço para cada coluna, ou manter o repeat(6, 1fr) se os textos couberem */
+        /* Vou manter o auto-fit para flexibilidade, com um min-width um pouco maior */
+        grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); /* Min-width ajustado */
+        gap: 0.5rem; /* Ajustar o gap, ligeiramente maior que 767px */
+        width: 100%;
+        padding: 30px 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.5rem;
+        font-size: 0.6rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+     .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.3rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0; /* Ajuste se houver margem que atrapalhe o centralizar */
+        margin-right: 0;
+    }
+
+    .glow-on-hover {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.3rem;
+        margin-bottom: 0.2rem; /* Espaço abaixo do botão */
+    }
+
+    .dado {
+        width: 2rem;
+        height: auto;
+        margin-bottom: 0.2rem; /* Espaço abaixo do dado */
+    }
+
+    .new-icon-link {
+        width: 2.5em; /* Ajuste o tamanho do container do ícone */
+        height: 2.5em;
+        margin-bottom: 0; /* Não precisa de margem inferior extra */
+        margin-right: 0; /* Remove a margem direita para centralizar melhor */
+    }
+
+    .new-icon {
+        width: 85%;
+        height: 85%;
+    }
+
+    .nav-right {
+        margin-right: 0; /* Garante que o nav-right não empurre para fora */
+        margin-bottom: 0; /* Ajusta a margem para evitar excesso de espaço */
+    }
+}
+
+
+
+  
+/* Ajustes para telas menores (até 780px) */
+@media (max-width: 780px) {
+  nav {
+      display: flex; /* Alinha os três blocos principais horizontalmente */
+      justify-content: space-between; /* Espaço máximo entre os blocos */
+      align-items: center; /* Alinha verticalmente ao centro */
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      height: auto;
+    
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+      transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
+  }
+  .nav-left{
+ margin-right: 0.3rem;
+
+  }
+  .logo img {
+      max-width: 45px;
+      max-height: 45px;
+      margin-right: 0.1rem;
+  }
+
+  .logo h1 {
+      font-size: 0.7rem;
+      margin: 0;
+  }
+
+  .nav-middle {
+      display: flex;
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      width: 70%; /* Ocupa uma parte da largura para os ícones */
+  }
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.5rem; /* Reduzir um pouco o gap pode ajudar */
+    width: 100%;
+    padding: 30px 0;
+    margin-left: 0; /* Remover ou reduzir estas margens */
+    margin-right: 0; /* Remover ou reduzir estas margens */
+}
+
+  .sidebar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+      padding: 0.5rem;
+      font-size: 0.6rem;
+      text-align: center;
+      overflow: hidden;
+  }
+
+  .sidebar-item .icon {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+  }
+
+  .sidebar-item span {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+  }
+
+  .nav-right {
+      display: flex;
+      align-items: center; /* Alinha verticalmente o botão e a imagem */
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+  }
+
+   .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.2rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+  .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0.15rem;
+    }
+    .new-icon-link {
+        width: 2.3em;
+        height: 2.3em;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .new-icon {
+        width: 90%;
+        height: 90%;
+    }
+
+    .nav-right {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
+}
 
 
 /* Menu de Dados */
@@ -366,13 +635,13 @@ nav {
     top: 1%; /* Define a distância do menu a partir do topo da tela */
     right: 1%; /* Define a distância do menu a partir da borda direita */
     width: 350px; /* Aumenta a largura do menu */
-    background-color: #206103a1; /* Cor de fundo */
-    border: 1px solid #edffe5; /* Borda */
+    background-color: #1d1919ec; /* Cor de fundo */
+    border: 1px solid #c0c0c0; /* Borda */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 1.2rem; /* Espaçamento interno maior */
-    box-shadow: 0 4px 8px rgba(10, 240, 171, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
     z-index: 1000; /* Garante que o menu fique acima de outros elementos */
-    color: #e2ffe1;
+    color: #defcfd;
     transition: all 0.3s ease;
 }
 
@@ -399,7 +668,7 @@ nav {
 }
 
 #closeMenu:hover {
-    box-shadow: 0 0 15px rgba(59, 58, 52, 0.8); /* Efeito de brilho */
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
     transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
 }
 
@@ -434,7 +703,7 @@ nav {
     padding-right: 10px; /* Espaço extra para o scroll */
     border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
     border-radius: 5px;
-    background-color: #3b372fb9; /* Fundo levemente diferente para separar visualmente */
+    background-color: #d1972bb9; /* Fundo levemente diferente para separar visualmente */
 }
 
 #rollList {
@@ -446,7 +715,7 @@ nav {
 #rollList li {
     margin: 0.3rem 0;
     font-weight: bold;
-    color: #04e688;
+    color: #1f0101;
 }
 
 /* Campos de entrada */
@@ -519,503 +788,658 @@ nav {
         border: 4px solid #ffb936; /* Ajusta o contorno para manter o tamanho visual */
     }
 }
-
-
 /* fim do nav-bar---------------------------------------------------------------------------- */
 
-/* Estilo geral do título */
+/* General Title Style */
 .titulo_principal {
     display: flex;
     justify-content: center;
     align-items: center;
-   margin-top: 120px;
-  }
-  
-  .titulo_efeito {
-    font-size: 4rem;
-    font-weight: bold;
-    position: relative;
-    text-shadow:
-    0 0 5px #78ff8f,   /* Primeira camada de brilho vermelho */
-    0 0 10px #38ff1e,  /* Segunda camada laranja */
-    0 0 20px #257400,  /* Terceira camada mais forte */
-    0 0 40px #008d1f,  /* Camada de brilho maior */
-    0 0 80px #d4ffff;  /* Brilho externo */
+    margin-top: 120px;
+    perspective: 1000px; /* For 3D rotation */
 }
 
+.titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a); /* Dark gray to black gradient */
+    border-radius: 25px; /* Slightly more rounded */
+    padding: 25px 40px; /* More padding */
+    border: 3px solid #333333; /* Darker gray border */
+    color: #e0e0e0; /* Lighter, subtle gray glow */
+    text-shadow:
+        0 0 10px rgba(227, 255, 200, 0.6), /* Light blue/cyan glow */
+        0 0 30px rgba(227, 248, 193, 0.4), /* Wider blue/cyan glow */
+        0 0 60px rgba(209, 248, 193, 0.2); /* Even wider light blue/cyan glow */
+    position: relative;
+    max-width: 380px; /* Slightly increased max-width */
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes pulseGlowCyan {
+    0% {
+        box-shadow: 0 0 15px rgba(209, 248, 193, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 35px rgb(210, 248, 193);
+    }
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
 
 .titulo_efeito:after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 4px;
-    background: linear-gradient(90deg,  #6ff332, #d3ff9a, #dcffe4,#d3ff9a,#6ff332);
-    animation: wave 8s infinite;
-    
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px; /* Thicker line */
+    background: linear-gradient(90deg, #6dfa36be, #9aff7b, #9aff7b,#6dfa36be); /* Animated light cyan/gray wave */
+    animation: wave 8s infinite linear;
+    transform-origin: bottom center;
 }
+
 @keyframes wave {
-    0% { width: 50px; }
-    20% { width: 100px; }
-    40% { width: 200px; }
-    60% { width: 200px; }
-    80% { width: 100px; }
-    100% { width: 50px; }
+    0% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+    25% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0.1);
+        left: 90%;
+        background-position: 0% 0%;
+    }
+    75% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    100% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
 }
-/* Responsividade */
-@media (max-width: 1120px) {
-    .titulo_efeito {
-        font-size: 2.3rem; /* Diminui o tamanho da fonte em telas médias */
-    }
 
-    .titulo_efeito:after {
-        width: 350px; /* Reduz a largura da linha de efeito para telas menores */
-    }
-    @keyframes wave {
-        0% { width: 50px; }
-        20% { width: 100px; }
-        40% { width: 200px; }
-        60% { width: 200px; }
-        80% { width: 100px; }
-        100% { width: 50px; }
-    }
-}
+/* Importação de fontes para um estilo temático */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap');
 
-.Titulo_comentario{
-    font-size: 1.7em; /* Tamanho do título */
-    color: #ffffff; /* Cor base do texto */
-    text-align: center;
-    text-shadow:
-    0 0 5px #78ff8f,   /* Primeira camada de brilho vermelho */
-    0 0 10px #38ff1e,  /* Segunda camada laranja */
-    0 0 20px #257400,  /* Terceira camada mais forte */
-    0 0 40px #008d1f,  /* Camada de brilho maior */
-    0 0 80px #d4ffff;  /* Brilho externo */
-  }
-  @media (max-width: 1120px) {
-    .Titulo_comentario{
-        font-size: 1.3em; /* Tamanho do título */
-
-    }
-
-  }
-
-  /* Container Principal */
-.gallery-container {
+/* Estilos para a seção principal */
+section {
+      position: relative;
+    /* Dentro de .session-fundo */
+    overflow: hidden;
+    width: 80%;
+    margin-top: -50px;
+    min-height: 100vh; /* Use min-height para garantir que o conteúdo caiba */
+    margin: 0 auto; /* Centraliza a seção */
+    border: 2px solid #9bffbc; /* Borda mais escura */
+    border-radius: 20px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 20px;
-  }
-  
-  /* Área de Exibição */
-  .display-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: #0435089a;;
-    border-radius: 10%;
-    border: 3px solid #fcfde6;
-  }
-  
-  .display-area img {
-    width: 300px;
-    height: auto;
-    border: 3px solid #fcfde6;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 255, 253, 0.5);
-    border-radius: 20%;
-  }
-  
-
-  .display-area p {
-    margin-top: 3%;
-    font-size: 1.2rem; /* Reduzi um pouco o tamanho da fonte para caber melhor */
-    line-height: 1.6; /* Ajusta o espaçamento entre linhas */
-    color: #ffffff; /* Uma cor neutra para maior contraste */
-
-    margin: 2% auto; /* Centraliza na tela */
-   
-    border: 1px solid #fcfde6;
-    border-radius: 10%; /* Bordas arredondadas */
-    padding: 15px 40px; /* Adiciona espaçamento interno */
-    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.801); /* Sombra para realçar */
-    text-shadow:
-    0 0 20px #257400,  /* Terceira camada mais forte */
-    0 0 40px #008d1f,  /* Camada de brilho maior */
-    0 0 80px #d4ffff;  /* Brilho externo */
-  }
-  
-  /* Gradiente animado */
-  @keyframes gradiente-animado {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  
-  #imageTitle{
-background-color: #01310c5b;
-border-radius: 10px;
-font-size: 2rem;
-color: #ffffff;
-text-shadow:
-0 0 20px #257400,  /* Terceira camada mais forte */
-0 0 80px #d4ffff;  /* Brilho externo */
-
-  }
-  
-  /* Lista de Ícones */
-  .icon-list {
-    display: flex;
-    gap: 10px;
     justify-content: center;
-  }
-  
-
-  /* Versão responsiva para telas de até 1080px */
-@media (max-width: 1080px) {
-    /* Container Principal */
-    .gallery-container {
-      gap: 15px; /* Reduz o espaço entre os elementos */
-     width: 90%;
-     
-     margin-left: 5%;
-    }
-  
-    /* Área de Exibição */
-    .display-area {
-      padding: 10px; /* Adiciona espaçamento interno */
-      border-radius: 8%; /* Ajusta o arredondamento */
-      width: 80%;
-    }
-  
-    .display-area img {
-      width: 50%; /* Reduz a largura da imagem */
-      box-shadow: 0 3px 8px rgba(255, 238, 0, 0.5); /* Ajusta a sombra */
-    }
-  
-    .display-area p {
-      font-size: 0.9rem; /* Reduz um pouco o tamanho do texto */
-      padding:  5%; /* Ajusta o espaçamento interno */
-      width: 90%;
-     
-    }
-  
-    /* Lista de Ícones */
-    .icon-list {
-      gap: 5px; /* Reduz o espaço entre os ícones */
-      flex-wrap: wrap; /* Permite que os ícones quebrem para a próxima linha */
-    }
-  
-    .icon {
-      width: 40px; /* Reduz o tamanho dos ícones */
-      height: 40px;
-      box-shadow: 0 3px 8px rgba(250, 227, 19, 0.5); /* Ajusta a sombra */
-    }
-  
-    .icon:hover {
-      transform: scale(1.1); /* Diminui o efeito de zoom */
-    }
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);  /* Divide em 12 colunas */
-    gap: 5px;
-    padding: 20px;
+    padding: 20px 20px; /* Mais padding para o conteúdo não ficar grudado nas bordas */
+    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
+    position: relative;
+    z-index: 0; /* Para que os pseudo-elementos fiquem por cima */
 }
 
+section::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: url('../imagens/antigos_icone_deluxe.png'); /* Coloque um GIF de névoa avermelhada */
+  background-size: cover;
+  opacity: 0.15;
+  animation: moverNevoa 90s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes zoomBackground {
+    0% { background-size: 100% 100%; }
+    100% { background-size: 110% 110%; }
+}
+
+/* Overlay para escurecer o fundo e adicionar efeitos de cor */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(2, 20, 0, 0.8) 50%, rgba(0, 0, 0, 0.7) 100%); /* Gradiente escuro com roxo central */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+
+    /* Efeito de névoa/fumaça sutil no overlay */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at bottom, rgba(0, 139, 46, 0.1) 0%, transparent 60%); /* Brilho roxo do chão */
+        pointer-events: none;
+        z-index: 1; /* Acima do background, abaixo do conteúdo */
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -50px; /* Começa um pouco abaixo da tela */
+        left: 0;
+        width: 100%;
+        height: 150px; /* Altura da "névoa" */
+        background: linear-gradient(to top, rgba(11, 25, 0, 0.9) 0%, rgba(0, 25, 0, 0) 100%); /* Névoa roxa escura */
+        pointer-events: none;
+        animation: subtleFog 20s infinite alternate ease-in-out; /* Animação de névoa */
+        z-index: 2; /* Acima do brilho, abaixo do conteúdo principal */
+    }
+}
+
+@keyframes subtleFog {
+    0% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+    50% { transform: translateY(-10px) scaleX(1.02); opacity: 0.9; }
+    100% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+}
+
+/* Título "A Área dos Caídos" */
+.titulo {
+    font-family: 'Cinzel', serif; /* Fonte mística/gótica */
+    font-size: 2.5rem; /* Tamanho impactante */
+    color: #a6fff0; /* Ouro, para dar destaque e contraste */
+    text-shadow:
+        0 0 60px rgba(56, 139, 0, 0.5); /* Sombra difusa roxa */
+    margin-bottom: 30px;
+    margin-top: -30px;
+    letter-spacing: 4px; /* Espaçamento entre letras para impacto */
+    text-align: center;
+    position: relative;
+    z-index: 3; /* Garante que fique acima dos pseudo-elementos */
+    animation: glitchEffect 3s infinite linear alternate, fadeInDown 1.5s ease-out forwards; /* Efeito de falha e entrada */
+    opacity: 0; /* Começa invisível para a animação fadeInDown */
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a); /* Dark gray to black gradient */
+    border-radius: 30px;
+    border: 2px solid #9bffee; /* Darker gray border */
+    padding: 20px 30px; /* More padding for the title */
+}
+
+@keyframes glitchEffect {
+    0% { text-shadow: 0 0 25px rgba(0, 180, 69, 0.473); transform: translateX(0); }
+    2% { text-shadow: 0 0 25px rgba(42, 180, 0, 0.514), 2px -2px 0px rgba(0, 255, 13, 0.507); transform: translateX(-2px); }
+    4% { text-shadow: 0 0 25px rgba(0, 180, 45, 0.493); transform: translateX(0); }
+    6% { text-shadow: 0 0 25px rgba(0, 180, 30, 0.562), -2px 2px 0px rgba(0, 255, 98, 0.507); transform: translateX(2px); }
+    8% { text-shadow: 0 0 25px rgba(0, 180, 54, 0.548); transform: translateX(0); }
+    10%, 100% { text-shadow: 0 0 25px rgba(0, 180, 69, 0.479); transform: translateX(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Div do texto principal */
+.div-texto {
+    max-width: 700px;
+    background: rgba(2, 10, 0, 0.8); /* Fundo roxo escuro semi-transparente */
+    border: 1px solid rgba(154, 255, 141, 0.801); /* Borda roxa sutil */
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(160, 250, 242, 0.404), inset 0 0 10px rgba(149, 245, 216, 0.425); /* Sombra roxa com interna escura */
+    backdrop-filter: blur(5px); /* Efeito de blur no fundo do texto */
+    position: relative;
+    z-index: 3;
+    animation: fadeInUp 1.5s ease-out 0.5s forwards; /* Animação de entrada com delay */
+    opacity: 0; /* Começa invisível para a animação fadeInUp */
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.div-texto p {
+    font-family: 'Share Tech Mono', monospace; /* Fonte mais tecnológica/misteriosa */
+    font-size: 1.1rem;
+    color: #e0e0e0; /* Cor de texto mais clara para contraste */
+    line-height: 1.7;
+    text-shadow: 0 0 8px rgba(0, 255, 21, 0.459); /* Sombra suave para o texto (magenta) */
+    margin-bottom: 15px; /* Espaço entre parágrafos */
+}
+
+.div-texto p:last-child {
+    margin-bottom: 0; /* Remove margem do último parágrafo */
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .titulo {
+        font-size: 3.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        min-height: 70vh;
+    }
+    .titulo {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
+    }
+    .div-texto {
+        padding: 20px;
+        max-width: 90%;
+    }
+    .div-texto p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        min-height: 60vh;
+    }
+    .titulo {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+    .div-texto {
+        padding: 15px;
+    }
+    .div-texto p {
+        font-size: 0.95rem;
+    }
+}
+
+/* Estilos para o container de todos os símbolos */
+.container {
+    display: grid; /* Usa grid para organizar os símbolos em linhas e colunas */
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Colunas responsivas */
+    gap: 30px; /* Espaço entre os símbolos */
+    padding: 50px; /* Espaçamento interno do container */
+    max-width: 1200px; /* Largura máxima para centralizar o grid */
+    margin: 50px auto; /* Centraliza o container na página, com margem superior */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo semi-transparente para o container */
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 0 40px rgba(44, 139, 0, 0.6), inset 0 0 15px rgba(22, 50, 0, 0.8); /* Sombra roxa intensa e interna */
+    border: 2px solid rgba(0, 180, 24, 0.5); /* Borda roxa sutil */
+    backdrop-filter: blur(8px); /* Efeito de blur no fundo do container */
+    align-items: center;
+   
+}
+
+/* Estilos para cada símbolo individual */
 .symbol {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #043a0f;
-    border: 2px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    border-radius: 8px;
-    height: 100px;
-
-}
-
-
-
-.symbol img {
-    width: 100%;  /* A imagem ocupa toda a largura da div */
-    height: 100%;  /* A imagem ocupa toda a altura da div */
-    object-fit: cover;  /* A imagem se ajusta mantendo a proporção */
-    border-radius: 8px;
-}
-
-.symbol p {
-    margin-top: 10px;
-    font-size: 12px;  /* Tamanho pequeno para o título */
-    font-weight: bold;
-    color: #ffffff;
-     text-shadow:
-    0 0 5px #40a34f,   /* Primeira camada de brilho vermelho */
-
-    0 0 80px #01771f;  /* Brilho externo */
-}
-  
-.button-container {
-    text-align: center;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #025205;
-    border: solid, 2xp #f8fcf9;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #ffffff;
-    color: #0e0b00;
-}
-
-/* Estilos para o modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo mais escuro para destacar o conteúdo */
-    padding-top: 60px;
-    transition: opacity 0.3s ease; /* Efeito de transição suave */
-}
-
-/* Estilos para o conteúdo do modal */
-.modal-content {
-    background: linear-gradient(45deg, #053805e0,#31382dd5, #053805e0);
-    margin: 5% auto;
-    padding: 30px;
+    background-color: rgba(0, 20, 5, 0.7); /* Fundo roxo escuro para cada símbolo */
+    border: 1px solid rgba(6, 180, 0, 0.4); /* Borda sutil */
     border-radius: 10px; /* Bordas arredondadas */
-    border: 2px solid #ffffff;
-    width: 80%;
-    max-width: 600px;
-    color: #ffffff;
-    text-shadow:
-        0 0 5px #40a34f,   /* Primeira camada de brilho verde */
-        0 0 10px #01771f;  /* Brilho externo mais suave */
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Animação de entrada */
+    padding: 15px;
+    cursor: pointer; /* Indica que o elemento é clicável */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Transição suave para efeitos */
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Para o efeito de brilho */
+    box-shadow: 0 0 15px rgba(16, 139, 0, 0.3); /* Sombra inicial mais suave */
 }
 
-/* Efeito de hover no modal */
-.modal-content:hover {
-    transform: scale(1.03); /* Leve aumento do modal ao passar o mouse */
-    opacity: 0.95; /* Suaviza a opacidade ao passar o mouse */
-}
-
-/* Estilos para o botão de fechar */
-.close {
-    color: #fafafa;
-    font-size: 32px;
-    font-weight: bold;
+/* Efeito de brilho ao redor do símbolo */
+.symbol::before {
+    content: '';
     position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(0, 255, 42, 0.4) 0%, transparent 70%); /* Brilho radial roxo/magenta */
+    transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Estado hover para cada símbolo */
+.symbol:hover {
+    transform: translateY(-8px) scale(1.05); /* Levanta e aumenta um pouco */
+    background-color: rgba(7, 40, 0, 0.9); /* Fundo mais escuro no hover */
+    box-shadow: 0 0 30px rgba(81, 255, 0, 0.7), 0 0 60px rgba(56, 139, 0, 0.5); /* Brilho intenso e roxo */
+    border-color: rgba(30, 255, 0, 0.8); /* Borda magenta vibrante */
+    z-index: 1; /* Garante que o hover fique por cima */
+}
+
+.symbol:hover::before {
+    width: 150%;
+    height: 150%;
+    opacity: 1; /* Torna o brilho visível */
+}
+
+
+/* Estilos para a imagem dentro do símbolo */
+.symbol img {
+    width: 60px; /* Tamanho fixo para as imagens */
+    height: 60px;
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+    margin-bottom: 10px; /* Espaço entre imagem e texto */
+    border-radius: 5px; /* Bordas levemente arredondadas para as imagens */
+    box-shadow: 0 0 10px rgba(0, 255, 76, 0.3); /* Sombra sutil para a imagem */
+    transition: transform 0.3s ease; /* Transição para o zoom na imagem */
+}
+
+/* Efeito de zoom na imagem ao passar o mouse */
+.symbol:hover img {
+    transform: scale(1.1); /* Aumenta a imagem um pouco no hover */
+}
+
+/* Estilos para o texto abaixo da imagem */
+.symbol p {
+    font-family: 'Share Tech Mono', monospace; /* Fonte consistente com o tema */
+    font-size: 1.1em;
+    color: #e0e0e0; /* Cor de texto clara */
+    text-shadow: 0 0 5px rgba(51, 255, 0, 0.4); /* Sombra sutil para o texto */
+    margin: 0; /* Remove margem padrão do parágrafo */
     transition: color 0.3s ease;
 }
 
-.close:hover,
-.close:focus {
-    color: #40a34f; /* Cor verde ao passar o mouse */
-    text-decoration: none;
+/* Cor do texto no hover */
+.symbol:hover p {
+    color: #a1fcf4; /* Dourado no hover para o texto, combinando com o título */
+    text-shadow: 0 0 10px #33ff00, 0 0 20px rgba(81, 255, 0, 0.8); /* Brilho dourado e magenta */
 }
 
-/* Estilos para a lista de colossos */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+/* Responsividade para o grid */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Menos colunas em telas menores */
+        gap: 25px;
+        padding: 40px;
+    }
+    .symbol img {
+        width: 70px;
+        height: 70px;
+    }
+    .symbol p {
+        font-size: 1em;
+    }
 }
 
-li {
-    padding: 15px;
-    background-color: #063014;
-    margin-bottom: 15px;
-    cursor: pointer;
-    border-radius: 8px; /* Bordas arredondadas nos itens */
-    transition: background-color 0.3s ease, transform 0.3s ease;
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 1fr)); /* Ainda menos colunas */
+        gap: 20px;
+        padding: 30px;
+    }
+    .symbol img {
+        width: 60px;
+        height: 60px;
+    }
+    .symbol p {
+        font-size: 0.9em;
+    }
 }
 
-li:hover {
-    background-color: #5f5d5d;
-    transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
-}
-
-/* Estilo para os itens da lista, quando ativos */
-li.active {
-    background-color: #3a3a3a;
-    color: #f1f1f1;
-}
-
-/* Estilo para o conteúdo dentro da ficha */
-#colossoFicha p, #colossoFicha ul {
-    font-size: 18px;
-    margin-bottom: 15px;
-}
-
-#colossoFicha ul li {
-    background-color: #075f3a;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#colossoFicha ul li:hover {
-    background-color: #1a7c45;
-}
-@media (max-width: 1080px) {
-    .modal-content {
-        width: 70%;  /* Deixa o modal mais estreito em telas pequenas */
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* Duas colunas em telas muito pequenas */
+        gap: 15px;
         padding: 20px;
     }
+    .symbol {
+        padding: 10px;
+    }
+    .symbol img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 5px;
+    }
+    .symbol p {
+        font-size: 0.8em;
+    }
+}
 
-    button {
-        font-size: 14px;  /* Reduz o tamanho da fonte dos botões */
-        padding: 8px 16px;
-    }
+/* Adicionando animação sutil de pulsação para todos os símbolos, para dar a impressão de serem "ativos" */
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px rgba(0, 139, 7, 0.3); }
+    50% { box-shadow: 0 0 20px rgba(51, 255, 0, 0.5), 0 0 30px rgba(0, 139, 53, 0.4); }
+    100% { box-shadow: 0 0 10px rgba(0, 139, 63, 0.3); }
+}
 
-    li {
-        padding: 12px;
-        font-size: 14px;
-    }
+.symbol {
+    animation: pulseGlow 5s infinite ease-in-out alternate; /* Aplica a animação */
+}
 
-    #colossoFicha p, #colossoFicha ul {
-        font-size: 16px;  /* Reduz a fonte dentro da ficha */
-    }
-    @media (max-width: 1080px) {
-        .container {
-            grid-template-columns: repeat(6, 1fr);  /* Reduz para 6 colunas em telas menores */
-            padding: 10px;
-        }
-    
-        .symbol {
-            height: 80px;  /* Ajusta a altura da .symbol para telas pequenas */
-            padding: 8px;   /* Reduz o padding */
-        }
-    
-        .symbol img {
-            height: 80px;  /* Ajusta a altura da imagem dentro da .symbol */
-        }
-    
-        .symbol p {
-            font-size: 10px;  /* Reduz o tamanho da fonte */
-            margin-top: 5px;  /* Ajusta o espaço entre o texto e a imagem */
-        }
-    }
-    
-    }
+/* Pausa a animação no hover para dar destaque ao efeito de hover específico */
+.symbol:hover {
+    animation: none;
+}
+
+
 /* Geral do footer ------------------------------------------------------------------------------*/
-/* Estilo Geral do Footer */
+/* Estilo Geral do Footer (Desktop/Default) */
 footer {
-    background: linear-gradient(45deg, #053805e0,#31382dd5, #053805e0);
+    background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
     color: #fff;
-    width: 100%;
     padding: 20px 0;
     text-align: center;
-   margin-top: 5%;
-  }
-  
-  /* Conteúdo Principal */
-  .footer-content {
+}
+
+/* Conteúdo Principal */
+.footer-content {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    flex-wrap: wrap;
-  }
-  
-  /* Seções do Footer */
-  .footer-section {
-    flex: 1;
+    flex-wrap: wrap; /* Allows sections to wrap to the next line on smaller screens */
+}
+
+/* Seções do Footer */
+.footer-section {
+    flex: 1; /* Allows sections to grow and shrink */
     margin: 10px;
-    min-width: 250px;
-  }
-  
-  .footer-section h2 {
+    min-width: 250px; /* Ensures sections don't get too small before wrapping */
+}
+
+.footer-section h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-  }
-  
-  .footer-section p {
+}
+
+.footer-section p {
     font-size: 0.9rem;
     line-height: 1.6;
-  }
-  
-  /* Links */
-  .footer-section ul {
+}
+
+/* Links */
+.footer-section ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-section ul li {
+}
+
+.footer-section ul li {
     margin: 10px 0;
-    background: linear-gradient(45deg, #053805e0,#31382dd5, #053805e0);
-  }
-  
-  .footer-section ul li a {
-    background: linear-gradient(45deg, #6d00fa, #fc104b, #8e8fff, #2dbdf7, #e05dfa);
+}
+
+.footer-section ul li a {
+    background: linear-gradient(45deg, #fbf9fd, #b6fff3);
     background-size: 300%;
     background-clip: text; /* Faz o gradiente ser aplicado ao texto */
     -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
     animation: gradiente-animado 4s ease infinite;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-  }
-  @keyframes gradiente-animado {
+}
+
+@keyframes gradiente-animado {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-  .footer-section ul li a:hover {
+
+.footer-section ul li a:hover {
     color: #ff9800;
-  }
-  
-  /* Ícones de Redes Sociais */
-  .social-icons {
+}
+
+/* Ícones de Redes Sociais */
+.social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
-  }
-  
-  .social-icons a img {
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.social-icons a img {
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .social-icons a img:hover {
+}
+
+.social-icons a img:hover {
     transform: scale(1.2);
-  }
-  
-  /* Rodapé Inferior */
-  .footer-bottom {
+}
+
+/* Rodapé Inferior */
+.footer-bottom {
     margin-top: 20px;
     font-size: 0.8rem;
     border-top: 1px solid #444;
     padding: 10px;
-  }
-  
-/* Responsividade para telas menores */
+}
 
+/* ======================================================= */
+/* RESPONSIVENESS */
+/* ======================================================= */
 
+/* Para telas de Tablet (max-width: 780px) */
+@media (max-width: 780px) {
+    footer {
+        padding: 15px 0; /* Reduz o padding do footer */
+    }
 
-  
+    .footer-content {
+        padding: 15px; /* Reduz o padding interno do conteúdo */
+        /* Flex-wrap is already set, so sections will wrap if they don't fit */
+        justify-content: center; /* Centers sections when they wrap */
+    }
+
+    .footer-section {
+        margin: 10px; /* Mantém a margem entre as seções */
+        min-width: 200px; /* Permite que as seções fiquem um pouco menores antes de empilhar */
+        flex-basis: auto; /* Allow items to determine their own flexible basis */
+    }
+
+    .footer-section h2 {
+        font-size: 1.3rem; /* Reduz o tamanho do título */
+    }
+
+    .footer-section p {
+        font-size: 0.85rem; /* Reduz o tamanho do texto */
+    }
+
+    .footer-section ul li {
+        margin: 8px 0; /* Reduz a margem dos itens da lista */
+    }
+
+    .social-icons {
+        gap: 10px; /* Reduz o espaçamento entre os ícones */
+        padding: 10px; /* Reduz o padding do container de ícones */
+    }
+
+    .social-icons a img {
+        width: 25px; /* Reduz o tamanho dos ícones */
+        height: 25px;
+    }
+
+    .footer-bottom {
+        margin-top: 15px;
+        font-size: 0.75rem; /* Reduz o tamanho da fonte do rodapé inferior */
+        padding: 8px;
+    }
+}
+
+/* Para telas de Celular (max-width: 480px - ajuste conforme necessário) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 0; /* Mais redução de padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Força as seções a empilharem verticalmente */
+        padding: 10px;
+        align-items: center; /* Centraliza as seções empilhadas */
+    }
+
+    .footer-section {
+        margin: 15px 0; /* Aumenta a margem vertical entre as seções empilhadas */
+        width: 90%; /* Ocupa quase toda a largura para cada seção */
+        min-width: unset; /* Remove o min-width para permitir que ocupe a largura total disponível */
+    }
+
+    .footer-section h2 {
+        font-size: 1.2rem; /* Mais redução de tamanho de título */
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem; /* Mais redução de tamanho de texto */
+    }
+
+    .footer-section ul {
+        text-align: center; /* Centraliza os links quando as seções empilham */
+    }
+
+    .footer-section ul li {
+        margin: 6px 0;
+    }
+
+    .social-icons {
+        gap: 8px; /* Última redução de espaçamento */
+        padding: 8px;
+    }
+
+    .social-icons a img {
+        width: 20px; /* Última redução de tamanho de ícones */
+        height: 20px;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}

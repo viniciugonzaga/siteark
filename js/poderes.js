@@ -422,3 +422,54 @@ function colocarNaFicha(name, modalId) {
     // Redireciona para a página da ficha após salvar
     window.location.href = "../index/index_jogadores.html"; // Verifique se este caminho está correto
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+        const icones = document.querySelectorAll('.icone-item');
+        const textos = document.querySelectorAll('.civilizacoes-texto');
+        const civilizacoesSection = document.querySelector('.civilizacoes-section'); // Seleciona a seção principal
+
+        // Função para atualizar a imagem de fundo
+        function updateBackgroundImage(imageUrl) {
+            civilizacoesSection.style.setProperty('--bg-image-url', `url(${imageUrl})`); // Define a variável CSS
+            civilizacoesSection.classList.add('has-background-image'); // Adiciona classe para visibilidade e animação
+        }
+
+        icones.forEach(icone => {
+            icone.addEventListener('click', function() {
+                const targetId = this.dataset.target; // Pega o ID do texto alvo
+                const iconImageUrl = this.querySelector('img').src; // Pega o src da imagem do ícone clicado
+                
+                // Esconde todos os textos
+                textos.forEach(texto => {
+                    texto.classList.remove('active');
+                    texto.classList.add('hidden');
+                });
+
+                // Mostra o texto correspondente ao ícone clicado
+                const textoAlvo = document.getElementById(targetId);
+                if (textoAlvo) {
+                    textoAlvo.classList.remove('hidden');
+                    textoAlvo.classList.add('active');
+                }
+
+                // Opcional: Adicionar/Remover uma classe 'selected' no ícone clicado
+                icones.forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+
+                // Chama a função para atualizar a imagem de fundo
+                updateBackgroundImage(iconImageUrl);
+            });
+        });
+
+        // Opcional: Define um ícone e texto inicial selecionados ao carregar a página
+        // Simula um clique no primeiro ícone para carregar o texto e a imagem inicial
+        const primeiroIcone = document.querySelector('.icone-item[data-target="texto-civilizacao1"]');
+        if (primeiroIcone) {
+            primeiroIcone.click(); // Dispara o clique programaticamente
+        } else {
+             // Caso não haja ícone inicial, pelo menos esconde o texto inicial se ele não for o 'texto-civilizacao1'
+            document.getElementById('texto-inicial').classList.add('active');
+            document.getElementById('texto-inicial').classList.remove('hidden');
+        }
+
+    });

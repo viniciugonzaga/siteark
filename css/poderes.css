@@ -1446,6 +1446,309 @@ section.session-fundo::before {
 }
 
 
+/*civilizações class------------------------------------*/
+/* Animações (mantenha suas animações existentes aqui, ex: text-pulse-glow) */
+@keyframes text-pulse-glow {
+    0% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+    50% { text-shadow: 0 0 10px rgba(193, 240, 248, 0.3); }
+    100% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
+}
+
+/* Section Principal */
+.civilizacoes-section {
+    width: 90%;
+    max-width: 1100px;
+    margin: 80px auto;
+    padding: 50px 30px; /* Aumentei o padding */
+    border: none; /* Remove a borda original */
+    border-radius: 25px;
+    background: linear-gradient(135deg, rgba(48, 1, 1, 0.815) 0%, rgba(82, 1, 1, 0.89) 100%); /* Fundo mais escuro e gradiente */
+    box-shadow: 0 0 90px rgba(172, 18, 18, 0.671), inset 0 0 40px rgba(0, 0, 0, 0.7); /* Sombra mais intensa */
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(168, 14, 14, 0.904); /* Borda mais definida */
+    align-items: center;
+    gap: 40px; /* Mais espaço entre os elementos */
+    position: relative;
+    overflow: hidden; /* Importante para o ::before */
+    
+    /* Variável CSS para a imagem de fundo (definida por JS) */
+    --bg-image-url: none;
+}
+
+/* Pseudo-elemento para a imagem de fundo dinâmica */
+.civilizacoes-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--bg-image-url); /* Usa a variável CSS definida pelo JS */
+    background-size: cover; /* Cobre toda a área */
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.50; /* Aumentado de 0.1 para 0.15 - mais visível no estado inicial */
+    z-index: -1; /* Fica atrás do conteúdo */
+    transition: opacity 1s ease-in-out; /* Transição suave na opacidade */
+    filter: grayscale(80%) brightness(50%) blur(3px); /* Blur reduzido de 2px para 1px no estado inicial */
+    border-radius: 25px; /* Para seguir o border-radius da seção */
+}
+
+/* Quando a classe 'has-background-image' é adicionada (pelo JS), a imagem se torna visível */
+.civilizacoes-section.has-background-image::before {
+    opacity: 0.25; /* Aumentado de 0.05 para 0.08 - mais visível quando ativada */
+    filter: grayscale(30%) brightness(55%) blur(4px); /* Menos cinza, mais brilho e um pouco menos de blur ao aparecer */
+}
+
+/* Título das Civilizações */
+.civilizacoes-titulo {
+    font-size: 2.8rem; /* Aumentei um pouco mais */
+    color: #ffecec;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px 40px; /* Mais padding */
+    background-image: url('../imagens/fundo_rubi.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
+    border-radius: 25px; /* Mais arredondado */
+    border: 2px solid rgba(248, 193, 193, 0.6); /* Borda mais definida */
+    box-shadow: 0 0 20px rgba(248, 193, 193, 0.5), inset 0 0 10px rgba(248, 193, 193, 0.2); /* Sombra mais forte */
+    width: fit-content;
+    max-width: 70%; /* Permite que o título seja um pouco mais largo */
+    position: relative; /* Para z-index se for o caso */
+    z-index: 2; /* Acima do fundo */
+    text-shadow: 0 0 10px rgba(248, 193, 193, 0.4); /* Brilho no texto */
+}
+
+/* Container de textos */
+.civilizacoes-textos-container {
+    position: relative;
+    width: 100%;
+    min-height: 250px; /* Aumentei a altura mínima para acomodar textos maiores */
+    margin-bottom: 50px; /* Mais espaço abaixo dos textos */
+    display: flex; /* Para centralizar o texto internamente */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Esconder textos por padrão */
+.civilizacoes-texto.hidden {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Transição mais lenta */
+    transform: translateY(20px); /* Começa ligeiramente abaixo */
+}
+
+/* Mostrar texto ativo */
+.civilizacoes-texto.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Volta à posição normal */
+    font-size: 1.05rem; /* Ajustado para melhor legibilidade */
+    color: #F0F0F0; /* Cor mais clara */
+    line-height: 1.7;
+  
+    text-align: justify;
+    padding: 30px; /* Mais padding */
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.815)); /* Fundo gradiente */
+    border-radius: 15px; /* Mais arredondado */
+    border: 2px solid rgba(248, 193, 193, 0.3); /* Borda sutil */
+    box-shadow: 0 0 20px rgba(139, 5, 5, 0.4), inset 0 0 10px rgba(136, 8, 8, 0.6); /* Sombra mais profunda */
+    max-width: 850px; /* Aumentei a largura máxima do texto */
+    margin: 0 auto;
+    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Aplica o brilho pulsante */
+    text-shadow: 0 0 5px rgba(175, 248, 230, 0.555); /* Sombra de texto mais sutil */
+    /* AJUSTES PARA ESPAÇAMENTO DE TEXTO (mantenha os valores que funcionaram melhor para você) */
+    word-spacing: -0.5px;
+    letter-spacing: 0.05px;
+    hyphens: auto;
+}
+
+/* Estilo para títulos internos dos textos de civilização */
+.civilizacoes-texto h2 {
+    color: #ecfcf9; /* Amarelo dourado para o título do texto */
+    font-size: 2.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+    text-shadow: 0 0 16px rgba(228, 115, 115, 0.568); /* Brilho no título interno */
+    border-radius: 20px;
+    border: #fac9c9b6 2px solid; /* Borda azul clara */
+    margin: 0 auto;
+    width: 60%;
+}
+.civilizacoes-texto p {
+    margin-bottom: 1em; /* Espaço entre parágrafos */
+}
+
+.civilizacoes-texto p::before {
+ content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: url('../imagens/fundo_rubi_preto.jpg'); /* Coloque um GIF de névoa avermelhada */
+  background-size: cover;
+  opacity: 0.13;
+  animation: moverNevoa 90s linear infinite;
+  border-radius: 40px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/* Container dos Ícones */
+.civilizacoes-icones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 35px; /* Aumentei o espaçamento entre ícones */
+    margin-top: 30px; /* Mais espaço acima */
+}
+
+/* Item de Ícone Individual */
+.icone-item {
+    width: 90px; /* Aumentei o tamanho do ícone */
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid rgba(248, 193, 193, 0.5); /* Borda mais grossa */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.9), rgba(70, 70, 70, 0.8)); /* Fundo gradiente */
+    box-shadow: 0 0 15px rgba(248, 193, 193, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.5); /* Sombra e brilho internos */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transições mais suaves */
+    cursor: pointer; /* Indica que é clicável */
+    position: relative; /* Para o brilho ao redor */
+}
+
+.icone-item:hover {
+    transform: scale(1.15) translateY(-5px); /* Aumenta mais e levanta */
+    box-shadow: 0 0 25px rgba(248, 193, 193, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.7); /* Brilho e sombra mais fortes */
+    border-color: #ff1c1c; /* Borda mais clara no hover */
+}
+
+/* Animação de brilho sutil ao redor do ícone no hover */
+.icone-item::before {
+    content: '';
+    position: absolute;
+    top: -5px; /* Expande um pouco para fora */
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(193, 240, 248, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform: scale(0.8);
+    z-index: -1;
+}
+
+.icone-item:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.icone-item img {
+    width: 90%;
+    height: 90%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.4s ease; /* Transição para zoom da imagem */
+}
+.icone-item:hover img {
+    transform: scale(1.05); /* Zoom sutil na imagem do ícone no hover */
+}
+
+
+/* Estilo para o ícone selecionado (que foi clicado) */
+.icone-item.selected {
+    border-color: #f89191; /* Borda amarela dourada para o selecionado */
+    box-shadow: 0 0 25px #fcc4c4, inset 0 0 15px rgba(252, 141, 141, 0.5); /* Brilho e sombra internos amarelos */
+    transform: scale(1.18) translateY(-8px); /* Mais destaque ainda para o selecionado */
+    z-index: 3; /* Garante que fique acima de outros ícones */
+}
+/* No ícone selecionado, também podemos manter o brilho pseudo-elemento ativo */
+.icone-item.selected::before {
+    opacity: 1;
+    transform: scale(1);
+    background: radial-gradient(circle, rgba(241, 119, 119, 0.548) 0%, transparent 70%); /* Brilho dourado para o selecionado */
+}
+
+
+/* Responsividade aprimorada */
+@media (max-width: 760px) {
+    .civilizacoes-section {
+        padding: 40px 25px;
+        gap: 30px;
+    }
+    .civilizacoes-titulo {
+        font-size: 2.2rem;
+        padding: 15px 30px;
+        max-width: 80%;
+    }
+    .civilizacoes-textos-container {
+        min-height: 220px;
+        margin-bottom: 40px;
+    }
+    .civilizacoes-texto.active {
+        font-size: 1rem;
+        padding: 25px;
+        max-width: 90%;
+    }
+    .civilizacoes-texto h2 {
+        font-size: 1.6rem;
+    }
+    .civilizacoes-texto{
+        font-size: 0.7rem;
+    }
+    .civilizacoes-icones {
+        gap: 25px;
+    }
+    .icone-item {
+        width: 75px;
+        height: 75px;
+    }
+}
+@media (max-width: 600px) {
+    .civilizacoes-section {
+        padding: 30px 15px;
+        margin: 40px auto;
+        border-radius: 20px;
+        gap: 25px;
+    }
+    .civilizacoes-titulo {
+        font-size: 1.8rem;
+        padding: 12px 20px;
+        max-width: 95%;
+    }
+    .civilizacoes-textos-container {
+        min-height: 180px;
+        margin-bottom: 30px;
+    }
+    .civilizacoes-texto.active {
+        font-size: 0.8rem;
+        line-height: 1.6;
+        padding: 20px;
+    }
+    .civilizacoes-texto h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    .civilizacoes-icones {
+        gap: 15px;
+    }
+    .icone-item {
+        width: 60px;
+        height: 60px;
+        border-width: 2px;
+    }
+    .icone-item.selected {
+        transform: scale(1.1) translateY(-5px);
+    }
+}
+
 /* --- Container Geral da Seção de Rituais/Pactos --- */
 .container-geral {
     display: flex;
