@@ -124,7 +124,7 @@
       Os rituais podem causar dano, controlar, invocar, buffar, nerfar e atender a diversas necessidades, mas o alvo sempre terá a oportunidade de se defender, dependendo do tipo de ataque. Além disso, os rituais exigem níveis específicos para serem utilizados, com permissões concedidas ao atingir os seguintes níveis:
     </p>
     <ul class="ritual-niveis">
-      <li><strong>Ritual Normal:</strong> Nível 15</li>
+      <li><strong>Ritual Simples:</strong> Nível 15</li>
       <li><strong>Ritual Brutal:</strong> Nível 40</li>
       <li><strong>Ritual Diabólico:</strong> Nível 70</li>
       <li><strong>Ritual Complexo:</strong> Nível 99</li>
@@ -213,7 +213,7 @@
 
             <div class="filtros" id="filtrosRituais">
                 <button class="active" onclick="filtrarCards('todos')">Todos</button>
-                <button onclick="filtrarCards('normal')">Normal</button>
+                <button onclick="filtrarCards('Simples')">Simples</button>
                 <button onclick="filtrarCards('brutal')">Brutal</button>
                 <button onclick="filtrarCards('diabólico')">Diabólico</button>
                 <button onclick="filtrarCards('complexo')">Complexo</button>
@@ -236,34 +236,265 @@
                 <a href="../index/index_jogadores.html" class="action-button">Veja a sua Ficha</a>
             </div>
 
+             <!-- Cards dos Rituais -->
             <div class="cards-wrapper">
-                <div class="card" data-tipo="Simples" data-classe="ritual">
-                    <h3><span data-name="Eletrocutar">Eletrocutar</span></h3>
-                    <img src="../imagens/" alt="Ritual Chamas Ancestrais" />
-                    <span class="tipo">Raio / Simples</span>
-                    <button onclick="abrirModal('modalRitual1')">Descrição</button>
-                </div>
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Queimar Carne">Queimar Carne</span></h3>
+        <img src="../imagens/icon_queimar_carne.png" alt="Queimar Carne" />
+        <span class="tipo">Fogo / Simples</span>
+        <button onclick="abrirModal('modalRitual1')">Descrição</button>
+    </div>
 
-                <div class="card" data-tipo="controle" data-classe="ritual">
-                    <h3><span data-name="Círculo da Prisão">Círculo da Prisão</span></h3>
-                    <img src="" alt="Ritual Círculo da Prisão" />
-                    <span class="tipo">Arcano / Controle</span>
-                    <button onclick="abrirModal('modalRitual2')">Descrição</button>
-                </div>
+                <!-- Ritual 2 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Controle de Chama">Unir Chama</span></h3>
+        <img src="../imagens/icon_controlar_chama.png" alt="Controle de Chama" />
+        <span class="tipo">Fogo / Simples</span>
+        <button onclick="abrirModal('modalRitual2')">Descrição</button>
+    </div>
 
-                <div class="card" data-tipo="cura" data-classe="ritual">
-                    <h3><span data-name="Luz Restauradora">Luz Restauradora</span></h3>
-                    <img src="" alt="Ritual Luz Restauradora" />
-                    <span class="tipo">Luz / Cura</span>
-                    <button onclick="abrirModal('modalRitual3')">Descrição</button>
-                </div>
+    <!-- Ritual 3 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Lançar Fogo">Lançar Fogo</span></h3>
+        <img src="../imagens/icon_lançar_fogo.png" alt="Lançar Fogo" />
+        <span class="tipo">Fogo / Simples</span>
+        <button onclick="abrirModal('modalRitual3')">Descrição</button>
+    </div>
+
+    <!-- Ritual 4 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Combustão">Combustão</span></h3>
+        <img src="../imagens/_icon_combustão.png" alt="Combustão" />
+        <span class="tipo">Fogo / Simples</span>
+        <button onclick="abrirModal('modalRitual4')">Descrição</button>
+    </div>
+
+     <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Eletrocutar">Eletrocutar</span></h3>
+        <img src="../imagens/icon_elerocutar.png" alt="Eletrocutar" />
+        <span class="tipo">Raio / Simples</span>
+        <button onclick="abrirModal('modalRitual5')">Descrição</button>
+    </div>
+
+    <!-- Ritual 6 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Eletrizar">Eletrizar</span></h3>
+        <img src="../imagens/icon_eletrizar.png" alt="Eletrizar" />
+        <span class="tipo">Raio / Simples</span>
+        <button onclick="abrirModal('modalRitual6')">Descrição</button>
+    </div>
+
+    <!-- Ritual 7 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Cópia Elétrica">Cópia Elétrica</span></h3>
+        <img src="../imagens/icon_cópia_de_choque.png" alt="Cópia Elétrica" />
+        <span class="tipo">Raio / Simples</span>
+        <button onclick="abrirModal('modalRitual7')">Descrição</button>
+    </div>
+
+    <!-- Ritual 8 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Dor de Cabeça">Dor de Cabeça</span></h3>
+        <img src="../imagens/icon_dor_de_cabeça.png" alt="Dor de Cabeça" />
+        <span class="tipo">Raio / Simples</span>
+        <button onclick="abrirModal('modalRitual8')">Descrição</button>
+    </div>
+
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Escolha Suja">Escolha Suja</span></h3>
+        <img src="../imagens/icon_escolha_suja.png" alt="Escolha Suja" />
+        <span class="tipo">Apodrecer / Simples</span>
+        <button onclick="abrirModal('modalRitual9')">Descrição</button>
+    </div>
+
+    <!-- Ritual 10 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Sabotar Natureza">Sabotar Natureza</span></h3>
+        <img src="../imagens/icon_sabotar_natureza.png" alt="Sabotar Natureza" />
+        <span class="tipo">Apodrecer / Simples</span>
+        <button onclick="abrirModal('modalRitual10')">Descrição</button>
+    </div>
+
+    <!-- Ritual 11 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Rastro Defeituoso">Rastro Defeituoso</span></h3>
+        <img src="../imagens/icon_rastro_defeituoso.png" alt="Rastro Defeituoso" />
+        <span class="tipo">Apodrecer / Simples</span>
+        <button onclick="abrirModal('modalRitual11')">Descrição</button>
+    </div>
+
+    <!-- Ritual 12 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Coração Podre">Coração Podre</span></h3>
+        <img src="../imagens/icon_coração_podre.png" alt="Coração Podre" />
+        <span class="tipo">Apodrecer / Simples</span>
+        <button onclick="abrirModal('modalRitual12')">Descrição</button>
+    </div>
+
+     <!-- Ritual 13 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Criar Pesadelo">Criar Pesadelo</span></h3>
+        <img src="../imagens/icon_criar_pesadelo.png" alt="Criar Pesadelo" />
+        <span class="tipo">Medo / Simples</span>
+        <button onclick="abrirModal('modalRitual13')">Descrição</button>
+    </div>
+
+    <!-- Ritual 14 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Admirar Seu Erro">Admirar Seu Erro</span></h3>
+        <img src="../imagens/icon_admirar_erro.png" alt="Admirar Seu Erro" />
+        <span class="tipo">Medo / Simples</span>
+        <button onclick="abrirModal('modalRitual14')">Descrição</button>
+    </div>
+
+    <!-- Ritual 15 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Coletar o Medo">Coletar o Medo</span></h3>
+        <img src="../imagens/icon_coletar_medo.png" alt="Coletar o Medo" />
+        <span class="tipo">Medo / Simples</span>
+        <button onclick="abrirModal('modalRitual15')">Descrição</button>
+    </div>
+
+    <!-- Ritual 16 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Risada Maldita">Risada Maldita</span></h3>
+        <img src="../imagens/icon_risada_maldita.png" alt="Risada Maldita" />
+        <span class="tipo">Medo / Simples</span>
+        <button onclick="abrirModal('modalRitual16')">Descrição</button>
+    </div>
+    
+     <!-- Ritual 17 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Limpar Feridas">Limpar Feridas</span></h3>
+        <img src="../imagens/icon_limpar_feridas.png" alt="Limpar Feridas" />
+        <span class="tipo">Água / Simples</span>
+        <button onclick="abrirModal('modalRitual17')">Descrição</button>
+    </div>
+
+    <!-- Ritual 18 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Jato de Água">Jato de Água</span></h3>
+        <img src="../imagens/icon_jato_de_agua.png" alt="Jato de Água" />
+        <span class="tipo">Água / Simples</span>
+        <button onclick="abrirModal('modalRitual18')">Descrição</button>
+    </div>
+
+    <!-- Ritual 19 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Correnteza">Correnteza</span></h3>
+        <img src="../imagens/icon_correnteza.png" alt="Correnteza" />
+        <span class="tipo">Água / Simples</span>
+        <button onclick="abrirModal('modalRitual19')">Descrição</button>
+    </div>
+
+    <!-- Ritual 20 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Melhorar Campo">Melhorar Campo</span></h3>
+        <img src="../imagens/icon_melhorar_campo.png" alt="Melhorar Campo" />
+        <span class="tipo">Água / Simples</span>
+        <button onclick="abrirModal('modalRitual20')">Descrição</button>
+    </div>
+
+    <!-- Ritual 21 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Rugido Implacável">Rugido Implacável</span></h3>
+        <img src="../imagens/icon_rugido_implacavel.png" alt="Rugido Implacável" />
+        <span class="tipo">Ferocidade / Simples</span>
+        <button onclick="abrirModal('modalRitual21')">Descrição</button>
+    </div>
+
+    <!-- Ritual 22 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Criador de Feras">Criador de Feras</span></h3>
+        <img src="../imagens/icon_criador_de_feras.png" alt="Criador de Feras" />
+        <span class="tipo">Ferocidade / Simples</span>
+        <button onclick="abrirModal('modalRitual22')">Descrição</button>
+    </div>
+
+    <!-- Ritual 23 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Escudo de Dentes">Escudo de Dentes</span></h3>
+        <img src="../imagens/icon_escudo_de_dente.png" alt="Escudo de Dentes" />
+        <span class="tipo">Ferocidade / Simples</span>
+        <button onclick="abrirModal('modalRitual23')">Descrição</button>
+    </div>
+
+    <!-- Ritual 24 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Instinto Raptor">Instinto Raptor</span></h3>
+        <img src="../imagens/icon_institno_raptor.png" alt="Instinto Raptor" />
+        <span class="tipo">Ferocidade / Simples</span>
+        <button onclick="abrirModal('modalRitual24')">Descrição</button>
+    </div>
+
+     <!-- Ritual 25 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Criar Vinhas">Criar Vinhas</span></h3>
+        <img src="icons/criar_vinhas.png" alt="Criar Vinhas" />
+        <span class="tipo">Vida / Simples</span>
+        <button onclick="abrirModal('modalRitual25')">Descrição</button>
+    </div>
+
+    <!-- Ritual 26 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Armadura de Espinhos">Armadura de Espinhos</span></h3>
+        <img src="icons/armadura_de_espinhos.png" alt="Armadura de Espinhos" />
+        <span class="tipo">Vida / Simples</span>
+        <button onclick="abrirModal('modalRitual26')">Descrição</button>
+    </div>
+
+    <!-- Ritual 27 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Fornecer Vida">Fornecer Vida</span></h3>
+        <img src="icons/fornecer_vida.png" alt="Fornecer Vida" />
+        <span class="tipo">Vida / Simples</span>
+        <button onclick="abrirModal('modalRitual27')">Descrição</button>
+    </div>
+
+    <!-- Ritual 28 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Revestir Anti-Vida">Revestir Anti-Vida</span></h3>
+        <img src="icons/revestir_anti_vida.png" alt="Revestir Anti-Vida" />
+        <span class="tipo">Vida / Simples</span>
+        <button onclick="abrirModal('modalRitual28')">Descrição</button>
+    </div>
+
+    <!-- Ritual 29 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Peso Arcano">Peso Arcano</span></h3>
+        <img src="icons/peso_arcano.png" alt="Peso Arcano" />
+        <span class="tipo">Peso / Simples</span>
+        <button onclick="abrirModal('modalRitual29')">Descrição</button>
+    </div>
+
+    <!-- Ritual 30 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Empurrar Peso">Empurrar Peso</span></h3>
+        <img src="icons/empurrar_peso.png" alt="Empurrar Peso" />
+        <span class="tipo">Peso / Simples</span>
+        <button onclick="abrirModal('modalRitual30')">Descrição</button>
+    </div>
+
+    <!-- Ritual 31 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Retrucar">Retrucar</span></h3>
+        <img src="icons/retrucar.png" alt="Retrucar" />
+        <span class="tipo">Peso / Simples</span>
+        <button onclick="abrirModal('modalRitual31')">Descrição</button>
+    </div>
+
+    <!-- Ritual 32 -->
+    <div class="card" data-tipo="Simples" data-classe="ritual">
+        <h3><span data-name="Cosmologia">Cosmologia</span></h3>
+        <img src="icons/cosmologia.png" alt="Cosmologia" />
+        <span class="tipo">Peso / Simples</span>
+        <button onclick="abrirModal('modalRitual32')">Descrição</button>
+    </div>
 
 
-
-
-
-
-
+     
+       
+ <!-- Cards dos Pactos -------------------------------------------------------------------------------->
                 <div class="card" data-tipo="dano" data-classe="pacto">
                     <h3><span data-name="Pacto de Sangue">Pacto de Sangue</span></h3>
                     <img src="../imagens/icon_Antrodemus.jpg" alt="Pacto de Sangue" />
@@ -280,15 +511,326 @@
 <!-- Modal dos Rituais -->
     <div id="modalRitual1" class="modal">
         <div class="modal-content">
-            <h3></h3>
-            <p></p>
+            <h3>Queimar Carne</h3>
+            <p>A mão do conjurador se contorce de forma antinatural, aquecendo-se até que cinzas comecem a surgir entre seus dedos. Num estalar súbito, uma pequena combustão é invocada diretamente sobre um inimigo à vista, envolvendo seu corpo em chamas vivas. O alvo sofre 4d6 de dano de fogo e recebe o efeito Queimado, que persiste até que ele consiga apagar completamente a origem das chamas, seja por meios mágicos, ações físicas ou auxílio externo. O inimigo pode tentar se defender com testes de Fortitude.</p>
             <button onclick="fecharModal('modalRitual1')">Fechar</button>
-            <button class="btn-colocar-ficha" onclick="colocarNaFicha('Chamas Ancestrais', 'modalRitual1')">Colocar na Ficha</button>
+            <button class="btn-colocar-ficha" onclick="colocarNaFicha('Queimar Carne', 'modalRitual1')">Colocar na Ficha</button>
         </div>
     </div>
 
+    <div id="modalRitual2" class="modal">
+    <div class="modal-content">
+        <h3>Unir Chama</h3>
+        <p>Canalizando calor para uma parte específica do corpo, o conjurador aquece sua pele até o limite do suportável. Ao esfregar essa área em uma arma ou objeto, transfere para ele um fogo ritualístico que queima sem ferir quem o utiliza. O item encantado passa a causar <strong>2d6 de dano de fogo adicional</strong> nos ataques e aplica automaticamente o efeito <strong>Queimado</strong> ao acertar o inimigo. Esse encantamento dura por <strong>1d4 rodadas</strong>, e o fogo não afeta o conjurador nem o portador da arma. Alvos atingidos podem tentar resistir ao efeito usando <strong>Reflexo</strong>.</p>
+        <button onclick="fecharModal('modalRitual2')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Controle de Chama', 'modalRitual2')">Colocar na Ficha</button>
+    </div>
+</div>
+
+
+<div id="modalRitual3" class="modal">
+    <div class="modal-content">
+        <h3>Lançar Fogo</h3>
+        <p>Com uma explosão de energia térmica, o conjurador reúne chamas em suas mãos e projeta uma esfera incandescente na direção de um inimigo. A bola de fogo explode no momento do impacto, causando <strong>1d10 de dano de fogo imediato</strong>. Além disso, o alvo é consumido por um fogo residual que aplica <strong>2d6 adicionais de dano contínuo</strong> pelo efeito <strong>Queimado</strong>, o qual persiste até que as chamas sejam completamente eliminadas. O inimigo pode tentar escapar da conjuração com um teste de <strong>Reflexo</strong>.</p>
+        <button onclick="fecharModal('modalRitual3')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Lançar Fogo', 'modalRitual3')">Colocar na Ficha</button>
+    </div>
+</div>
+
+
+<div id="modalRitual4" class="modal">
+    <div class="modal-content">
+        <h3>Combustão</h3>
+        <p>Concentrando a energia flamejante interna, o conjurador libera uma onda de calor invisível, que se espalha por todos os inimigos em seu alcance arcano ou linha de visão. A energia incandescente revela a presença de cada um, aplicando o efeito <strong>Revelado</strong> por <strong>1d4 rodadas</strong>, impedindo qualquer tentativa de camuflagem ou invisibilidade. Adicionalmente, qualquer inimigo que já esteja sofrendo com efeitos de fogo — como o <strong>Queimado</strong> — sofre imediatamente <strong>2d6 de dano de fogo extra</strong>, intensificando a combustão. Alvos podem tentar resistir ao efeito de revelação com <strong>Vontade</strong>, ou minimizar o dano adicional com um teste de <strong>Fortitude</strong>.</p>
+        <button onclick="fecharModal('modalRitual4')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Combustão', 'modalRitual4')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<div id="modalRitual5" class="modal">
+    <div class="modal-content">
+        <h3>Eletrocutar</h3>
+        <p>O conjurador concentra energia elétrica pura na palma de sua mão, disparando um raio direto contra um inimigo à vista. O alvo sofre <strong>4d8 de dano elétrico</strong> e, caso não consiga resistir, recebe o efeito <strong>Vulnerável</strong> por <strong>1d4 rodadas</strong>. Se o alvo estiver usando armadura metálica ou imerso em água, o dano é dobrado. O inimigo pode tentar evitar o ataque com um teste de <strong>Esquiva</strong> e resistir aos efeitos colaterais com <strong>Fortitude</strong>.</p>
+        <button onclick="fecharModal('modalRitual5')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Eletrocutar', 'modalRitual5')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 6 -->
+<div id="modalRitual6" class="modal">
+    <div class="modal-content">
+        <h3>Eletrizar</h3>
+        <p>Canalizando eletricidade revigorante, o conjurador direciona uma descarga controlada sobre um aliado à vista. Essa energia percorre o corpo e a aura arcana do alvo, concedendo-lhe um bônus de <strong>+5 em testes de Agilidade</strong> e imunidade a dano elétrico. Os efeitos duram por <strong>1d4 rodadas</strong> e não afetam negativamente o alvo. Ideal para momentos de fuga, esquiva ou avanço veloz.</p>
+        <button onclick="fecharModal('modalRitual6')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Eletrizar', 'modalRitual6')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 7 -->
+<div id="modalRitual7" class="modal">
+    <div class="modal-content">
+        <h3>Cópia Elétrica</h3>
+        <p>O conjurador manipula partículas elétricas para criar uma réplica instável e brilhante de um aliado ou de si mesmo. Essa cópia aparece logo atrás de seu criador e imita seus ataques, replicando o mesmo golpe, porém com <strong>dano dividido pela metade</strong> e com <strong>natureza puramente elétrica</strong>. A cópia possui funções limitadas, agindo apenas como uma extensão ofensiva e desaparece após <strong>1d4 rodadas</strong>. Não pode agir por conta própria, defender, ou se mover autonomamente.</p>
+        <button onclick="fecharModal('modalRitual7')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Cópia Elétrica', 'modalRitual7')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 8 -->
+<div id="modalRitual8" class="modal">
+    <div class="modal-content">
+        <h3>Dor de Cabeça</h3>
+        <p>Com um gesto súbito e focado, o conjurador é capaz de transferir a dor física de um aliado diretamente para sua mente, transformando todo o dano corporal em <strong>dano de estresse</strong>. Isso impede que o aliado seja afetado por choques, eletrocussão ou efeitos físicos de ataques elétricos. Em contrapartida, o conjurador é marcado por uma presença arcana, recebendo o efeito <strong>Marcado</strong> por <strong>1d2 rodadas</strong>. O ritual funciona em qualquer aliado dentro de seu <strong>alcance visual</strong> e exige conexão mental mínima. Ideal para proteger alvos em estado crítico.</p>
+        <button onclick="fecharModal('modalRitual8')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Dor de Cabeça', 'modalRitual8')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<div id="modalRitual9" class="modal">
+    <div class="modal-content">
+        <h3>Escolha Suja</h3>
+        <p>Após um dia inteiro sem limpar suas mãos, o conjurador canaliza uma energia pútrida apontando para um inimigo à vista. A podridão acumulada se transforma em uma maldição tóxica. O alvo deve realizar um teste de <strong>Vontade</strong>. Caso falhe, recebe <strong>2d8 de dano ácido</strong>, sofre o efeito <strong>Envenenado (2d6)</strong> e fica <strong>Marcado</strong> por <strong>1d2 rodadas</strong>, tornando-se mais vulnerável ao próximo ataque direto.</p>
+        <button onclick="fecharModal('modalRitual9')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Escolha Suja', 'modalRitual9')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 10 -->
+<div id="modalRitual10" class="modal">
+    <div class="modal-content">
+        <h3>Sabotar Natureza</h3>
+        <p>O conjurador arremessa um item deteriorado ou libera poeira venenosa com cheiro de podridão nos inimigos à frente. Os dois primeiros alvos que estiverem em linha reta devem realizar um teste de <strong>Fortitude</strong>. Se falharem, são afetados pelo efeito <strong>Enfraquecido</strong>, sofrendo <strong>-2 dados de dano em todas as habilidades</strong> e <strong>-5 em seus testes de ataque</strong> durante <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual10')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Sabotar Natureza', 'modalRitual10')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 11 -->
+<div id="modalRitual11" class="modal">
+    <div class="modal-content">
+        <h3>Rastro Defeituoso</h3>
+        <p>O conjurador dispara um jato ácido e corrosivo em linha reta. O inimigo atingido deve realizar um teste de <strong>Reflexo</strong>. Se falhar, sofre <strong>2d6 de dano de Peste</strong>, recebe o efeito <strong>Enfraquecido</strong>, perde <strong>-1 dado de Agilidade e -1 de Força</strong>, e tem seu deslocamento reduzido à metade por <strong>1d4 rodadas</strong>. Uma técnica eficiente para desacelerar e enfraquecer alvos mais físicos.</p>
+        <button onclick="fecharModal('modalRitual11')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Rastro Defeituoso', 'modalRitual11')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 12 -->
+<div id="modalRitual12" class="modal">
+    <div class="modal-content">
+        <h3>Coração Podre</h3>
+        <p>Canalizando corrupção profunda através do sacrifício, o conjurador transfere parte de sua essência vital para fortalecer um aliado. O alvo recebe o efeito <strong>Fortalecido</strong>, ganhando <strong>+1 dado em Força</strong> e aplicando <strong>2d6 de dano de Veneno</strong> em todos os seus ataques. Contudo, o conjurador sofre uma penalidade imediata de <strong>20 pontos de vida</strong>. O efeito persiste até o conjurador cair inconsciente ou entrar em estado de morte iminente.</p>
+        <button onclick="fecharModal('modalRitual12')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Coração Podre', 'modalRitual12')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<div id="modalRitual13" class="modal">
+    <div class="modal-content">
+        <h3>Criar Pesadelo</h3>
+        <p>O conjurador invade a mente do inimigo ao cruzar olhares ou concentrar sua percepção. O alvo precisa realizar um teste de <strong>Vontade</strong>. Se falhar, o conjurador acessa os momentos de maior terror e pavor do inimigo, revivendo seus pesadelos mais sombrios. O alvo sofre <strong>3d6 de dano de Estresse</strong> e recebe o efeito <strong>Enfraquecido</strong> por <strong>1 rodada</strong>, causando metade do dano em seus ataques durante esse período.</p>
+        <button onclick="fecharModal('modalRitual13')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Criar Pesadelo', 'modalRitual13')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 14 -->
+<div id="modalRitual14" class="modal">
+    <div class="modal-content">
+        <h3>Admirar Seu Erro</h3>
+        <p>Este ritual pode ser usado como <strong>reação</strong> após um inimigo errar um ataque ou ritual. O conjurador profere palavras aterrorizantes, descrevendo o pior desfecho possível daquele erro. O inimigo afetado sofre <strong>3d6 de Estresse</strong>, e durante <strong>1d4 rodadas</strong> recebe <strong>-5 em testes de ataque</strong>. Se durante esse período o alvo errar novamente, ele acidentalmente se fere, causando a si mesmo metade do dano que causaria ao alvo.</p>
+        <button onclick="fecharModal('modalRitual14')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Admirar Seu Erro', 'modalRitual14')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 15 -->
+<div id="modalRitual15" class="modal">
+    <div class="modal-content">
+        <h3>Coletar o Medo</h3>
+        <p>Quando o conjurador presencia a morte iminente de um inimigo ou o estado de colapso de um corpo, ele pode canalizar esse medo para si. Utilizando uma de suas reações defensivas, o conjurador <strong>absorve toda a vida que o inimigo perdeu em combate</strong>, recuperando a própria vida ou ganhando pontos extras temporariamente. O ritual só pode ser realizado <strong>uma vez por alvo</strong> e exige <strong>proximidade</strong>. Dura por toda a cena atual.</p>
+        <button onclick="fecharModal('modalRitual15')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Coletar o Medo', 'modalRitual15')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 16 -->
+<div id="modalRitual16" class="modal">
+    <div class="modal-content">
+        <h3>Risada Maldita</h3>
+        <p>O conjurador solta uma gargalhada distorcida e profana diante de um inimigo que o esteja observando. O alvo deve realizar um teste de <strong>Percepção</strong> contra a do conjurador. Se falhar, fica <strong>intimidado</strong>, sofrendo <strong>-5 em testes contra o conjurador</strong> por <strong>1d2 rodadas</strong>. Além disso, o primeiro ataque que fizer contra o conjurador sofrerá <strong>-4 dados de dano</strong>, afetado pelo medo inconsciente plantado na mente.</p>
+        <button onclick="fecharModal('modalRitual16')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Risada Maldita', 'modalRitual16')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 17 -->
+<div id="modalRitual17" class="modal">
+    <div class="modal-content">
+        <h3>Limpar Feridas</h3>
+        <p>O conjurador invoca correntes de água misturadas com compostos curativos e antídotos. Ao tocar ou mirar um aliado dentro de seu campo de visão, a solução mágica limpa feridas, cicatriza cortes e desintoxica o corpo. O alvo recupera <strong>4d8 + 10 pontos de vida</strong>. Esse ritual não causa efeitos colaterais e pode ser usado fora de combate.</p>
+        <button onclick="fecharModal('modalRitual17')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Limpar Feridas', 'modalRitual17')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 18 -->
+<div id="modalRitual18" class="modal">
+    <div class="modal-content">
+        <h3>Jato de Água</h3>
+        <p>O conjurador concentra a umidade do próprio corpo — como saliva ou suor — e a projeta como um jato de água pressurizada. Essa técnica pode ser usada como <strong>reação ou ataque</strong> quando um inimigo se aproxima. O alvo sofre <strong>2d12 de dano de impacto</strong> e é empurrado <strong>3 metros a cada 10 de dano causado</strong>. Se for atingido, também recebe o efeito <strong>Enfraquecido</strong>, reduzindo seu deslocamento pela metade. Testes de <strong>Reflexo</strong> podem mitigar o impacto.</p>
+        <button onclick="fecharModal('modalRitual18')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Jato de Água', 'modalRitual18')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 19 -->
+<div id="modalRitual19" class="modal">
+    <div class="modal-content">
+        <h3>Correnteza</h3>
+        <p>O conjurador canaliza parte de sua força ofensiva para impulsionar um aliado. Durante <strong>1d4 rodadas</strong>, sofre <strong>-5 em todos os testes de ataque</strong>, mas permite que um aliado à escolha use <strong>metade dos dados de dano da arma do conjurador</strong> como bônus em seus ataques principais. O efeito é mágico e exige concentração contínua.</p>
+        <button onclick="fecharModal('modalRitual19')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Correnteza', 'modalRitual19')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 20 -->
+<div id="modalRitual20" class="modal">
+    <div class="modal-content">
+        <h3>Melhorar Campo</h3>
+        <p>O conjurador conjura um círculo de água mágica sob seus pés, criando uma elevação líquida que serve como impulso para um aliado. O aliado recebe <strong>+5 em testes de Agilidade</strong> enquanto estiver sobre o campo. O efeito dura <strong>1d4 rodadas</strong> ou até o campo ser dispersado ou destruído por inimigos.</p>
+        <button onclick="fecharModal('modalRitual20')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Melhorar Campo', 'modalRitual20')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 21 -->
+<div id="modalRitual21" class="modal">
+    <div class="modal-content">
+        <h3>Rugido Implacável</h3>
+        <p>O conjurador solta um rugido ancestral carregado de energia primal, marcando a si mesmo ou a um aliado com o efeito <strong>Marcado</strong>. Todos os inimigos ao alcance auditivo devem fazer um teste de <strong>Vontade</strong>. Aqueles que falharem sofrem <strong>-5 em ações contra o conjurador</strong> e causam <strong>-2 dados de dano</strong> na primeira rodada após serem afetados.</p>
+        <button onclick="fecharModal('modalRitual21')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Rugido Implacável', 'modalRitual21')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 22 -->
+<div id="modalRitual22" class="modal">
+    <div class="modal-content">
+        <h3>Criador de Feras</h3>
+        <p>Assobiando em um tom místico, o conjurador emite uma frequência que ecoa por grandes distâncias, chamando suas feras aliadas. As feras afetadas ganham o efeito <strong>Fortalecido</strong>, recebem <strong>+2 dados de dano</strong> no próximo ataque e aumentam seu deslocamento em <strong>+50%</strong>. O efeito dura <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual22')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Criador de Feras', 'modalRitual22')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 23 -->
+<div id="modalRitual23" class="modal">
+    <div class="modal-content">
+        <h3>Escudo de Dentes</h3>
+        <p>O conjurador escolhe um aliado e o envolve em um escudo espectral de mandíbulas e presas. O alvo recebe o efeito <strong>Protegido</strong> e o protetor ganha <strong>+5 em Contra-ataque</strong> sempre que for atingido. Porém, o alvo também é <strong>Marcado</strong>, se tornando um foco claro no campo de batalha. O efeito dura até que o conjurador encerre o ritual ou o alvo seja nocauteado.</p>
+        <button onclick="fecharModal('modalRitual23')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Escudo de Dentes', 'modalRitual23')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 24 -->
+<div id="modalRitual24" class="modal">
+    <div class="modal-content">
+        <h3>Instinto Raptor</h3>
+        <p>Sentindo o chamado da caça, o conjurador ativa instintos predatórios. Recebe o efeito <strong>Fortalecido</strong>, com <strong>+2 dados de dano</strong> no próximo ataque. Se estiver furtivo, aplica ainda <strong>Sangramento (4d6)</strong> nos ataques bem-sucedidos. O efeito dura <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual24')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Instinto Raptor', 'modalRitual24')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 25 -->
+<div id="modalRitual25" class="modal">
+    <div class="modal-content">
+        <h3>Criar Vinhas</h3>
+        <p>O conjurador estende o braço e aponta seu dedo para um inimigo visível, invocando vinhas espessas do solo. O alvo deve realizar um teste de <strong>Reflexo</strong>. Caso falhe, é envolto pelas vinhas e recebe o efeito <strong>Imobilizado</strong>. A cada rodada, o alvo pode tentar um teste de <strong>Força</strong> para romper as vinhas. Se for bem-sucedido, o efeito é dissipado.</p>
+        <button onclick="fecharModal('modalRitual25')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Criar Vinhas', 'modalRitual25')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 26 -->
+<div id="modalRitual26" class="modal">
+    <div class="modal-content">
+        <h3>Armadura de Espinhos</h3>
+        <p>O conjurador infunde vida em uma armadura, fazendo crescer espinhos mágicos por toda sua superfície. Um aliado à escolha recebe esse revestimento. Enquanto o efeito durar, qualquer inimigo que o atingir com um ataque corpo a corpo sofre <strong>10 pontos de dano automático</strong>, sem direito a reação. O efeito dura <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual26')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Armadura de Espinhos', 'modalRitual26')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 27 -->
+<div id="modalRitual27" class="modal">
+    <div class="modal-content">
+        <h3>Fornecer Vida</h3>
+        <p>Em harmonia com a natureza, o conjurador canaliza a energia vital da floresta e da terra ao redor, criando uma aura de cura intensa. Um aliado à escolha recupera <strong>20 pontos de vida por rodada</strong> enquanto o efeito estiver ativo. A cura persiste até que o conjurador seja <strong>atordoado, nocauteado ou marcado</strong>. O ritual só pode ser sustentado em um aliado por vez.</p>
+        <button onclick="fecharModal('modalRitual27')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Fornecer Vida', 'modalRitual27')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 28 -->
+<div id="modalRitual28" class="modal">
+    <div class="modal-content">
+        <h3>Revestir Anti-Vida</h3>
+        <p>O conjurador concede uma bênção corrupta a um aliado, unindo força vital com essência sombria. O aliado recebe o efeito <strong>Fortalecido</strong>, e sua arma principal passa a causar <strong>Roubo de Vida</strong>: metade do dano causado é convertida em pontos de vida restaurados. O efeito dura <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual28')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Revestir Anti-Vida', 'modalRitual28')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 29 -->
+<div id="modalRitual29" class="modal">
+    <div class="modal-content">
+        <h3>Peso Arcano</h3>
+        <p>O conjurador ativa sua obsessão pelo peso mágico e fortalece seu próximo movimento. Este ritual pode ser usado como <strong>ataque ou reação</strong> e também pode ser aplicado em um aliado. Ele fornece um bônus mágico ao próximo teste, que pode utilizar os bônus de <strong>Peso Arcano</strong> em qualquer teste. O primeiro ataque realizado após a ativação causa <strong>+2 dados de dano</strong>. O efeito dura apenas <strong>até o fim da rodada</strong>.</p>
+        <button onclick="fecharModal('modalRitual29')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Peso Arcano', 'modalRitual29')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 30 -->
+<div id="modalRitual30" class="modal">
+    <div class="modal-content">
+        <h3>Empurrar Peso</h3>
+        <p>O conjurador levanta sua mão e, com um gesto brusco, aplica uma força gravitacional sobre um alvo visível. O inimigo deve fazer um teste de <strong>Reflexo</strong>. Em caso de falha, ele é erguido e lançado a até <strong>6 metros</strong> de distância, sofrendo <strong>2d10 de dano de impacto</strong>. Caso atinja uma superfície sólida, recebe <strong>+3 dados de dano</strong> adicionais. Este ritual pode ser utilizado como <strong>reação</strong>. O efeito se encerra na mesma rodada.</p>
+        <button onclick="fecharModal('modalRitual30')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Empurrar Peso', 'modalRitual30')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 31 -->
+<div id="modalRitual31" class="modal">
+    <div class="modal-content">
+        <h3>Retrucar</h3>
+        <p>Após acertar um ritual, o conjurador pode ativar esta <strong>reação</strong> quando for alvo de um ataque. Seu corpo se torna leve como o ar, trocando a densidade com seu inimigo mais próximo. O conjurador recebe <strong>+5 em Esquiva</strong>. Caso o inimigo erre o ataque, ele sofre <strong>o mesmo dano</strong> do último ritual acertado pelo conjurador. A <strong>duração do efeito</strong> segue as mesmas condições do ritual anterior utilizado.</p>
+        <button onclick="fecharModal('modalRitual31')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Retrucar', 'modalRitual31')">Colocar na Ficha</button>
+    </div>
+</div>
+
+<!-- Modal 32 -->
+<div id="modalRitual32" class="modal">
+    <div class="modal-content">
+        <h3>Cosmologia</h3>
+        <p>Ao abrir as mãos para o céu, o conjurador invoca a gravidade cósmica para absorver todo impacto iminente. Este ritual pode ser usado como <strong>reação ou ataque</strong>. Ao ser alvo de projéteis ou ataques à distância, o conjurador ganha <strong>+5 em Bloqueio</strong>. Se for bem-sucedido, todo o dano é absorvido e transformado em <strong>vida extra</strong>, que dura por <strong>1d4 rodadas</strong>.</p>
+        <button onclick="fecharModal('modalRitual32')">Fechar</button>
+        <button class="btn-colocar-ficha" onclick="colocarNaFicha('Cosmologia', 'modalRitual32')">Colocar na Ficha</button>
+    </div>
+</div>
+
+
+
+
     
-<!-- Modal dos Pactos -->
+
+    
+<!-- Modal dos Pactos --------------------------------------------------------------------------------->
     <div id="modalPacto1" class="modal">
         <div class="modal-content">
             <h3>Pacto de Sangue</h3>
