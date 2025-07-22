@@ -139,29 +139,32 @@
 
     <label for="class1">Classe Primitiva 1:</label>
     <select id="class1" onchange="resetClassBonus('class1')">
-      <option value="">Selecione uma classe</option>
-      <option value="guerreiro">Guerreiro</option>
-      <option value="atirador">Atirador</option>
-      <option value="forjador">Forjador</option>
-      <option value="arcano">Arcano</option>
-      <option value="cientista">Cientista</option>
-      <option value="sobrevivente">Sobrevivente</option>
-      <option value="construtor">Construtor</option>
-      <option value="medico">Médico</option>
+        <option value="">Selecione uma classe</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="atirador">Atirador</option>
+        <option value="forjador">Forjador</option>
+        <option value="arcano">Arcano</option>
+        <option value="cientista">Cientista</option>
+        <option value="sobrevivente">Sobrevivente</option>
+        <option value="construtor">Construtor</option>
+        <option value="medico">Médico</option>
     </select>
+    **<button type="button" id="applyClass1Btn" onclick="applyClassBonus('class1')">Aplicar Bônus Classe 1</button>**
+
 
     <label for="class2">Classe Primitiva 2:</label>
     <select id="class2" onchange="resetClassBonus('class2')">
-      <option value="">Selecione uma classe</option>
-      <option value="guerreiro">Guerreiro</option>
-      <option value="atirador">Atirador</option>
-      <option value="forjador">Forjador</option>
-      <option value="arcano">Arcano</option>
-      <option value="cientista">Cientista</option>
-      <option value="sobrevivente">Sobrevivente</option>
-      <option value="construtor">Construtor</option>
-      <option value="medico">Médico</option>
+        <option value="">Selecione uma classe</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="atirador">Atirador</option>
+        <option value="forjador">Forjador</option>
+        <option value="arcano">Arcano</option>
+        <option value="cientista">Cientista</option>
+        <option value="sobrevivente">Sobrevivente</option>
+        <option value="construtor">Construtor</option>
+        <option value="medico">Médico</option>
     </select>
+    **<button type="button" id="applyClass2Btn" onclick="applyClassBonus('class2')">Aplicar Bônus Classe 2</button>**
 
     <label for="combatClass">Classe de Combate:</label>
     <select id="combatClass">
@@ -219,7 +222,6 @@
     </a>
 </div>
     </section>
-
     <h3 class="decorated-title" id="Armas">Armas:</h3>
     <div id="weaponsContainer" class="weapons-container"></div>
     <button type="button" onclick="addWeapon()">Adicionar Arma</button>
@@ -231,7 +233,7 @@
 <div id="results" class="results-container">
   <h2>Ficha Calculada:</h2>
   <div id="stats"></div>
-  <button type="button" onclick="copyFicha()">Copiar Ficha</button>
+  
 </div>
 
 

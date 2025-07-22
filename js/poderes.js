@@ -359,12 +359,49 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// ======================================================
+// REQUISITOS DE NÍVEL PARA RITUAIS/PACTOS
+// ======================================================
+// Mapeia o tipo de ritual/pacto (data-tipo do card) ao nível mínimo exigido.
+const ritualLevelRequirements = {
+    'normal': 15, // Ritual Simples
+    'brutal': 30, // Ritual Brutal
+    'diabolico': 50, // Ritual Diabólico
+    'complexo': 70, // Ritual Complexo
+    'anciao': 85, // Ritual Ancião
+    'Acordo': 15, // Pactos geralmente têm requisitos mais flexíveis ou específicos, adaptado para um nível inicial
+    // Adicione outros tipos de rituais/pactos conforme necessário
+    // Ex: 'algum_outro_tipo': 90
+};
+
+// Chave para armazenar os dados do personagem no localStorage (precisa ser a mesma do jogadores.js)
+const LOCAL_CHARACTER_STORAGE_KEY = 'localCharacterData';
+const RITUALS_STORAGE_KEY = 'selectedRitualPacts'; // Chave padronizada com jogadores.js
+
+/**
+ * Obtém o nível atual do personagem salvo no localStorage.
+ * Retorna 1 se nenhum personagem for encontrado ou o nível não for válido.
+ */
+function getCharacterLevel() {
+    try {
+        const storedData = localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY);
+        if (storedData) {
+            const characterData = JSON.parse(storedData);
+            // Garante que level é um número e não é nulo/indefinido
+            return parseInt(characterData.level) || 1;
+        }
+    } catch (e) {
+        console.error("Erro ao ler o nível do personagem do localStorage:", e);
+    }
+    return 1; // Retorna nível 1 como padrão se não conseguir obter o nível real
+}
 
 // ======================================================
 // Função colocarNaFicha
 // ======================================================
 /**
  * Envia os dados do ritual/pacto para o localStorage para serem carregados na ficha do personagem.
+ * Inclui validação de nível.
  * @param {string} name - O nome do ritual/pacto.
  * @param {string} modalId - O ID do modal do ritual/pacto.
  */
@@ -375,19 +412,34 @@ function colocarNaFicha(name, modalId) {
         return;
     }
 
+    // Tenta encontrar o card correspondente para obter o tipo (data-tipo)
+    const cardElement = document.querySelector(`.cards-wrapper .card h3 span[data-name="${name}"]`)?.closest('.card');
+    if (!cardElement) {
+        console.error("Card correspondente não encontrado para o ritual:", name);
+        alert("Não foi possível verificar os requisitos de nível para este item.");
+        return;
+    }
+
+    const ritualType = cardElement.dataset.tipo; // Obtém o tipo do ritual/pacto
+    const requiredLevel = ritualLevelRequirements[ritualType];
+    const currentPlayerLevel = getCharacterLevel();
+
+    // Validação de nível
+    if (requiredLevel !== undefined && currentPlayerLevel < requiredLevel) {
+        alert(`Você precisa ser no mínimo Nível ${requiredLevel} para usar este ritual/pacto. Seu nível atual é ${currentPlayerLevel}.`);
+        fecharModal(modalId);
+        return; // Impede que o ritual seja adicionado à ficha
+    }
+
     let imageSrc = '';
     const descriptionElement = modal.querySelector('p');
     const description = descriptionElement ? descriptionElement.textContent.trim() : '';
 
-    // Tenta encontrar a imagem no card correspondente usando o data-name
-    const cardElement = document.querySelector(`.cards-wrapper .card h3 span[data-name="${name}"]`)?.closest('.card');
-    if (cardElement) {
-        const img = cardElement.querySelector('img');
-        if (img) {
-            imageSrc = img.src;
-        }
+    // Lógica para obter a imagem
+    const img = cardElement.querySelector('img');
+    if (img) {
+        imageSrc = img.src;
     } else {
-        // Fallback: se a imagem não estiver no card principal, verifica se está no próprio modal
         const modalImageElement = modal.querySelector('img');
         if (modalImageElement) {
             imageSrc = modalImageElement.src;
@@ -403,7 +455,7 @@ function colocarNaFicha(name, modalId) {
         description: description,
     };
 
-    const storedItems = localStorage.getItem("selectedRitualsPacts");
+    const storedItems = localStorage.getItem(RITUALS_STORAGE_KEY);
     let selectedItems = storedItems ? JSON.parse(storedItems) : [];
 
     const isDuplicate = selectedItems.some(item => item.name === newItem.name);
@@ -414,7 +466,7 @@ function colocarNaFicha(name, modalId) {
     }
 
     selectedItems.push(newItem);
-    localStorage.setItem("selectedRitualsPacts", JSON.stringify(selectedItems));
+    localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(selectedItems));
 
     alert(`"${name}" adicionado à sua ficha!`);
     fecharModal(modalId); // Fecha o modal após a seleção
@@ -424,52 +476,51 @@ function colocarNaFicha(name, modalId) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-        const icones = document.querySelectorAll('.icone-item');
-        const textos = document.querySelectorAll('.civilizacoes-texto');
-        const civilizacoesSection = document.querySelector('.civilizacoes-section'); // Seleciona a seção principal
+    const icones = document.querySelectorAll('.icone-item');
+    const textos = document.querySelectorAll('.civilizacoes-texto');
+    const civilizacoesSection = document.querySelector('.civilizacoes-section'); // Seleciona a seção principal
 
-        // Função para atualizar a imagem de fundo
-        function updateBackgroundImage(imageUrl) {
-            civilizacoesSection.style.setProperty('--bg-image-url', `url(${imageUrl})`); // Define a variável CSS
-            civilizacoesSection.classList.add('has-background-image'); // Adiciona classe para visibilidade e animação
-        }
+    // Função para atualizar a imagem de fundo
+    function updateBackgroundImage(imageUrl) {
+        civilizacoesSection.style.setProperty('--bg-image-url', `url(${imageUrl})`); // Define a variável CSS
+        civilizacoesSection.classList.add('has-background-image'); // Adiciona classe para visibilidade e animação
+    }
 
-        icones.forEach(icone => {
-            icone.addEventListener('click', function() {
-                const targetId = this.dataset.target; // Pega o ID do texto alvo
-                const iconImageUrl = this.querySelector('img').src; // Pega o src da imagem do ícone clicado
-                
-                // Esconde todos os textos
-                textos.forEach(texto => {
-                    texto.classList.remove('active');
-                    texto.classList.add('hidden');
-                });
-
-                // Mostra o texto correspondente ao ícone clicado
-                const textoAlvo = document.getElementById(targetId);
-                if (textoAlvo) {
-                    textoAlvo.classList.remove('hidden');
-                    textoAlvo.classList.add('active');
-                }
-
-                // Opcional: Adicionar/Remover uma classe 'selected' no ícone clicado
-                icones.forEach(i => i.classList.remove('selected'));
-                this.classList.add('selected');
-
-                // Chama a função para atualizar a imagem de fundo
-                updateBackgroundImage(iconImageUrl);
+    icones.forEach(icone => {
+        icone.addEventListener('click', function() {
+            const targetId = this.dataset.target; // Pega o ID do texto alvo
+            const iconImageUrl = this.querySelector('img').src; // Pega o src da imagem do ícone clicado
+            
+            // Esconde todos os textos
+            textos.forEach(texto => {
+                texto.classList.remove('active');
+                texto.classList.add('hidden');
             });
+
+            // Mostra o texto correspondente ao ícone clicado
+            const textoAlvo = document.getElementById(targetId);
+            if (textoAlvo) {
+                textoAlvo.classList.remove('hidden');
+                textoAlvo.classList.add('active');
+            }
+
+            // Opcional: Adicionar/Remover uma classe 'selected' no ícone clicado
+            icones.forEach(i => i.classList.remove('selected'));
+            this.classList.add('selected');
+
+            // Chama a função para atualizar a imagem de fundo
+            updateBackgroundImage(iconImageUrl);
         });
-
-        // Opcional: Define um ícone e texto inicial selecionados ao carregar a página
-        // Simula um clique no primeiro ícone para carregar o texto e a imagem inicial
-        const primeiroIcone = document.querySelector('.icone-item[data-target="texto-civilizacao1"]');
-        if (primeiroIcone) {
-            primeiroIcone.click(); // Dispara o clique programaticamente
-        } else {
-             // Caso não haja ícone inicial, pelo menos esconde o texto inicial se ele não for o 'texto-civilizacao1'
-            document.getElementById('texto-inicial').classList.add('active');
-            document.getElementById('texto-inicial').classList.remove('hidden');
-        }
-
     });
+
+    // Opcional: Define um ícone e texto inicial selecionados ao carregar a página
+    // Simula um clique no primeiro ícone para carregar o texto e a imagem inicial
+    const primeiroIcone = document.querySelector('.icone-item[data-target="texto-civilizacao1"]');
+    if (primeiroIcone) {
+        primeiroIcone.click(); // Dispara o clique programaticamente
+    } else {
+        // Caso não haja ícone inicial, pelo menos esconde o texto inicial se ele não for o 'texto-civilizacao1'
+        document.getElementById('texto-inicial').classList.add('active');
+        document.getElementById('texto-inicial').classList.remove('hidden');
+    }
+});
