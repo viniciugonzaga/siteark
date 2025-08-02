@@ -72,4 +72,58 @@ clearRollsButton.addEventListener('click', () => {
 const efeitos = document.querySelectorAll('.efeito');
 const descricao = document.getElementById('descricao');
 
+document.addEventListener('DOMContentLoaded', () => {
+  const botoesFiltro = document.querySelectorAll('.filtro-btn');
+  const armas = document.querySelectorAll('.arma');
+  const bolinhas = document.querySelectorAll('.bolinha');
+  const minerios = document.querySelectorAll('.minerio');
 
+  // FILTRO POR TIPO
+  botoesFiltro.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tipo = btn.getAttribute('data-tipo');
+      
+      botoesFiltro.forEach(b => b.classList.remove('ativo'));
+      btn.classList.add('ativo');
+      
+      armas.forEach(arma => {
+        if (arma.getAttribute('data-tipo') === tipo) {
+          arma.style.display = 'block';
+        } else {
+          arma.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // MODAL DE ARMAS
+  window.abrirModalArma = (id) => {
+    const modal = document.getElementById('modal-arma');
+    const conteudo = document.getElementById('conteudo-arma');
+    conteudo.innerHTML = `<h3>Arma Selecionada</h3><p>ID: ${id}</p>`; // Você pode colocar descrição real aqui
+    modal.classList.remove('hidden');
+  };
+
+  window.fecharModalArma = () => {
+    document.getElementById('modal-arma').classList.add('hidden');
+  };
+
+  // MODAL DE MINÉRIO
+  window.abrirModalMinerio = () => {
+    document.getElementById('modal-minerio').classList.remove('hidden');
+  };
+
+  window.fecharModalMinerio = () => {
+    document.getElementById('modal-minerio').classList.add('hidden');
+  };
+
+  // TROCAR MINÉRIO PELO ÍNDICE
+  window.trocarMinerio = (index) => {
+    minerios.forEach((m, i) => {
+      m.classList.toggle('ativo', i === index);
+    });
+    bolinhas.forEach((b, i) => {
+      b.classList.toggle('ativa', i === index);
+    });
+  };
+});
