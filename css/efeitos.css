@@ -755,7 +755,188 @@ nav {
         font-size: 0.6rem; /* Ajusta o tamanho dos botões */
         padding: 0.5rem 0.5rem; /* Reduz o tamanho */
     }
+
+    
 }
+
+
+    .sessao-efeitos {
+      /* O primeiro valor é a camada de escurecimento. Você pode ajustar o valor de rgba. */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.719), rgba(0, 0, 0, 0.719)), url('../imagens/fundo_rubi_laranja.jpg');
+    
+    /* A opacidade geral do elemento agora pode ser 1, já que o escurecimento está no fundo */
+    opacity: 1; 
+    background-size: cover;
+    background-position: center 20%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border: 1px solid rgb(121, 121, 121);
+    border-radius: 15px;
+    padding: 30px;
+    width: 800px;
+    max-width: 95%;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    position: relative;
+    margin-bottom: 50px;
+    }
+
+    .carousel {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .carousel img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+       border: 2px solid rgb(131, 131, 131);
+      object-fit: contain;
+      background-image: url('../imagens/fundo_rubi_preto.jpg'); /* Textura de rocha escura ou obsidiana */
+    background-size: cover;
+    background-blend-mode: overlay;
+    }
+
+    .carousel button {
+      background: #352e27;
+      border: none;
+      color: white;
+      font-size: 30px;
+      border: 3px solid rgb(131, 131, 131);
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .efeito-nome {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 15px;
+      color: #d6c9b9;
+    }
+
+    .efeito-descricao {
+       border: 2px solid rgb(131, 131, 131);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 15px;
+      font-size: 16px;
+      color: #ffffff;
+      background: #000000;
+    }
+
+/* --- Versão para telas até 1080px (Laptops) --- */
+@media (max-width: 1080px) {
+    .sessao-efeitos {
+        width: 90%;
+        padding: 25px;
+    }
+
+    .carousel img {
+        width: 180px;
+        height: 180px;
+    }
+
+    .carousel button {
+        font-size: 24px;
+        width: 45px;
+        height: 45px;
+    }
+
+    .efeito-nome {
+        font-size: 22px;
+    }
+
+    .efeito-descricao {
+        font-size: 15px;
+        padding: 12px;
+    }
+}
+
+/* --- Versão para telas até 780px (Tablets) --- */
+@media (max-width: 780px) {
+    .sessao-efeitos {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+
+    .carousel {
+        flex-direction: column; /* Organiza os elementos em coluna */
+        gap: 15px;
+    }
+    
+    .carousel img {
+        width: 160px;
+        height: 160px;
+        margin: 0;
+    }
+
+    .carousel button {
+        position: static; /* Remove o posicionamento absoluto */
+        transform: none; /* Remove a transformação */
+        margin: 5px; /* Adiciona margem entre os botões e a imagem */
+    }
+
+    .prev, .next {
+        left: auto;
+        right: auto;
+    }
+
+    .efeito-nome {
+        font-size: 20px;
+    }
+
+    .efeito-descricao {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+/* --- Versão para telas até 480px (Smartphones) --- */
+@media (max-width: 480px) {
+    .sessao-efeitos {
+        padding: 15px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+    }
+    
+    .carousel img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .carousel button {
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .efeito-nome {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    .efeito-descricao {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
 /* Estilo para a barra de rolagem */
 #rolls::-webkit-scrollbar {
     width: 12px; /* Largura da barra vertical */
@@ -1181,6 +1362,27 @@ nav {
     border-color: var(--effects-accent-gold);
 }
 
+/* Célula do nome do efeito com ícone */
+.effect-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaço entre ícone e texto */
+}
+
+/* Ícone pequeno */
+.effect-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5)); /* Glow sutil dourado */
+    transition: transform 0.2s ease, filter 0.3s ease;
+}
+
+/* Hover para dar destaque */
+.effect-name-cell:hover .effect-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+}
 /* Estilos para o Modal de Efeitos */
 .effects-modal { /* Classe única para o modal */
     display: none;
@@ -1308,6 +1510,8 @@ nav {
     font-weight: bold;
     text-shadow: 0 0 5px rgba(255, 112, 64, 0.349); /* Glow leve */
 }
+
+
 
 
 /* Responsividade */

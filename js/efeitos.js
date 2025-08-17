@@ -73,7 +73,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Medicina ou Fortitude",
     status: "Sangrando",
     acumulo: "Sim",
-    icon: "../imagens/Icon_sangue.jpg",
+    icon: "../imagens/Icon_sangue.png",
     descricao: "O alvo sofre ferimentos contínuos e perde vitalidade gradualmente, representado por dano recorrente. O efeito se acumula caso múltiplos golpes agravem os cortes. Só pode ser encerrado com tratamento adequado ou superação extrema da dor através de testes físicos ou médicos."
   },
   {
@@ -82,7 +82,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Medicina ou Resistência",
     status: "Com Peste",
     acumulo: "Sim",
-    icon: "../imagens/icon_peste.jpg",
+    icon: "../imagens/icon_peste.png",
     descricao: "O corpo do alvo é contaminado por toxinas, doenças ou venenos, causando dano de peste a cada rodada. O veneno pode se acumular, agravando os sintomas até o colapso total, a menos que seja tratado ou vencido por resistência interna."
   },
   {
@@ -91,7 +91,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Agachar ou Reflexo",
     status: "Em chamas",
     acumulo: "Sim",
-    icon: "../imagens/icon_fogo.jpg",
+    icon: "../imagens/icon_fogo.png",
     descricao: "O alvo é envolto em chamas ou calor extremo, sofrendo dano progressivo enquanto estiver em combustão. O efeito se acumula com novas fontes de fogo e só é removido ao apagar completamente a origem das chamas ou usar ações específicas de proteção."
   },
   {
@@ -100,7 +100,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa inimiga",
     status: "Em Stun (1 rodada)",
     acumulo: "Não",
-    icon: "../imagens/icon_stun.jpg",
+    icon: "../imagens/icon_stun.png",
     descricao: "O alvo sofre uma forte interrupção sensorial — como pancadas na cabeça ou impactos repentinos — perdendo a capacidade de agir durante sua vez (1 rodada). Apesar disso, ainda é capaz de se defender. Após passar o efeito, recupera suas ações normalmente."
   },
   {
@@ -109,7 +109,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa inimiga ou Fortitude",
     status: "-5 defesas físicas",
     acumulo: "Sim",
-    icon: "../imagens/icon_vulneravel.jpg",
+    icon: "../imagens/icon_vulneravel.png",
     descricao: "O alvo é pego desprevenido, com brechas em sua postura ou armadura, sofrendo -5 em defesas físicas. O efeito pode se acumular e permanece até que a criatura resista com sucesso ou recupere o controle do próprio corpo e mente."
   },
   {
@@ -118,7 +118,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Vontade",
     status: "Com Medo",
     acumulo: "Não",
-    icon: "../imagens/icon_medo.jpg",
+    icon: "../imagens/icon_medo.png",
     descricao: "O medo domina o alvo, provocando dano de estresse a cada instante. Esse estado mental frágil persiste até que ele reúna vontade o suficiente para resistir ou anular completamente os danos sofridos. Ao conseguir isso, o efeito é imediatamente dissipado."
   },
   {
@@ -127,7 +127,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do Inimigo",
     status: "Agarrado",
     acumulo: "Sim",
-    icon: "../imagens/icon_agarrado.jpg",
+    icon: "../imagens/icon_agarrado.png",
     descricao: "O alvo é dominado fisicamente, sofrendo -3 em todos os testes de defesa. Se o inimigo for maior em tamanho, o redutor é de -5. O efeito é acumulativo. Se o alvo vencer um único teste de defesa contra um dos inimigos que o agarra, ele se liberta de todos. O inimigo pode arrastar o alvo com base em sua força."
   },
   {
@@ -136,7 +136,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do inimigo",
     status: "Marcado",
     acumulo: "Não",
-    icon: "../imagens/icon_marcado.jpg",
+    icon: "../imagens/icon_marcado.png",
     descricao: "Uma marca visível ou energética é colocada sobre o alvo, tornando-o um foco claro no campo de batalha. O próximo ataque contra ele recebe +5 no acerto e é considerado crítico automático. Após esse ataque, a marca desaparece."
   },
   {
@@ -145,7 +145,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Nulo",
     status: "Buff Ativo",
     acumulo: "Sim",
-    icon: "../imagens/icon_forte.jpg",
+    icon: "../imagens/icon_forte.png",
     descricao: "O corpo ou mente do alvo é envolto por uma energia amplificadora ligada à sua origem. Ganha vantagens relacionadas à sua classe, linhagem ou condição especial. O efeito dura até que o tempo da habilidade acabe ou a fonte da vantagem se dissipe."
   },
   {
@@ -154,17 +154,17 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do inimigo",
     status: "Fraco",
     acumulo: "Sim",
-    icon: "../imagens/icon_fraco.jpg",
+    icon: "../imagens/icon_enfraquecido.png",
     descricao: "O alvo está mentalmente ou fisicamente debilitado, sofrendo penalidades e dano se falhar em resistir. Caso não suporte o efeito, ele permanece ativo por um número de rodadas conforme indicado na habilidade ou ataque que o causou. Depois disso, é encerrado."
   },
   {
-    nome: "Rage",
-    dano: "Arma e vida",
-    defesa: "Nulo",
-    status: "Bravo",
-    acumulo: "Sim",
-    icon: "../imagens/icon_rage.jpg",
-    descricao: "O alvo entra em estado de fúria instintiva, perdendo o controle de suas emoções. Ganha vantagens ofensivas e mais dano com armas e ataques, mas em troca sofre com desgaste físico, estresse e perda gradual de vida. O efeito dura conforme a habilidade que o ativou."
+    nome: "Revide",
+    dano: "Dano da Arma",
+    defesa: "Defesa do atacante",
+    status: "Em Revide", 
+    acumulo: "Não",
+    icon: "../imagens/icon_revide.png",
+    descricao: "O alvo se prepara para um contra-ataque implacável. Quando atingido por um ataque, ele automaticamente retalia com um golpe certeiro que não pode ser defendido. Esse contra-ataque ocorre imediatamente após o dano recebido e consome o efeito após ser executado. Ideal para guerreiros que esperam o momento perfeito para devolver o golpe."
   },
   {
     nome: "Imobilizado",
@@ -172,7 +172,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Reflexo ou Contra-ataque",
     status: "Enraizado",
     acumulo: "Não",
-    icon: "../imagens/icon_enraizado.jpg",
+    icon: "../imagens/icon_enraizado.png",
     descricao: "O alvo está preso por raízes, correntes ou impedimentos sobrenaturais, incapaz de se mover. Ele pode realizar testes para escapar e, ao ter sucesso, se liberta e o efeito é encerrado."
   },
   {
@@ -181,7 +181,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Bloqueio",
     status: "Abalado",
     acumulo: "Não",
-    icon: "../imagens/icon_abalado.jpg",
+    icon: "../imagens/icon_abalado.png",
     descricao: "O alvo é afetado por um golpe ou acontecimento que o desestabiliza profundamente. Caso não resista, fica impossibilitado de realizar bloqueios por toda a duração do efeito. Após esse tempo, retorna ao normal."
   },
   {
@@ -190,7 +190,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Fortitude ou Reflexo",
     status: "Cego",
     acumulo: "Sim",
-    icon: "../imagens/icon_cegueira.jpg",
+    icon: "../imagens/icon_cegueira.png",
     descricao: "O alvo perde totalmente a capacidade de enxergar, mergulhado em completa escuridão, seja por mágica, dano ocular ou manipulação sensorial. Enquanto o efeito estiver ativo, ele sofre desvantagens severas em testes de percepção visual e ataques à distância ou corpo a corpo. A cegueira pode ser superada com testes apropriados, cura mágica ou quando sua duração natural expira."
   },
   {
@@ -199,7 +199,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Nulo",
     status: "Protegido",
     acumulo: "Não",
-    icon: "../imagens/icon_protegido.jpg",
+    icon: "../imagens/icon_protegido.png",
     descricao: "O alvo é designado como protegido por um aliado. Enquanto o efeito estiver ativo, o aliado assume os ataques direcionados a ele por vontade própria, colocando-se em risco. O efeito se mantém até que o protetor morra, desista ou seja forçado a romper a proteção."
   },
   {
@@ -208,7 +208,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do inimigo",
     status: "Revelado",
     acumulo: "Não",
-    icon: "../imagens/icon_revelado.jpg",
+    icon: "../imagens/icon_revelado.png",
     descricao: "A camuflagem ou invisibilidade do alvo é anulada. Ele se torna totalmente visível e rastreável, mesmo por meios mágicos ou sensores naturais. O efeito permanece até que sua duração se encerre ou a habilidade seja dissipada."
   },
   {
@@ -217,7 +217,7 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do inimigo",
     status: "Silenciado",
     acumulo: "Não",
-    icon: "../imagens/icon_silenciado.jpg",
+    icon: "../imagens/icon_silenciado.png",
     descricao: "O alvo perde a capacidade de se comunicar, entoar magias, gritar ou emitir qualquer som significativo. O efeito permanece até o final da duração ou até que o alvo resista a ele. Ideal contra conjuradores ou criaturas que dependem da fala."
   },
   {
@@ -226,9 +226,27 @@ clearRollsButton.addEventListener('click', () => {
     defesa: "Defesa do inimigo",
     status: "Exposto",
     acumulo: "Não",
-    icon: "../imagens/icon_exposto.jpg",
+    icon: "../imagens/icon_exposto.png",
     descricao: "A armadura do alvo está destruída, sua mente quebrada ou sua alma despida de proteção. Todo dano físico contra ele é dobrado, e o dano de estresse é igualmente amplificado. O efeito permanece até o fim da duração natural."
-  }
+  },
+  {
+    nome: "Furtivo",
+    dano: "Nulo",
+    defesa: "Defesa do inimigo",
+    status: "Furtivo",
+    acumulo: "Não",
+    icon: "../imagens/icon_furtivo.png",
+    descricao: "O alvo se torna mais difícil de ser detectado, recebendo +5 em reações e +5 em acertos. Esse estado de furtividade permite que o alvo execute ações com maior eficácia, mas pode ser interrompido se for descoberto ou atacado."
+},
+{
+    nome: "Voando",
+    dano: "Nulo",
+    defesa: "Armas corpo a corpo",
+    status: "Voando",
+    acumulo: "Não",
+    icon: "../imagens/icon_voando.png",
+    descricao: "O alvo está em uma posição elevada, ganhando +5 em reações contra armas corpo a corpo. Enquanto estiver voando, o alvo se torna menos vulnerável a ataques físicos diretos, mas pode ser derrubado por habilidades específicas."
+}
 ];
 
             // Adicione os outros efeitos aqui...
@@ -239,7 +257,10 @@ const modais = document.getElementById("modais-container");
 efeitos.forEach((efeito, i) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-        <td>${efeito.nome}</td>
+        <td class="effect-name-cell">
+            <img src="${efeito.icon}" alt="${efeito.nome}" class="effect-icon">
+            <span>${efeito.nome}</span>
+        </td>
         <td>${efeito.dano}</td>
         <td>${efeito.defesa}</td>
         <td>${efeito.status}</td>
@@ -269,3 +290,28 @@ window.onclick = function(event) {
         event.target.style.display = "none";
     }
 };
+
+let indice = 0;
+
+    const img = document.getElementById("efeito-img");
+    const nome = document.getElementById("efeito-nome");
+    const descricao = document.getElementById("efeito-descricao");
+
+    function mostrarEfeito(i) {
+      const efeito = efeitos[i];
+      img.src = efeito.icon;
+      nome.textContent = efeito.nome;
+      descricao.textContent = efeito.descricao;
+    }
+
+    document.querySelector(".prev").addEventListener("click", () => {
+      indice = (indice - 1 + efeitos.length) % efeitos.length;
+      mostrarEfeito(indice);
+    });
+
+    document.querySelector(".next").addEventListener("click", () => {
+      indice = (indice + 1) % efeitos.length;
+      mostrarEfeito(indice);
+    });
+
+    mostrarEfeito(indice);

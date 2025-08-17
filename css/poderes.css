@@ -1485,11 +1485,10 @@ section.session-fundo::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: var(--bg-image-url); /* Usa a variável CSS definida pelo JS */
     background-size: cover; /* Cobre toda a área */
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.50; /* Aumentado de 0.1 para 0.15 - mais visível no estado inicial */
+    opacity: 0.90; /* Aumentado de 0.1 para 0.15 - mais visível no estado inicial */
     z-index: -1; /* Fica atrás do conteúdo */
     transition: opacity 1s ease-in-out; /* Transição suave na opacidade */
     filter: grayscale(80%) brightness(50%) blur(3px); /* Blur reduzido de 2px para 1px no estado inicial */
@@ -1514,7 +1513,7 @@ section.session-fundo::before {
     border: 2px solid rgba(248, 193, 193, 0.6); /* Borda mais definida */
     box-shadow: 0 0 20px rgba(248, 193, 193, 0.5), inset 0 0 10px rgba(248, 193, 193, 0.2); /* Sombra mais forte */
     width: fit-content;
-    max-width: 70%; /* Permite que o título seja um pouco mais largo */
+    max-width: 80%; /* Permite que o título seja um pouco mais largo */
     position: relative; /* Para z-index se for o caso */
     z-index: 2; /* Acima do fundo */
     text-shadow: 0 0 10px rgba(248, 193, 193, 0.4); /* Brilho no texto */
