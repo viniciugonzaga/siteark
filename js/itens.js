@@ -68,62 +68,38 @@ clearRollsButton.addEventListener('click', () => {
 }
 
 
+ function showEra(eraId) {
+            // Esconde todas as tabelas
+            const tabelas = document.querySelectorAll('.tabela');
+            tabelas.forEach(tabela => tabela.classList.remove('active'));
 
-const efeitos = document.querySelectorAll('.efeito');
-const descricao = document.getElementById('descricao');
+            // Mostra a tabela correspondente
+            const tabelaAtiva = document.getElementById(eraId);
+            if (tabelaAtiva) {
+                tabelaAtiva.classList.add('active');
+            }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const botoesFiltro = document.querySelectorAll('.filtro-btn');
-  const armas = document.querySelectorAll('.arma');
-  const bolinhas = document.querySelectorAll('.bolinha');
-  const minerios = document.querySelectorAll('.minerio');
-
-  // FILTRO POR TIPO
-  botoesFiltro.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tipo = btn.getAttribute('data-tipo');
-      
-      botoesFiltro.forEach(b => b.classList.remove('ativo'));
-      btn.classList.add('ativo');
-      
-      armas.forEach(arma => {
-        if (arma.getAttribute('data-tipo') === tipo) {
-          arma.style.display = 'block';
-        } else {
-          arma.style.display = 'none';
+            // Atualiza o estado dos botões
+            const botoes = document.querySelectorAll('.eras button');
+            botoes.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.eras button[onclick="showEra('${eraId}')"]`).classList.add('active');
         }
-      });
-    });
-  });
 
-  // MODAL DE ARMAS
-  window.abrirModalArma = (id) => {
-    const modal = document.getElementById('modal-arma');
-    const conteudo = document.getElementById('conteudo-arma');
-    conteudo.innerHTML = `<h3>Arma Selecionada</h3><p>ID: ${id}</p>`; // Você pode colocar descrição real aqui
-    modal.classList.remove('hidden');
-  };
+        // Exibir a primeira era por padrão
+        document.addEventListener('DOMContentLoaded', () => {
+            showEra('pedra');
+        });
 
-  window.fecharModalArma = () => {
-    document.getElementById('modal-arma').classList.add('hidden');
-  };
-
-  // MODAL DE MINÉRIO
-  window.abrirModalMinerio = () => {
-    document.getElementById('modal-minerio').classList.remove('hidden');
-  };
-
-  window.fecharModalMinerio = () => {
-    document.getElementById('modal-minerio').classList.add('hidden');
-  };
-
-  // TROCAR MINÉRIO PELO ÍNDICE
-  window.trocarMinerio = (index) => {
-    minerios.forEach((m, i) => {
-      m.classList.toggle('ativo', i === index);
-    });
-    bolinhas.forEach((b, i) => {
-      b.classList.toggle('ativa', i === index);
-    });
-  };
-});
+        // Funções para os modais (caso ainda não existam)
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'block';
+            }
+        }
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }

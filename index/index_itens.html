@@ -73,58 +73,721 @@
   </nav>
 
  <div class="titulo_principal">
-  <h1 class="titulo_efeito">Arsenal</h1>
+    <h1 class="titulo_efeito">Arsenal</h1>
+</div>
+
+<div class="eras-header-icon">
+    <img src="../imagens/icon_blood_animado.gif" alt="Ícone de Era" class="era-icon-animated">
+</div>
+
+<div class="eras">
+    <button onclick="showEra('pedra')">Era da Pedra</button>
+    <button onclick="showEra('ferro')">Era do Ferro</button>
+    <button onclick="showEra('aco')">Era do Aço</button>
+    <button onclick="showEra('radiante')">Era Radiante</button>
+    <button onclick="showEra('final')">Era Final</button>
+</div>
+
+<table id="pedra" class="tabela">
+    <tr>
+        <th>Armas</th>
+        <th>Dano</th>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-espada')">Espada de Pedra</td>
+        <td>3d10+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-espada-longa')">Espada Longa de Pedra</td>
+        <td>4d10+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-claymore')">Claymore de Pedra</td>
+        <td>4d10+20</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-bengala')">Bengala de Pedra</td>
+        <td>2d12+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-lanca')">Lança de Pedra</td>
+        <td>3d12+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-martelo')">Martelo de Pedra</td>
+        <td>4d10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-machado')">Machado de Pedra</td>
+        <td>3d12+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-pa')">Pá de Pedra</td>
+        <td>2d10+5</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-gancho')">Gancho de Pedra</td>
+        <td>1d12+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-foice')">Foice de Pedra</td>
+        <td>2d12+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-arco')">Arco de Madeira</td>
+        <td>3d10+5</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-adaga')">Adaga de Pedra</td>
+        <td>2d10+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-clava')">Clava de Pedra</td>
+        <td>3d8+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-escudo')">Escudo de Pedra</td>
+        <td>1d10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-tridente')">Tridente de Pedra</td>
+        <td>3d12+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-maca-guerra')">Maça de Guerra de Pedra</td>
+        <td>4d8+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-gladio')">Gládio de Pedra</td>
+        <td>3d10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-machadinha')">Machadinha de Pedra</td>
+        <td>2d12</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-cimitarra')">Cimitarra de Pedra</td>
+        <td>2d12+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-mangual')">Mangual de Pedra</td>
+        <td>3d8+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-mangual-pesado')">Mangual Pesado de Pedra</td>
+        <td>3d8+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-martelo-guerra')">Martelo de Guerra de Pedra</td>
+        <td>4d10+15</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-marreta')">Marreta de Pedra</td>
+        <td>3d8+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-alfange')">Alfange de Pedra</td>
+        <td>3d12+5</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-cajado')">Cajado de Batalha de Pedra</td>
+        <td>1d12+10</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-pedra-katana')">Katana de Pedra</td>
+        <td>3d12+15</td>
+    </tr>
+</table>
+
+<table id="ferro" class="tabela">
+    <tr>
+        <th>Armas</th>
+        <th>Dano</th>
+        <th>CT</th>
+        <th>Críticos</th>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-espada')">Espada de Ferro</td>
+        <td>4d10+15</td>
+        <td>19</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-espada-longa')">Espada Longa de Ferro</td>
+        <td>5d10+10</td>
+        <td>19</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-claymore')">Claymore de Ferro</td>
+        <td>5d10+15</td>
+        <td>20</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-bengala')">Bengala de Ferro</td>
+        <td>3d12+15</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-lanca')">Lança de Ferro</td>
+        <td>3d10+20</td>
+        <td>18</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-martelo')">Martelo de Ferro</td>
+        <td>4d10+15</td>
+        <td>20</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-machado')">Machado de Ferro</td>
+        <td>4d12+20</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-pa')">Pá de Ferro</td>
+        <td>2d10+20</td>
+        <td>17</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-gancho')">Gancho de Ferro</td>
+        <td>3d12+5</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-foice')">Foice de Ferro</td>
+        <td>3d12+15</td>
+        <td>18</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-arco')">Arco de Madeira Refinado</td>
+        <td>5d10+15</td>
+        <td>19</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-adaga')">Adaga de Ferro</td>
+        <td>3d10+10</td>
+        <td>17</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-clava')">Clava de Ferro</td>
+        <td>5d8+15</td>
+        <td>19</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-escudo')">Escudo de Ferro</td>
+        <td>2d10+10</td>
+        <td>20</td>
+        <td>+1D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-tridente')">Tridente de Ferro</td>
+        <td>4d12+15</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-maca-guerra')">Maça de Guerra de Ferro</td>
+        <td>6d8+5</td>
+        <td>20</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-gladio')">Gládio de Ferro</td>
+        <td>4d10+10</td>
+        <td>17</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-machadinha')">Machadinha de Ferro</td>
+        <td>3d12</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-cimitarra')">Cimitarra de Ferro</td>
+        <td>4d12</td>
+        <td>17</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-mangual')">Mangual de Ferro</td>
+        <td>4d8+5</td>
+        <td>20</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-martelo-guerra')">Martelo de Guerra de Ferro</td>
+        <td>6d8+20</td>
+        <td>20</td>
+        <td>+1D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-alfange')">Alfange de Ferro</td>
+        <td>4d12</td>
+        <td>19</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-cajado')">Cajado de Batalha de Ferro</td>
+        <td>2d12</td>
+        <td>20</td>
+        <td>+1D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-katana')">Katana de Ferro</td>
+        <td>4d12</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-manoplas')">Manoplas de Ferro</td>
+        <td>2d10+10</td>
+        <td>20</td>
+        <td>+1D8</td>
+    </tr>
+
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-pistola')">Pistola de Pederneira</td>
+        <td>4d10+15</td>
+        <td>18</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-mosquete')">Mosquete de Pederneira</td>
+        <td>8d6+5</td>
+        <td>19</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-espingarda')">Espingarda de Cano Serrado</td>
+        <td>5d12+10</td>
+        <td>17</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-besta-pesada')">Besta/Arcabuz Pesado</td>
+        <td>4d12</td>
+        <td>19</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-pistola-mao')">Pistola de Mão de Uma Carga</td>
+        <td>4d10+15</td>
+        <td>18</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-escopeta-mao')">Escopeta de Mão</td>
+        <td>9d6+5</td>
+        <td>20</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-besta-repeticao')">Besta de Repetição</td>
+        <td>3d10</td>
+        <td>17</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-olho-alcance')">Olho do Alcance</td>
+        <td>5d10</td>
+        <td>20</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-granada')">Granada de Pólvora</td>
+        <td>6d6+5</td>
+        <td>20</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-frasco-oleo')">Frasco de Óleo Flamejante</td>
+        <td>3d8+10</td>
+        <td>18</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-ferro-canhao')">Canhão de Mão</td>
+        <td>7d8+20</td>
+        <td>19</td>
+        <td>+3D</td>
+    </tr>
+</table>
+
+<table id="aco" class="tabela">
+    <tr>
+        <th>Armas</th>
+        <th>Dano</th>
+        <th>CT</th>
+        <th>Críticos</th>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-espada')">Espada de Aço</td>
+        <td>5d10+20</td>
+        <td>18</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-espada-longa')">Espada Longa de Aço</td>
+        <td>6d10+20</td>
+        <td>18</td>
+        <td>+5D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-claymore')">Claymore de Aço</td>
+        <td>6d10+25</td>
+        <td>19</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-adaga')">Adaga de Aço</td>
+        <td>4d10+15</td>
+        <td>16</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-gladio')">Gládio de Aço</td>
+        <td>5d10+15</td>
+        <td>16</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-cimitarra')">Cimitarra de Aço</td>
+        <td>5d12+5</td>
+        <td>16</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-alfange')">Alfange de Aço</td>
+        <td>4d12+10</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-katana')">Katana de Aço</td>
+        <td>5d12+10</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-bengala')">Bengala de Aço</td>
+        <td>4d12+20</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-lanca')">Lança de Aço</td>
+        <td>4d10+25</td>
+        <td>17</td>
+        <td>+5D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-tridente')">Tridente de Aço</td>
+        <td>5d12+20</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-clava')">Clava de Aço</td>
+        <td>6d8+20</td>
+        <td>18</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-maca-guerra')">Maça de Guerra de Aço</td>
+        <td>7d8+10</td>
+        <td>19</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-mangual')">Mangual de Aço</td>
+        <td>5d8+10</td>
+        <td>19</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-mangual-pesado')">Mangual Pesado de Aço</td>
+        <td>4d8+20</td>
+        <td>20</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-machado')">Machado de Aço</td>
+        <td>5d12+25</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-martelo')">Martelo de Aço</td>
+        <td>5d10+20</td>
+        <td>19</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-martelo-guerra')">Martelo de Guerra de Aço</td>
+        <td>7d8+25</td>
+        <td>19</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-machadinha')">Machadinha de Aço</td>
+        <td>4d12+5</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-pa')">Pá de Aço</td>
+        <td>3d10+25</td>
+        <td>16</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-gancho')">Gancho de Aço</td>
+        <td>4d12+10</td>
+        <td>17</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-foice')">Foice de Aço</td>
+        <td>4d12+20</td>
+        <td>17</td>
+        <td>+5D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-marreta')">Marreta de Aço</td>
+        <td>4d8+15</td>
+        <td>19</td>
+        <td>+4D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-cajado')">Cajado de Batalha de Aço</td>
+        <td>3d12+5</td>
+        <td>19</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-escudo')">Escudo de Aço</td>
+        <td>3d10+15</td>
+        <td>19</td>
+        <td>+2D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-manoplas')">Manoplas de Aço</td>
+        <td>3d10+15</td>
+        <td>19</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-arco')">Arco de Aço</td>
+        <td>6d10+20</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-escopeta-mao')">Escopeta de Mão Aprimorada</td>
+        <td>10d6+10</td>
+        <td>19</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-besta-repeticao')">Besta de Repetição de Aço</td>
+        <td>4d10+5</td>
+        <td>16</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-olho-alcance')">Olho do Alcance Aprimorado</td>
+        <td>6d10+5</td>
+        <td>19</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-canhao-mao')">Canhão de Mão Aprimorado</td>
+        <td>8d8+25</td>
+        <td>18</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-granada-polvora')">Granada de Pólvora Refinada</td>
+        <td>7d6+10</td>
+        <td>19</td>
+        <td>+5D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-frasco-oleo')">Frasco de Óleo Flamejante Aprimorado</td>
+        <td>4d8+15</td>
+        <td>17</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-ak12')">AK-12 (Assalto)</td>
+        <td>7d10+20</td>
+        <td>18</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-m4a1')">M4A1 (Assalto)</td>
+        <td>6d10+25</td>
+        <td>17</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-mp5')">MP5 (SMG)</td>
+        <td>5d8+20</td>
+        <td>16</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-ump45')">UMP-45 (SMG)</td>
+        <td>5d8+15</td>
+        <td>17</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-awp')">AWP (Rifle de Precisão)</td>
+        <td>10d12+40</td>
+        <td>19</td>
+        <td>+6D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-417')">417 (DMR)</td>
+        <td>7d10+25</td>
+        <td>18</td>
+        <td>+4D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-g8a1')">G8A1 (LMG)</td>
+        <td>6d8+15</td>
+        <td>20</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-supernova')">Supernova (Escopeta)</td>
+        <td>8d8+15</td>
+        <td>17</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-desert-eagle')">Desert Eagle (.50 AE)</td>
+        <td>6d8+20</td>
+        <td>18</td>
+        <td>+3D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-lanca-chamas')">Lança-Chamas</td>
+        <td>4d8+15</td>
+        <td>19</td>
+        <td>+2D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-rifle-estase')">Rifle de Estase</td>
+        <td>1d12</td>
+        <td>-</td>
+        <td>+1D</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-canhao-propulsao')">Canhão de Propulsão</td>
+        <td>3d8+10</td>
+        <td>17</td>
+        <td>+3D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-termo-lamina')">Termo Lâmina</td>
+        <td>4d10+15</td>
+        <td>18</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-markov')">Arma de Raios de Markov</td>
+        <td>6d8+15</td>
+        <td>19</td>
+        <td>+3D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-hyde')">Lança-Chamas de Hyde</td>
+        <td>5d8+10</td>
+        <td>18</td>
+        <td>+2D8</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-aco-val')">Rifle de Precisão de Val</td>
+        <td>7d12+20</td>
+        <td>17</td>
+        <td>+5D6</td>
+    </tr>
+</table>
+
+
+
+<!-- Outras eras seguem mesmo padrão... -->
+
+
+<div id="modal-pedra-espada" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-pedra-espada')">&times;</span>
+        <h2>Espada de Pedra</h2>
+        <p><b>Dano:</b> 3d10+15</p>
+        <p><b>Descrição:</b> Arma básica, sem críticos extras nem passivas.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
 </div>
 
 
-<section class="armas-section">
 
-    <!-- Navegação entre tipos de armas -->
-    <div class="nav-armas">
-      <button onclick="filtrarArmas('pedra')">Pedra</button>
-      <button onclick="filtrarArmas('ferro')">Ferro</button>
-      <button onclick="filtrarArmas('aco')">Aço</button>
-      <button onclick="filtrarArmas('lendaria')">Lendárias</button>
-      <button onclick="filtrarArmas('outros')">Outros</button>
+
+
+
+
+<!-- Ferro... -->
+
+
+
+<div id="modal-ferro-espada" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-ferro-espada')">&times;</span>
+        <h2>Espada de Ferro</h2>
+        <p><b>Dano:</b> 4d10+15</p>
+        <p><b>Crítico:</b> CT 19 / +3D6</p>
+        <p><b>Descrição:</b> Mais letal que as de Pedra, início das armas críticas.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
     </div>
+</div>
 
-    <div class="armas-container">
-      <!-- Lista de armas com scroll -->
-      <div class="lista-armas" id="lista-armas">
-        <div class="arma-item" onclick="abrirModalArma('arma1')">Arma de Pedra 1</div>
-        <div class="arma-item" onclick="abrirModalArma('arma2')">Arma de Pedra 2</div>
-        <div class="arma-item" onclick="abrirModalArma('arma3')">Arma de Pedra 3</div>
-        <!-- Mais armas -->
-      </div>
 
-      <!-- Menu de minérios com troca -->
-      <div class="menu-minerios">
-        <div id="minerio-info">Minério: Pedra</div>
-        <div class="bolinhas">
-          <span onclick="trocarMinerio(0)" class="ativa"></span>
-          <span onclick="trocarMinerio(1)"></span>
-          <span onclick="trocarMinerio(2)"></span>
-        </div>
-      </div>
+
+<!-- Aço... -->
+
+<div id="modal-aco-espada" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-espada')">&times;</span>
+        <h2>Espada de Aço</h2>
+        <p><b>Dano:</b> 5d10+20</p>
+        <p><b>Crítico:</b> CT 18 / +4D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. A passiva seria: "Corte Preciso" - Você tem vantagem em testes de ataque contra alvos que tenham menos de 50% de vida.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
     </div>
-  </section>
+</div>
 
-  <!-- Modal de Arma -->
-  <div id="modal-arma" class="modal">
-    <div class="modal-close" onclick="fecharModal('modal-arma')">X</div>
-    <div id="conteudo-modal-arma">Detalhes da arma...</div>
-  </div>
 
-  <!-- Modal de Minério -->
-  <div id="modal-minerio" class="modal">
-    <div class="modal-close" onclick="fecharModal('modal-minerio')">X</div>
-    <div id="conteudo-modal-minerio">Informações do minério...</div>
-  </div>
+
+ 
 
 
 
   <!-- ░░░ FOOTER ░░░ -->
-  <footer>
+<footer>
     <div class="footer-content">
       <div class="footer-section about">
         <h2>Sobre o RPG</h2>
