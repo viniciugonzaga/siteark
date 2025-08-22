@@ -4,7 +4,7 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     /* Combina a sobreposição de cor com a imagem de fundo */
-    background: linear-gradient(rgba(13, 18, 28, 0.815), rgba(13, 18, 28, 0.822)), url('../imagens/icon_Antrodemus.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(13, 18, 28, 0.623), rgba(31, 44, 70, 0.651)), url('../imagens/icon_Antrodemus.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 body::before {
@@ -1022,6 +1022,37 @@ nav {
 .era-icon-animated:hover {
     transform: scale(1.1);
 }
+
+
+/* Telas de Tablets (até 768px de largura) */
+@media (max-width: 768px) {
+    .eras-header-icon {
+        width: 30%; /* Aumenta a largura em telas de tablet */
+        max-width: 250px; /* Reduz o tamanho máximo */
+        height: 250px;
+        margin-bottom: 15px; /* Ajusta a margem inferior */
+    }
+
+    .era-icon-animated {
+        width: 230px; /* Reduz o tamanho do ícone */
+        height: 230px;
+    }
+}
+
+/* Telas de Celulares (até 480px de largura) */
+@media (max-width: 480px) {
+    .eras-header-icon {
+        width: 50%; /* Aumenta a largura para ocupar mais espaço na tela */
+        max-width: 200px;
+        height: 200px;
+        border-radius: 20px; /* Borda mais suave em telas menores */
+    }
+
+    .era-icon-animated {
+        width: 180px; /* Reduz ainda mais o tamanho do ícone */
+        height: 180px;
+    }
+}
       
 
         /* Estilo para a seção de botões de eras */
@@ -1349,6 +1380,9 @@ nav {
 #final td.arma::before {
     background-image: url('../imagens/Icone_ark_v4.png');
 }
+
+
+
 
 
 /* Geral do footer ------------------------------------------------------------------------------*/

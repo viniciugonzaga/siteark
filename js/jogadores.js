@@ -843,6 +843,17 @@ function calculateStats() {
         weaponsHtml = '<p class="no-info">Nenhuma arma registrada.</p>';
     }
 
+    let ritualsHtml = '';
+    if (characterRituals.length > 0) {
+        ritualsHtml = `<ul class="stats-list ritual-list">`;
+        characterRituals.forEach(ritual => {
+            ritualsHtml += `<li><strong class="sub-category-title">${ritual.name}</strong>: <span class="attribute-value">${ritual.description}</span></li>`;
+        });
+        ritualsHtml += `</ul>`;
+    } else {
+        ritualsHtml = '<p class="no-info">Nenhum ritual ou pacto selecionado.</p>';
+    }
+
     let levelRewardsList = [];
     let mutationRewardsList = [];
     let inventoryRewardsList = [];
@@ -893,7 +904,7 @@ function calculateStats() {
             <p class="stats-item"><strong class="sub-category-title">Nome</strong>: <span class="attribute-value">${name || '<span class="no-info">Não preenchido</span>'}</span></p>
             ${photoSrc && photoSrc !== window.location.href + "#" && !photoSrc.includes('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=') ? `<div class="stats-item photo-display"><strong class="sub-category-title">Foto</strong>:<br><img src="${photoSrc}" alt="Foto do Personagem" class="character-photo"></div>` : ''}
             <p class="stats-item"><strong class="sub-category-title">Idade</strong>: <span class="attribute-value">${age || '<span class="no-info">Não preenchido</span>'}</span></p>
-           <p class="stats-item"><strong class="sub-category-title">Nível</strong>: <span class="ficha-calculated-level-value">${level}</span></p>
+            <p class="stats-item"><strong class="sub-category-title">Nível</strong>: <span class="ficha-calculated-level-value">${level}</span></p>
         </div>
 
         <div class="ficha-section">
@@ -929,10 +940,10 @@ function calculateStats() {
             <h4 class="section-title">Bônus de Ações Aprendidos</h4>
             ${learnedBonusAcoesHtml}
         </div>
-
+        
         <div class="ficha-section">
             <h4 class="section-title">Rituais/Pactos Selecionados</h4>
-            <div id="selectedRitualPactDisplay"></div>
+            ${ritualsHtml}
         </div>
 
         <div class="ficha-section">
@@ -947,7 +958,6 @@ function calculateStats() {
     document.getElementById("stats").innerHTML = statsHtml;
     document.getElementById("results").style.display = "block";
     document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
-    loadSelectedRitualPact(); 
 }
 
 function copyFicha() {
