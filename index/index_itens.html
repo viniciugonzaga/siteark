@@ -1402,15 +1402,543 @@
 
 
 
-<!-- Aço... -->
 
+<!-- Aço... -->
 <div id="modal-aco-espada" class="effects-modal">
     <div class="effects-modal-content">
         <span class="effects-modal-close-button" onclick="closeModal('modal-aco-espada')">&times;</span>
         <h2>Espada de Aço</h2>
         <p><b>Dano:</b> 5d10+20</p>
         <p><b>Crítico:</b> CT 18 / +4D6</p>
-        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. Instinto de Guerreiro - Você causa +1D de dano e o efeito Sangrando em Feras ou animais.</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Instinto de Guerreiro</b> - Você causa +1D de dano e o efeito Sangrando em Feras ou animais.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-espada-longa" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-espada-longa')">&times;</span>
+        <h2>Espada Longa de Aço</h2>
+        <p><b>Dano:</b> 6d10+20</p>
+        <p><b>Crítico:</b> CT 18 / +5D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Guerreiro da Espada</b>- Possui uma taxa de letalidade maior, causa +1D de dano em inimigos com armadura quebradas.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-claymore" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-claymore')">&times;</span>
+        <h2>Claymore de Aço</h2>
+        <p><b>Dano:</b> 6d10+25</p>
+        <p><b>Crítico:</b> CT 19 / +3D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Carrasco da Espada</b>: Ganha uma ação livre de finalizar um alvo, recebendo +15 de vida temporária + (For)=5 de vida.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-adaga" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-adaga')">&times;</span>
+        <h2>Adaga de Aço</h2>
+        <p><b>Dano:</b> 4d10+15</p>
+        <p><b>Crítico:</b> CT 16 / +3D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Trapaceiro</b>: Ataques em inimigos desprevenidos ou por costas causam efeito sangrando de 1d12 acumulável por 1d4 de rodadas.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-gladio" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-gladio')">&times;</span>
+        <h2>Gládio de Aço</h2>
+        <p><b>Dano:</b> 5d10+15</p>
+        <p><b>Crítico:</b> CT 16 / +3D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Nascido de Gládia</b>: Gládios ou seres aliados ganham +2 dados de dano contra inimigos da nação.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-cimitarra" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-cimitarra')">&times;</span>
+        <h2>Cimitarra de Aço</h2>
+        <p><b>Dano:</b> 5d12+5</p>
+        <p><b>Crítico:</b> CT 16 / +4D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Focado na guerra</b>: Após eliminar um alvo grande, ganha uma reação extra temporária acumulável, ao gastar a reação ela perde um estoque, podendo ser qualquer reação.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-alfange" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-alfange')">&times;</span>
+        <h2>Alfange de Aço</h2>
+        <p><b>Dano:</b> 4d12+10</p>
+        <p><b>Crítico:</b> CT 18 / +3D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Marinheiro</b>: Lutar em navios fornece um bônus de luta +5 em acertos.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-katana" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-katana')">&times;</span>
+        <h2>Katana de Aço</h2>
+        <p><b>Dano:</b> 5d12+10</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Lutador da paz</b>: Após um inimigo receber dano e entrar estado morrendo em seu campo visão, ganha +1D de crítico acumulável até o seu próximo ataque, ao gastar um ataque perde todos os estoques.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-bengala" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-bengala')">&times;</span>
+        <h2>Bengala de Aço</h2>
+        <p><b>Dano:</b> 4d12+20</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Controlador</b>: Ganha +5 em ações que envolvam equilíbrio e em reações que envolvam imobilizar ou derrubar.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-lanca" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-lanca')">&times;</span>
+        <h2>Lança de Aço</h2>
+        <p><b>Dano:</b> 4d10+25</p>
+        <p><b>Crítico:</b> CT 17 / +5D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Tática Primal</b>: Atacar um alvo que já foi atacado por aliados, fornece +2 dados de dano em posições de cortes ou ferimentos expostos.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-tridente" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-tridente')">&times;</span>
+        <h2>Tridente de Aço</h2>
+        <p><b>Dano:</b> 5d12+20</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Gladiador de Dores</b>: Durante um combate, enquanto atacar um alvo atordoado pode escolher causar 1d12 de sangramento ou o efeito de vulnerabilidade em -5 em reações físicas.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-clava" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-clava')">&times;</span>
+        <h2>Clava de Aço</h2>
+        <p><b>Dano:</b> 6d8+20</p>
+        <p><b>Crítico:</b> CT 18 / +3D8</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Ataque Pesado</b>: Acertos críticos em inimigos causam o efeito vulnerável, infligindo -5 em reações físicas, além de +1D de dano maior.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-maca-guerra" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-maca-guerra')">&times;</span>
+        <h2>Maça de Guerra de Aço</h2>
+        <p><b>Dano:</b> 7d8+10</p>
+        <p><b>Crítico:</b> CT 19 / +3D8</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Ataque poderoso</b>: Acertos críticos em inimigos causam o efeito atordoado, além de causar +1 dado de dano de algum efeito, após ser atordoado.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-mangual" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-mangual')">&times;</span>
+        <h2>Mangual de Aço</h2>
+        <p><b>Dano:</b> 5d8+10</p>
+        <p><b>Crítico:</b> CT 19 / +3D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Determinação poderosa</b>: Concede roubo de vida em ataques, curando +5 de vida a cada 30 pontos de dano de sua origem, vinda da arma.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-mangual-pesado" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-mangual-pesado')">&times;</span>
+        <h2>Mangual Pesado de Aço</h2>
+        <p><b>Dano:</b> 4d8+20</p>
+        <p><b>Crítico:</b> CT 20 / +2D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Determinação Inabalável</b>: Concede +1d6 de determinação em ataques, após atacar um alvo atordoado, para aliados adjacentes.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-machado" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-machado')">&times;</span>
+        <h2>Machado de Aço</h2>
+        <p><b>Dano:</b> 5d12+25</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Limiar de dano</b>: Atacar alvos sofrendo alguma condição, diminuem a margem de crítico em 1.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-martelo" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-martelo')">&times;</span>
+        <h2>Martelo de Aço</h2>
+        <p><b>Dano:</b> 5d10+20</p>
+        <p><b>Crítico:</b> CT 19 / +3D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Peso da Velocidade</b>: Causa +2 dados de dano em alvos que estiverem em alta velocidade, como em um encontrão ou ataque rápido.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-martelo-guerra" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-martelo-guerra')">&times;</span>
+        <h2>Martelo de Guerra de Aço</h2>
+        <p><b>Dano:</b> 7d8+25</p>
+        <p><b>Crítico:</b> CT 19 / +2D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Peso da força</b>: Causa +2 dados de dano em encontrões ou avanços para frente com a arma.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-machadinha" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-machadinha')">&times;</span>
+        <h2>Machadinha de Aço</h2>
+        <p><b>Dano:</b> 4d12+5</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Caçador de Alvos</b>: Causa +2 dados de dano em alvos sangrando.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-pa" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-pa')">&times;</span>
+        <h2>Pá de Aço</h2>
+        <p><b>Dano:</b> 3d10+25</p>
+        <p><b>Crítico:</b> CT 16 / +3D8</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Contra sujeiras</b>: Causa +1 dado de dano em inimigos de origem terrestre ou escavadora.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-gancho" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-gancho')">&times;</span>
+        <h2>Gancho de Aço</h2>
+        <p><b>Dano:</b> 4d12+10</p>
+        <p><b>Crítico:</b> CT 17 / +4D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Instinto de Açougueiro</b>: Causa o efeito sangrando causando 1d12 de sangramento acumulativo, sempre que acertar em alvos marcados.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-foice" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-foice')">&times;</span>
+        <h2>Foice de Aço</h2>
+        <p><b>Dano:</b> 4d12+20</p>
+        <p><b>Crítico:</b> CT 17 / +5D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Instinto do Ceifador</b>: Causa 2 dados de dano adicionais contra alvos vulneráveis ou com vida em estágio machucado ou próximos do estado morrendo (30%).</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-marreta" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-marreta')">&times;</span>
+        <h2>Marreta de Aço</h2>
+        <p><b>Dano:</b> 4d8+15</p>
+        <p><b>Crítico:</b> CT 19 / +4D8</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Batedor</b>: Causa +1 Dado de dano contra animais atordoados.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-cajado" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-cajado')">&times;</span>
+        <h2>Cajado de Batalha de Aço</h2>
+        <p><b>Dano:</b> 3d12+5</p>
+        <p><b>Crítico:</b> CT 19 / +2D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Mago de Campo</b>: Fornece um bônus de +5 em manifestação Arcana elemental.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-escudo" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-escudo')">&times;</span>
+        <h2>Escudo de Aço</h2>
+        <p><b>Dano:</b> 3d10+15</p>
+        <p><b>Crítico:</b> CT 19 / +2D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Escudeiro</b>: Ganha +5 em reações físicas, além de poder bloquear projéteis.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-manoplas" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-manoplas')">&times;</span>
+        <h2>Manoplas de Aço</h2>
+        <p><b>Dano:</b> 3d10+15</p>
+        <p><b>Crítico:</b> CT 19 / +2D8</p>
+        <p><b>Descrição:</b> Forjadas em aço, já possuem uma passiva. <b>Socador</b>: Concede +5 em acertos de luta corpo a corpo em inimigos menores ou igual ao tamanho proporcional do portador.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-arco" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-arco')">&times;</span>
+        <h2>Arco de Aço</h2>
+        <p><b>Dano:</b> 6d10+20</p>
+        <p><b>Crítico:</b> CT 18 / +3D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Margem do atirador</b>: Ganha +2 dados de dano em acertos contra inimigos marcados, além de diminuir a margem de crítico em 1, contra alvos muito distantes.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-escopeta-mao" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-escopeta-mao')">&times;</span>
+        <h2>Escopeta de Mão Aprimorada</h2>
+        <p><b>Dano:</b> 10d6+10</p>
+        <p><b>Crítico:</b> CT 19 / +4D</p>
+        <p><b>Descrição:</b> Aprimorada em aço, já possui uma passiva. <b>Caçadora</b>: Ganha +2 dados de dano contra alvos marcados, além de causar mais 1 dado de crítico a cada 30 de dano causado.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-besta-repeticao" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-besta-repeticao')">&times;</span>
+        <h2>Besta de Repetição de Aço</h2>
+        <p><b>Dano:</b> 4d10+5</p>
+        <p><b>Crítico:</b> CT 16 / +3D</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Perfurador</b>: Causa +2 dados de dano em inimigos que estejam protegendo ou possuem armaduras pesadas. Além de causar +2 D de crítico em alvos marcados.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-olho-alcance" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-olho-alcance')">&times;</span>
+        <h2>Olho do Alcance Aprimorado</h2>
+        <p><b>Dano:</b> 6d10+5</p>
+        <p><b>Crítico:</b> CT 19 / +4D</p>
+        <p><b>Descrição:</b> Aprimorado em aço, já possui uma passiva. <b>Olho do Alcance</b>: Fornece um bônus de +5 em acertos de longa distância, além de aumentar +2D de dano, ao mirar por uma rodada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-canhao-mao" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-canhao-mao')">&times;</span>
+        <h2>Canhão de Mão Aprimorado</h2>
+        <p><b>Dano:</b> 8d8+25</p>
+        <p><b>Crítico:</b> CT 18 / +4D</p>
+        <p><b>Descrição:</b> Aprimorado em aço, já possui uma passiva. <b>Canhão de Mão</b>: Causa um grande impacto no alvo, fazendo com que ele se afaste em 5 metros, além de conceder um dano extra de +1D de dano para cada 50 pontos de dano causado. Além de causar 200% a mais de dano em construções.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-granada-polvora" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-granada-polvora')">&times;</span>
+        <h2>Granada de Pólvora Refinada</h2>
+        <p><b>Dano:</b> 7d6+10</p>
+        <p><b>Crítico:</b> CT 19 / +5D</p>
+        <p><b>Descrição:</b> Refinada em aço, já possui uma passiva. <b>Granada de Pólvora</b>: Causa um dano de área em 3 metros, e causa o efeito "Queimando" no alvo, causando 1d6 de dano a cada rodada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-frasco-oleo" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-frasco-oleo')">&times;</span>
+        <h2>Frasco de Óleo Flamejante Aprimorado</h2>
+        <p><b>Dano:</b> 4d8+15</p>
+        <p><b>Crítico:</b> CT 17 / +4D</p>
+        <p><b>Descrição:</b> Aprimorado em aço, já possui uma passiva. <b>Frasco de Óleo</b>: Causa um dano de fogo em área de 2 metros, e inflige o efeito "Queimando" no alvo, causando 1d4 de dano a cada rodada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-ak12" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-ak12')">&times;</span>
+        <h2>AK-12 (Assalto)</h2>
+        <p><b>Dano:</b> 7d10+20</p>
+        <p><b>Crítico:</b> CT 18 / +2D</p>
+        <p><b>Descrição:</b> Rifle de assalto forjado em aço. <b>Rajada de Fogo</b>: A cada acerto, causa +1 dado de dano de fogo (1d6), acumulando até 5 dados de dano adicional para cada acerto. Ao atingir o limite, o próximo ataque causa +2d6 de dano de fogo adicional, chegando ao fim dos estoques.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-m4a1" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-m4a1')">&times;</span>
+        <h2>M4A1 (Assalto)</h2>
+        <p><b>Dano:</b> 6d10+25</p>
+        <p><b>Crítico:</b> CT 17 / +3D</p>
+        <p><b>Descrição:</b> Rifle de assalto forjado em aço. <b>Munição Perfurante</b>: Ignora 5 pontos de armadura de alvos com armadura pesada ou acima de 15.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-mp5" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-mp5')">&times;</span>
+        <h2>MP5 (SMG)</h2>
+        <p><b>Dano:</b> 5d8+20</p>
+        <p><b>Crítico:</b> CT 16 / +2D</p>
+        <p><b>Descrição:</b> SMG forjada em aço. <b>Furtividade</b>: Ganha +5 em acertos de ataques furtivos ou em alvos desprevenidos. O primeiro ataque da rodada, se furtivo, causa +1d6 de dano.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-ump45" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-ump45')">&times;</span>
+        <h2>UMP-45 (SMG)</h2>
+        <p><b>Dano:</b> 5d8+15</p>
+        <p><b>Crítico:</b> CT 17 / +3D</p>
+        <p><b>Descrição:</b> SMG forjada em aço. <b>Disparos Rápidos</b>: A cada 3 ataques no mesmo turno, ganha +1 de dano, acumulando até 3 de dano adicional. Este bônus é resetado no início do próximo turno.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-awp" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-awp')">&times;</span>
+        <h2>AWP (Rifle de Precisão)</h2>
+        <p><b>Dano:</b> 10d12+40</p>
+        <p><b>Crítico:</b> CT 19 / +6D</p>
+        <p><b>Descrição:</b> Rifle de precisão forjado em aço. <b>Disparo Fatal</b>: Acertos na cabeça causam dano dobrado e ignoram a armadura. Se o alvo for eliminado, o portador ganha +1 de determinação.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-417" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-417')">&times;</span>
+        <h2>417 (DMR)</h2>
+        <p><b>Dano:</b> 7d10+25</p>
+        <p><b>Crítico:</b> CT 18 / +4D</p>
+        <p><b>Descrição:</b> DMR forjado em aço. <b>Atirador Tático</b>: Ganha +2 de acerto para cada alvo marcado, além de causar +1 dado de dano em alvos que estão se movendo.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-g8a1" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-g8a1')">&times;</span>
+        <h2>G8A1 (LMG)</h2>
+        <p><b>Dano:</b> 6d8+15</p>
+        <p><b>Crítico:</b> CT 20 / +2D</p>
+        <p><b>Descrição:</b> LMG forjada em aço. <b>Supressão de Fogo</b>: A cada 3 tiros, o alvo deve fazer um teste de Vigor (CD 15) para não ser atordoado por 1 rodada. Se o alvo for atordoado, a taxa de crítico do portador aumenta em 1 para o próximo ataque.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-supernova" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-supernova')">&times;</span>
+        <h2>Supernova (Escopeta)</h2>
+        <p><b>Dano:</b> 8d8+15</p>
+        <p><b>Crítico:</b> CT 17 / +3D</p>
+        <p><b>Descrição:</b> Escopeta forjada em aço. <b>Impacto Devastador</b>: A cada tiro, o alvo deve fazer um teste de Força (CD 18) para não ser jogado 3 metros para trás. Se o alvo for jogado, o dano do próximo ataque é aumentado em +1d6.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-desert-eagle" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-desert-eagle')">&times;</span>
+        <h2>Desert Eagle (.50 AE)</h2>
+        <p><b>Dano:</b> 6d8+20</p>
+        <p><b>Crítico:</b> CT 18 / +3D</p>
+        <p><b>Descrição:</b> Pistola forjada em aço. <b>Perfuração</b>: Ignora a armadura do alvo em 5 pontos para cada acerto. Se o alvo for um construto, a perfuração é dobrada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-lanca-chamas" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-lanca-chamas')">&times;</span>
+        <h2>Lança-Chamas</h2>
+        <p><b>Dano:</b> 4d8+15</p>
+        <p><b>Crítico:</b> CT 19 / +2D</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Incêndio</b>: Acertos causam o efeito "Queimando" no alvo, causando 1d6 de dano a cada rodada. O efeito é acumulável.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-rifle-estase" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-rifle-estase')">&times;</span>
+        <h2>Rifle de Estase</h2>
+        <p><b>Dano:</b> 1d12</p>
+        <p><b>Crítico:</b> CT - / +1D</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Congelamento</b>: Acertos causam o efeito "Imobilizado" no alvo por 1 rodada. Para cada acerto, o tempo de imobilização aumenta em 1 rodada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-canhao-propulsao" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-canhao-propulsao')">&times;</span>
+        <h2>Canhão de Propulsão</h2>
+        <p><b>Dano:</b> 3d8+10</p>
+        <p><b>Crítico:</b> CT 17 / +3D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Impulso</b>: Acertos causam o efeito "Empurrado" no alvo, jogando-o 2 metros para trás. Se o alvo for jogado contra uma parede ou objeto, ele sofre mais 1d6 de dano.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-termo-lamina" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-termo-lamina')">&times;</span>
+        <h2>Termo Lâmina</h2>
+        <p><b>Dano:</b> 4d10+15</p>
+        <p><b>Crítico:</b> CT 18 / +3D6</p>
+        <p><b>Descrição:</b> Forjada em aço, já possui uma passiva. <b>Calor Extremo</b>: Acertos causam o efeito "Queimando" no alvo, causando 1d4 de dano a cada rodada. A cada 3 acertos, o dano do efeito aumenta em +1d4.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-markov" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-markov')">&times;</span>
+        <h2>Arma de Raios de Markov</h2>
+        <p><b>Dano:</b> 6d8+15</p>
+        <p><b>Crítico:</b> CT 19 / +3D6</p>
+        <p><b>Descrição:</b> Arma de raio forjada em aço. <b>Eletricidade</b>: Acertos causam o efeito "Atordoado" no alvo, fazendo com que ele perca sua próxima ação. A cada 2 acertos, o atordoamento dura por mais uma rodada.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-hyde" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-hyde')">&times;</span>
+        <h2>Lança-Chamas de Hyde</h2>
+        <p><b>Dano:</b> 5d8+10</p>
+        <p><b>Crítico:</b> CT 18 / +2D8</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Fogo Sagrado</b>: Acertos causam o efeito "Queimando" no alvo, causando 1d8 de dano a cada rodada. O dano do efeito ignora resistência a fogo.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<div id="modal-aco-val" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-aco-val')">&times;</span>
+        <h2>Rifle de Precisão de Val</h2>
+        <p><b>Dano:</b> 7d12+20</p>
+        <p><b>Crítico:</b> CT 17 / +5D6</p>
+        <p><b>Descrição:</b> Forjado em aço, já possui uma passiva. <b>Disparo Certeiro</b>: A cada acerto, o portador ganha +1 de dano, acumulando até +5 de dano. O bônus é resetado a cada rodada.</p>
         <button class="add-btn">Adicionar à Ficha</button>
     </div>
 </div>
