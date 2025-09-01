@@ -1179,3 +1179,9 @@ document.addEventListener('DOMContentLoaded', () => {
     loadForm();
 });
 
+function saveForm() {
+    // ... (restante da sua lógica de salvamento) ...
+    saveCharacterLocal();
+    // Adicione esta linha para redirecionar após o salvamento
+    window.location.href = 'js/status.js'; 
+}

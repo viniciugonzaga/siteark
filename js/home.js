@@ -1,31 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ========================
-    // Carousel no Main
-    // ========================
     const carouselImages = document.querySelector('.carousel-images');
     const images = document.querySelectorAll('.carousel-images img');
-    let index = 1; // Começa na primeira imagem real
-    const totalImages = images.length - 2; // Exclui imagens duplicadas para loop
+    let index = 1; // Começa na primeira imagem real (que está na posição 1 do array)
+    const totalImages = images.length - 2; // Exclui as imagens duplicadas
+
+    // Posiciona o carrossel no início, mostrando o GIF
+    carouselImages.style.transform = `translateX(${-index * 100}%)`;
 
     // Função para avançar para a próxima imagem
     function nextImage() {
         index++;
-        carouselImages.style.transition = 'transform 1s ease-in-out'; // Adiciona transição suave
+        carouselImages.style.transition = 'transform 1s ease-in-out';
         carouselImages.style.transform = `translateX(${-index * 100}%)`;
 
-        // Caso alcance a última imagem duplicada, reseta para a primeira
-        if (index > totalImages) {
+        // Se a transição for para a última imagem duplicada...
+        if (index >= totalImages + 1) {
             setTimeout(() => {
-                carouselImages.style.transition = 'none'; // Remove a transição
-                index = 1; // Volta para a primeira imagem real
+                carouselImages.style.transition = 'none';
+                index = 1; // Volta para o primeiro elemento real
                 carouselImages.style.transform = `translateX(${-index * 100}%)`;
-            }, 1000); // Aguarda a transição terminar
+            }, 1000); // Aguarda o fim da transição
         }
     }
 
     // Alterna automaticamente as imagens a cada 4 segundos
     setInterval(nextImage, 4000);
 });
+
 
 // ========================
 // Menu (Navbar)

@@ -20,6 +20,40 @@ body::before {
     z-index: -1;
 }
 
+@font-face {
+    font-family: 'Devans'; /* Nome que você usará para se referir à fonte */
+    src: url('../imagens/fontes/devans/Devans.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Garante que o texto seja visível durante o carregamento */
+}
+
+@font-face {
+    font-family: 'Dark Guitar';
+    src: url('../imagens/fontes/dark-guitar/Dark Guitar.otf') format('opentype'),
+         url('../imagens/fontes/dark-guitar/Dark Guitar.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+
+@font-face {
+    font-family: 'Ark';
+    src: url('../imagens/fontes/ark/Ark.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Briket'; /* Nome que você usará para a fonte */
+    src: url('../imagens/fontes/briket/Briket.otf') format('opentype'),
+         url('../imagens/fontes/briket/Briket.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; 
+}
+
 /* Estilo inicial para a página */
 .page {
     opacity: 0;
@@ -928,79 +962,208 @@ nav {
 }
 
 
-/* Estilo geral do carrossel */
+/* Container principal - Grid para posicionar a coluna de informações e o carrossel */
+/* Seção principal com grid */
+.secao-carrossel {
+    display: grid;
+    grid-template-columns: 0.8fr 2fr;
+    gap: 20px;
+    padding: 20px;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    max-width: 1200px;
+    margin: 20px auto;
+    align-items: center;
+}
+
+/* Container de informações - Grid para organizar o conteúdo interno */
+.info-container {
+    display: grid;
+    /* NOVAS ÁREAS DE GRID */
+    grid-template-areas:
+        "campo-texto campo-texto"   /* Campo superior ocupa 2 colunas */
+        "icone icone"               /* Ícone centralizado ocupa 2 colunas */
+        "campo-inferior campo-inferior"; /* Campo inferior ocupa 2 colunas */
+    grid-template-rows: auto 100px auto; /* Define a altura das linhas: auto para texto, 100px para o ícone */
+    gap: 15px; /* Aumenta um pouco o espaçamento entre os elementos internos */
+    padding: 10px;
+     border: 2px solid rgba(156, 240, 255, 0.5); /* Borda ciano sutil */
+    border-radius: 10px;
+    background: linear-gradient(145deg, #1a1a1a, #000); /* Mantém o gradiente escuro */
+}
+
+/* Estilo para todos os campos dentro do info-container */
+/* Note que "campo-texto-menor" e "campo-menor" foram removidos ou substituídos */
+.campo-texto, .campo-inferior {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    padding: 10px;
+    color: #e0e0e0;
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411); /* Brilho sutil */
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: center;
+    width: 90%;
+    align-items: center;
+    margin:  0 auto;
+    position: relative; /* Essencial para o pseudo-elemento ou para sobrepor o gradiente */
+    z-index: 1; /* Garante que o conteúdo (texto) fique na frente */
+
+    /* Adiciona a imagem de fundo */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.466), rgba(0, 0, 0, 0.466)), /* Camada de escurecimento */
+        url('/imagens/fundo_rubi_preto.jpg') no-repeat center center; /* A imagem */
+    
+    background-size: cover; /* Garante que a imagem cubra todo o elemento */
+}
+
+/* Efeito de hover para os campos */
+.campo-texto:hover, .campo-inferior:hover { /* Atualizado */
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+}
+
+/* Posicionamento dos elementos dentro do .info-container usando grid-area */
+.campo-texto {
+    grid-area: campo-texto;
+    display: flex; /* Para centralizar o H2 */
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.icone-container {
+    grid-area: icone; /* Ocupa a área definida para o ícone */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icone {
+    width: 100px; /* Tamanho do ícone */
+    height: 100px; /* Tamanho do ícone */
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    border-radius: 50%;
+    background-color: #0d0d0d;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    object-fit: contain; /* Garante que a imagem do ícone se ajuste sem cortar */
+}
+
+/* Efeito de hover no ícone */
+.icone-container:hover .icone {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.8);
+}
+
+.campo-inferior { /* Novo campo inferior */
+    grid-area: campo-inferior;
+    display: flex; /* Para centralizar o P */
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Ajustes de texto para seguir o estilo dos títulos */
+.campo-texto h2 {
+    font-size: 1.4rem; /* Mantido em 1.2rem para ser menor */
+    color: #fff;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.342);
+    line-height: 1.4; /* Ajusta a altura da linha para o texto caber melhor */
+}
+.ark{
+    color: #ffffff;
+    background: linear-gradient(to right, #fcffff, #fcf6f6);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-family: 'Ark', serif;
+    font-size: 2.6rem;
+    padding: 10px;
+}
+
+.campo-inferior p { /* Ajuste para o texto do novo campo */
+   color: #cdeefc;
+      background: linear-gradient(to right, #d6feff, #cecece);
+      background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-family: 'Ark', serif;
+    font-size: 2.0rem;
+}
+
+
+/* Carrossel */
 .carousel {
     width: 100%;
     max-width: 850px;
     margin: 20px auto;
-    overflow: hidden; /* Esconde as imagens fora do contêiner */
+    overflow: hidden;
     border-radius: 15px;
     position: relative;
-    margin-bottom: 20px;
-    animation: fog-pulse 4s infinite alternate ease-in-out; /* Nome da animação, duração, repetição, direção, suavidade */
+    animation: fog-pulse 4s infinite alternate ease-in-out;
+    border: 2px solid rgba(156, 240, 255, 0.795);
+    aspect-ratio: 16 / 9; 
 }
-
-@keyframes fog-pulse {
-    0% {
-        /* Estado inicial: brilho mais contido */
-        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
-    }
-    50% {
-        /* Meio da animação: brilho se espalha mais e talvez fique um pouco mais opaco */
-        box-shadow: 0 0 20px rgba(193, 240, 248, 0.6); /* Aumenta o blur e o spread, e a opacidade */
-    }
-    100% {
-        /* Volta ao estado inicial */
-        box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
-    }
-}
-
 /* Contêiner de imagens */
 .carousel-images {
     display: flex;
-    transition: transform 1s ease-in-out; /* Suaviza a transição */
-    transform: translateX(-100%); /* Ajusta para começar na primeira imagem */
+    transition: transform 1s ease-in-out;
 }
 
-/* Estilo das imagens */
 .carousel-images img {
-    width: 100%; /* Cada imagem ocupa 100% da largura do contêiner */
-    flex-shrink: 0; /* Garante que cada imagem ocupe seu espaço */
+    width: 100%;
+    height: 100%; /* mantém a proporção dentro da div */
+    flex-shrink: 0;
+    object-fit: contain; /* mostra a imagem inteira, sem cortes */
     border-radius: 20px;
+    background-color: #000; /* preenche bordas com preto se sobrar espaço */
 }
 
-/* Para telas menores que 768px (tablets e celulares) */
-@media (max-width: 767px) {
+
+@media (max-width: 1024px) {
+    .secao-carrossel {
+        grid-template-columns: 1fr; /* 🔥 Empilha tudo em 1 coluna */
+        gap: 15px;
+    }
+
     .carousel {
-        width: 65%; /* Ocupar mais largura em telas menores para ser mais visível */
-        max-width: 700px; /* Reduzir ainda mais o tamanho máximo para tablets */
-       
-        border-radius: 10px; /* Borda um pouco menor em telas menores */
-       
-      }
+        max-width: 100%;
+        aspect-ratio: 16 / 9; /* Mantém formato responsivo */
+        border-radius: 10px;
+    }
 
     .carousel-images img {
-        border-radius: 10px; /* Borda um pouco menor nas imagens também */
+        border-radius: 10px;
     }
 }
-/* Para telas muito pequenas (celulares) */
+
 @media (max-width: 480px) {
-    .carousel {
-        width: 70%; /* Ocupar toda a largura disponível em celulares */
-        max-width: none; /* Remover max-width para preencher a tela */
-        margin: 5px auto; /* Reduzir margens para ocupar mais espaço verticalmente */
-        margin-top: 1rem; /* Ajustar ainda mais o espaçamento superior */
-        border-radius: 15px; /* Borda mínima em celulares */
-       
-      }
+    .campo-texto h2 {
+        font-size: 1rem; /* Texto menor no celular */
+    }
 
-    .carousel-images img {
-        border-radius: 5px; /* Borda mínima nas imagens */
-        /* height: 200px; /* Você pode até definir uma altura fixa aqui com object-fit,
-                                 se preferir um carrossel mais compacto em celulares */
+    .ark {
+        font-size: 1.8rem;
+    }
+
+    .campo-inferior p {
+        font-size: 1.2rem;
+    }
+
+    .icone {
+        width: 70px;
+        height: 70px;
     }
 }
-
+/* --- SEU CÓDIGO JAVASCRIPT ABAIXO (INALTERADO) --- */
+/* Certifique-se de que este script está incluído na sua página HTML, preferencialmente no final do
 
 
 /* ======================================================= */
@@ -1101,7 +1264,8 @@ nav {
 }
 
 .card h2 {
-    font-size: 1.2em;
+    font-size: 1.3em;
+    font-family: 'Ark', serif;
     margin-top: 15px; /* Adicionei margem no topo para subir o título */
     margin-bottom: 10px;
     color: #ffffff;
@@ -1185,7 +1349,7 @@ nav {
     }
 
     .card h2 {
-        font-size: 0.7em;
+        font-size: 0.8em;
         margin-top: 10px;
         margin-bottom: 5px;
         color: #ffffff;
@@ -1266,6 +1430,7 @@ nav {
         color: #eae1d8; /* Ajusta a cor para contraste melhor */
     }
 }
+
 
 
 
