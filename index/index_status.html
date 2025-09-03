@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Status</title>
-  <link rel="stylesheet" href="/css/status.css">
+  <link rel="stylesheet" href="../css/status.css">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="icon" href="/imagens/Icone_ark_v4.png" type="image/png">
+  <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
 </head>
 <body>
   <div class="starfall"></div>
@@ -17,40 +17,28 @@
 <nav>
     <div class="nav-left">
       <div class="logo">
-        <img src="/imagens/Icone_ark_v4.png" alt="Logo">
+        <img src="../imagens/Icone_ark_v4.png" alt="Logo">
         <h1>RPG ARK</h1>
       </div>
     </div>
 
     <div class="nav-middle">
       <div class="nav-links">
-        <a href="/index.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-home icon"></i><span>Início</span>
-        </a>
-        <a href="/index/index_mapas.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-map icon"></i><span>Mapas</span>
-        </a>
-        <a href="/index/index_história.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-book icon"></i><span>Lore</span>
-        </a>
-        <a href="/index/index_regras.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span>
-        </a>
-        <a href="/index/index_bloqueado.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span>
-        </a>
-        <a href="/index/index_ciencia.html" class="sidebar-item">
-          <span class="highlight-bar"></span><i class="fas fa-dna icon"></i><span>Lab</span>
-        </a>
+        <a href="../index.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
+        <a href="index_mapas.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
+        <a href="index_história.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
+        <a href="index_regras.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
       </div>
     </div>
 
     <div class="nav-right">
       <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
-        <img src="/imagens/dado_fantasma.webp" alt="Dado" class="dado">
-        <a href="/index/index_login.html" class="new-icon-link">
-          <img src="/imagens/Login_v2.jpg" alt="Link para Nova Página" class="new-icon">
+        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+          <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon">
         </a>
       </div>
     </div>
@@ -97,28 +85,28 @@
             </div>
         </div>
 
-        <div class="stats-grid">
-            <div class="stat-box">
-                <span class="stat-name">Agi</span>
-                <span class="stat-value" id="fichaAgi">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-name">For</span>
-                <span class="stat-value" id="fichaFor">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-name">Int</span>
-                <span class="stat-value" id="fichaInt">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-name">Set</span>
-                <span class="stat-value" id="fichaSet">0</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-name">Vig</span>
-                <span class="stat-value" id="fichaVig">0</span>
-            </div>
-        </div>
+       <div class="stats-grid">
+    <div class="stat-box" id="statAgi">
+        <span class="stat-name">Agi</span>
+        <input type="number" class="stat-value attribute-input" id="fichaAgi" value="0">
+    </div>
+    <div class="stat-box" id="statFor">
+        <span class="stat-name">For</span>
+        <input type="number" class="stat-value attribute-input" id="fichaFor" value="0">
+    </div>
+    <div class="stat-box" id="statInt">
+        <span class="stat-name">Int</span>
+        <input type="number" class="stat-value attribute-input" id="fichaInt" value="0">
+    </div>
+    <div class="stat-box" id="statSet">
+        <span class="stat-name">Set</span>
+        <input type="number" class="stat-value attribute-input" id="fichaSet" value="0">
+    </div>
+    <div class="stat-box" id="statVig">
+        <span class="stat-name">Vig</span>
+        <input type="number" class="stat-value attribute-input" id="fichaVig" value="0">
+    </div>
+</div>
 
        <div class="main-stats-container">
     <div class="main-stat">
@@ -133,6 +121,122 @@
         <p>Sanidade</p>
         <input type="number" id="fichaSanidade" class="stat-input" value="0">
     </div>
+</div>
+
+<div class="defenses-section">
+    <h2 class="defesas">Área de Defesas</h2>
+    <div class="defense-container">
+        <div class="health-bar-wrapper">
+            <span class="bar-title">Barra de Vida</span>
+            <div class="health-bar-total" id="healthBarTotal">
+                <div class="health-bar-fill" id="healthBarFill"></div>
+            </div>
+            <div class="health-input-container">
+                <input type="number" class="current-health-input" id="currentHealthInput" value="0">
+            </div>
+        </div>
+        
+         <div class="defense-stat-box" id="resistenciaBlock">
+           <span class="defense-name">Resistência</span>
+           <input type="text" class="defense-value stat-input" id="fichaResistencia">
+        </div>
+
+        <div class="defense-stat-box" id="armaduraBlock">
+            <span class="defense-name">Armadura</span>
+            <span class="defense-value" id="armaduraValue">0</span>
+        </div>
+    </div>
+
+   <div class="dice-mechanism-container">
+    
+    <button class="roll-icon-btn" id="rollButton">
+        </button>
+    
+    <div class="dice-attribute-group">
+        <span class="stat-name">Atri</span>
+        <select class="attribute-select" id="attributeSelect">
+            <option value="agi">Agi</option>
+            <option value="for">For</option>
+            <option value="int">Int</option>
+            <option value="set">Set</option>
+            <option value="vig">Vig</option>
+        </select>
+        <input type="number" class="attribute-value-display" id="attributeValueDisplay" disabled>
+    </div>
+
+    <div class="dice-bonus-group">
+        <input type="text" class="bonus-input" id="bonusInput" placeholder="Bônus (+N)">
+        <button class="menu-button" id="bonusMenuBtn">☰</button>
+        <div class="bonus-options-menu hidden" id="bonusOptionsMenu">
+            <button data-bonus="5">+5</button>
+            <button data-bonus="10">+10</button>
+            <button data-bonus="15">+15</button>
+            <button data-bonus="20">+20</button>
+        </div>
+    </div>
+    
+    <div class="roll-result-block" id="rollResultBlock">
+        <p class="roll-result" id="rollResult"></p>
+    </div>
+</div>
+<br>
+
+<div class="dice-mechanism-container theme-orange" id="strengthDiceContainer">
+
+    <button class="roll-icon-btn theme-orange" id="strengthRollButton"></button>
+    
+    <div class="dice-attribute-group theme-orange">
+        <span class="stat-name">Atri</span>
+        <select class="attribute-select" id="strengthAttributeSelect">
+            <option value="agi">Agi</option>
+            <option value="for" selected>For</option>
+            <option value="int">Int</option>
+            <option value="set">Set</option>
+            <option value="vig">Vig</option>
+        </select>
+        <input type="number" class="attribute-value-display" id="strengthAttributeValueDisplay" disabled>
+    </div>
+
+    <div class="dice-bonus-group theme-orange">
+        <input type="text" class="bonus-input" id="strengthBonusInput" placeholder="Bônus (+N)">
+        <button class="menu-button" id="strengthBonusMenuBtn">☰</button>
+        <div class="bonus-options-menu hidden" id="strengthBonusOptionsMenu">
+            <button data-bonus="5">+5</button>
+            <button data-bonus="10">+10</button>
+            <button data-bonus="15">+15</button>
+            <button data-bonus="20">+20</button>
+        </div>
+    </div>
+    
+    <div class="roll-result-block theme-orange" id="strengthRollResultBlock">
+        <p class="roll-result" id="strengthRollResult"></p>
+    </div>
+</div>
+
+<div class="bloco-dano">
+  <!-- Ícone clicável para rolar os dados -->
+  <div class="icone" onclick="rolarDados()"></div>
+
+  <!-- Lista decorada de dados -->
+  <select id="tipoDado" class="campo-dado">
+    <option value="2">d2</option>
+    <option value="4">d4</option>
+    <option value="6">d6</option>
+    <option value="8">d8</option>
+    <option value="10">d10</option>
+    <option value="12">d12</option>
+    <option value="20">d20</option>
+  </select>
+
+  <!-- Quantidade decorada -->
+  <input type="number" id="quantidade" min="1" value="1" class="campo-dado">
+
+  <!-- Resultado -->
+  <div class="resultado" id="resultado">-</div>
+</div>
+
+
+
 </div>
 
         <div class="ficha-content-section">
@@ -150,53 +254,45 @@
         </div>
 
         <button onclick="window.location.href='index_jogadores.html'" class="back-button">Voltar a Ficha</button>
-    </div>
-
-       
-        
-     
-
-        <div class="main-container">
-          <!-- Botão para abrir o menu de mapas -->
-          <button id="btnSpawnV2" class="spawn-button-v2">
-              <a class="botão_atalho_v2" href="index_ficha_status.html">Personagesn/Npcs</a>
-          </button>
-      </div>
+ </div>
 
 
         
 </main>
 <!--footer----------------------------------------------------------------------------->
-<footer>
+  <footer>
     <div class="footer-content">
       <div class="footer-section about">
         <h2>Sobre o RPG</h2>
         <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
       </div>
+
       <div class="footer-section links">
         <h2>Links Úteis</h2>
         <ul>
-          <li><a href="/index/index_mapas.html">Mapas</a></li>
-          <li><a href="/index/index_tribos.html">Tribos</a></li>
-          <li><a href="/index/index_regras.html">Regras</a></li>
-          <li><a href="/index/index_itens.html">Itens</a></li>
+          <li><a href="index_mapas.html">Mapas</a></li>
+          <li><a href="index_tribos.html">Tribos</a></li>
+          <li><a href="index_regras.html">Regras</a></li>
+          <li><a href="index_itens.html">Itens</a></li>
         </ul>
       </div>
+
       <div class="footer-section social">
         <h2>Conecte-se</h2>
         <div class="social-icons">
-          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="/imagens/insta_home.png" alt="Instagram"></a>
-          <a href="https://github.com" target="_blank"><img src="/imagens/git_home.png" alt="GitHub"></a>
-          <a href="mailto:vinigonzagap@gmail.com"><img src="/imagens/gmail_home.png" alt="E-mail"></a>
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="../imagens/insta_home.png" alt="Instagram"></a>
+          <a href="https://github.com" target="_blank"><img src="../imagens/git_home.png" alt="GitHub"></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="../imagens/gmail_home.png" alt="E-mail"></a>
         </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
     </div>
-</footer>
+  </footer>
  <!-- JS -->
-<script src="/js/status.js" defer></script>
+<script src="../js/status.js" defer></script>
 
 </body>
 </html>

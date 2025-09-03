@@ -975,6 +975,7 @@ nav {
     gap: 25px;
     position: relative; /* Para o pseudo-elemento */
     margin: 0 auto;
+    margin-bottom: 50px;
 }
 
 /* Pseudo-elemento para o fundo escuro com a imagem */
@@ -1047,7 +1048,7 @@ nav {
         box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
     }
     50% {
-        box-shadow: 0 0 20px rgba(110, 1, 110, 0.8), 0 0 30px rgba(112, 1, 112, 0.6);
+        box-shadow: 0 0 20px rgba(110, 1, 110, 0.562), 0 0 30px rgba(112, 1, 112, 0.322);
     }
     100% {
         box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
@@ -1068,7 +1069,7 @@ nav {
 
 .level-bar-fill {
     height: 100%;
-    background-image: url('/imagens/fundo_rubi_roxo.jpg'); 
+    background-image: url('/imagens/fundo_rubi_rosa.jpg'); 
     background-size: cover; 
     background-position: center; 
     border-radius: 20px;
@@ -1104,6 +1105,34 @@ nav {
     box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
     position: relative; /* Necessário para z-index do conteúdo */
     overflow: hidden; /* Para garantir que a imagem não vaze */
+}
+/* Estilo para os inputs de atributo */
+.attribute-input {
+    background: transparent;
+    border: none;
+    text-align: center;
+    color: #fff;
+    font-size: 2.2em; /* Tamanho da fonte dos valores */
+    font-weight: bold;
+    font-family: 'MedievalSharp', cursive; /* Use a sua fonte */
+    width: 100%;
+    outline: none; /* Remove a borda de foco */
+}
+/* Estilo para inputs de número - compatível com a maioria dos navegadores modernos */
+.stat-value {
+    /* Oculta as setinhas de incremento e decremento em navegadores WebKit (Chrome, Safari) */
+    -webkit-appearance: none;
+    /* Oculta as setinhas em navegadores baseados em WebKit */
+    margin: 0;
+    /* Força o comportamento como campo de texto, removendo as setinhas no Firefox e outros */
+    appearance: none;
+}
+
+/* Regra específica para navegadores WebKit */
+.stat-value::-webkit-inner-spin-button,
+.stat-value::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 /* Estilo para os novos campos de entrada de estatísticas */
 .stat-input {
@@ -1581,492 +1610,835 @@ nav {
     }
 }
 
-#botaoEvento {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
+/* ======================================================== */
+/* ÁREA DE DEFESAS & ROLAGEM (REFORMULADO) */
+/* ======================================================== */
+.defesas{
+
+  border-bottom: 2px solid rgba(156, 240, 255, 0.5);
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+      font-size: 2.0em;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+    align-items: center;
+    text-align: center;
+
+}
+.defenses-section {
+    /* Herda o estilo do container principal da ficha para manter a consistência */
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    padding: 30px;
+    margin-top: 20px;
+    font-family: 'MedievalSharp', cursive; /* Mantém a sua fonte */
+    position: relative;
+    z-index: 1; /* Garante que fique acima de outros elementos */
+}
+
+/* Container do Grid Principal da área de Defesas */
+.defense-container {
+    display: grid;
+    /* Define as áreas de acordo com o wireframe */
+    grid-template-areas:
+        "resistencia roll-center armadura"
+        "vida-barra vida-barra vida-barra"
+        ". resultado .";
+    grid-template-columns: 1fr 2fr 1fr; /* Colunas: bloco esquerdo, centro, bloco direito */
+    gap: 20px;
+    align-items: center;
+    justify-items: center;
+}
+
+/* Estilo para os blocos laterais (Resistência e Armadura) */
+#resistenciaBlock, #armaduraBlock {
+    padding: 15px;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#resistenciaBlock {
+    grid-area: resistencia;
+}
+#armaduraBlock {
+    grid-area: armadura;
+}
+
+#resistenciaBlock:hover, #armaduraBlock:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.8);
+}
+
+.defense-name {
+    font-size: 1.1em;
+    color: #cdeefc; /* Cor ciano claro */
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+}
+
+.defense-value {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 5px;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+}
+
+
+/* Mecanismo de rolagem central */
+.dice-mechanism {
+    grid-area: roll-center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.roll-dice-btn {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    color: #cdeefc;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    padding: 15px 25px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-    
-  
-  .centro{
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    transition: all 0.3s ease-in-out;
+}
+
+.roll-dice-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(176, 255, 248, 0.411);
+}
+
+/* Área de Resultado */
+.roll-result-container {
+    grid-area: resultado;
+    width: 100%;
+    min-height: 50px;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    transition: background 0.5s ease;
+}
+
+.roll-result {
+    font-size: 2em;
+    font-weight: bold;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    text-shadow: 0 0 10px #fff;
+}
+
+/* Container que engloba a barra e o texto */
+.health-bar-wrapper {
+    grid-area: vida-barra;
+    width: 100%;
+    text-align: center;
+    /* Aumentei a margem para separar do resultado da rolagem */
+    margin-top: 20px; 
+    border: 2px solid rgba(156, 240, 255, 0.5); /* Adicionei uma borda para decorar */
+    border-radius: 10px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    padding: 10px;
+}
+
+/* O contêiner da barra de vida (a parte "vazia") */
+.health-bar-total {
+    width: 100%;
+    height: 40px; /* Aumentei a altura para dar mais destaque */
+    background-color: #333;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #777;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    position: relative;
+    /* Adicionei um brilho pulsante sutil */
    
+}
+
+.bar-title{
+    color: #cdeefc;
+    padding: 15px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* A parte "cheia" da barra de vida */
+.health-bar-fill {
+    height: 100%;
+    /* Substitui o gradiente de cor por uma imagem de fundo */
+    background: url('/imagens/fundo_rubi.jpg') no-repeat center center;
+    background-size: cover; /* Garante que a imagem cubra a área */
+    transition: width 0.5s ease-in-out;
+    border-right: 2px solid #000;
+}
+/* O texto com o valor da vida */
+.health-bar-total span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Usei o mesmo gradiente do seu título para o texto */
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-size: 1.4em; /* Aumentei o tamanho da fonte */
+    z-index: 2;
+}
+
+.health-input-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:auto;
-    flex-direction: column; /* Para alinhar verticalmente */
-  }
-  
-  #botaoEvento:hover {
-    background-color: #8f08fd;
-  }
-  
-  #resultadoEvento {
-    font-size: 1rem;
-    font-weight: bold;
+    gap: 10px;
     margin-top: 10px;
-    color: #93ddff; /* Azul claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }
-  #botaoItem {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-  
-  
-  
-  #botaoItem:hover {
-    background-color: #8f08fd;
-  }
-  
-  #resultadoItem {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }
-  
-  #botaoSorte {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-  #resultadoSorte {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }
-  #botaoPersonalidade {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-  
-  
-  #botaoPersonalidade:hover {
-    background-color: #8f08fd;
-  }
-  
-  #resultadoPersonalidade {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff;
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
-  #botaoEventoIlha {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-  #botaoEventoIlha:hover {
-    background-color: #8f08fd;
-  }
-  
-  #resultadoEventoIlha {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }
-  #botaoItemDrop {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color:  #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-    0 0 10px #fc32c9,
-    0 0 20px #fa1ddc,
-    0 0 30px #cf3acf;
-  }
-  
-  #botaoItemDrop:hover {
-    background-color: #8f08fd;
-  }
-  
-  #resultadoItemDrop {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }  
-  #botaoItemDrop, #botaoGerarOvo {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color: #3f0437; /* Azul Escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow:
-      0 0 10px #fc32c9,
-      0 0 20px #fa1ddc,
-      0 0 30px #cf3acf;
-  }
-  
-  #botaoItemDrop:hover, #botaoGerarOvo:hover {
-    background-color: #8f08fd;
-  }
-  
-  #botaoItemSummon {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color: #290841; /* Roxo escuro */
-    color: #fffaeb; /* Amarelo vibrante */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow: 
-      0 0 10px #ffa500, 
-      0 0 20px #ffc400, 
-      0 0 30px #ffeb3b;
-  }
-  
-  #botaoItemSummon:hover {
-    background-color: #6a0dad; /* Roxo claro */
-  }
-  
-  #resultadoItemSummon {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid  #02d9ff;
-  }
-  #botaoTranstorno {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color: #3f0437; /* Roxo escuro */
-    color: rgb(255, 253, 253);
-    border: 2px solid #bb0303;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow: 
-      0 0 5px #420000,
-      0 0 10px #fa1d1d,
-      0 0 60px #740202;
-  }
-  
-  #botaoTranstorno:hover {
-    background-color: #8f08fd;
-  }
-  #botaoFuncao {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color: #3f0437; /* Roxo escuro */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-shadow: 
-      0 0 10px #fc32c9,
-      0 0 20px #fa1ddc,
-      0 0 30px #cf3acf;
-  }
-  
-  #botaoFuncao:hover {
-    background-color: #8f08fd;
-  }
-  
-  #botaoMinerio {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    background-color: #3f0437; /* Roxo escuro */
-    color: #fffb01;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: 2px solid #fffb01;
-  }
-
-  #botaoMinerio:hover {
-    background-color: #8f08fd;
-  }
-#botaoMinerioLendario{
-  padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    color: #fffb01; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    border: 2px solid #fffb01;
 }
 
-  #botaoMinerioRaro {
-    padding: 10px 15px;
-    margin: 10px 0;
-    font-size: 16px;
-    color: #fffb01; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: none;
+.health-input-container input {
+    width: 80px;
+    padding: 5px;
     border-radius: 5px;
+    border: 1px solid #cdeefc;
+    color: #cdeefc;
+    font-size: 1.5rem;;
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Para navegadores baseados em WebKit (Chrome, Safari, Edge) */
+.health-input-container input::-webkit-outer-spin-button,
+.health-input-container input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Container principal do mecanismo de rolagem de dados */
+.dice-mechanism-container {
+    display: grid;
+    /* Define 4 colunas: ícone, atributo, bônus, resultado */
+    grid-template-columns: auto 1fr 1fr auto;
+    align-items: center;
+    gap: 10px;
+    width: 80%;
+    margin-top: 50px;
+    padding: 10px;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    margin: 0 auto;
+}
+
+/* Estilo para os blocos (atributo, bônus e resultado) */
+.dice-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    color: #cdeefc;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.roll-icon-btn {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* CORRIGIDO: Para um círculo perfeito */
+    background-image: url('/imagens/icon_dado_ark.png');
+    background-size: cover; /* Garante que a imagem cubra toda a área do botão */
+    background-position: center; /* Centraliza a imagem no botão */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    border: 2px solid rgba(229, 251, 255, 0.753);
+    background-color: transparent; /* Garante que não haja cor de fundo sólida */
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
-    border: 2px solid #fffb01;
-  }
+    box-shadow: 0 0 8px rgba(245, 251, 252, 0.781);
+    transition: transform 0.2s;
+}
 
-  #botaoMinerioRaro:hover {
-    background-color: #8f08fd;
-  }
+.roll-icon-btn:hover {
+    transform: scale(1.1);
+}
+/* Estilo do campo de valor do atributo */
+.attribute-value-display {
+    width: 35px; /* Largura reduzida */
+    height: 35px; /* Adicionando altura para um formato mais quadrado */
+    text-align: center;
+    background-color: transparent;
+    color: #cdeefc;
+    border: none;
+    font-size: 1.3em; /* Aumenta o tamanho da fonte */
+    font-weight: bold; /* Deixa o texto em negrito */
+    display: flex; /* Garante que o número fique centralizado */
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+   
+}
 
-  #resultadoMinerioRaro {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
+/* Estilo para o bloco do seletor de atributo */
+.dice-attribute-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(207, 207, 207, 0.5);
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-shadow: 0 0 10px rgba(232, 250, 253, 0.486);
+    color: #cdeefc;
+}
 
-  .resultado {
-    font-size: 1rem;
+/* Estilo para o texto "ATRI" */
+.stat-name {
     font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
-  #resultadoMinerio {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
+    color: #cdeefc;
+}
 
-  .resultado {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
+/* Estilização da lista de atributos (o dropdown) */
+.attribute-select {
+    background-color: transparent;
+    border: none;
+    color: #cdeefc;
+    font-size: 1.3em;
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove o estilo padrão do Chrome */
+    -moz-appearance: none; /* Remove o estilo padrão do Firefox */
+    appearance: none; /* Remove o estilo padrão de outros navegadores */
+}
 
-  #resultadoFuncao {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
-  #resultadoTranstorno {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
-  .resultado {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #93ddff; /* Azul Claro */
-    padding: 10px;
-    background-color: #47042b;
-    border: 2px solid #02d9ff;
-  }
-  .centro-meio{ background: linear-gradient(90deg, #3f1a68, #30093f, #30093f, #3f1a68);
-    border: 2px solid #07eeff;
-    padding:3%;
+/* Estilo para as opções do dropdown */
+.attribute-select option {
+    background-color: #1a1a1a;
+    color: #cdeefc;
+}
+
+/* Container do bloco de bônus, que precisa ser um ponto de referência */
+.dice-bonus-group {
+    position: relative; /* CRUCIAL: Define a posição de referência para o menu */
+    display: flex;
+    max-width: 250px;
+    align-items: center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    padding: 5px 10px;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
+    z-index: 10; /* Eleva o z-index do contêiner para que o menu fique acima de outros elementos */
+}
+
+/* Menu de bônus oculto */
+.bonus-options-menu {
+    position: absolute; /* Permite que o menu flutue sobre os outros elementos */
+    top: 100%;
+    left: 0; /* Alinha o menu com a borda esquerda do contêiner pai */
+    z-index: 100; /* CRUCIAL: Dá ao menu uma prioridade de camada alta */
+    display: flex;
+    flex-direction: column;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.bonus-options-menu.hidden {
+    display: none;
+}
+
+
+.bonus-input {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: #cdeefc;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* Estilo do botão de menu "☰" */
+.menu-button {
+    background: transparent;
+    border: none;
+    color: #cdeefc;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+/* Menu de bônus oculto */
+.bonus-options-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    background: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.bonus-options-menu.hidden {
+    display: none;
+}
+
+.bonus-options-menu button {
+    background: transparent;
+    border: none;
+    color: #cdeefc;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.bonus-options-menu button:hover {
+    background-color: rgba(156, 240, 255, 0.1);
+}
+
+/* Bloco de resultado */
+.roll-result-block {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin:auto;
-    flex-direction: column; /* Para alinhar verticalmente */
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
-  .icone {
-    width: 25px;
-    height: 25px;
-    margin-left: 8px;
-    vertical-align: middle;
-    background-color: #33013073;
-  }
-  /* Responsividade para telas pequenas */
-@media (max-width: 780px) {
-  .icone {
-    width: 20px; /* Ajusta o tamanho para telas menores */
-    height: 20px; /* Ajusta o tamanho para telas menores */
-    margin-left: 5px; /* Ajusta o espaço à esquerda */
-  }
+    text-align: center;
+    padding: 10px;
+    min-width: 60px;
+    background: linear-gradient(rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0.808)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background-size: cover;
+    border: 2px solid rgba(156, 240, 255, 0.5);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.411);
 }
-/* Responsividade para telas pequenas */
-@media (max-width: 780px) {
-  .icone {
-      width: 20px; /* Ajusta o tamanho para telas menores */
-      height: 20px; /* Ajusta o tamanho para telas menores */
-      margin-left: 5px; /* Ajusta o espaço à esquerda */
-  }
-  
-  #botaoEvento, #botaoItem, #botaoSorte, #botaoPersonalidade, 
-  #botaoEventoIlha, #botaoItemDrop, #botaoGerarOvo, #botaoItemSummon, 
-  #botaoTranstorno, #botaoFuncao, #botaoMinerio, #botaoMinerioLendario, 
-  #botaoMinerioRaro {
-      font-size: 14px; /* Ajusta o tamanho da fonte */
-      padding: 8px 12px; /* Ajusta o padding */
-  }
 
-  #resultadoEvento, #resultadoItem, #resultadoSorte, #resultadoPersonalidade, 
-  #resultadoEventoIlha, #resultadoItemDrop, #resultadoItemSummon, 
-  #resultadoTranstorno, #resultadoFuncao, #resultadoMinerio, #resultadoMinerioLendario, 
-  #resultadoMinerioRaro {
-      font-size: 0.9rem; /* Ajusta o tamanho da fonte */
-      padding: 8px;
-  }
+.roll-result {
+    font-size: 2em;
+    font-weight: bold;
+    color: #cdeefc;
+    min-height: 1.5em; /* Garante que o bloco não "pule" quando o texto é adicionado */
 }
-.spawn-button-v2 {
-  background: linear-gradient(45deg, rgba(64, 196, 3, 0.719), #09bd18af,rgba(64, 196, 3, 0.719));
-  color: white;
-  font-size: 1.2rem;
-  padding: 15px 25px;
-  border: none;
-  border-radius: 25px;
+
+/* Paleta de Cores Laranja (Força) */
+.dice-mechanism-container.theme-orange {
+    border-color: rgba(255, 211, 128, 0.836);
+    box-shadow: 0 0 10px rgba(253, 197, 128, 0.4);
+}
+
+.roll-icon-btn.theme-orange {
+    box-shadow: 0 0 8px rgba(253, 196, 127, 0.7);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; /* CORRIGIDO: Para um círculo perfeito */
+    background-image: url('/imagens/icon_dado_dano.png');
+    background-size: cover; /* Garante que a imagem cubra toda a área do botão */
+    background-position: center; /* Centraliza a imagem no botão */
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    border: 2px solid rgba(229, 251, 255, 0.753);
+    background-color: transparent; /* Garante que não haja cor de fundo sólida */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(245, 251, 252, 0.781);
+    transition: transform 0.2s;
+}
+
+.dice-attribute-group.theme-orange,
+.dice-bonus-group.theme-orange,
+.roll-result-block.theme-orange {
+    border-color: rgba(250, 206, 124, 0.5);
+    box-shadow: 0 0 10px rgba(224, 174, 112, 0.4);
+}
+
+.roll-icon-btn.theme-orange {
+    box-shadow: 0 0 8px rgba(255, 182, 93, 0.7);
+}
+.bloco-dano {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  border: 2px solid rgba(156, 240, 255, 0.5);
+  border-radius: 20px;
+  padding: 12px 18px;
+  box-shadow: 0 0 15px rgba(193, 240, 248, 0.4);
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* Ícone circular */
+.icone {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: url("/imagens/icone_rebate.png") no-repeat center/contain;
+  border: 2px solid rgba(193, 240, 248, 0.6);
+  box-shadow: 0 0 12px rgba(193, 240, 248, 0.6);
+  flex-shrink: 0;
   cursor: pointer;
-  margin: 0 auto;
-  transition: all 0.3s ease-in-out;
-  margin-top: 5%;
-  margin-bottom: 5%;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.main-container{
-  text-align: center;
-  margin:0 auto;
-
-
+.icone:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(193, 240, 248, 0.8);
 }
 
-
-.spawn-button-v2:hover {
-  background-color: #996403;
-}
-
-.botão_atalho_v2 {
-  text-decoration: none;
-  color: inherit;
+/* Campos decorados */
+.campo-dado {
+  background: #0d0d0d;
+  color: #e0e0e0;
+  border: 2px solid rgba(156, 240, 255, 0.5);
+  border-radius: 12px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  width: 60%;
   font-weight: bold;
+  box-shadow: 0 0 10px rgba(193, 240, 248, 0.3);
+  transition: all 0.3s ease;
 }
-@media (max-width: 1080px) {
-  /* Ajuste geral para o contêiner principal */
-  .main-container {
-      gap: 15px; /* Reduz o espaçamento entre os elementos */
-      padding: 10px; /* Adiciona margem interna */
+
+.campo-dado:focus {
+  outline: none;
+  border-color: #b6fff3;
+  box-shadow: 0 0 20px rgba(193, 240, 248, 0.6);
+}
+
+/* Resultado */
+.resultado {
+  min-width: 90px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(156, 240, 255, 0.5);
+  background: #111;
+  color: #b6fff3;
+  box-shadow: 0 0 15px rgba(193, 240, 248, 0.4);
+}
+
+/* =============================== */
+/* Responsividade da Área de Defesas */
+/* =============================== */
+
+/* Tablets (até 1024px) */
+@media (max-width: 1024px) {
+  .defense-container {
+    grid-template-columns: 1fr 1.5fr 1fr;
+    gap: 15px;
   }
 
-  /* Botão de gerar região responsivo (versão 2) */
-  .spawn-button-v2 {
-      font-size: 1rem; /* Reduz o tamanho da fonte */
-      padding: 10px 20px; /* Ajusta o espaçamento interno */
-      border-radius: 20px; /* Mantém as bordas arredondadas proporcionais */
+  #resistenciaBlock,
+  #armaduraBlock {
+    padding: 12px;
   }
 
-  /* Estilo do botão de atalho responsivo (versão 2) */
-  .botão_atalho_v2 {
-      font-size: 0.9rem; /* Reduz o tamanho do texto */
-      color: #eae1d8; /* Ajusta a cor para contraste melhor */
+  .resultado {
+    font-size: 1.2rem;
   }
 }
+
+/* Celulares grandes (até 768px) */
+@media (max-width: 768px) {
+  .defense-container {
+    grid-template-areas:
+      "resistencia"
+      "roll-center"
+      "armadura"
+      "vida-barra"
+      "resultado";
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 100%;
+    text-align: center;
+  }
+
+  .roll-center {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .vida-barra {
+    width: 100%;
+  }
+
+  .resultado {
+    font-size: 1.1rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+  .defenses-section {
+    padding: 15px;
+  }
+
+  .defense-container {
+    gap: 10px;
+  }
+
+  #resistenciaBlock,
+  #armaduraBlock {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .roll-center button,
+  .roll-center select,
+  .roll-center input {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .resultado {
+    font-size: 1rem;
+    min-width: auto;
+  }
+}
+
+/* ========================== */
+/* Inputs e Select Responsivos */
+/* ========================== */
+
+/* Telas até 1024px (tablet) */
+@media (max-width: 1024px) {
+  select.campo-dado,
+  input.campo-dado {
+    font-size: 0.95rem;
+    padding: 6px 8px;
+    min-width: 70px;
+  }
+
+  .resultado {
+    font-size: 1rem;
+    padding: 6px 8px;
+  }
+}
+
+/* Telas até 768px (celulares grandes) */
+@media (max-width: 768px) {
+  .bloco-dano {
+    flex-wrap: wrap; /* permite quebrar linha */
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .icone {
+    width: 50px;
+    height: 50px;
+  }
+
+  select.campo-dado,
+  input.campo-dado {
+    flex: 1;
+    min-width: 60px;
+    max-width: 120px;
+    text-align: center;
+  }
+
+  .resultado {
+    min-width: auto;
+    flex: 1;
+    text-align: center;
+  }
+}
+
+/* Telas até 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  .bloco-dano {
+    flex-direction: column; /* vira coluna única */
+    align-items: stretch;
+    padding: 10px;
+  }
+
+  .icone {
+    width: 45px;
+    height: 45px;
+    margin: 0 auto;
+  }
+
+  select.campo-dado,
+  input.campo-dado {
+    width: 100%; /* ocupa largura total */
+    font-size: 0.85rem;
+    padding: 5px 6px;
+  }
+
+  .resultado {
+    font-size: 0.95rem;
+    width: 100%;
+    padding: 6px;
+    margin-top: 5px;
+  }
+}
+
+/* ========= ESTILO BASE ========= */
+.dice-mechanism-container,
+.bloco-dano {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap; /* mantém lado a lado em telas grandes */
+}
+
+.campo-dado,
+.bonus-input,
+.attribute-select,
+.attribute-value-display {
+  flex: 1; /* torna os campos flexíveis */
+  min-width: 60px;
+  max-width: 150px;
+  text-align: center;
+}
+
+/* ========= RESPONSIVIDADE ========= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .dice-mechanism-container,
+  .bloco-dano {
+    gap: 8px;
+  }
+
+  .campo-dado,
+  .bonus-input,
+  .attribute-select,
+  .attribute-value-display {
+    font-size: 0.9rem;
+    max-width: 120px;
+  }
+
+  .roll-icon-btn,
+  .icone {
+    width: 45px;
+    height: 45px;
+  }
+}
+
+/* Celulares grandes */
+@media (max-width: 768px) {
+  .dice-mechanism-container,
+  .bloco-dano {
+    flex-wrap: wrap; /* quebra linha se necessário */
+    justify-content: center;
+  }
+
+  .campo-dado,
+  .bonus-input,
+  .attribute-select,
+  .attribute-value-display {
+    flex: 1 1 40%;
+    max-width: 100px;
+  }
+
+  .resultado,
+  .roll-result-block {
+    flex: 1 1 90%;
+    text-align: center;
+    margin-top: 5px;
+  }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+  .dice-mechanism-container,
+  .bloco-dano {
+    flex-direction: column; /* vira coluna */
+    align-items: stretch;
+  }
+
+  .campo-dado,
+  .bonus-input,
+  .attribute-select,
+  .attribute-value-display {
+    width: 90%; /* ocupa largura total */
+    max-width: none;
+    font-size: 0.85rem;
+    padding: 6px;
+    margin: 0 auto;
+  }
+
+  .roll-icon-btn,
+  .icone {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+  }
+
+  .resultado,
+  .roll-result-block {
+    width: 70%;
+    font-size: 0.95rem;
+    padding: 6px;
+    margin: 0 auto;
+  }
+}
+
+
+
 
   
 

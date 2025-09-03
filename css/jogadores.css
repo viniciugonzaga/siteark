@@ -2433,6 +2433,43 @@ font-size: 1.8em;
     transition: none; /* Desabilita transição para desaparecimento imediato */
 }
 
+/* Container que centraliza o botão */
+.centered-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo do link/botão de ícone */
+.icon-button {
+    width: 60px;
+    height: 60px;
+    border: none;
+    background-color: transparent;
+    background-image: url('/imagens/Icone_logov2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    
+    /* Propriedades para remover a formatação padrão do link */
+    display: inline-block; /* Garante que o link se comporte como um bloco para ter dimensões */
+    text-decoration: none; /* Remove o sublinhado */
+    
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.icon-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.icon-button:active {
+    transform: scale(0.95);
+}
+
 
 
 /* Geral do footer ------------------------------------------------------------------------------*/
