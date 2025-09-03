@@ -1663,7 +1663,7 @@ nav {
 /* Estilo para os blocos laterais (Resistência e Armadura) */
 #resistenciaBlock, #armaduraBlock {
     padding: 15px;
-    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(156, 240, 255, 0.5);
     border-radius: 8px;
@@ -1804,7 +1804,7 @@ nav {
 .health-bar-fill {
     height: 100%;
     /* Substitui o gradiente de cor por uma imagem de fundo */
-    background: url('/imagens/fundo_rubi.jpg') no-repeat center center;
+    background: url('../imagens/fundo_rubi.jpg') no-repeat center center;
     background-size: cover; /* Garante que a imagem cubra a área */
     transition: width 0.5s ease-in-out;
     border-right: 2px solid #000;
@@ -1842,7 +1842,7 @@ nav {
     font-size: 1.5rem;;
     text-align: center;
     padding: 15px;
-    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(156, 240, 255, 0.5);
     border-radius: 8px;
@@ -1871,7 +1871,7 @@ nav {
     width: 80%;
     margin-top: 50px;
     padding: 10px;
-    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(156, 240, 255, 0.5);
     border-radius: 8px;
@@ -1897,7 +1897,7 @@ nav {
     width: 80px;
     height: 80px;
     border-radius: 50%; /* CORRIGIDO: Para um círculo perfeito */
-    background-image: url('/imagens/icon_dado_ark.png');
+    background-image: url('../imagens/icon_dado_ark.png');
     background-size: cover; /* Garante que a imagem cubra toda a área do botão */
     background-position: center; /* Centraliza a imagem no botão */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
@@ -1934,7 +1934,7 @@ nav {
     display: flex;
     align-items: center;
     gap: 5px;
-    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(207, 207, 207, 0.5);
     border-radius: 8px;
@@ -1973,7 +1973,7 @@ nav {
     display: flex;
     max-width: 250px;
     align-items: center;
-    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(156, 240, 255, 0.5);
     border-radius: 8px;
@@ -2063,7 +2063,7 @@ nav {
     text-align: center;
     padding: 10px;
     min-width: 60px;
-    background: linear-gradient(rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0.808)), url('/imagens/fundo_rubi_branco.jpg') no-repeat center center;
+    background: linear-gradient(rgba(0, 0, 0, 0.808), rgba(0, 0, 0, 0.808)), url('../imagens/fundo_rubi_branco.jpg') no-repeat center center;
     background-size: cover;
     border: 2px solid rgba(156, 240, 255, 0.5);
     border-radius: 8px;
@@ -2088,7 +2088,7 @@ nav {
     width: 80px;
     height: 80px;
     border-radius: 50%; /* CORRIGIDO: Para um círculo perfeito */
-    background-image: url('/imagens/icon_dado_dano.png');
+    background-image: url('../imagens/icon_dado_dano.png');
     background-size: cover; /* Garante que a imagem cubra toda a área do botão */
     background-position: center; /* Centraliza a imagem no botão */
     background-repeat: no-repeat; /* Impede que a imagem se repita */
@@ -2128,7 +2128,7 @@ nav {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: url("/imagens/icone_rebate.png") no-repeat center/contain;
+  background: url("../imagens/icone_rebate.png") no-repeat center/contain;
   border: 2px solid rgba(193, 240, 248, 0.6);
   box-shadow: 0 0 12px rgba(193, 240, 248, 0.6);
   flex-shrink: 0;

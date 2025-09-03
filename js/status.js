@@ -64,8 +64,8 @@ function goToPage(page) {
 // ========================
 const RITUALS_STORAGE_KEY = 'selectedRitualPacts';
 const LOCAL_CHARACTER_STORAGE_KEY = 'localCharacterData';
-const STAT_BACKGROUND_IMAGE_NORMAL = '/imagens/fundo_rubi_branco.jpg';
-const STAT_BACKGROUND_IMAGE_ALTERED = '/imagens/fundo_rubi_rosa.jpg';
+const STAT_BACKGROUND_IMAGE_NORMAL = '../imagens/fundo_rubi_branco.jpg';
+const STAT_BACKGROUND_IMAGE_ALTERED = '../imagens/fundo_rubi_rosa.jpg';
 
 // Mapeamento dos atributos para os valores atuais salvos
 const ATTRIBUTE_MAP = {
