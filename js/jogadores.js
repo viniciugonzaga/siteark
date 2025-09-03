@@ -805,7 +805,59 @@ function calculateStats() {
     if (level >= 30) {
         armadura += 1;
     }
+    if (level >= 50) {
+        vida += 30;
+    }
+    if (level >= 65) {
+        determinacaoSanidade += 20;
+    }
+    if (level >= 80) {
+        armadura += 10;
+    }
+    if (level >= 95) {
+        vida += 20;
+        determinacaoSanidade += 20;
+    }
+    if (level >= 99) {
+        armadura += 10;
+    }
+    
+    // Objeto completo com todos os dados do personagem
+    const characterData = {
+        name: name,
+        age: age,
+        level: level,
+        photo: photoSrc,
+        lore: lore,
+        mutation: mutation,
+        class1: class1,
+        class2: class2,
+        combatClass: combatClass,
+        inventory: inventory,
+        attributesBase: attributes,
+        appliedClassBonuses: {
+            class1: { attribute: class1 },
+            class2: { attribute: class2 }
+        },
+        currentLife: vida,
+        currentSanity: determinacaoSanidade,
+        currentArmor: armadura,
+        currentResistencia: resistencia,
+        currentAgi: attributes.agi,
+        currentFor: attributes.for,
+        currentInt: attributes.int,
+        currentSet: attributes.set,
+        currentVig: attributes.vig,
+        actionBonuses: actionBonuses,
+        learnedActionBonuses: learnedActionBonuses,
+        weapons: weapons,
+        rituals: characterRituals,
+    };
 
+    // Salva o objeto completo no localStorage
+    localStorage.setItem('localCharacterData', JSON.stringify(characterData));
+    
+    // Renderiza a ficha HTML (como você já fazia)
     let bonusAcoesHtml = '';
     if (actionBonuses.length > 0) {
         bonusAcoesHtml = `<ul class="stats-list">`;
@@ -865,33 +917,27 @@ function calculateStats() {
         levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 12 slots)`);
     }
     if (level >= 50) {
-        vida += 30;
         levelRewardsList.push(`+30 de Vida (já adicionado ao total)`);
         levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 15 slots) e possibilidade de bônus até +20`);
         inventoryRewardsList.push('Convite da Linhagem de Athenas');
         inventoryRewardsList.push('1 Presente de Evento Global');
     }
     if (level >= 65) {
-        determinacaoSanidade += 20;
         levelRewardsList.push(`+20 de Sanidade (já adicionado ao total de Determinação/Sanidade)`);
         levelRewardsList.push(`+1 Ponto de Atributo adicional (já contabilizado na ficha)`);
         mutationRewardsList.push(`+1 Parte de Mutação (Revivendo Memória)`);
     }
     if (level >= 80) {
-        armadura += 10;
         levelRewardsList.push(`+10 Armadura padrão (já adicionado ao total)`);
         levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 20 slots)`);
         inventoryRewardsList.push('1 Ritual Normal');
         inventoryRewardsList.push('1 Subida de Patente');
     }
     if (level >= 95) {
-        vida += 20;
-        determinacaoSanidade += 20;
         mutationRewardsList.push(`+1 Parte de Mutação (Conversa com o Infinito)`);
         inventoryRewardsList.push('Convite da Linhagem de Athenas');
     }
     if (level >= 99) {
-        armadura += 10;
         levelRewardsList.push(`+10 Armadura padrão (já adicionado ao total)`);
         levelRewardsList.push(`+1 Ponto de Atributo adicional (já contabilizado na ficha)`);
         mutationRewardsList.push(`+1 Parte de Mutação (Último Incentivo Pessoal)`);
@@ -1179,9 +1225,4 @@ document.addEventListener('DOMContentLoaded', () => {
     loadForm();
 });
 
-function saveForm() {
-    // ... (restante da sua lógica de salvamento) ...
-    saveCharacterLocal();
-    // Adicione esta linha para redirecionar após o salvamento
-    window.location.href = 'js/status.js'; 
-}
+
