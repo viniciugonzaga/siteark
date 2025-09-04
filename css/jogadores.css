@@ -2446,7 +2446,7 @@ font-size: 1.8em;
     height: 60px;
     border: none;
     background-color: transparent;
-    background-image: url('/imagens/Icone_logov2.jpg');
+    background-image: url('../imagens/Icone_logov2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

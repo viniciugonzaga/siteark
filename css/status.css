@@ -1069,7 +1069,7 @@ nav {
 
 .level-bar-fill {
     height: 100%;
-    background-image: url('/imagens/fundo_rubi_rosa.jpg'); 
+    background-image: url('../imagens/fundo_rubi_rosa.jpg'); 
     background-size: cover; 
     background-position: center; 
     border-radius: 20px;
@@ -1091,7 +1091,7 @@ nav {
     /* Combina um gradiente escuro sobreposto a uma imagem de fundo */
     background: 
         linear-gradient(rgba(0, 0, 0, 0.692), rgba(0, 0, 0, 0.671)), /* Camada escura de sobreposição */
-        url('/imagens/fundo_rubi_azul.jpg') no-repeat center center; /* Sua imagem de fundo */
+        url('../imagens/fundo_rubi_azul.jpg') no-repeat center center; /* Sua imagem de fundo */
     background-size: cover; /* Garante que a imagem cubra todo o elemento */
     background-color: #1a1a1a; /* Cor de fallback caso a imagem não carregue */
     
@@ -1203,7 +1203,7 @@ nav {
     /* Combina um gradiente semi-transparente com a sua imagem de fundo */
     background: 
         linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), /* Camada escura de sobreposição */
-        url('/imagens/fundo_rubi_branco.jpg') no-repeat center center; /* Sua imagem de fundo */
+        url('../imagens/fundo_rubi_branco.jpg') no-repeat center center; /* Sua imagem de fundo */
     background-size: cover;
     background-color: #1a1a1a; /* Cor de fallback */
 
@@ -2175,267 +2175,381 @@ nav {
   box-shadow: 0 0 15px rgba(193, 240, 248, 0.4);
 }
 
+
 /* =============================== */
-/* Responsividade da Área de Defesas */
+/* RESPONSIVIDADE DE 1080PX → 480PX */
 /* =============================== */
 
-/* Tablets (até 1024px) */
-@media (max-width: 1024px) {
+/* Até 1080px */
+@media (max-width: 1080px) {
+  .ficha-container {
+    max-width: 90%;
+    padding: 25px;
+    gap: 20px;
+  }
+
+  .titulo-ficha {
+    font-size: 2.2em;
+  }
+
+  .character-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  .main-stat{
+    width: 70%;
+  }
+
+  .atributos,
+  .status-secundarios,
+  .adicionar-container {
+    gap: 12px;
+  }
+
   .defense-container {
     grid-template-columns: 1fr 1.5fr 1fr;
     gap: 15px;
   }
+   .defense-container {
+        grid-template-columns: 1fr 1fr; /* Muda para 2 colunas para tablets */
+        grid-template-areas:
+            "roll-center roll-center"
+            "resistencia armadura"
+            "vida-barra vida-barra"
+            "resultado resultado";
+    }
 
-  #resistenciaBlock,
-  #armaduraBlock {
-    padding: 12px;
-  }
+    .dice-mechanism-container {
+        grid-template-columns: 1fr; /* Empilha os elementos em uma única coluna */
+        width: 90%;
+        margin-top: 20px;
+    }
 
-  .resultado {
-    font-size: 1.2rem;
-  }
+    .roll-icon-btn, .dice-attribute-group, .dice-bonus-group {
+        justify-self: center; /* Centraliza cada item na nova coluna */
+        max-width: none;
+    }
+    .bloco-dano{
+        margin: 0 auto;
+        margin-top: 20px;
+        align-items: center;
+    }
+    .icone{
+         margin: 0 auto;
+        align-items: center;
+    }
+    .campo-dado{
+         margin: 0 auto;
+         align-items: center;
+    }
+    
+    .defense-stat-box{
+        width: 80%;
+        margin: 0 auto;
+    }
+
 }
 
-/* Celulares grandes (até 768px) */
-@media (max-width: 768px) {
-  .defense-container {
-    grid-template-areas:
-      "resistencia"
-      "roll-center"
-      "armadura"
-      "vida-barra"
-      "resultado";
-    grid-template-columns: 1fr;
+
+/* Até 900px (telas médias) */
+@media (max-width: 900px) {
+  .main-stats-container {
+    flex-wrap: wrap;
     gap: 15px;
   }
 
-  #resistenciaBlock,
-  #armaduraBlock {
-    width: 100%;
-    text-align: center;
-  }
-
-  .roll-center {
-    width: 100%;
+  .atributos {
+    flex-wrap: wrap;
     justify-content: center;
   }
 
-  .vida-barra {
-    width: 100%;
-  }
-
-  .resultado {
-    font-size: 1.1rem;
-    padding: 8px 12px;
-  }
-}
-
-/* Celulares pequenos (até 480px) */
-@media (max-width: 480px) {
-  .defenses-section {
-    padding: 15px;
+  .atributo-item {
+    flex: 1 1 45%;
   }
 
   .defense-container {
-    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "resistencia"
+      "armadura"
+      "vida-barra"
+      "roll-center"
+      "resultado";
+    justify-items: stretch;
   }
 
   #resistenciaBlock,
   #armaduraBlock {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
-  .roll-center button,
-  .roll-center select,
-  .roll-center input {
-    font-size: 0.9rem;
-    padding: 6px 10px;
-  }
-
-  .resultado {
-    font-size: 1rem;
-    min-width: auto;
-  }
-}
-
-/* ========================== */
-/* Inputs e Select Responsivos */
-/* ========================== */
-
-/* Telas até 1024px (tablet) */
-@media (max-width: 1024px) {
-  select.campo-dado,
-  input.campo-dado {
-    font-size: 0.95rem;
-    padding: 6px 8px;
-    min-width: 70px;
-  }
-
-  .resultado {
-    font-size: 1rem;
-    padding: 6px 8px;
-  }
-}
-
-/* Telas até 768px (celulares grandes) */
-@media (max-width: 768px) {
-  .bloco-dano {
-    flex-wrap: wrap; /* permite quebrar linha */
-    gap: 10px;
-    justify-content: center;
-  }
-
-  .icone {
-    width: 50px;
-    height: 50px;
-  }
-
-  select.campo-dado,
-  input.campo-dado {
-    flex: 1;
-    min-width: 60px;
-    max-width: 120px;
-    text-align: center;
-  }
-
-  .resultado {
-    min-width: auto;
-    flex: 1;
-    text-align: center;
-  }
-}
-
-/* Telas até 480px (celulares pequenos) */
-@media (max-width: 480px) {
-  .bloco-dano {
-    flex-direction: column; /* vira coluna única */
-    align-items: stretch;
-    padding: 10px;
-  }
-
-  .icone {
-    width: 45px;
-    height: 45px;
-    margin: 0 auto;
-  }
-
-  select.campo-dado,
-  input.campo-dado {
-    width: 100%; /* ocupa largura total */
-    font-size: 0.85rem;
-    padding: 5px 6px;
-  }
-
-  .resultado {
-    font-size: 0.95rem;
     width: 100%;
-    padding: 6px;
-    margin-top: 5px;
   }
 }
 
-/* ========= ESTILO BASE ========= */
-.dice-mechanism-container,
-.bloco-dano {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: nowrap; /* mantém lado a lado em telas grandes */
-}
+/* Até 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+  .ficha-container {
+    padding: 15px;
+    gap: 15px;
+  }
 
-.campo-dado,
-.bonus-input,
-.attribute-select,
-.attribute-value-display {
-  flex: 1; /* torna os campos flexíveis */
-  min-width: 60px;
-  max-width: 150px;
-  text-align: center;
-}
+  .titulo-ficha {
+    font-size: 1.8em;
+  }
 
-/* ========= RESPONSIVIDADE ========= */
+  .character-photo {
+    width: 110px;
+    height: 110px;
+  }
 
-/* Tablets */
-@media (max-width: 1024px) {
-  .dice-mechanism-container,
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+
+  .atributo-item {
+    flex: 1 1 100%;
+  }
+
+  .status-secundarios {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .status-item {
+    width: 100%;
+  }
+
+  .adicionar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .adicionar-campos {
+    width: 100%;
+  }
+
+  .dice-mechanism,
   .bloco-dano {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: o auto;
+  }
+}
+
+/* Até 600px (celulares médios) */
+@media (max-width: 600px) {
+  .titulo-ficha {
+    font-size: 1.6em;
+  }
+
+  .character-photo {
+    width: 100px;
+    height: 100px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+
+  .stat-input {
+    width: 65px;
+    height: 35px;
+    font-size: 1.2em;
+  }
+
+  .roll-dice-btn {
+    font-size: 1em;
+    padding: 12px 18px;
+  }
+
+  .roll-result {
+    font-size: 1.5em;
+  }
+}
+
+/* Até 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  .titulo-ficha {
+    font-size: 1.4em;
+  }
+
+  .character-photo {
+    width: 85px;
+    height: 85px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 8px;
   }
 
-  .campo-dado,
-  .bonus-input,
-  .attribute-select,
-  .attribute-value-display {
+  .atributo-item {
+    flex: 1 1 100%;
+    padding: 6px 10px;
+  }
+
+  .status-item {
+    padding: 8px;
     font-size: 0.9rem;
-    max-width: 120px;
   }
 
-  .roll-icon-btn,
-  .icone {
-    width: 45px;
-    height: 45px;
+  .stat-input {
+    width: 55px;
+    height: 32px;
+    font-size: 1.1em;
   }
-}
 
-/* Celulares grandes */
-@media (max-width: 768px) {
-  .dice-mechanism-container,
+  .back-button,
+  .copy-button {
+    font-size: 0.95rem;
+    padding: 8px 15px;
+  }
+
+  .dice-mechanism,
   .bloco-dano {
-    flex-wrap: wrap; /* quebra linha se necessário */
-    justify-content: center;
-  }
-
-  .campo-dado,
-  .bonus-input,
-  .attribute-select,
-  .attribute-value-display {
-    flex: 1 1 40%;
-    max-width: 100px;
-  }
-
-  .resultado,
-  .roll-result-block {
-    flex: 1 1 90%;
-    text-align: center;
-    margin-top: 5px;
-  }
-}
-
-/* Celulares pequenos */
-@media (max-width: 480px) {
-  .dice-mechanism-container,
-  .bloco-dano {
-    flex-direction: column; /* vira coluna */
+    flex-direction: column;
     align-items: stretch;
   }
 
-  .campo-dado,
-  .bonus-input,
-  .attribute-select,
-  .attribute-value-display {
-    width: 90%; /* ocupa largura total */
-    max-width: none;
-    font-size: 0.85rem;
-    padding: 6px;
-    margin: 0 auto;
-  }
-
-  .roll-icon-btn,
-  .icone {
-    width: 40px;
-    height: 40px;
-    margin: 0 auto;
-  }
-
   .resultado,
-  .roll-result-block {
-    width: 70%;
-    font-size: 0.95rem;
-    padding: 6px;
-    margin: 0 auto;
+  .roll-result-container {
+    font-size: 1.3em;
+    padding: 8px;
+  }
+
+}
+/* =============================== */
+/* AJUSTES ESPECÍFICOS DE DEFESAS  */
+/* =============================== */
+
+/* Até 1080px */
+@media (max-width: 1080px) {
+  .defense-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-areas:
+      "vida-barra vida-barra"
+      "resistencia armadura";
+    gap: 12px;
+    justify-items: center;
+  }
+
+  .health-bar-wrapper,
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 80%;
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .health-bar-total {
+    height: 18px;
+  }
+
+  .current-health-input {
+    width: 70px;
+    text-align: center;
   }
 }
+
+/* Até 900px */
+@media (max-width: 900px) {
+  .defense-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "vida-barra"
+      "resistencia"
+      "armadura";
+    gap: 10px;
+  }
+
+  .health-bar-wrapper,
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 70%;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .health-bar-total {
+    height: 16px;
+  }
+}
+
+/* Até 768px */
+@media (max-width: 768px) {
+  .health-bar-wrapper,
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 80%;
+    max-width: 220px;
+    font-size: 0.8rem;
+  }
+
+  .defense-stat-box .defense-value,
+  .stat-input {
+    font-size: 0.95rem;
+  }
+
+  .current-health-input {
+    width: 60px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Até 600px */
+@media (max-width: 600px) {
+  .defense-container {
+    gap: 8px;
+  }
+
+  .health-bar-wrapper,
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 90%;
+    max-width: 200px;
+  }
+
+  .health-bar-total {
+    height: 14px;
+  }
+
+  .defense-stat-box {
+    text-align: center;
+  }
+}
+
+/* Até 480px */
+@media (max-width: 480px) {
+  .defense-container {
+    gap: 6px;
+  }
+
+  .health-bar-wrapper,
+  #resistenciaBlock,
+  #armaduraBlock {
+    width: 95%;
+    max-width: 180px;
+  }
+
+  .health-bar-total {
+    height: 12px;
+  }
+
+  .defense-name {
+    font-size: 0.85rem;
+  }
+
+  .defense-value,
+  .stat-input,
+  .current-health-input {
+    font-size: 0.85rem;
+  }
+}
+
 
 
 
