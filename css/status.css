@@ -2099,6 +2099,17 @@ nav {
     box-shadow: 0 0 8px rgba(245, 251, 252, 0.781);
     transition: transform 0.2s;
 }
+/* Animação de giro dos dados */
+.roll-icon-btn.spin {
+  animation: girarDado 0.8s ease-in-out;
+}
+
+@keyframes girarDado {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(360deg) scale(1.2); }
+  100% { transform: rotate(720deg) scale(1); }
+}
+
 
 .dice-attribute-group.theme-orange,
 .dice-bonus-group.theme-orange,
@@ -2110,6 +2121,8 @@ nav {
 .roll-icon-btn.theme-orange {
     box-shadow: 0 0 8px rgba(255, 182, 93, 0.7);
 }
+
+
 .bloco-dano {
   display: flex;
   align-items: center;
@@ -2550,11 +2563,129 @@ nav {
   }
 }
 
+.event-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.event-block {
+  border: 2px solid rgba(156, 240, 255, 0.5);
+  border-radius: 15px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(193, 240, 248, 0.6);
+}
+
+.event-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 
 
 
+.event-icon {
+  border: 2px solid rgba(156, 240, 255, 0.5);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  box-shadow: 0 0 10px rgba(193, 240, 248, 0.4);
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-  
+.event-icon img {
+  width: 110%;   /* cobre o botão inteiro */
+  height: 110%;  /* cobre o botão inteiro */
+  object-fit: cover;  /* preenche sem deformar */
+  transform: scale(1.05); /* leve zoom */
+  transition: transform 0.3s ease;
+}
+
+.event-icon:hover img {
+  transform: scale(1.15); /* zoom ao passar o mouse */
+}
+
+
+.event-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(193, 240, 248, 0.7);
+}
+
+.event-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  background: linear-gradient(to right, #d6feff, #cecece);
+  background-clip: text;
+  padding: 10px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+}
+
+.event-title .ark-font {
+  font-family: 'Ark', serif; /* a fonte que você já está usando */
+  background: linear-gradient(to right, #d6feff, #cecece);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+   margin: 0 auto;
+   text-align: center;
+   padding: 10px;
+}
+
+.event-response {
+  margin-top: 15px;
+  padding: 15px;
+  border: 1px solid rgba(156, 240, 255, 0.3);
+  border-radius: 10px;
+  margin-top: 55px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  box-shadow: 0 0 10px rgba(193, 240, 248, 0.3);
+   box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+   color: #cdeefc;
+   display: block;
+   margin-top: 30px;
+   margin: 0 auto;
+   text-align: center;
+}
+
+/* Animação de giro */
+.event-icon img.spin {
+  animation: girar 0.8s ease-in-out;
+}
+
+@keyframes girar {
+  0%   { transform: rotate(0deg) scale(1.05); }
+  50%  { transform: rotate(360deg) scale(1.2); }
+  100% { transform: rotate(720deg) scale(1.05); }
+}
+
+
+.event-response p {
+  margin: 0;
+}
+
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */

@@ -524,28 +524,37 @@ function setupDiceRoller(
 
     if (rollButton) {
         rollButton.addEventListener('click', () => {
-            const attributeValue = parseInt(attributeValueDisplay.value);
-            const bonusText = bonusInput.value.trim();
-            const bonusValue = bonusText ? parseInt(bonusText.replace(/\+/g, '')) || 0 : 0;
-            
-            const rolls = [];
-            for (let i = 0; i < attributeValue; i++) {
-                rolls.push(Math.floor(Math.random() * 20) + 1);
-            }
+            // --- animação de giro ---
+            rollButton.classList.remove("spin"); // reseta
+            void rollButton.offsetWidth; // força reflow
+            rollButton.classList.add("spin");
 
-            const bestRoll = rolls.length > 0 ? Math.max(...rolls) : 0;
-            const totalResult = bestRoll + bonusValue;
-            
-            if (rollResult) {
-                rollResult.innerText = totalResult;
-                rollResult.style.opacity = 0;
-                setTimeout(() => {
-                    rollResult.style.opacity = 1;
-                }, 100);
-            }
+            // --- calcula o resultado após 0.8s (tempo do giro) ---
+            setTimeout(() => {
+                const attributeValue = parseInt(attributeValueDisplay.value);
+                const bonusText = bonusInput.value.trim();
+                const bonusValue = bonusText ? parseInt(bonusText.replace(/\+/g, '')) || 0 : 0;
+                
+                const rolls = [];
+                for (let i = 0; i < attributeValue; i++) {
+                    rolls.push(Math.floor(Math.random() * 20) + 1);
+                }
+
+                const bestRoll = rolls.length > 0 ? Math.max(...rolls) : 0;
+                const totalResult = bestRoll + bonusValue;
+                
+                if (rollResult) {
+                    rollResult.innerText = totalResult;
+                    rollResult.style.opacity = 0;
+                    setTimeout(() => {
+                        rollResult.style.opacity = 1;
+                    }, 100);
+                }
+            }, 800); // espera o giro terminar
         });
     }
 }
+
 
 // Chame a função para cada menu de dados
 document.addEventListener('DOMContentLoaded', () => {
@@ -580,6 +589,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 function rolarDados() {
     const tipo = parseInt(document.getElementById("tipoDado").value);
     const qtd = parseInt(document.getElementById("quantidade").value);
@@ -591,3 +601,161 @@ function rolarDados() {
 
     document.getElementById("resultado").textContent = total;
 }
+
+// Banco de dados de eventos
+const eventos = {
+  sobrevivencia: [
+  "Nada acontece",
+  "Você ouve um barulho desconhecido",
+  "Você ouve ou vê algo muito útil",
+  "O chão cai",
+  "Você ouve ou vê algo verdadeiramente útil",
+  "Você encontra um comerciante de alguma área da região",
+  "Você encontra um NPC conhecido ou novo na região",
+  "Você encontra um NPC com vontade de aventura",
+  "Você encontra um NPC útil",
+  "Você encontra um NPC verdadeiramente útil",
+  "A PIOR situação acontece...",
+  "A MELHOR situação acontece...",
+  "Um nevoeiro ou neblina domina a região até a noite",
+  "Um nevoeiro ou neblina domina a região até amanhecer",
+  "Uma onda de calor domina a região",
+  "Uma onda de frio domina a região",
+  "Uma onda climática estacional domina a região nesse dia",
+  "Um item da base é saqueado por alguém ou algo, enquanto em jornada",
+  "Um item valioso da base é saqueado por alguém ou algo, enquanto em jornada",
+  "Um item é encontrado",
+  "Um item valioso é encontrado",
+  "Armas de fogo travam ou ficam com defeito na aventura",
+  "Uma arma do grupo enferruja em jornada",
+  "Uma arma do grupo enferruja na base",
+  "Um caminho de sorte é guiado sobre a missão",
+  "Um rastro de um inimigo fica aparente na região",
+  "Um rastro de uma criatura fica aparente na região",
+  "Um rastro de uma criatura Apex ou maior fica aparente na região",
+  "Um rastro de um tesouro ou templo fica aparente na região",
+  "Um rastro de um 'drop' fica aparente no céu",
+  "Um conjunto de recursos animais fica aparente na região",
+  "Um tipo de minério fica aparente na região",
+  "Um tipo de minério raro fica aparente na região",
+  "Um tipo de joia aparece nas praias próximas",
+  "Um item aparece nas praias próximas",
+  "Um náufrago aparece nas praias próximas",
+  "Um item aparece no meio da floresta mais próxima",
+  "Uma carcaça fica aparente na praia",
+  "Um mega tesouro ou estrutura abandonada é encontrada nas praias mais próximas",
+  "Um mega tesouro ou estrutura abandonada é encontrada nas florestas mais próximas",
+  "Uma carcaça de um inimigo fica aparente na região",
+  "Uma carcaça de um inimigo com itens fica à mostra na região",
+  "Você lembra de momentos bons, recupera +20 de Sanidade",
+  "Você lembra de momentos bons, recupera +30 de Sanidade",
+  "Você lembra de momentos ruins, perde 10 de Sanidade",
+  "Você lembra de momentos ruins, perde 20 de Sanidade",
+  "Você lembra de momentos ruins, perde 30 de Sanidade",
+  "Você não se sente bem e contrai uma doença",
+  "Algo do cenário cai em você",
+  "Você tropeça",
+  "Você tropeça e acha algo escondido no chão",
+  "Você encontra uma carcaça grande",
+  "Você encontra uma carcaça pequena",
+  "Você encontra uma carcaça média",
+  "Você encontra uma carcaça de Apex Predador velho ou morto",
+  "Os Deuses não gostaram de você hoje, jogue um dado de efeito",
+  "O Deus Ancião não gostou das suas ações hoje, sua mutação é bloqueada temporariamente.",
+  "O Deus Ancião gostou das suas ações hoje, se for diabólico, recebe +2 dados de dano contra humanos.",
+  "Os Deuses gostaram das suas ações hoje, se tiver religião, ganha +5 em um bônus por 1 dia.",
+  "Você se sente com muita fome, a ilha sabe que todos são animais",
+  "Você sente sede",
+  "Você reflete sobre um cenário em sua mente e ganha uma dica da narrativa.",
+  "Você se sente motivado hoje, recebe mais cargas de mutação (1d4)",
+  "Você encontra um animal do bioma de sua escolha",
+  "Você encontra uma criatura pequena, do bioma",
+  "Você encontra um casal pequeno com filhotes do bioma",
+  "Você encontra um filhote pequeno indefeso do bioma",
+  "Você encontra um animal médio, do bioma",
+  "Você encontra um casal médio, com filhotes do bioma",
+  "Você encontra um filhote médio indefeso do bioma",
+  "Você encontra animais maldosos médios ou pequenos te espreitando",
+  "Você encontra um animal grande ou Apex do bioma",
+  "Você encontra um casal grande ou Apex do bioma, com filhotes",
+  "Você encontra um filhote maldoso grande ou Apex sozinho do bioma",
+  "Você encontra um filhote grande ou Apex indefeso do bioma",
+  "Sua mente é abalada com um encontro de um APEX Predador",
+  "Seu corpo reage contra uma emboscada de um APEX Predador",
+  "Vocês são salvos de algum problema por uma manada de herbívoros",
+  "Vocês são salvos de um Apex Predador por surgir uma manada APEX de herbívoros",
+  "Uma manada surge com filhotes bonzinhos ao lado da base",
+  "Desculpe, mas um chefe encontrou vocês..."
+],
+
+    efeito: [
+  "Buff do dia, acorda estimulado, +5 em algo",
+  "Buff do dia, acorda estimulado, +1 dado em algo",
+  "Buff do dia, acorda estimulado, +1 dado de dano",
+  "Buff do dia, acorda estimulado, Mana infinita",
+  "Buff do dia, acorda estimulado, causa +2 dados de dano em sangramento ou em peste",
+  "Nerf do dia, acorda preguiçoso, -5 no bônus mais usável",
+  "Nerf do dia, acorda amedrontado, -5 de sanidade sempre que errar",
+  "Nerf do dia, acorda defeituoso, -1 dado em vigor e força",
+  "Nerf do dia, dor de cabeça, -1 dado de inteligência e sabedoria",
+  "Condição, se for mulher, acorda com sangramento, 1d12 de dano de sangramento",
+  "Condição, se for homem, acorda distraído, fica marcado a sessão toda",
+  "Condição, sortudo, dobro de rolagens em dados de itens, minérios e drops",
+  "Condição, destroçado, sobreviveu a um combate intenso, -5 em ações no resto do dia",
+  "Condição, protagonista, se sente o especial, fica marcado a sessão toda",
+  "Condição, doente, acorda ou fica fraco no resto do dia, recebe 2d6 de dano de peste",
+  "Condição, calorento, não consegue usar armaduras sem superaquecer ou cheirar mal no resto do dia",
+  "Condição, friento, não consegue ficar sem roupas grossas sem ficar lento, -1 de agilidade",
+  "Condição, com fé, pode usar religião em bônus adicionais de testes",
+  "Condição, sem fé, é proibido o uso de bônus em equipe durante a sessão",
+  "Condição, caçado pelo Lobo, ele está te observando, infelizmente você está exposto no resto da sessão"
+    ],
+
+    minerio: [
+  "Pedra",
+  "Sílex",
+  "Carvão",
+  "Cristal",
+  "Sal",
+  "Âmbar",
+  "Cobre",
+  "Ferro",
+  "Enxofre",
+  "Bronze"
+    ],
+
+    regional: [
+      "Uma tempestade incomum se aproxima",
+      "Um vulcão local entra em atividade",
+      "Um grupo de nativos aparece na região",
+      "Você descobre ruínas antigas",
+      "Um animal lendário surge próximo",
+      "O terreno muda abruptamente",
+      "Um fenômeno natural raro ocorre"
+    ]
+};
+
+// Seleciona todos os blocos
+document.querySelectorAll(".event-block").forEach(block => {
+  const eventKey = block.dataset.event; // pega a chave do evento
+  const button = block.querySelector(".event-icon");
+  const img = button.querySelector("img");
+  const responseBox = block.querySelector(".event-response");
+  const responseText = block.querySelector(".response-text");
+
+  button.addEventListener("click", () => {
+    // --- animação de giro ---
+    img.classList.remove("spin"); // reseta a animação
+    void img.offsetWidth; // força reflow pra permitir reanimar
+    img.classList.add("spin");
+
+    // --- sorteia evento ---
+    const lista = eventos[eventKey];
+    const resultado = lista[Math.floor(Math.random() * lista.length)];
+
+    // Mostra a resposta
+    responseText.textContent = resultado;
+    responseBox.classList.add("show");
+  });
+});
+
