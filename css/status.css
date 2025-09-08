@@ -2568,7 +2568,7 @@ nav {
   flex-direction: column;
   gap: 25px;
   width: 100%;
-  max-width: 400px;
+  max-width: 440px;
   margin: 0 auto;
 }
 
@@ -2651,7 +2651,8 @@ nav {
   text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
    margin: 0 auto;
    text-align: center;
-   padding: 10px;
+    font-size: 1.1em;
+    padding-left: 10px;
 }
 
 .event-response {

@@ -688,7 +688,7 @@ const eventos = {
   "Desculpe, mas um chefe encontrou vocês..."
 ],
 
-    efeito: [
+  efeito: [
   "Buff do dia, acorda estimulado, +5 em algo",
   "Buff do dia, acorda estimulado, +1 dado em algo",
   "Buff do dia, acorda estimulado, +1 dado de dano",
@@ -708,31 +708,63 @@ const eventos = {
   "Condição, friento, não consegue ficar sem roupas grossas sem ficar lento, -1 de agilidade",
   "Condição, com fé, pode usar religião em bônus adicionais de testes",
   "Condição, sem fé, é proibido o uso de bônus em equipe durante a sessão",
-  "Condição, caçado pelo Lobo, ele está te observando, infelizmente você está exposto no resto da sessão"
-    ],
+  "Condição, caçado pelo Lobo, ele está te observando, infelizmente você está exposto no resto da sessão",
+  "Condição, tímido, durante a sessão começa qualquer combate com o efeito Furtivo",
+  "Condição, Diabólico, se sente solitário e raivoso à noite, se tornando diabólico durante a sessão",
+  "Condição, Distorção de mutação, suas mutações possuem chance de evoluir (1d2)",
+  "Condição, Alimentado, se sente satisfeito e não precisa comer durante o dia na sessão",
+  "Condição, Apaixonado, se sente unido e depende de um jogador, ganhando +5 em uma ação em conjunto com ele",
+  "Condição, Amigo dos animais, se sente confortável com dinossauros e tem chance de ser ignorado (1d2) por predadores na cena",
+  "Condição, Bondade, cura 30 pontos de vida",
+  "Condição, Reflexivo, recupera 30 pontos de sanidade"
+],
 
     minerio: [
-  "Pedra",
-  "Sílex",
-  "Carvão",
-  "Cristal",
-  "Sal",
-  "Âmbar",
-  "Cobre",
-  "Ferro",
-  "Enxofre",
-  "Bronze"
+  "Você encontra lascas de Pedra (1d4)",
+  "Você encontra lascas de Sílex (1d4)",
+  "Você encontra lascas de Carvão (1d4)",
+  "Você encontra lascas de Cristal (1d4)",
+  "Você encontra um Depósito de Sal (1d4)",
+  "Você encontra um pedaço de Âmbar (1d4)",
+  "Você encontra lascas de Cobre (1d4)",
+  "Você encontra lascas de Ferro (1d4)",
+  "Você encontra minério de Enxofre (1d4)",
+  "Você encontra lascas de Bronze (1d4)"
     ],
 
-    regional: [
-      "Uma tempestade incomum se aproxima",
-      "Um vulcão local entra em atividade",
-      "Um grupo de nativos aparece na região",
-      "Você descobre ruínas antigas",
-      "Um animal lendário surge próximo",
-      "O terreno muda abruptamente",
-      "Um fenômeno natural raro ocorre"
-    ]
+    raros: [
+    "Você encontra lascas de Titânio (1d4)",
+    "Você encontra lascas de Prata (1d4)",
+    "Você encontra lascas de Ouro (1d4)",
+    "Você encontra lascas de Chumbo (1d4)",
+    "Você encontra lascas de Lítio (1d4)",
+    "Você encontra minério de Urânio (1d4)",
+    "Você encontra lascas de Platina (1d4)",
+    "Você encontra pedaços de Obsidiana (1d4)"
+    ],
+
+    epicos: [
+    "Você encontra um Lendário Diamante(1d4)",
+    "Você encontra uma Lendária Magnetita(1d4)",
+    "Você encontra um Lendário Netherite(1d4)",
+    "Você encontra um Lendário Elemento(1d4)",
+    "Você encontra uma Lendária Cianita(1d4)",
+    "Você encontra um Lendário Módulo de Minério(1d4)"
+    ],
+
+      joias: [
+    "Você encontra uma Jóia de Sáfira",
+    "Você encontra uma Jóia de Esmeralda",
+    "Você encontra uma Jóia de Rubi",
+    "Você encontra uma Jóia de Redstone",
+    "Você encontra uma Jóia de Diamante",
+    "Você encontra uma Jóia de Elemento",
+    "Você encontra uma Jóia de Cristal da Caveira",
+    "Você encontra uma Jóia de Cristal do Inferno",
+    "Você encontra uma Jóia do Véu",
+    ],
+    
+   
 };
 
 // Seleciona todos os blocos
