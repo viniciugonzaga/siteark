@@ -148,6 +148,7 @@ clearRollsButton.addEventListener('click', () => {
     icon: "../imagens/icon_forte.png",
     descricao: "O corpo ou mente do alvo é envolto por uma energia amplificadora ligada à sua origem. Ganha vantagens relacionadas à sua classe, linhagem ou condição especial. O efeito dura até que o tempo da habilidade acabe ou a fonte da vantagem se dissipe."
   },
+  
   {
     nome: "Enfraquecido",
     dano: "Normal",

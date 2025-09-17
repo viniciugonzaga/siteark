@@ -729,6 +729,93 @@
     </tr>
 </table>
 
+<table id="radiante" class="tabela hidden">
+    <tr>
+        <th>Armas Radiantes</th>
+        <th>Dano</th>
+        <th>CT</th>
+        <th>Críticos</th>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-radiante-espada')">Espada da luz</td>
+        <td>6d10+25</td>
+        <td>18</td>
+        <td>+4D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-radiante-espada-longa')">Espada da Caveira</td>
+        <td>6d10+25</td>
+        <td>19</td>
+        <td>+10D6</td>
+    </tr>
+    <tr>
+        <td class="arma" onclick="openModal('modal-radiante-claymore')">Espada do Véu</td>
+        <td>6d10+25</td>
+        <td>17</td>
+        <td>+3D6</td>
+    </tr>
+      <tr>
+    <td class="arma" onclick="openModal('modal-radiante-lanca')">Lança Estelar</td>
+    <td>6d12+30</td>
+    <td>18</td>
+    <td>+6D6</td>
+  </tr>
+  <tr>
+    <td class="arma" onclick="openModal('modal-radiante-machado')">Machado do Inferno</td>
+    <td>7d10+20</td>
+    <td>20</td>
+    <td>+4D8</td>
+  </tr>
+  <tr>
+    <td class="arma" onclick="openModal('modal-radiante-arco')">Arco da Tormenta</td>
+    <td>5d12+25</td>
+    <td>19</td>
+    <td>+5D6</td>
+  </tr>
+   <tr>
+    <td class="arma" onclick="openModal('modal-bobo-escarlate')">Espada do Bobo Escarlate — Mil Caras</td>
+    <td>10d10+30</td>
+    <td>18</td>
+    <td>+2D8</td>
+  </tr>
+   <tr>
+    <td class="arma" onclick="openModal('modal-escarlate-revolver')">Revolver Escarlate — Sangue do Carrasco</td>
+    <td>6d10+18</td>
+    <td>18</td>
+    <td>+2D12</td>
+  </tr>
+  <tr>
+    <td class="arma" onclick="openModal('modal-escarlate-canhao')">Canhão Escarlate — Coração Estilhaçado</td>
+    <td>10d12+25</td>
+    <td>20</td>
+    <td>+3D12</td>
+  </tr>
+  <tr>
+    <td class="arma" onclick="openModal('modal-escarlate-pistola')">Pistola Escarlate — Grito Carmesim</td>
+    <td>4d12+14</td>
+    <td>18</td>
+    <td>+2D8</td>
+  </tr>
+  <tr>
+    <td class="arma" onclick="openModal('modal-escarlate-escopeta')">Escopeta Escarlate — Carniceira de Ossos</td>
+    <td>6d12+22</td>
+    <td>19</td>
+    <td>+3D6</td>
+  </tr>
+   <tr><td class="arma" onclick="openModal('modal-adaga-escarlate')">Adaga Escarlate — Sedenta do Traidor</td><td>4d12+15</td><td>19</td><td>+3d8</td></tr>
+   <tr><td class="arma" onclick="openModal('modal-machado-eclipse')">Machado do Eclipse</td><td>8d12+28</td><td>19</td><td>+4d10</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-lanca-vento')">Lança do Vento Cortante</td><td>6d10+20</td><td>18</td><td>+3d8</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-martelo-trovao')">Martelo do Trovão</td><td>10d8+25</td><td>17</td><td>+4d8</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-arco-lua')">Arco da Lua Sangrenta</td><td>5d12+18</td><td>18</td><td>+2d10</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-foice-colheita')">Foice da Colheita Negra</td><td>9d10+22</td><td>19</td><td>+5d8</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-espada-solar')">Espada Solar</td><td>7d12+26</td><td>18</td><td>+3d12</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-cajado-profundezas')">Cajado das Profundezas</td><td>4d12+20</td><td>19</td><td>+2d10</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-adaga-sombria')">Adaga Sombria</td><td>3d12+15</td><td>20</td><td>+4d6</td></tr>
+</table>
+
+
+
+
 
 
 
@@ -1944,6 +2031,286 @@
         <button class="add-btn">Adicionar à Ficha</button>
     </div>
 </div>
+
+
+
+<!-- Espada Radiante -->
+<div id="modal-radiante-espada" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-espada')">&times;</span>
+        <h2>Espada de Luz</h2>
+        <p><b>Dano:</b> 6d10+25</p>
+        <p><b>Crítico:</b> CT 18 / +4D6</p>
+        <p><b>Passiva Base:</b> <b>Instinto de Guerreiro</b> – Você causa +1D de dano e o efeito Sangrando em Feras ou animais.</p>
+        <p><b>Passiva Radiante:</b> <b>Luz Purificadora</b> – Causar dano contra inimigos Profanos ou seres diabólicos, com uma maldade encarnada em seus atos durante a cena, aumenta seu potencial de ataque para +3D de dano. Além de sempre que acertar um alvo em um turno, pode remover uma penalidade de si mesmo. Portar a arma, ganha o bônus de +5 em religião, além de poder iluminar o ambiente com uma luz celestial de sua fé.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<!-- Espada Longa Radiante -->
+<div id="modal-radiante-espada-longa" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-espada-longa')">&times;</span>
+        <h2>Espada da Caveira</h2>
+        <p><b>Dano:</b> 6d10+25</p>
+        <p><b>Crítico:</b> CT 19 / +10D6</p>
+        <p><b>Passiva Base:</b> <b>Corte Preciso</b> – Em acertos críticos, causa +2D6 de dano adicional.</p>
+        <p><b>Passiva Radiante:</b> <b>Instinto da Caveira</b> – Quando está espada é usada, a cena se torna diabólica, causar dano a inimgios com a espada, aplica o efeito Abalado, além de poder executar um ataque cruel uma vez por turno contra inimigos abalados, somando os pontos de dano, junto aos pontos de esforço gastos com a sanidade. Caso chegue a beira da loucura ou em 20 de sanidade o portador ganha +20 de armadura e pontos de vida.</p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<!-- Claymore Radiante -->
+<div id="modal-radiante-claymore" class="effects-modal">
+    <div class="effects-modal-content">
+        <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-claymore')">&times;</span>
+        <h2>Espada do Véu</h2>
+        <p><b>Dano:</b> 6d10+25</p>
+        <p><b>Crítico:</b> CT 17 / +3D6</p>
+       <p><b>Passiva Base:</b> <b>Instinto de Guerreiro do Véu</b> – Você causa +1D de dano e ganha um Buff de +5 em acertos em Criaturas com jóias, possuem alguma origem ligada ao fogo.</p>
+        <p><b>Passiva Radiante:</b> <b>Fluxo do Véu</b> –Causar dano em inimigos que possuem alguma chama, caso elimine a origem do fogo, ganha mais um ataque para poder executar durante o turno. Além de quanto mais impulso e força do ar contribuir nos ataques da cena, o dano é convertido para 1d8, cada estoque de dano equivale uma chama apagada, ritual de vento executado na cena, presença de tempestade ou clima pesado, entre outros elementos simbólicos ao vento. O portador da espada é imune a desvatagens de lentidão ou penalidades vindas pelo ar ou uso do vento. </p>
+        <button class="add-btn">Adicionar à Ficha</button>
+    </div>
+</div>
+
+<!-- Lança Estelar -->
+<div id="modal-radiante-lanca" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-lanca')">&times;</span>
+    <h2>Lança Estelar</h2>
+    <p><b>Dano:</b> 6d12+30</p>
+    <p><b>Crítico:</b> CT 18 / +6D6</p>
+    <p><b>Passiva Base:</b> <b>Impacto Celestial</b> – Em ataques à distância, você adiciona +1D8 de dano extra.</p>
+    <p><b>Passiva Radiante:</b> <b>Astros em Colisão</b> – Sempre que acertar um inimigo, você marca o alvo com uma "estrela cadente". A cada 3 marcas, uma explosão de energia cósmica causa +8D8 de dano verdadeiro em uma área de 3-6 metros. Além disso, o portador da lança ganha visão perfeita em ambientes escuros.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Machado do Inferno -->
+<div id="modal-radiante-machado" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-machado')">&times;</span>
+    <h2>Machado do Inferno</h2>
+    <p><b>Dano:</b> 7d10+20</p>
+    <p><b>Crítico:</b> CT 20 / +4D8</p>
+    <p><b>Passiva Base:</b> <b>Fúria Ardente</b> – Todo acerto crítico causa o dano inteiro em origem de dano de fogo.</p>
+    <p><b>Passiva Radiante:</b> <b>Inferno Vivo</b> – Ao eliminar um inimigo, o corpo incendeia e explode, causando +6D6 de dano em área. Durante combates em ambientes flamejantes, o portador recebe +15 em Armadura por corpo incendiado ou aspectos quenets do ambiente, lim(5). O machado também pode atear chamas a qualquer objeto inflamável com um simples toque, causando o efeito queimando de 3d6 de fogo por 1d4 de rodadas. além disso o portador pode usar um ritual simples de fogo.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Arco da Tempestade -->
+<div id="modal-radiante-arco" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-radiante-arco')">&times;</span>
+    <h2>Arco da Tormenta</h2>
+    <p><b>Dano:</b> 5d12+25</p>
+    <p><b>Crítico:</b> CT 19 / +5D6</p>
+    <p><b>Passiva Base:</b> <b>Rajada Elétrica</b> – Seus disparos causam +2D4 de dano elétrico adicional, acumulando dano elétrico em dados contra um alvo.</p>
+    <p><b>Passiva Radiante:</b> <b>Olho do Furacão</b> – A cada acerto, uma carga elétrica se acumula no alvo. A cada 3 acertos consecutivos, um relâmpago cai sobre ele, causando +8D6 de dano elétrico. Durante tempestades, o arco não precisa de flechas físicas: ele cria projéteis de energia elétrica, além de fornecer +5 em pontaria.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Espada do Bobo Escarlate (Mil Caras) -->
+<div id="modal-bobo-escarlate" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-bobo-escarlate')">&times;</span>
+    <h2>Espada do Bobo Escarlate (Mil Caras)</h2>
+    <p><b>Dano:</b> 10d10+30</p>
+    <p><b>Crítico:</b> CT 18 / +2D8</p>
+    <p><b>Passiva Base:</b> <b>Guerreiro da Espada</b> – Possui uma taxa de letalidade maior, causando +1D de dano contra inimigos com armaduras quebradas.</p>
+    <p><b>Passiva Radiante:</b> <b>Mil Caras</b> – Sempre que acertar um crítico em inimigos sangrando, concede +3d12 de dano adicional de sangramento e aplica <b>Abalado</b> por 1d4 rodadas.  
+    Pode ser reconstruída instantaneamente na mão do portador ao custo de 1d12 de vida.  
+    Todo o dano de sangramento causado pela espada cura o portador em 50% do valor.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Adaga Escarlate -->
+<div id="modal-adaga-escarlate" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-adaga-escarlate')">&times;</span>
+    <h2>Adaga Aproveitadora Escarlate</h2>
+    <p><b>Dano:</b> 6d8+15</p>
+    <p><b>Crítico:</b> CT 19 / +3D6</p>
+    <p><b>Passiva Base:</b> <b>Sede de Sangue</b> – Causa +1D de dano adicional contra inimigos que já estejam sangrando.</p>
+    <p><b>Passiva Radiante:</b> <b>Dreno Escarlate</b> – Cada vez que causa dano em inimigos com penalidades acumuladas (sangramento, abalado, atordoado, etc.), o portador recupera 1d12 pontos de vida por penalidade ativa no alvo. Se o inimigo morrer sob efeito dessas penalidades, o portador ganha um bônus temporário de +5 em ataques até o fim da cena.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 1. Machado do Eclipse -->
+<div id="modal-machado-eclipse" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-machado-eclipse')">&times;</span>
+    <h2>Machado do Eclipse</h2>
+    <p><b>Dano:</b> 8d12+28</p>
+    <p><b>Crítico:</b> CT 19 / +4d10</p>
+    <p><b>Passiva Base:</b> <b>Força das Sombras</b> – Golpes críticos em inimigos cegos ou em ambientes de penumbra causam +1D de dano.</p>
+    <p><b>Passiva Lendária:</b> <b>Crepúsculo</b> – Ao atingir 0 PV, o portador pode sacrificar 20 pontos de sanidade para continuar lutando por 1d4 rodadas adicionais.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 2. Lança do Vento Cortante -->
+<div id="modal-lanca-vento" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-lanca-vento')">&times;</span>
+    <h2>Lança do Vento Cortante</h2>
+    <p><b>Dano:</b> 6d10+20</p>
+    <p><b>Crítico:</b> CT 18 / +3d8</p>
+    <p><b>Passiva Base:</b> <b>Agilidade do Ar</b> – O portador recebe +4 em esquiva.</p>
+    <p><b>Passiva Lendária:</b> <b>Rajada Mortal</b> – Sempre que elimina um inimigo, pode realizar imediatamente um ataque adicional contra outro alvo a até 6m.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 3. Martelo do Trovão -->
+<div id="modal-martelo-trovao" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-martelo-trovao')">&times;</span>
+    <h2>Martelo do Trovão</h2>
+    <p><b>Dano:</b> 10d8+25</p>
+    <p><b>Crítico:</b> CT 17 / +4d8</p>
+    <p><b>Passiva Base:</b> <b>Impacto Atordoante</b> – Críticos atordoam inimigos por 1 rodada.</p>
+    <p><b>Passiva Lendária:</b> <b>Fúria da Tempestade</b> – Uma vez por cena, pode invocar um raio que causa 6d12 de dano em área (6m).</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 4. Arco da Lua Sangrenta -->
+<div id="modal-arco-lua" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-arco-lua')">&times;</span>
+    <h2>Arco da Lua Sangrenta</h2>
+    <p><b>Dano:</b> 5d12+18</p>
+    <p><b>Crítico:</b> CT 18 / +2d10</p>
+    <p><b>Passiva Base:</b> <b>Olhos da Noite</b> – Recebe +5 em testes de percepção noturna.</p>
+    <p><b>Passiva Lendária:</b> <b>Luar Carmesim</b> – Flechas que acertam inimigos sangrando causam +3d12 de dano adicional.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 5. Foice da Colheita Negra -->
+<div id="modal-foice-colheita" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-foice-colheita')">&times;</span>
+    <h2>Foice da Colheita Negra</h2>
+    <p><b>Dano:</b> 9d10+22</p>
+    <p><b>Crítico:</b> CT 19 / +5d8</p>
+    <p><b>Passiva Base:</b> <b>Lâmina Farta</b> – Inimigos mortos pela foice têm suas almas seladas ou drenadas.</p>
+    <p><b>Passiva Lendária:</b> <b>Colheita de Almas</b> – Cada alma colhida concede +1 em todos os atributos até o fim da cena (máx. +5).</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 6. Espada Solar -->
+<div id="modal-espada-solar" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-espada-solar')">&times;</span>
+    <h2>Espada Solar</h2>
+    <p><b>Dano:</b> 7d12+26</p>
+    <p><b>Crítico:</b> CT 18 / +3d12</p>
+    <p><b>Passiva Base:</b> <b>Chama Brilhante</b> – A espada emite luz intensa em 6m.</p>
+    <p><b>Passiva Lendária:</b> <b>Sol Interior</b> – O portador é imune a efeitos de medo e fogo, e causa +2d12 contra mortos-vivos.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 7. Cajado das Profundezas -->
+<div id="modal-cajado-profundezas" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-cajado-profundezas')">&times;</span>
+    <h2>Cajado das Profundezas</h2>
+    <p><b>Dano:</b> 4d12+20</p>
+    <p><b>Crítico:</b> CT 19 / +2d10</p>
+    <p><b>Passiva Base:</b> <b>Sabedoria Abissal</b> – O portador ganha +5 em rituais de Água.</p>
+    <p><b>Passiva Lendária:</b> <b>Abyssus</b> – Pode conjurar uma vez por cena um “Vórtice Abissal”, que prende inimigos em um raio de 4m por 1d3 rodadas, além de causar uma mordida simulada pela água, de um leviatã conhecido pelo Portador.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 8. Adaga Sombria -->
+<div id="modal-adaga-sombria" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-adaga-sombria')">&times;</span>
+    <h2>Adaga Sombria</h2>
+    <p><b>Dano:</b> 3d12+15</p>
+    <p><b>Crítico:</b> CT 20 / +4d6</p>
+    <p><b>Passiva Base:</b> <b>Passos Silenciosos</b> – +5 em furtividade quando empunhada.</p>
+    <p><b>Passiva Lendária:</b> <b>Sombras Vivas</b> – Pode se teletransportar instantaneamente até 4m entre sombras.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Modal: Revolver Escarlate – Sangue do Carrasco -->
+<div id="modal-escarlate-revolver" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-escarlate-revolver')">&times;</span>
+    <h2>Revolver Escarlate — Sangue do Carrasco</h2>
+    <p><b>Dano:</b> 6d10+18</p>
+    <p><b>Crítico:</b> CT 18 / +2D12</p>
+
+    <p><b>Passiva Base:</b> <b>Juramento Sangrento</b> – Cada tiro exige que o portador inflija um corte em si mesmo, perdendo 1d4 PV (custo imediato) para alimentar a arma. Esse sacrifício é parte do juramento que mantém a arma sedenta de sangue.</p>
+
+    <p><b>Passiva Escarlate:</b> <b>Golpe Final</b> – 1x por cena, o portador pode consumir todo o sangue perdido naquela cena (PV perdidos enquanto empunha a arma) e converter esse total em dano adicional único contra um alvo (multiplicador: PV perdidos × 1d6). O uso deixa o portador exausto — sofre -2 em todas as defesas por 1d4 rodadas.</p>
+
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Modal: Canhão Escarlate – Coração Estilhaçado -->
+<div id="modal-escarlate-canhao" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-escarlate-canhao')">&times;</span>
+    <h2>Canhão Escarlate — Coração Estilhaçado</h2>
+    <p><b>Dano:</b> 10d12+25</p>
+    <p><b>Crítico:</b> CT 20 / +3D12</p>
+
+    <p><b>Passiva Base:</b> <b>Peso Inumano</b> – Após cada disparo, o portador fica de joelhos e perde 1 turno para recompor-se (o recuo e o peso exigem estabilização). Uso em movimento impõe penalidade adicional em esquiva até o próximo turno.</p>
+
+    <p><b>Passiva Escarlate:</b> <b>Colapso Carmesim</b> – 1x por combate, o disparo cria uma implosão no ponto de impacto: puxa inimigos num raio de 5m para o centro e causa dano extra de 4d12; o portador sofre 2d10 PV de custo imediato devido à carga explosiva e ao retorno da arma.</p>
+
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Modal: Pistola Escarlate – Grito Carmesim -->
+<div id="modal-escarlate-pistola" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-escarlate-pistola')">&times;</span>
+    <h2>Pistola Escarlate — Grito Carmesim</h2>
+    <p><b>Dano:</b> 4d12+14</p>
+    <p><b>Crítico:</b> CT 18 / +2D8</p>
+
+    <p><b>Passiva Base:</b> <b>Sangue Gasto</b> – Ao disparar, o portador perde 2 PV (custo imediato). A pistola converte o sangue derramado em ferocidade do disparo.</p>
+
+    <p><b>Passiva Escarlate:</b> <b>Grito Mortal</b> – 1x por cena, ao usar este modo a pistola dispara um tiro ensurdecedor: causa +5d12 de dano (alvo único ou em pequeno cone à curta distância) e aplica -10 em percepção a todos no raio de 5m por 1d2 rodadas. O portador também fica com -5 em concentração por 1 rodada.</p>
+
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Modal: Escopeta Escarlate — Carniceira de Ossos -->
+<div id="modal-escarlate-escopeta" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-escarlate-escopeta')">&times;</span>
+    <h2>Escopeta Escarlate — Carniceira de Ossos</h2>
+    <p><b>Dano:</b> 6d12+22</p>
+    <p><b>Crítico:</b> CT 19 / +3D6</p>
+
+    <p><b>Passiva Base:</b> <b>Peso Cruel</b> – Cada disparo empurra o atirador alguns metros para trás (recuo massivo). O jogador deve passar em teste de Força para manter posição; falha implica deslocamento involuntário e penalidade em sua próxima ação de ataque.</p>
+
+    <p><b>Passiva Escarlate:</b> <b>Chuva de Ossos</b> – 1x por combate, ao ativar este modo a escopeta libera uma rajada de fragmentos que atinge todos os inimigos em um cone de 6m à frente (dano aumentado), mas o portador perde 1d8 PV imediatamente pelo custo ritualístico da arma.</p>
+
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+
+
+
 
 
 

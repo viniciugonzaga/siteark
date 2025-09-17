@@ -764,6 +764,7 @@ const eventos = {
     "Você encontra uma Jóia do Véu",
     ],
     
+    
    
 };
 

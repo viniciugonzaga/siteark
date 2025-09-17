@@ -1224,109 +1224,127 @@ nav {
         }
 
         /* Estilo do Modal - Adaptado do seu tema */
-        .effects-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 10, 10, 0.9); /* Tema escuro da sua classe intro-ark */
-            padding-top: 80px;
-            backdrop-filter: blur(12px);
-        }
+.effects-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 10, 10, 0.9); /* Tema escuro da sua classe intro-ark */
+    padding-top: 80px;
+    backdrop-filter: blur(12px);
+}
 
-        .effects-modal-content {
-            background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.95)); /* Fundo gradiente do seu tema */
-            margin: 3% auto;
-            padding: 35px;
-            border: 3px solid rgba(193, 240, 248, 0.3); /* Borda da sua classe intro-ark */
-            width: 80%;
-            max-width: 700px;
-            border-radius: 25px; /* Bordas arredondadas do seu tema */
-            box-shadow: 0 0 20px rgba(193, 240, 248, 0.3); /* Sombra de brilho da sua classe intro-ark */
-            position: relative;
-            animation: fadeInScale 0.7s ease-out;
-            overflow: hidden;
-        }
+.effects-modal-content {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.95)); 
+    margin: 3% auto;
+    padding: 35px;
+    border: 3px solid rgba(193, 240, 248, 0.3);
+    width: 80%;
+    max-width: 700px;
+    max-height: 80vh; /* evita estourar a tela */
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.3);
+    position: relative;
+    animation: fadeInScale 0.7s ease-out;
+    overflow-y: auto; /* scroll interno */
+    font-family: 'Cinzel', serif; /* fonte elegante para títulos/texto */
+}
 
-        .effects-modal-content::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(193, 240, 248, 0.05) 0%, rgba(193, 240, 248, 0) 70%);
-            animation: pulse-aura 15s infinite ease-in-out alternate;
-            z-index: -1;
-        }
+/* Aura animada */
+.effects-modal-content::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(193, 240, 248, 0.05) 0%, rgba(193, 240, 248, 0) 70%);
+    animation: pulse-aura 15s infinite ease-in-out alternate;
+    z-index: -1;
+}
 
-        .effects-modal-content h2 {
-            color: #C1F0F8; /* Cor do título do seu tema */
-            text-align: center;
-            font-size: 2.8rem;
-            letter-spacing: 2px;
-            text-shadow: 0 0 10px rgba(193, 240, 248, 0.4); /* Sombra de texto com brilho */
-            border-bottom: 2px solid rgba(193, 240, 248, 0.2); /* Linha sutil para separar do conteúdo */
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-        }
-        
-        .effects-modal-content p {
-            color: #e0e0e0;
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            text-shadow: 0 0 3px rgba(193, 240, 248, 0.05); /* Sombra de texto sutil */
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        }
+.effects-modal-content h2 {
+    color: #C1F0F8;
+    text-align: center;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(193, 240, 248, 0.4);
+    border-bottom: 2px solid rgba(193, 240, 248, 0.2);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    font-family: 'Cinzel Decorative', serif;
+}
 
-        .effects-modal-content p:hover {
-            color: #f8f8f8;
-            text-shadow: 0 0 10px rgba(193, 240, 248, 0.4);
-        }
+.effects-modal-content p {
+    color: #e0e0e0;
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-shadow: 0 0 3px rgba(193, 240, 248, 0.05);
+    font-family: 'Merriweather', serif;
+}
 
-        .effects-modal-close-button {
-            color: #C1F0F8; /* Cor do tema */
-            float: right;
-            font-size: 45px;
-            font-weight: normal;
-            transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
-            line-height: 1;
-            cursor: pointer;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        }
+/* Passiva base */
+.effects-modal-content p.passiva-base b {
+    color: #C1F0F8;
+    text-shadow: 0 0 8px rgba(193, 240, 248, 0.5);
+    font-weight: 600;
+}
 
-        .effects-modal-close-button:hover,
-        .effects-modal-close-button:focus {
-            color: #A0EEF8;
-            text-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
-            transform: rotate(90deg);
-        }
+/* Passiva mágica radiante */
+.effects-modal-content p.passiva-radiante b {
+    background: linear-gradient(90deg, #4db8ff, #a64dff);
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(128, 90, 255, 0.6);
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
+}
 
-        .add-btn {
-            display: block;
-            margin: 20px auto 0 auto;
-            background: linear-gradient(45deg, rgba(40, 40, 40, 0.98), rgba(50, 50, 50, 0.96));
-            color: #C1F0F8;
-            border: 2px solid rgba(193, 240, 248, 0.5);
-            padding: 12px 24px;
-            border-radius: 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: 0 0 10px rgba(193, 240, 248, 0.3);
-            transition: all 0.3s ease;
-        }
+/* Botão de fechar */
+.effects-modal-close-button {
+    color: #C1F0F8;
+    float: right;
+    font-size: 45px;
+    cursor: pointer;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.2s ease;
+}
 
-        .add-btn:hover {
-            background: linear-gradient(45deg, rgba(50, 50, 50, 0.98), rgba(60, 60, 60, 0.96));
-            border-color: #B1F1FC;
-            box-shadow: 0 0 20px rgba(193, 240, 248, 0.6);
-            transform: translateY(-2px);
-        }
+.effects-modal-close-button:hover,
+.effects-modal-close-button:focus {
+    color: #A0EEF8;
+    text-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+    transform: rotate(90deg);
+}
+
+/* Botão de adicionar */
+.add-btn {
+    display: block;
+    margin: 20px auto 0 auto;
+    background: linear-gradient(45deg, rgba(40, 40, 40, 0.98), rgba(50, 50, 50, 0.96));
+    color: #C1F0F8;
+    border: 2px solid rgba(193, 240, 248, 0.5);
+    padding: 12px 24px;
+    border-radius: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.3);
+    transition: all 0.3s ease;
+    font-family: 'Cinzel', serif;
+}
+
+.add-btn:hover {
+    background: linear-gradient(45deg, rgba(50, 50, 50, 0.98), rgba(60, 60, 60, 0.96));
+    border-color: #B1F1FC;
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.6);
+    transform: translateY(-2px);
+}
+
 
         @keyframes pulse-aura {
             0% { transform: scale(1); opacity: 0.8; }
