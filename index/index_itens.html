@@ -811,6 +811,94 @@
   <tr><td class="arma" onclick="openModal('modal-espada-solar')">Espada Solar</td><td>7d12+26</td><td>18</td><td>+3d12</td></tr>
   <tr><td class="arma" onclick="openModal('modal-cajado-profundezas')">Cajado das Profundezas</td><td>4d12+20</td><td>19</td><td>+2d10</td></tr>
   <tr><td class="arma" onclick="openModal('modal-adaga-sombria')">Adaga Sombria</td><td>3d12+15</td><td>20</td><td>+4d6</td></tr>
+
+  <tr><td class="arma" onclick="openModal('modal-servical-alfanje')">Alfanje do Coração de Fogo</td><td>9d10+22</td><td>18</td><td>+3D8</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-bacamarte')">Bacamarte do Arauto da Chama</td><td>12d8+20</td><td>17</td><td>+4D6</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-escudo')">Escudo do Fogo da Alma</td><td>6d8+15</td><td>19</td><td>+2D6</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-machado')">Machado "Fúria do Vulcão"</td><td>11d12+25</td><td>17</td><td>+4D8</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-adaga')">Adaga "Gume Ígneo"</td><td>5d8+15</td><td>19</td><td>+2D6</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-espada')">Espada Longa "Lamento da Forja"</td><td>10d10+28</td><td>18</td><td>+3D10</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-manoplas')">Manoplas "Punhos Iridescentes"</td><td>8d8+20</td><td>18</td><td>+3D6</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-arco')">Arco do Caçador de Chama</td><td>7d12+18</td><td>18</td><td>+3D6</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-granadas')">Lança-Granadas "Sopro do Dragão"</td><td>14d10+30</td><td>16</td><td>+5D12</td></tr>
+  <tr><td class="arma" onclick="openModal('modal-servical-escopeta')">Escopeta "Vingança do Fogo"</td><td>12d10+25</td><td>17</td><td>+4D6</td></tr>
+   <tr>
+    <td class="arma" onclick="openModal('modal-tridente-infernal')">Tridente Infernal</td>
+    <td>7d12+35</td>
+    <td>18</td>
+    <td>+2D</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-alfanje-vento')">Alfanje do Vento Desatado</td>
+    <td>8d10+25</td>
+    <td>18</td>
+    <td>+3D8</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-pistola-redemoinho')">Pistola Fantasma do Redemoinho</td>
+    <td>7d8+20</td>
+    <td>19</td>
+    <td>+2D6</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-bacamarte-eco')">Bacamarte do Eco Tempestuoso</td>
+    <td>12d8+20</td>
+    <td>17</td>
+    <td>+4D6</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-granada-relampago')">Granada do Relâmpago Caótico</td>
+    <td>10d6+15</td>
+    <td>18</td>
+    <td>+2D10</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-tridente-peso')">Tridente do Peso Fantasma</td>
+    <td>9d10+22</td>
+    <td>19</td>
+    <td>+2D8</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-arco-cacador')">Arco do Caçador dos Ventos</td>
+    <td>7d12+18</td>
+    <td>18</td>
+    <td>+3D6</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-flauta-liberdade')">Flauta da Canção da Liberdade</td>
+    <td>7d10+20</td>
+    <td>20</td>
+    <td>+3D8</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-espadas-tempestade')">Espadas Duplas da Tempestade</td>
+    <td>8d8+20 (cada)</td>
+    <td>18</td>
+    <td>+3D6</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-machado-peso')">Machado de Guerra "Alma do Peso Caótico"</td>
+    <td>11d12+25</td>
+    <td>17</td>
+    <td>+4D8</td>
+  </tr>
+
+  <tr>
+    <td class="arma" onclick="openModal('modal-lampiao-raios')">Lampião do Conjurador de Raios</td>
+    <td>7d10+20 (Mágico)</td>
+    <td>20</td>
+    <td>+3D8</td>
+  </tr>  
+
 </table>
 
 
@@ -2307,6 +2395,281 @@
     <button class="add-btn">Adicionar à Ficha</button>
   </div>
 </div>
+
+<!-- 1. Alfanje do Coração de Fogo -->
+<div id="modal-servical-alfanje" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-alfanje')">&times;</span>
+    <h2> Alfanje do Coração de Fogo</h2>
+    <p><b>Dano:</b> 9d10+22 (Corte)</p>
+    <p><b>Crítico:</b> CT 18 / +3D8</p>
+    <p><b>Passiva Base:</b> <b>Sangue Incandescente</b> – A cada acerto, aplica Queimado. Se o alvo já estiver Queimado, o dano é dobrado da origem de fogo.</p>
+    <p><b>Passiva Fogo:</b> <b>Coração Flamejante</b> – Se o portador estiver com menos de 50% de vida, a lâmina inflige +1d10 de fogo e aplica Marcado. Abater um Marcado concede +10 de Defesa por 1 rodada.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 2. Bacamarte do Arauto da Chama -->
+<div id="modal-servical-bacamarte" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-bacamarte')">&times;</span>
+    <h2> Bacamarte do Arauto da Chama</h2>
+    <p><b>Dano:</b> 12d8+20 (Perfuração)</p>
+    <p><b>Crítico:</b> CT 17 / +4D6</p>
+    <p><b>Passiva Base:</b> <b>Rajada de Cinzas</b> – Disparo em cone, aplicando Queimado a todos os inimigos atingidos.</p>
+    <p><b>Passiva Piromancia:</b> <b>Explosão do Serviçal</b> – Após atingir 3 alvos diferentes, o próximo disparo causa +2d6 de Queimado e aplica Abalado por 1 rodada.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 3. Escudo de Defesa do Fogo da Alma -->
+<div id="modal-servical-escudo" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-escudo')">&times;</span>
+    <h2> Escudo de Defesa do Fogo da Alma</h2>
+    <p><b>Dano:</b> 6d8+15 (Corte/Fogo)</p>
+    <p><b>Crítico:</b> CT 19 / +2D6</p>
+    <p><b>Passiva Base:</b> <b>Barreira de Cinzas</b> – Concede +15 Defesa em posição defensiva. Pode golpear inimigos.</p>
+    <p><b>Passiva Piromancia:</b> <b>Escudo do Brilho</b> – Cada bloqueio cura 2d4 de PV. A cada 3 bloqueios, o escudo incandesce e causa Queimado em inimigos corpo a corpo.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 4. Machado de Guerra "Fúria do Vulcão" -->
+<div id="modal-servical-machado" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-machado')">&times;</span>
+    <h2> Machado de Guerra "Fúria do Vulcão"</h2>
+    <p><b>Dano:</b> 11d12+25 (Corte)</p>
+    <p><b>Crítico:</b> CT 17 / +4D8</p>
+    <p><b>Passiva Base:</b> <b>Erupção Flamejante</b> – Críticos causam +2d8 de fogo e aplicam Queimado.</p>
+    <p><b>Passiva Fogo:</b> <b>Núcleo de Lava</b> – Após receber 3 golpes, o próximo ataque causa dano duplo e aplica Exposto. Portador sofre 1d6 de Estresse por rodada enquanto carregado.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 5. Adaga de Fogo "Gume Ígneo" -->
+<div id="modal-servical-adaga" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-adaga')">&times;</span>
+    <h2> Adaga de Fogo "Gume Ígneo"</h2>
+    <p><b>Dano:</b> 5d8+15 (Corte)</p>
+    <p><b>Crítico:</b> CT 19 / +2D6</p>
+    <p><b>Passiva Base:</b> <b>Queimadura Rápida</b> – +10 em Agilidade. Cada acerto aplica Queimado.</p>
+    <p><b>Passiva Fogo:</b> <b>Brasa Oculta</b> – Ataques pelas costas dobram o dano de Queimado.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 6. Espada Longa "Lamento da Forja" -->
+<div id="modal-servical-espada" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-espada')">&times;</span>
+    <h2> Espada Longa "Lamento da Forja"</h2>
+    <p><b>Dano:</b> 10d10+28 (Corte)</p>
+    <p><b>Crítico:</b> CT 18 / +3D10</p>
+    <p><b>Passiva Base:</b> <b>Forja da Chama</b> – Todo acerto causa +1d6 de fogo.</p>
+    <p><b>Passiva Piromancia:</b> <b>Forja do Caos</b> – Ao matar um inimigo, o próximo ataque pode Atordoar.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 7. Manoplas "Punhos Iridescentes" -->
+<div id="modal-servical-manoplas" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-manoplas')">&times;</span>
+    <h2> Manoplas "Punhos Iridescentes"</h2>
+    <p><b>Dano:</b> 8d8+20 (Contusão)</p>
+    <p><b>Crítico:</b> CT 18 / +3D6</p>
+    <p><b>Passiva Base:</b> <b>Fúria do Incêndio</b> – Ataques podem aplicar Queimado.</p>
+    <p><b>Passiva Piromancia:</b> <b>Dança da Chama</b> – Pode gastar ação bônus para ganhar +5 Acerto/Defesa no turno. Sofre 1d4 Estresse no fim do turno.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 8. Arco do Caçador de Chama -->
+<div id="modal-servical-arco" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-arco')">&times;</span>
+    <h2> Arco do Caçador de Chama</h2>
+    <p><b>Dano:</b> 7d12+18 (Perfuração)</p>
+    <p><b>Crítico:</b> CT 18 / +3D6</p>
+    <p><b>Passiva Base:</b> <b>Flecha de Fogo</b> – Cada flecha causa +1d6 de fogo.</p>
+    <p><b>Passiva Fogo:</b> <b>Chama Eterna</b> – Cada acerto aumenta +1d6 de fogo no próximo (até 3x). A cada 3 acertos em 1 alvo, a flecha explode causando Queimado em área.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 9. Lança-Granadas "Sopro do Dragão" -->
+<div id="modal-servical-granadas" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-granadas')">&times;</span>
+    <h2> Lança-Granadas "Sopro do Dragão"</h2>
+    <p><b>Dano:</b> 14d10+30 (Explosão)</p>
+    <p><b>Crítico:</b> CT 16 / +5D12</p>
+    <p><b>Passiva Base:</b> <b>Queimadura Máxima</b> – Dano aumentado contra inimigos Queimados.</p>
+    <p><b>Passiva Piromancia:</b> <b>Rajada do Dragão</b> – Pode carregar o próximo disparo (+5d10 dano, aplica Amedrontado em área). Recebe 1d4 Estresse por rodada até disparar.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 10. Escopeta "Vingança do Fogo" -->
+<div id="modal-servical-escopeta" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-servical-escopeta')">&times;</span>
+    <h2> Escopeta "Vingança do Fogo"</h2>
+    <p><b>Dano:</b> 12d10+25 (Espalhado)</p>
+    <p><b>Crítico:</b> CT 17 / +4D6</p>
+    <p><b>Passiva Base:</b> <b>Alma Flamejante</b> – A cada acerto, inimigos ficam Marcados e sofrem +1d6 dano por rodada.</p>
+    <p><b>Passiva Piromancia:</b> <b>Destruição Vingativa</b> – Se o portador for atingido em combate corpo a corpo, libera onda de calor: aplica Queimado e empurra 2m.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- Tridente Infernal -->
+<div id="modal-tridente-infernal" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-tridente-infernal')">&times;</span>
+    <h2> Tridente Infernal </h2>
+    <p><b>Dano:</b> 7d12+35</p>
+    <p><b>Crítico:</b> CT 18 / +2D</p>
+    <p><b>Passiva Base:</b> <b>Gladiador de Dores</b> – Durante um combate, ao atacar um alvo Atordoado, você pode escolher causar um dano adicional de 1d12 de Sangramento ou aplicar o efeito de Vulnerabilidade, reduzindo as defesas físicas do inimigo em -5.</p>
+    <p><b>Passiva Infernal:</b> Em ambientes com temperatura elevada (como vulcões, desertos ou infernos), o Tridente causa +2d12 de dano adicional. Além disso, a cada 20 pontos de dano causados, a arma gera +2d6 de dano de Fogo, aplicando o efeito Queimado. O portador pode gastar uma ação para conjurar um redemoinho de fogo à sua frente, causando 6d12 de dano de Fogo e aplicando Queimado a todos os inimigos na área de efeito.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 1. Alfanje do Vento Desatado -->
+<div id="modal-alfanje-vento" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-alfanje-vento')">&times;</span>
+    <h2> Alfanje do Vento Desatado </h2>
+    <p><b>Dano:</b> 8d10+25 (Corte)</p>
+    <p><b>Crítico:</b> CT 18 / +3D8</p>
+    <p><b>Passiva Base:</b> <b>Voo Fantasma</b> – O portador pode se tornar parcialmente fantasma por 1 rodada durante a Cena, ganhando +5 em todas as reações e testes de agilidade.</p>
+    <p><b>Passiva Vento:</b> <b>Lâmina do Vendaval</b> – A cada acerto no inimigo, Lim(3), aplica 1d10 de dano de Impacto. Se o portador estiver Voando, o próximo ataque causa +1d12 de dano adicional.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 2. Pistola Fantasma do Redemoinho -->
+<div id="modal-pistola-redemoinho" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-pistola-redemoinho')">&times;</span>
+    <h2> Pistola Fantasma do Redemoinho </h2>
+    <p><b>Dano:</b> 7d8+20 (Perfuração)</p>
+    <p><b>Crítico:</b> CT 19 / +2D6</p>
+    <p><b>Passiva Base:</b> <b>Tiro Etéreo</b> – Projéteis ignoram 1 ponto de atributo da defesa do alvo que foi selecionada.</p>
+    <p><b>Passiva Véu:</b> <b>Olhos do Fantasma</b> – Pode marcar inimigo, deixando-o Abalado por 2 rodadas. Atingi-lo concede +5 de dano e projétil cria redemoinho causando 2d12 de dano de Vento em inimigos próximos.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 3. Bacamarte do Eco Tempestuoso -->
+<div id="modal-bacamarte-eco" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-bacamarte-eco')">&times;</span>
+    <h2> Bacamarte do Eco Tempestuoso </h2>
+    <p><b>Dano:</b> 12d8+20 (Espalhado)</p>
+    <p><b>Crítico:</b> CT 17 / +4D6</p>
+    <p><b>Passiva Base:</b> <b>Sopro do Vento</b> – Tiro em cone que empurra inimigos 2 metros.</p>
+    <p><b>Passiva Eco/Vento:</b> <b>Ressonância Tempestuosa</b> – Disparo ressoa, aplicando Abalado em todos no raio. Durante tempestade, dano +4d8 e inimigos ficam Atordoados 1 rodada.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 4. Granada do Relâmpago Caótico -->
+<div id="modal-granada-relampago" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-granada-relampago')">&times;</span>
+    <h2> Granada do Relâmpago Caótico </h2>
+    <p><b>Dano:</b> 10d6+15 (Área)</p>
+    <p><b>Crítico:</b> CT 18 / +2D10</p>
+    <p><b>Passiva Base:</b> <b>Explosão de Eletricidade</b> – Aplica Vulnerável em todos atingidos.</p>
+    <p><b>Passiva Raio:</b> <b>Descarga Catastrófica</b> – Em tempestades, +2d10 de dano extra. Inimigos Vulneráveis recebem Silenciado, aumentando dano subsequente em 1,5x por 1 rodada.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 5. Tridente do Peso Fantasma -->
+<div id="modal-tridente-peso" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-tridente-peso')">&times;</span>
+    <h2> Tridente do Peso Fantasma </h2>
+    <p><b>Dano:</b> 9d10+22 (Perfuração)</p>
+    <p><b>Crítico:</b> CT 19 / +2D8</p>
+    <p><b>Passiva Base:</b> <b>Peso da Morte</b> – A cada ataque, aplica Enfraquecido.</p>
+    <p><b>Passiva Peso:</b> <b>Ancoragem Espiritual</b> – Pode lançar o tridente para puxar inimigo. Se falhar em teste de Força, alvo fica Imobilizado 1 rodada pelo vento.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 6. Arco do Caçador dos Ventos -->
+<div id="modal-arco-cacador" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-arco-cacador')">&times;</span>
+    <h2> Arco do Caçador dos Ventos </h2>
+    <p><b>Dano:</b> 7d12+18 (Perfuração)</p>
+    <p><b>Crítico:</b> CT 18 / +3D6</p>
+    <p><b>Passiva Base:</b> <b>Voo do Espírito</b> – +5 acerto contra inimigos em movimento.</p>
+    <p><b>Passiva Liberdade:</b> <b>Flecha Eólica</b> – Ao matar inimigo, portador ganha Voando por 1d4 rodadas, acumulativas.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 7. Flauta da Canção da Liberdade -->
+<div id="modal-flauta-liberdade" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-flauta-liberdade')">&times;</span>
+    <h2> Flauta da Canção da Liberdade </h2>
+    <p><b>Dano:</b> 7d10+20 (Vento)</p>
+    <p><b>Crítico:</b> CT 20 / +3D8</p>
+    <p><b>Passiva Base:</b> <b>Melodia Abaladora</b> – Aplica Exposto por 1 rodada pela canção do Véu.</p>
+    <p><b>Passiva Liberdade:</b> <b>Canção dos Céus</b> – Concede efeito Voando por 1d4 rodadas a si mesmo e a 1 aliado. Remove Imobilizado e Enraizado.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 8. Espadas Duplas da Tempestade -->
+<div id="modal-espadas-tempestade" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-espadas-tempestade')">&times;</span>
+    <h2> Espadas Duplas da Tempestade </h2>
+    <p><b>Dano:</b> 8d8+20 (Corte, cada espada)</p>
+    <p><b>Crítico:</b> CT 18 / +3D6</p>
+    <p><b>Passiva Base:</b> <b>Dança dos Raios</b> – A cada acerto, +1d6 de Raio. Se os dois ataques acertarem o mesmo alvo, o dano de Raio é dobrado.</p>
+    <p><b>Passiva Raio:</b> <b>Tempestade Pessoal</b> – Contra-ataque rápido pode Atordoar o inimigo que tenha sofrido um dano de origem elétrica ou esteja com penalidade física. Durante tempestade, portador pode se teleportar após ataque bem-sucedido.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 9. Machado de Guerra "Alma do Peso Caótico" -->
+<div id="modal-machado-peso" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-machado-peso')">&times;</span>
+    <h2> Machado de Guerra "Alma do Peso Caótico" </h2>
+    <p><b>Dano:</b> 11d12+25</p>
+    <p><b>Crítico:</b> CT 17 / +4D8</p>
+    <p><b>Passiva Base:</b> <b>Esmagador de Fantasmas</b> – Ignora passivas de origem de Controle de grupo vindas de impacto. Efeitos dessa origem são reduzidas em 1d2 de rodadas.</p>
+    <p><b>Passiva Peso/Caos:</b> <b>Peso da Existência</b> – A cada 3 ataques, próximo golpe cria um campo de raios concetrados de vento em 12 metros, aliados na área recebem o efeito voando por 1d2 de rodadas. Portador fica Imobilizado por 1 rodada.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+<!-- 10. Lampião do Conjurador de Raios -->
+<div id="modal-lampiao-raios" class="effects-modal">
+  <div class="effects-modal-content">
+    <span class="effects-modal-close-button" onclick="closeModal('modal-lampiao-raios')">&times;</span>
+    <h2> Lampião do Conjurador de Raios </h2>
+    <p><b>Dano:</b> 7d10+20 (Mágico)</p>
+    <p><b>Crítico:</b> CT 20 / +3D8</p>
+    <p><b>Passiva Base:</b> <b>Luz do Véu</b> – Feixe de luz causa dano de Raio e fornece ao portador +5 em conjuração de vento, raio ou origem de peso.</p>
+    <p><b>Passiva Raio/Conjuração:</b> <b>Tempestade de Bolso</b> – Cria pequenas nuvens de tempestade em uma área de 20 Metros, rituais dentro da área ganham +2D de dano elétrico e força de Vento. A área possui a duração até o criador sair de dentro dela ou sofrer o efeito atordoado, estado Morrendo ou silenciado.</p>
+    <button class="add-btn">Adicionar à Ficha</button>
+  </div>
+</div>
+
+
 
 
 
