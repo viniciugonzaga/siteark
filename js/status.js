@@ -743,6 +743,14 @@ const eventos = {
     "Você encontra pedaços de Obsidiana (1d4)"
     ],
 
+     Drop: [
+    "Masterpod", "Criopod com Criatura Aleatória", "Criopod da Caveira", "Criopod dos Raios", "Criopod das Pestes", "Criopod de Fogo", "Criopod Sirência", "Criopod Elemental", "Criopod de Gelo", "Criopod Gamma", "Criopod Maldita", "Criopod Hypo", "Criopod da Morte", "Orbe dos Ceifadores", "Pedaço de Colosso Esquecido", "Arma Lendária de Arena de Colosso", "Arma Radiante aleatória", "Ovo de Dragão", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro Selecional C/H", "Ovo de Dinossauro Apex", "Ovo de Leviatã C/H", "Item Raro de Criatura já Vista", "Amuleto de Invocação de Criatura (Escolha com Cuidado)", "Mochila de Consumivel de Cena", "Descanso de Fogueira no Reino dos Esquecidos", "Um Orbe de Pesadelo Lutável", "Uma Medalhão de Guilda da Caçada", "Um dia da Benção da Ovelha na Ilha da Caveira", "Um Meteorito de Minério épico", "Um Meteorito de Minério Raro-Comum Selecionavel", "Bússola do Caídos", "Fragmento de Coroa Dourada", "Arma com Imprint selecionável de minério", "Pedaço de arma Tek", "Pedaço de item Tek", "Pedaço de sela Tek", "Pedaço de máquina Tek", "Saco de jóias 3x", "Chave de Masmorra", "Chave da caveira", "Isca de leviatã selecionável", "Barril de pólvora", "Pólvora Negra", "Lasca de Casco do Inferno", "Planta Básica aleatória", "Um brasão do Tolo", "Convite Real da família Escarlate", "Chip avançado alienígena", "Chave roxa alienígena", "Chave azul alienígena", "Chave laranja alienígena", "Anotação de alienígena", "Livro de rituais comuns", "Livros de ritual brutal de elemento aleatório", "Baú de itens aleatórios 8x", "A Possibilidade de Criar um Título", "Armadura Ideal de personagem", "Item Ideal de Personagem", 
+    ],
+
+      Traumas: [
+   "Estressado", "Medroso", "Ganancioso", "Paranoico", "Egoísta", "Estresse Pós-Traumático", "Insano", "Desesperado", "Letárgico", "Fanático", "Degenerado", "Obsessivo", "Delirante", "Silencioso", "Detentor", 
+    ],
+
     epicos: [
     "Você encontra um Lendário Diamante(1d4)",
     "Você encontra uma Lendária Magnetita(1d4)",
@@ -777,7 +785,7 @@ const eventos = {
     "Você encontra uma Jóia Solar",
     ],
 
-     Circuitos: [
+Circuitos: [
 "Caixa de Ferramentas",
 "Chip de Alcance",
 "Chip de Eficiência",
@@ -793,10 +801,87 @@ const eventos = {
 "Módulos de Circuito",
 "Sucatas de Engrenagens",
 "Rótulo de Filtro",
-"Compartimento de Chips"
+"Compartimento de Chips",
+"Engrenagens Mecânicas Pesadas",
+"Pistões Hidráulicos",
+"Barril de Pressão / Tanque de Ar",
+"Rotor de Hélice / Turbina",
+"Cabo de Aço Trançado",
+"Molas de Compressão Militar",
+"Célula de Hidrogênio Líquido",
+"Núcleo de Mana Condensada",
+"Fluido de Refrigeração Criogênica",
+"Servo-Motor de Precisão",
+"Scanner de Frequência (Radar / Sonar)",
+"Painel de Interface Holográfica",
+"DNA Sintético Puro",
+"Parafusos Anti-Corrosão",
+"Vidro de Pressão (Cúpula Oceânica)",
+"Placa de Aço Enferrujada",
+"Circuito Alienígena",
+"Bobina de Energia",
+"Cabos Revestidos de Chumbo",
+"Peça de Sucata Espacial",
+"Condutor de Mana-Tek",
+"Núcleo de Reator Danificado",
+"Gel de Combustível Subaquático",
+"Módulo de Decodificação",
+"Fragmento de Satélite Caído",
+"Tampa de Cryo-Core",
+"Metal Compactado Experimental",
+"Um Pedaço Tek quebrado"
+
     ],
 
     
+         Crimes: [
+"Um encontro com um grupo de Bandidos",
+"Um encontro com um bandido",
+"Um encontro com um Meio-humano sendo emboscado",
+"Um encontro com um Ser Diabólico",
+"Um encontro em uma situação de perseguição",
+"Um encontro em uma situação Delicada",
+"Um encontro em uma situação furtiva",
+"Um encontro em uma situação de tráfico de animais",
+"Um encontro com um capanga sozinho",
+"Uma Pista de um possível Caos",
+"Um encontro Brutal com um capanga",
+"Um encontro Brutal com um Grupo de Capangas",
+"Um encontro Brutal com um Chefe de Clã",
+"Uma situação que solicita ajuda",
+"Um encontro com um NPC que tanto espera",
+"Um encontro de Criatura selvagem atacando pessoas",
+"Um interrogatório de um bandido por um motivo",
+"Nada",
+"Nada",
+"Uma briga de bar",
+"Uma briga de Casal intensa",
+"Um roubo em andamento em uma caravana",
+"Um grupo vendendo relíquias roubadas",
+"Um sequestro silencioso em um beco",
+"Um corpo encontrado em circunstâncias misteriosas",
+"Uma emboscada de caçadores de recompensas",
+"Um duelo ilegal acontecendo na rua",
+"Um mercado negro de criaturas exóticas",
+"Um culto realizando um ritual proibido",
+"Um incêndio criminoso consumindo uma vila",
+"Uma gangue cobrando taxas de 'proteção'",
+"Um saque acontecendo após um desastre",
+"Uma criança pedindo ajuda para encontrar alguém",
+"Dois comerciantes brigando por contrabando",
+"Um assassinato testemunhado ao longe",
+"Contrabandistas carregando armas estranhas",
+"Um envenenamento suspeito em uma taverna",
+"Soldados desertores saqueando viajantes",
+"Explosivos plantados em uma estrutura",
+"Um ladrão tentando cortar a bolsa de um aliado",
+"Um julgamento público prestes a acontecer",
+"Uma execução pública prestes a começar",
+"Um animal raro sendo vendido ilegalmente",
+"Uma milícia local interrogando inocentes",
+"Um grupo torturando alguém em um celeiro"
+
+    ],
 
 Item: [
 "Pedra",
@@ -871,13 +956,10 @@ Item: [
 "Criopod com Animal comum",
 "Criopod com Animal de A-M aleatório",
 "Criopod com Animal de N-Z aleatório",
-"Criopod com Animal Médio de Seleção"
+"Criopod com Animal Médio de Seleção",
+"Mapa Rasgado de Explorador",
 ],
 
-
-
-
-    
     
    
 };
@@ -905,4 +987,3 @@ document.querySelectorAll(".event-block").forEach(block => {
     responseBox.classList.add("show");
   });
 });
-
