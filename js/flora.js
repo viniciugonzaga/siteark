@@ -59,16 +59,16 @@ function goToPage(page) {
     window.location.href = page;
 }
 
-// DADOS COMPLETOS DOS BIOMAS DO ARK
+// DADOS COMPLETOS DOS BIOMAS DO ARK - COM MÚLTIPLAS REGIÕES
 const biomas = [
     {
         id: 1,
         nome: "Campos",
         tipo: "comum",
-        regiao: "campos-ouro",
+        regioes: ["campos-ouro", "floresta-pinheiros"], // Agora é um array
         corGlow: "rgba(255, 215, 0, 0.6)",
         corParticula: "rgba(255, 215, 0, 0.4)",
-        imagem: "../imagens/bioma_campos.jpg",
+        imagem: "../imagens/icon_campos.png",
         descricaoCurta: "Vastas extensões de gramíneas douradas sob o sol do Ark",
         descricaoCompleta: "Os Campos são biomas abertos e ensolarados, caracterizados por vastas extensões de gramíneas douradas que ondulam ao vento. São áreas relativamente seguras para sobreviventes iniciantes, com recursos básicos abundantes e criaturas geralmente pacíficas.",
         vegetacao: [
@@ -92,7 +92,7 @@ const biomas = [
         id: 2,
         nome: "Planalto",
         tipo: "comum", 
-        regiao: "condado",
+        regioes: ["condado", "norte-frio"], // Múltiplas regiões
         corGlow: "rgba(139, 69, 19, 0.6)",
         corParticula: "rgba(160, 82, 45, 0.4)",
         imagem: "../imagens/bioma_planalto.jpg",
@@ -119,10 +119,10 @@ const biomas = [
         id: 3,
         nome: "Montanha",
         tipo: "comum",
-        regiao: "norte-frio", 
+        regioes: ["norte-frio"], 
         corGlow: "rgba(192, 192, 192, 0.6)",
         corParticula: "rgba(230, 230, 230, 0.4)",
-        imagem: "../imagens/bioma_montanha.jpg",
+        imagem: "../imagens/icon_montanha.png",
         descricaoCurta: "Picos nevados com recursos raros e criaturas poderosas",
         descricaoCompleta: "As Montanhas são os picos mais altos do Ark, constantemente cobertos de neve e sujeitos a temperaturas extremas. Abrigam os recursos mais valiosos e as criaturas mais perigosas.",
         vegetacao: [
@@ -146,7 +146,7 @@ const biomas = [
         id: 4,
         nome: "Taiga",
         tipo: "comum",
-        regiao: "norte-frio",
+        regioes: ["norte-frio", "bosque-antigo"], // Múltiplas regiões
         corGlow: "rgba(34, 139, 34, 0.6)",
         corParticula: "rgba(50, 205, 50, 0.4)",
         imagem: "../imagens/bioma_taiga.jpg",
@@ -173,10 +173,10 @@ const biomas = [
         id: 5,
         nome: "Pântano",
         tipo: "comum",
-        regiao: "floresta-pinheiros",
+        regioes: ["floresta-pinheiros", "bosque-antigo"], // Múltiplas regiões
         corGlow: "rgba(47, 79, 79, 0.6)",
         corParticula: "rgba(95, 158, 160, 0.4)",
-        imagem: "../imagens/bioma_pantano.jpg",
+        imagem: "../imagens/icon_pantano.png",
         descricaoCurta: "Áreas alagadas com perigos ocultos e recursos únicos",
         descricaoCompleta: "Os Pântanos são áreas úmidas e traiçoeiras, com águas paradas, vegetação densa e criaturas perigosas que se camuflam no ambiente. Um bioma de alto risco e alta recompensa.",
         vegetacao: [
@@ -200,10 +200,10 @@ const biomas = [
         id: 6,
         nome: "Bosque",
         tipo: "comum",
-        regiao: "bosque-antigo",
+        regioes: ["bosque-antigo", "condado"], // Múltiplas regiões
         corGlow: "rgba(85, 107, 47, 0.6)",
         corParticula: "rgba(107, 142, 35, 0.4)",
-        imagem: "../imagens/bioma_bosque.jpg",
+        imagem: "../imagens/icon_bosque.png",
         descricaoCurta: "Florestas mistas com diversidade de vida e recursos",
         descricaoCompleta: "Os Bosques são florestas mistas com grande diversidade de árvores e vida selvagem. Áreas relativamente seguras com boa disponibilidade de recursos básicos e avançados.",
         vegetacao: [
@@ -227,7 +227,7 @@ const biomas = [
         id: 7,
         nome: "Caverna",
         tipo: "comum",
-        regiao: "todas",
+        regioes: ["todas"], // Especial: aparece em todas as regiões
         corGlow: "rgba(75, 0, 130, 0.6)",
         corParticula: "rgba(138, 43, 226, 0.4)",
         imagem: "../imagens/bioma_caverna.jpg",
@@ -254,7 +254,7 @@ const biomas = [
         id: 8,
         nome: "Praia",
         tipo: "comum",
-        regiao: "campos-ouro",
+        regioes: ["campos-ouro", "floresta-pinheiros"], // Múltiplas regiões
         corGlow: "rgba(64, 164, 223, 0.6)",
         corParticula: "rgba(135, 206, 235, 0.4)",
         imagem: "../imagens/bioma_praia.jpg",
@@ -281,7 +281,7 @@ const biomas = [
         id: 9,
         nome: "Floresta Vermelha",
         tipo: "raro",
-        regiao: "floresta-pinheiros",
+        regioes: ["floresta-pinheiros"],
         corGlow: "rgba(178, 34, 34, 0.6)",
         corParticula: "rgba(220, 20, 60, 0.4)",
         imagem: "../imagens/bioma_floresta_vermelha.jpg",
@@ -308,7 +308,7 @@ const biomas = [
         id: 10,
         nome: "Floresta de Cogumelos",
         tipo: "raro",
-        regiao: "bosque-antigo",
+        regioes: ["bosque-antigo", "floresta-pinheiros"], // Múltiplas regiões
         corGlow: "rgba(186, 85, 211, 0.6)",
         corParticula: "rgba(216, 191, 216, 0.4)",
         imagem: "../imagens/bioma_cogumelos.jpg",
@@ -335,7 +335,7 @@ const biomas = [
         id: 11,
         nome: "Floresta Misteriosa",
         tipo: "raro",
-        regiao: "condado",
+        regioes: ["condado", "bosque-antigo"], // Múltiplas regiões
         corGlow: "rgba(47, 79, 79, 0.6)",
         corParticula: "rgba(112, 128, 144, 0.4)",
         imagem: "../imagens/bioma_floresta_misteriosa.jpg",
@@ -362,7 +362,7 @@ const biomas = [
         id: 12,
         nome: "Floresta de Fungos Abissal",
         tipo: "raro",
-        regiao: "cavernas",
+        regioes: ["cavernas"], // Especial: só em cavernas
         corGlow: "rgba(72, 61, 139, 0.6)",
         corParticula: "rgba(106, 90, 205, 0.4)",
         imagem: "../imagens/bioma_fungos_abissal.jpg",
@@ -418,11 +418,16 @@ function inicializarNavegacaoRegioes() {
     });
 }
 
-// FILTRAR BIOMAS POR REGIÃO
+// FILTRAR BIOMAS POR REGIÃO - ATUALIZADO PARA MÚLTIPLAS REGIÕES
 function filtrarBiomasPorRegiao(regiao) {
-    const biomasFiltrados = biomas.filter(bioma => 
-        bioma.regiao === regiao || bioma.regiao === 'todas'
-    );
+    const biomasFiltrados = biomas.filter(bioma => {
+        // Se o bioma tem "todas" nas regiões, aparece em todas
+        if (bioma.regioes.includes('todas')) {
+            return true;
+        }
+        // Caso contrário, verifica se a região atual está no array de regiões do bioma
+        return bioma.regioes.includes(regiao);
+    });
     
     // Atualizar lista de biomas
     const lista = document.getElementById('listaBiomas');
@@ -437,9 +442,11 @@ function filtrarBiomasPorRegiao(regiao) {
         document.getElementById('detalheBioma').classList.remove('ativo');
         biomaAtual = null;
     }
+    
+    console.log(`Filtrados ${biomasFiltrados.length} biomas para a região: ${regiao}`);
 }
 
-// CRIAR ITEM DE BIOMA
+// CRIAR ITEM DE BIOMA - ADICIONANDO INDICAÇÃO DE REGIÕES
 function criarItemBioma(bioma, container) {
     const item = document.createElement('div');
     item.className = `bioma-item ${bioma.tipo}`;
@@ -448,13 +455,18 @@ function criarItemBioma(bioma, container) {
     // Definir variáveis CSS para o bioma
     item.style.setProperty('--bioma-glow', bioma.corGlow);
     item.style.setProperty('--bioma-particula', bioma.corParticula);
-    item.style.backgroundImage = `url('${bioma.imagem}')`;
+    item.style.setProperty('--bioma-imagem', `url('${bioma.imagem}')`);
+    
+    // Criar badge de regiões se o bioma aparecer em mais de uma região
+    const regioesBadge = bioma.regioes.length > 1 ? 
+        `<span class="bioma-regioes-badge">${bioma.regioes.length} regiões</span>` : '';
     
     item.innerHTML = `
         <div class="bioma-particulas" id="particulas-${bioma.id}"></div>
         <div class="bioma-conteudo">
-            <h3 class="bioma-nome">${bioma.nome}</h3>
+            <h3 class="bioma-nome">${bioma.nome} ${bioma.tipo === 'raro' ? '✨' : ''}</h3>
             <p class="bioma-descricao-curta">${bioma.descricaoCurta}</p>
+            ${regioesBadge}
         </div>
     `;
     
@@ -504,7 +516,7 @@ function inicializarListaBiomas() {
     console.log('Lista de biomas criada com sucesso');
 }
 
-// MOSTRAR DETALHES DO BIOMA
+// MOSTRAR DETALHES DO BIOMA - ADICIONANDO INFORMAÇÃO DE REGIÕES
 function mostrarDetalheBioma(id) {
     const bioma = biomas.find(b => b.id === id);
     
@@ -524,6 +536,20 @@ function mostrarDetalheBioma(id) {
     // Definir variáveis CSS para o bioma detalhado
     detalhe.style.setProperty('--bioma-glow', bioma.corGlow);
     detalhe.style.setProperty('--bioma-imagem', `url('${bioma.imagem}')`);
+    
+    // Criar lista de regiões formatada
+    const regioesLista = bioma.regioes.map(regiao => {
+        const nomesRegioes = {
+            'campos-ouro': 'Campos de Ouro',
+            'condado': 'Condado',
+            'norte-frio': 'Norte Frio',
+            'floresta-pinheiros': 'Floresta dos Pinheiros',
+            'bosque-antigo': 'Bosque Antigo',
+            'cavernas': 'Cavernas',
+            'todas': 'Todas as Regiões'
+        };
+        return nomesRegioes[regiao] || regiao;
+    }).join(', ');
     
     detalhe.innerHTML = `
         <h2>${bioma.nome} ${bioma.tipo === 'raro' ? '✨' : ''}</h2>
@@ -550,6 +576,8 @@ function mostrarDetalheBioma(id) {
             <div class="bioma-info-categoria">
                 <h3>🎯 Comportamento</h3>
                 <p>${bioma.comportamento}</p>
+                <h3 style="margin-top: 20px;">📍 Regiões</h3>
+                <p>${regioesLista}</p>
                 <h3 style="margin-top: 20px;">⛏️ Recursos</h3>
                 <ul>
                     ${bioma.recursos.map(item => `<li>${item}</li>`).join('')}
