@@ -1,188 +1,157 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flora</title>
-    <link rel="stylesheet" href="/css/flora.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!--fim da fonte-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
-    <!-- Alternativa para .png -->
-    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Biomas</title>
+  <link rel="stylesheet" href="../css/flora.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
 </head>
 <body>
-  <video autoplay muted loop id="background-video">
-    <source src="imagens/Home_fundo_animado.mp4" type="video/mp4">
-  </video>
-   <!-- Nav-Bar ------------------------------------------------------>
-   <nav>
-    <!-- Logo com Ícone e Texto -->
-    <div class="logo">
-        <img src="imagens/logo v.2.png" alt="Logo"> <!-- Substitua pelo nome da sua imagem -->
+  <div class="starfall"></div>
+
+<nav>
+    <div class="nav-left">
+      <div class="logo">
+        <img src="../imagens/Icone_ark_v4.png" alt="Logo">
         <h1>RPG ARK</h1>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="index.html"><span>Início</span></a>
-      <a href="index_mapas.html"><span>Mapas</span></a>
-      <a href="index_história.html"><span>Lore</span></a>
-      <a href="index_regras.html"><span>Regras</span></a>
-      <a href="index_bloqueado.html"><span>Dinos</span></a>
-      <a href="index_ciencia.html"><span>Ciências</span></a>
+
+    <div class="nav-middle">
+      <div class="nav-links">
+        <a href="../index.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
+        <a href="index_mapas.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
+        <a href="index_história.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
+        <a href="index_regras.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
+      </div>
     </div>
-    <!-- Botão Glow -->
-    <div class="dado-container">
-        <img src="imagens/dado_planta.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+
+    <div class="nav-right">
+      <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+          <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon">
+        </a>
+      </div>
     </div>
-    
+
     <div id="diceMenu" class="menu hidden">
-        <button id="closeMenu">Fechar</button>
-        <h3>Rolar Dados</h3>
-        <label for="playerName">Nome do Jogador:</label>
-        <input type="text" id="playerName" placeholder="Digite o nome do jogador">
-        <label for="diceSelect">Selecione o tipo de dado:</label>
-        <select id="diceSelect">
-            <option value="20">D20</option>
-            <option value="12">D12</option>
-            <option value="10">D10</option>
-            <option value="8">D8</option>
-            <option value="6">D6</option>
-            <option value="4">D4</option>
-            <option value="2">D2</option>
-        </select>
-        <button id="rollDice">Rolar Dados</button>
-        <div id="rolls">
-            <h4>Registro de Rolagens:</h4>
-            <ul id="rollList"></ul>
-            <p id="total">Total: 0</p>
-        </div>
-        <button id="clearRolls">Limpar Registro</button>
+      <button id="closeMenu">Fechar</button>
+      <h3>Rolar Dados</h3>
+      <label for="playerName">Nome do Jogador:</label>
+      <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+      <label for="diceSelect">Selecione o tipo de dado:</label>
+      <select id="diceSelect">
+        <option value="20">D20</option>
+        <option value="12">D12</option>
+        <option value="10">D10</option>
+        <option value="8">D8</option>
+        <option value="6">D6</option>
+        <option value="4">D4</option>
+        <option value="2">D2</option>
+      </select>
+      <button id="rollDice">Rolar Dados</button>
+      <div id="rolls">
+        <h4>Registro de Rolagens:</h4>
+        <ul id="rollList"></ul>
+        <p id="total">Total: 0</p>
+      </div>
+      <button id="clearRolls">Limpar Registro</button>
     </div>
-    
-  </nav>
+</nav>
     <!-- Fim Nav-Bar ------------------------------------------------->
+<main>
+
      <!-- Seção Início -->
-     <div class="titulo_principal">
-        <h1 class="titulo_efeito">Flora</h1>
-    </div>
+        <div class="titulo_principal">
+            <h1 class="titulo_efeito">Biomas</h1>
+        </div>
 
-    <h1 class="Titulo_comentario">"..A Vida Sempre Encontra um Meio.."</h1>
-
-    <div class="container-central2">
-      <h2 class="title3">Surgimento</h2>
-      <div class="img-box-primeiro"></div>
-     
-      
-
-      <p class="text3">Tudo no Ark é envolto em histórias e mistérios. Alguns acreditam que uma criatura antiga plantou as sementes da vida na ilha e ainda se esconde nas profundezas das florestas. Outros dizem que a terra sempre foi assim, desde antes dos primeiros sobreviventes, ou que um mago insano deu origem à vida. Há também quem defenda que a vida simplesmente surgiu e evoluiu por conta própria. As origens permanecem incertas, alimentando lendas e especulações entre os habitantes.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="img-box">
-      <!-- A imagem será definida via CSS -->
-    </div>
-    <div class="text-box">
-      <h2>Inverno</h2>
-      <p>No inverno do Ark, os animais enfrentam grandes desafios para sobreviver. Muitos se escondem em locais protegidos e armazenam comida para atravessar a estação, enquanto outros, com metabolismos adaptados, conseguem viver com tranquilidade. Entretanto, os recursos naturais, como frutos, tornam-se escassos, e a neve cobre o ambiente com uma temperatura média de 9°C e baixos níveis de umidade no ar. Predadores se adaptam para caçar presas adormecidas, enquanto voadores, insetos, herbívoros alfa e répteis tornam-se mais fáceis de domar, especialmente aqueles que não regulam sua temperatura corporal. Os carnívoros saem em busca de comida, enquanto os herbívoros preferem se esconder para sobreviver. </p>
-    </div>
-  </div>
-
-  <div class="container2">
-  
-    <div class="text-box2">
-      <h2>Verão</h2>
-      <p>No verão, a temperatura elevada faz com que as criaturas busquem refúgio próximo a rios e riachos, enquanto os pântanos se tornam áreas extremamente perigosas. Chuvas intensas e imprevisíveis alternam entre secas severas e enchentes que podem alagar grandes regiões. Nessa estação, insetos, répteis, voadores e herbívoros são mais difíceis de domar devido às condições climáticas, enquanto os carnívoros tornam-se mais receptivos à domesticação. Enxames de insetos e carnívoros competem por carcaças, enquanto bandos de herbívoros se juntam para se proteger contra os predadores.</p>
-    </div>
-    <div class="img-box2">
-      <!-- A imagem será definida via CSS -->
-    </div>
-  </div>
-
-  <div class="container3">
-    <div class="img-box3">
-      <!-- A imagem será definida via CSS -->
-    </div>
-    <div class="text-box3">
-      <h2>Outono</h2>
-      <p>No outono do Ark, ventos fortes dominam a estação, enquanto recursos tornam-se escassos e as temperaturas permanecem amenas. Essas condições forçam as criaturas a abandonarem seus habitats habituais em busca de alimento, especialmente os herbívoros, que enfrentam a falta de vegetação ideal. Durante esse período, insetos, herbívoros e criaturas aquáticas sem metabolismo regulado são mais fáceis de domar, enquanto os carnívoros tornam-se mais difíceis de controlar. O comportamento predatório se intensifica, com carnívoros seguindo os herbívoros em suas jornadas por comida.</p>
-    </div>
-  </div>
-
-  <div class="container4">
-  
-    <div class="text-box4">
-      <h2>Primavera</h2>
-      <p>Na primavera, a temperatura começa a subir de maneira amena, criando um ambiente favorável para os herbívoros, que se beneficiam da floração e do aumento de recursos naturais na ilha. A estação marca o aquecimento gradual da ilha, preparando-a para o verão, com cheias repentinas que podem se tornar problemáticas. Nesse cenário, os carnívoros se tornam mais fáceis de domar, enquanto os herbívoros se tornam mais difíceis devido ao aumento da oferta de comida e à maior mobilidade. Os insetos também se tornam mais difíceis de domar, pois saem de seus esconderijos em busca de presas para caçar.</p>
-    </div>
-    <div class="img-box4">
-      <!-- A imagem será definida via CSS -->
-    </div>
-  </div>
-
-  <div class="container-aether">
-    <h2 class="title5">Aethers</h2>
-    <div class="img-box5"></div>
-   
-    <p class="text5">Surtos de Aether são uma estação imprevisível que pode ocorrer durante outras, trazendo uma explosão de energia mágica sobre a ilha. Esse fenômeno faz com que criaturas vagueiem em busca de abates ou carcaças para consumir o Aether acumulado nos corpos. A estação é marcada por temperaturas alternando entre quente e fria em algumas regiões, além de constante chuva e neblina cobrindo toda a ilha. Durante um surto de Aether, todas as criaturas normais tornam-se mais fáceis de domar, enquanto as corrompidas e elementais se tornam extremamente agressivas.</p>
-  </div>
-</div>
-
-<div class="container-cards">
-  <!-- Carta 1 -->
-  <a href="index_flora_aguas.html" class="card" id="card1">
-    <img src="imagens/flora_aguas.webp" alt="Carta 1">
-    <div class="content-card">
-      <p>Biomas das Águas </p>
-    </div>
-  </a>
-
-  <!-- Carta 2 -->
-  <a href="index_flora_terras.html" class="card" id="card2">
-    <img src="imagens/flora_terras.jpg" alt="Carta 2">
-    <div class="content-card">
-      <p>Biomas das Terras</p>
-    </div>
-  </a>
-</div>
-
-      <!--footer----------------------------------------------------------------------------->
-    <footer>
-        <div class="footer-content">
-            
-          <div class="footer-section about">
-            <h2>Sobre o RPG</h2>
-            <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
-          </div>
-          <div class="footer-section links">
-            <h2>Links Úteis</h2>
-            <ul>
-              <li><a href="index_mapas.html">Mapas</a></li>
-              <li><a href="index_tribos.html">Tribos</a></li>
-              <li><a href="index_regras.html">Regras</a></li>
-              <li><a href="index_itens.html">Itens</a></li>
-            </ul>
-          </div>
-          <div class="footer-section social">
-            <h2>Conecte-se</h2>
-            <div class="social-icons">
-              <a href="https://instagram.com/vindinossauro" target="_blank"><img src="imagens/insta_home.png" alt="Instagram"></a>
-              <a href="https://github.com" target="_blank"><img src="imagens/git_home.png" alt="GitHub"></a>
-              <a href="mailto:vinigonzagap@gmail.com"><img src="imagens/gmail_home.png" alt="E-mail"></a>
+            <!-- ÍCONE PRINCIPAL -->
+        <div class="icone-simples">
+            <img src="../imagens/icon_biomas.png" alt="Ícone Biomas ARK" class="icone-principal">
+        </div>
+        
+        <!-- INTRODUÇÃO -->
+        <div class="intro-biomas">
+            <div class="intro-campo">
+                <h3 class="intro-titulo">🌍 Formação dos Biomas</h3>
+                <p class="intro-texto">
+                    Os Biomas são espalhados e formados de acordo com os acontecimentos do ark, durante toda a criação do ark. 
+                    Cada ambiente desenvolveu características únicas, fauna especializada e vegetação adaptada às condições extremas 
+                    desse mundo selvagem e misterioso.
+                </p>
             </div>
-          </div>
         </div>
-        <div class="footer-bottom">
-          <p>RPG Ark: Criado por Vini &copy; 2024</p>
-        </div>
-      </footer>
-      
 
- <!-- Inclui o arquivo de script -->
- <script src="js/flora.js"></script>
+        <!-- NAVEGAÇÃO POR REGIÕES -->
+        <div class="regioes-navegacao">
+            <h3 class="navegacao-titulo">Regiões do Ark</h3>
+            <div class="regioes-lista">
+                <button class="regiao-btn ativo" data-regiao="campos-ouro">Campos de Ouro</button>
+                <button class="regiao-btn" data-regiao="condado">Condado</button>
+                <button class="regiao-btn" data-regiao="norte-frio">Norte Frio</button>
+                <button class="regiao-btn" data-regiao="floresta-pinheiros">Floresta dos Pinheiros</button>
+                <button class="regiao-btn" data-regiao="bosque-antigo">Bosque Antigo</button>
+            </div>
+        </div>
+
+        <!-- LISTA DE BIOMAS -->
+        <div class="biomas-lista" id="listaBiomas">
+            <!-- Biomas serão preenchidos pelo JavaScript -->
+        </div>
+
+        <!-- DETALHES DO BIOMA -->
+        <div class="bioma-detalhado" id="detalheBioma">
+            <!-- Detalhes serão preenchidos pelo JavaScript -->
+        </div>
+    </section>
+
+
+</main>
+<!--footer----------------------------------------------------------------------------->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>Sobre o RPG</h2>
+        <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
+      </div>
+
+      <div class="footer-section links">
+        <h2>Links Úteis</h2>
+        <ul>
+          <li><a href="index_mapas.html">Mapas</a></li>
+          <li><a href="index_tribos.html">Tribos</a></li>
+          <li><a href="index_regras.html">Regras</a></li>
+          <li><a href="index_itens.html">Itens</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section social">
+        <h2>Conecte-se</h2>
+        <div class="social-icons">
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="../imagens/insta_home.png" alt="Instagram"></a>
+          <a href="https://github.com" target="_blank"><img src="../imagens/git_home.png" alt="GitHub"></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="../imagens/gmail_home.png" alt="E-mail"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+    </div>
+  </footer>
+ <!-- JS -->
+<script src="../js/flora.js" defer></script>
+
 </body>
 </html>
