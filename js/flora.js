@@ -65,7 +65,7 @@ const biomas = [
         id: 1,
         nome: "Campos",
         tipo: "comum",
-        regioes: ["campos-ouro", "floresta-pinheiros"], // Agora é um array
+        regioes: ["campos-ouro", "floresta-pinheiros", "condado", "norte-frio"], // Agora é um array
         corGlow: "rgba(255, 215, 0, 0.6)",
         corParticula: "rgba(255, 215, 0, 0.4)",
         imagem: "../imagens/icon_campos.png",
@@ -92,10 +92,10 @@ const biomas = [
         id: 2,
         nome: "Planalto",
         tipo: "comum", 
-        regioes: ["condado", "norte-frio"], // Múltiplas regiões
+        regioes: ["condado", "condado", "bosque-antigo", "norte-frio"], // Múltiplas regiões
         corGlow: "rgba(139, 69, 19, 0.6)",
         corParticula: "rgba(160, 82, 45, 0.4)",
-        imagem: "../imagens/bioma_planalto.jpg",
+        imagem: "../imagens/icon_planicie.png",
         descricaoCurta: "Terras altas com visão estratégica e recursos minerais",
         descricaoCompleta: "Os Planaltos são áreas elevadas com visão privilegiada da paisagem. Caracterizam-se por formações rochosas expostas, ventos constantes e temperaturas mais amenas. Ideais para construções defensivas.",
         vegetacao: [
@@ -119,7 +119,7 @@ const biomas = [
         id: 3,
         nome: "Montanha",
         tipo: "comum",
-        regioes: ["norte-frio"], 
+        regioes: ["norte-frio", "floresta-pinheiros","bosque-antigo", "campos-ouro", "condado"], 
         corGlow: "rgba(192, 192, 192, 0.6)",
         corParticula: "rgba(230, 230, 230, 0.4)",
         imagem: "../imagens/icon_montanha.png",
@@ -146,10 +146,10 @@ const biomas = [
         id: 4,
         nome: "Taiga",
         tipo: "comum",
-        regioes: ["norte-frio", "bosque-antigo"], // Múltiplas regiões
+        regioes: ["condado", "bosque-antigo"], // Múltiplas regiões
         corGlow: "rgba(34, 139, 34, 0.6)",
         corParticula: "rgba(50, 205, 50, 0.4)",
-        imagem: "../imagens/bioma_taiga.jpg",
+        imagem: "../imagens/icon_taiga.png",
         descricaoCurta: "Florestas boreais densas com vida adaptada ao frio",
         descricaoCompleta: "A Taiga é caracterizada por florestas densas de coníferas que se estendem pelas regiões mais frias. Um bioma de transição entre as florestas temperadas e a tundra ártica.",
         vegetacao: [
@@ -173,7 +173,7 @@ const biomas = [
         id: 5,
         nome: "Pântano",
         tipo: "comum",
-        regioes: ["floresta-pinheiros", "bosque-antigo"], // Múltiplas regiões
+        regioes: ["bosque-antigo", "norte-frio"], // Múltiplas regiões
         corGlow: "rgba(47, 79, 79, 0.6)",
         corParticula: "rgba(95, 158, 160, 0.4)",
         imagem: "../imagens/icon_pantano.png",
@@ -200,10 +200,10 @@ const biomas = [
         id: 6,
         nome: "Bosque",
         tipo: "comum",
-        regioes: ["bosque-antigo", "condado"], // Múltiplas regiões
+        regioes: ["bosque-antigo", "campos-ouro", 'floresta-pinheiros', ], // Múltiplas regiões
         corGlow: "rgba(85, 107, 47, 0.6)",
         corParticula: "rgba(107, 142, 35, 0.4)",
-        imagem: "../imagens/icon_bosque.png",
+        imagem: "../imagens/icon_florersta.png",
         descricaoCurta: "Florestas mistas com diversidade de vida e recursos",
         descricaoCompleta: "Os Bosques são florestas mistas com grande diversidade de árvores e vida selvagem. Áreas relativamente seguras com boa disponibilidade de recursos básicos e avançados.",
         vegetacao: [
@@ -257,7 +257,7 @@ const biomas = [
         regioes: ["campos-ouro", "floresta-pinheiros"], // Múltiplas regiões
         corGlow: "rgba(64, 164, 223, 0.6)",
         corParticula: "rgba(135, 206, 235, 0.4)",
-        imagem: "../imagens/bioma_praia.jpg",
+        imagem: "../imagens/icon_praia.png",
         descricaoCurta: "Zonas costeiras com recursos marinhos e criaturas anfíbias",
         descricaoCompleta: "As Praias são as zonas de transição entre a terra e o mar, caracterizadas por areias claras, ondas suaves e uma mistura única de vida terrestre e marinha.",
         vegetacao: [
@@ -464,7 +464,7 @@ function criarItemBioma(bioma, container) {
     item.innerHTML = `
         <div class="bioma-particulas" id="particulas-${bioma.id}"></div>
         <div class="bioma-conteudo">
-            <h3 class="bioma-nome">${bioma.nome} ${bioma.tipo === 'raro' ? '✨' : ''}</h3>
+            <h3 class="bioma-nome">${bioma.nome} ${bioma.tipo === 'raro' ? '' : ''}</h3>
             <p class="bioma-descricao-curta">${bioma.descricaoCurta}</p>
             ${regioesBadge}
         </div>
