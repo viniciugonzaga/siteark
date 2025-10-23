@@ -2028,6 +2028,156 @@ main{
     }
 }
 
+/* ===== ESTILOS PARA OS TÓPICOS COMPORTAMENTO, REGIÕES E RECURSOS ===== */
+
+.bioma-info-categoria h3 {
+    color: var(--bioma-glow);
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    text-shadow: 0 0 10px var(--bioma-glow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    animation: textGlow 2s ease-in-out infinite;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid var(--bioma-glow);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo específico para o parágrafo de Comportamento */
+.bioma-info-categoria p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #e8e8e8;
+    text-align: justify;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border-left: 3px solid var(--bioma-glow);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para o parágrafo de Regiões */
+.bioma-info-categoria p:has(+ h3) {
+    margin-top: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--bioma-glow);
+    box-shadow: 0 0 8px var(--bioma-glow);
+}
+
+/* Estilo para a lista de Recursos */
+.bioma-info-categoria ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bioma-info-categoria li {
+    padding: 10px 0;
+    color: #e8e8e8;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    padding-left: 25px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.bioma-info-categoria li:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    padding-left: 30px;
+}
+
+.bioma-info-categoria li:before {
+    content: '⛏️';
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    font-size: 1em;
+    filter: drop-shadow(0 0 3px var(--bioma-glow));
+}
+
+.bioma-info-categoria li:last-child {
+    border-bottom: none;
+}
+
+/* Estilo específico para o container de Comportamento */
+.bioma-info-categoria:has(p) {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--bioma-glow);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Animação de entrada para os elementos */
+.bioma-info-categoria > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.bioma-info-categoria p {
+    animation-delay: 0.1s;
+}
+
+.bioma-info-categoria ul {
+    animation-delay: 0.2s;
+}
+
+/* Responsividade para os tópicos */
+@media (max-width: 768px) {
+    .bioma-info-categoria h3 {
+        font-size: 1.2rem;
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .bioma-info-categoria p {
+        font-size: 1rem;
+        padding: 12px;
+        text-align: left;
+    }
+    
+    .bioma-info-categoria li {
+        font-size: 0.95rem;
+        padding: 8px 0;
+        padding-left: 22px;
+    }
+    
+    .bioma-info-categoria li:hover {
+        padding-left: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bioma-info-categoria h3 {
+        font-size: 1.1rem;
+    }
+    
+    .bioma-info-categoria p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .bioma-info-categoria li {
+        font-size: 0.9rem;
+    }
+}
+
+
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
 footer {
