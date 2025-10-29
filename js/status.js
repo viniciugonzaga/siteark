@@ -23,6 +23,7 @@ if (openMenuButton && closeMenuButton && menu) {
     });
 }
 
+
 if (rollDiceButton && diceSelect && rollList) {
     rollDiceButton.addEventListener('click', () => {
         const playerName = playerNameInput.value.trim();
@@ -805,6 +806,7 @@ const eventos = {
     "Você encontra lascas de Platina (1d4)",
     "Você encontra pedaços de Obsidiana (1d4)"
     ],
+
 
      Drop: [
     "Masterpod", "Criopod com Criatura Aleatória", "Criopod da Caveira", "Criopod dos Raios", "Criopod das Pestes", "Criopod de Fogo", "Criopod Sirência", "Criopod Elemental", "Criopod de Gelo", "Criopod Gamma", "Criopod Maldita", "Criopod Hypo", "Criopod da Morte", "Orbe dos Ceifadores", "Pedaço de Colosso Esquecido", "Arma Lendária de Arena de Colosso", "Arma Radiante aleatória", "Ovo de Dragão", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro Selecional C/H", "Ovo de Dinossauro Apex", "Ovo de Leviatã C/H", "Item Raro de Criatura já Vista", "Amuleto de Invocação de Criatura (Escolha com Cuidado)", "Mochila de Consumivel de Cena", "Descanso de Fogueira no Reino dos Esquecidos", "Um Orbe de Pesadelo Lutável", "Uma Medalhão de Guilda da Caçada", "Um dia da Benção da Ovelha na Ilha da Caveira", "Um Meteorito de Minério épico", "Um Meteorito de Minério Raro-Comum Selecionavel", "Bússola do Caídos", "Fragmento de Coroa Dourada", "Arma com Imprint selecionável de minério", "Pedaço de arma Tek", "Pedaço de item Tek", "Pedaço de sela Tek", "Pedaço de máquina Tek", "Saco de jóias 3x", "Chave de Masmorra", "Chave da caveira", "Isca de leviatã selecionável", "Barril de pólvora", "Pólvora Negra", "Lasca de Casco do Inferno", "Planta Básica aleatória", "Um brasão do Tolo", "Convite Real da família Escarlate", "Chip avançado alienígena", "Chave roxa alienígena", "Chave azul alienígena", "Chave laranja alienígena", "Anotação de alienígena", "Livro de rituais comuns", "Livros de ritual brutal de elemento aleatório", "Baú de itens aleatórios 8x", "A Possibilidade de Criar um Título", "Armadura Ideal de personagem", "Item Ideal de Personagem", "Rolar Item Raro Aleatório", "Rolar Item Raro Aleatório","Rolar Item Raro Aleatório","Rolar Item Raro Aleatório",

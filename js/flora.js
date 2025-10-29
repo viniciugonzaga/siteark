@@ -333,34 +333,6 @@ const biomas = [
        
     },
     {
-        id: 9,
-        nome: "Deserto Frio",
-        tipo: "raro",
-        regioes: ["norte-frio"],
-        corGlow: "rgba(176, 224, 230, 0.6)",
-        corParticula: "rgba(176, 224, 230, 0.4)",
-        imagem: "../imagens/icon_desert_frio.png",
-        descricaoCurta: "Deserto gelado com dunas congeladas e vida adaptada ao frio extremo",
-        descricaoCompleta: "O Deserto Frio é uma variação paradoxal do deserto tradicional - mantém a aridez característica mas substitui o calor abrasador por um clima glacial implacável. Ventos cortantes carregam cristais de gelo que funcionam como lâminas microscópicas, dunas geladas se movem lentamente sob pressão glacial, e criaturas com pele branca imaculada ou escamas adaptadas ao frio extremo dominam este ambiente enganosamente estéril. A sobrevivência aqui depende mais do calor interno e metabolismo acelerado do que de abrigos externos, pois nenhuma construção convencional pode proteger completamente contra o frio que penetra até a alma. Este bioma ensina que o vazio gelado pode ser tão mortal quanto o calor escaldante - e que a adaptação às condições extremas requer transformações profundas tanto no corpo quanto no espírito.",
-        vegetacao: [
-            "Líquens polares que crescem sobre neve compactada",
-            "Musgos de neve que sobrevivem a temperaturas extremas",
-            "Arbustos anões com mecanismos anticongelantes naturais",
-            "Flores de gelo que cristalizam à noite e desabrocham ao amanhecer",
-            "Fungos termogênicos que geram calor através de reações químicas"
-        ],
-        animais: [
-            "Direwolf Branco - Lobos adaptados com pelagem isolante dupla",
-            "Mammoth de Neve - Herbívoros com presas especializadas para quebrar gelo",
-            "Snow Owl - Corujas que detectam calor corporal a grandes distâncias",
-            "Polar Bear - Ursos que hibernam em tocas de gelo",
-            "Ice Wyvern - Dragões que respiram gelo e criam armadilhas glaciais"
-        ],
-        comportamento: "Criaturas com metabolismos acelerados para gerar calor corporal constante. Comportamentos de conservação de energia através de movimentos lentos e calculados. Estratégias de caça baseadas em emboscadas a partir de tocas na neve ou camuflagem no gelo.",
-        recursos: ["Gelo eterno para refrigeração avançada", "Cristais de gelo com propriedades únicas", "Peles polares de isolamento térmico superior", "Gordura animal para combustível e nutrição", "Minérios preservados no permafrost"]
-
-    },
-    {
         id: 10,
         nome: "Tundra",
         tipo: "raro",
