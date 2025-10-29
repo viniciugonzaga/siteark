@@ -59,7 +59,11 @@ function goToPage(page) {
     window.location.href = page;
 }
 
+
 // DADOS COMPLETOS DOS BIOMAS DO ARK - COM RECURSOS ESPECÍFICOS
+
+// DADOS COMPLETOS DOS BIOMAS DO ARK - COM MÚLTIPLAS REGIÕES
+
 const biomas = [
     {
         id: 1,
@@ -70,7 +74,10 @@ const biomas = [
         corParticula: "rgba(255, 166, 0, 0.49)",
         imagem: "../imagens/icon_campos.png",
         descricaoCurta: "Vastas extensões de savana sob o sol ardente do Ark",
+
         descricaoCompleta: "Os Campos são uma imensa savana dourada que se estende sob o sol inclemente do Ark...",
+
+        descricaoCompleta: "Os Campos são uma imensa savana dourada que se estende sob o sol inclemente do Ark. Esta 'terra de pasto' sustenta numerosos herbívoros que se alimentam da vegetação rasteira e das raízes nutritivas que emergem após as breves chuvas. As presas desenvolveram sofisticados mecanismos de defesa, cavando complexas tocas subterrâneas ou formando grupos de vigilância coordenada. Os predadores, por sua vez, utilizam os rios serpenteantes, lagos sazonais e poças remanescentes no solo ressecado para emboscadas letais ou para seguir cardumes migratórios. A vegetação é rica em fibras naturais, com capim alto ondulando ao vento e arbustos dispersos que pontilham a paisagem - todos sustentados por lençóis freáticos ricos em nutrientes. Rochas erodidas pontilham o terreno, testemunhas silenciosas da proximidade das montanhas e sua influência climática. Nas temporadas de seca intensa, as chamas latentes no solo e a resistência implacável dos animais definem hierarquias de domínio nos Campos.",
         vegetacao: [
             "Gramíneas altas e douradas que ondulam ao vento",
             "Arbustos resistentes de bagas variadas",
@@ -85,12 +92,13 @@ const biomas = [
             "Dodos - Passivos e abundantes, fonte de alimento básico",
             "Pteranodons - Sobrevoo constante, vigilantes das alturas"
         ],
+
         comportamento: "Criaturas geralmente pacíficas durante o dia, com comportamento defensivo coordenado quando ameaçadas...",
         recursos: [
             "Amarberry", "Azulberry", "Mejoberry", "Narcoberry", "Stimberry", "Tintoberry",
             "Semente de Trigo", "Semente de Arroz", "Semente de Soja",
             "Repolho de Pasto", "Raiz Nutriva", "Semente de Capim Alto", "Semente do Outono",
-            "Milho", "Cenoura", "Batata"
+            "Milho", "Cenoura", "Batata",
         ]
     },
     {
@@ -102,7 +110,6 @@ const biomas = [
         corParticula: "rgba(62, 209, 4, 0.49)",
         imagem: "../imagens/icon_planicie.png",
         descricaoCurta: "Terras altas estratégicas com visão panorâmica e recursos minerais",
-        descricaoCompleta: "Elevando-se acima dos campos mais quentes, o Planalto apresenta uma topografia única...",
         vegetacao: [
             "Arbustos resistentes ao vento constante",
             "Gramíneas baixas e duras de crescimento lento",
@@ -117,12 +124,14 @@ const biomas = [
             "Ovis - Ovelhas pacíficas de lã valiosa",
             "Pulmonoscorpius - Escorpiões agressivos com veneno paralisante"
         ],
+
         comportamento: "Animais adaptados a condições mais rigorosas de vento e temperatura...",
         recursos: [
             "Amarberry", "Azulberry", "Mejoberry", "Narcoberry",
             "Fruto do Arbusto Ventoso", "Musgo da Rocha", "Flor do Vento", "Erva da alma",
             "Maçã", "Cereja"
         ]
+
     },
     {
         id: 3,
@@ -133,7 +142,7 @@ const biomas = [
         corParticula: "rgba(230, 230, 230, 0.76)",
         imagem: "../imagens/icon_montanha.png",
         descricaoCurta: "Picos imponentes com recursos raros e criaturas dominantes",
-        descricaoCompleta: "As Montanhas são o domínio supremo dos perigos extremos e das riquezas incomparáveis...",
+        descricaoCompleta: "As Montanhas são o domínio supremo dos perigos extremos e das riquezas incomparáveis. Rochas imensas esculpidas pelo tempo criam acentuados desníveis, penhascos vertiginosos e cumes que alternam entre neves eternas e superfícies rochosas expostas. Estes gigantes de pedra aguardam exploradores audazes que ousem desafiar suas alturas. Nos picos mais escarpados e inacessíveis, criaturas voadoras fazem seus ninhos entre as fendas das pedras, aproveitando a vantagem estratégica das alturas para detectar presas a quilômetros de distância. Os predadores terrestres adaptaram-se evolutivamente para saltar de rocha em rocha com agilidade surpreendente, ou para emboscar incautos a partir de platôs ocultos. As Montanhas são também depósitos naturais de minério puro - veios ricos que atraem mineradores ambiciosos. Antigos templos esquecidos ou monumentos de civilizações perdidas somam camadas de mistério às galerias naturais esculpidas na rocha viva. Escalar, explorar e sobreviver aqui exige equipamentos especializados, resistência sobre-humana e atenção constante às mudanças bruscas de clima e aos inimigos que se ocultam em cada sombra. É um bioma onde quem domina o terreno, domina literalmente a altura - e com ela, todo o Ark.",
         vegetacao: [
             "Pinheiros retorcidos adaptados ao frio intenso",
             "Liquens coloridos que colonizam rochas nuas",
@@ -148,11 +157,10 @@ const biomas = [
             "Yeti - Criaturas lendárias adaptadas ao frio extremo",
             "Pteranodon - Aves de grandes altitudes com visão telescópica"
         ],
-        comportamento: "Predadores extremamente territoriais e agressivos que defendem ferremente seus domínios...",
-        recursos: [
-            "Fruto de Pinheiro", "Erva de Altitude", "Semente de Arbusto Pedregoso",
-            "Stimberry", "Tintoberry"
-        ]
+
+        comportamento: "Predadores extremamente territoriais e agressivos que defendem ferremente seus domínios. Criaturas adaptadas ao frio intenso com comportamentos de caça coordenada e hierarquias sociais bem definidas. A competição por recursos é feroz e constante.",
+        recursos: ["Metal de alta qualidade para armas superiores", "Obsidiana para ferramentas afiadas", "Cristal puro para tecnologia avançada", "Peles raras de isolamento térmico", "Pernas de yeti com propriedades especiais"]
+
     },
     {
         id: 4,
@@ -163,7 +171,7 @@ const biomas = [
         corParticula: "rgba(221, 110, 7, 0.4)",
         imagem: "../imagens/icon_taiga.png",
         descricaoCurta: "Florestas boreais densas com vida especializada no frio",
-        descricaoCompleta: "A Taiga é um bioma frio e vasto, marcado pela presença de grandes mamíferos adaptados às condições gélidas...",
+        descricaoCompleta: "A Taiga é um bioma frio e vasto, marcado pela presença de grandes mamíferos adaptados às condições gélidas, predadores com pelagem espessa e herbívoros de grupo que executam migrações sazonais entre os corredores de árvores sempreverdes. Esta floresta boreal lembra ecossistemas antigos onde a sobrevivência depende da preparação para o inverno. A aparente abundância de recursos naturais - madeira de qualidade, plantas medicinais potentes, ossos de criaturas majestosas - torna a Taiga ideal para quem busca um refúgio estratégico, mas as temperaturas baixas constantes, ventos cortantes que penetram até os ossos e a escuridão prolongada do inverno ártico fazem da sobrevivência um teste de resistência física e mental. A região ecoa com florestas boreais primordiais: troncos altos que sussurram com o vento, raízes profundas que se agarram ao solo congelado, tocas sob a neve que abrigam ecossistemas completos. Caçar ou ser caçado aqui exige camuflagem perfeita, fontes de calor confiáveis e estratégia meticulosa - cada movimento pode significar a diferença entre vida e morte no ambiente implacável.",
         vegetacao: [
             "Pinheiros e abetos densos que formam dossel fechado",
             "Musgos aveludados e samambaias resistentes ao gelo",
@@ -178,12 +186,17 @@ const biomas = [
             "Thylacoleo - Marsupiais predadores de emboscadas arborícolas",
             "Otter - Lontras coletoras de pérolas preciosas"
         ],
+
         comportamento: "Animais adaptados a invernos rigorosos com comportamentos especializados de hibernação e migração...",
         recursos: [
          
             "Erva Boreal", "Fibra de Lichen", "Semente de Arbusto Taiga",
             "Azulberry", "Mejoberry", "Narcoberry"
-        ]
+        ],
+
+        comportamento: "Animais adaptados a invernos rigorosos com comportamentos especializados de hibernação e migração. Territorialidade acentuada durante épocas de reprodução. Predadores desenvolveram técnicas especializadas em emboscadas silenciosas na neve.",
+        recursos: ["Madeira de qualidade superior para construção", "Cimento de castor para estruturas à prova d'água", "Peles quentes para sobrevivência no frio extremo", "Pérolas sílicas para componentes eletrônicos", "Cogumelos com propriedades alucinógenas e medicinais"]
+
     },
     {
         id: 5,
@@ -194,7 +207,7 @@ const biomas = [
         corParticula: "rgba(107, 142, 35, 0.4)",
         imagem: "../imagens/icon_bosque1.png",
         descricaoCurta: "Ecossistema denso e vivo com diversidade incomparável",
-        descricaoCompleta: "A Floresta é um mundo à parte dentro do Ark - densa, vibrante e pulsante com sons que ecoam...",
+        descricaoCompleta: "A Floresta é um mundo à parte dentro do Ark - densa, vibrante e pulsante com sons que ecoam através de séculos de crescimento ininterrupto. Este bioma abriga árvores monumentais que alcançam o céu, troncos tão grossos que múltiplos homens não conseguem abraçar, e folhagens tão espessas que quase bloqueiam completamente a luz do sol, criando um crepúsculo perpétuo no solo da floresta. Criaturas silvestres de todos os tamanhos se escondem nas sombras profundas, enquanto carcaças e restos de animais alimentam insetos especializados e predadores oportunistas que patrulham os corredores naturais. Caminhar por esse bioma é entrar em um reino de sombras em movimento constante: galhos rangem sob pesos invisíveis, pés esmagam tapetes de folhas secas que liberam aromas terrosos, presas ágeis correm entre as raízes expostas como labirintos naturais. A construção aqui exige a criação de clareiras artificiais ou plataformas elevadas para evitar surpresas indesejadas dos habitantes nativos. A Floresta é simultaneamente fonte inesgotável de recursos e armadilha mortal - oferecendo abundância com uma mão enquanto esconde perigos mortais com a outra.",
         vegetacao: [
             "Carvalhos anciões e nogueiras de madeira preciosa",
             "Arbustos frutíferos diversos com ciclos sazonais",
@@ -209,6 +222,7 @@ const biomas = [
             "Iguanodon - Herbívoros velozes com polegares espetados",
             "Pegomastax - Coletores irritantes que roubam itens preciosos"
         ],
+
         comportamento: "Equilíbrio dinâmico entre predadores especializados e presas adaptadas...",
         recursos: [
           
@@ -226,7 +240,8 @@ const biomas = [
         corParticula: "rgba(233, 234, 255, 0.78)",
         imagem: "../imagens/icon_caverna.png",
         descricaoCurta: "Sistemas subterrâneos com ecossistemas únicos e tesouros profundos",
-        descricaoCompleta: "As Cavernas constituem o submundo silencioso e misterioso do Ark...",
+
+        descricaoCompleta: "As Cavernas constituem o submundo silencioso e misterioso do Ark - uma rede complexa de túneis escuros que serpenteiam nas entranhas do mundo, salões de pedra que ecoam com sons ancestrais, estalactites e estalagmites que crescem gota a gota através de milênios, criando catedrais naturais de rara beleza. O solo pavimenta-se em penumbra eterna, e a vida adaptada a esta escuridão prospera de formas extraordinárias: criaturas cegas que desenvolveram sentidos alternativos, fungos bioluminescentes que pintam as paredes com luzes fantasmagóricas, rios subterrâneos que carregam segredos para lugares ainda mais profundos. Mineradores incautos frequentemente tropeçam em galerias abandonadas de civilizações perdidas, encontrando artefatos que contam histórias de tempos esquecidos. Nesse ambiente claustrofóbico, o perigo é tanto o que se move visivelmente quanto o que se oculta nas fendas mais escuras - parasitas, criaturas que se camuflam na rocha, armadilhas naturais e psicológicas. Levar equipamentos de luz confiável, cordas de segurança e antídotos para toxinas subterrâneas é tão fundamental quanto ter reflexos aguçados. A Caverna exige silêncio absoluto, paciência de meditar e coragem para enfrentar não apenas os perigos visíveis, mas também os terrores que habitam na mente humana quando confrontada com a escuridão primordial.",
         vegetacao: [
             "Fungos bioluminescentes em diversas cores e intensidades",
             "Musgos que brilham no escuro com padrões hipnóticos",
@@ -241,11 +256,14 @@ const biomas = [
             "Titanomyrma - Formigas gigantes com organização militar",
             "Aberrant Creatures - Variantes mutadas pela radiação profunda"
         ],
-        comportamento: "Criaturas perfeitamente adaptadas à escuridão permanente com sentidos aguçados que substituem a visão...",
+
         recursos: [
            
             "Fungo Lume-Azul", "Semente de Planta de Rocha", "Bagas da Penumbra", "Fruto da Luz", "Fungo da Alma"
-        ]
+        ],
+
+        comportamento: "Criaturas perfeitamente adaptadas à escuridão permanente com sentidos aguçados que substituem a visão. Comportamentos de emboscada em território conhecido através de mapas mentais precisos. Defesa agressiva e coordenada de territórios com recursos escassos.",
+
     },
     {
         id: 7,
@@ -256,7 +274,8 @@ const biomas = [
         corParticula: "rgba(135, 206, 235, 0.4)",
         imagem: "../imagens/icon_praia.png",
         descricaoCurta: "Zonas costeiras de transição entre terra e mar",
-        descricaoCompleta: "Onde o Ark encontra o mar infinito ou grandes lagos interiores, as Praias se estabelecem...",
+       descricaoCompleta: "Onde o Ark encontra o mar infinito ou grandes lagos interiores, as Praias se estabelecem como zonas iniciais de sobrevivência - áreas de transição que misturam características terrestres e marinhas em um equilíbrio precário. Palmeiras inclinadas pelo vento constante, troncos arrastados pelas marés, arbustos baixos que toleram a salinidade, e pedras esculpidas pelas ondas em formas surrealistas caracterizam essa interface dinâmica. As criaturas aquáticas e terrestres se cruzam neste limiar: Raptors anfíbios e Baryonyx emergem das águas costeiras para caçar, enquanto as árvores altas oferecem abrigo leve para aves migratórias e pequenos mamíferos. Os recursos básicos são abundantes e de fácil acesso - madeira flutuante, pedras polidas, bagas que crescem na franja da vegetação - mas permanecer muito tempo aqui sem evoluir em equipamentos e defesas é correr risco crescente, pois predadores maiores logo detectam presas fáceis e se aproximam tanto da terra quanto do mar. A Praia é o limiar psicológico entre a segurança relativa do conhecido e os perigos do mar aberto, o convite tentador à aventura e o aviso silencioso de que algo maior e mais antigo espera além do horizonte aquático.",
+
         vegetacao: [
             "Coqueiros e palmeiras que fornecem sombra e alimento",
             "Algas marinhas encalhadas com propriedades medicinais",
@@ -271,11 +290,15 @@ const biomas = [
             "Plesiosaur - Répteis marinhos de pescoço longo",
             "Manta - Arraias velozes com veneno paralisante"
         ],
-        comportamento: "Vida em constante transição entre os ambientes terrestre e marinho...",
+
+       
         recursos: [
             "Coco", "Alga Marinha", "Semente de Palmeira", "Erva Halófita",
             "Erva Batata do Mar", "Erva de Coral", "Pepino"
-        ]
+        ],
+
+        comportamento: "Vida em constante transição entre os ambientes terrestre e marinho. Predadores marinhos patrulham sistematicamente as águas costeiras em busca de presas terrestres distraídas. Criaturas anfíbias desenvolveram comportamentos especializados para transitar eficientemente entre os dois ambientes.",
+
     },
     {
         id: 8,
@@ -307,6 +330,35 @@ const biomas = [
             "Cacto-Repolho", "Bagas do Sol", "Semente de Raiz", "Erva da Areia", "Flor da Noite",
             "Stimberry", "Tintoberry"
         ]
+       
+    },
+    {
+        id: 9,
+        nome: "Deserto Frio",
+        tipo: "raro",
+        regioes: ["norte-frio"],
+        corGlow: "rgba(176, 224, 230, 0.6)",
+        corParticula: "rgba(176, 224, 230, 0.4)",
+        imagem: "../imagens/icon_desert_frio.png",
+        descricaoCurta: "Deserto gelado com dunas congeladas e vida adaptada ao frio extremo",
+        descricaoCompleta: "O Deserto Frio é uma variação paradoxal do deserto tradicional - mantém a aridez característica mas substitui o calor abrasador por um clima glacial implacável. Ventos cortantes carregam cristais de gelo que funcionam como lâminas microscópicas, dunas geladas se movem lentamente sob pressão glacial, e criaturas com pele branca imaculada ou escamas adaptadas ao frio extremo dominam este ambiente enganosamente estéril. A sobrevivência aqui depende mais do calor interno e metabolismo acelerado do que de abrigos externos, pois nenhuma construção convencional pode proteger completamente contra o frio que penetra até a alma. Este bioma ensina que o vazio gelado pode ser tão mortal quanto o calor escaldante - e que a adaptação às condições extremas requer transformações profundas tanto no corpo quanto no espírito.",
+        vegetacao: [
+            "Líquens polares que crescem sobre neve compactada",
+            "Musgos de neve que sobrevivem a temperaturas extremas",
+            "Arbustos anões com mecanismos anticongelantes naturais",
+            "Flores de gelo que cristalizam à noite e desabrocham ao amanhecer",
+            "Fungos termogênicos que geram calor através de reações químicas"
+        ],
+        animais: [
+            "Direwolf Branco - Lobos adaptados com pelagem isolante dupla",
+            "Mammoth de Neve - Herbívoros com presas especializadas para quebrar gelo",
+            "Snow Owl - Corujas que detectam calor corporal a grandes distâncias",
+            "Polar Bear - Ursos que hibernam em tocas de gelo",
+            "Ice Wyvern - Dragões que respiram gelo e criam armadilhas glaciais"
+        ],
+        comportamento: "Criaturas com metabolismos acelerados para gerar calor corporal constante. Comportamentos de conservação de energia através de movimentos lentos e calculados. Estratégias de caça baseadas em emboscadas a partir de tocas na neve ou camuflagem no gelo.",
+        recursos: ["Gelo eterno para refrigeração avançada", "Cristais de gelo com propriedades únicas", "Peles polares de isolamento térmico superior", "Gordura animal para combustível e nutrição", "Minérios preservados no permafrost"]
+
     },
     {
         id: 10,
@@ -317,7 +369,8 @@ const biomas = [
         corParticula: "rgba(240, 248, 255, 0.4)",
         imagem: "../imagens/icon_tundra.png",
         descricaoCurta: "Planalto gelado com vegetação rarefeita e vida resistente",
-        descricaoCompleta: "A Tundra é um planalto gelado de beleza austera...",
+
+        descricaoCompleta: "A Tundra é um planalto gelado de beleza austera, onde o solo permanece rígido na maior parte do ano e a vegetação sobrevive em formas rarefeitas e especializadas. Musgos resistentes formam tapetes esparsos, arbustos baixos se agarram ao solo congelado, e uma fina camada de neque frequentemente cobre a paisagem em um manto de silêncio. A caça neste ambiente exige não apenas habilidade, mas resistência sobre-humana ao frio penetrante que desafia até os equipamentos mais avançados. As noites são desproporcionalmente longas, criando um ciclo de vida adaptado a períodos prolongados de escuridão e atividade concentrada nos breves momentos de luz. Na Tundra, cada recurso é precioso, cada movimento é calculado, e a sobrevivência é uma dança delicada com os elementos mais primitivos da natureza.",
         vegetacao: [
             "Musgos de tundra que sobrevivem ao congelamento completo",
             "Arbustos anões que crescem rente ao solo para proteção",
@@ -332,12 +385,16 @@ const biomas = [
             "Snow Fox - Raposas de caça cooperativa",
             "Woolly Rhino - Rinocerontes com pelagem densa e chifres especiais"
         ],
-        comportamento: "Comportamentos migratórios sazonais bem definidos...",
+
+        
         recursos: [
           
             "Bagas de Solo", "Erva de Raiz Profunda", "Semente de Musgo Ártico", "Flor da Luz Frígida",
             "Mejoberry", "Narcoberry"
-        ]
+        ],
+
+        comportamento: "Comportamentos migratórios sazonais bem definidos. Estratégias de conservação de energia através de redução de atividade metabólica. Predadores especializados em perseguições longas que exploram a exaustão das presas no terreno difícil.",
+
     },
     {
         id: 11,
@@ -348,7 +405,8 @@ const biomas = [
         corParticula: "rgba(220, 20, 60, 0.4)",
         imagem: "../imagens/icon_floresta_vermelha.png",
         descricaoCurta: "Floresta de tonalidade rubra com ecossistema diabólico",
-        descricaoCompleta: "A Floresta Vermelha é uma anomalia perturbadora na paisagem do Ark...",
+        descricaoCompleta: "A Floresta Vermelha é uma anomalia perturbadora na paisagem do Ark - uma vegetação de árvores com troncos de tonalidade rubra intensa, onde seiva escarlate escorre como sangue de feridas abertas e materiais naturais emanam da floresta em tons que variam do carmesim ao vinho. Rios pequenos e sinuosos carregam águas tingidas de vermelho, entre vegetação de fungos alienígenas e plantas que liberam feromônios psicoativos que atraem as criaturas mais diabólicas da ilha. Este bioma funciona como um filtro natural - apenas criaturas categorizadas como 'diabólicas' conseguem prosperar aqui, desenvolvendo adaptações especiais para tolerar e até prosperar na atmosfera alterada. A Floresta Vermelha não é apenas um lugar, mas uma experiência sensorial completa que desafia a sanidade e redefine os limites entre o natural e o sobrenatural no Ark.",
+
         vegetacao: [
             "Árvores vermelhas de seiva abundante com propriedades únicas",
             "Fungos que liberam feromônios que alteram o comportamento animal",
@@ -363,12 +421,15 @@ const biomas = [
             "Imp - Criaturas demoníacas pequenas de ataques em enxame",
             "Succubus - Sedutoras mortais que paralisam presas com feromônios"
         ],
-        comportamento: "Criaturas extremamente agressivas e territorialmente obsessivas...",
         recursos: [
            
             "Bagas Vermelhas-Sangue", "Erva Vermelha de Seiva", "Semente de Cipó Carmesim", "Cogumelo Rubro", "Flor da Fúria",
             "Stimberry", "Tintoberry", "Planta X"
-        ]
+        ],
+
+        comportamento: "Criaturas extremamente agressivas e territorialmente obsessivas. Comportamentos de caça em matilha coordenada com eficiência mortal. Todas as criaturas são atraídas por feromônios especiais liberados pela vegetação, criando ciclos de agressão previsíveis.",
+        recursos: ["Seiva vermelha com propriedades alquímicas", "Blood packs para transfusões e poções", "Demon hide para armaduras resistentes ao fogo", "Infernal crystals que armazenam energia demoníaca", "Rare mushrooms com efeitos psicoativos poderosos"]
+
     },
     {
         id: 12,
@@ -379,7 +440,8 @@ const biomas = [
         corParticula: "rgba(216, 191, 216, 0.4)",
         imagem: "../imagens/icon_floresta_cogumelos.png",
         descricaoCurta: "Bioma fúngico com alta concentração de minérios especiais",
-        descricaoCompleta: "A Floresta de Cogumelos é uma variante fascinante da floresta tradicional...",
+        descricaoCompleta: "A Floresta de Cogumelos é uma variante fascinante da floresta tradicional, onde a diferença fundamental reside na extraordinária concentração de minérios raros, formações pedrosas únicas e plantas rasteiras que emitem feromônios específicos em sintonia com os fungos dominantes. Este ambiente atrai principalmente criaturas Suínas, transformando-se em um pasto rico em nutrientes localizado estrategicamente próximo ao minério hypo de maior concentração em todo o bioma. Esta coincidência geológica cria um santuário natural propício para estas espécies, que desenvolveram simbiose com o ecossistema fúngico. A Floresta de Cogumelos não é apenas um local de recursos, mas um exemplo vívido de como a vida encontra caminhos para prosperar através de relações mutualísticas complexas em ambientes aparentemente inóspitos.",
+
         vegetacao: [
             "Cogumelos gigantes coloridos que formam dossel secundário",
             "Plantas rasteiras com feromônios que atraem espécies específicas",
@@ -410,7 +472,8 @@ const biomas = [
         corParticula: "rgba(106, 90, 205, 0.4)",
         imagem: "../imagens/icon_fungos.png",
         descricaoCurta: "Ecossistema cavernoso alienígena adaptado à escuridão total",
-        descricaoCompleta: "A Floresta de Fungos Abissal representa a adaptação máxima da vida às condições mais extremas do Ark...",
+        descricaoCompleta: "A Floresta de Fungos Abissal representa a adaptação máxima da vida às condições mais extremas do Ark - um ecossistema que evoluiu no completo isolamento das profundezas cavernosas, desenvolvendo características que desafiam a compreensão convencional da biologia. Esta floresta especializada desenvolveu fungos que consomem toda matéria orgânica disponível e, mais extraordinariamente, afetam o funcionamento nervoso das criaturas que habitam este ambiente, adaptando-as gradualmente a utilizar mais os sentidos da audição e ecolocalização enquanto a visão se atrofia até a cegueira completa. O resultado é um ecossistema onde sons e vibrações substituem a luz, onde predadores 'veem' através de pulsos sonoros, e onde a escuridão não é uma limitação, mas uma vantagem evolutiva. Este bioma prova que a vida não apenas persiste nas condições mais adversas, mas se transforma radicalmente para dominá-las.",
+
         vegetacao: [
             "Fungos nervo-ativos que alteram química cerebral",
             "Cogumelos paralisantes com esporos de ação rápida",
@@ -425,11 +488,14 @@ const biomas = [
             "Deep Crawler - Rastejadores cegos que detectam vibrações no solo",
             "Psychic Mushroom - Cogumelos psíquicos que influenciam mentes"
         ],
-        comportamento: "Criaturas com cegueira evolutiva que desenvolveram sentidos alternativos extraordinariamente aguçados...",
         recursos: [
           
             "Cogumelo Nervo-Ativo", "Cogumelo Eco", "Cogumelo Invocador", "Cogumelo de Bioluminescente Profunda"
-        ]
+        ],
+
+        comportamento: "Criaturas com cegueira evolutiva que desenvolveram sentidos alternativos extraordinariamente aguçados. Caça baseada exclusivamente em ecolocalização e detectores de vibração supersensíveis. Comportamentos psíquicos incomuns e suspeita de capacidade de controle mental em espécies dominantes.",
+        recursos: ["Nerve fungus para pesquisas neurológicas", "Echo crystals que amplificam sons específicos", "Blind sense organs para implantes sensoriais", "Psychic spores para manipulação mental", "Deep minerals formados sob pressão extrema"]
+
     }
 ];
 // VARIÁVEIS GLOBAIS
