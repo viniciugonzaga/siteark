@@ -1180,23 +1180,89 @@ function loadSelectedRitualPact() {
         return;
     }
 
-    displayContainer.innerHTML = ''; 
+    displayContainer.innerHTML = '';
+
+    // 🎯 CORREÇÃO: Carregar dados de forma robusta
+    try {
+        // Tentar múltiplas fontes
+        const storedData = localStorage.getItem(RITUALS_STORAGE_KEY);
+        const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
+        
+        console.log("📦 Tentando carregar rituais de:", { 
+            hasRitualsStorage: !!storedData,
+            hasCharacterData: !!characterData,
+            hasCharacterRituals: !!(characterData.characterRituals)
+        });
+
+        // Prioridade 1: Dados específicos de rituais
+        if (storedData) {
+            characterRituals = JSON.parse(storedData);
+            console.log("✅ Rituais carregados do storage específico");
+        }
+        // Prioridade 2: Rituais nos dados do personagem
+        else if (characterData.characterRituals) {
+            characterRituals = characterData.characterRituals;
+            console.log("✅ Rituais carregados dos dados do personagem");
+        }
+        // Prioridade 3: Propriedade antiga
+        else if (characterData.rituals) {
+            characterRituals = characterData.rituals;
+            console.log("✅ Rituais carregados da propriedade antiga");
+        }
+        else {
+            characterRituals = [];
+            console.log("ℹ️ Nenhum ritual encontrado");
+        }
+
+    } catch (error) {
+        console.error("❌ Erro ao carregar rituais:", error);
+        characterRituals = [];
+    }
+
+    // Garantir que characterRituals é um array
+    if (!Array.isArray(characterRituals)) {
+        console.warn("❌ characterRituals não é um array, convertendo...");
+        characterRituals = [];
+    }
+
+    console.log(`🔍 ${characterRituals.length} ritual(s) para exibir`);
 
     if (characterRituals.length > 0) {
+        console.log("✅ Exibindo rituais na ficha");
+        
         characterRituals.forEach((item, index) => {
+            if (!item) {
+                console.warn("Item inválido encontrado, pulando...");
+                return;
+            }
+
             const itemDiv = document.createElement("div");
             itemDiv.classList.add("ritual-pact-item");
-            itemDiv.dataset.itemName = item.name;
+            
+            // 🎯 USAR PROPRIEDADES NORMALIZADAS
+            const nome = item.nome || item.name || 'Ritual sem nome';
+            const imagem = item.imagem || item.image || '';
+            const descricao = item.descricao || item.description || 'Descrição não disponível';
+            const tipo = item.tipo || item.type || 'N/A';
+            const elemento = item.elemento || item.element || 'N/A';
+            const nivel = item.nivel || item.level || 'N/A';
 
             itemDiv.innerHTML = `
-                <h3>${item.name}</h3>
-                ${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}
-                <p>${item.description}</p>
-                <button class="remove-ritual-pact-btn" data-index="${index}">Remover da Ficha</button>
+                <div class="ritual-pact-header">
+                    <h3>${nome}</h3>
+                    <span class="ritual-type">${elemento} / ${tipo} / Nv. ${nivel}</span>
+                </div>
+                ${imagem ? `<img src="${imagem}" alt="${nome}" class="ritual-image">` : ''}
+                <div class="ritual-info">
+                    <p class="ritual-description">${descricao}</p>
+                </div>
+                <button class="remove-ritual-pact-btn" data-index="${index}">🗑️ Remover</button>
             `;
+            
             displayContainer.appendChild(itemDiv);
         });
 
+        // Adicionar event listeners para os botões de remover
         document.querySelectorAll(".remove-ritual-pact-btn").forEach(button => {
             button.addEventListener("click", (event) => {
                 const indexToRemove = parseInt(event.target.dataset.index);
@@ -1205,16 +1271,51 @@ function loadSelectedRitualPact() {
         });
 
     } else {
-        displayContainer.innerHTML = "<p>Nenhum ritual ou pacto selecionado.</p>";
+        displayContainer.innerHTML = `
+            <div class="no-rituals-message">
+                <p>📜 Nenhum ritual ou pacto selecionado.</p>
+                <p><small>Vá para a página de Rituais para adicionar alguns!</small></p>
+            </div>
+        `;
     }
+    
+    // 🆕 SINCRONIZAR com os dados principais do personagem
+    synchronizeRitualsWithCharacterData();
+}
+
+// 🆕 FUNÇÃO PARA SINCRONIZAR RITUAIS
+function synchronizeRitualsWithCharacterData() {
+    try {
+        const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
+        characterData.characterRituals = characterRituals;
+        localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
+        console.log("✅ Rituais sincronizados com dados do personagem");
+    } catch (error) {
+        console.error("❌ Erro ao sincronizar rituais:", error);
+    }
+}
+// 🆕 FUNÇÃO PARA ATUALIZAR RITUAIS EM AMBOS OS LOCAIS
+function updateRitualsInBothStorages(ritualsArray) {
+    // Atualizar storage específico de rituais
+    localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(ritualsArray));
+    
+    // Atualizar nos dados do personagem
+    const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
+    characterData.characterRituals = ritualsArray;
+    localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
+    
+    console.log("✅ Rituais atualizados em ambos os storages");
 }
 
 function removeRitualPact(indexToRemove) {
     if (indexToRemove !== undefined && indexToRemove >= 0 && indexToRemove < characterRituals.length) {
-        const removedItemName = characterRituals[indexToRemove].name;
-        characterRituals.splice(indexToRemove, 1); 
-        localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(characterRituals)); 
-        loadSelectedRitualPact(); 
+        const removedItemName = characterRituals[indexToRemove].nome || characterRituals[indexToRemove].name;
+        characterRituals.splice(indexToRemove, 1);
+        
+        // 🎯 USAR A NOVA FUNÇÃO PARA ATUALIZAR EM AMBOS OS LOCAIS
+        updateRitualsInBothStorages(characterRituals);
+        
+        loadSelectedRitualPact();
         alert(`"${removedItemName}" removido da ficha.`);
     }
 }
@@ -1225,4 +1326,32 @@ document.addEventListener('DOMContentLoaded', () => {
     loadForm();
 });
 
+function debugRitualsStorage() {
+    console.log("=== 🔍 DEBUG COMPLETO DO SISTEMA DE RITUAIS ===");
+    
+    // Verificar todas as chaves no localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        console.log(`Chave ${i}: "${key}"`);
+        
+        if (key === RITUALS_STORAGE_KEY) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                console.log("📦 Conteúdo da chave de rituais:", data);
+                console.log("📊 Tipo:", typeof data);
+                console.log("🔢 Quantidade de itens:", Array.isArray(data) ? data.length : 'Não é array');
+                
+                if (Array.isArray(data) && data.length > 0) {
+                    console.log("📝 Primeiro item:", data[0]);
+                    console.log("🔑 Propriedades do primeiro item:", Object.keys(data[0]));
+                }
+            } catch (e) {
+                console.error("❌ Erro ao parsear:", e);
+            }
+        }
+    }
+    console.log("=== FIM DO DEBUG ===");
+}
 
+// Chame esta função no console do navegador para verificar
+// debugRitualsStorage();

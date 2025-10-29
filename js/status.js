@@ -59,6 +59,7 @@ function goToPage(page) {
     window.location.href = page;
 }
 
+
 // ========================
 // Constantes e Funções da Ficha
 // ========================
@@ -236,7 +237,68 @@ function loadAndDisplayCharacterSheet() {
     renderList(characterData.learnedActionBonuses, 'learnedActionBonusContainer', (item) => `${item.action}: +${item.value}`);
 
     renderList(characterData.weapons, 'fichaWeapons', (item) => `${item.name || 'Arma sem nome'}: ${item.damageDice || 'Dano não especificado'}` + (item.condition && item.condition !== 'Nula' ? ` (${item.condition})` : ''));
-    renderList(characterData.rituals, 'fichaRituals', (item) => `${item.name}: ${item.description}`);
+
+    // 🎯 CORREÇÃO CRÍTICA: Carregar rituais de forma consistente
+    loadAndDisplayRituals(characterData);
+}
+
+// 🆕 NOVA FUNÇÃO PARA CARREGAR RITUAIS DE FORMA CONFIÁVEL
+function loadAndDisplayRituals(characterData) {
+    let ritualsToDisplay = [];
+    
+    // Tentativa 1: Verificar se os rituais estão nos dados do personagem
+    if (characterData.characterRituals && characterData.characterRituals.length > 0) {
+        ritualsToDisplay = characterData.characterRituals;
+        console.log("✅ Rituais carregados dos dados do personagem:", ritualsToDisplay);
+    }
+    // Tentativa 2: Verificar no localStorage específico de rituais
+    else {
+        try {
+            const storedRituals = localStorage.getItem(RITUALS_STORAGE_KEY);
+            if (storedRituals) {
+                ritualsToDisplay = JSON.parse(storedRituals);
+                console.log("✅ Rituais carregados do localStorage específico:", ritualsToDisplay);
+                
+                // Atualizar os dados do personagem com os rituais encontrados
+                characterData.characterRituals = ritualsToDisplay;
+                localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
+            }
+        } catch (e) {
+            console.error("Erro ao carregar rituais do localStorage:", e);
+        }
+    }
+    
+    // Tentativa 3: Verificar se há rituais na propriedade antiga
+    if ((!ritualsToDisplay || ritualsToDisplay.length === 0) && characterData.rituals) {
+        ritualsToDisplay = characterData.rituals;
+        console.log("✅ Rituais carregados da propriedade antiga 'rituals':", ritualsToDisplay);
+    }
+
+    // Função auxiliar para formatar consistentemente os rituais
+    const formatRitual = (ritual) => {
+        // Normalizar as propriedades (suporta tanto 'nome' quanto 'name')
+        const nome = ritual.nome || ritual.name || 'Ritual sem nome';
+        const descricao = ritual.descricao || ritual.description || 'Descrição não disponível';
+        const elemento = ritual.elemento || ritual.element || '';
+        const nivel = ritual.nivel || ritual.level || '';
+        
+        let formatted = nome;
+        if (elemento) formatted += ` (${elemento})`;
+        if (nivel) formatted += ` [Nv. ${nivel}]`;
+        formatted += `: ${descricao}`;
+        
+        return formatted;
+    };
+
+    // Renderizar os rituais
+    renderList(ritualsToDisplay, 'fichaRituals', formatRitual);
+    
+    // Debug: log para verificar o que foi carregado
+    if (ritualsToDisplay.length > 0) {
+        console.log(`🎉 ${ritualsToDisplay.length} ritual(s) carregado(s) para exibição`);
+    } else {
+        console.log("ℹ️ Nenhum ritual encontrado para exibir");
+    }
 }
 
 function setupStatInputs() {
@@ -685,7 +747,8 @@ const eventos = {
   "Vocês são salvos de algum problema por uma manada de herbívoros",
   "Vocês são salvos de um Apex Predador por surgir uma manada APEX de herbívoros",
   "Uma manada surge com filhotes bonzinhos ao lado da base",
-  "Desculpe, mas um chefe encontrou vocês..."
+  "Desculpe, mas um chefe encontrou vocês...",
+ 
 ],
 
   efeito: [
@@ -744,7 +807,7 @@ const eventos = {
     ],
 
      Drop: [
-    "Masterpod", "Criopod com Criatura Aleatória", "Criopod da Caveira", "Criopod dos Raios", "Criopod das Pestes", "Criopod de Fogo", "Criopod Sirência", "Criopod Elemental", "Criopod de Gelo", "Criopod Gamma", "Criopod Maldita", "Criopod Hypo", "Criopod da Morte", "Orbe dos Ceifadores", "Pedaço de Colosso Esquecido", "Arma Lendária de Arena de Colosso", "Arma Radiante aleatória", "Ovo de Dragão", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro Selecional C/H", "Ovo de Dinossauro Apex", "Ovo de Leviatã C/H", "Item Raro de Criatura já Vista", "Amuleto de Invocação de Criatura (Escolha com Cuidado)", "Mochila de Consumivel de Cena", "Descanso de Fogueira no Reino dos Esquecidos", "Um Orbe de Pesadelo Lutável", "Uma Medalhão de Guilda da Caçada", "Um dia da Benção da Ovelha na Ilha da Caveira", "Um Meteorito de Minério épico", "Um Meteorito de Minério Raro-Comum Selecionavel", "Bússola do Caídos", "Fragmento de Coroa Dourada", "Arma com Imprint selecionável de minério", "Pedaço de arma Tek", "Pedaço de item Tek", "Pedaço de sela Tek", "Pedaço de máquina Tek", "Saco de jóias 3x", "Chave de Masmorra", "Chave da caveira", "Isca de leviatã selecionável", "Barril de pólvora", "Pólvora Negra", "Lasca de Casco do Inferno", "Planta Básica aleatória", "Um brasão do Tolo", "Convite Real da família Escarlate", "Chip avançado alienígena", "Chave roxa alienígena", "Chave azul alienígena", "Chave laranja alienígena", "Anotação de alienígena", "Livro de rituais comuns", "Livros de ritual brutal de elemento aleatório", "Baú de itens aleatórios 8x", "A Possibilidade de Criar um Título", "Armadura Ideal de personagem", "Item Ideal de Personagem", 
+    "Masterpod", "Criopod com Criatura Aleatória", "Criopod da Caveira", "Criopod dos Raios", "Criopod das Pestes", "Criopod de Fogo", "Criopod Sirência", "Criopod Elemental", "Criopod de Gelo", "Criopod Gamma", "Criopod Maldita", "Criopod Hypo", "Criopod da Morte", "Orbe dos Ceifadores", "Pedaço de Colosso Esquecido", "Arma Lendária de Arena de Colosso", "Arma Radiante aleatória", "Ovo de Dragão", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro aleatório C/H", "Ovo de Dinossauro Selecional C/H", "Ovo de Dinossauro Apex", "Ovo de Leviatã C/H", "Item Raro de Criatura já Vista", "Amuleto de Invocação de Criatura (Escolha com Cuidado)", "Mochila de Consumivel de Cena", "Descanso de Fogueira no Reino dos Esquecidos", "Um Orbe de Pesadelo Lutável", "Uma Medalhão de Guilda da Caçada", "Um dia da Benção da Ovelha na Ilha da Caveira", "Um Meteorito de Minério épico", "Um Meteorito de Minério Raro-Comum Selecionavel", "Bússola do Caídos", "Fragmento de Coroa Dourada", "Arma com Imprint selecionável de minério", "Pedaço de arma Tek", "Pedaço de item Tek", "Pedaço de sela Tek", "Pedaço de máquina Tek", "Saco de jóias 3x", "Chave de Masmorra", "Chave da caveira", "Isca de leviatã selecionável", "Barril de pólvora", "Pólvora Negra", "Lasca de Casco do Inferno", "Planta Básica aleatória", "Um brasão do Tolo", "Convite Real da família Escarlate", "Chip avançado alienígena", "Chave roxa alienígena", "Chave azul alienígena", "Chave laranja alienígena", "Anotação de alienígena", "Livro de rituais comuns", "Livros de ritual brutal de elemento aleatório", "Baú de itens aleatórios 8x", "A Possibilidade de Criar um Título", "Armadura Ideal de personagem", "Item Ideal de Personagem", "Rolar Item Raro Aleatório", "Rolar Item Raro Aleatório","Rolar Item Raro Aleatório","Rolar Item Raro Aleatório",
     ],
 
       Traumas: [
@@ -885,6 +948,8 @@ Circuitos: [
 
 Item: [
 "Pedra",
+"Um Saco de Moedas aleatório 1d10 (Moeda de Prata)",
+"Um Saco de Moedas aleatório 1d4 (Moeda de Ouro)",
 "Sílex",
 "Areia",
 "Pelo Seco",
@@ -959,6 +1024,64 @@ Item: [
 "Criopod com Animal Médio de Seleção",
 "Mapa Rasgado de Explorador",
 ],
+
+Frutas: [
+
+"Amarberry", "Azulberry", "Mejoberry", "Narcoberry", "Stimberry", "Tintoberry", "Planta X", "Semente de Trigo", "Semente de Arroz", "Semente de Soja", "Limão", "Milho", "Cenoura", "Batata", "Maçã", "Banana", "Manga", "Cereja"
+
+],
+
+Item2: [
+"Baú Normal - Item de pedra",
+"Baú Vazio - Que Azar",
+"Baú de Pirata - Item de ferro com ouro, 25 moedas de Ouro",
+"Baú de Acumulador - 650 moedas de Ouro, Moeda Maldita",
+"Baú de Acumulador - 250 Moedas de Ouro, Arma de ferro de Ouro",
+"Baú de Acumulador - 100 Moedas de Ouro, Shouldbraker",
+"Baú de Acumulador do Tributo - 700 moedas de Ouro, 250 Moedas de Prata, 100 Moedas de Bronze",
+"Baú dos Caídos - Uma parte de Colosso, Chave de Masmorra",
+"Baú dos Caídos - Uma Arma lendária de Arena de Colosso",
+"Baú dos Caídos - Um ritual de nível diabólico ou menor qualquer de qualquer elemento",
+"Baú dos Caídos - Uma Mutação tema de um Colosso",
+"Baú de Mercador - Uma joia normal 1d4",
+"Baú de Mercador - Uma Arma de Aço com Molde de Armadura",
+"Baú de Mercador - Um Tônico de Efeito Aleatório",
+"Baú de Mercador - 3 itens aleatórios",
+"Baú de Mercador - 3 tipos de couro ou tecido de animal",
+"Baú de Mercador - Pacote de criação de Pacto Caseiro",
+"Baú de Mercador - Pacote de Fertilizantes Companhia Rola-Bosta (1d4)",
+"Baú de Mercador - Pacotes de Bebidas de Luxo (1d8)",
+"Baú de Mercador - Pacotes de Produtos Industrializados (1d4)",
+"Baú do Caçador-Lobo - Pacotes de Munição Selecionável",
+"Baú de Atenas - 300 moedas de Prata e uma Arma Radiante",
+"Baú de Atenas - Joia do Véu e 3 Rituais Brutais de qualquer elemento",
+"Baú de Atenas - Chave de Forte do Véu e 10 Ervas de Alma",
+"Baú de Atenas - Barril de Pó Negro e 1d10 de Lascas de Carvão",
+"Baú de Ceifador - Uma Mutação de Alguém que se foi...",
+"Baú de Ceifador - Caveira de Ashen e um Molde de lava",
+"Baú de Ceifador - Uma reforja de uma Arma nos Ceifadores",
+"Baú do Ceifador - Uma entrega Arriscada para os Ceifadores",
+"Baú do Ceifador - Uma Criatura da Caveira aleatória em uma Criopod de 3 escolhas",
+"Baú do Ceifador - Um Pacto de fogo ou dos Serviçais da Chama",
+"Baú do Ceifador - Um Mel de Magma Único",
+"Baú Hypo - 3 Criaturas Bêbês Médias ou Grandes aleatórias",
+"Baú Hypo - 3 Sementes aleatórias de Plantas",
+"Baú Hypo - Pacote de Ervas e Frutas de biomas 5x d10",
+"Baú Hypo - Melhoria rígida de mutação",
+"Saco de Moedas - 250 Moedas de Prata",
+"Saco de Moedas Nobre - 100 Moedas de Ouro",
+"Baú do Náufrago - 50 moedas de Prata",
+"Baú do Almirante - 10 moedas de Ouro",
+"Baú da Fúria - 100 Moedas de Ouro, um ritual de Fogo ou uma Cicatrização de um membro",
+"Baú do Chorão - 100 moedas de prata, Recupera-se de um trauma qualquer",
+"Chave da Caveira de Forte",
+"Orbe dos Sonhos",
+"Orbe dos Ceifadores - Buff em mutação",
+"Pacote de Joias 1d2 aleatório",
+"Couro de um Apex Predador"
+
+],
+
 
     
    
