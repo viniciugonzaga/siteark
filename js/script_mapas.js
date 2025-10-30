@@ -135,6 +135,8 @@ document.addEventListener("scroll", () => {
 const imagens = [
     "../imagens/Ilha_Ark_Ciclo1.png",
     "../imagens/ark_mapa_ciclo2_v2.png",
+    "../imagens/mapa_ark_capital.png"
+
 ];
 
 let index = 0;
