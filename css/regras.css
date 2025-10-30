@@ -1348,9 +1348,594 @@ main{
     }
 }
 
+/* ================================================= */
+/* NOVAS ANIMAÇÕES E KEYFRAMES */
+/* ================================================= */
+@keyframes pulseGlowCyan {
+    0% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.4), 0 0 25px rgba(193, 240, 248, 0.1); }
+    100% { box-shadow: 0 0 20px rgba(193, 240, 248, 0.6), 0 0 40px rgba(193, 240, 248, 0.2); }
+}
+
+@keyframes slideInFromBottom {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes dangerPulse {
+    0% { box-shadow: 0 0 25px rgba(244, 67, 54, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(244, 67, 54, 0.7); }
+    100% { box-shadow: 0 0 25px rgba(244, 67, 54, 0.3); }
+}
+
+/* ================================================= */
+/* SEÇÕES DE CONTEÚDO - ESTILO DO ARK (DECORADO) */
+/* ================================================= */
+.regras-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    background: linear-gradient(145deg, #0a0a0a, #000);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid rgba(156, 240, 255, 0.8);
+    box-shadow: 
+        0 0 35px rgba(193, 240, 248, 0.5),
+        inset 0 0 15px rgba(193, 240, 248, 0.1);
+    animation: fadeInUp 0.8s ease-out, pulseGlowCyan 4s infinite alternate;
+    position: relative;
+    overflow: hidden;
+}
+
+.regras-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(156, 240, 255, 0.2), transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.section-titulo {
+    font-size: 2.5rem;
+    color: #D6FEFF;
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 18px 30px;
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+        linear-gradient(90deg, #00ffff, #007bff);
+    background-size: cover, 200% 100%;
+    border-radius: 20px;
+    border: 4px solid #C1F0F8;
+    box-shadow: 
+        0 0 25px rgba(193, 240, 248, 0.6),
+        inset 0 0 10px rgba(193, 240, 248, 0.2);
+    text-shadow: 0 0 15px rgba(193, 240, 248, 0.8);
+    animation: slideInFromBottom 1s ease-out, backgroundShift 15s infinite linear;
+    display: inline-block;
+}
+
+.conteudo-texto {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: #f0f0f0;
+    margin: 25px auto;
+    text-align: center;
+    max-width: 900px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.5s ease-out;
+}
+
+.conteudo-lista {
+    margin: 30px auto;
+    padding-left: 0;
+    list-style: none;
+    max-width: 900px;
+}
+
+.conteudo-lista li {
+    margin-bottom: 18px;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    border-left: 5px solid #66ffff;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+    text-align: left;
+    color: #e8e8e8;
+}
+
+.conteudo-lista li::before {
+    content: '>>';
+    color: #C1F0F8;
+    font-weight: bold;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+
+.conteudo-lista li:hover {
+    background: rgba(193, 240, 248, 0.15);
+    transform: translateX(10px) scale(1.01);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.4);
+}
+
+.destaque {
+    color: #FFFFFF;
+    font-weight: bold;
+    background: linear-gradient(to right, #66ffff, #d6feff, #FFFFFF);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(102, 255, 255, 0.8);
+    animation: fadeIn 1s ease-in;
+    display: inline;
+}
+
+/* ================================================= */
+/* GRID DE IMAGENS - ESTILO DO CARROSSEL */
+/* ================================================= */
+.imagens-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.imagem-item {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(193, 240, 248, 0.4);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    aspect-ratio: 16/9;
+    border: 3px solid rgba(193, 240, 248, 0.3);
+}
+
+.imagem-item:hover {
+    transform: translateY(-15px) rotateZ(1deg);
+    box-shadow: 0 10px 40px rgba(193, 240, 248, 0.7);
+    border-color: #66ffff;
+}
+
+.imagem-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.imagem-item:hover img {
+    transform: scale(1.1);
+}
+
+.legenda-imagem {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: #D6FEFF;
+    padding: 20px 15px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(193, 240, 248, 0.5);
+}
+
+/* ================================================= */
+/* CARDS DE CLASSE - ESTILO DO CONTAINER DE CARDS */
+/* ================================================= */
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 50px 0;
+}
+
+.classe-card {
+    background: linear-gradient(145deg, #101010, #000);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.4);
+    border: 3px solid rgba(193, 240, 248, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.classe-card:hover {
+    transform: translateY(-12px) rotateX(2deg);
+    box-shadow: 0 0 35px rgba(193, 240, 248, 0.8), inset 0 0 10px rgba(193, 240, 248, 0.3);
+    border-color: #66ffff;
+}
+
+.classe-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(193, 240, 248, 0.2), transparent);
+    transform: skewX(-30deg);
+    transition: left 0.8s ease-in-out;
+}
+
+.classe-card:hover::before {
+    left: 180%;
+}
+
+.classe-nome {
+    font-size: 1.6rem;
+    color: #66ffff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 12px rgba(102, 255, 255, 0.8);
+}
+
+.classe-descricao {
+    font-size: 1.05rem;
+    color: #e8e8e8;
+    line-height: 1.7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ================================================= */
+/* EXEMPLOS DE MECÂNICAS (Bloco de Cena) */
+/* ================================================= */
+.mecanicas-exemplos {
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px 0;
+    border-left: 5px solid #66ffff;
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.3);
+    animation: slideInFromBottom 1s ease-out;
+}
+
+.exemplo-item {
+    margin-bottom: 25px;
+    padding: 20px;
+    background: rgba(193, 240, 248, 0.08);
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(193, 240, 248, 0.2);
+}
+
+.exemplo-item:hover {
+    background: rgba(193, 240, 248, 0.2);
+    transform: translateX(8px);
+    box-shadow: inset 0 0 10px rgba(193, 240, 248, 0.3);
+}
+
+/* ================================================= */
+/* CONFIGURAÇÃO DE DIFICULDADE (ÍCONES E BARRAS - MODIFICADO) */
+/* ================================================= */
+/* CONTAINER DE DIFICULDADES */
+.dificuldades-container {
+    max-width: 1400px;
+    margin: 60px auto;
+    padding: 20px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+/* CARDS DE DIFICULDADE */
+.dificuldade-card {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 20px;
+    padding: 30px;
+    border: 2px solid;
+    box-shadow: 0 0 25px rgba(193, 240, 248, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.dificuldade-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 35px;
+}
+
+.dificuldade-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.5s ease-in-out;
+}
+
+.dificuldade-card:hover::before {
+    left: 150%;
+}
+
+/* CORES E ÍCONES ESPECÍFICOS PARA CADA DIFICULDADE */
+.normal {
+    border-color: #a0eea3;
+    box-shadow: 0 0 25px rgba(136, 202, 138, 0.3);
+}
+.normal:hover {
+    box-shadow: 0 0 35px rgba(76, 175, 80, 0.6);
+}
+
+.diabolica {
+    border-color: #fcd294;
+    box-shadow: 0 0 25px rgba(241, 183, 96, 0.3);
+}
+.diabolica:hover {
+    box-shadow: 0 0 35px rgba(255, 152, 0, 0.6);
+}
+
+.caveira {
+    border-color: #fd7970;
+    box-shadow: 0 0 25px rgba(244, 67, 54, 0.3);
+    animation: dangerPulse 3s infinite;
+}
+.caveira:hover {
+    box-shadow: 0 0 35px rgba(244, 67, 54, 0.8);
+}
+
+/* HEADER DOS CARDS */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid;
+}
+
+/* ÍCONE PERSONALIZADO (IMAGEM) */
+.dificuldade-icon {
+    width: 90px;
+    height: 90px;
+    display: block;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.5);
+}
+
+/* DEFINIÇÃO DAS IMAGENS DOS ÍCONES */
+.normal .dificuldade-icon { 
+    background-image: url('../imagens/Icone_companherismo.png'); /* <-- SUBSTITUA A URL */
+    border: 3px solid #b0f8b3;
+    background-color: rgba(146, 243, 150, 0.2);
+}
+.diabolica .dificuldade-icon { 
+    background-image: url('../imagens/icone_ataque.png'); /* <-- SUBSTITUA A URL */
+    border: 3px solid #f5ce94;
+    background-color: rgba(255, 152, 0, 0.2); 
+}
+.caveira .dificuldade-icon { 
+    background-image: url('../imagens/Icone_Diluvio.png'); /* <-- SUBSTITUA A URL */
+    border: 3px solid #fa7a71;
+    background-color: rgba(244, 67, 54, 0.2); 
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* CONTEÚDO DOS CARDS */
+.card-content {
+    color: #e8e8e8;
+    line-height: 1.7;
+}
+
+.mecanica-item {
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+    border-left: 3px solid;
+    transition: all 0.3s ease;
+}
+
+.mecanica-item:hover {
+    transform: translateX(5px);
+    background: rgba(255,255,255,0.05);
+}
+
+.normal .mecanica-item { border-left-color: #4CAF50; }
+.diabolica .mecanica-item { border-left-color: #FF9800; }
+.caveira .mecanica-item { border-left-color: #f44336; }
+
+.perigo {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+/* SANIDADE METER */
+.sanidade-container {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 15px;
+    border: 1px solid;
+}
+
+.sanidade-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #C1F0F8;
+}
+
+.sanidade-meter {
+    height: 38px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* PREENCHIMENTO DA BARRA COM FUNDO DE CRISTAL E OVERLAY DE COR */
+.sanidade-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    position: relative;
+    
+    /* FUNDO DE CRISTAL */
+    background-image: url('../imagens/fundo_rubi.jpg'); /* <-- SUBSTITUA A URL */
+    background-size: auto 100%; 
+    background-repeat: repeat-x;
+    
+    /* Efeito de profundidade/brilho */
+    box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 5px #ff0e0e;
+}
+
+/* Overlay de cor sobre o cristal */
+.sanidade-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6; /* Transparência para ver o cristal */
+    border-radius: 10px;
+}
 
 
 
+.sanidade-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+.footer-regras {
+    text-align: center;
+    padding: 45px;
+    color: #c1f0f8;
+    font-size: 1rem;
+    background: linear-gradient(145deg, #050505, #000);
+    border-top: 3px solid #66ffff;
+    margin-top: 60px;
+    text-shadow: 0 0 5px rgba(193, 240, 248, 0.5);
+    animation: fadeIn 2s ease-out;
+}
+
+/* ================================================= */
+/* RESPONSIVIDADE */
+/* ================================================= */
+@media (max-width: 768px) {
+    .titulo_efeito {
+        font-size: 2.5rem;
+        padding: 20px 30px;
+        max-width: 90%;
+        margin: 0 20px;
+    }
+    
+    .regras-section {
+        margin: 30px 15px;
+        padding: 20px;
+    }
+
+    .section-titulo {
+        font-size: 2rem;
+        padding: 15px 25px;
+    }
+
+    .conteudo-texto {
+        font-size: 1.05rem;
+        text-align: left;
+    }
+    
+    .conteudo-lista li {
+        padding: 12px 15px;
+    }
+
+    .imagens-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .classes-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .dificuldades-container {
+        grid-template-columns: 1fr;
+        margin: 40px 20px;
+    }
+
+    .dificuldade-card {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo_efeito {
+        font-size: 2rem;
+        padding: 15px 20px;
+    }
+
+    .section-titulo {
+        font-size: 1.6rem;
+        padding: 10px 20px;
+    }
+
+    .classe-card {
+        padding: 20px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .dificuldade-icon {
+        width: 50px;
+        height: 50px;
+    }
+}
 
 
 

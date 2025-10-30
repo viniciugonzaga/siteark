@@ -58,3 +58,66 @@ if (clearRollsButton) {
 function goToPage(page) {
     window.location.href = page;
 }
+
+ // ANIMAÇÃO INTERATIVA DA SANIDADE
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.dificuldade-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    const fill = this.querySelector('.sanidade-fill');
+                    if (fill) {
+                        const currentWidth = parseFloat(fill.style.width);
+                        fill.style.transition = 'width 0.3s ease';
+                        fill.style.width = (currentWidth + 10) + '%';
+                        
+                        setTimeout(() => {
+                            fill.style.width = currentWidth + '%';
+                        }, 300);
+                    }
+                });
+
+                // Efeito de clique para demonstrar o sistema
+                card.addEventListener('click', function() {
+                    const cardType = this.classList[1];
+                    let message = '';
+                    
+                    switch(cardType) {
+                        case 'normal':
+                            message = ' Cena Normal: Recursos completos disponíveis';
+                            break;
+                        case 'diabolica':
+                            message = ' Cena Diabólica: Sistema de esforço mental ativado';
+                            break;
+                        case 'caveira':
+                            message = ' Cena da Caveira: Limiar da loucura - cuidado extremo!';
+                            break;
+                    }
+                    
+                    // Efeito visual de confirmação
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-10px)';
+                    }, 150);
+                    
+                    console.log(message);
+                });
+            });
+
+            // Efeito de digitação no título
+            const title = document.querySelector('.titulo_efeito');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+            
+            // Inicia a animação de digitação
+            setTimeout(typeWriter, 1000);
+        });
