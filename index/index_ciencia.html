@@ -1,345 +1,306 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ciências</title>
-    <link rel="stylesheet" href="/css/ciências.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <!-- Fonte -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!--fim da fonte-->
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Para arquivos .ico -->
-    <!-- Alternativa para .png -->
-    <link rel="icon" href="imagens/logo v.2.png" type="image/png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratório</title>
+  <link rel="stylesheet" href="../css/ciências.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
 </head>
 <body>
-   <!-- Nav-Bar ------------------------------------------------------>
-   <nav>
-    <!-- Logo com Ícone e Texto -->
-    <div class="logo">
-        <img src="imagens/logo v.2.png" alt="Logo"> <!-- Substitua pelo nome da sua imagem -->
+  <div class="starfall"></div>
+<nav>
+    <div class="nav-left">
+      <div class="logo">
+        <img src="../imagens/Icone_ark_v4.png" alt="Logo">
         <h1>RPG ARK</h1>
+      </div>
     </div>
-    <div class="nav-links">
-      <a href="index.html"><span>Início</span></a>
-      <a href="index_mapas.html"><span>Mapas</span></a>
-      <a href="index_história.html"><span>Lore</span></a>
-      <a href="index_regras.html"><span>Regras</span></a>
-      <a href="index_bloqueado.html"><span>Dinos</span></a>
-      <a href="index_ciencia.html"><span>Ciências</span></a>
+
+    <div class="nav-middle">
+      <div class="nav-links">
+        <a href="../index.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
+        <a href="index_mapas.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
+        <a href="index_história.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
+        <a href="index_regras.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html"class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
+      </div>
     </div>
-    <!-- Botão Glow -->
-    <div class="dado-container">
-        <img src="imagens/dado_planta.webp" alt="dado" class="dado"> <!-- Substitua pelo nome da sua imagem -->
+
+    <div class="nav-right">
+      <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+          <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon">
+        </a>
+      </div>
     </div>
-    
+
     <div id="diceMenu" class="menu hidden">
-        <button id="closeMenu">Fechar</button>
-        <h3>Rolar Dados</h3>
-        <label for="playerName">Nome do Jogador:</label>
-        <input type="text" id="playerName" placeholder="Digite o nome do jogador">
-        <label for="diceSelect">Selecione o tipo de dado:</label>
-        <select id="diceSelect">
-            <option value="20">D20</option>
-            <option value="12">D12</option>
-            <option value="10">D10</option>
-            <option value="8">D8</option>
-            <option value="6">D6</option>
-            <option value="4">D4</option>
-            <option value="2">D2</option>
-        </select>
-        <button id="rollDice">Rolar Dados</button>
-        <div id="rolls">
-            <h4>Registro de Rolagens:</h4>
-            <ul id="rollList"></ul>
-            <p id="total">Total: 0</p>
-        </div>
-        <button id="clearRolls">Limpar Registro</button>
-    </div>
-    
-  </nav>
-    <!-- Fim Nav-Bar ------------------------------------------------->
-    <div class="titulo_principal">
-      <h1 class="titulo_efeito">Ciência</h1>
-  </div>
-
-  <div class="carrossel-container">
-    <div class="carrossel">
-        <!-- Botão Esquerdo -->
-        <button id="prev" class="nav-button">&#8592;</button>
-        
-        <!-- Imagens -->
-        <img id="imagem" src="" alt="Imagem 1">
-        
-        <!-- Botão Direito -->
-        <button id="next" class="nav-button">&#8594;</button>
-    </div>
-
-    <!-- Texto Descritivo -->
-    <div class="texto-descricao">
-        <p id="texto">Bem vidno a área da ciências</p>
-    </div>
-</div>
-
-<div class="conteudo-principal">
-  <div class="area-icones">
-      <div class="icone-box" data-icone="1" onclick="mudarModal(1)"></div>
-      <div class="icone-box" data-icone="2" onclick="mudarModal(2)"></div>
-      <div class="icone-box" data-icone="3" onclick="mudarModal(3)"></div>
-      <div class="icone-box" data-icone="4" onclick="mudarModal(4)"></div>
-      <div class="icone-box" data-icone="5" onclick="mudarModal(5)"></div>
-  </div>
-
-  <div class="area-modal" id="modal" data-fundo="1">
-      <div class="conteudo-modal">
-         
+      <button id="closeMenu">Fechar</button>
+      <h3>Rolar Dados</h3>
+      <label for="playerName">Nome do Jogador:</label>
+      <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+      <label for="diceSelect">Selecione o tipo de dado:</label>
+      <select id="diceSelect">
+        <option value="20">D20</option>
+        <option value="12">D12</option>
+        <option value="10">D10</option>
+        <option value="8">D8</option>
+        <option value="6">D6</option>
+        <option value="4">D4</option>
+        <option value="2">D2</option>
+      </select>
+      <button id="rollDice">Rolar Dados</button>
+      <div id="rolls">
+        <h4>Registro de Rolagens:</h4>
+        <ul id="rollList"></ul>
+        <p id="total">Total: 0</p>
       </div>
-  </div>
-</div>
-
-<div class="botoes">
-  <!-- Botão que abre o modal -->
-<button id="abrirModalHibridos">Criar Híbrido</button>
-<button id="abrirModalAnimais">Criar Criatura</button>
-<button id="abrirModalCaveira">Criar Criatura da Caveira</button>
-</div>
-
-
-<!-- Estrutura do Modal -->
-<div id="modalHibridos" class="modal-hibridos">
-    <div class="modal-hibridos-content">
-        <span id="fecharModalHibridos" class="fechar-hibridos">&times;</span>
-        <h2>Sistema de Criação de Híbridos</h2>
-
-        <!-- Formulário de entrada -->
-        <div id="formularioHibridos">
-            <div class="animal-box" id="animal1">
-                <label for="bicho1">Nome do Primeiro Pai:</label>
-                <input type="text" id="bicho1" placeholder="Ex: T-Rex">
-
-                <label for="compatibilidade1">Compatibilidade:</label>
-                <select id="compatibilidade1">
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                </select>
-
-                <label for="duplicar1">Duplicar DNA?</label>
-                <input type="checkbox" id="duplicar1">
-
-                <label for="dominante1">Este é o DNA dominante?</label>
-                <input type="radio" name="dominante" value="animal1">
-            </div>
-
-            <div class="animal-box" id="animal2">
-                <label for="bicho2">Nome do Segundo Pai:</label>
-                <input type="text" id="bicho2" placeholder="Ex: Dilo">
-
-                <label for="compatibilidade2">Compatibilidade:</label>
-                <select id="compatibilidade2">
-                    <option value="sim">Sim</option>
-                    <option value="nao">Não</option>
-                </select>
-
-                <label for="duplicar2">Duplicar DNA?</label>
-                <input type="checkbox" id="duplicar2">
-
-                <label for="dominante2">Este é o DNA dominante?</label>
-                <input type="radio" name="dominante" value="animal2">
-            </div>
-        </div>
-
-        <!-- Botão para adicionar mais animais -->
-        <button id="adicionarAnimal">Adicionar Outro Animal</button>
-
-        <!-- Seção de DNA de Fortificação -->
-        <div id="dnaFortificacao">
-            <h3>DNA de Fortificação</h3>
-            <label for="fortificacaoNome">Nome do DNA de Fortificação:</label>
-            <input type="text" id="fortificacaoNome" placeholder="Ex: Rajassauro">
-
-            <label for="fortificacaoChance">Porcentagem de Fortificação:</label>
-            <select id="fortificacaoChance">
-                <option value="50">50%</option>
-                <option value="100">100%</option>
-            </select>
-
-            <label for="fortificacaoDominante">O DNA de Fortificação é Dominante?</label>
-            <select id="fortificacaoDominante">
-                <option value="sim">Sim</option>
-                <option value="nao">Não</option>
-            </select>
-        </div>
-
-        <!-- Botão para calcular DT -->
-        <button id="calcularDTHibridos">Calcular DT</button>
-
-        <!-- Resultado -->
-        <div id="resultadoDTHibridos"></div>
-         <!-- Nome do híbrido -->
-         <label for="nomeHibrido">Nome do Híbrido:</label>
-         <input type="text" id="nomeHibrido" placeholder="Digite o nome do híbrido" />
-     
-         <!-- Exibição dos animais envolvidos -->
-         <p><strong>Junção:</strong> <span id="nomeJunção"></span></p>
-     
-         <!-- Exibição das habilidades e suas porcentagens -->
-         <h4>Habilidades e Chances:</h4>
-         <div id="habilidadesHibrido"></div>
+      <button id="clearRolls">Limpar Registro</button>
     </div>
-</div>
-
-
-
-
-  <!-- Modal -->
-  <div id="modalAnimais" class="modal-animais">
-    <div class="modal-animais-content">
-      <span id="fecharModalAnimais" class="fechar-animais">&times;</span>
-      <h2>Sistema de Criação de Criaturas</h2>
-
-      <!-- Formulário para o dino principal -->
-      <div id="formularioAnimais">
-        <div class="animal2-box">
-          <label for="nomeCriatura1">Nome da Criatura:</label>
-          <input type="text" id="nomeCriatura1" placeholder="Ex: T-Rex">
-
-          <label for="tipoCriatura1">Tipo:</label>
-          <select id="tipoCriatura1">
-            <option value="comum">Comum</option>
-            <option value="medio">Médio</option>
-            <option value="grande">Grande</option>
-            <option value="apex">Apex</option>
-          </select>
-
-          <label for="duplicarDNA1">Duplicar DNA?</label>
-          <input type="checkbox" id="duplicarDNA1">
-        </div>
-      </div>
-
-      <!-- Seção para adicionar outros dinos -->
-      <div>
-        <h3>DNA de Fortificação</h3>
-        <ul id="animaisAdicionados"></ul>
-      </div>
-
-      <!-- Botão para calcular o DT -->
-      <button id="calcularDT">Calcular DT</button>
-
-      <!-- Exibir o DT total -->
-      <div id="dtTotal">DT Total: <span id="valorDT">0</span></div>
-    </div>
-  </div>
-  
-  
+</nav>
  
+<main>
 
-  <!-- Modal -->
-  <div id="modalCaveira" class="modal-caveira">
-    <div class="modal-caveira-content">
-      <span id="fecharModalCaveira" class="fechar-caveira">&times;</span>
-      <h2>Criar Criatura da Caveira</h2>
+<!-- CABEÇALHO -->
+    <header class="header-ciencias">
+        <img src="../imagens/frasco.png" alt="Ícone de Ciências" class="icone-frasco">
+        <h1 class="titulo-principal">ÁREA DE CIÊNCIAS</h1>
+        <p class="subtitulo">
+            Bem-vindo à área de ciências! Aqui você pode criar seus dinos, ver o DNA deles e explorar 
+            diversas informações e opções para gerar o seu novo amigo — o seu dinossauro, ou melhor, a sua criatura.
+        </p>
 
-      <!-- Formulário para a criatura -->
-      <div id="formularioCaveira">
-        <div class="campo-caveira">
-          <label for="nomeCriatura">Nome da Criatura:</label>
-          <input type="text" id="nomeCriatura" placeholder="Ex: O encourçado">
+        <div class="botoes-container">
+            <button class="btn-ciencia btn-hibrido">Criar Híbrido</button>
+            <button class="btn-ciencia btn-criatura">Criar Criatura</button>
+            <button class="btn-ciencia btn-caveira">Criar Criatura da Caveira</button>
+        </div>
+    </header>
+
+    <!-- IMAGEM DOS DINOS -->
+    <section class="secao-imagem">
+        <img src="../imagens/dino.png" alt="Dinossauro rugindo" class="dino-img">
+    </section>
+
+    <!-- CRIAÇÃO DE HÍBRIDOS -->
+    <section class="secao-conteudo secao-hibrido">
+        <h2 class="titulo-secao">🧬 SISTEMA DE CRIAÇÃO DE HÍBRIDOS</h2>
+        <p class="descricao-secao">
+            Misture o DNA e veja como seu animal vai ficar! Preencha as informações abaixo:
+        </p>
+
+        <div class="form-grid">
+            <div>
+                <div class="form-group">
+                    <label class="form-label">Nome do Primeiro Pai:</label>
+                    <input type="text" placeholder="Ex: T-Rex" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Compatibilidade:</label>
+                    <select class="form-select">
+                        <option>Sim</option>
+                        <option>Não</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Duplicar DNA?
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox"> DNA Dominante?
+                    </label>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group">
+                    <label class="form-label">Nome do Segundo Pai:</label>
+                    <input type="text" placeholder="Ex: Dilo" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Compatibilidade:</label>
+                    <select class="form-select">
+                        <option>Sim</option>
+                        <option>Não</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox"> Duplicar DNA?
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox"> DNA Dominante?
+                    </label>
+                </div>
+            </div>
         </div>
 
-        <div class="campo-caveira">
-          <label for="classeCriatura">Classe:</label>
-          <select id="classeCriatura">
-            <option value="predador">Predador</option>
-            <option value="presa">Presa</option>
-            <option value="colosso">Colosso</option>
-          </select>
+        <button class="btn-acao">+ Adicionar Outro Animal</button>
+
+        <div class="divisoria">
+            <h3 class="subtitulo-interno">DNA de Fortificação</h3>
+            <div class="form-group">
+                <input type="text" placeholder="Ex: Rajassauro" class="form-input" style="margin-bottom: 15px;">
+                <input type="text" placeholder="Porcentagem de Fortificação: 50%" class="form-input" style="margin-bottom: 15px;">
+            </div>
+            <label class="checkbox-label">
+                <input type="checkbox"> DNA de Fortificação é Dominante?
+            </label>
         </div>
 
-        <div class="campo-caveira">
-          <label for="mutacaoCriatura">Mutação:</label>
-          <select id="mutacaoCriatura">
-            <option value="ataque">Ataque</option>
-            <option value="defesa">Defesa</option>
-            <option value="inteligencia">Inteligência</option>
-          </select>
+        <div style="text-align: center; margin: 30px 0;">
+            <button class="btn-acao">Calcular DT</button>
         </div>
 
-        <div class="campo-caveira">
-          <label for="criaturaBase">Criatura Base de Sangue:</label>
-          <input type="text" id="criaturaBase" placeholder="Ex: T-Rex, Urso, etc">
+        <div>
+            <div class="form-group">
+                <label class="form-label">Nome do Híbrido:</label>
+                <input type="text" placeholder="Digite o nome do híbrido" class="form-input">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Junção:</label>
+                <p style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; border-left: 3px solid #4CAF50; color: #aaa;">
+                    ...
+                </p>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Habilidades e Chances:</label>
+                <p style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; border-left: 3px solid #4CAF50; color: #aaa;">
+                    ...
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMAGEM DO DNA -->
+    <section class="secao-imagem">
+        <img src="../imagens/dna.png" alt="Imagem de DNA" class="dna-img">
+    </section>
+
+    <!-- CRIAÇÃO DE CRIATURAS -->
+    <section class="secao-conteudo secao-criatura">
+        <h2 class="titulo-secao">🦖 SISTEMA DE CRIAÇÃO DE CRIATURAS</h2>
+
+        <div class="form-grid">
+            <div>
+                <div class="form-group">
+                    <label class="form-label">Nome da Criatura:</label>
+                    <input type="text" placeholder="Ex: T-Rex" class="form-input">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Tipo:</label>
+                    <input type="text" placeholder="Comum" class="form-input">
+                </div>
+
+                <label class="checkbox-label">
+                    <input type="checkbox"> Duplicar DNA?
+                </label>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label class="form-label">DNA de Fortificação:</label>
+                    <input type="text" class="form-input">
+                </div>
+
+                <button class="btn-acao" style="margin-top: 20px;">Calcular DT</button>
+                <p style="margin-top: 10px; color: #C1F0F8;">DT Total: <strong>0</strong></p>
+            </div>
         </div>
 
-        <div class="campo-caveira">
-          <label for="tipoCriatura">Tipo:</label>
-          <select id="tipoCriatura">
-            <option value="comum">Comum</option>
-            <option value="medio">Médio</option>
-            <option value="grande">Grande</option>
-            <option value="apex">Apex</option>
-          </select>
-        </div>
+        <div class="divisoria">
+            <h3 class="subtitulo-interno">💀 Criar Criatura da Caveira</h3>
+            
+            <div class="form-grid">
+                <div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Ex: O encouraçado" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Classe: Predador" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Mutação: Ataque" class="form-input">
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Criatura Base de Sangue: Ex: T-Rex, Urso, etc" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Tipo: Comum" class="form-input">
+                    </div>
+                </div>
+            </div>
 
-        <div class="campo-caveira">
-          <label for="esforcoAlimentacao">Esforço de Alimentação (Vida):</label>
-          <input type="number" id="esforcoAlimentacao" min="0" value="0">
-        </div>
+            <div class="grid-especial">
+                <div class="form-group">
+                    <input type="number" placeholder="Esforço de Alimentação (Vida)" class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Esforço de Sangue" class="form-input">
+                </div>
+                <div class="form-group">
+                    <input type="number" placeholder="Esforço de Sanidade" class="form-input">
+                </div>
+            </div>
 
-        <div class="campo-caveira">
-          <label for="esforcoSangue">Esforço de Sangue:</label>
-          <input type="number" id="esforcoSangue" min="0" value="0">
+            <button class="btn-acao" style="border-color: #9C27B0; color: #9C27B0;">Calcular DT</button>
+            <p style="margin-top: 10px; color: #C1F0F8;">DT Total: <strong>0</strong></p>
         </div>
+    </section>
 
-        <div class="campo-caveira">
-          <label for="esforcoSanidade">Esforço de Sanidade:</label>
-          <input type="number" id="esforcoSanidade" min="0" value="0">
-        </div>
+</main>
+
+
+<!--footer----------------------------------------------------------------------------->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>Sobre o RPG</h2>
+        <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
       </div>
 
-      <!-- Botões -->
-      <button id="calcularDTCaveira">Calcular DT</button>
-      
+      <div class="footer-section links">
+        <h2>Links Úteis</h2>
+        <ul>
+          <li><a href="index_mapas.html">Mapas</a></li>
+          <li><a href="index_tribos.html">Tribos</a></li>
+          <li><a href="index_regras.html">Regras</a></li>
+          <li><a href="index_itens.html">Itens</a></li>
+        </ul>
+      </div>
 
-      <!-- Exibir o DT total -->
-      <div id="dtTotalCaveira">DT Total: <span id="valorDTCaveira">0</span></div>
+      <div class="footer-section social">
+        <h2>Conecte-se</h2>
+        <div class="social-icons">
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="../imagens/insta_home.png" alt="Instagram"></a>
+          <a href="https://github.com" target="_blank"><img src="../imagens/git_home.png" alt="GitHub"></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="../imagens/gmail_home.png" alt="E-mail"></a>
+        </div>
+      </div>
     </div>
-  </div>
 
-      <!--footer----------------------------------------------------------------------------->
-      <footer>
-        <div class="footer-content">
-            
-          <div class="footer-section about">
-            <h2>Sobre o RPG</h2>
-            <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
-          </div>
-          <div class="footer-section links">
-            <h2>Links Úteis</h2>
-            <ul>
-              <li><a href="index_mapas.html">Mapas</a></li>
-              <li><a href="index_tribos.html">Tribos</a></li>
-              <li><a href="index_regras.html">Regras</a></li>
-              <li><a href="index_itens.html">Itens</a></li>
-            </ul>
-          </div>
-          <div class="footer-section social">
-            <h2>Conecte-se</h2>
-            <div class="social-icons">
-              <a href="https://instagram.com/vindinossauro" target="_blank"><img src="imagens/insta_home.png" alt="Instagram"></a>
-              <a href="https://github.com" target="_blank"><img src="imagens/git_home.png" alt="GitHub"></a>
-              <a href="mailto:vinigonzagap@gmail.com"><img src="imagens/gmail_home.png" alt="E-mail"></a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>RPG Ark: Criado por Vini &copy; 2024</p>
-        </div>
-      </footer>
-      
+    <div class="footer-bottom">
+      <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+    </div>
+  </footer>
+ <!-- JS -->
+<script src="../js/ciencias.js" defer></script>
 
- <!-- Inclui o arquivo de script -->
- <script src="js/ciencias.js"></script>
 </body>
 </html>

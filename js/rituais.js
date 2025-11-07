@@ -843,7 +843,238 @@ window.dadosRituais = {
             nivel: 70,
             imagem: "../imagens/icon_portal_eletricidade.jpg",
             classe: "ritual"
-        }
+        },
+           // Rituais de Fogo Brutal
+81: {
+    id: 81,
+    nome: "Guspir Fogo",
+    tipo: "Brutal",
+    elemento: "Fogo",
+    descricao: "O conjurador usa o arcano em suas gargantas para preparar uma rajada de fogo, que causa 4d12+3d6 pontos de fogo em um alcance reduzido de 6 metros, porém cada inimigo acertado, o conjurador perde 2 pontos de sanidade, caso elimine um alvo ganha 4 pontos de armadura temporária acumulavél durante a cena.",
+    nivel: 30,
+    imagem: "../imagens/icon_guspir_fogo.jpg",
+    classe: "ritual"
+},
+82: {
+    id: 82,
+    nome: "Coração de Fogo",
+    tipo: "Brutal",
+    elemento: "Fogo",
+    descricao: "O conjurador absorve as chamas em seu corpo e deposita a energia em suas veias, sofrendo 30 pontos de dano de fogo verdadeiro, porém ganha +1 ação durante a rodada, além de 30 de armadura por 1d4(R) de rodadas. O conjurador pode usar esse ritual uma vez na cena, além de receber +10 fortitude e bloqueio durante o efeito do ritual.",
+    nivel: 30,
+    imagem: "../imagens/icon_coracao_fogo.jpg",
+    classe: "ritual"
+},
+83: {
+    id: 83,
+    nome: "Couraça de Ferro",
+    tipo: "Brutal",
+    elemento: "Fogo",
+    descricao: "O conjurador pode interagir com um metal e uma de suas feridas, podendo cura-lás com 5d8+12 pontos de armadura, preenchendo as feridas, além de emitir uma aura de fogo em volta de si, causando dano de 2d6 pontos de fogo, para qualquer ser que o atacar corpo a corpo.",
+    nivel: 30,
+    imagem: "../imagens/icon_couraca_ferro.jpg",
+    classe: "ritual"
+},
+84: {
+    id: 84,
+    nome: "Virar Chama",
+    tipo: "Brutal",
+    elemento: "Fogo",
+    descricao: "O Conjurador ao ver uma onda de fogo em deslocamento ou criar uma correnteza quente no cenário, pode se juntar ao fogo, criando um corpo elemental de chamas e ganhando +10 em manipulação de fogo, +5 conjuração e +5 em voar, durante a cena. Seus ataques a distância explodem criando ondas de fogo nas zonas de acerto, causando 1d12 pontos de fogo. O ritual perde efeito ao receber dano de água ou for enfraquecido.",
+    nivel: 30,
+    imagem: "../imagens/icon_virar_chama.jpg",
+    classe: "ritual"
+},
+
+// Rituais de Fogo Diabólico
+85: {
+    id: 85,
+    nome: "Comando Infernal",
+    tipo: "Diabólico",
+    elemento: "Fogo",
+    descricao: "O Conjurador caso tenha uma essência e conexão com o fogo, pode realizar um teste de conjuração, Dt 30, caso passe o conjurador invoca 1d4+3 esqueletos carbonizados do solo ou de alguma chama próxima, enquanto eles estiverem vivos, o comandante poderá lhe mandar ordens de atacar, seguir, parar e explodir, cada esqueleto que explodir causa 30 pontos de dano de fogo. Além disso enquanto cada esqueleto estiver vivo, o comandante recebe +20 de armadura para cada esqueleto vivo de forma temporária. Este ritual só pode ser usado uma vez na cena.",
+    nivel: 50,
+    imagem: "../imagens/icon_comando_infernal.jpg",
+    classe: "ritual"
+},
+86: {
+    id: 86,
+    nome: "Ataque Infernal",
+    tipo: "Diabólico",
+    elemento: "Fogo",
+    descricao: "O conjurador sacrifica sua arma de alcance corpo a corpo e explode a arma intensificando junto com o ferro derretido, criando uma explosão de 12d6 de dano de fogo + o dano da arma em um ataque. O inimigo pode tentar reduzir metade do dano passando em um teste de fortitude. O ritual só pode ser usado apenas com uma arma única e com grande uso na cena, o conjurador fica imune ao fogo da arma e a explosão é de 3 metros adjacentes.",
+    nivel: 50,
+    imagem: "../imagens/icon_ataque_infernal.jpg",
+    classe: "ritual"
+},
+87: {
+    id: 87,
+    nome: "Bala Infernal",
+    tipo: "Diabólico",
+    elemento: "Fogo",
+    descricao: "O conjurador se banha e pólvora antes de usar o ritual, depois dessa preparação, o conjurador dá um tiro com alguma arma de fogo, durante o ataque as balas fazem um rastro de fogo, causando 8d6+(3d6) pontos de fogo para o número de pólvora gasta, somando com o dano da arma, o ataque é amedrontador e escandaloso, criando um buraco no inimigo de lava derretida. Este ritual só pode ser usado quando a arma já for usada no mínimo mais de 6 vezes na Cena. O Inimigo atingido recebe o efeito Abalado por 1d2(R) de rodadas.",
+    nivel: 50,
+    imagem: "../imagens/icon_bala_infernal.jpg",
+    classe: "ritual"
+},
+88: {
+    id: 88,
+    nome: "Condutor do Fogo",
+    tipo: "Diabólico",
+    elemento: "Fogo",
+    descricao: "O conjurador ganha +15 de manipulação infernal durante a cena, o conjurador ganha a habilidade de poder controlar qualquer chama do cenário que não tenha posse arcana ou seja criado por ele mesmo, podendo controlá-la de forma viva, com +10 de flutuar, atacar com as chamas causa 3d12+6d6 pontos de fogo, além de deixar o alvo enfraquecido por 1d4(R) de rodadas. O ritual dura a Cena toda. Alcance visual de chamas.",
+    nivel: 50,
+    imagem: "../imagens/icon_condutor_fogo.jpg",
+    classe: "ritual"
+},
+89: {
+    id: 89,
+    nome: "Marca do Ceifador",
+    tipo: "Diabólico",
+    elemento: "Fogo",
+    descricao: "O conjurador faz uma troca entre seus pensamentos, sacrificando metade de sua sanidade para marcar um alvo que ficará enfraquecido durante um número de sanidade somadas perdidas na mente do conjurador. Cada 6 pontos equivale a uma rodada, além disso o alvo queima 2d6 pontos de fogo, até que o conjurador seja morto ou atordoado.",
+    nivel: 50,
+    imagem: "../imagens/icon_marca_ceifador.jpg",
+    classe: "ritual"
+},
+
+// Rituais de Fogo Complexo
+90: {
+    id: 90,
+    nome: "Suspiro de Diablo",
+    tipo: "Complexo",
+    elemento: "Fogo",
+    descricao: "O conjurador sente uma forte presença maligna em seu corpo, tentando replicar toda maldade em um único eco agonizante e amargo de fogo em sua boca, o conjurador transforma toda a vida restante de seu corpo em armadura, e grita enquanto sopra uma onda de fogo maligna, o conjurador deve fazer um teste de fortitude para não desmaiar Dt 50. O dano do ataque é de 12 metros de alcance e causa 9d12+9d6+2d8 pontos de dano de fogo verdadeiro, ignorando qualquer defesa física e não mágica no corpo. O ritual só pode ser usado uma única vez na Cena.",
+    nivel: 70,
+    imagem: "../imagens/icon_suspiro_diablo.jpg",
+    classe: "ritual"
+},
+91: {
+    id: 91,
+    nome: "Pancada de Ashen",
+    tipo: "Complexo",
+    elemento: "Fogo",
+    descricao: "O conjurador derrete seu braço de forma permanente, transformando em osso e queimando sua carne de uma forma incurável, perdendo -30 pontos de vida de forma permanente, porém o conjurador pode atacar um ser único de forma corpo a corpo, causando 4d12 pontos de dano de fogo para cada ponto de força do conjurador, o alvo após o ataque fica desarmado e sua armadura fica incapacitada a cena toda.",
+    nivel: 70,
+    imagem: "../imagens/icon_pancada_ashen.jpg",
+    classe: "ritual"
+},
+92: {
+    id: 92,
+    nome: "Tornado de Ashen",
+    tipo: "Complexo",
+    elemento: "Fogo",
+    descricao: "O Conjurador absorve todas as chamas em volta da cena e junta todas elas para criar um tornado de fogo, que ruge de forma estrondosa, causando 10d6+60 pontos de dano de fogo, equivalente a proximidade do inimigo, o ritual demora 1 ação para ser feito e seu alcance é de uma vila. Só pode ser usada uma vez na cena.",
+    nivel: 70,
+    imagem: "../imagens/icon_tornado_ashen.jpg",
+    classe: "ritual"
+},
+// Rituais de Código Brutal
+93: {
+    id: 93,
+    nome: "Mão de Mago",
+    tipo: "Brutal",
+    elemento: "Código",
+    descricao: "O Conjurador após ter roubado algum item durante a cena que não seja seu ou estar com posse de algo que não lhe pertence e os donos enxergarem isso, o ritual fica livre de uso pela cena toda, como reação ou ação padrão, o conjurador pode segurar, pegar, encostar ou interagir com um par de mãos do arcano que possuem 25 pontos de vida cada, ao possuir essas mãos arcanas na cena, o conjurador ganha +5 em qualquer ação que suas mãos se encaixem em alguma ação da cena, o alcance é visual. Ao serem quebradas deve se repetir todo o processo de criação do ritual.",
+    nivel: 30,
+    imagem: "../imagens/icon_mao_mago.jpg",
+    classe: "ritual"
+},
+94: {
+    id: 94,
+    nome: "Olho Oculto",
+    tipo: "Brutal",
+    elemento: "Código",
+    descricao: "O Conjurador ao já ter visitado um lugar do cenário, pode preparar uma de suas ações para criar um de seus olhos escondidos no cenário, o olho cria mais um campo de visão para o conjurador além de fornecer +10 em percepção e +5 percepção inimiga. Caso o olho seja ferido, o olho retorna a face do portador e fica cego por 1 rodada no lugar do olho. Logo após o olho se regenera e o ritual pode ser usado depois de 3 rodadas.",
+    nivel: 30,
+    imagem: "../imagens/icon_olho_oculto.jpg",
+    classe: "ritual"
+},
+95: {
+    id: 95,
+    nome: "Distorcer",
+    tipo: "Brutal",
+    elemento: "Código",
+    descricao: "O Conjurador ao observar a mutação de alguém por horas e estuda-lá por dias, após fazer um teste de conhecimento de código Dt 40, após passar o conjurador pode copiar umas das mutações originais do personagem e usar elas durante o resto da cena. Ao fracassar, o conjurador apenas pode tentar repetir o teste depois de 4 rodadas.",
+    nivel: 30,
+    imagem: "../imagens/icon_distorcer.jpg",
+    classe: "ritual"
+},
+96: {
+    id: 96,
+    nome: "Manto Ilusivo",
+    tipo: "Brutal",
+    elemento: "Código",
+    descricao: "O conjurador pode usar este ritual depois de receber o mesmo efeito 2 vezes durante a cena, podendo usar este ritual como reação e teleportar próximo a um inimigo com +15 furtividade, o Manto pode ser usado várias vezes na cena, cada uso custa 25 pontos de sanidade.",
+    nivel: 30,
+    imagem: "../imagens/icon_manto_ilusivo.jpg",
+    classe: "ritual"
+},
+
+// Rituais de Código Diabólico
+97: {
+    id: 97,
+    nome: "Cérebro Arcano",
+    tipo: "Diabólico",
+    elemento: "Código",
+    descricao: "O Conjurador sacrifica metade da sua sanidade na cena, para receber +15 conhecimento arcano ou algum conhecimento de algum elemento para usar em 1d8 de testes durante a cena. O Conjurador pode repetir esse ritual novamente, porém o 1d8 decai de um dado menor, para 1d6.",
+    nivel: 50,
+    imagem: "../imagens/icon_cerebro_arcano.jpg",
+    classe: "ritual"
+},
+98: {
+    id: 98,
+    nome: "Controle Mental",
+    tipo: "Diabólico",
+    elemento: "Código",
+    descricao: "O Conjurador precisa já ter conversado com o alvo do ritual ou já ter conhecido e ouvido sua voz, após isso, o conjurador pode invadir a mente do alvo, fazendo ele enxergar apenas o conjurador e um ambiente preto e escuro, o alvo do ritual deve fazer um teste de vontade dt igual a metade do conhecimento de código ou controle mental do conjurador somados. O alvo controlado apenas pode obedecer e seguir ordens que não envolvam violência ou prejudiquem o conjurador, após receber dor, alguns dos dois, o ritual é desfeito. Pode ser usado apenas em um ser por vez na cena.",
+    nivel: 50,
+    imagem: "../imagens/icon_controle_mental.jpg",
+    classe: "ritual"
+},
+99: {
+    id: 99,
+    nome: "Conciência Arcana",
+    tipo: "Diabólico",
+    elemento: "Código",
+    descricao: "O conjurador pode usar este ritual apenas quando receber 3 ataques vindos de rituais, após isso, pode criar uma área de 20 metros na cena em que projéteis, ou ataques de rituais que não envolvem a mente, podem ser usados ou ganhar posse do conjurado quando passar em um teste de contra-ataque nas reações. Para tirar o efeito, um crânio rosado será escondido na cena e deve ser quebrado, após isso o ritual não pode mais ser usado no resto da cena.",
+    nivel: 50,
+    imagem: "../imagens/icon_conciencia_arcana.jpg",
+    classe: "ritual"
+},
+
+// Rituais de Código Complexo
+100: {
+    id: 100,
+    nome: "Controle de Feras",
+    tipo: "Complexo",
+    elemento: "Código",
+    descricao: "O Conjurador pode realizar um ritual de observação em toda a ilha do ark, em um lugar oculto e seguro, ao preparar o ritual, o conjurador ganha +30 em percepção arcana e pode enxergar com qualquer primeira criatura domada pelo conjurador que esteja no ark. O ritual só pode ser usado logo depois de uma noite.",
+    nivel: 70,
+    imagem: "../imagens/icon_controle_feras.jpg",
+    classe: "ritual"
+},
+101: {
+    id: 101,
+    nome: "Controle de Clones",
+    tipo: "Complexo",
+    elemento: "Código",
+    descricao: "O Conjurador precisa preparar uma ação para usar o ritual, ao ficar um dia canalizando a sua preparação, o conjurador pode criar uma casca de seu corpo, um corpo para controlar igual ao do conjurador por 1 único dia, ao morrer com esse corpo, o conjurador volta ao original.",
+    nivel: 70,
+    imagem: "../imagens/icon_controle_clones.jpg",
+    classe: "ritual"
+},
+102: {
+    id: 102,
+    nome: "Controle de Sonhos",
+    tipo: "Complexo",
+    elemento: "Código",
+    descricao: "O Conjurador precisa conhecer os personagens e após isso, preparar o ritual durante um tempo, após isso pode invadir os sonhos ou criar visões de cenários falsos, pelos seus olhos, podendo interagir com a cena real do personagem observado nos sonhos, porém ao ser revelado, resulta em uma luta brutal contra o alvo. Ao perder perde metade do dano sofrido em sanidade.",
+    nivel: 70,
+    imagem: "../imagens/icon_controle_sonhos.jpg",
+    classe: "ritual"
+}
+
     },
 
     "pactos": {
@@ -856,7 +1087,31 @@ window.dadosRituais = {
             nivel: 50,
             imagem: "../imagens/icon_pacto_bobo.jpg",
             classe: "pacto"
-        }
+        },
+         2: {
+        id: 2,
+        nome: "Pacto da Fênix",
+        tipo: "Lealdade",
+        elemento: "Fogo",
+        descricao: "Sua vontade de viver é intensa e vc aceitou partes da fênix em seu corpo para acender uma chama no mundo. O Portador ganha +20 de vida, +30 de armadura passiva (Obsidiana), +10 conhecimento de elemento de Fogo, +10 conjuração de fogo, +10 resiliência, 2 rituais de fogo comum, 2 rituais brutais de fogo comum, +1 ritual de fogo diabólico. Além disso sua armadura é naturalmente nula a fogo, o portador não recebe dano de fogo, além de ganhar +15 de armadura a cada vez que interagir com fogo. Suas armas são corrompidas com obsidiana e fogo, além de seus itens e seu instinto selvagem de ser humano. Além disso ele perde -10 em esquiva e transforma em bloqueio em suas reações.",
+        nivel: 50,
+        imagem: "../imagens/icon_fenix.jpg",
+        classe: "pacto"
+    },
+    3: {
+        id: 3,
+        nome: "Pacto de Cthulhu",
+        tipo: "Maldição",
+        elemento: "Raio",
+        descricao: "O Ser que possui esse acordo mental com a criatura se torna imune a dano mental e sua sanidade é convertida em fé para sua vontade, o ser escolhido se torna encarregado de seguir a vontade de seu mestre e fins de ascensão. Sua vida está fadada para acordar a criatura.",
+        nivel: 50,
+        imagem: "../imagens/chthullu_icon.png",
+        classe: "pacto"
+    }
+
+        
+
+        
         // Adicione outros pactos aqui seguindo o mesmo formato...
     }
 };
