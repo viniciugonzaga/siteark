@@ -1073,7 +1073,135 @@ window.dadosRituais = {
     nivel: 70,
     imagem: "../imagens/icon_controle_sonhos.jpg",
     classe: "ritual"
-}
+},
+103: {
+id: 103,
+nome: "Flor da Putrefação",
+tipo: "Brutal",
+elemento: "Morte",
+descricao: "O conjurador planta no chão um broto de energia necrosada. Após 1 rodada, ele floresce drenando a vida de todos os seres em um raio de 5 metros, causando 3d10 de dano verdadeiro e curando o conjurador pela metade do dano total. Cada ser morto pela flor concede +10 de vida temporária por 1d4 rodadas. O ritual custa 20 pontos de sanidade.",
+nivel: 30,
+imagem: "../imagens/icon_flor_putrefacao.jpg",
+classe: "ritual"
+},
+
+104: {
+id: 104,
+nome: "Voz dos Ossos",
+tipo: "Brutal",
+elemento: "Morte",
+descricao: "O conjurador sussurra palavras proibidas aos mortos, e ossos próximos se erguem em forma de servos frágeis. Invoca 1d4+8 esqueletos básicos com 20 PV cada, que obedecem a ordens simples. Cada rodada em que eles existirem, o conjurador perde 5 pontos de sanidade. Caso o conjurador atinja 0 de sanidade, os esqueletos o atacam até a morte.",
+nivel: 30,
+imagem: "../imagens/icon_voz_osso.jpg",
+classe: "ritual"
+},
+
+105: {
+id: 105,
+nome: "Toque do Carrasco",
+tipo: "Brutal",
+elemento: "Morte",
+descricao: "O conjurador canaliza o frio da morte em suas mãos. Ao tocar um inimigo vivo, causa 5d8+20 de dano de veneno (Peste) e recebe +5 de bônus em ações para qualquer teste contra alvos envenenados. O alvo deve fazer um teste de fortitude Dt 30 ou ficará paralisado por 1 rodada. Cada uso do ritual custa 25 pontos de sanidade.",
+nivel: 30,
+imagem: "../imagens/icon_toque_carrasco.jpg",
+classe: "ritual"
+},
+
+106: {
+id: 106,
+nome: "Espinhos do Túmulo",
+tipo: "Brutal",
+elemento: "Morte",
+descricao: "O conjurador invoca ossos do chão, empalando inimigos em uma linha reta de 6 metros. Cada inimigo atingido sofre 3d12+18 de dano perfurante e 2d6 de veneno. Caso o inimigo seja acertado e seja ferido, o conjurador ganha uma de suas reações na rodada. Se errar o ataque, o solo ao redor apodrece e o conjurador perde 25 pontos de sanidade.",
+nivel: 30,
+imagem: "../imagens/icon_espinhos_tumulo.jpg",
+classe: "ritual"
+},
+107: {
+id: 107,
+nome: "Eco dos Mortos",
+tipo: "Diabólico",
+elemento: "Morte",
+descricao: "O conjurador profana o solo e cria um campo espiritual de 12 metros. Todos os inimigos vivos dentro da área perdem 4d10 de vida por rodada e devem fazer teste de vontade Dt 40 para resistir ao medo. Cada rodada, o conjurador perde 5 pontos de sanidade. Criaturas mortas na área tornam-se espectros sob seu comando por 1d4 rodadas.",
+nivel: 50,
+imagem: "../imagens/icon_eco_mortos.jpg",
+classe: "ritual"
+},
+
+
+108: {
+id: 108,
+nome: "Jardim dos Corrompidos",
+tipo: "Diabólico",
+elemento: "Morte",
+descricao: "O conjurador marca um ponto no solo, e dele brotam flores fúnebres que exalam um gás venenoso por 3 rodadas. Inimigos na área sofrem 5d8 de veneno por rodada e testes de fortitude Dt 35 ou ficam enfraquecidos. O Conjurador no campo fica imune a efeitos até receber um ataque ou ganhe vida de alguma forma, assim perdendo efeito do ritual. O campo só pode ser usado uma vez na cena.",
+nivel: 50,
+imagem: "../imagens/icon_jardim_corrompidos.jpg",
+classe: "ritual"
+},
+
+109: {
+id: 109,
+nome: "Controle Ósseo",
+tipo: "Diabólico",
+elemento: "Morte",
+descricao: "O conjurador pode manipular ossos — próprios ou de outros — à vontade. Pode arremessar ossos como projéteis (3d12 perfurante + 2d12 por tamanho) ou fundir ossos mortos ao corpo, ganhando +25 armadura e +10 fortitude. Cada uso do ritual consome 15 de sanidade.",
+nivel: 50,
+imagem: "../imagens/icon_controle_osseo.jpg",
+classe: "ritual"
+},
+
+110: {
+id: 110,
+nome: "Corrupção Espiritual",
+tipo: "Diabólico",
+elemento: "Morte",
+descricao: "O conjurador pode preparar uma de suas ações para teleportar e trocar os corposd e posição com algum corpo na cena, porém precsia se lembrar do cenário em sua cabeça e fazer um teste de percepção arcana Dt 30. Caso fracasse o conjurador perde 40 pontos de sanidade. O ritual só pode ser usado uma vez em só corpo, e uma vez na Cena.",
+nivel: 50,
+imagem: "../imagens/icon_corrupcao_espiritual.jpg",
+classe: "ritual"
+},
+111: {
+id: 111,
+nome: "Renascer Profano",
+tipo: "Complexo",
+elemento: "Morte",
+descricao: "Ao morrer, o conjurador pode realizar este ritual automaticamente se tiver mais de 40 de sanidade restante. Seu corpo renasce coberto por ossos e sombras, recuperando metade da vida e ganhando +20 armadura por 1d4 rodadas. Após o efeito, o corpo apodrece e perde -30 de vida máxima até o fim do dia.",
+nivel: 70,
+imagem: "../imagens/icon_renascer_profano.jpg",
+classe: "ritual"
+},
+112: {
+    id: 112,
+    nome: "Visita do Lobo",
+    tipo: "Complexo",
+    elemento: "Morte",
+    descricao: "O Conjurador cria um rastro em um alvo que já tenha visto ou está vendo, colocando a Morte para o caçar durante a cena, o alvo fica Exposto durante a cena, o rastro se dissipa e fica mais fraco conforme o dia passa. Apenas um alvo pode ficar exposto por esse ritual.",
+    nivel: 70,
+    imagem: "../imagens/icon_visita_lobo.jpg",
+    classe: "ritual"
+},
+113: {
+id: 113,
+nome: "Coroa da Morte",
+tipo: "Complexo",
+elemento: "Morte",
+descricao: "O conjurador cria uma coroa etérea feita de ossos e almas presas. Enquanto a coroa estiver ativa, ganha imunidade a veneno, medo e drenagem de vida. Além disso, todos os inimigos a 10 metros sofrem -10 em testes de resistência e -5 em ataque. Cada rodada, o conjurador perde 15 pontos de sanidade. O ritual dura até o fim da cena.",
+nivel: 70,
+imagem: "../imagens/icon_coroa_morte.jpg",
+classe: "ritual"
+},
+
+114: {
+id: 114,
+nome: "Abismo Carmesim",
+tipo: "Complexo",
+elemento: "Morte",
+descricao: "O conjurador abre um rasgo no chão liberando uma fenda que suga toda a energia vital da área. Inimigos em um raio de 10 metros sofrem 12d8 de dano de veneno e drenagem. Para cada inimigo morto, o conjurador recupera 3d10 de vida e 1d6 de sanidade. O ritual só pode ser usado uma vez na cena.",
+nivel: 70,
+imagem: "../imagens/icon_abismo_carmesim.jpg",
+classe: "ritual"
+},
 
     },
 
@@ -1085,7 +1213,7 @@ window.dadosRituais = {
             elemento: "Escarlate",
             descricao: "Um acordo de Lealdade com um membro da Companhia Escarlate que tinha a função antigamente de provocar o humor e fazer jogos macabros com suas vítimas, o portador do vínculo recebe +20 pontos de vida, +1 mutação de tema perverso Escarlate, +Adquire sentidos diabólicos, ganhando +5 em percepção contra seres diabólicos, +5 em luta, enganação, beber, fortitude e esquiva, +Adquire 2 rituais escarlate de nível simples ou brutal. Aceitar o pacto proibe o personagem de usar qualquer tipo de arma, que não seja a arma do Bobo, quebrar o pacto ou trair a Companhia causa a libertação do Bobo.",
             nivel: 50,
-            imagem: "../imagens/icon_pacto_bobo.jpg",
+            imagem: "../imagens/icone_sorriso.png",
             classe: "pacto"
         },
          2: {
