@@ -5,7 +5,7 @@
     <h1> RPG Ark – FanMade</h1>
     <div class="center">
 <div align="center"> <img src="Icone_ark_v4.png" width="250"/> </div>
-      <p class="lead"><strong>Um universo de aventura, sobrevivência e imaginação.</strong></p align="center">
+      <p class="lead" align="center"><strong>Um universo de aventura, sobrevivência e imaginação.</strong></p>
     </div>
     <section>
       <h2> Sobre o Projeto</h2>
