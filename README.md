@@ -47,10 +47,7 @@
       </ul>
     </section>
     <section>
-      <h2>🌌 O Portal do RPG</h2>
-      <p>Este repositório funciona como o Portal de Acesso ao nosso universo — o epicentro onde a imaginação ganha forma e o mundo se revela em toda a sua glória… e perigos.</p>
-      <p>Aqui você encontra tudo o que precisa para jogar, entender e viver essa realidade fantástica.</p>
-    </section>
+    
   </main>
 </body>
 </html>
