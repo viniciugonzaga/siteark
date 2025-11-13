@@ -17,6 +17,7 @@
       </ul>
     </section>
      <p>Este repositório funciona como o Portal de Acesso ao nosso universo — o ponto central onde a imaginação ganha forma e o mundo se revela em toda a sua glória… e perigos. Aqui você encontra tudo o que precisa para jogar, entender e viver essa realidade fantástica.</p>
+     <p class="lead" align="center"><strong>https://viniciugonzaga.github.io/siteark</strong></p>
     
   </main>
 </body>
