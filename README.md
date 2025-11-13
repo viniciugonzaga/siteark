@@ -6,12 +6,8 @@
 <body>
     <header>
         <h1>RPG Ark - FanMade</h1>
-        <p>Um RPG de aventura e sobrevivência no mundo de Ark: Survival Evolved, além de Subnautica, Evolve, Grounded, Darkest Dungeon, Minecraft, Dauntless, Monsterverse, Shadow of the Colossus, Jurassic World, Sea of Thieves, Disney+, Roblox e vários outros universos.  </p>
-    </header>
-    <section>
-        <h2>Introdução</h2>
-        <p>Bem-vindo ao RPG Ark! Aqui, você tem a liberdade de criar o sobrevivente dos seus sonhos, inspirado em personagens de diversos universos. Seja um herói de fantasia, um explorador intergaláctico ou até uma figura mítica, o objetivo é proporcionar uma experiência única de como esses personagens se comportariam e se adaptariam em um RPG de sobrevivência, onde dinossauros e criaturas pré-históricas dominam a ilha. A ideia é explorar como seus personagens enfrentariam desafios, usariam seus poderes e se conectariam com o mundo selvagem de Ark. Prepare-se para viver aventuras épicas, onde a linha entre ficção e sobrevivência se mistura de maneiras inesperadas e emocionantes!</p>
-    </section>
+<img src="Icone_ark_v4.png" width="70"/> RPG do Ark — Portal Oficial de Acesso ao Universo
 
-</body>
-</html>
+O RPG do Ark é uma experiência de aventura e sobrevivência inspirada no mundo de Ark: Survival Evolved, expandida por elementos de diversas franquias e jogos que enriquecem a fauna, a flora e os desafios que os jogadores enfrentam. Entre as principais influências estão Subnautica, Evolve, Grounded, Darkest Dungeon, Minecraft, Dauntless, Monsterverse, Shadow of the Colossus, Jurassic World, Sea of Thieves, Roblox e muitos outros universos que acrescentam profundidade, mistério e variedade ao cenário.
+
+Este repositório funciona como o Portal de Acesso ao nosso universo — o ponto central onde a imaginação ganha forma e o mundo se revela em toda a sua glória… e perigos. Aqui você encontra tudo o que precisa para jogar, entender e viver essa realidade fantástica.
