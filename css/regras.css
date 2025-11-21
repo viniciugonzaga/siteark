@@ -1937,6 +1937,218 @@ main{
     }
 }
 
+/* ================================================= */
+/* SISTEMA DE EVOLUÇÃO/ERAS (ESTILO DARK/CIANO CORRIGIDO) */
+/* ================================================= */
+
+/* Contêiner de Seção Principal - Inspirado em .ficha-container */
+.secao-evolucao-ark {
+    max-width: 1100px;
+    margin: 50px auto;
+    /* Fundo escuro com gradiente e borda ciano */
+    border: 2px solid rgba(195, 246, 255, 0.5); /* Borda mais forte */
+    border-radius: 15px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.411);
+    padding: 30px;
+    position: relative;
+    z-index: 1; 
+}
+
+/* Título da Seção - Gradiente Ciano */
+.titulo-secao-ark {
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 15px 25px;
+    border-bottom: 3px solid rgba(156, 240, 255, 0.5);
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+}
+
+.eras-progress-container-ark {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Base do Container de Cada Era - Corrigido para carregar fundo e garantir contraste */
+.era-container-ark {
+    /* Fundo com imagem de rubi/branco (manter apenas a camada escura para legibilidade) */
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)); /* Fundo mais escuro para garantir legibilidade */
+    background-size: cover; 
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid;
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid rgba(156, 240, 255, 0.2);
+}
+
+.era-container-ark:hover {
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.411);
+    transform: translateY(-2px);
+}
+
+/* Cores das Bordas */
+.era-pedra-ark { border-left-color: #9c9c9c; } 
+.era-ferro-ark { border-left-color: #aa6600; } 
+.era-aço-ark { border-left-color: #b1ffff; } 
+
+/* Header da Era */
+.era-header-ark {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(156, 240, 255, 0.2);
+}
+
+/* Contêiner do Ícone - Mantido em 65px */
+.era-icon-ark {
+    width: 65px; /* Tamanho padronizado */
+    height: 65px;
+    border-radius: 50%;
+    margin-right: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.era-icon-ark img {
+    /* CORREÇÃO: AUMENTADO PARA PREENCHER MAIS O CÍRCULO */
+    width: 55px;  /* De 40px para 55px */
+    height: 55px; /* De 40px para 55px */
+    
+    /* CORREÇÃO: Garantir que a imagem inteira apareça sem cortar */
+    object-fit: contain; 
+    
+ 
+}
+
+.era-title-ark {
+    font-size: 1.6rem; /* Aumentado um pouco o tamanho */
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.5);
+}
+
+/* Corpo do Conteúdo - CORRIGIDO: Cor do Texto e Fundo */
+.era-prose-ark {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    /* Removido o background preto sobre preto. Agora herda do container ou usa um fundo muito sutil. */
+    background: rgba(0, 0, 0, 0.3); /* Fundo sutil para destacar do container principal da era */
+    color: #e0e0e0; /* CORREÇÃO CRUCIAL: Texto claro */
+    border-left: 2px solid rgba(156, 240, 255, 0.3);
+}
+
+/* Blocos de Mecânica/Regra - CORRIGIDO: Cor do Texto */
+.content-block-ark {
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #1a1a1a, #000); 
+    border: 1px solid rgba(156, 240, 255, 0.3);
+    box-shadow: 0 0 10px rgba(193, 240, 248, 0.2);
+    transition: box-shadow 0.3s;
+    color: #cccccc; /* CORREÇÃO: Cor do texto interno */
+}
+
+.content-block-ark p {
+    color: #cccccc; /* CORREÇÃO: Parágrafos dentro do bloco */
+    margin-bottom: 5px;
+}
+
+.content-block-ark:hover {
+    box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+}
+
+.content-block-ark h4 {
+    font-size: 1.1rem;
+    color: #cdeefc; /* Ciano claro */
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 0 5px rgba(199, 244, 255, 0.3);
+}
+
+/* ... (Mecanica Bullet, Destaques, Bloco Risco permanecem) ... */
+
+/* Lista de Mecânica */
+.lista-mecanica-ark {
+    list-style-type: none;
+    padding-left: 0;
+    margin-top: 10px;
+}
+
+.lista-mecanica-ark li {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 1px solid rgba(156, 240, 255, 0.3);
+    padding: 8px 12px;
+    color: #d1f7fa;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    box-shadow: 0 0 5px rgba(193, 240, 248, 0.3);
+}
+
+/* Separador de Progresso */
+.era-separator-ark {
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+}
+
+.era-separator-ark::before, .era-separator-ark::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: #333; 
+    opacity: 0.8;
+}
+
+.era-separator-ark::before { left: 0; }
+.era-separator-ark::after { right: 0; }
+
+.separator-text-ark {
+    background: #1a1a1a;
+    padding: 0 15px;
+    color: #66ffff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(102, 255, 255, 1);
+}
+
+/* Responsividade Básica */
+@media (max-width: 768px) {
+    .secao-evolucao-ark {
+        padding: 20px;
+        max-width: 95%;
+    }
+    .titulo-secao-ark {
+        font-size: 1.8rem;
+    }
+    .era-title-ark {
+        font-size: 1.4rem;
+    }
+}
+
 
 
 
