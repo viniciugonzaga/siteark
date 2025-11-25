@@ -1,11 +1,21 @@
-/* Estilo Geral----------------------------------------------------------------------- */
 body {
     margin: 0;
     font-family: 'Lora', serif;
-    background: url('../imagens/lobby_bloqueado.jpg') no-repeat center center fixed;
-    background-size: cover; /* Ajusta o fundo ao tamanho da tela */
     scroll-behavior: smooth;
-    overflow-x: hidden; /* Impede o scroll horizontal */
+    overflow-x: hidden;
+    /* Combina a sobreposição de cor com a imagem de fundo */
+    background: linear-gradient(rgba(13, 18, 28, 0.623), rgba(31, 44, 70, 0.651)), url('../imagens/icone_dinos_v3.png') no-repeat center center fixed;
+    background-size: cover;
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #2325256b, #2229286c, #1f222279);
+    z-index: -1;
 }
 
 /* Estilo inicial para a página */
@@ -21,319 +31,593 @@ body {
     transform: translateY(0);
 }
 
-
 /* Estilo da Nav-Bar */
 nav {
-    background: rgba(39, 8, 51, 0.021); /* Transparência com fundo escuro */
+    background: rgba(50, 52, 53, 0.548);
     color: #ecf0f1;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    position: fixed; /* Fixa o nav-bar no topo */
+    position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Garante que fique acima de outros elementos */
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(1px);
 }
-
-
-
 
 /* Estilo do Logo */
 .logo {
     display: flex;
     align-items: center;
-    gap: 10%; /* Espaço entre a imagem e o texto */
+    gap: 10%;
+    margin-left: 1px;
 }
 
 .logo img {
-    width: 40px; /* Tamanho do ícone */
-    height: 40px;
-    border-radius: 50%; /* Deixa a imagem redonda */
-    object-fit: cover; /* Garante que a imagem seja cortada corretamente */
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .logo h1 {
-    font-size: 24px; /* Tamanho do texto do logo */
+    font-size: 24px;
     margin: 0;
     color: #ecf0f1;
     margin-right: 20px;
     margin-left: 10px;
 }
 
-
-/* Links da Nav-Bar */
 .nav-links {
     display: flex;
-    gap: 1px; /* Espaço entre os links */
+    gap: 11px;
 }
 
-.nav-links a {
+.sidebar-item {
     position: relative;
-    width: 130px;
-    height: 50px;
-    line-height: 48px;
-    background: #ffffff00; /* Fundo transparente */
-    text-transform: uppercase;
-    font-size: 14px;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-    overflow: hidden;
-    border-radius: 5px; /* Bordas arredondadas */
-    -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-}
-
-.nav-links a span {
-    position: absolute;
-    display: block;
-    top: 0;
-    left: 2px;
-    right: 2px;
-    bottom: 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    color: rgb(255, 255, 255); /* Cor do texto */
-    transition: 0.5s;
-}
-
-.nav-links a:hover span {
-    color: rgba(255, 255, 255, 1); /* Cor ao passar o mouse */
-}
-
-.nav-links a span::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 50%;
-    background: rgba(199, 71, 250, 0.1);
-    z-index: 10;
-    transition: transform 0.3s ease; /* Transição suave para o efeito */
-}
-.nav-links a span:hover {
-    transform: scale(1.1); /* Aumenta o tamanho ao passar o mouse */
-}
-
-.nav-links a::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        #bb10b2,
-        #f39c12,
-        #f1c40f,
-        #13e040,
-        #8c17ec,
-        #2980b9,
-        #9b59b6,
-        #8e44ad,
-        #bee418
-    );
-    background-size: 400%;
-    opacity: 0; /* Invisível inicialmente */
-    transition: 2.5s;
-    animation: eff 20s linear infinite;
-    border-radius: 5px;
-}
-
-.nav-links a:hover::before {
-    opacity: 1; /* Visível ao passar o mouse */
-}
-
-/* Animação do Link */
-@keyframes eff {
-    0% {
-        background-position: 0 0;
-    }
-    50% {
-        background-position: 400% 0;
-    }
-    100% {
-        background-position: 0 0;
-    }
-}
-/* Ajustes para telas menores */
-@media (max-width: 780px) {
-    nav {
-        flex-wrap: wrap; /* Permite que os elementos quebrem linha, se necessário */
-        padding: 5px; /* Reduz o padding total */
-    }
-
-    .logo {
-        
-        text-align: center;
-    }
-
-    .nav-links {
-        flex: 2; /* Ajusta o espaço para os links */
-        justify-content: center; /* Centraliza os links */
-    }
-    
-}
-@media (max-width: 1078px) {
-  
-
-    .logo img {
-        width: 25px; /* Reduz tamanho do ícone */
-        height: 25px;
-    }
-
-    .logo h1 {
-        font-size: 9px; /* Reduz tamanho do texto do logo */
-    }
-
-    .nav-links a {
-        position: relative;
-        width: 10em; /* Largura relativa */
-        height: 3em; /* Altura relativa */
-        line-height: 2.8em; /* Ajusta alinhamento vertical */
-        background: #ffffff00; /* Fundo transparente */
-        text-transform: uppercase;
-        font-size: 1rem; /* Texto relativo ao tamanho padrão */
-        text-align: center;
-        letter-spacing: 0.1em;
-        text-decoration: none;
-        color: rgb(255, 255, 255); /* Cor do texto */
-        transition: 0.5s;
-        overflow: hidden;
-        border-radius: 5px; /* Bordas arredondadas */
-        -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(255, 62, 255, 0));
-    }
-}
-    /* Responsividade com media queries */
-    @media (max-width: 1080px) {
-        .nav-links a {
-            width: 8em; /* Reduz largura para telas menores */
-            height: 2.6em; /* Reduz altura */
-            line-height: 2.6em; /* Ajusta alinhamento vertical */
-            font-size: 0.8rem; /* Diminui tamanho da fonte */
-           
-        }
-        .nav-links{
-            display: flex;
-            gap: 1px; /* Espaço entre os links */
-          
-        }
-        
-    
-    }
-    @media (max-width: 780px) {
-        .nav-links a {
-            width: 5em; /* Reduz largura para telas menores */
-            height: 2.1em; /* Reduz altura */
-            line-height: 2.3em; /* Ajusta alinhamento vertical */
-            font-size: 0.6rem; /* Diminui tamanho da fonte */
-           
-        }
-        .nav-links{
-            display: flex;
-            gap: 1px; /* Espaço entre os links */
-        }
-
-    .nav-links a {
-        margin: 5px 0;
-    
-    }
-   
-    }
-/* Botão "Jogar Dados" com efeito Glow */
-/* Dado Container */
-.dado-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #ccc;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: color 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar-item .icon {
+    font-size: 18px;
+}
+
+.sidebar-item .highlight-bar {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #b8f1ff, #86eefc, #b8f1ff);
+    border-radius: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-item:hover .highlight-bar {
+    opacity: 1;
+}
+
+.sidebar-item:hover {
+    color: #b3fcff;
+}
+
+/* Container do botão de dados e ícones */
+.dado-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 1rem;
-}
-
-/* Imagem do dado */
-.dado {
-    width: 3.75em; /* Usando unidade relativa (aprox. 60px) */
-    height: auto;
-    margin-bottom: 1rem;
-    transition: transform 0.3s ease-in-out; /* Transição suave */
-    margin-right: 3.75em; /* Aproximadamente 60px */
-}
-
-.dado:hover {
-    transform: scale(1.2); /* Aumentar tamanho ao passar o mouse */
+    margin-right: 1%;
+    gap: 1em; /* Espaço entre os itens (botão, dado, novo ícone) */
 }
 
 /* Botão Glow */
 .glow-on-hover {
     padding: 0.5rem 1rem;
-    font-size: 1rem; /* Tamanho de fonte relativo */
-    background-color: #504a4a; /* Vermelho vibrante */
-    color: white;
+    font-size: 1rem;
+    background-color: #cfcfcf;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    margin-right: 3.75em; /* Aproximadamente 60px */
 }
 
 /* Efeito ao passar o mouse */
 .glow-on-hover:hover {
-    transform: scale(1.1); /* Aumentar tamanho ao passar o mouse */
-    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(180, 255, 255, 0.8);
 }
 
-/* Responsividade com media queries */
-@media (max-width: 1080px) {
-    .glow-on-hover {
-        padding: 0.4rem ; /* Reduz padding em tablets */
-        font-size: 0.6rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 20%;
-        
-    }
-
-    .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 40%;
-    }
-  
+/* Imagem do dado (estilo existente, mantido aqui para referência) */
+.dado {
+    width: 3.75em; /* Aproximadamente 60px. Usaremos isso como referência de altura. */
+    height: auto;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease-in-out;
 }
-@media (max-width: 780px) {
-    .glow-on-hover {
-        padding: 0.3rem ; /* Reduz padding em tablets */
-        font-size: 0.5rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 10%;
-        
-    } 
 
-    .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 37.5%;
-    }
-  
+.dado:hover {
+    transform: scale(1.2);
+}
+
+/* Estilo para o link do novo ícone - Contém as principais mudanças */
+.new-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-right: 5em; /* Mantém o grande espaço à direita da navbar */
+    /* Adições para o círculo (mantidas para manter a estrutura e alinhamento) */
+    width: 4em; /* Define a largura para ser igual à altura do dado para um círculo perfeito */
+    height: 4em; /* Define a altura para ser igual à largura (e altura do dado) */
+    border-radius: 50%; /* Torna o elemento circular */
+    overflow: hidden; /* Garante que a imagem dentro seja cortada para caber no círculo */
+    background-color: rgba(255, 255, 255, 0); /* Fundo totalmente transparente */
+    margin-bottom: 1rem; /* Alinha com o botão e o dado */
+    /* Remova o transition: transform 0.3s ease-in-out; daqui se ele estiver duplicado com .new-icon */
+}
+
+/* Estilo para a imagem dentro do novo ícone */
+.new-icon {
+    width: 80%; /* Ajuste o percentual para a imagem caber bem no círculo */
+    height: 80%; /* Ajuste o percentual */
+    border-radius: 40%; /* Isso criará cantos arredondados na imagem interna, não a tornará circular completa se a imagem não for quadrada */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Adiciona transition para o filter também */
+    object-fit: contain; /* Garante que a imagem se ajuste sem cortar ou distorcer no círculo */
+    filter: brightness(1.5); /* Aumenta um pouco o brilho da imagem para destacar */
+}
+
+.new-icon-link:hover .new-icon { /* Aplica o efeito diretamente à imagem quando o link é hover */
+    transform: scale(1.2); /* Efeito de zoom ao passar o mouse */
+}
+
+.Container-nav {
+    display: flex;
+    justify-content: flex-start;
 }
 @media (max-width: 480px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.3rem 0.4rem; /* Padding reduzido para mais espaço */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.6); /* Logo ainda menor */
+    }
+
+    .nav-left {
+        margin-right: 0.3rem; /* Margem reduzida */
+    }
+
+    .logo img {
+        max-width: 50px; /* Reduzir ainda mais a imagem do logo */
+        max-height: 50px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.8rem; /* Fonte do título menor */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 65%; /* Um pouco mais de largura para o nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Em telas muito pequenas, 3 ou 4 colunas podem ser mais eficazes para evitar cortes */
+        grid-template-columns: repeat(auto-fit, minmax(28px, 1fr)); /* Min-width menor */
+        gap: 0.2rem; /* Gap ainda menor */
+        width: 100%;
+        padding: 20px 0; /* Padding vertical reduzido */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.3rem; /* Padding reduzido */
+        font-size: 0.5rem; /* Fonte do item menor */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.8rem; /* Tamanho do ícone menor */
+        margin-bottom: 0.1rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.5rem; /* Fonte do texto do item menor */
+        line-height: 1;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2rem; /* Ajustar margem para que não corte */
+        margin-bottom: 1rem; /* Ajustar margem */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem; /* Gap menor */
+        margin-left: 0.5rem; /* Margem ajustada */
+    }
+
     .glow-on-hover {
-        padding: 0.4rem ; /* Reduz padding em tablets */
-        font-size: 0.6rem; /* Diminui tamanho do texto */
-       align-items: center;
-        margin-left: 20%;
-        
+        font-size: 0.5rem; /* Fonte do botão menor */
+        padding: 0.1rem 0.3rem;
+        margin-right: 0;
     }
 
     .dado {
-        width:2em; /* Reduz largura do dado */
-        align-items: center;
-        margin-left: 40%;
+        width: 1.5rem; /* Dado menor */
+        height: auto;
+        margin-bottom: 0;
     }
+}
+
+/* ======================================================= */
+/* Ajustes para celulares maiores e tablets pequenos (481px a 767px) */
+/* ======================================================= */
+@media (min-width: 481px) and (max-width: 767px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.4rem 0.6rem; /* Padding ligeiramente ajustado */
+        box-sizing: border-box;
+        height: auto;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.65); /* Escala intermediária para o logo */
+    }
+
+    .nav-left {
+        margin-right: 0.4rem;
+    }
+
+    .logo img {
+        max-width: 55px; /* Tamanho intermediário para a imagem do logo */
+        max-height: 55px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.85rem; /* Fonte intermediária para o título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle como na versão de 780px */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Min-width um pouco maior que para 480px, mas ainda otimizado para menos espaço */
+        grid-template-columns: repeat(auto-fit, minmax(25px, 1fr));
+        gap: 0.3rem; /* Gap ligeiramente menor que o original de 780px */
+        width: 100%;
+        padding: 25px 0; /* Padding vertical ajustado */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.4rem; /* Padding ligeiramente ajustado */
+        font-size: 0.55rem; /* Fonte do item ligeiramente ajustada */
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 0.9rem; /* Tamanho do ícone ligeiramente ajustado */
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.55rem;
+        line-height: 1.05;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: -2.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+        margin-bottom: 1.5rem; /* Ajuste similar ao de 780px, mas ligeiramente ajustado */
+    }
+
+    .dado-container {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-left: 0.8rem;
+    }
+
+    .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-right: 0;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* ================================================= */
+/* Ajustes para tablets maiores e laptops pequenos (768px a 1024px) */
+/* ================================================= */
+@media (min-width: 768px) and (max-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem 0.8rem;
+        box-sizing: border-box;
+        height: auto;
+       
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        transform: scale(0.7); /* Manter escala do logo igual ao original de 780px */
+    }
+
+    .nav-left {
+        margin-right: 0.5rem;
+    }
+
+    .logo img {
+        max-width: 60px; /* Manter tamanho da imagem do logo */
+        max-height: 60px;
+        margin-right: 0.1rem;
+    }
+
+    .logo h1 {
+        font-size: 0.9rem; /* Manter fonte do título */
+        margin: 0;
+    }
+
+    .nav-middle {
+        display: flex;
+        justify-content: center;
+        width: 60%; /* Manter largura do nav-middle */
+    }
+
+    .nav-links {
+        display: grid;
+        /* Aqui podemos dar um pouco mais de espaço para cada coluna, ou manter o repeat(6, 1fr) se os textos couberem */
+        /* Vou manter o auto-fit para flexibilidade, com um min-width um pouco maior */
+        grid-template-columns: repeat(auto-fit, minmax(38px, 1fr)); /* Min-width ajustado */
+        gap: 0.5rem; /* Ajustar o gap, ligeiramente maior que 767px */
+        width: 100%;
+        padding: 30px 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .sidebar-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-width: auto;
+        padding: 0.5rem;
+        font-size: 0.6rem;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .sidebar-item .icon {
+        font-size: 1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .sidebar-item span {
+        display: block;
+        font-size: 0.6rem;
+        line-height: 1.1;
+    }
+
+     .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.3rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0; /* Ajuste se houver margem que atrapalhe o centralizar */
+        margin-right: 0;
+    }
+
+    .glow-on-hover {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.3rem;
+        margin-bottom: 0.2rem; /* Espaço abaixo do botão */
+    }
+
+    .dado {
+        width: 2rem;
+        height: auto;
+        margin-bottom: 0.2rem; /* Espaço abaixo do dado */
+    }
+
+    .new-icon-link {
+        width: 2.5em; /* Ajuste o tamanho do container do ícone */
+        height: 2.5em;
+        margin-bottom: 0; /* Não precisa de margem inferior extra */
+        margin-right: 0; /* Remove a margem direita para centralizar melhor */
+    }
+
+    .new-icon {
+        width: 85%;
+        height: 85%;
+    }
+
+    .nav-right {
+        margin-right: 0; /* Garante que o nav-right não empurre para fora */
+        margin-bottom: 0; /* Ajusta a margem para evitar excesso de espaço */
+    }
+}
+
+
+
   
+/* Ajustes para telas menores (até 780px) */
+@media (max-width: 780px) {
+  nav {
+      display: flex; /* Alinha os três blocos principais horizontalmente */
+      justify-content: space-between; /* Espaço máximo entre os blocos */
+      align-items: center; /* Alinha verticalmente ao centro */
+      padding: 0.5rem 1rem;
+      box-sizing: border-box;
+      height: auto;
+    
+  }
+
+  .logo {
+      display: flex;
+      align-items: center;
+      transform: scale(0.7); /* Ajuste o tamanho do logo se necessário */
+  }
+  .nav-left{
+ margin-right: 0.3rem;
+
+  }
+  .logo img {
+      max-width: 45px;
+      max-height: 45px;
+      margin-right: 0.1rem;
+  }
+
+  .logo h1 {
+      font-size: 0.7rem;
+      margin: 0;
+  }
+
+  .nav-middle {
+      display: flex;
+      justify-content: center; /* Centraliza o conteúdo horizontalmente */
+      width: 70%; /* Ocupa uma parte da largura para os ícones */
+  }
+
+.nav-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(22px, 1fr)); /* Tente 90px ou 100px */
+    gap: 0.5rem; /* Reduzir um pouco o gap pode ajudar */
+    width: 100%;
+    padding: 30px 0;
+    margin-left: 0; /* Remover ou reduzir estas margens */
+    margin-right: 0; /* Remover ou reduzir estas margens */
+}
+
+  .sidebar-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: auto;
+      padding: 0.5rem;
+      font-size: 0.6rem;
+      text-align: center;
+      overflow: hidden;
+  }
+
+  .sidebar-item .icon {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+  }
+
+  .sidebar-item span {
+      display: block;
+      font-size: 0.6rem;
+      line-height: 1.1;
+  }
+
+  .nav-right {
+      display: flex;
+      align-items: center; /* Alinha verticalmente o botão e a imagem */
+      margin-right: -3rem;
+      margin-bottom: 2rem;
+  }
+
+   .dado-container {
+        flex-direction: column; /* Ícone abaixo do botão e dado */
+        align-items: center; /* Centraliza horizontalmente na coluna */
+        gap: 0.2rem; /* Espaço entre os elementos empilhados */
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+  .glow-on-hover {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.35rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .dado {
+        width: 1.8rem;
+        height: auto;
+        margin-bottom: 0.15rem;
+    }
+    .new-icon-link {
+        width: 2.3em;
+        height: 2.3em;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .new-icon {
+        width: 90%;
+        height: 90%;
+    }
+
+    .nav-right {
+        margin-right: 0;
+        margin-bottom: 0;
+    }
 }
 
 
@@ -344,13 +628,13 @@ nav {
     top: 1%; /* Define a distância do menu a partir do topo da tela */
     right: 1%; /* Define a distância do menu a partir da borda direita */
     width: 350px; /* Aumenta a largura do menu */
-    background-color: #3e0896a1; /* Cor de fundo */
-    border: 1px solid #f9b8ff; /* Borda */
+    background-color: #1d1919ec; /* Cor de fundo */
+    border: 1px solid #c0c0c0; /* Borda */
     border-radius: 5px; /* Bordas arredondadas */
     padding: 1.2rem; /* Espaçamento interno maior */
-    box-shadow: 0 4px 8px rgba(10, 240, 171, 0.1); /* Sombra */
+    box-shadow: 0 4px 8px rgba(245, 245, 245, 0.322); /* Sombra */
     z-index: 1000; /* Garante que o menu fique acima de outros elementos */
-    color: #fd23fd;
+    color: #defcfd;
     transition: all 0.3s ease;
 }
 
@@ -377,7 +661,7 @@ nav {
 }
 
 #closeMenu:hover {
-    box-shadow: 0 0 15px rgba(59, 58, 52, 0.8); /* Efeito de brilho */
+    box-shadow: 0 0 15px rgba(253, 189, 11, 0.8); /* Efeito de brilho */
     transform: scale(1.1); /* Aumenta tamanho ao passar o mouse */
 }
 
@@ -412,7 +696,7 @@ nav {
     padding-right: 10px; /* Espaço extra para o scroll */
     border: 1px solid #ccc; /* Adiciona uma borda para destacar a área */
     border-radius: 5px;
-    background-color: #3b372fb9; /* Fundo levemente diferente para separar visualmente */
+    background-color: #d1972bb9; /* Fundo levemente diferente para separar visualmente */
 }
 
 #rollList {
@@ -424,7 +708,7 @@ nav {
 #rollList li {
     margin: 0.3rem 0;
     font-weight: bold;
-    color: #04e688;
+    color: #1f0101;
 }
 
 /* Campos de entrada */
@@ -498,337 +782,884 @@ nav {
     }
 }
 
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 110px;
+    perspective: 1000px;
+    margin-bottom: 10px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
+@media (max-width: 788px) {
 
-/* fim do nav-bar---------------------------------------------------------------------------- */
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 110px;
+    perspective: 600px;
+    margin-bottom: 20px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
 
-/* Estilo geral do título */
+.titulo_efeito {
+    font-size: 1.2rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+}
+
+@media (max-width: 480px) {
+
+/* Título Principal - Centralizado */
+.titulo_principal {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se houver altura) */
+    margin-top: 110px;
+    perspective: 600px;
+    margin-bottom: 20px;
+    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
+}
+
+.titulo_efeito {
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+}
+
+
+
+.titulo_efeito {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #b6fff3;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.8),
+        0 0 30px rgba(193, 240, 248, 0.6),
+        0 0 60px rgba(193, 240, 248, 0.4);
+    position: relative;
+    max-width: 280px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+    text-align: center; /* Garante o texto centralizado dentro do elemento */
+}
+
+/* Keyframes (mantidos os mesmos) */
+@keyframes pulseGlowCyan {
+    0% {
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
+    }
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+.titulo_efeito::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shineEffect 3s infinite linear;
+    transform: skewX(-20deg);
+    pointer-events: none;
+}
+
+@keyframes shineEffect {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+.titulo_efeito::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999);
+    animation: wave 8s infinite linear;
+    transform-origin: bottom center;
+}
+
+@keyframes wave {
+    0% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+    25% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0.1);
+        left: 90%;
+        background-position: 0% 0%;
+    }
+    75% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    100% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+}
+         /* Animações e variáveis */
+        @keyframes misty-glow {
+            0% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.2), 0 0 20px rgba(193, 240, 248, 0.15), 0 0 30px rgba(193, 240, 248, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(193, 240, 248, 0.4), 0 0 40px rgba(193, 240, 248, 0.3), 0 0 60px rgba(193, 240, 248, 0.2); }
+            100% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.2), 0 0 20px rgba(193, 240, 248, 0.15), 0 0 30px rgba(193, 240, 248, 0.1); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes pulse-aura {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        @keyframes shine-through {
+            0% { transform: skewX(-20deg) translateX(-100%); }
+            100% { transform: skewX(-20deg) translateX(200%); }
+        }
+
+
+.Meio{
+margin-top: 100px;
+
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cinzel:wght@700&display=swap');
+
+/* Reset e configurações gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Container geral */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ======================================================= */
+/* TÍTULO PRINCIPAL - Mantendo seu estilo original */
+/* ======================================================= */
+
 .titulo_principal {
     display: flex;
     justify-content: center;
     align-items: center;
-   margin-top: 120px;
-  }
-  
-  .titulo_efeito {
-    font-size: 4rem;
-    font-weight: bold;
-    position: relative;
-    text-shadow:
-    0 0 5px #7e0fd8,   /* Primeira camada de brilho vermelho */
-    0 0 10px #a51eff,  /* Segunda camada laranja */
-    0 0 20px #ff00ea,  /* Terceira camada mais forte */
-    0 0 40px #bb47ff,  /* Camada de brilho maior */
-    0 0 80px #ea00ff;  /* Brilho externo */
+    margin-top: 120px;
+    perspective: 1000px;
 }
 
+.titulo_efeito {
+    font-size: 4rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 25px;
+    padding: 25px 40px;
+    border: 3px solid #333333;
+    color: #e0e0e0;
+    text-shadow:
+        0 0 10px rgba(193, 240, 248, 0.6),
+        0 0 30px rgba(193, 240, 248, 0.4),
+        0 0 60px rgba(193, 240, 248, 0.2);
+    position: relative;
+    max-width: 380px;
+    overflow: hidden;
+    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+@keyframes pulseGlowCyan {
+    0% {
+        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
+    }
+}
+
+@keyframes floatEffect {
+    0% {
+        transform: translateY(0) rotateX(0deg);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(2deg);
+    }
+    100% {
+        transform: translateY(0) rotateX(0deg);
+    }
+}
 
 .titulo_efeito:after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 4px;
-    background: linear-gradient(90deg,  #0422aa, #6325f3, #9040eb,#6325f3,#0422aa);
-    animation: wave 8s infinite;
-    
-}
-@keyframes wave {
-    0% { width: 50px; }
-    20% { width: 100px; }
-    40% { width: 200px; }
-    60% { width: 200px; }
-    80% { width: 100px; }
-    100% { width: 50px; }
-}
-/* Responsividade */
-@media (max-width: 1120px) {
-    .titulo_efeito {
-        font-size: 2.3rem; /* Diminui o tamanho da fonte em telas médias */
-    }
-
-    .titulo_efeito:after {
-        width: 350px; /* Reduz a largura da linha de efeito para telas menores */
-    }
-    @keyframes wave {
-        0% { width: 50px; }
-        20% { width: 100px; }
-        40% { width: 200px; }
-        60% { width: 200px; }
-        80% { width: 100px; }
-        100% { width: 50px; }
-    }
-}
-
-/* Estilo da div que contém os botões */
-.button-container {
-    display: flex; /* Alinha os botões horizontalmente */
-    justify-content: space-between; /* Espaço igual entre os botões */
-    align-items: center; /* Alinha verticalmente os botões */
-    width: 100%; /* Garantir que a largura ocupe toda a tela */
-    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
-    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
-  }
-  
-  /* Estilo dos botões */
-  .button {
-    background-color: #7d39eb; /* Cor de fundo */
-    color: white;
-    border: none;
-    padding: 20px 40px; /* Aumenta o padding para aumentar o tamanho do botão */
-    text-align: center;
-    text-decoration: none;
-    display: flex; /* Alinha o ícone e o texto horizontalmente */
-    align-items: center; /* Alinha o ícone e o texto verticalmente */
-    font-size: 20px; /* Aumenta o tamanho da fonte */
-    margin: 10px; /* Adiciona um espaço entre os botões */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: solid 3px #180463;
-    box-shadow: 0px 4px 8px rgba(158, 6, 189, 0.726), /* sombra padrão */
-                0px 6px 12px rgba(59, 77, 240, 0.795), /* segunda camada */
-                0px 8px 16px rgba(190, 7, 190, 0.678); /* sombra suave */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    flex: 1; /* Faz com que todos os botões ocupem o mesmo espaço */
-    max-width: 200px; /* Limita o tamanho máximo do botão */
-    text-align: center;
-  }
-  
-  /* Estilo para as imagens dentro dos botões (ícones) */
-  .button-icon {
-    margin-right: 12px; /* Aumenta o espaço entre o ícone e o texto */
-    width: 32px; /* Aumenta a largura dos ícones */
-    height: 32px; /* Aumenta a altura dos ícones */
-  }
-  
-  /* Efeito ao passar o mouse sobre o botão */
-  .button:hover {
-    background-color: #a80c62; /* Um tom mais escuro de verde */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 
-                0px 6px 12px rgba(240, 179, 252, 0.89), 
-                0px 8px 16px rgba(252, 177, 177, 0.932), 
-                0px 0px 15px rgba(209, 176, 253, 0.973), /* Sombra vermelha suave */
-                0px 0px 30px rgba(170, 170, 255, 0.856); /* Sombra azul mais intensa */
-  }
-  
-/* Estilo do Modal */
-.modal {
-    position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.979); /* Fundo escuro */
+    height: 6px;
+    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999);
+    animation: wave 8s infinite linear;
+    transform-origin: bottom center;
+}
+
+@keyframes wave {
+    0% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+    25% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    50% {
+        transform: scaleX(0.1);
+        left: 90%;
+        background-position: 0% 0%;
+    }
+    75% {
+        transform: scaleX(1);
+        left: 0%;
+        background-position: 100% 0%;
+    }
+    100% {
+        transform: scaleX(0.1);
+        left: 0%;
+        background-position: 0% 0%;
+    }
+}
+
+/* ======================================================= */
+/* CAMPO DE SENHA */
+/* ======================================================= */
+
+.password-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Faz com que o modal sobreponha todo o conteúdo */
-  }
-  
-  /* Estilo do conteúdo do modal */
-  .modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.849);
-    width: 90%;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+.password-field {
+    position: relative;
+    width: 100%;
     max-width: 400px;
-  }
-  
-  .modal-content h2 {
-    margin-bottom: 20px;
-  }
-  
-  .modal-content input {
-    width: 80%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  .modal-content button {
-    background: #f7750b;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .modal-content button:hover {
-    background: #e00707;
-  }
-/* Estilo da div que contém os botões */
-.button-container {
-    display: flex; /* Alinha os botões horizontalmente */
-    justify-content: space-between; /* Espaço igual entre os botões */
-    align-items: center; /* Alinha verticalmente os botões */
-    width: 100%; /* Garantir que a largura ocupe toda a tela */
-    padding: 0 20px; /* Adiciona um pouco de espaço nas laterais */
-    box-sizing: border-box; /* Inclui o padding no cálculo da largura */
 }
 
-/* Estilo dos botões */
-.button {
-    background-color: #7d39eb; /* Cor de fundo */
-    color: white;
-    border: none;
-    padding: 20px 40px; /* Aumenta o padding para aumentar o tamanho do botão */
+.password-field input {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.4rem;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 3px solid #333333;
+    border-radius: 15px;
+    color: #e0e0e0;
     text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(193, 240, 248, 0.3);
+}
+
+.password-field input:focus {
+    border-color: #b6fff3;
+    box-shadow: 0 0 30px rgba(193, 240, 248, 0.6);
+}
+
+.password-field input::placeholder {
+    color: #666;
+    font-style: italic;
+}
+
+.cursor-animation {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 30px;
+    background: #b6fff3;
+    animation: blink 1s infinite;
+    opacity: 0;
+}
+
+.password-field input:focus + .cursor-animation {
+    opacity: 1;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* ======================================================= */
+/* CARDS - ESTILOS BASE */
+/* ======================================================= */
+
+.container-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1300px;
+    margin: auto;
+    background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
+    border-radius: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 16px;
+    padding: 25px 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border: 3px solid transparent;
+}
+
+.card-link {
     text-decoration: none;
-    display: flex; /* Alinha o ícone e o texto horizontalmente */
-    align-items: center; /* Alinha o ícone e o texto verticalmente */
-    font-size: 20px; /* Aumenta o tamanho da fonte */
-    margin: 10px; /* Adiciona um espaço entre os botões */
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
+    color: inherit;
+}
+
+.card img {
+    max-width: 90%;
+    max-height: 180px;
+    object-fit: contain;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.8em;
+    font-family: 'Ark', serif;
+    margin-top: 10px;
+    color: #ffffff;
+    background: linear-gradient(to right, #d6feff, #cecece);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 10px rgba(193, 240, 248, 0.5);
+    transition: all 0.4s ease;
+}
+
+/* ======================================================= */
+/* ESTADOS DOS CARDS */
+/* ======================================================= */
+
+/* Cards Bloqueados */
+.card.locked {
+    filter: blur(5px) brightness(0.4);
+    cursor: not-allowed;
+    animation: darkPulse 2s infinite alternate;
+}
+
+.card.locked::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,0,0,0.8) 0%, transparent 70%);
+    animation: auraPulse 3s infinite alternate;
+    z-index: 1;
+}
+
+.card.locked .card-link {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.card.locked img {
+    filter: grayscale(100%) brightness(0.3);
+}
+
+.card.locked .card-title {
+    color: #666;
+    background: linear-gradient(to right, #666666, #a5c8ca);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+/* Cards Liberados */
+.card.unlocked {
+    filter: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: solid 3px #180463;
-    box-shadow: 0px 4px 8px rgba(158, 6, 189, 0.726), /* sombra padrão */
-                0px 6px 12px rgba(59, 77, 240, 0.795), /* segunda camada */
-                0px 8px 16px rgba(190, 7, 190, 0.678); /* sombra suave */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    flex: 1; /* Faz com que todos os botões ocupem o mesmo espaço */
-    max-width: 200px; /* Limita o tamanho máximo do botão */
-    text-align: center;
+    box-shadow: 0 0 25px rgba(193, 240, 248, 0.3);
+    border-color: rgba(193, 240, 248, 0.5);
+    animation: lightGlow 2s infinite alternate;
 }
 
-/* Estilo para as imagens dentro dos botões (ícones) */
-.button-icon {
-    margin-right: 12px; /* Aumenta o espaço entre o ícone e o texto */
-    width: 32px; /* Aumenta a largura dos ícones */
-    height: 32px; /* Aumenta a altura dos ícones */
+.card.unlocked:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 0 40px rgba(193, 240, 248, 0.8);
+    border-color: rgba(193, 240, 248, 0.8);
 }
 
-/* Efeito ao passar o mouse sobre o botão */
-.button:hover {
-    background-color: #a80c62; /* Um tom mais escuro de verde */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2), 
-                0px 6px 12px rgba(240, 179, 252, 0.89), 
-                0px 8px 16px rgba(252, 177, 177, 0.932), 
-                0px 0px 15px rgba(209, 176, 253, 0.973), /* Sombra vermelha suave */
-                0px 0px 30px rgba(170, 170, 255, 0.856); /* Sombra azul mais intensa */
+.card.unlocked:hover img {
+    filter: grayscale(0%) brightness(1.1);
+    transform: scale(1.1);
 }
 
-/* Media query para telas com largura de 780px ou menor */
-@media (max-width: 1080px) {
-    .button-container {
-        flex-direction: column; /* Alinha os botões verticalmente */
-        align-items: center; /* Alinha os botões no centro */
-        padding: 0 10px; /* Reduz o padding nas laterais */
+.card.unlocked:hover .card-title {
+    text-shadow: 0 0 20px rgba(193, 240, 248, 0.8);
+}
+
+.card.unlocked img {
+    filter: grayscale(0%) brightness(1);
+}
+
+.card.unlocked .card-link {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* ======================================================= */
+/* ANIMAÇÕES */
+/* ======================================================= */
+
+@keyframes darkPulse {
+    0% {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
     }
-
-    .button {
-        width: 30%; /* Faz os botões ocuparem toda a largura disponível */
-        max-width: none; /* Remove a limitação de largura */
-        padding: 15px 20px; /* Ajusta o padding para telas menores */
-        font-size: 18px; /* Reduz o tamanho da fonte para melhorar a legibilidade */
-        margin: 10px 0; /* Ajusta o espaço entre os botões */
-    }
-
-    .button-icon {
-        width: 28px; /* Reduz o tamanho dos ícones */
-        height: 28px; /* Reduz a altura dos ícones */
-        margin-right: 8px; /* Ajusta o espaço entre o ícone e o texto */
+    100% {
+        box-shadow: 0 0 40px rgba(0, 0, 0, 1);
     }
 }
-  
+
+@keyframes auraPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+@keyframes lightGlow {
+    0% {
+        box-shadow: 0 0 25px rgba(193, 240, 248, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 35px rgba(193, 240, 248, 0.6);
+    }
+}
+
+/* Efeito de brilho nos cards liberados */
+.card.unlocked::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, transparent, rgba(193, 240, 248, 0.1), transparent);
+    border-radius: 18px;
+    z-index: -1;
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ======================================================= */
+/* RESPONSIVIDADE */
+/* ======================================================= */
+
+@media (max-width: 1024px) {
+    .container-cards {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 780px) {
+    .titulo_principal {
+        margin-top: 130px;
+    }
+
+    .titulo_efeito {
+        font-size: 3rem;
+        padding: 20px 30px;
+        max-width: 320px;
+    }
+
+    .container-cards {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .password-field input {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    .card {
+        min-height: 280px;
+        padding: 20px 15px;
+    }
+
+    .card img {
+        max-height: 150px;
+    }
+
+    .card-title {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo_principal {
+        margin-top: 140px;
+    }
+
+    .titulo_efeito {
+        font-size: 2rem;
+        padding: 15px 20px;
+        max-width: 280px;
+        border-radius: 15px;
+        border: 2px solid #333333;
+    }
+
+    .container-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .password-container {
+        padding: 0 20px;
+    }
+
+    .password-field input {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+
+    .card {
+        min-height: 250px;
+        padding: 15px 10px;
+    }
+
+    .card img {
+        max-height: 130px;
+    }
+
+    .card-title {
+        font-size: 1.3em;
+    }
+}
+
 /* Geral do footer ------------------------------------------------------------------------------*/
-/* Estilo Geral do Footer */
+/* Estilo Geral do Footer (Desktop/Default) */
 footer {
-    background: linear-gradient(45deg, #694569e0,#391f69d5);
+    background: linear-gradient(145deg, #1a1a1a, #1a1a1a, #000, #1a1a1a, #1a1a1a); /* Seu degradê */
     color: #fff;
     padding: 20px 0;
     text-align: center;
-   margin-top: 5%;
-  }
-  
-  /* Conteúdo Principal */
-  .footer-content {
+
+}
+
+/* Conteúdo Principal */
+.footer-content {
     display: flex;
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    flex-wrap: wrap;
-  }
-  
-  /* Seções do Footer */
-  .footer-section {
-    flex: 1;
+    flex-wrap: wrap; /* Allows sections to wrap to the next line on smaller screens */
+}
+
+/* Seções do Footer */
+.footer-section {
+    flex: 1; /* Allows sections to grow and shrink */
     margin: 10px;
-    min-width: 250px;
-  }
-  
-  .footer-section h2 {
+    min-width: 250px; /* Ensures sections don't get too small before wrapping */
+}
+
+.footer-section h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-  }
-  
-  .footer-section p {
+}
+
+.footer-section p {
     font-size: 0.9rem;
     line-height: 1.6;
-  }
-  
-  /* Links */
-  .footer-section ul {
+}
+
+/* Links */
+.footer-section ul {
     list-style: none;
     padding: 0;
-  }
-  
-  .footer-section ul li {
+}
+
+.footer-section ul li {
     margin: 10px 0;
-  }
-  
-  .footer-section ul li a {
-    background: linear-gradient(45deg, #6d00fa, #fc104b, #8e8fff, #2dbdf7, #e05dfa);
+}
+
+.footer-section ul li a {
+    background: linear-gradient(45deg, #fbf9fd, #b6fff3);
     background-size: 300%;
     background-clip: text; /* Faz o gradiente ser aplicado ao texto */
     -webkit-text-fill-color: transparent; /* Torna a parte não preenchida transparente */
     animation: gradiente-animado 4s ease infinite;
     text-decoration: none;
     transition: color 0.3s ease-in-out;
-  }
-  @keyframes gradiente-animado {
+}
+
+@keyframes gradiente-animado {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
-  .footer-section ul li a:hover {
+
+.footer-section ul li a:hover {
     color: #ff9800;
-  }
-  
-  /* Ícones de Redes Sociais */
-  .social-icons {
+}
+
+/* Ícones de Redes Sociais */
+.social-icons {
     display: flex;
     justify-content: center;
     gap: 15px;
-  }
-  
-  .social-icons a img {
+    border: 2px solid #fff;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+.social-icons a img {
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .social-icons a img:hover {
+}
+
+.social-icons a img:hover {
     transform: scale(1.2);
-  }
-  
-  /* Rodapé Inferior */
-  .footer-bottom {
+}
+
+/* Rodapé Inferior */
+.footer-bottom {
     margin-top: 20px;
     font-size: 0.8rem;
     border-top: 1px solid #444;
     padding: 10px;
-  }
-  
-/* Responsividade para telas menores */
+}
+
+/* ======================================================= */
+/* RESPONSIVENESS */
+/* ======================================================= */
+
+/* Para telas de Tablet (max-width: 780px) */
+@media (max-width: 780px) {
+    footer {
+        padding: 15px 0; /* Reduz o padding do footer */
+    }
+
+    .footer-content {
+        padding: 15px; /* Reduz o padding interno do conteúdo */
+        /* Flex-wrap is already set, so sections will wrap if they don't fit */
+        justify-content: center; /* Centers sections when they wrap */
+    }
+
+    .footer-section {
+        margin: 10px; /* Mantém a margem entre as seções */
+        min-width: 200px; /* Permite que as seções fiquem um pouco menores antes de empilhar */
+        flex-basis: auto; /* Allow items to determine their own flexible basis */
+    }
+
+    .footer-section h2 {
+        font-size: 1.3rem; /* Reduz o tamanho do título */
+    }
+
+    .footer-section p {
+        font-size: 0.85rem; /* Reduz o tamanho do texto */
+    }
+
+    .footer-section ul li {
+        margin: 8px 0; /* Reduz a margem dos itens da lista */
+    }
+
+    .social-icons {
+        gap: 10px; /* Reduz o espaçamento entre os ícones */
+        padding: 10px; /* Reduz o padding do container de ícones */
+    }
+
+    .social-icons a img {
+        width: 25px; /* Reduz o tamanho dos ícones */
+        height: 25px;
+    }
+
+    .footer-bottom {
+        margin-top: 15px;
+        font-size: 0.75rem; /* Reduz o tamanho da fonte do rodapé inferior */
+        padding: 8px;
+    }
+}
+
+/* Para telas de Celular (max-width: 480px - ajuste conforme necessário) */
+@media (max-width: 480px) {
+    footer {
+        padding: 10px 0; /* Mais redução de padding */
+    }
+
+    .footer-content {
+        flex-direction: column; /* Força as seções a empilharem verticalmente */
+        padding: 10px;
+        align-items: center; /* Centraliza as seções empilhadas */
+    }
+
+    .footer-section {
+        margin: 15px 0; /* Aumenta a margem vertical entre as seções empilhadas */
+        width: 90%; /* Ocupa quase toda a largura para cada seção */
+        min-width: unset; /* Remove o min-width para permitir que ocupe a largura total disponível */
+    }
+
+    .footer-section h2 {
+        font-size: 1.2rem; /* Mais redução de tamanho de título */
+        margin-bottom: 10px;
+    }
+
+    .footer-section p {
+        font-size: 0.8rem; /* Mais redução de tamanho de texto */
+    }
+
+    .footer-section ul {
+        text-align: center; /* Centraliza os links quando as seções empilham */
+    }
+
+    .footer-section ul li {
+        margin: 6px 0;
+    }
+
+    .social-icons {
+        gap: 8px; /* Última redução de espaçamento */
+        padding: 8px;
+    }
+
+    .social-icons a img {
+        width: 20px; /* Última redução de tamanho de ícones */
+        height: 20px;
+    }
+
+    .footer-bottom {
+        margin-top: 10px;
+        font-size: 0.7rem;
+        padding: 5px;
+    }
+}
+
+
+
 
 
 

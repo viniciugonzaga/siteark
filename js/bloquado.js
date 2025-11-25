@@ -1,90 +1,55 @@
-
-
-
 // ========================
-// Menu (Navbar)
+// Sistema de Dados (mantido igual)
 // ========================
-const menu = document.getElementById('diceMenu'); // Menu de dados
-const openMenuButton = document.getElementById('openMenu'); // Botão para abrir o menu
-const closeMenuButton = document.getElementById('closeMenu'); // Botão para fechar o menu
-const diceSelect = document.getElementById('diceSelect'); // Seleção do tipo de dado
-const rollDiceButton = document.getElementById('rollDice'); // Botão para rolar dado
-const clearRollsButton = document.getElementById('clearRolls'); // Botão para limpar rolagens
-const rollList = document.getElementById('rollList'); // Lista de rolagens
-const totalDisplay = document.getElementById('total'); // Exibição do total geral
-const playerNameInput = document.getElementById('playerName'); // Entrada do nome do jogador
+const menu = document.getElementById('diceMenu');
+const openMenuButton = document.getElementById('openMenu');
+const closeMenuButton = document.getElementById('closeMenu');
+const diceSelect = document.getElementById('diceSelect');
+const rollDiceButton = document.getElementById('rollDice');
+const clearRollsButton = document.getElementById('clearRolls');
+const rollList = document.getElementById('rollList');
+const totalDisplay = document.getElementById('total');
+const playerNameInput = document.getElementById('playerName');
 
-// Variáveis globais
-let playerScores = {}; // Armazena as somas dos dados por jogador
+let playerScores = {};
 
-// Função para abrir o menu
+// Funções do sistema de dados
 openMenuButton.addEventListener('click', () => {
-    menu.classList.remove('hidden'); // Exibe o menu
+    menu.classList.remove('hidden');
 });
 
-// Função para fechar o menu
 closeMenuButton.addEventListener('click', () => {
-    menu.classList.add('hidden'); // Oculta o menu
+    menu.classList.add('hidden');
 });
 
-// ========================
-// Função de rolagem de dados
-// ========================
 rollDiceButton.addEventListener('click', () => {
-    const playerName = playerNameInput.value.trim(); // Nome do jogador
-    const diceType = parseInt(diceSelect.value); // Tipo de dado selecionado
-    const roll = Math.floor(Math.random() * diceType) + 1; // Rolagem aleatória do dado
+    const playerName = playerNameInput.value.trim();
+    const diceType = parseInt(diceSelect.value);
+    const roll = Math.floor(Math.random() * diceType) + 1;
 
-    // Validação: O nome do jogador deve ser preenchido
     if (!playerName) {
         alert("Por favor, insira o nome do jogador!");
         return;
     }
 
-    // Atualiza o total do jogador
     if (!playerScores[playerName]) {
-        playerScores[playerName] = 0; // Inicializa o jogador, caso não exista
+        playerScores[playerName] = 0;
     }
     playerScores[playerName] += roll;
 
-    // Adiciona o registro da rolagem na lista
     const listItem = document.createElement('li');
     listItem.textContent = `${playerName} = D${diceType}: ${roll} (Total: ${playerScores[playerName]})`;
     rollList.appendChild(listItem);
 
-    // Atualiza o total geral
     totalDisplay.textContent = `Total geral: ${Object.values(playerScores).reduce((a, b) => a + b, 0)}`;
 });
 
-// ========================
-// Limpar registro de rolagens
-// ========================
 clearRollsButton.addEventListener('click', () => {
-    playerScores = {}; // Reinicia os totais por jogador
-    rollList.innerHTML = ''; // Limpa a lista de rolagens
-    totalDisplay.textContent = 'Total geral: 0'; // Zera o total exibido
+    playerScores = {};
+    rollList.innerHTML = '';
+    totalDisplay.textContent = 'Total geral: 0';
 });
 
- // Função que redireciona com base no argumento recebido
- function goToPage(page) {
-    window.location.href = page; // Redireciona para a página passada como argumento
-}
-
-// ========================
-// Footer dinâmico
-// ========================
-document.addEventListener("scroll", () => {
-    const footer = document.querySelector("footer"); // Seleciona o rodapé
-
-    // Se o usuário rolar até o fim da página
-    if (window.scrollY + window.innerHeight >= document.body.scrollHeight) {
-        footer.style.background = "linear-gradient(45deg, #694569e0,#391f69d5)"; // Altera a cor do rodapé
-    } else {
-        footer.style.background = "linear-gradient(45deg, #0f0c29, #302b63, #24243e)"; // Mantém a cor padrão
-    }
-});
-// Defina a senha correta aqui
-const correctPassword = '69696969';  // Altere essa senha para o valor desejado
 
 function checkPassword() {
     const userInput = document.getElementById('passwordInput').value;
@@ -100,3 +65,202 @@ function checkPassword() {
       alert('Senha incorreta! Tente novamente.');
     }
 }
+// Senha mestre (você pode alterar para a senha que desejar)
+const MASTER_PASSWORD = "mestrefoda";
+
+// Elementos do DOM
+const passwordInput = document.getElementById('masterPassword');
+const cardsContainer = document.getElementById('cardsContainer');
+const cards = document.querySelectorAll('.card');
+const cardLinks = document.querySelectorAll('.card-link');
+
+// URLs para cada card (substitua pelas suas URLs reais)
+const cardUrls = {
+    'bosses': '',
+    'feras': '',
+    'players': '/players.html',
+    'plantas': '/plantas.html',
+    'entidades': '/entidades.html'
+};
+
+// Configurar URLs iniciais (vazias enquanto bloqueado)
+function setupCardLinks() {
+    cardLinks.forEach(link => {
+        link.href = '#';
+        link.addEventListener('click', (e) => {
+            if (link.parentElement.classList.contains('locked')) {
+                e.preventDefault();
+                showAccessDenied();
+            }
+        });
+    });
+}
+
+// Verificar senha
+function checkPassword() {
+    const enteredPassword = passwordInput.value.trim();
+    
+    if (enteredPassword === MASTER_PASSWORD) {
+        unlockCards();
+        showSuccessMessage();
+        passwordInput.value = '';
+    } else if (enteredPassword.length >= MASTER_PASSWORD.length) {
+        showErrorAnimation();
+        passwordInput.value = '';
+    }
+}
+
+// Liberar cards
+function unlockCards() {
+    cards.forEach(card => {
+        card.classList.remove('locked');
+        card.classList.add('unlocked');
+        
+        // Ativar links
+        const category = card.getAttribute('data-category');
+        const link = card.querySelector('.card-link');
+        if (cardUrls[category]) {
+            link.href = cardUrls[category];
+        }
+    });
+    
+    // Adicionar efeito de transição suave
+    cardsContainer.style.opacity = '0.8';
+    setTimeout(() => {
+        cardsContainer.style.opacity = '1';
+        cardsContainer.style.transition = 'opacity 0.5s ease';
+    }, 100);
+}
+
+// Mostrar mensagem de sucesso
+function showSuccessMessage() {
+    const existingMessage = document.querySelector('.success-message');
+    if (existingMessage) existingMessage.remove();
+    
+    const message = document.createElement('div');
+    message.className = 'success-message';
+    message.textContent = 'Acesso Liberado! Segredos Revelados!';
+    message.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(145deg, #1a1a1a, #000);
+        color: #b6fff3;
+        padding: 20px 40px;
+        border-radius: 15px;
+        border: 3px solid #b6fff3;
+        box-shadow: 0 0 30px rgba(193, 240, 248, 0.8);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1000;
+        animation: fadeInOut 3s ease-in-out;
+    `;
+    
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+        message.remove();
+    }, 3000);
+}
+
+// Mostrar animação de erro
+function showErrorAnimation() {
+    passwordInput.style.animation = 'shake 0.5s ease-in-out';
+    passwordInput.style.borderColor = '#ff4444';
+    passwordInput.style.boxShadow = '0 0 20px rgba(255, 68, 68, 0.6)';
+    
+    setTimeout(() => {
+        passwordInput.style.animation = '';
+        passwordInput.style.borderColor = '#333333';
+        passwordInput.style.boxShadow = '0 0 20px rgba(193, 240, 248, 0.3)';
+    }, 500);
+}
+
+// Mostrar acesso negado
+function showAccessDenied() {
+    const existingMessage = document.querySelector('.access-denied');
+    if (existingMessage) existingMessage.remove();
+    
+    const message = document.createElement('div');
+    message.className = 'access-denied';
+    message.textContent = '🔒 Acesso Bloqueado - Digite a Senha Mestre';
+    message.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(145deg, #2a1a1a, #000);
+        color: #ff6b6b;
+        padding: 15px 30px;
+        border-radius: 10px;
+        border: 2px solid #ff4444;
+        box-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
+        font-size: 1rem;
+        font-weight: bold;
+        text-align: center;
+        z-index: 1000;
+        animation: fadeInOut 2s ease-in-out;
+    `;
+    
+    document.body.appendChild(message);
+    
+    setTimeout(() => {
+        message.remove();
+    }, 2000);
+}
+
+// Adicionar estilos de animação dinamicamente
+function addDynamicStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            20% { opacity: 1; transform: translate(-50%, -50%); }
+            80% { opacity: 1; transform: translate(-50%, -50%); }
+            100% { opacity: 0; transform: translate(-50%, -40%); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Event Listeners
+passwordInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        checkPassword();
+    }
+});
+
+passwordInput.addEventListener('focus', () => {
+    passwordInput.parentElement.querySelector('.cursor-animation').style.opacity = '1';
+});
+
+passwordInput.addEventListener('blur', () => {
+    passwordInput.parentElement.querySelector('.cursor-animation').style.opacity = '0';
+});
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    setupCardLinks();
+    addDynamicStyles();
+    
+    // Focar no campo de senha automaticamente
+    setTimeout(() => {
+        passwordInput.focus();
+    }, 1000);
+});
+
+// Proteção adicional: bloquear clique direito e inspecionar (opcional)
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+        e.preventDefault();
+    }
+});
