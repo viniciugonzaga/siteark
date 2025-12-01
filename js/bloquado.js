@@ -77,10 +77,10 @@ const cardLinks = document.querySelectorAll('.card-link');
 // URLs para cada card (substitua pelas suas URLs reais)
 const cardUrls = {
     'bosses': '',
-    'feras': '',
-    'players': '/players.html',
-    'plantas': '/plantas.html',
-    'entidades': '/entidades.html'
+    'feras': '../index/index_feras.html',
+    'players': '',
+    'plantas': '',
+    'entidades': ''
 };
 
 // Configurar URLs iniciais (vazias enquanto bloqueado)

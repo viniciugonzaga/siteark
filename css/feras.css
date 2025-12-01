@@ -4,7 +4,7 @@ body {
     scroll-behavior: smooth;
     overflow-x: hidden;
     /* Combina a sobreposição de cor com a imagem de fundo */
-    background: linear-gradient(rgba(30, 31, 32, 0.623), rgba(46, 47, 49, 0.651)), url('../imagens/icone_dinos_v3.png') no-repeat center center fixed;
+    background: linear-gradient(rgba(13, 18, 28, 0.623), rgba(31, 44, 70, 0.651)), url('../imagens/icone_dinos_v3.png') no-repeat center center fixed;
     background-size: cover;
 }
 body::before {
@@ -782,683 +782,73 @@ nav {
     }
 }
 
-/* Título Principal - Centralizado */
-.titulo_principal {
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente (se houver altura) */
-    margin-top: 110px;
-    perspective: 1000px;
-    margin-bottom: 10px;
-    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
-}
-@media (max-width: 788px) {
-
-/* Título Principal - Centralizado */
-.titulo_principal {
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente (se houver altura) */
-    margin-top: 110px;
-    perspective: 600px;
-    margin-bottom: 20px;
-    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
-}
-
-.titulo_efeito {
-    font-size: 1.2rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
-    border-radius: 25px;
-    padding: 25px 40px;
-    border: 3px solid #333333;
-    color: #b6fff3;
-    text-shadow:
-        0 0 10px rgba(193, 240, 248, 0.8),
-        0 0 30px rgba(193, 240, 248, 0.6),
-        0 0 60px rgba(193, 240, 248, 0.4);
-    position: relative;
-    max-width: 380px;
-    overflow: hidden;
-    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-    text-align: center; /* Garante o texto centralizado dentro do elemento */
-}
-}
-
-@media (max-width: 480px) {
-
-/* Título Principal - Centralizado */
-.titulo_principal {
-    display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente (se houver altura) */
-    margin-top: 110px;
-    perspective: 600px;
-    margin-bottom: 20px;
-    text-align: center; /* Garante que o texto dentro do h1 esteja centralizado */
-}
-
-.titulo_efeito {
-    font-size: 1rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
-    border-radius: 25px;
-    padding: 25px 40px;
-    border: 3px solid #333333;
-    color: #b6fff3;
-    text-shadow:
-        0 0 10px rgba(193, 240, 248, 0.8),
-        0 0 30px rgba(193, 240, 248, 0.6),
-        0 0 60px rgba(193, 240, 248, 0.4);
-    position: relative;
-    max-width: 380px;
-    overflow: hidden;
-    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-    text-align: center; /* Garante o texto centralizado dentro do elemento */
-}
-}
-
-
-
-.titulo_efeito {
-    font-size: 3rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
-    border-radius: 25px;
-    padding: 25px 40px;
-    border: 3px solid #333333;
-    color: #b6fff3;
-    text-shadow:
-        0 0 10px rgba(193, 240, 248, 0.8),
-        0 0 30px rgba(193, 240, 248, 0.6),
-        0 0 60px rgba(193, 240, 248, 0.4);
-    position: relative;
-    max-width: 280px;
-    overflow: hidden;
-    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-    text-align: center; /* Garante o texto centralizado dentro do elemento */
-}
-
-/* Keyframes (mantidos os mesmos) */
-@keyframes pulseGlowCyan {
-    0% {
-        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
-    }
-    100% {
-        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
-    }
-}
-
-@keyframes floatEffect {
-    0% {
-        transform: translateY(0) rotateX(0deg);
-    }
-    50% {
-        transform: translateY(-10px) rotateX(2deg);
-    }
-    100% {
-        transform: translateY(0) rotateX(0deg);
-    }
-}
-
-.titulo_efeito::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    animation: shineEffect 3s infinite linear;
-    transform: skewX(-20deg);
-    pointer-events: none;
-}
-
-@keyframes shineEffect {
-    0% {
-        left: -100%;
-    }
-    100% {
-        left: 100%;
-    }
-}
-
-.titulo_efeito::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999);
-    animation: wave 8s infinite linear;
-    transform-origin: bottom center;
-}
-
-@keyframes wave {
-    0% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-    25% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    50% {
-        transform: scaleX(0.1);
-        left: 90%;
-        background-position: 0% 0%;
-    }
-    75% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    100% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-}
-         /* Animações e variáveis */
-        @keyframes misty-glow {
-            0% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.2), 0 0 20px rgba(193, 240, 248, 0.15), 0 0 30px rgba(193, 240, 248, 0.1); }
-            50% { box-shadow: 0 0 20px rgba(193, 240, 248, 0.4), 0 0 40px rgba(193, 240, 248, 0.3), 0 0 60px rgba(193, 240, 248, 0.2); }
-            100% { box-shadow: 0 0 10px rgba(193, 240, 248, 0.2), 0 0 20px rgba(193, 240, 248, 0.15), 0 0 30px rgba(193, 240, 248, 0.1); }
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        @keyframes pulse-aura {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        @keyframes shine-through {
-            0% { transform: skewX(-20deg) translateX(-100%); }
-            100% { transform: skewX(-20deg) translateX(200%); }
-        }
-
-
-.Meio{
-margin-top: 100px;
+.meio{
+margin-top: 400px;
 
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Cinzel:wght@700&display=swap');
-
-/* Reset e configurações gerais */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+.controls .icon-btn{width:44px;height:44px;background:#0f0f0f;border:1px solid #222;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.icon-btn.active{outline:2px solid #bdbdbd}
 
 
+/* LIST / CARDS */
+.list{background:linear-gradient(180deg,#070707,#0b0b0b);padding:12px;border-radius:8px;border:1px solid #222;min-height:380px}
+.dino-item{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;border-bottom:1px solid rgba(255,255,255,.02);cursor:pointer}
+.dino-item img{width:64px;height:48px;object-fit:cover;border-radius:6px;filter:grayscale(1) brightness(.9)}
+.dino-item .name{font-weight:600}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.card{background:#0b0b0b;border:1px solid #222;border-radius:10px;padding:8px;display:flex;flex-direction:column;gap:8px;align-items:center;cursor:pointer}
+.card img{width:100%;height:120px;object-fit:cover;border-radius:6px;filter:grayscale(1)}
+.card .label{background:rgba(0,0,0,.5);padding:6px 8px;border-radius:6px;width:100%;text-align:center}
 
-/* Container geral */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-    padding: 20px;
-    min-height: 100vh;
-}
 
-/* ======================================================= */
-/* TÍTULO PRINCIPAL - Mantendo seu estilo original */
-/* ======================================================= */
+/* MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px;z-index:40}
+.modal{width:920px;max-width:98%;background:linear-gradient(180deg,#0f0f0f,#111);border:1px solid #222;border-radius:12px;overflow:hidden;color:#eee;position:relative}
+.modal .header{display:flex;align-items:center;gap:12px;padding:16px;border-bottom:1px solid rgba(255,255,255,.03)}
+.modal .header .title{font-size:20px;font-weight:700}
+.modal .content{display:flex;gap:12px;padding:16px}
+.modal .bg-img{position:absolute;inset:0;opacity:.08;background-repeat:no-repeat;background-position:center right;background-size:contain;filter:grayscale(1)}
 
-.titulo_principal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 120px;
-    perspective: 1000px;
-}
 
-.titulo_efeito {
-    font-size: 4rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
-    border-radius: 25px;
-    padding: 25px 40px;
-    border: 3px solid #333333;
-    color: #e0e0e0;
-    text-shadow:
-        0 0 10px rgba(193, 240, 248, 0.6),
-        0 0 30px rgba(193, 240, 248, 0.4),
-        0 0 60px rgba(193, 240, 248, 0.2);
-    position: relative;
-    max-width: 380px;
-    overflow: hidden;
-    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
-    transform-style: preserve-3d;
-}
+.col-left{width:320px;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);padding:12px;border-radius:8px}
+.col-right{flex:1;background:linear-gradient(180deg,#0b0b0b,#0a0a0a);padding:12px;border-radius:8px}
+.mini-table{display:flex;gap:8px;justify-content:space-around;margin:10px 0}
+.stat{background:rgba(255,255,255,.03);padding:8px;border-radius:6px;text-align:center}
 
-@keyframes pulseGlowCyan {
-    0% {
-        box-shadow: 0 0 15px rgba(193, 240, 248, 0.6);
-    }
-    100% {
-        box-shadow: 0 0 35px rgba(193, 240, 248, 1);
-    }
-}
 
-@keyframes floatEffect {
-    0% {
-        transform: translateY(0) rotateX(0deg);
-    }
-    50% {
-        transform: translateY(-10px) rotateX(2deg);
-    }
-    100% {
-        transform: translateY(0) rotateX(0deg);
-    }
-}
+.attributes{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.attrib-row{display:flex;justify-content:space-between;gap:6px}
+.attrib{flex:1;background:rgba(255,255,255,.02);padding:8px;border-radius:6px;text-align:center}
 
-.titulo_efeito:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, #999999, #b6fff3, #d6feff, #b6fff3, #999999);
-    animation: wave 8s infinite linear;
-    transform-origin: bottom center;
-}
 
-@keyframes wave {
-    0% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-    25% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    50% {
-        transform: scaleX(0.1);
-        left: 90%;
-        background-position: 0% 0%;
-    }
-    75% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    100% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-}
+.section-title{font-weight:700;margin:8px 0}
+.bonuses{display:flex;flex-direction:column;gap:4px}
 
-/* ======================================================= */
-/* CAMPO DE SENHA */
-/* ======================================================= */
 
-.password-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    margin: 20px 0;
-}
+.attacks{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.attack{background:rgba(255,255,255,.02);padding:8px;border-radius:6px}
+.skills{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}
+.passives{background:rgba(255,255,255,.02);padding:8px;border-radius:6px;margin-top:8px}
 
-.password-field {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-}
 
-.password-field input {
-    width: 100%;
-    padding: 20px;
-    font-size: 1.4rem;
-    background: linear-gradient(145deg, #1a1a1a, #000);
-    border: 3px solid #333333;
-    border-radius: 15px;
-    color: #e0e0e0;
-    text-align: center;
-    outline: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(193, 240, 248, 0.3);
-}
+.modal .footer{display:flex;justify-content:space-between;align-items:center;padding:12px;border-top:1px solid rgba(255,255,255,.03)}
+.btn{padding:8px 12px;border-radius:8px;background:#111;border:1px solid #333;color:#eee;cursor:pointer}
+.btn.prim{background:#e6e6e6;color:#000}
 
-.password-field input:focus {
-    border-color: #b6fff3;
-    box-shadow: 0 0 30px rgba(193, 240, 248, 0.6);
-}
 
-.password-field input::placeholder {
-    color: #666;
-    font-style: italic;
-}
+/* small */
+@media(max-width:900px){.layout{flex-direction:column}.left{width:100%;order:2}.main{order:1}}
 
-.cursor-animation {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2px;
-    height: 30px;
-    background: #b6fff3;
-    animation: blink 1s infinite;
-    opacity: 0;
-}
 
-.password-field input:focus + .cursor-animation {
-    opacity: 1;
-}
+/* small visuals for ark style: hand-drawn texture */
+.texture{background-image:linear-gradient(90deg,rgba(255,255,255,.01) 1px,transparent 1px);background-size:4px 4px}
 
-@keyframes blink {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-}
 
-/* ======================================================= */
-/* CARDS - ESTILOS BASE */
-/* ======================================================= */
 
-.container-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
-    padding: 40px;
-    max-width: 1300px;
-    margin: auto;
-    background: linear-gradient(45deg, #2325259c, #2229288c, #1f22229a);
-    border-radius: 20px;
-    justify-content: center;
-}
 
-.card {
-    background: linear-gradient(145deg, #1a1a1a, #000);
-    border-radius: 16px;
-    padding: 25px 20px;
-    text-align: center;
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-    min-height: 320px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    border: 3px solid transparent;
-}
 
-.card-link {
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    justify-content: flex-start;
-    color: inherit;
-}
-
-.card img {
-    max-width: 90%;
-    max-height: 180px;
-    object-fit: contain;
-    transition: all 0.4s ease;
-    flex-shrink: 0;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
-
-.card-title {
-    font-size: 1.8em;
-    font-family: 'Ark', serif;
-    margin-top: 10px;
-    color: #ffffff;
-    background: linear-gradient(to right, #d6feff, #cecece);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 10px rgba(193, 240, 248, 0.5);
-    transition: all 0.4s ease;
-}
-
-/* ======================================================= */
-/* ESTADOS DOS CARDS */
-/* ======================================================= */
-
-/* Cards Bloqueados */
-.card.locked {
-    filter: blur(5px) brightness(0.4);
-    cursor: not-allowed;
-    animation: darkPulse 2s infinite alternate;
-}
-
-.card.locked::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(0,0,0,0.8) 0%, transparent 70%);
-    animation: auraPulse 3s infinite alternate;
-    z-index: 1;
-}
-
-.card.locked .card-link {
-    pointer-events: none;
-    cursor: not-allowed;
-}
-
-.card.locked img {
-    filter: grayscale(100%) brightness(0.3);
-}
-
-.card.locked .card-title {
-    color: #666;
-    background: linear-gradient(to right, #666666, #a5c8ca);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-}
-
-/* Cards Liberados */
-.card.unlocked {
-    filter: none;
-    cursor: pointer;
-    box-shadow: 0 0 25px rgba(193, 240, 248, 0.3);
-    border-color: rgba(193, 240, 248, 0.5);
-    animation: lightGlow 2s infinite alternate;
-}
-
-.card.unlocked:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 0 40px rgba(193, 240, 248, 0.8);
-    border-color: rgba(193, 240, 248, 0.8);
-}
-
-.card.unlocked:hover img {
-    filter: grayscale(0%) brightness(1.1);
-    transform: scale(1.1);
-}
-
-.card.unlocked:hover .card-title {
-    text-shadow: 0 0 20px rgba(193, 240, 248, 0.8);
-}
-
-.card.unlocked img {
-    filter: grayscale(0%) brightness(1);
-}
-
-.card.unlocked .card-link {
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-/* ======================================================= */
-/* ANIMAÇÕES */
-/* ======================================================= */
-
-@keyframes darkPulse {
-    0% {
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    }
-    100% {
-        box-shadow: 0 0 40px rgba(0, 0, 0, 1);
-    }
-}
-
-@keyframes auraPulse {
-    0% {
-        transform: scale(0.8);
-        opacity: 0.3;
-    }
-    100% {
-        transform: scale(1.2);
-        opacity: 0.6;
-    }
-}
-
-@keyframes lightGlow {
-    0% {
-        box-shadow: 0 0 25px rgba(193, 240, 248, 0.3);
-    }
-    100% {
-        box-shadow: 0 0 35px rgba(193, 240, 248, 0.6);
-    }
-}
-
-/* Efeito de brilho nos cards liberados */
-.card.unlocked::after {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, transparent, rgba(193, 240, 248, 0.1), transparent);
-    border-radius: 18px;
-    z-index: -1;
-    animation: shine 3s infinite;
-}
-
-@keyframes shine {
-    0% {
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
-}
-
-/* ======================================================= */
-/* RESPONSIVIDADE */
-/* ======================================================= */
-
-@media (max-width: 1024px) {
-    .container-cards {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 20px;
-        padding: 30px;
-    }
-}
-
-@media (max-width: 780px) {
-    .titulo_principal {
-        margin-top: 130px;
-    }
-
-    .titulo_efeito {
-        font-size: 3rem;
-        padding: 20px 30px;
-        max-width: 320px;
-    }
-
-    .container-cards {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 15px;
-        padding: 20px;
-    }
-
-    .password-field input {
-        font-size: 1.2rem;
-        padding: 15px;
-    }
-
-    .card {
-        min-height: 280px;
-        padding: 20px 15px;
-    }
-
-    .card img {
-        max-height: 150px;
-    }
-
-    .card-title {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 480px) {
-    .titulo_principal {
-        margin-top: 140px;
-    }
-
-    .titulo_efeito {
-        font-size: 2rem;
-        padding: 15px 20px;
-        max-width: 280px;
-        border-radius: 15px;
-        border: 2px solid #333333;
-    }
-
-    .container-cards {
-        grid-template-columns: 1fr;
-        gap: 15px;
-        padding: 15px;
-    }
-
-    .password-container {
-        padding: 0 20px;
-    }
-
-    .password-field input {
-        font-size: 1.1rem;
-        padding: 12px;
-    }
-
-    .card {
-        min-height: 250px;
-        padding: 15px 10px;
-    }
-
-    .card img {
-        max-height: 130px;
-    }
-
-    .card-title {
-        font-size: 1.3em;
-    }
-}
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
@@ -1467,7 +857,6 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-
 }
 
 /* Conteúdo Principal */
