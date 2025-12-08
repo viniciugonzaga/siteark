@@ -1903,6 +1903,309 @@ main{
     transform: translateX(5px);
 }
 
+/* ==================== */
+/* ESTILOS ESPECÍFICOS PARA FLORA */
+/* ==================== */
+
+/* Categorias de Biomas */
+.categorias-container {
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+}
+
+.categorias-titulo {
+    text-align: center;
+    color: var(--accent-color-2);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.categorias-lista {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.categoria-bioma {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 100px;
+}
+
+.categoria-bioma:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    border-color: var(--accent-color);
+}
+
+.categoria-bioma.ativo {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px var(--shadow-color);
+    background: linear-gradient(145deg, #2c3e50, #34495e);
+}
+
+.categoria-icon {
+    width: 40px;
+    height: 40px;
+    filter: invert(100%);
+    margin-bottom: 10px;
+}
+
+.categoria-bioma.ativo .categoria-icon {
+    filter: invert(82%) sepia(25%) saturate(530%) hue-rotate(124deg) brightness(103%) contrast(102%);
+}
+
+.categoria-bioma span {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.categoria-bioma.ativo span {
+    color: var(--accent-color);
+}
+
+/* Header dos itens de bioma */
+.bioma-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bioma-categoria {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    background: rgba(93, 155, 70, 0.2);
+    border-radius: 12px;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+/* Lista de criaturas nos biomas */
+.bioma-criaturas {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(156, 240, 255, 0.1);
+}
+
+.bioma-criaturas h4 {
+    color: var(--accent-color-2);
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.criaturas-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.criatura-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    border: 1px solid rgba(156, 240, 255, 0.05);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.criatura-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(156, 240, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.criatura-nome {
+    color: var(--accent-color-2);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.criatura-titulo {
+    color: #aaa;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+.sem-criaturas {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+}
+
+.criaturas-mais {
+    text-align: center;
+    color: var(--accent-color);
+    font-size: 0.8rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+/* Detalhes das criaturas */
+.bioma-criaturas-detalhe {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+}
+
+.bioma-criaturas-detalhe h3 {
+    color: var(--accent-color-2);
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+.criaturas-detalhe-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.criatura-detalhe-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.criatura-detalhe-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-color: var(--accent-color);
+}
+
+.criatura-detalhe-info {
+    flex: 1;
+}
+
+.criatura-detalhe-nome {
+    color: var(--accent-color-2);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.criatura-detalhe-titulo {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.criatura-detalhe-categoria {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+.criatura-detalhe-btn {
+    padding: 8px 15px;
+    background: linear-gradient(145deg, var(--accent-color), #4a7c3a);
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.criatura-detalhe-btn:hover {
+    background: linear-gradient(145deg, #4a7c3a, var(--accent-color));
+    transform: scale(1.05);
+}
+
+.sem-criaturas-detalhe {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+/* Header do detalhe do bioma */
+.bioma-detalhe-header {
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.bioma-metadata {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.bioma-categoria-detalhe,
+.bioma-tipo-detalhe {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.bioma-categoria-detalhe {
+    background: rgba(93, 155, 70, 0.2);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.bioma-tipo-detalhe {
+    background: rgba(156, 240, 255, 0.1);
+    color: var(--accent-color-2);
+    border: 1px solid var(--accent-color-2);
+}
+
+/* Grid de informações do bioma */
+.bioma-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 25px 0;
+}
+
+.bioma-info-categoria {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(156, 240, 255, 0.1);
+}
+
+.bioma-info-categoria h3 {
+    color: var(--accent-color-2);
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.bioma-info-categoria p {
+    color: #ccc;
+    line-height: 1.5;
+}
+
 .bioma-info-categoria li:before {
     content: '';
     content: '★';
