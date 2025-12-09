@@ -185,7 +185,7 @@ const creaturesData = [
         image: "../imagens/icon_espinossauro.png",
         thumbnail: "../imagens/icon_espinossauro.png",
         category: "Dinossauro",
-        biome: ["Rios", "Pântanos", "Floresta"],
+        biome: ["Rios", "Pântano", "Floresta"], // ADICIONADO PÂNTANO AQUI
         environment: "land",
         height: "5.2m",
         length: "15m",
@@ -906,13 +906,14 @@ const creaturesData = [
             ],
             beastPassive: {
                 name: "Domínio do Vácuo",
-                desc: "Quando em campo, todos os inimigos sofrem -2 em todos os testes e o Dragão regenera 10% de vida a cada 2 rodadas."
+                desc: "Quando em campo, todos os inimigos sofram -2 em todos os testes e o Dragão regenera 10% de vida a cada 2 rodadas."
             }
         }
     }
+    
 ];
 
-// Biomes data with image paths (COMPLETO)
+// Biomes data with image paths (COMPLETO com Pântano adicionado)
 const biomesData = [
     // Land biomes (Terra)
     { name: "Campos", icon: "../imagens/icon_campos.png", type: "land" },
@@ -928,6 +929,7 @@ const biomesData = [
     { name: "Floresta de Cogumelo", icon: "../imagens/icon_floresta_cogumelos.png", type: "land" },
     { name: "Floresta Misteriosa", icon: "../imagens/icon_floresta_misteriosa.png", type: "land" },
     { name: "Cogumelos Abissais", icon: "../imagens/icon_fungos.png", type: "land" },
+    { name: "Pântano", icon: "../imagens/icon_pantano.png", type: "land" }, 
     
     // Water biomes (Mar)
     { name: "Oceanos", icon: "../imagens/icon_mar.png", type: "water" },
@@ -1414,8 +1416,6 @@ function setEnvironment(env) {
     renderCreatures();
 }
 
-// No final do feras.js, antes do document.addEventListener, adicione:
-
 // ========================
 // FUNÇÃO PARA ABRIR CRIATURA POR ID DA URL
 // ========================
@@ -1460,7 +1460,6 @@ function setView(view) {
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', init);
-
 
 window.CreaturesData = creaturesData;
 window.BiomesData = biomesData;

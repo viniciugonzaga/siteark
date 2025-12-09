@@ -1235,7 +1235,18 @@ classe: "ritual"
         nivel: 50,
         imagem: "../imagens/chthullu_icon.png",
         classe: "pacto"
-    }
+    },
+    4: {
+        id: 4,
+        nome: "Maldição do medo",
+        tipo: "Maldição",
+        elemento: "Fogo",
+        descricao: "O ser que possui essa Maldição, está condenado a ser o novo berço do Senhor do Medo, podendo vivenciar momentos em pesadelos que estão acontecendo em todo o conjunto do medo em que se passa entre as emoções dos Homens. O Medo acumulado garante a personifiação de seu ritual de Nascimento. O Portador não sente Medo enquanto estiver com a maldição, sendo imune a efeitos de medo e recebe +20 coragem, em situações da Caveira sente sua mana Arcana infinita e rituais de fogo, causam +2D de dano maior. ",
+        nivel: 50,
+        imagem: "../imagens/icon_diablo.png",
+        classe: "pacto"
+    },
+
 
         
 

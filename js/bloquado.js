@@ -78,7 +78,7 @@ const cardLinks = document.querySelectorAll('.card-link');
 const cardUrls = {
     'bosses': '',
     'feras': '../index/index_feras.html',
-    'players': '',
+    'players': '../index/index_players.html',
     'plantas': '',
     'entidades': ''
 };

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Players</title>
+  <!-- CSS local -->
+  <link rel="stylesheet" href="../css/players.css">
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Ícones -->
+  <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png">
+</head>
+<body>
+  <!-- ───────────── NAV BAR ───────────── -->
+  <nav>
+    <div class="nav-left">
+      <div class="logo">
+        <img src="../imagens/Icone_ark_v4.png" alt="Logo">
+        <h1>RPG ARK</h1>
+      </div>
+    </div>
+    <div class="nav-middle">
+      <div class="nav-links">
+        <a href="../index.html"            class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
+        <a href="index_mapas.html"         class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
+        <a href="index_história.html"      class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
+        <a href="index_regras.html"        class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html"     class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html"       class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
+      </div>
+    </div>
+    <div class="nav-right">
+      <div class="dado-container">
+        <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
+        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado">
+        <a href="index_login.html" class="new-icon-link">
+          <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon">
+        </a>
+      </div>
+    </div>
+    <!-- MENU DE DADOS -->
+    <div id="diceMenu" class="menu hidden">
+      <button id="closeMenu">Fechar</button>
+      <h3>Rolar Dados</h3>
+
+      <label for="playerName">Nome do Jogador:</label>
+      <input type="text" id="playerName" placeholder="Digite o nome do jogador">
+
+      <label for="diceSelect">Selecione o tipo de dado:</label>
+      <select id="diceSelect">
+        <option value="20">D20</option><option value="12">D12</option><option value="10">D10</option>
+        <option value="8">D8</option><option value="6">D6</option><option value="4">D4</option><option value="2">D2</option>
+      </select>
+
+      <button id="rollDice">Rolar Dados</button>
+
+      <div id="rolls">
+        <h4>Registro de Rolagens:</h4>
+        <ul id="rollList"></ul>
+        <p id="total">Total: 0</p>
+      </div>
+
+      <button id="clearRolls">Limpar Registro</button>
+    </div>
+  </nav>
+  <!-- ────────── FIM NAV BAR ────────── -->
+<main class="Meio">
+
+<!-- Conteúdo Principal -->
+    <main class="meio">
+        <div class="container">
+            <!-- Título Principal -->
+            <div class="titulo_principal">
+                <div class="titulo_efeito">Jogadores</div>
+            </div>
+
+            <!-- Subtítulo -->
+            <div class="subtitle-container">
+                <p class="subtitle">
+                    Aqui você pode gerenciar todos os personagens dos jogadores. Crie blocos para cada jogador, edite seus status em tempo real e monitore a saúde mental e física de cada personagem durante a aventura.
+                </p>
+            </div>
+
+            <!-- Controles de Exportação PDF -->
+            <div class="pdf-controls">
+                <button id="pdf-export-btn" class="action-btn pdf-btn">
+                    <i class="fas fa-file-pdf"></i> Modo Exportar PDF
+                </button>
+                <div class="pdf-hint" id="pdf-hint">
+                    <i class="fas fa-info-circle"></i> Clique em um card para exportar como PDF
+                </div>
+            </div>
+
+            <!-- Área Operacional / Dashboard -->
+            <section class="dashboard-section">
+                <!-- Controles do Dashboard -->
+                <div class="dashboard-controls">
+                    <div class="search-container">
+                        <input type="text" id="search-players" placeholder="Buscar jogador ou personagem...">
+                        <button id="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="dashboard-actions">
+                        <button id="add-player-btn" class="action-btn">
+                            <i class="fas fa-user-plus"></i> Adicionar Jogador
+                        </button>
+                        <button id="reset-all-btn" class="action-btn reset">
+                            <i class="fas fa-redo"></i> Resetar Todos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Contadores -->
+                <div class="counters">
+                    <div class="counter-item">
+                        <span class="counter-value" id="total-players">0</span>
+                        <span class="counter-label">Jogadores</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="low-health">0</span>
+                        <span class="counter-label">Vida Baixa</span>
+                    </div>
+                    <div class="counter-item">
+                        <span class="counter-value" id="low-sanity">0</span>
+                        <span class="counter-label">Sanidade Baixa</span>
+                    </div>
+                </div>
+
+                <!-- Grid de Jogadores -->
+                <div class="players-grid" id="players-grid">
+                    <!-- Os blocos de jogadores serão inseridos aqui via JavaScript -->
+                </div>
+
+                <!-- Mensagem quando não há jogadores -->
+                <div class="empty-state" id="empty-state">
+                    <i class="fas fa-users"></i>
+                    <h3>Nenhum jogador adicionado</h3>
+                    <p>Clique em "Adicionar Jogador" para começar a gerenciar sua equipe!</p>
+                </div>
+            </section>
+
+            <!-- Seção Joice (Agente IA) -->
+            <section class="joice-section" id="joice-section">
+                <div class="titulo_principal" style="margin-top: 60px; margin-bottom: 30px;">
+                    <div class="titulo_efeito" style="font-size: 3rem;">JOICE</div>
+                </div>
+
+                <div class="joice-container">
+                    <div class="joice-header">
+                        <div class="joice-avatar">
+                            <img src="../imagens/icone_bebe_dino.png" alt="Joice IA" class="joice-image">
+                            <div class="joice-status">
+                                <i class="fas fa-circle" style="color: #33cc33;"></i> Online
+                            </div>
+                        </div>
+                        <div class="joice-info">
+                            <h3><i class="fas fa-robot"></i> Joice - Assistente Inteligente</h3>
+                            <p class="joice-description">Sistema de gerenciamento automático de fichas. Digite comandos abaixo para modificar status dos personagens em tempo real.</p>
+                        </div>
+                    </div>
+
+                    <!-- Painel de Sintaxe -->
+                    <div class="syntax-panel">
+                        <h4><i class="fas fa-code"></i> Sintaxe dos Comandos:</h4>
+                        <div class="syntax-grid">
+                            <div class="syntax-item">
+                                <code>[Nome] - [Vida/Sanidade/Armadura/Honra] [+/-][Valor]</code>
+                                <span>Ex: Max - Vida -20</span>
+                            </div>
+                            <div class="syntax-item">
+                                <code>[Nome] [Operação] [Valor] [Status]</code>
+                                <span>Ex: Maria +15 Sanidade</span>
+                            </div>
+                            <div class="syntax-item">
+                                <code>reset [Nome]</code>
+                                <span>Reseta vida/sanidade para máximo</span>
+                            </div>
+                            <div class="syntax-item">
+                                <code>all [Operação] [Status] [Valor]</code>
+                                <span>Ex: all + Vida 10</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Área de Comando -->
+                    <div class="command-area">
+                        <div class="command-input-container">
+                            <div class="command-prefix">
+                                <i class="fas fa-terminal"></i> Joice >
+                            </div>
+                            <input type="text" id="joice-command" placeholder="Digite um comando (Ex: Carlos - Vida -30)">
+                            <button id="execute-command" class="command-btn">
+                                <i class="fas fa-play"></i> Executar
+                            </button>
+                        </div>
+                        
+                        <!-- Log de Comandos -->
+                        <div class="command-log">
+                            <h5><i class="fas fa-history"></i> Histórico de Comandos</h5>
+                            <div class="log-content" id="command-log-content">
+                                <div class="log-entry system">
+                                    <span class="log-time">[Sistema]</span> Sistema inicializado. Digite comandos para gerenciar os jogadores.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Status de Execução -->
+                        <div class="execution-status" id="execution-status">
+                            <div class="status-indicator">
+                                <i class="fas fa-circle status-idle"></i>
+                                <span>Pronto para executar comandos</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de Adicionar/Editar Jogador (REDUZIDO) -->
+    <div class="modal" id="player-modal">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-wrapper">
+            <div class="modal-content player-modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h2 id="modal-title">Adicionar Novo Jogador</h2>
+                    </div>
+                    <button class="modal-close" id="modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="player-form">
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label for="player-name">
+                                    <i class="fas fa-user"></i> Jogador
+                                </label>
+                                <input type="text" id="player-name" required>
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="character-name">
+                                    <i class="fas fa-helmet-battle"></i> Personagem
+                                </label>
+                                <input type="text" id="character-name" required>
+                            </div>
+                        </div>
+
+                        <!-- Upload de Imagem -->
+                        <div class="form-group compact">
+                            <label for="character-image-upload">
+                                <i class="fas fa-image"></i> Imagem do Personagem
+                            </label>
+                            <div class="image-upload-container">
+                                <input type="file" id="character-image-upload" accept="image/*" style="display: none;">
+                                <button type="button" id="upload-image-btn" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Escolher Imagem
+                                </button>
+                                <div class="image-preview" id="image-preview">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                            </div>
+                            <small class="form-hint">Clique para selecionar uma imagem</small>
+                        </div>
+
+                        <div class="form-grid compact-grid">
+                            <div class="form-group compact">
+                                <label for="max-hp">
+                                    <i class="fas fa-heart"></i> Vida Máx
+                                </label>
+                                <input type="number" id="max-hp" min="1" value="100" required>
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="current-hp">
+                                    <i class="fas fa-heartbeat"></i> Vida Atual
+                                </label>
+                                <input type="number" id="current-hp" min="0" value="100" required>
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="armor">
+                                    <i class="fas fa-shield-alt"></i> Armadura
+                                </label>
+                                <input type="number" id="armor" min="0" value="10">
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="max-sanity">
+                                    <i class="fas fa-brain"></i> San. Máx
+                                </label>
+                                <input type="number" id="max-sanity" min="1" value="100" required>
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="current-sanity">
+                                    <i class="fas fa-brain"></i> San. Atual
+                                </label>
+                                <input type="number" id="current-sanity" min="0" value="100" required>
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="honor">
+                                    <i class="fas fa-award"></i> Honra
+                                </label>
+                                <input type="number" id="honor" min="0" value="0">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group compact">
+                                <label for="character-tribe">
+                                    <i class="fas fa-mountain"></i> Tribo
+                                </label>
+                                <input type="text" id="character-tribe">
+                            </div>
+                            
+                            <div class="form-group compact">
+                                <label for="character-clan">
+                                    <i class="fas fa-flag"></i> Clã
+                                </label>
+                                <input type="text" id="character-clan">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="traumas">
+                                <i class="fas fa-skull-crossbones"></i> Traumas
+                            </label>
+                            <textarea id="traumas" rows="2" placeholder="Descreva os traumas do personagem..."></textarea>
+                        </div>
+                        
+                        <div class="modal-actions compact">
+                            <button type="button" class="btn-secondary" id="cancel-btn">Cancelar</button>
+                            <button type="submit" class="btn-primary" id="save-btn">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Informações do Personagem (REDUZIDO) -->
+    <div class="modal" id="character-modal">
+        <div class="modal-overlay" id="character-modal-overlay"></div>
+        <div class="modal-wrapper">
+            <div class="modal-content compact-modal">
+                <div class="modal-header compact">
+                    <div class="modal-title">
+                        <h2 id="character-modal-title">Ficha do Personagem</h2>
+                    </div>
+                    <button class="modal-close" id="character-modal-close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body compact">
+                    <div class="character-info-grid compact">
+                        <div class="character-header compact">
+                            <div class="character-avatar compact" id="character-avatar">
+                                <i class="fas fa-user" id="character-avatar-icon"></i>
+                                <img id="character-avatar-img" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                            </div>
+                            <div class="character-names compact">
+                                <h3 id="character-modal-player"></h3>
+                                <p id="character-modal-character"></p>
+                            </div>
+                        </div>
+                        
+                        <div class="character-details compact">
+                            <div class="detail-item compact">
+                                <span class="detail-label">Tribo:</span>
+                                <span class="detail-value" id="character-tribe-detail">-</span>
+                            </div>
+                            <div class="detail-item compact">
+                                <span class="detail-label">Clã:</span>
+                                <span class="detail-value" id="character-clan-detail">-</span>
+                            </div>
+                            <div class="detail-item compact">
+                                <span class="detail-label">Vida:</span>
+                                <span class="detail-value" id="character-hp-detail">-/-</span>
+                            </div>
+                            <div class="detail-item compact">
+                                <span class="detail-label">Sanidade:</span>
+                                <span class="detail-value" id="character-sanity-detail">-/-</span>
+                            </div>
+                            <div class="detail-item compact">
+                                <span class="detail-label">Armadura:</span>
+                                <span class="detail-value" id="character-armor-detail">-</span>
+                            </div>
+                            <div class="detail-item compact">
+                                <span class="detail-label">Honra:</span>
+                                <span class="detail-value" id="character-honor-detail">-</span>
+                            </div>
+                        </div>
+                        
+                        <div class="character-traumas compact">
+                            <h4><i class="fas fa-skull-crossbones"></i> Traumas</h4>
+                            <p id="character-traumas-detail">Nenhum trauma registrado.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+ <!-- ───────────── FOOTER ───────────── -->
+<footer>
+    <div class="footer-content">
+      <div class="footer-section about">
+        <h2>Sobre o RPG</h2>
+        <p>"Ir para o Ark é atravessar o limiar entre a vida e a morte, onde o descanso dá lugar à luta pela sobrevivência. Um transe inevitável, como um despertar em um mundo onde tudo é real e implacável. Lá, a existência é medida pela adaptação, e a morte é apenas uma pausa prolongada. Somente aqueles que superam o ciclo conseguem ascender e escapar."</p>
+      </div>
+
+      <div class="footer-section links">
+        <h2>Links Úteis</h2>
+        <ul>
+          <li><a href="index_mapas.html">Mapas</a></li>
+          <li><a href="index_tribos.html">Tribos</a></li>
+          <li><a href="index_regras.html">Regras</a></li>
+          <li><a href="index_itens.html">Itens</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section social">
+        <h2>Conecte-se</h2>
+        <div class="social-icons">
+          <a href="https://instagram.com/vindinossauro" target="_blank"><img src="../imagens/insta_home.png" alt="Instagram"></a>
+          <a href="https://github.com" target="_blank"><img src="../imagens/git_home.png" alt="GitHub"></a>
+          <a href="mailto:vinigonzagap@gmail.com"><img src="../imagens/gmail_home.png" alt="E-mail"></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>RPG Ark: Criado por Vinícius Gonzaga - Vindinossauro &copy; 2025</p>
+    </div>
+</footer>  
+<script src="../js/players.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>

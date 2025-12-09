@@ -790,1194 +790,562 @@ nav {
 }
 
 
+/* =============================================== */
+/* RESET E CONFIGURAÇÕES GERAIS */
+/* =============================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* fim do nav-bar---------------------------------------------------------------------------- */
+/* ==================== */
+/* VARIABLES GLOBAIS */
+/* ==================== */
+:root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #000;
+    --accent-color: #d6feff;
+    --accent-glow: #b6fff3;
+    --text-light: #e0e0e0;
+    --text-dark: #333;
+    --border-color: rgba(156, 240, 255, 0.3);
+    --shadow-color: rgba(182, 255, 243, 0.15);
+    --card-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    --transition: all 0.3s ease;
+    --blood-red: #9efdf5;
+    --blood-dark: #98209c;
+    --ritual-purple: #9d4edd;
+    --pact-blue: #4cc9f0;
+}
 
-/* General Title Style */
+/* ==================== */
+/* RESET E BASE */
+/* ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
+    color: var(--text-light);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==================== */
+/* CONTEÚDO PRINCIPAL */
+/* ==================== */
+.rituals-page-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==================== */
+/* TÍTULO PRINCIPAL */
+/* ==================== */
 .titulo_principal {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 120px;
-    perspective: 1000px; /* For 3D rotation */
+    margin: 40px 0;
+    perspective: 1000px;
 }
 
 .titulo_efeito {
-    font-size: 4rem;
-    font-weight: bold;
-    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a); /* Dark gray to black gradient */
-    border-radius: 25px; /* Slightly more rounded */
-    padding: 25px 40px; /* More padding */
-    border: 3px solid #333333; /* Darker gray border */
-    color: #e0e0e0; /* Lighter, subtle gray glow */
-    text-shadow:
-        0 0 10px rgba(248, 193, 193, 0.6), /* Light blue/cyan glow */
-        0 0 30px rgba(248, 193, 193, 0.4), /* Wider blue/cyan glow */
-        0 0 60px rgba(248, 193, 193, 0.2); /* Even wider light blue/cyan glow */
+    font-size: 3.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #1a1a1a, #000000, #1a1a1a);
+    border-radius: 20px;
+    padding: 25px 50px;
+    border: 3px solid var(--border-color);
+    color: var(--accent-color);
+    text-shadow: 
+        0 0 10px rgba(182, 255, 243, 0.7),
+        0 0 20px rgba(182, 255, 243, 0.5),
+        0 0 30px rgba(182, 255, 243, 0.3);
     position: relative;
-    max-width: 380px; /* Slightly increased max-width */
     overflow: hidden;
-    animation: pulseGlowCyan 3s infinite alternate, floatEffect 5s ease-in-out infinite;
+    animation: pulseGlow 4s infinite alternate, floatEffect 6s ease-in-out infinite;
     transform-style: preserve-3d;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
-@keyframes pulseGlowCyan {
+@keyframes pulseGlow {
     0% {
-        box-shadow: 0 0 15px rgba(248, 193, 193, 0.6);
+        box-shadow: 0 0 20px rgba(182, 255, 243, 0.4);
+        text-shadow: 0 0 10px rgba(182, 255, 243, 0.7);
     }
     100% {
-        box-shadow: 0 0 35px rgb(248, 193, 193);
+        box-shadow: 0 0 40px rgba(182, 255, 243, 0.8);
+        text-shadow: 0 0 20px rgba(182, 255, 243, 1);
     }
 }
 
 @keyframes floatEffect {
-    0% {
+    0%, 100% {
         transform: translateY(0) rotateX(0deg);
     }
     50% {
-        transform: translateY(-10px) rotateX(2deg);
-    }
-    100% {
-        transform: translateY(0) rotateX(0deg);
+        transform: translateY(-15px) rotateX(3deg);
     }
 }
 
-.titulo_efeito:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 6px; /* Thicker line */
-    background: linear-gradient(90deg, #fa3636be, #9b0e0e, #ff0c0cbe, #9b0e0e, #fa3636be); /* Animated light cyan/gray wave */
-    animation: wave 8s infinite linear;
-    transform-origin: bottom center;
+
+
+@keyframes borderRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-@keyframes wave {
-    0% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-    25% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    50% {
-        transform: scaleX(0.1);
-        left: 90%;
-        background-position: 0% 0%;
-    }
-    75% {
-        transform: scaleX(1);
-        left: 0%;
-        background-position: 100% 0%;
-    }
-    100% {
-        transform: scaleX(0.1);
-        left: 0%;
-        background-position: 0% 0%;
-    }
-}
-/* Section Principal - Inspirado em .civilizacoes-section e .origem-section */
-section.session-fundo {
+
+/* ==================== */
+/* SEÇÃO ORIGEM */
+/* ==================== */
+.session-fundo {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
     position: relative;
-    /* Dentro de .session-fundo */
     overflow: hidden;
-    width: 100%;
-    margin-top: -50px;
-    min-height: 100vh; /* Use min-height para garantir que o conteúdo caiba */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 20px; /* Mais padding para o conteúdo não ficar grudado nas bordas */
-    box-sizing: border-box; /* Garante que o padding não aumente o tamanho total */
-    
-   
-    position: relative;
-    z-index: 0; /* Para que os pseudo-elementos fiquem por cima */
+    box-shadow: var(--card-shadow);
 }
 
-/* Efeito de névoa/aura na section de fundo - Mais avermelhado e sombrio */
-section.session-fundo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Gradientes radiais com tons de vermelho e preto, mais intensos */
-    background: 
-        radial-gradient(circle at center, rgba(139, 0, 0, 0.25) 0%, transparent 60%),
-        radial-gradient(circle at top left, rgba(80, 0, 0, 0.35) 0%, transparent 40%),
-        radial-gradient(circle at bottom right, rgba(160, 0, 0, 0.15) 0%, transparent 40%),
-        linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%); /* Escurece a parte inferior */
-    z-index: 1; /* Fica acima da imagem de fundo */
-    pointer-events: none;
-}
-
-
-.session-fundo::after {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: url('../imagens/fundo_rubi.jpg'); /* Coloque um GIF de névoa avermelhada */
-  background-size: cover;
-  opacity: 0.13;
-  animation: moverNevoa 90s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes moverNevoa {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(20%, 20%); }
-}
-
-/* Ritual Container - Inspirado em .origem-section, mais sombrio e com brilho vermelho */
 .ritual-container {
-    position: relative; /* FUNDAMENTAL: Para que o ícone absoluto se posicione em relação a ele */
-    width: 70%; /* Ajuste a largura para ser mais responsivo */
-    max-width: 1000px; /* Limite máximo para telas grandes */
-    /* Estilo do segundo CSS para a div principal, com foco em tons escuros e borda vermelha */
-    background: linear-gradient(135deg, rgba(5, 5, 5, 0.856) 0%, rgba(15, 15, 15, 0.863) 100%); /* Fundo quase preto */
-    border-radius: 25px; /* Mais arredondado */
-    padding: 40px; /* Mais padding */
-    color: #F8F8F8; /* Cor do texto mais clara */
+    position: relative;
+    z-index: 2;
+}
+
+.ritual-container h2 {
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    margin-bottom: 20px;
     text-align: center;
-    /* Sombra e borda com foco no vermelho */
-    box-shadow: 
-        0 0 80px rgba(220, 20, 60, 0.486), /* Brilho externo vermelho mais forte */
-        inset 0 0 50px rgba(99, 3, 3, 0.8); /* Sombra interna mais escura */
-    border: 3px solid #8B0000; /* Borda vermelha escura, mais impactante */
-    backdrop-filter: blur(1px); /* Efeito de vidro fosco mais intenso */
-    z-index: 2; /* Garante que fique acima da section */
+    text-shadow: 0 0 10px rgba(182, 255, 243, 0.5);
+}
+
+.campo-texto-ritual {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+/* ==================== */
+/* BARRA DE SANGUE */
+/* ==================== */
+.sangue-barra {
+    height: 4px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--blood-dark) 20%, 
+        var(--blood-red) 50%, 
+        var(--blood-dark) 80%, 
+        transparent 100%);
+    margin: 30px 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 2px;
+}
+
+.sangue-gota {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: var(--blood-red);
+    border-radius: 50%;
+    top: -8px;
+    filter: drop-shadow(0 0 5px var(--blood-red));
+    animation: sangueGota 2s infinite linear;
+}
+
+@keyframes sangueGota {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(5px) scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* ==================== */
+/* CAIXA DE ÍCONES */
+/* ==================== */
+.caixa {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.icone-regras {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 30px; /* Espaçamento entre os elementos internos */
-    
-    /* Removido background-image interno para evitar conflito com a section-fundo */
-   
+    gap: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    border: 2px solid transparent;
+    min-width: 180px;
 }
 
-@keyframes pulsarGota {
-  0% { filter: drop-shadow(0 0 5px #ff0000); }
-  100% { filter: drop-shadow(0 0 15px #ff2d2d); }
+.icone-regras:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 25px rgba(182, 255, 243, 0.2);
 }
 
-/* Efeito de brilho interno no ritual-container - Mais avermelhado */
-.ritual-container::before {
+.icone-regras img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.icone-regras:hover img {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+}
+
+.icone-regras span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ==================== */
+/* SEÇÃO ELEMENTOS ESPECIAIS */
+/* ==================== */
+.civilizacoes-section {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 40px;
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.civilizacoes-section.has-background-image::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 25px;
-    /* Brilhos internos com tons de vermelho sutil */
-    background: 
-        radial-gradient(circle at top left, rgba(139, 0, 0, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at bottom right, rgba(139, 0, 0, 0.08) 0%, transparent 40%);
-    z-index: -1;
+    background: var(--bg-image-url) no-repeat center center;
+    background-size: cover;
+    opacity: 0.1;
+    z-index: 1;
+}
+
+.civilizacoes-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+.civilizacoes-titulo {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 0 0 15px rgba(182, 255, 243, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.civilizacoes-textos-container {
+    min-height: 200px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.civilizacoes-texto {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+}
+
+.civilizacoes-texto.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.civilizacoes-texto.hidden {
+    display: block;
+    opacity: 0;
     pointer-events: none;
 }
 
-/* Título - Inspirado em .origem-titulo, com foco em vermelho e brilho */
-.ritual-container h2 {
-    font-size: 2.6rem; /* Um pouco maior */
-    font-weight: 700; /* Mais negrito */
-    font-family: 'Cinzel', serif; /* Fonte mais mística/medieval para o título */
-     /* Fundo da imagem da sessão - Usando a imagem dfede2.jpg como base */
-    background-image: url('../imagens/fundo_rubi.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
-    background-size: cover;
-    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
-    border-radius: 25px; /* Ligeiramente mais arredondado */
-    padding: 25px 40px; /* Mais padding */
-    border: 3px solid #8B0000; /* Borda vermelha escura */
-    color: #F0F0F0; /* Cor base para fallback */
-    text-align: center;
-    text-shadow:
-        0 0 15px rgba(114, 1, 1, 0.8), /* Laranja avermelhado */
-        0 0 40px rgba(255, 0, 0, 0.6), /* Vermelho vivo */
-        0 0 80px rgba(255, 0, 0, 0.3); /* Vermelho mais difuso */
-    position: relative;
-    max-width: 450px; /* Aumentado para acomodar mais texto */
-    overflow: hidden;
-    /* Animação de brilho e leve flutuação */
-    animation: 
-        pulseGlowRed 4s infinite alternate, /* Brilho pulsante vermelho */
-        floatEffect 6s ease-in-out infinite; /* Efeito de flutuação */
-    transform-style: preserve-3d;
-}
-
-/* Efeito de brilho passando */
-.ritual-container h2::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%; /* Começa fora da div à esquerda */
-    width: 50%; /* Largura do brilho */
-    height: 100%;
-    background: linear-gradient(to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.185) 50%, 
-        rgba(255, 255, 255, 0) 100%
-    ); /* Gradiente transparente para branco transparente */
-    transform: skewX(-20deg); /* Inclina o brilho para dar um efeito de movimento */
-    animation: shineEffect 3s infinite linear; /* Animação para mover o brilho */
-    z-index: 1; /* Garante que o brilho esteja acima da imagem de fundo, mas abaixo do texto se houver*/
-}
-
-/* Definição da animação do brilho */
-@keyframes shineEffect {
-    0% {
-        left: -75%; /* Inicia o brilho fora da esquerda */
-    }
-    100% {
-        left: 100%; /* Move o brilho para fora da direita */
-    }
-}
-
-/* Nova animação de brilho pulsante para o título (foco em vermelho) */
-@keyframes pulseGlowRed {
-    0% { text-shadow: 0 0 15px rgba(255, 69, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6), 0 0 80px rgba(255, 0, 0, 0.3); }
-    50% { text-shadow: 0 0 25px rgba(255, 69, 0, 1), 0 0 60px rgba(255, 0, 0, 0.8), 0 0 100px rgba(255, 0, 0, 0.5); }
-    100% { text-shadow: 0 0 15px rgba(255, 69, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.6), 0 0 80px rgba(255, 0, 0, 0.3); }
-}
-
-/* Animação de flutuação (mantida/ajustada) */
-@keyframes floatEffect {
-    0% { transform: translateY(0) rotateX(0deg); }
-    50% { transform: translateY(-8px) rotateX(2deg); } /* Mais sutíl */
-    100% { transform: translateY(0) rotateX(0deg); }
-}
-
-
-/* Campo de Texto - Inspirado em .origem-texto, mais escuro e com brilho sutil */
-.campo-texto-ritual {
-    /* Removida a imagem de fundo do campo de texto, ela deve ser uma cor ou gradiente */
-    background: linear-gradient(135deg, rgba(25, 25, 25, 0.98), rgba(35, 35, 35, 0.96));
-    color: #ffd2d2;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    padding: 20px;
-    border-radius: 20px;
-    border: 2px solid rgba(218, 6, 6, 0.904);
-    box-shadow: 0 0 15px rgba(56, 2, 2, 0.3), inset 0 0 5px rgba(248, 193, 193, 0.08);
-    text-align: justify;
-    word-spacing: -1px;
-    letter-spacing: 0.1px;
-    text-shadow: 0 0 3px rgba(248, 197, 193, 0.05);
-    background-image: url('../imagens/fundo_rubi_preto.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
-    background-size: cover;
-    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
-    border-radius: 25px; /* Ligeiramente mais arredondado */
-    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Ajustei para 7s, mais lento */
-}
-
-/* Camada escura sobre o fundo de imagem */
-.campo-texto-ritual::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.65); /* Grau de escurecimento */
-    z-index: 0; /* Fica abaixo do conteúdo de texto */
-    border-radius: inherit;
-}
-.campo-texto-ritual > * {
-    position: relative;
-    z-index: 1;
-}
-.campo-texto-ritual {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: aparecerTexto 1.2s ease-out 0.5s forwards;
-}
-
-@keyframes aparecerTexto {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.icone-regras img {
-  animation: rotacaoLenta 20s linear infinite;
-}
-
-@keyframes rotacaoLenta {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-/* Animação de brilho do texto - Agora avermelhada */
-@keyframes text-pulse-glow-red {
-    0% { text-shadow: 0 0 5px rgba(255, 0, 0, 0.1); }
-    50% { text-shadow: 0 0 15px rgba(255, 0, 0, 0.5); }
-    100% { text-shadow: 0 0 5px rgba(255, 0, 0, 0.1); }
-}
-
-/* Barra com efeito de sangue escorrendo - Aprimorada e mais dramática */
-.sangue-barra {
-    position: absolute;
-    bottom: 0; /* Alinha com o bottom do ritual-container */
-    left: 0;
-    width: 100%;
-    height: 40px; /* Aumentei a altura para o efeito ser mais visível */
-    background: linear-gradient(to bottom, #400000, #800000, #B00000, #FF0000); /* Cores mais profundas de vermelho */
-    overflow: hidden;
-    /* Adiciona um brilho sutil na borda superior da barra de sangue */
-    box-shadow: 0 -8px 20px rgba(255, 0, 0, 0.5), /* Brilho mais forte */
-                inset 0 5px 15px rgba(0,0,0,0.5); /* Sombra interna para profundidade */
-    border-bottom-left-radius: 25px; /* Segue o border-radius da div acima */
-    border-bottom-right-radius: 25px; /* Segue o border-radius da div acima */
-    z-index: 1; /* Garante que fique abaixo do container principal mas acima do fundo */
-    filter: drop-shadow(0 0 15px rgba(255, 0, 0, 0.8)); /* Sombra geral para a barra */
-}
-
-.sangue-gota {
-    position: absolute;
-    width: 10px; /* Gotas maiores */
-    height: 20px; /* Gotas maiores */
-    background-color: #FF0000; /* Vermelho vibrante */
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; /* Forma mais de gota */
-    animation: escorrer 2s infinite ease-in; /* Animação existente */
-    filter: drop-shadow(0 0 8px rgba(255, 0, 0, 1)); /* Sombra para dar mais volume e brilho */
-    opacity: 0.9; /* Não totalmente transparente para maior impacto */
-     animation: escorrer 3s infinite ease-in, pulsarGota 2s infinite alternate;
-}
-
-/* Ajuste das keyframes para o efeito de sangramento */
-@keyframes escorrer {
-    0% { top: 0; opacity: 1; transform: translateX(0) scaleY(1); }
-    30% { opacity: 1; }
-    70% { top: 30px; opacity: 0.6; transform: translateX(5px) scaleY(0.8); } /* Oscila, encolhe um pouco */
-    100% { top: 50px; opacity: 0; transform: translateX(-5px) scaleY(0.5); } /* Desaparece mais abaixo, mais achatado */
-}
-
-/* Ícone de regras - AGORA DENTRO DO RITUAL-CONTAINER E POSICIONADO NO CANTO */
-.icone-regras {
-    gap: 30px;
-    cursor: pointer;
-    margin: 0 auto;
-    display: flex;
-    margin-bottom: 50px;
-    flex-direction: column; /* Coloca o texto abaixo do ícone */
-    align-items: center; /* Centraliza horizontalmente o ícone e o texto */
-    gap: 5px; /* Menos espaço entre ícone e texto para o layout de coluna */
-    z-index: 10; /* Garante que esteja acima de tudo */
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-    text-decoration: none; /* Garante que não haja sublinhado se for um link */
-}
-
-.icone-regras img {
-    width: 100px; /* Ícone ainda maior */
-    height:100px;
-    border-radius: 50%;
-    border: 3px solid #f12121; /* Borda vermelha escura */
-    background: linear-gradient(135deg, rgba(30, 0, 0, 0.9), rgba(50, 0, 0, 0.8)); /* Fundo avermelhado */
-    box-shadow: 
-        0 0 20px rgba(255, 0, 0, 0.4), /* Brilho externo vermelho */
-        inset 0 0 10px rgba(0, 0, 0, 0.7); /* Sombra interna mais forte */
-    transition: transform 0.4s ease;
-    object-fit: cover; /* Garante que a imagem se encaixe bem */
-}
-
-.icone-regras span {
-    color: #ffd0c7; /* Laranja avermelhado vibrante */
-    font-size: 1.1rem; /* Ajustado para caber melhor em coluna */
-    font-weight: bold;
-    text-shadow: 0 0 10px rgba(255, 69, 0, 0.7); /* Brilho de texto laranja avermelhado */
-    transition: color 0.3s ease;
-    font-family: 'Cinzel', serif; /* Fonte mística */
-    white-space: nowrap; /* Impede que o texto quebre em várias linhas, se possível */
-}
-
-.icone-regras:hover {
-    transform: scale(1.1) translateY(-8px); /* Levanta e aumenta mais */
-}
-
-.icone-regras:hover img {
-    border-color: #FF4500; /* Borda laranja vermelha no hover */
-    box-shadow: 
-        0 0 35px rgba(255, 0, 0, 0.8), /* Brilho externo vermelho mais forte */
-        inset 0 0 15px rgba(0, 0, 0, 0.9); /* Sombra interna mais escura */
-    transform: scale(1.15); /* Zoom mais no ícone */
-}
-
-.icone-regras:hover span {
-    color: #ffd4e8; /* Ouro no hover para contraste */
-    text-shadow: 0 0 15px rgba(255, 0, 234, 0.9);
-}
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.92);
-  backdrop-filter: blur(10px);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.modal.active {
-  display: flex;
-  opacity: 1;
-}
-
-.modal-content {
-  background: linear-gradient(135deg, #0c0000, #1b0000);
-  color: #f2f2f2;
-  border: 2px solid #ff3b3b;
-  border-radius: 20px;
-  padding: 40px;
-  max-width: 800px;
-  width: 90%;
-  max-height: 80vh;
-  overflow-y: auto;
-  box-shadow:
-    0 0 30px rgba(255, 0, 0, 0.2),
-    inset 0 0 10px rgba(255, 0, 0, 0.1);
-  transform: scale(0.9);
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-  font-family: 'Share Tech Mono', monospace;
-}
-
-.modal.active .modal-content {
-  transform: scale(1);
-  opacity: 1;
-}
-
-.modal-content h3 {
-  font-family: 'Cinzel', serif;
-  text-align: center;
-  color: #fffacb;
-  font-size: 2.7rem;
-  margin-bottom: 25px;
-  text-shadow: 0 0 15px #86055b, 0 0 25px #ff0080;
-}
-
-.modal-content p {
-  margin-bottom: 16px;
-  color: #ffe2e2;
-  line-height: 1.7;
-  padding: 10px;
-  text-align: center;
-  border: 3px solid rgba(148, 5, 76, 0.904);
-  box-shadow: 0 0 15px rgba(56, 2, 2, 0.3), inset 0 0 5px rgba(248, 193, 193, 0.08);
-  background: linear-gradient(135deg, #1f1f1fd3, #350519c9);
-  word-spacing: -1px;
-  letter-spacing: 0.1px;
-  text-shadow: 0 0 3px rgba(99, 8, 99, 0.05);
-  border-radius: 25px; /* Ligeiramente mais arredondado */
-  animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Ajustei para 7s, mais lento */
-}
-
-.modal-content ul.ritual-niveis {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-  border-radius: 20px;
-  padding:10px;
-  text-align: center;
-  background-color: #0000009f;
-}
-
-.modal-content ul.ritual-niveis li {
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  color: #ffdfdf;
-  text-shadow: 0 0 6px rgba(206, 124, 124, 0.781);
-  border-radius: 30px;
-  background: linear-gradient(135deg, #130a0ad8, #350519e3, #130a0a);
-  padding: 10px;
-  border: 2px solid rgba(143, 4, 85, 0.904);
-}
-
-.modal-content button {
-  display: block;
-  margin: 30px auto 0 auto;
-  padding: 14px 28px;
-  font-size: 1.1rem;
-  background: linear-gradient(45deg, #8b0000, #b22222);
-  border: 2px solid #ff4d4d;
-  color: #fff;
-  border-radius: 12px;
-  cursor: pointer;
-  font-family: 'Orbitron', sans-serif;
-  box-shadow: 0 0 12px rgba(255, 0, 0, 0.4), inset 0 0 10px rgba(255, 0, 0, 0.3);
-  transition: all 0.3s ease-in-out;
-  position: relative;
-}
-
-.modal-content button:hover {
-  background: linear-gradient(45deg, #ff4d4d, #ff0000);
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.7), inset 0 0 15px rgba(255, 0, 0, 0.7);
-}
-
-
-/* Responsividade Básica (Adaptado do segundo CSS) */
-@media (max-width: 780px) {
-    .ritual-container {
-        width: 95%;
-        padding: 30px;
-    }
-    .ritual-container h2 {
-        font-size: 1.8rem;
-        padding: 15px 25px;
-    }
-    .campo-texto-ritual {
-        padding: 20px;
-        min-height: 120px;
-        font-size: 1rem;
-    }
-    .icone-regras {
-        bottom: 20px;
-        right: 20px;
-    }
-    .icone-regras img {
-        width: 50px;
-        height: 50px;
-    }
-    .icone-regras span {
-        font-size: 1rem;
-    }
-    .modal-content {
-        width: 90%;
-        padding: 30px;
-    }
-    .modal-content h3 {
-        font-size: 1.6rem;
-    }
-}
-
-@media (max-width: 600px) {
-    section.session-fundo {
-        padding: 40px 15px;
-    }
-    .ritual-container {
-        padding: 20px;
-        border-radius: 15px;
-    }
-    .ritual-container h2 {
-        font-size: 1.5rem;
-        width: 40%;
-        margin-bottom: -20px;
-        padding: 12px 20px;
-        border-radius: 15px;
-    }
-    .campo-texto-ritual {
-        padding: 15px;
-        min-height: 100px;
-        border-radius: 10px;
-        font-size:0.85rem;
-    }
-    .sangue-barra {
-        height: 25px;
-    }
-    .icone-regras {
-        bottom: 15px;
-        right: 15px;
-        flex-direction: column; /* Coloca texto abaixo do ícone */
-        gap: 5px;
-    }
-    .icone-regras img {
-        width: 45px;
-        height: 45px;
-    }
-    .icone-regras span {
-        font-size: 0.9rem;
-    }
-    .modal-content {
-        padding: 25px;
-        border-radius: 15px;
-        font-size: 0.95rem;
-    }
-    .modal-content h3 {
-        font-size: 1.6rem;
-        margin-bottom: 20px;
-    }
-    .modal-content button {
-        padding: 10px 20px;
-        font-size: 1rem;
-    }
-}
-
-.modal-content::-webkit-scrollbar {
-  width: 10px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-  background: rgba(20, 0, 0, 0.4);
-  border-radius: 10px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-  background: linear-gradient(#ff3333, #8b0000);
-  border-radius: 10px;
-  box-shadow: inset 0 0 5px rgba(255, 0, 0, 0.5);
-}
-
-.modal-content::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(#ff6666, #a80000);
-}
-.caixa{
-  align-items: center;  
-  margin: 0 auto;
-  display: flex;
-  gap: 20px;
-}
-
-
-/*civilizações class------------------------------------*/
-/* Animações (mantenha suas animações existentes aqui, ex: text-pulse-glow) */
-@keyframes text-pulse-glow {
-    0% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
-    50% { text-shadow: 0 0 10px rgba(193, 240, 248, 0.3); }
-    100% { text-shadow: 0 0 3px rgba(193, 240, 248, 0.08); }
-}
-
-/* Section Principal */
-.civilizacoes-section {
-    width: 90%;
-    max-width: 1100px;
-    margin: 80px auto;
-    padding: 50px 30px; /* Aumentei o padding */
-    border: none; /* Remove a borda original */
-    border-radius: 25px;
-    background: linear-gradient(135deg, rgba(48, 1, 1, 0.815) 0%, rgba(82, 1, 1, 0.89) 100%); /* Fundo mais escuro e gradiente */
-    box-shadow: 0 0 90px rgba(172, 18, 18, 0.671), inset 0 0 40px rgba(0, 0, 0, 0.7); /* Sombra mais intensa */
-    backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-    border: 2px solid rgba(168, 14, 14, 0.904); /* Borda mais definida */
-    align-items: center;
-    gap: 40px; /* Mais espaço entre os elementos */
-    position: relative;
-    overflow: hidden; /* Importante para o ::before */
-    
-    /* Variável CSS para a imagem de fundo (definida por JS) */
-    --bg-image-url: none;
-}
-
-/* Pseudo-elemento para a imagem de fundo dinâmica */
-.civilizacoes-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover; /* Cobre toda a área */
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.90; /* Aumentado de 0.1 para 0.15 - mais visível no estado inicial */
-    z-index: -1; /* Fica atrás do conteúdo */
-    transition: opacity 1s ease-in-out; /* Transição suave na opacidade */
-    filter: grayscale(80%) brightness(50%) blur(3px); /* Blur reduzido de 2px para 1px no estado inicial */
-    border-radius: 25px; /* Para seguir o border-radius da seção */
-}
-
-/* Quando a classe 'has-background-image' é adicionada (pelo JS), a imagem se torna visível */
-.civilizacoes-section.has-background-image::before {
-    opacity: 0.25; /* Aumentado de 0.05 para 0.08 - mais visível quando ativada */
-    filter: grayscale(30%) brightness(55%) blur(4px); /* Menos cinza, mais brilho e um pouco menos de blur ao aparecer */
-}
-
-/* Título das Civilizações */
-.civilizacoes-titulo {
-    font-size: 2.8rem; /* Aumentei um pouco mais */
-    color: #ffecec;
-    text-align: center;
-    font-weight: bold;
-    padding: 20px 40px; /* Mais padding */
-    background-image: url('../imagens/fundo_rubi.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
-    border-radius: 25px; /* Mais arredondado */
-    border: 2px solid rgba(248, 193, 193, 0.6); /* Borda mais definida */
-    box-shadow: 0 0 20px rgba(248, 193, 193, 0.5), inset 0 0 10px rgba(248, 193, 193, 0.2); /* Sombra mais forte */
-    width: fit-content;
-    max-width: 80%; /* Permite que o título seja um pouco mais largo */
-    position: relative; /* Para z-index se for o caso */
-    z-index: 2; /* Acima do fundo */
-    text-shadow: 0 0 10px rgba(248, 193, 193, 0.4); /* Brilho no texto */
-}
-
-/* Container de textos */
-.civilizacoes-textos-container {
-    position: relative;
-    width: 100%;
-    min-height: 250px; /* Aumentei a altura mínima para acomodar textos maiores */
-    margin-bottom: 50px; /* Mais espaço abaixo dos textos */
-    display: flex; /* Para centralizar o texto internamente */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Esconder textos por padrão */
-.civilizacoes-texto.hidden {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; /* Transição mais lenta */
-    transform: translateY(20px); /* Começa ligeiramente abaixo */
-}
-
-/* Mostrar texto ativo */
-.civilizacoes-texto.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0); /* Volta à posição normal */
-    font-size: 1.05rem; /* Ajustado para melhor legibilidade */
-    color: #F0F0F0; /* Cor mais clara */
-    line-height: 1.7;
-  
-    text-align: justify;
-    padding: 30px; /* Mais padding */
-    background: linear-gradient(135deg, rgba(20, 20, 20, 0.9), rgba(30, 30, 30, 0.815)); /* Fundo gradiente */
-    border-radius: 15px; /* Mais arredondado */
-    border: 2px solid rgba(248, 193, 193, 0.3); /* Borda sutil */
-    box-shadow: 0 0 20px rgba(139, 5, 5, 0.4), inset 0 0 10px rgba(136, 8, 8, 0.6); /* Sombra mais profunda */
-    max-width: 850px; /* Aumentei a largura máxima do texto */
-    margin: 0 auto;
-    animation: text-pulse-glow 7s infinite alternate ease-in-out; /* Aplica o brilho pulsante */
-    text-shadow: 0 0 5px rgba(175, 248, 230, 0.555); /* Sombra de texto mais sutil */
-    /* AJUSTES PARA ESPAÇAMENTO DE TEXTO (mantenha os valores que funcionaram melhor para você) */
-    word-spacing: -0.5px;
-    letter-spacing: 0.05px;
-    hyphens: auto;
-}
-
-/* Estilo para títulos internos dos textos de civilização */
 .civilizacoes-texto h2 {
-    color: #ecfcf9; /* Amarelo dourado para o título do texto */
-    font-size: 2.4rem;
-    margin-bottom: 15px;
-    text-align: center;
-    text-shadow: 0 0 16px rgba(228, 115, 115, 0.568); /* Brilho no título interno */
-    border-radius: 20px;
-    border: #fac9c9b6 2px solid; /* Borda azul clara */
-    margin: 0 auto;
-    width: 60%;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
 }
+
 .civilizacoes-texto p {
-    margin-bottom: 1em; /* Espaço entre parágrafos */
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-light);
 }
 
-.civilizacoes-texto p::before {
- content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: url('../imagens/fundo_rubi_preto.jpg'); /* Coloque um GIF de névoa avermelhada */
-  background-size: cover;
-  opacity: 0.13;
-  animation: moverNevoa 90s linear infinite;
-  border-radius: 40px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-
-/* Container dos Ícones */
 .civilizacoes-icones {
     display: flex;
     justify-content: center;
+    gap: 40px;
     flex-wrap: wrap;
-    gap: 35px; /* Aumentei o espaçamento entre ícones */
-    margin-top: 30px; /* Mais espaço acima */
 }
 
-/* Item de Ícone Individual */
 .icone-item {
-    width: 90px; /* Aumentei o tamanho do ícone */
-    height: 90px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    border: 3px solid rgba(248, 193, 193, 0.5); /* Borda mais grossa */
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, rgba(50, 50, 50, 0.9), rgba(70, 70, 70, 0.8)); /* Fundo gradiente */
-    box-shadow: 0 0 15px rgba(248, 193, 193, 0.2), inset 0 0 8px rgba(0, 0, 0, 0.5); /* Sombra e brilho internos */
-    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* Transições mais suaves */
-    cursor: pointer; /* Indica que é clicável */
-    position: relative; /* Para o brilho ao redor */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid transparent;
+    position: relative;
+    background: #000;
 }
 
-.icone-item:hover {
-    transform: scale(1.15) translateY(-5px); /* Aumenta mais e levanta */
-    box-shadow: 0 0 25px rgba(248, 193, 193, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.7); /* Brilho e sombra mais fortes */
-    border-color: #ff1c1c; /* Borda mais clara no hover */
-}
-
-/* Animação de brilho sutil ao redor do ícone no hover */
-.icone-item::before {
-    content: '';
-    position: absolute;
-    top: -5px; /* Expande um pouco para fora */
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(193, 240, 248, 0.3) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    transform: scale(0.8);
-    z-index: -1;
-}
-
-.icone-item:hover::before {
-    opacity: 1;
-    transform: scale(1);
+.icone-item:hover,
+.icone-item.selected {
+    transform: scale(1.1);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 25px rgba(182, 255, 243, 0.5);
 }
 
 .icone-item img {
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-    border-radius: 50%;
-    transition: transform 0.4s ease; /* Transição para zoom da imagem */
-}
-.icone-item:hover img {
-    transform: scale(1.05); /* Zoom sutil na imagem do ícone no hover */
-}
-
-
-/* Estilo para o ícone selecionado (que foi clicado) */
-.icone-item.selected {
-    border-color: #f89191; /* Borda amarela dourada para o selecionado */
-    box-shadow: 0 0 25px #fcc4c4, inset 0 0 15px rgba(252, 141, 141, 0.5); /* Brilho e sombra internos amarelos */
-    transform: scale(1.18) translateY(-8px); /* Mais destaque ainda para o selecionado */
-    z-index: 3; /* Garante que fique acima de outros ícones */
-}
-/* No ícone selecionado, também podemos manter o brilho pseudo-elemento ativo */
-.icone-item.selected::before {
-    opacity: 1;
-    transform: scale(1);
-    background: radial-gradient(circle, rgba(241, 119, 119, 0.548) 0%, transparent 70%); /* Brilho dourado para o selecionado */
-}
-
-
-/* Responsividade aprimorada */
-@media (max-width: 760px) {
-    .civilizacoes-section {
-        padding: 40px 25px;
-        gap: 30px;
-    }
-    .civilizacoes-titulo {
-        font-size: 2.2rem;
-        padding: 15px 30px;
-        max-width: 80%;
-    }
-    .civilizacoes-textos-container {
-        min-height: 220px;
-        margin-bottom: 40px;
-    }
-    .civilizacoes-texto.active {
-        font-size: 1rem;
-        padding: 25px;
-        max-width: 90%;
-    }
-    .civilizacoes-texto h2 {
-        font-size: 1.6rem;
-    }
-    .civilizacoes-texto{
-        font-size: 0.7rem;
-    }
-    .civilizacoes-icones {
-        gap: 25px;
-    }
-    .icone-item {
-        width: 75px;
-        height: 75px;
-    }
-}
-@media (max-width: 600px) {
-    .civilizacoes-section {
-        padding: 30px 15px;
-        margin: 40px auto;
-        border-radius: 20px;
-        gap: 25px;
-    }
-    .civilizacoes-titulo {
-        font-size: 1.8rem;
-        padding: 12px 20px;
-        max-width: 95%;
-    }
-    .civilizacoes-textos-container {
-        min-height: 180px;
-        margin-bottom: 30px;
-    }
-    .civilizacoes-texto.active {
-        font-size: 0.8rem;
-        line-height: 1.6;
-        padding: 20px;
-    }
-    .civilizacoes-texto h2 {
-        font-size: 1.4rem;
-        margin-bottom: 10px;
-    }
-    .civilizacoes-icones {
-        gap: 15px;
-    }
-    .icone-item {
-        width: 60px;
-        height: 60px;
-        border-width: 2px;
-    }
-    .icone-item.selected {
-        transform: scale(1.1) translateY(-5px);
-    }
-}
-
-/* --- Container Geral da Seção de Rituais/Pactos --- */
-.container-geral {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: calc(100vh - 70px);
-    padding: 40px 0;
-    position: relative;
-    overflow: hidden;
-    
-}
-.container-geral::before {
- content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -50%;
-  left: -50%;
-  background: url('../imagens/fundo_rubi.jpg'); /* Coloque um GIF de névoa avermelhada */
-  background-size: cover;
-  opacity: 0.13;
-  animation: moverNevoa 90s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* --- Bloco Principal (Rituais/Pactos) --- */
-.session-bloco { /* Renomeado no HTML para `rituais-pactos-section` */
-    flex: 1; /* Permite que o bloco ocupe o espaço disponível */
-    max-width: 1200px;
-    width: 90%; /* Adicionado para melhor responsividade em telas menores */
-    padding: 30px; /* Mais padding interno */
-    background: linear-gradient(135deg, #100000e7, #1a0000ea);
-    border-radius: 20px;
-    position: relative;
-    z-index: 1; /* Para garantir que fique acima das barras de efeito */
-    overflow: hidden; /* Garante que o conteúdo não vaze */
-    box-shadow: 
-        0 0 80px rgba(220, 20, 60, 0.486), /* Brilho externo vermelho mais forte */
-        inset 0 0 50px rgba(99, 3, 3, 0.8); /* Sombra interna mais escura */
-    border: 3px solid #8B0000; /* Borda vermelha escura, mais impactante */
-    backdrop-filter: blur(1px); /* Efeito de vidro fosco mais intenso */
-}
-
-
-/* Título */
-.cabecalho {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.cabecalho .titulo {
-     font-size: 2.6rem; /* Um pouco maior */
-    font-weight: 700; /* Mais negrito */
-    font-family: 'Cinzel', serif; /* Fonte mais mística/medieval para o título */
-     /* Fundo da imagem da sessão - Usando a imagem dfede2.jpg como base */
-    background-image: url('../imagens/fundo_rubi_rosa.jpg'); /* USE SUA IMAGEM ATUAL AQUI */
-    background-size: cover;
-    background-position: center 20%; /* Ajuste para centralizar o monstro e o cavaleiro */
-    background-repeat: no-repeat;
-    background-attachment: fixed; /* Imagem de fundo fixa para um efeito parallax sutil */
-    border-radius: 25px; /* Ligeiramente mais arredondado */
-    padding: 25px 40px; /* Mais padding */
-    border: 3px solid #a10707; /* Borda vermelha escura */
-    color: #F0F0F0; /* Cor base para fallback */
-    text-align: center;
-    text-shadow:
-        0 0 15px rgba(114, 1, 90, 0.8), /* Laranja avermelhado */
-        0 0 40px rgba(255, 0, 106, 0.6), /* Vermelho vivo */
-        0 0 80px rgba(255, 0, 34, 0.3); /* Vermelho mais difuso */
-    position: relative;
-    max-width: 450px; /* Aumentado para acomodar mais texto */
-    overflow: hidden;
-    /* Animação de brilho e leve flutuação */
-    margin: 0 auto;
-    animation: 
-        pulseGlowRed 4s infinite alternate, /* Brilho pulsante vermelho */
-        floatEffect 6s ease-in-out infinite; /* Efeito de flutuação */
-    transform-style: preserve-3d;
-}
-
-.cabecalho .titulo::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -75%; /* Começa fora da div à esquerda */
-    width: 50%; /* Largura do brilho */
+    width: 100%;
     height: 100%;
-    background: linear-gradient(to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(255, 255, 255, 0.185) 50%, 
-        rgba(255, 255, 255, 0) 100%
-    ); /* Gradiente transparente para branco transparente */
-    transform: skewX(-20deg); /* Inclina o brilho para dar um efeito de movimento */
-    animation: shineEffect 3s infinite linear; /* Animação para mover o brilho */
-    z-index: 1; /* Garante que o brilho esteja acima da imagem de fundo, mas abaixo do texto se houver*/
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
 
+.icone-item:hover img {
+    transform: scale(1.1);
+}
 
-/* Botões de troca (Rituais/Pactos) */
+/* ==================== */
+/* SEÇÃO RITUAIS/PACTOS */
+/* ==================== */
+.container-geral {
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--card-shadow);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.titulo {
+    font-size: 2.8rem;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(182, 255, 243, 0.6);
+    letter-spacing: 1px;
+}
+
 .opcoes-troca {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 30px;
-    margin-top: 20px;;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
 }
 
 .btn-switch {
-    padding: 12px 25px; /* Mais padding */
-    background: linear-gradient(45deg,   rgba(39, 34, 34, 0.96), rgba(29, 11, 11, 0.98), rgba(39, 34, 34, 0.96)); /* Gradiente */
-    border: 2px solid #ff2a2a;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
     border-radius: 10px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.1rem; /* Maior fonte */
-    transition: all 0.3s ease;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
+
 .btn-switch:hover {
-    background: #ff4c4c;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-    transform: translateY(-2px);
-}
-.btn-switch.active { /* Estilo para o botão ativo */
-    background-color: #ff2a2a;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7), inset 0 0 10px rgba(255,255,255,0.2);
-    border-color: #ffe4e1;
-    transform: translateY(-2px);
+    background: rgba(182, 255, 243, 0.1);
+    transform: translateY(-3px);
 }
 
+.btn-switch.active {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(182, 255, 243, 0.5);
+}
 
-/* Filtros de Tipo */
+/* ==================== */
+/* FILTROS */
+/* ==================== */
 .filtros {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 20px; /* Mais espaço antes dos cards */
-    margin-top: 40px;
-   
+    margin: 25px 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .filtros button {
-    padding: 10px 20px; /* Mais padding */
-    background: linear-gradient(45deg,   rgba(39, 34, 34, 0.96), rgba(29, 11, 11, 0.98), rgba(39, 34, 34, 0.96)); /* Gradiente */
-    border: 1px solid #ff2a2a;
-    color: #fff;
-    border-radius: 8px; /* Cantos mais arredondados */
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--border-color);
+    color: var(--text-light);
+    border-radius: 10px;
     cursor: pointer;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 1rem;
-    transition: 0.3s;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-width: 120px;
 }
+
 .filtros button:hover {
-    background-color: #ff4c4c;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    background: rgba(182, 255, 243, 0.1);
+    transform: translateY(-3px);
 }
 
+.filtros button.active {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px rgba(182, 255, 243, 0.5);
+}
 
+/* ==================== */
+/* BARRA DE PESQUISA */
+/* ==================== */
 .search-bar {
     width: 100%;
-    max-width: 400px;
-    padding: 12px 20px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 15px 25px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    transition: var(--transition);
     display: block;
-    border-radius: 8px;
-    border: 2px solid #ff2a2a;
-    background-color: #0a0000;
-    color: #fff;
-    font-size: 1rem;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-    transition: 0.3s;
 }
 
 .search-bar:focus {
     outline: none;
-    border-color: #ea00ff;
-    box-shadow: 0 0 15px rgba(204, 0, 255, 0.7);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 20px rgba(182, 255, 243, 0.3);
 }
 
-@media (max-width: 780px) {
-  .search-bar {
-    width: 90%;
-    font-size: 0.95rem;
-    padding: 10px 16px;
-  }
+.search-bar::placeholder {
+    color: rgba(182, 255, 243, 0.5);
 }
 
-@media (max-width: 480px) {
-  .search-bar {
-    width: 100%;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-}
-
-
-/* Estilos Base para os Cards */
-.cards-wrapper {
+/* ==================== */
+/* BOTÕES DE AÇÃO */
+/* ==================== */
+.button-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
-    padding: 20px;
+    margin: 30px 0;
 }
 
-.card {
-    background: #200000;
-    border: 2px solid #ff2a2a;
+.action-button {
+    padding: 16px 40px;
+    background: linear-gradient(135deg, var(--accent-color), #8af5ff);
+    border: none;
     border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
-    transition: 0.3s;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     text-align: center;
-    display: block; /* Garante que estejam visíveis por padrão, o JS controlará */
-    position: relative; /* Necessário para que o ::before funcione */
-    background: transparent; /* Mantém transparente para revelar o fundo */
-    overflow: hidden; /* Garante que o fundo não ultrapasse os limites */
-    min-width: 240px; /* Mantém um tamanho mínimo para evitar que fiquem muito pequenos */
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(182, 255, 243, 0.3);
 }
 
-/* Tamanho inicial do card para telas maiores (4 cards por linha) */
+.action-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(182, 255, 243, 0.5);
+    background: linear-gradient(135deg, #8af5ff, var(--accent-color));
+}
+
+/* ==================== */
+/* CONTAINER DE CARDS */
+/* ==================== */
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
 .card {
-    flex: 1 1 calc(25% - 40px); /* 25% da largura - gap */
-    max-width: calc(25% - 40px);
-    box-sizing: border-box;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .card::before {
@@ -1985,450 +1353,261 @@ section.session-fundo::before {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../imagens/fundo_rubi_preto.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.30;
-    filter: brightness(1.1) contrast(1.2);
-    z-index: -1;
-}
-
-.card::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    border-radius: 20px;
-    box-shadow: 0 0 40px 10px rgba(255, 0, 0, 0.1);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-    z-index: -1;
-}
-
-.card:hover::after {
-    opacity: 1;
-    animation: auraRed 2s ease-in-out infinite;
-}
-
-.btn-switch.active,
-.filtros button.active {
-    animation: pulseBorder 1.6s infinite ease-in-out;
-}
-
-@keyframes pulseBorder {
-    0% {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), inset 0 0 5px rgba(255, 255, 255, 0.2);
-    }
-    50% {
-        box-shadow: 0 0 18px rgba(255, 120, 120, 0.9), inset 0 0 12px rgba(255, 255, 255, 0.3);
-    }
-    100% {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.7), inset 0 0 5px rgba(255, 255, 255, 0.2);
-    }
-}
-
-.card img {
-    position: relative;
-    border: 2px solid #ff2a2a;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    transition: 0.3s;
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 10px;
-    background-color: #000; /* previne fundo branco em PNGs transparentes */
-    margin-bottom: 15px;
-}
-
-.card:hover img {
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
-    border-color: #ea00ff;
-}
-
-.card h3 {
-    position: relative;
-    z-index: 1;
-    font-weight: bold;
-    color: rgb(255, 190, 241);
-    margin-top: 12px;
-    font-size: 1.6rem; /* Título do card maior */
-    text-align: center;
-    text-shadow: 0 0 3px #ffef11cc;
-    margin-bottom: 10px;
-    font-family: 'Cinzel', serif;
-}
-
-.card h3::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 10%;
-    width: 80%;
+    right: 0;
     height: 4px;
-    background: radial-gradient(ellipse at center, rgba(225, 0, 255, 0.6), transparent);
-    z-index: -1;
+    background: linear-gradient(90deg, 
+        var(--ritual-purple), 
+        var(--accent-color),
+        var(--pact-blue));
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .card:hover {
-    box-shadow: 0 0 35px rgba(204, 0, 255, 0.6); /* Sombra mais forte no hover */
-    border-color: #ac29a1; /* Borda dourada no hover */
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card h3 {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.card:hover img {
+    border-color: var(--accent-color);
+    transform: scale(1.05);
 }
 
 .card .tipo {
-    font-size: 1rem; /* Tamanho da fonte do tipo */
-    color: #ffb6b6;
-    margin-bottom: 20px; /* Mais espaçamento */
-    display: block; /* Garante que o span ocupe a linha toda */
+    color: rgba(182, 255, 243, 0.8);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 15px 0;
+    padding: 5px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
 }
 
 .card button {
-    background-color: #76027a;
-    color: #fff;
+    margin-top: auto;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--accent-color), #8af5ff);
     border: none;
-    padding: 12px 20px; /* Mais padding */
-    border-radius: 8px;
+    border-radius: 10px;
+    color: #000;
+    font-weight: 700;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: 0.3s;
-    width: 80%; /* Botão mais largo */
-    max-width: 200px;
-    margin-top: 10px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    z-index: 1;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
 }
 
 .card button:hover {
-    background-color: #c436b1;
-    box-shadow: 0 0 15px rgba(212, 0, 255, 0.7);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, #8af5ff, var(--accent-color));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(182, 255, 243, 0.4);
 }
 
-@media (max-width: 480px) {
-    .card {
-        flex: 1 1 calc(100% - 40px); /* 1 card por linha */
-        max-width: calc(100% - 40px);
-    }
-    .card h3 {
-        font-size: 1.4rem; /* Ajusta o tamanho do título para telas menores */
-    }
-    .card .tipo {
-        font-size: 0.9rem; /* Ajusta o tamanho do tipo para telas menores */
-    }
-    .card button {
-        padding: 10px 15px; /* Ajusta o padding do botão */
-        font-size: 0.9rem; /* Ajusta o tamanho da fonte do botão */
-    }
-}
-
-/* Para telas com largura máxima de 780px (ex: tablets em paisagem, laptops menores) */
-@media (max-width: 780px) {
-    .card {
-        flex: 1 1 calc(60% - 25px); /* Para 2 cards por linha, 50% da largura menos metade do gap */
-       
-        max-width: 500px;;
-        
-    }
-   
-}
-
-/* Modais */
+/* ==================== */
+/* MODAL */
+/* ==================== */
 .modal {
-    display: none; /* Escondido por padrão */
+    display: none;
     position: fixed;
-    z-index: 9999; /* Acima de tudo */
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px); /* Mais blur */
-    justify-content: center;
-    align-items: center;
-    opacity: 0; /* Começa invisível para a animação */
-    transition: opacity 0.4s ease;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
 }
 
 .modal.active {
-    display: flex; /* Exibe o modal */
-    opacity: 1; /* Torna visível para a animação */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal-content {
-    background: #130000;
-    border: 2px solid #cc0000;
+    background: linear-gradient(145deg, #1a1a1a, #000);
+    border: 3px solid var(--accent-color);
     border-radius: 20px;
-    padding: 40px; /* Mais padding */
-    max-width: 600px;
+    padding: 40px;
+    max-width: 700px;
     width: 90%;
-    color: #fff;
-    text-align: justify;
-    font-family: 'Share Tech Mono', monospace;
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5); /* Sombra mais forte */
-    animation: aparecerModal 0.4s ease forwards; /* 'forwards' mantém o estado final da animação */
-    position: relative; /* Para garantir o z-index */
-    z-index: 10000;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 0 50px rgba(182, 255, 243, 0.2);
 }
 
 .modal-content h3 {
+    color: var(--accent-color);
+    font-size: 2.2rem;
+    margin-bottom: 25px;
     text-align: center;
-    color: #FFD700;
-    margin-bottom: 25px; /* Mais espaço */
-    font-family: 'Cinzel', serif;
-    font-size: 2rem;
-    text-shadow: 0 0 10px #ff0000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.modal-content p {
+#modal-conteudo {
+    margin: 25px 0;
     font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 25px;
-    margin-top: 10px;
-    color: #f8f0ff;
-    font-style: italic;
+    line-height: 1.7;
+}
+
+#modal-conteudo p {
+    margin-bottom: 15px;
+}
+
+#modal-conteudo strong {
+    color: var(--accent-color);
 }
 
 .modal-content button {
-    margin-top: 20px;
-    padding: 12px 30px; /* Mais padding */
-    margin-left: 30px;
-    background: #a401b3;
+    padding: 14px 35px;
+    margin: 10px;
     border: none;
-    color: #fff;
-    border-radius: 10px;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    float: right;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-.modal-content button:hover {
-    background: #ff4c4c;
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-@keyframes aparecerModal {
-    from {
-        opacity: 0;
-        transform: scale(0.8) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-#filtrosRituais button {
-    background-color: #220022;
-}
-#filtrosPactos button {
-    background-color: #001122;
+.modal-content button:first-of-type {
+    background: rgba(182, 255, 243, 0.1);
+    color: var(--accent-color);
+    border: 2px solid var(--border-color);
 }
 
-@media (max-width: 780px) {
-  .session-bloco {
-    padding: 20px;
-    width: 98%;
-  }
-
-  .cabecalho .titulo {
-    font-size: 2rem;
-    padding: 18px;
-  }
-  .modal-content{
-    margin: 0 auto;
-    max-width: 75%;
-
-  }
-
-  .opcoes-troca {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .btn-switch {
-    font-size: 1rem;
-    padding: 10px 15px;
-    width: auto;
-  }
-
-  /* Filtros lado a lado com wrap */
-  .filtros {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .filtros button {
-    font-size: 0.9rem;
-    padding: 8px 14px;
-    white-space: nowrap;
-    width: auto;
-    flex: 0 1 auto;
-  }
-
-
+.modal-content button:first-of-type:hover {
+    background: rgba(182, 255, 243, 0.2);
+    transform: translateY(-3px);
 }
-
 
 .btn-colocar-ficha {
-  margin-top: 15px;
-  padding: 12px 30px;
-  background: #4caf50;
-  border: none;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  float: left;
+    background: linear-gradient(135deg, var(--accent-color), #8af5ff);
+    color: #000;
+    border: none !important;
 }
 
 .btn-colocar-ficha:hover {
-  background: #67d76b;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    background: linear-gradient(135deg, #8af5ff, var(--accent-color));
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(182, 255, 243, 0.4);
 }
 
-/* Container para o botão (mantido para posicionamento) */
-.button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-    margin-bottom: 30px;
+/* ==================== */
+/* RESPONSIVIDADE */
+/* ==================== */
+@media (max-width: 1200px) {
+    .cards-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
 }
 
-/* Estilo do Botão de Ação - MAIS DECORADO */
-.action-button {
-    display: inline-block;
-    padding: 16px 35px; /* Um pouco maior para mais impacto */
-    font-size: 1.2rem; /* Aumenta levemente a fonte */
-    font-weight: bold;
-    text-decoration: none;
-    color: var(--current-theme-text-color); /* Cor do texto principal do tema */
-
-    position: relative; /* Para camadas de borda e brilho */
-    overflow: hidden; /* Garante que os efeitos não transbordem */
-    z-index: 1; /* Garante que o botão esteja sobre os elementos de fundo */
-
-    /* Borda principal com cor do tema */
-    border: 3px solid #d80505f5; /* Darker gray border */
-    border-radius: 18px; /* Cantos mais arredondados */
-
-    /* Sombra externa inspirada no seu war-header e ícones */
-    box-shadow: 
-        0 8px 30px rgba(0, 0, 0, 0.9), /* Sombra principal mais forte */
-        0 0 25px rgba(var(--current-theme-primary), 0.3), /* Brilho suave da cor primária */
-        inset 0 0 15px rgba(0, 0, 0, 0.7); /* Sombra interna para profundidade */
+@media (max-width: 768px) {
+    .titulo_efeito {
+        font-size: 2.5rem;
+        padding: 20px 30px;
+    }
     
-     color: #fce8f5ee; /* Lighter, subtle gray glow */
+    .cabecalho {
+        flex-direction: column;
+        text-align: center;
+    }
     
-    /* Transição geral mais fluida */
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    .titulo {
+        font-size: 2.2rem;
+    }
     
+    .opcoes-troca {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .civilizacoes-icones {
+        gap: 20px;
+    }
+    
+    .icone-item {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .cards-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+    }
 }
 
-.action-button::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-image: url('../imagens/fundo_rubi.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.30;
-    filter: brightness(1.1) contrast(1.2);
-    z-index: -1; /* <-- aqui está o ajuste! */
+@media (max-width: 480px) {
+    .rituals-page-content {
+        padding: 10px;
+    }
+    
+    .titulo_efeito {
+        font-size: 2rem;
+        padding: 15px 20px;
+    }
+    
+    .filtros {
+        gap: 10px;
+    }
+    
+    .filtros button {
+        padding: 10px 15px;
+        min-width: 100px;
+        font-size: 0.85rem;
+    }
+    
+    .cards-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 25px 20px;
+    }
+    
+    .modal-content h3 {
+        font-size: 1.8rem;
+    }
 }
 
-/* Efeito de Borda Interna / Secondária (inspirado nos seus elementos) */
-.action-button::before {
-    content: '';
-    position: absolute;
-    top: 2px; /* Ajuste para criar a borda interna */
-    left: 2px;
-    right: 2px;
-    bottom: 2px;
-    border: 2px solid rgba(var(--current-theme-primary), 0.5); /* Cor primária semi-transparente */
-    border-radius: 16px; /* Menor que a borda externa */
-    box-shadow: inset 0 0 10px rgba(var(--current-theme-primary), 0.2); /* Brilho interno na borda */
-    transition: all 0.4s ease-in-out;
-    z-index: -1; /* Fica abaixo do conteúdo do botão */
-    opacity: 0.8;
-}
-
-/* Efeito de Brilho "Scanline" ou "Varredura" (mais dinâmico) */
-.action-button::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 100%;
-    height: 200%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.233), transparent); /* Brilho sutil */
-    transform: rotate(45deg);
-    opacity: 0;
-    transition: transform 0.6s ease-out, opacity 0.6s ease-out;
-    z-index: 2; /* Acima do conteúdo para o efeito de brilho */
-    pointer-events: none; /* Garante que o brilho não impeça cliques */
-}
-
-
-/* Hover State - Mais Intenso */
-.action-button:hover {
-    transform: translateY(-8px) scale(1.08); /* Lift e scale mais pronunciados */
-     background: linear-gradient(135deg, #1a1a1adc, #000000e5, #1a1a1ada); /* Dark gray to black gradient */
-    border-color: var(--current-theme-primary); /* Borda fica com a cor primária */
-    box-shadow: 
-        0 12px 40px rgba(252, 173, 173, 0.767), /* Sombra mais forte */
-        0 0 40px var(--current-theme-shadow-color), /* Brilho principal mais forte */
-        inset 0 0 20px rgba(var(--current-theme-primary), 0.4); /* Brilho interno mais intenso */
-     color: #ffe75cd5; /* Lighter, subtle gray glow */
-    text-shadow: 
-        0 0 15px var(--current-theme-primary),
-        0 0 30px var(--current-theme-shadow-color); /* Brilho de texto mais forte */
-}
-
-/* Efeito de Borda Interna no Hover */
-.action-button:hover::before {
-    border-color: var(--current-theme-primary); /* Borda interna fica mais visível */
-    box-shadow: inset 0 0 15px rgba(var(--current-theme-primary), 0.4);
-    opacity: 1;
-}
-
-/* Ativa o brilho "scanline" no hover */
-.action-button:hover::after {
-    opacity: 1;
-    transform: rotate(45deg) translateX(100%); /* Move o brilho através do botão */
-}
-
-
-/* Active State - Feedback de Clique */
-.action-button:active {
-    transform: translateY(0); /* Volta para a posição original */
-    background: linear-gradient(160deg, rgba(20, 20, 20, 0.98) 0%, rgba(40, 40, 40, 0.95) 50%, rgba(20, 20, 20, 0.98) 100%); /* Fundo mais escuro */
-    box-shadow: 
-        0 2px 10px rgba(0, 0, 0, 0.8), /* Sombra menor */
-        inset 0 0 8px rgba(0, 0, 0, 0.9); /* Sombra interna mais escura */
-    border-color: var(--current-theme-secondary); /* Borda com a cor secundária */
-    color: var(--current-theme-secondary); /* Texto com a cor secundária */
-    text-shadow: none; /* Remove o brilho do texto no clique */
-}
-
-/* Remove brilho interno e scanline no active */
-.action-button:active::before {
-    border-color: rgba(var(--current-theme-secondary), 0.5);
-    box-shadow: inset 0 0 5px rgba(var(--current-theme-secondary), 0.2);
-    opacity: 0.6;
-}
-
-.action-button:active::after {
-    opacity: 0;
-    transition: none; /* Desabilita transição para desaparecimento imediato */
-}
 
 /* Geral do footer ------------------------------------------------------------------------------*/
 /* Estilo Geral do Footer (Desktop/Default) */
