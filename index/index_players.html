@@ -68,350 +68,375 @@
     </div>
   </nav>
   <!-- ────────── FIM NAV BAR ────────── -->
-<main class="Meio">
+<main class="meio">
+    <div class="container">
+        <!-- Título Principal -->
+        <div class="titulo_principal">
+            <div class="titulo_efeito">Jogadores</div>
+        </div>
 
-<!-- Conteúdo Principal -->
-    <main class="meio">
-        <div class="container">
-            <!-- Título Principal -->
-            <div class="titulo_principal">
-                <div class="titulo_efeito">Jogadores</div>
+        <!-- Subtítulo -->
+        <div class="subtitle-container">
+            <p class="subtitle">
+                Aqui você pode gerenciar todos os personagens dos jogadores. Crie blocos para cada jogador, edite seus status em tempo real e monitore a saúde mental e física de cada personagem durante a aventura.
+            </p>
+        </div>
+
+        <!-- Controles de Exportação PDF -->
+        <div class="pdf-controls">
+            <button id="pdf-export-btn" class="action-btn pdf-btn">
+                <i class="fas fa-file-pdf"></i> Modo Exportar PDF
+            </button>
+            <div class="pdf-hint" id="pdf-hint">
+                <i class="fas fa-info-circle"></i> Clique em um card para exportar como PDF
             </div>
+        </div>
 
-            <!-- Subtítulo -->
-            <div class="subtitle-container">
-                <p class="subtitle">
-                    Aqui você pode gerenciar todos os personagens dos jogadores. Crie blocos para cada jogador, edite seus status em tempo real e monitore a saúde mental e física de cada personagem durante a aventura.
-                </p>
-            </div>
-
-            <!-- Controles de Exportação PDF -->
-            <div class="pdf-controls">
-                <button id="pdf-export-btn" class="action-btn pdf-btn">
-                    <i class="fas fa-file-pdf"></i> Modo Exportar PDF
-                </button>
-                <div class="pdf-hint" id="pdf-hint">
-                    <i class="fas fa-info-circle"></i> Clique em um card para exportar como PDF
+        <!-- Área Operacional / Dashboard -->
+        <section class="dashboard-section">
+            <!-- Controles do Dashboard -->
+            <div class="dashboard-controls">
+                <div class="search-container">
+                    <input type="text" id="search-players" placeholder="Buscar jogador ou personagem...">
+                    <button id="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="dashboard-actions">
+                    <button id="add-player-btn" class="action-btn">
+                        <i class="fas fa-user-plus"></i> Adicionar Jogador
+                    </button>
+                    <button id="reset-all-btn" class="action-btn reset">
+                        <i class="fas fa-redo"></i> Resetar Todos
+                    </button>
                 </div>
             </div>
 
-            <!-- Área Operacional / Dashboard -->
-            <section class="dashboard-section">
-                <!-- Controles do Dashboard -->
-                <div class="dashboard-controls">
-                    <div class="search-container">
-                        <input type="text" id="search-players" placeholder="Buscar jogador ou personagem...">
-                        <button id="search-btn">
-                            <i class="fas fa-search"></i>
+            <!-- Contadores -->
+            <div class="counters">
+                <div class="counter-item">
+                    <span class="counter-value" id="total-players">0</span>
+                    <span class="counter-label">Jogadores</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-value" id="low-health">0</span>
+                    <span class="counter-label">Vida Baixa</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-value" id="low-sanity">0</span>
+                    <span class="counter-label">Sanidade Baixa</span>
+                </div>
+            </div>
+
+            <!-- Grid de Jogadores -->
+            <div class="players-grid" id="players-grid">
+                <!-- Os blocos de jogadores serão inseridos aqui via JavaScript -->
+            </div>
+
+            <!-- Mensagem quando não há jogadores -->
+            <div class="empty-state" id="empty-state">
+                <i class="fas fa-users"></i>
+                <h3>Nenhum jogador adicionado</h3>
+                <p>Clique em "Adicionar Jogador" para começar a gerenciar sua equipe!</p>
+            </div>
+        </section>
+
+        <!-- Seção Joice (Agente IA Inteligente) -->
+        <section class="joice-section" id="joice-section">
+            <div class="titulo_principal" style="margin-top: 60px; margin-bottom: 30px;">
+                <div class="titulo_efeito" style="font-size: 3rem;">JOICE</div>
+            </div>
+
+            <div class="joice-container">
+                <div class="joice-header">
+                    <div class="joice-avatar">
+                        <img src="../imagens/icone_bebe_dino.png" alt="Joice IA" class="joice-image">
+                        <div class="joice-status">
+                            <i class="fas fa-circle" style="color: #33cc33;"></i> Online - IA Ativa
+                        </div>
+                    </div>
+                    <div class="joice-info">
+                        <h3><i class="fas fa-robot"></i> Joice - Assistente Inteligente</h3>
+                        <p class="joice-description">Sistema de gerenciamento automático de fichas. Digite frases naturais em português para modificar status dos personagens.</p>
+                    </div>
+                </div>
+
+                <!-- Painel de Exemplos -->
+                <div class="syntax-panel">
+                    <h4><i class="fas fa-comment-alt"></i> Exemplos de Frases Naturais:</h4>
+                    <div class="syntax-grid">
+                        <div class="syntax-item">
+                            <code>Yvor tomou 30 de dano</code>
+                            <span>Reduz vida em 30</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Maria curou 15 de vida</code>
+                            <span>Aumenta vida em 15</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Pedro ganhou 20 de sanidade</code>
+                            <span>Aumenta sanidade em 20</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Ana perdeu 10 de armadura</code>
+                            <span>Reduz armadura em 10</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Lucas recebeu 5 de honra</code>
+                            <span>Aumenta honra em 5</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Resetar vida de Yvor</code>
+                            <span>Reseta vida para máximo</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Todos ganharam 10 de vida</code>
+                            <span>Aumenta vida de todos</span>
+                        </div>
+                        <div class="syntax-item">
+                            <code>Yvor ficou com 50 de vida</code>
+                            <span>Define vida para 50</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Área de Comando Inteligente -->
+                <div class="command-area">
+                    <div class="command-input-container">
+                        <div class="command-prefix">
+                            <i class="fas fa-comment-dots"></i> Digite para Joice:
+                        </div>
+                        <input type="text" id="joice-command" placeholder="Ex: Yvor tomou 25 de dano na vida...">
+                        <button id="execute-command" class="command-btn">
+                            <i class="fas fa-play"></i> Processar
+                        </button>
+                        <button id="voice-command" class="command-btn voice-btn" title="Comando de voz">
+                            <i class="fas fa-microphone"></i>
                         </button>
                     </div>
                     
-                    <div class="dashboard-actions">
-                        <button id="add-player-btn" class="action-btn">
-                            <i class="fas fa-user-plus"></i> Adicionar Jogador
-                        </button>
-                        <button id="reset-all-btn" class="action-btn reset">
-                            <i class="fas fa-redo"></i> Resetar Todos
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Contadores -->
-                <div class="counters">
-                    <div class="counter-item">
-                        <span class="counter-value" id="total-players">0</span>
-                        <span class="counter-label">Jogadores</span>
-                    </div>
-                    <div class="counter-item">
-                        <span class="counter-value" id="low-health">0</span>
-                        <span class="counter-label">Vida Baixa</span>
-                    </div>
-                    <div class="counter-item">
-                        <span class="counter-value" id="low-sanity">0</span>
-                        <span class="counter-label">Sanidade Baixa</span>
-                    </div>
-                </div>
-
-                <!-- Grid de Jogadores -->
-                <div class="players-grid" id="players-grid">
-                    <!-- Os blocos de jogadores serão inseridos aqui via JavaScript -->
-                </div>
-
-                <!-- Mensagem quando não há jogadores -->
-                <div class="empty-state" id="empty-state">
-                    <i class="fas fa-users"></i>
-                    <h3>Nenhum jogador adicionado</h3>
-                    <p>Clique em "Adicionar Jogador" para começar a gerenciar sua equipe!</p>
-                </div>
-            </section>
-
-            <!-- Seção Joice (Agente IA) -->
-            <section class="joice-section" id="joice-section">
-                <div class="titulo_principal" style="margin-top: 60px; margin-bottom: 30px;">
-                    <div class="titulo_efeito" style="font-size: 3rem;">JOICE</div>
-                </div>
-
-                <div class="joice-container">
-                    <div class="joice-header">
-                        <div class="joice-avatar">
-                            <img src="../imagens/icone_bebe_dino.png" alt="Joice IA" class="joice-image">
-                            <div class="joice-status">
-                                <i class="fas fa-circle" style="color: #33cc33;"></i> Online
-                            </div>
+                    <!-- Sugestões em Tempo Real -->
+                    <div class="suggestions-box" id="suggestions-box" style="display: none;">
+                        <div class="suggestions-header">
+                            <i class="fas fa-lightbulb"></i> Sugestões
                         </div>
-                        <div class="joice-info">
-                            <h3><i class="fas fa-robot"></i> Joice - Assistente Inteligente</h3>
-                            <p class="joice-description">Sistema de gerenciamento automático de fichas. Digite comandos abaixo para modificar status dos personagens em tempo real.</p>
-                        </div>
+                        <div class="suggestions-list" id="suggestions-list"></div>
                     </div>
-
-                    <!-- Painel de Sintaxe -->
-                    <div class="syntax-panel">
-                        <h4><i class="fas fa-code"></i> Sintaxe dos Comandos:</h4>
-                        <div class="syntax-grid">
-                            <div class="syntax-item">
-                                <code>[Nome] - [Vida/Sanidade/Armadura/Honra] [+/-][Valor]</code>
-                                <span>Ex: Max - Vida -20</span>
-                            </div>
-                            <div class="syntax-item">
-                                <code>[Nome] [Operação] [Valor] [Status]</code>
-                                <span>Ex: Maria +15 Sanidade</span>
-                            </div>
-                            <div class="syntax-item">
-                                <code>reset [Nome]</code>
-                                <span>Reseta vida/sanidade para máximo</span>
-                            </div>
-                            <div class="syntax-item">
-                                <code>all [Operação] [Status] [Valor]</code>
-                                <span>Ex: all + Vida 10</span>
+                    
+                    <!-- Log de Comandos -->
+                    <div class="command-log">
+                        <h5><i class="fas fa-history"></i> Histórico de Comandos</h5>
+                        <div class="log-content" id="command-log-content">
+                            <div class="log-entry system">
+                                <span class="log-time">[Sistema]</span> Assistente IA inicializado. Digite frases em português para gerenciar os personagens.
                             </div>
                         </div>
                     </div>
 
-                    <!-- Área de Comando -->
-                    <div class="command-area">
-                        <div class="command-input-container">
-                            <div class="command-prefix">
-                                <i class="fas fa-terminal"></i> Joice >
-                            </div>
-                            <input type="text" id="joice-command" placeholder="Digite um comando (Ex: Carlos - Vida -30)">
-                            <button id="execute-command" class="command-btn">
-                                <i class="fas fa-play"></i> Executar
-                            </button>
-                        </div>
-                        
-                        <!-- Log de Comandos -->
-                        <div class="command-log">
-                            <h5><i class="fas fa-history"></i> Histórico de Comandos</h5>
-                            <div class="log-content" id="command-log-content">
-                                <div class="log-entry system">
-                                    <span class="log-time">[Sistema]</span> Sistema inicializado. Digite comandos para gerenciar os jogadores.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Status de Execução -->
-                        <div class="execution-status" id="execution-status">
-                            <div class="status-indicator">
-                                <i class="fas fa-circle status-idle"></i>
-                                <span>Pronto para executar comandos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Modal de Adicionar/Editar Jogador (REDUZIDO) -->
-    <div class="modal" id="player-modal">
-        <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal-wrapper">
-            <div class="modal-content player-modal-content">
-                <div class="modal-header">
-                    <div class="modal-title">
-                        <h2 id="modal-title">Adicionar Novo Jogador</h2>
-                    </div>
-                    <button class="modal-close" id="modal-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="player-form">
-                        <div class="form-row">
-                            <div class="form-group compact">
-                                <label for="player-name">
-                                    <i class="fas fa-user"></i> Jogador
-                                </label>
-                                <input type="text" id="player-name" required>
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="character-name">
-                                    <i class="fas fa-helmet-battle"></i> Personagem
-                                </label>
-                                <input type="text" id="character-name" required>
-                            </div>
-                        </div>
-
-                        <!-- Upload de Imagem -->
-                        <div class="form-group compact">
-                            <label for="character-image-upload">
-                                <i class="fas fa-image"></i> Imagem do Personagem
-                            </label>
-                            <div class="image-upload-container">
-                                <input type="file" id="character-image-upload" accept="image/*" style="display: none;">
-                                <button type="button" id="upload-image-btn" class="upload-btn">
-                                    <i class="fas fa-upload"></i> Escolher Imagem
-                                </button>
-                                <div class="image-preview" id="image-preview">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                            </div>
-                            <small class="form-hint">Clique para selecionar uma imagem</small>
-                        </div>
-
-                        <div class="form-grid compact-grid">
-                            <div class="form-group compact">
-                                <label for="max-hp">
-                                    <i class="fas fa-heart"></i> Vida Máx
-                                </label>
-                                <input type="number" id="max-hp" min="1" value="100" required>
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="current-hp">
-                                    <i class="fas fa-heartbeat"></i> Vida Atual
-                                </label>
-                                <input type="number" id="current-hp" min="0" value="100" required>
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="armor">
-                                    <i class="fas fa-shield-alt"></i> Armadura
-                                </label>
-                                <input type="number" id="armor" min="0" value="10">
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="max-sanity">
-                                    <i class="fas fa-brain"></i> San. Máx
-                                </label>
-                                <input type="number" id="max-sanity" min="1" value="100" required>
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="current-sanity">
-                                    <i class="fas fa-brain"></i> San. Atual
-                                </label>
-                                <input type="number" id="current-sanity" min="0" value="100" required>
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="honor">
-                                    <i class="fas fa-award"></i> Honra
-                                </label>
-                                <input type="number" id="honor" min="0" value="0">
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group compact">
-                                <label for="character-tribe">
-                                    <i class="fas fa-mountain"></i> Tribo
-                                </label>
-                                <input type="text" id="character-tribe">
-                            </div>
-                            
-                            <div class="form-group compact">
-                                <label for="character-clan">
-                                    <i class="fas fa-flag"></i> Clã
-                                </label>
-                                <input type="text" id="character-clan">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group compact">
-                            <label for="traumas">
-                                <i class="fas fa-skull-crossbones"></i> Traumas
-                            </label>
-                            <textarea id="traumas" rows="2" placeholder="Descreva os traumas do personagem..."></textarea>
-                        </div>
-                        
-                        <div class="modal-actions compact">
-                            <button type="button" class="btn-secondary" id="cancel-btn">Cancelar</button>
-                            <button type="submit" class="btn-primary" id="save-btn">Salvar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de Informações do Personagem (REDUZIDO) -->
-    <div class="modal" id="character-modal">
-        <div class="modal-overlay" id="character-modal-overlay"></div>
-        <div class="modal-wrapper">
-            <div class="modal-content compact-modal">
-                <div class="modal-header compact">
-                    <div class="modal-title">
-                        <h2 id="character-modal-title">Ficha do Personagem</h2>
-                    </div>
-                    <button class="modal-close" id="character-modal-close">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-                <div class="modal-body compact">
-                    <div class="character-info-grid compact">
-                        <div class="character-header compact">
-                            <div class="character-avatar compact" id="character-avatar">
-                                <i class="fas fa-user" id="character-avatar-icon"></i>
-                                <img id="character-avatar-img" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                            </div>
-                            <div class="character-names compact">
-                                <h3 id="character-modal-player"></h3>
-                                <p id="character-modal-character"></p>
-                            </div>
-                        </div>
-                        
-                        <div class="character-details compact">
-                            <div class="detail-item compact">
-                                <span class="detail-label">Tribo:</span>
-                                <span class="detail-value" id="character-tribe-detail">-</span>
-                            </div>
-                            <div class="detail-item compact">
-                                <span class="detail-label">Clã:</span>
-                                <span class="detail-value" id="character-clan-detail">-</span>
-                            </div>
-                            <div class="detail-item compact">
-                                <span class="detail-label">Vida:</span>
-                                <span class="detail-value" id="character-hp-detail">-/-</span>
-                            </div>
-                            <div class="detail-item compact">
-                                <span class="detail-label">Sanidade:</span>
-                                <span class="detail-value" id="character-sanity-detail">-/-</span>
-                            </div>
-                            <div class="detail-item compact">
-                                <span class="detail-label">Armadura:</span>
-                                <span class="detail-value" id="character-armor-detail">-</span>
-                            </div>
-                            <div class="detail-item compact">
-                                <span class="detail-label">Honra:</span>
-                                <span class="detail-value" id="character-honor-detail">-</span>
-                            </div>
-                        </div>
-                        
-                        <div class="character-traumas compact">
-                            <h4><i class="fas fa-skull-crossbones"></i> Traumas</h4>
-                            <p id="character-traumas-detail">Nenhum trauma registrado.</p>
+                    <!-- Status de Execução -->
+                    <div class="execution-status" id="execution-status">
+                        <div class="status-indicator">
+                            <i class="fas fa-circle status-idle"></i>
+                            <span>Pronto para interpretar comandos</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-
 </main>
+
+<!-- Modal de Adicionar/Editar Jogador -->
+<div class="modal" id="player-modal">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-wrapper">
+        <div class="modal-content player-modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <h2 id="modal-title">Adicionar Novo Jogador</h2>
+                </div>
+                <button type="button" class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="player-form">
+                    <div class="form-row">
+                        <div class="form-group compact">
+                            <label for="player-name">
+                                <i class="fas fa-user"></i> Jogador *
+                            </label>
+                            <input type="text" id="player-name" required placeholder="Nome do jogador">
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="character-name">
+                                <i class="fas fa-helmet-battle"></i> Personagem *
+                            </label>
+                            <input type="text" id="character-name" required placeholder="Nome do personagem">
+                        </div>
+                    </div>
+
+                    <!-- Upload de Imagem -->
+                    <div class="form-group compact">
+                        <label for="character-image-upload">
+                            <i class="fas fa-image"></i> Imagem do Personagem
+                        </label>
+                        <div class="image-upload-container">
+                            <input type="file" id="character-image-upload" accept="image/*" style="display: none;">
+                            <button type="button" id="upload-image-btn" class="upload-btn">
+                                <i class="fas fa-upload"></i> Escolher Imagem
+                            </button>
+                            <div class="image-preview" id="image-preview">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        </div>
+                        <small class="form-hint">Clique para selecionar uma imagem (opcional)</small>
+                    </div>
+
+                    <div class="form-grid compact-grid">
+                        <div class="form-group compact">
+                            <label for="max-hp">
+                                <i class="fas fa-heart"></i> Vida Máx *
+                            </label>
+                            <input type="number" id="max-hp" min="1" value="100" required>
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="current-hp">
+                                <i class="fas fa-heartbeat"></i> Vida Atual *
+                            </label>
+                            <input type="number" id="current-hp" min="0" value="100" required>
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="armor">
+                                <i class="fas fa-shield-alt"></i> Armadura
+                            </label>
+                            <input type="number" id="armor" min="0" value="10">
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="max-sanity">
+                                <i class="fas fa-brain"></i> San. Máx *
+                            </label>
+                            <input type="number" id="max-sanity" min="1" value="100" required>
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="current-sanity">
+                                <i class="fas fa-brain"></i> San. Atual *
+                            </label>
+                            <input type="number" id="current-sanity" min="0" value="100" required>
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="honor">
+                                <i class="fas fa-award"></i> Honra
+                            </label>
+                            <input type="number" id="honor" min="0" value="0">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group compact">
+                            <label for="character-tribe">
+                                <i class="fas fa-mountain"></i> Tribo
+                            </label>
+                            <input type="text" id="character-tribe" placeholder="Tribo do personagem">
+                        </div>
+                        
+                        <div class="form-group compact">
+                            <label for="character-clan">
+                                <i class="fas fa-flag"></i> Clã
+                            </label>
+                            <input type="text" id="character-clan" placeholder="Clã do personagem">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group compact">
+                        <label for="traumas">
+                            <i class="fas fa-skull-crossbones"></i> Traumas
+                        </label>
+                        <textarea id="traumas" rows="2" placeholder="Descreva os traumas do personagem..."></textarea>
+                    </div>
+                    
+                    <div class="modal-actions compact">
+                        <button type="button" class="btn-secondary" id="cancel-btn">Cancelar</button>
+                        <button type="submit" class="btn-primary" id="save-btn">
+                            <i class="fas fa-save"></i> Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Informações do Personagem -->
+<div class="modal" id="character-modal">
+    <div class="modal-overlay" id="character-modal-overlay"></div>
+    <div class="modal-wrapper">
+        <div class="modal-content compact-modal">
+            <div class="modal-header compact">
+                <div class="modal-title">
+                    <h2 id="character-modal-title">Ficha do Personagem</h2>
+                </div>
+                <button class="modal-close" id="character-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body compact">
+                <div class="character-info-grid compact">
+                    <div class="character-header compact">
+                        <div class="character-avatar compact" id="character-avatar">
+                            <i class="fas fa-user" id="character-avatar-icon"></i>
+                            <img id="character-avatar-img" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        </div>
+                        <div class="character-names compact">
+                            <h3 id="character-modal-player"></h3>
+                            <p id="character-modal-character"></p>
+                        </div>
+                    </div>
+                    
+                    <div class="character-details compact">
+                        <div class="detail-item compact">
+                            <span class="detail-label">Tribo:</span>
+                            <span class="detail-value" id="character-tribe-detail">-</span>
+                        </div>
+                        <div class="detail-item compact">
+                            <span class="detail-label">Clã:</span>
+                            <span class="detail-value" id="character-clan-detail">-</span>
+                        </div>
+                        <div class="detail-item compact">
+                            <span class="detail-label">Vida:</span>
+                            <span class="detail-value" id="character-hp-detail">-/-</span>
+                        </div>
+                        <div class="detail-item compact">
+                            <span class="detail-label">Sanidade:</span>
+                            <span class="detail-value" id="character-sanity-detail">-/-</span>
+                        </div>
+                        <div class="detail-item compact">
+                            <span class="detail-label">Armadura:</span>
+                            <span class="detail-value" id="character-armor-detail">-</span>
+                        </div>
+                        <div class="detail-item compact">
+                            <span class="detail-label">Honra:</span>
+                            <span class="detail-value" id="character-honor-detail">-</span>
+                        </div>
+                    </div>
+                    
+                    <div class="character-traumas compact">
+                        <h4><i class="fas fa-skull-crossbones"></i> Traumas</h4>
+                        <p id="character-traumas-detail">Nenhum trauma registrado.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
  <!-- ───────────── FOOTER ───────────── -->
 <footer>
     <div class="footer-content">

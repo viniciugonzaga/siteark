@@ -1246,6 +1246,16 @@ classe: "ritual"
         imagem: "../imagens/icon_diablo.png",
         classe: "pacto"
     },
+     5: {
+        id: 5,
+        nome: "Pacto Fungoso",
+        tipo: "Lealdade",
+        elemento: "Apodrecer",
+        descricao: "O Portador da Maldição teve contato com um dos fungos da Ancião Cogumelo, tendo uma imunidade a veneno e condições de Fadiga ou de Peste. Suas armas ganham +2D de dano e sempre no último dado, ele se transforma em dano Ácido. Além de ganhar +5 vontade, +5 fortitude, +5 correr, +5 furtividade, +10 dormir, +10 manipulação Mover, +10 manipulação de Apodrecer. Forma Fungosa- Quando o portador dormir durante o combate e retornar depois de 2 Rodadas, se transforma em uma forma fungosa sombria, com +5 em qualquer bônus em ação de agilidade ou Vigor. O portador deve dormir e consumir apenas fungos e suas toxinas originadas de parasitas ou ervas semelhantes, todos os dias.Caso não cumpra, o portador é expulso da Colônia, perdendo seus fungos.",
+        nivel: 40,
+        imagem: "../imagens/icon_fungos_mamae.png",
+        classe: "pacto"
+    },
 
 
         
