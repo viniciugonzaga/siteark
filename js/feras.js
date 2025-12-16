@@ -55,7 +55,7 @@ clearRollsButton.addEventListener('click', () => {
 // ========================
 
 // Data structure for creatures (updated with new fields: diet and behavior)
-const creaturesData = [
+const creaturesData = [ 
     {
         id: 1,
         name: "T-Rex",
@@ -64,7 +64,7 @@ const creaturesData = [
         thumbnail: "../imagens/icon_tiranossauro.png", 
         category: "Dinossauro",
         biome: ["Campos","Montanha"],
-        environment: "land",
+        environment: "land", // Mantido "land"
         height: "6.5m",
         length: "12m",
         weight: "9 ton",
@@ -87,7 +87,7 @@ const creaturesData = [
         },
         locomotion: "Terrestre",
         bonuses: [
-            { action: "Força-bruta", bonus: "+25" },
+            { action: "Força Bruta", bonus: "+25" }, // Corrigido
             { action: "Morder", bonus: "+20" },
             { action: "Coragem", bonus: "+20" },
             { action: "Intimidação", bonus: "+20" },
@@ -103,7 +103,7 @@ const creaturesData = [
             { action: "Bloqueio", bonus: "+10" },
             { action: "Correr", bonus: "+10" },
             { action: "Esquiva", bonus: "+10" },
-            { action: "Percepção", bonus: "+5" },
+            { action: "Percepção", bonus: "+5" }, // Corrigido
             { action: "Pensar", bonus: "+5" },
             { action: "Furtividade", bonus: "+5" },
 
@@ -113,37 +113,37 @@ const creaturesData = [
                 name: "Mordida Devastadora", 
                 hit: "3d20+25", 
                 damage: "Causa 14d12+50 pontos de dano",
-                passive: "Vúlnerável -5 em Defesas Físicas"
+                passive: "Vulnerável -5 em Defesas Físicas" // Corrigido
             },
             { 
                 name: "Investida Esmagadora", 
                 hit: "3d20+20", 
                 damage: "Causa 9d8 pontos de dano em área.",
-                passive: "Acertar um alvo derruba-o, concedendo uma ação extra para Agarrar ou Intimdiar rugindo."
+                passive: "Acertar um alvo derruba-o, concedendo uma ação extra para Agarrar ou Intimidar rugindo." // Corrigido
             }
         ],
         skills: [
             { 
                 name: "Rugido do Rei", 
-                desc: "O T-Rex solta um rugido que causa medo em criaturas menores que ele, concedendo um bônus de intimidação para todos os inimigos da Cena que forem intimidados. Além de causar +25% em Dano em Criaturas Apex-Predador ou Alfa para si e em aliados."
+                desc: "O T-Rex solta um rugido que causa medo em criaturas menores que ele, concedendo um bônus de Intimidação para todos os inimigos da Cena que forem intimidados. Além de causar +25% em dano em Criaturas Apex-Predador ou Alfa para si e em aliados." // Corrigido
             },
             { 
                 name: "Fúria do Rei", 
-                desc: "Quando Rex chega a 30% da Vida ou fica Machucado, sua próxima Mordida em um alvo único durante a Cena causa 2x pontos de dano. Essa habilidade pode ser usada somente contra alvos intimidados e em uma vez por Cena."
+                desc: "Quando o Rex chega a 30% da Vida ou fica Machucado, sua próxima Mordida em um alvo único durante a Cena causa 2x pontos de dano. Essa habilidade pode ser usada somente contra alvos intimidados e uma vez por Cena." // Corrigido
             }
         ],
         passive: {
             name: "Auge Predatório",
-            desc: "O Tiranossauro Rex sempre quando começar a primeira rodada, ganha uma ação livre para intimidar seus alvos rugindo. Todos os Alvos que sofrerem ataques intimidados contra Rex, fazem ele Acumular +5 em Resiliência (Max.3).Até o final da Cena."
+            desc: "O Tiranossauro Rex, sempre que começar a primeira rodada, ganha uma ação livre para intimidar seus alvos rugindo. Todos os alvos que sofrerem ataques intimidados contra o Rex, fazem ele Acumular +5 em Resiliência (Máx. 3). Até o final da Cena." // Corrigido
         },
         elements: [
-            { name: "Fogo", desc: "T-Rex de fogo solta labaredas pela boca, causando dano contínuo de fogo." },
+            { name: "Fogo", desc: "T-Rex de Fogo solta labaredas pela boca, causando dano contínuo de fogo." },
             { name: "Morte", desc: "T-Rex de Morte causa +2D de dano contra inimigos Intimidados." },
-            { name: "Hypo", desc: "T-Rex Hypo Ganha +100 pontos de vida, além de ganhar +30 Armadura e +5 em fortitude." }
+            { name: "Hipo", desc: "T-Rex Hipo ganha +100 pontos de vida, além de ganhar +30 de Armadura e +5 em Fortitude." } // Corrigido
         ],
         brutalFight: {
             category: "Guerreiro",
-            role: "Causa dano e Sobrevive a Longas Batalhas.",
+            role: "Causa dano e sobrevive a longas batalhas.", // Corrigido
             size: "Ocupa 2 espaços",
             attributes: {
                 agi: 2,
@@ -161,7 +161,7 @@ const creaturesData = [
             skills: [
                 { 
                     name: "Investida Colossal", 
-                    position: "Meio 1,2",
+                    position: "Meio 1, 2",
                     reach: "Alcança os 2 da frente",
                     hit: "3d20+25",
                     desc: "Causa 9d8 pontos de dano e derruba o alvo. Se acertar, causa o efeito Vulnerável por 1d2(R)."
@@ -171,26 +171,25 @@ const creaturesData = [
                     position: "Qualquer",
                     reach: "Todos os aliados",
                     hit: "Auto",
-                    desc: "Concede +2D de dano contra Criaturas Alfas ou Apex predador, todos ganham +5 em Intimidação, +5 Luta."
+                    desc: "Concede +2D de dano contra Criaturas Alfas ou Apex-Predador, todos ganham +5 em Intimidação, +5 Luta." // Corrigido
                 },
                 { 
                     name: "Mordida Fatal", 
-                    position: "Frente 1,2",
+                    position: "Frente 1, 2",
                     reach: "Alcança 2 da frente",
                     hit: "3d20+25",
                     desc: "Causa 16d12+50 pontos de dano. Causa o Efeito Vulnerável por 1d2(R)."
                 },
                 { 
                     name: "Mordida do Rei", 
-                    position: "Meio 1,2,3",
+                    position: "Meio 1, 2, 3",
                     reach: "Alcança 2 da Frente",
-                    hit: "3d20+25",
-                    desc: "Causa 10d10+8d8 pontos de dano e Agarra o alvo, causando -5 em testes de Defesa e puxando para um espaço para frente."
+                    desc: "Causa 10d10+8d8 pontos de dano e Agarra o alvo, causando -5 em testes de Defesa e puxando para um espaço para frente." // Corrigido
                 }
             ],
             beastPassive: {
                 name: "Dominância Alfa",
-                desc: "O T-Rex Quando entra em campo concede para todas as 3 cartas da Frente adjascentes -1 de poder de dano."
+                desc: "O T-Rex, quando entra em campo, concede para todas as 3 cartas da frente adjacentes -1 de poder de dano." // Corrigido
             }
         }
     },
@@ -202,7 +201,7 @@ const creaturesData = [
         thumbnail: "../imagens/icon_espinossauro.png",
         category: "Dinossauro",
         biome: ["Praia", "Pântano", "Deserto", "Planalto"], 
-        environment: "land",
+        environment: "land", // Mantido "land"
         height: "7.2m",
         length: "15m",
         weight: "7 ton",
@@ -232,62 +231,61 @@ const creaturesData = [
             { action: "Mordida", bonus: "+20" }, 
             { action: "Pancada", bonus: "+20" },
             { action: "Luta", bonus: "+20" }, 
-            { action: "Combo", bonus: "+20" },  
+            { action: "Combo", bonus: "+20" },  
             { action: "Contra-ataque", bonus: "+20" },
-            { action: "Equilibrio", bonus: "+20" }, 
-            { action: "Resistência", bonus: "+20" },    
-            { action: "Força-Bruta", bonus: "+15" },
+            { action: "Equilíbrio", bonus: "+20" }, // Corrigido
+            { action: "Resistência", bonus: "+20" },    
+            { action: "Força Bruta", bonus: "+15" }, // Corrigido
             { action: "Agarrar", bonus: "+15" },
             { action: "Fortitude", bonus: "+10" }, 
             { action: "Pensar", bonus: "+10" }, 
             { action: "Correr", bonus: "+10" },
             { action: "Cheirar", bonus: "+10" },
-            { action: "percepção", bonus: "+10" },
+            { action: "Percepção", bonus: "+10" }, // Corrigido
             { action: "Nadar", bonus: "+10" },
             { action: "Esquiva", bonus: "+10" },
             { action: "Bloqueio", bonus: "+10" },
-            { action: "Regular-Temperatura", bonus: "+10" },
-            { action: "percepção-inimiga", bonus: "+10" },
+            { action: "Regulagem de Temperatura", bonus: "+10" }, // Corrigido
+            { action: "Percepção Inimiga", bonus: "+10" }, // Corrigido
             { action: "Furtividade", bonus: "+5" },
 
- 
         ],
         attacks: [
             { 
                 name: "Ataque de Mordida", 
                 hit: "3d20+20", 
                 damage: "Causa 8d12+30 pontos de dano",
-                passive: "Deixo o alvo lento, -5 em testes de Agilidade por 1 rodada."
+                passive: "Deixa o alvo Lento, -5 em testes de Agilidade por 1 rodada." // Corrigido
             },
             { 
                 name: "Ataque de Garras", 
                 hit: "3d20+20", 
                 damage: "Causa 2x 6d10+3d6 pontos de dano",
-                passive: "Acertar um alvo menor que a altura do Espinossauro concede uma ação livre para agarrar, reduzindo defesa em -5."
+                passive: "Acertar um alvo menor que a altura do Espinossauro concede uma ação livre para Agarrar, reduzindo a defesa em -5." // Corrigido
             }
         ],
         skills: [
             { 
                 name: "Nado Veloz", 
-                desc: "Na água, o Espinossauro se move 50% mais rápido e ganha +5 em esquiva. Além de +5 em correr perto da água em terra e ganha o efeito Ágil, ganhando +5 em testes que vão envolver Velocidade."
+                desc: "Na água, o Espinossauro se move 50% mais rápido e ganha +5 em Esquiva. Além de +5 em Correr perto da água em terra e ganha o efeito Ágil, ganhando +5 em testes que envolvam Velocidade." // Corrigido
             },
             { 
                 name: "Instinto de Pescador Territorial", 
-                desc: "Espinossauro lembra e reconhece os últimos lugares que passou em seu habbit, decorando os melhores lugares e periodos de eestações que possuem mais peixes e predadores em seu território, ganhando +10 na primeria ação contra um invasor que entre em seu lar. "
+                desc: "O Espinossauro lembra e reconhece os últimos lugares que passou em seu hábitat, decorando os melhores lugares e períodos de estações que possuem mais peixes e predadores em seu território, ganhando +10 na primeira ação contra um invasor que entre em seu lar." // Corrigido
             }
         ],
         passive: {
             name: "Predador Anfíbio",
-            desc: "O Espinossauro não sofre penalidades por lutar na água e ganha +5 em percepção inimiga, arcana, bônus em Agarrar e qualquer ação de força enquanto estiver nadando em seu rio ou lago."
+            desc: "O Espinossauro não sofre penalidades por lutar na água e ganha +5 em Percepção Inimiga, Arcana, bônus em Agarrar e qualquer ação de Força enquanto estiver nadando em seu rio ou lago." // Corrigido
         },
         elements: [
             { name: "Morte", desc: "Espinossauro de Morte causa dano de Peste em suas garras e boca." },
-            { name: "Hypo", desc: "Espinossauro Hypo ganha +80 pontos de vida, 40 Armadura e é imune a fadiga ou cansaço em água." },
-            { name: "Abismoelétrico", desc: "Espinossauro do Abismo causa dano elétrico em sua boca, podendo soltar jatos carregados por suas velas." }
+            { name: "Hipo", desc: "Espinossauro Hipo ganha +80 pontos de vida, +40 de Armadura e é imune à fadiga ou cansaço em água." }, // Corrigido
+            { name: "Abismo Elétrico", desc: "Espinossauro do Abismo causa dano elétrico em sua boca, podendo soltar jatos carregados por suas velas." } // Corrigido
         ],
         brutalFight: {
             category: "Duelista",
-            role: "Causa dano na linha de frente",
+            role: "Causa dano na linha de frente.", // Corrigido
             size: "Ocupa 2 espaços",
             attributes: {
                 agi: 3,
@@ -305,36 +303,36 @@ const creaturesData = [
             skills: [
                 { 
                     name: "Investida Aquática", 
-                    position: "Meio 2,3",
+                    position: "Meio 2, 3",
                     reach: "Alcança os 2 da frente juntos",
                     hit: "3d20+15",
-                    desc: "Causa 7d12+6d6 pontos de dano. Se tiver Água no cenário, causa o efeito enraizado por 1d2(R)"
+                    desc: "Causa 7d12+6d6 pontos de dano. Se houver Água no cenário, causa o efeito Enraizado por 1d2(R)" // Corrigido
                 },
                 { 
                     name: "Golpe de Garra", 
-                    position: "meio 2,3",
+                    position: "meio 2, 3",
                     reach: "Alcança 2 da frente",
                     hit: "3d20+20",
                     desc: "Causa 2x 6d10+4d6 pontos de dano e causa o efeito Sangrando, causando 1d12 de dano, por 1d2(R)"
                 },
                 { 
                     name: "Mordida de Espera", 
-                    position: "Frente 1,2",
-                    reach: "Alcança 1,2 da frente.",
+                    position: "Frente 1, 2",
+                    reach: "Alcança 1, 2 da frente.",
                     hit: "3d20+20",
-                    desc: "Causa uma Mordida de 12d10+30 pontos de dano, puxando o alvo para 1 espaço a frente."
+                    desc: "Causa uma Mordida de 12d10+30 pontos de dano, puxando o alvo para 1 espaço à frente." // Corrigido
                 },
                 { 
                     name: "Fúria do Pântano", 
                     position: "Qualquer",
                     reach: "Auto",
                     hit: "Auto",
-                    desc: "Mergulha em água, ficando furtivo e ganhando +3D de dano, em sua mordida, por 1d2(R). Apaga fogo e qualquer debuff de temperatura."
+                    desc: "Mergulha na água, ficando Furtivo e ganhando +3D de dano em sua Mordida, por 1d2(R). Apaga fogo e qualquer debuff de temperatura." // Corrigido
                 }
             ],
             beastPassive: {
-                name: "Instinto territorial",
-                desc: "Ao entrar em jogo, espinossauro define seu território no espaço de carte que entrou, ao sobreviver 1 turno em seu território, espinossauro afunda na água, ficando imune a hablidades, tankando o primeiro hit que receber ao ficar na água, Além de Curar 1 de vida perdida a cada turno."
+                name: "Instinto Territorial",
+                desc: "Ao entrar em jogo, o Espinossauro define seu território no espaço da carta que entrou. Ao sobreviver 1 turno em seu território, o Espinossauro afunda na água, ficando imune a habilidades, tankando o primeiro acerto que receber ao ficar na água, além de Curar 1 de vida perdida a cada turno." // Corrigido
             }
         }
     },
@@ -346,7 +344,7 @@ const creaturesData = [
         thumbnail: "../imagens/icon_raptor.png",
         category: "Dinossauro",
         biome: ["Bosque", "Campos", "Floresta Vermelha"],
-        environment: "land",
+        environment: "land", // Mantido "land"
         height: "1.8m",
         length: "4m",
         weight: "150 kg",
@@ -370,28 +368,28 @@ const creaturesData = [
         locomotion: "Terrestre",
         bonuses: [
             { action: "Correr", bonus: "+20" },
-            { action: "pensar", bonus: "+15" },
+            { action: "Pensar", bonus: "+15" }, // Corrigido
             { action: "Morder", bonus: "+15" },
-            { action: "percepção", bonus: "+15" }, 
+            { action: "Percepção", bonus: "+15" }, // Corrigido
             { action: "Socializar", bonus: "+15" }, 
             { action: "Esquiva", bonus: "+15" }, 
             { action: "Agachar", bonus: "+15" },
-            { action: "Rastrear", bonus: "+15" },  
+            { action: "Rastrear", bonus: "+15" },  
             { action: "Saltar", bonus: "+15" },
             { action: "Cheirar", bonus: "+10" }, 
             { action: "Luta", bonus: "+10" },
             { action: "Contra-ataque", bonus: "+10" },
             { action: "Lembrar", bonus: "+10" }, 
-            { action: "percepção-inimiga", bonus: "+10" }, 
-            { action: "Preparar-Ação", bonus: "+10" }, 
-            { action: "Reflexo", bonus: "+10" },      
+            { action: "Percepção Inimiga", bonus: "+10" }, // Corrigido
+            { action: "Preparar Ação", bonus: "+10" }, // Corrigido
+            { action: "Reflexo", bonus: "+10" },      
             { action: "Garra", bonus: "+10" },
             { action: "Furtividade", bonus: "+10" },
             { action: "Tática", bonus: "+10" }, 
             { action: "Fortitude", bonus: "+5" }, 
             { action: "Resistência", bonus: "+5" },
-            { action: "Conhecimento-Atualidades", bonus: "+5" }, 
-            { action: "Vontade", bonus: "+5" },   
+            { action: "Conhecimento de Atualidades", bonus: "+5" }, // Corrigido
+            { action: "Vontade", bonus: "+5" },   
         ],
         attacks: [
             { 
@@ -404,31 +402,31 @@ const creaturesData = [
                 name: "Mordida Rápida", 
                 hit: "3d20+15", 
                 damage: "Causa 3d10+2d6 pontos de dano",
-                passive: "Acertar concede um bônus em uma Reação de +5 na defesa."
+                passive: "Acertar concede um bônus em uma Reação de +5 na Defesa."
             }
         ],
         skills: [
             { 
                 name: "Caçada em Grupo", 
-                desc: "Quando em grupo com outros Velociraptores, cada um ganha +2 em acerto e na defesa, coforme planejaram juntos a caçada e aumenta o dano para aliado próximos em +2D de dano, além de +2D de Crítico."
+                desc: "Quando em grupo com outros Velociraptors, cada um ganha +2 em acerto e na Defesa, conforme planejaram juntos a caçada e aumenta o dano para aliados próximos em +2D de dano, além de +2D de Crítico." // Corrigido
             },
             { 
                 name: "Salto Predatório", 
-                desc: "Pode saltar sobre obstáculos baixos e atacar do ar com vantagem de +5 contra alvos menores, no seu primeiro ataque. Além de Decorar um de seus bônus na luta da Cena e desarmar o sobrevivente, ficando imobilizado até sair do Raptor."
+                desc: "Pode saltar sobre obstáculos baixos e atacar do ar com vantagem de +5 contra alvos menores, no seu primeiro ataque. Além de Decorar um de seus bônus na luta da Cena e desarmar o alvo, ficando imobilizado até sair do Raptor." // Corrigido
             }
         ],
         passive: {
             name: "Pesadelo em Grupo",
-            desc: "Velociraptores em bando são muito mais perigosos do que separados, quando estão em gurpo, conseguem trocar informações de forma tática e precisa, com seus rugidos de comunicação, fornecendo +10 em percepção para um aliado próximo que ouviu e entendeu seu chamado ou grunido de Alerta."
+            desc: "Velociraptors em bando são muito mais perigosos do que separados. Quando estão em grupo, conseguem trocar informações de forma tática e precisa, com seus rugidos de comunicação, fornecendo +10 em Percepção para um aliado próximo que ouviu e entendeu seu chamado ou grunhido de Alerta." // Corrigido
         },
         elements: [
-            { name: "Morte", desc: "Velociraptores de Morte são muito mais Mortais, causando +2D de dano em suas garras e +1D de sangramento." },
+            { name: "Morte", desc: "Velociraptors de Morte são muito mais Mortais, causando +2D de dano em suas garras e +1D de Sangramento." }, // Corrigido
             { name: "Fogo", desc: "Velocirraptores de Fogo causam dano de fogo em qualquer ataque físico, além de deixar rastros em seus saltos." },
-            { name: "Caveira", desc: "Velocirraptores da Caveira são muito mais Mortais, ganham +30pv, +2D de dano em todos os ataques físicos e +5 luta, +5 contra-ataque. Todos esses Buffs são amplamente ativos em Cenas com Humanos como presa." }
+            { name: "Caveira", desc: "Velocirraptores da Caveira são muito mais Mortais, ganham +30 PV, +2D de dano em todos os ataques físicos e +5 Luta, +5 Contra-ataque. Todos esses Buffs são amplamente ativos em Cenas com Humanos como presa." } // Corrigido
         ],
         brutalFight: {
             category: "Assassino",
-            role: "Causa dano alto mas é frágil",
+            role: "Causa dano alto, mas é frágil.", // Corrigido
             size: "Ocupa 1 espaço",
             attributes: {
                 agi: 4,
@@ -449,11 +447,11 @@ const creaturesData = [
                     position: "Qualquer",
                     reach: "Auto",
                     hit: "Auto",
-                    desc: "Ganha o efeito furtivo, além de causar +6d6 pontos de dano e alcance de 4 espaços na Mordida."
+                    desc: "Ganha o efeito Furtivo, além de causar +6d6 pontos de dano e ter alcance de 4 espaços na Mordida." // Corrigido
                 },
                 { 
                     name: "Salto Mortal", 
-                    position: "Frente 1,2",
+                    position: "Frente 1, 2",
                     reach: "Alcança 2 da frente",
                     hit: "3d20+15",
                     desc: "Causa 6d8+3d6 pontos de dano e avança 1 para frente."
@@ -463,11 +461,11 @@ const creaturesData = [
                     position: "Qualquer",
                     reach: "Todos os aliados",
                     hit: "Auto",
-                    desc: "Concede +5 em iniciativa para toda a equipe por 1 rodada, além de Marcar um alvo em qualquer espaço, aplicando o efeito marcado."
+                    desc: "Concede +5 em Iniciativa para toda a equipe por 1 rodada, além de Marcar um alvo em qualquer espaço, aplicando o efeito Marcado."
                 },
                 { 
                     name: "Golpe Duplo", 
-                    position: "Frente 1,2",
+                    position: "Frente 1, 2",
                     reach: "Alcança 3 da frente",
                     hit: "3d20+15",
                     desc: "Dois ataques rápidos que causam 2d12+3d6 pontos de dano cada."
@@ -475,505 +473,19 @@ const creaturesData = [
             ],
             beastPassive: {
                 name: "Caçador em Grupo",
-                desc: "Quando um Raptor entra em Campo, faz com que todos as cartas parentes da fámilia Raptor ganhem +1 de poder de Ataque."
+                desc: "Quando um Raptor entra em Campo, faz com que todas as cartas parentes da família Raptor ganhem +1 de poder de Ataque." // Corrigido
             }
         }
     },
     {
         id: 4,
-        name: "Megalodon",
-        title: "Tubarão Colossal",
-        image: "../imagens/icon_megalodon.png",
-        thumbnail: "../imagens/icon_megalodon.png",
-        category: "Criatura Aquática",
-        biome: ["Oceanos", ""],
-        environment: "water",
-        height: "18m",
-        length: "25m",
-        weight: "50 ton",
-        diet: "Carnívoro",
-        behavior: "Agressivo",
-        difficulty: "Difícil",
-        habitat: "Oceanos, Zonas Abissais",
-        attributes: {
-            agi: 4,
-            for: 5,
-            int: 1,
-            set: 5,
-            vig: 5
-        },
-        stats: {
-            hp: 500,
-            armor: 150,
-            beastHp: 8,
-            beastStr: 7
-        },
-        locomotion: "Aquático",
-        bonuses: [
-            { action: "Morder", bonus: "+18" },
-            { action: "Nadar", bonus: "+15" },
-            { action: "Investida", bonus: "+12" },
-            { action: "Intimidar", bonus: "+10" }
-        ],
-        attacks: [
-            { 
-                name: "Mordida Abissal", 
-                hit: "3d20+18", 
-                damage: "Causa 10d12+10d6 pontos de dano",
-                passive: "Nulo"
-            },
-            { 
-                name: "Investida Torpedo", 
-                hit: "3d20+12", 
-                damage: "Causa 8d10+6d8 pontos de dano e derruba o alvo",
-                passive: "Se acertar, pode engolir criaturas menores que 5m inteiras."
-            }
-        ],
-        skills: [
-            { 
-                name: "Sentido de Sangue", 
-                desc: "Detecta criaturas feridas a 1km de distância na água e ganha +5 em perseguição contra elas."
-            },
-            { 
-                name: "Fúria das Profundezas", 
-                desc: "Quando abaixo de 30% de vida, ganha +3 em força e resistência até o fim do combate."
-            }
-        ],
-        passive: {
-            name: "Rei dos Oceanos",
-            desc: "Intimida todas as criaturas aquáticas menores, fazendo com que fogam em vez de lutar a menos que obrigadas."
-        },
-        elements: [
-            { name: "Abissal", desc: "Megalodon abissal emite luz própria e causa dano de escuridão." },
-            { name: "Trovão", desc: "Versão que causa dano elétrico em área ao redor." },
-            { name: "Caveira", desc: "Megalodon caveira é coberto por ossos e muito mais agressivo." }
-        ],
-        brutalFight: {
-            category: "Colosso",
-            role: "Causa dano e tanka muito, mas lento fora da água",
-            size: "Ocupa 4 espaços",
-            attributes: {
-                agi: 4,
-                for: 5,
-                int: 1,
-                set: 5,
-                vig: 5
-            },
-            stats: {
-                hp: 500,
-                armor: 150,
-                beastHp: 8,
-                beastStr: 7
-            },
-            skills: [
-                { 
-                    name: "Mordida do Abismo", 
-                    position: "Frente 1,2,3",
-                    reach: "Alcança 3 da frente",
-                    hit: "3d20+18",
-                    desc: "Causa 10d12+10d6 pontos de dano. Se acertar, o alvo sangra por 3 rodadas."
-                },
-                { 
-                    name: "Redemoinho", 
-                    position: "Meio 1,2,3",
-                    reach: "Área 3x3",
-                    hit: "3d20+15",
-                    desc: "Causa 6d10+6d8 em área e puxa alvos 1 quadrado em direção ao Megalodon."
-                },
-                { 
-                    name: "Investida do Colosso", 
-                    position: "Qualquer",
-                    reach: "Linha reta até 4 quadrados",
-                    hit: "3d20+12",
-                    desc: "Move-se em linha reta causando 8d10+8d8 a todos no caminho."
-                },
-                { 
-                    name: "Presença do Rei", 
-                    position: "Qualquer",
-                    reach: "Todos os inimigos",
-                    hit: "Auto",
-                    desc: "Intimida inimigos, fazendo com que sofram -2 em acerto por 3 rodadas."
-                }
-            ],
-            beastPassive: {
-                name: "Dominância Marinha",
-                desc: "Em campos com água, Megalodon ignora penalidades de terreno e ganha +2 em esquiva contra ataques à distância."
-            }
-        }
-    },
-    {
-        id: 5,
-        name: "Pteranodonte",
-        title: "Senhor dos Céus",
-        image: "../imagens/icon_ptero.png",
-        thumbnail: "../imagens/icon_ptero.png",
-        category: "Dinossauro Voador",
-        biome: ["Montanha", "Pradaria", "Deserto"],
-        environment: "land",
-        height: "3m",
-        length: "8m",
-        weight: "30 kg",
-        diet: "Carnívoro",
-        behavior: "Neutro",
-        difficulty: "Fácil",
-        habitat: "Montanhas, Pradarias, Desertos",
-        attributes: {
-            agi: 5,
-            for: 2,
-            int: 2,
-            set: 2,
-            vig: 2
-        },
-        stats: {
-            hp: 100,
-            armor: 30,
-            beastHp: 1,
-            beastStr: 1
-        },
-        locomotion: "Voador",
-        bonuses: [
-            { action: "Voar", bonus: "+20" },
-            { action: "Morder", bonus: "+8" },
-            { action: "Garra", bonus: "+10" },
-            { action: "Percepção", bonus: "+15" }
-        ],
-        attacks: [
-            { 
-                name: "Ataque Aéreo", 
-                hit: "3d20+10", 
-                damage: "Causa 3d10+2d6 pontos de dano",
-                passive: "Nulo"
-            },
-            { 
-                name: "Garras de Predador", 
-                hit: "3d20+10", 
-                damage: "Causa 2d12+3d6 pontos de dano",
-                passive: "Se acertar uma criatura menor, pode erguê-la no ar."
-            }
-        ],
-        skills: [
-            { 
-                name: "Voo Rápido", 
-                desc: "Pode voar a grande velocidade, escapando de perigos ou perseguindo presas."
-            },
-            { 
-                name: "Visão Aguçada", 
-                desc: "Vê a 1km de distância com clareza, detectando movimento mínimo."
-            }
-        ],
-        passive: {
-            name: "Mestre dos Céus",
-            desc: "Não sofre ataques de oportunidade ao entrar ou sair de alcance de inimigos terrestres."
-        },
-        elements: [
-            { name: "Vento", desc: "Pteranodonte de vento é mais rápido e pode criar rajadas de vento." },
-            { name: "Raio", desc: "Versão que causa dano elétrico com seus ataques." },
-            { name: "Sombra", desc: "Quase invisível no céu noturno, perfeito para emboscadas." }
-        ],
-        brutalFight: {
-            category: "Atirador",
-            role: "Causa dano à distância",
-            size: "Ocupa 1 espaço",
-            attributes: {
-                agi: 5,
-                for: 2,
-                int: 2,
-                set: 2,
-                vig: 2
-            },
-            stats: {
-                hp: 100,
-                armor: 30,
-                beastHp: 1,
-                beastStr: 1
-            },
-            skills: [
-                { 
-                    name: "Ataque Picado", 
-                    position: "Qualquer",
-                    reach: "Qualquer inimigo no campo",
-                    hit: "3d20+12",
-                    desc: "Causa 4d10+4d6 pontos de dano. Pode ser usado de qualquer posição."
-                },
-                { 
-                    name: "Sobrevoar", 
-                    position: "Qualquer",
-                    reach: "Move-se por todo o campo",
-                    hit: "Auto",
-                    desc: "Move-se para qualquer quadrado do campo sem provocar ataques de oportunidade."
-                },
-                { 
-                    name: "Chamado do Bando", 
-                    position: "Qualquer",
-                    reach: "Todos os aliados voadores",
-                    hit: "Auto",
-                    desc: "Concede +2 em acerto e +1 em dano para todos os aliados voadores por 3 rodadas."
-                },
-                { 
-                    name: "Golpe Duplo", 
-                    position: "Frente 1,2",
-                    reach: "Alcança 2 da frente",
-                    hit: "2x 3d20+8",
-                    desc: "Dois ataques rápidos que causam 2d12+2d6 pontos de dano cada."
-                }
-            ],
-            beastPassive: {
-                name: "Domínio Aéreo",
-                desc: "Ignora terreno difícil e pode atacar de qualquer posição, mas sofre +50% de dano de ataques à distância."
-            }
-        }
-    },
-    {
-        id: 6,
-        name: "Tricerátops",
-        title: "Defensor Blindado",
-        image: "../imagens/icon_trike.png",
-        thumbnail: "../imagens/icon_trike.png",
-        category: "Dinossauro",
-        biome: ["Campos", "Floresta", "Pradaria"],
-        environment: "land",
-        height: "3.5m",
-        length: "8m",
-        weight: "6 ton",
-        diet: "Herbívoro",
-        behavior: "Passivo",
-        difficulty: "Fácil",
-        habitat: "Campos, Florestas, Pradarias",
-        attributes: {
-            agi: 2,
-            for: 4,
-            int: 2,
-            set: 5,
-            vig: 4
-        },
-        stats: {
-            hp: 300,
-            armor: 180,
-            beastHp: 4,
-            beastStr: 3
-        },
-        locomotion: "Terrestre",
-        bonuses: [
-            { action: "Defender", bonus: "+20" },
-            { action: "Investida", bonus: "+12" },
-            { action: "Chifrada", bonus: "+15" },
-            { action: "Resistência", bonus: "+18" }
-        ],
-        attacks: [
-            { 
-                name: "Investida com Chifres", 
-                hit: "3d20+15", 
-                damage: "Causa 6d10+4d8 pontos de dano",
-                passive: "Nulo"
-            },
-            { 
-                name: "Golpe de Cabeça", 
-                hit: "3d20+12", 
-                damage: "Causa 5d12+3d8 pontos de dano",
-                passive: "Se defender no mesmo turno, o próximo ataque causa dano dobrado."
-            }
-        ],
-        skills: [
-            { 
-                name: "Escudo Vivo", 
-                desc: "Pode proteger aliados menores atrás dele, concedendo +5 de armadura para eles."
-            },
-            { 
-                name: "Pele Dura", 
-                desc: "Reduz dano recebido de ataques físicos em 20%."
-            }
-        ],
-        passive: {
-            name: "Defensor Nativo",
-            desc: "Ganha +2 em todos os testes de resistência quando defendendo um território ou aliados."
-        },
-        elements: [
-            { name: "Terra", desc: "Tricerátops de terra é mais resistente e pode criar barreiras de pedra." },
-            { name: "Hypo", desc: "Versão anciã com chifres enormes e armadura ainda mais espessa." },
-            { name: "Caveira", desc: "Tricerátops caveira é agressivo e seus chifres causam sangramento severo." }
-        ],
-        brutalFight: {
-            category: "Vanguardista",
-            role: "Tanque que protege aliados",
-            size: "Ocupa 3 espaços",
-            attributes: {
-                agi: 2,
-                for: 4,
-                int: 2,
-                set: 5,
-                vig: 4
-            },
-            stats: {
-                hp: 300,
-                armor: 180,
-                beastHp: 4,
-                beastStr: 3
-            },
-            skills: [
-                { 
-                    name: "Muro de Escudos", 
-                    position: "Frente 1,2",
-                    reach: "Aliados atrás",
-                    hit: "Auto",
-                    desc: "Protege aliados atrás dele, concedendo +10 de armadura por 3 rodadas."
-                },
-                { 
-                    name: "Investida Protetora", 
-                    position: "Frente 1,2,3",
-                    reach: "Alcança 3 da frente",
-                    hit: "3d20+15",
-                    desc: "Causa 6d10+4d8 pontos de dano e empurra inimigos 2 quadrados para trás."
-                },
-                { 
-                    name: "Grito de Desafio", 
-                    position: "Qualquer",
-                    reach: "Todos os inimigos",
-                    hit: "Auto",
-                    desc: "Força inimigos a atacá-lo por 2 rodadas, reduzindo dano que ele recebe em 30%."
-                },
-                { 
-                    name: "Contra-ataque", 
-                    position: "Qualquer",
-                    reach: "Reação a ataque",
-                    hit: "3d20+18",
-                    desc: "Reação quando atacado. Causa 5d12+5d8 ao atacante."
-                }
-            ],
-            beastPassive: {
-                name: "Bastião Inabalável",
-                desc: "Não pode ser movido contra sua vontade e reduz dano de área em 50% para aliados atrás dele."
-            }
-        }
-    },
-    {
-        id: 7,
-        name: "Dragão Caveira",
-        title: "Lorde das Sombras",
-        image: "../imagens/icon_dragao_caveira.png",
-        thumbnail: "../imagens/icon_dragao_caveira.png",
-        category: "Criatura Mítica",
-        biome: ["Campos de Ossos", "Floresta Sombria", "Cavernas Sombrias"],
-        environment: "skull",
-        height: "8m",
-        length: "20m",
-        weight: "15 ton",
-        diet: "Carnívoro",
-        behavior: "Maldoso",
-        difficulty: "Extremo",
-        habitat: "Reinos das Sombras",
-        attributes: {
-            agi: 4,
-            for: 6,
-            int: 5,
-            set: 6,
-            vig: 6
-        },
-        stats: {
-            hp: 600,
-            armor: 200,
-            beastHp: 10,
-            beastStr: 8
-        },
-        locomotion: "Voador/Terrestre",
-        bonuses: [
-            { action: "Sopro", bonus: "+20" },
-            { action: "Morder", bonus: "+18" },
-            { action: "Intimidar", bonus: "+15" },
-            { action: "Magia", bonus: "+12" }
-        ],
-        attacks: [
-            { 
-                name: "Sopro da Morte", 
-                hit: "3d20+20", 
-                damage: "Causa 12d12+10d6 pontos de dano de sombra",
-                passive: "Drena 10% da vida máxima do alvo a cada turno"
-            },
-            { 
-                name: "Garras das Sombras", 
-                hit: "3d20+18", 
-                damage: "Causa 8d10+8d8 pontos de dano",
-                passive: "Ignora 50% da armadura do alvo"
-            }
-        ],
-        skills: [
-            { 
-                name: "Invocação de Ossos", 
-                desc: "Invoca esqueletos de criaturas menores para lutar ao seu lado."
-            },
-            { 
-                name: "Aura de Medo", 
-                desc: "Causa terror em todas as criaturas num raio de 50m, reduzindo suas estatísticas em 20%."
-            }
-        ],
-        passive: {
-            name: "Lorde das Trevas",
-            desc: "Imune a efeitos de medo e controle mental. Regenera 5% de vida a cada turno à noite."
-        },
-        elements: [
-            { name: "Sombra Pura", desc: "Dragão completamente feito de sombras, quase intangível." },
-            { name: "Fogo Negro", desc: "Sopro de fogo negro que queima almas além de corpos." },
-            { name: "Gelo Sombrio", desc: "Gelo que congela até a alma dos inimigos." }
-        ],
-        brutalFight: {
-            category: "Boss",
-            role: "Causa dano massivo em área",
-            size: "Ocupa 4 espaços",
-            attributes: {
-                agi: 4,
-                for: 6,
-                int: 5,
-                set: 6,
-                vig: 6
-            },
-            stats: {
-                hp: 600,
-                armor: 200,
-                beastHp: 10,
-                beastStr: 8
-            },
-            skills: [
-                { 
-                    name: "Apocalipse de Sombras", 
-                    position: "Qualquer",
-                    reach: "Todo o campo",
-                    hit: "3d20+25",
-                    desc: "Causa 15d12+15d6 pontos de dano em área. Inimigos afetados sofrem penalidades por 5 rodadas."
-                },
-                { 
-                    name: "Exército dos Mortos", 
-                    position: "Qualquer",
-                    reach: "Invoca 4 esqueletos",
-                    hit: "Auto",
-                    desc: "Invoca 4 esqueletos que ocupam espaços vazios e atacam inimigos próximos."
-                },
-                { 
-                    name: "Voo da Morte", 
-                    position: "Qualquer",
-                    reach: "Move-se por todo o campo",
-                    hit: "Auto",
-                    desc: "Move-se para qualquer espaço, causando 5d10+5d8 a todos no caminho."
-                },
-                { 
-                    name: "Olhar da Morte", 
-                    position: "Qualquer",
-                    reach: "3 inimigos aleatórios",
-                    hit: "3d20+20",
-                    desc: "Causa dano direto à vida máxima de 3 inimigos, ignorando armadura."
-                }
-            ],
-            beastPassive: {
-                name: "Domínio do Vácuo",
-                desc: "Quando em campo, todos os inimigos sofram -2 em todos os testes e o Dragão regenera 10% de vida a cada 2 rodadas."
-            }
-        },
-        id: 6,
         name: "Acrocantossauro",
         title: "O Tanque de Dentes",
         image: "../imagens/icon_acrocantossauro.png",
         thumbnail: "../imagens/icon_acrocantossauro.png",
         category: "Dinossauro",
-        biome: ["Taiga", "Montanha", "Floresta vermelha"],
-        environment: "land",
+        biome: ["Taiga", "Montanha", "Floresta Vermelha"],
+        environment: "land", // Mantido "land"
         height: "6m",
         length: "12m",
         weight: "8 ton",
@@ -1001,60 +513,58 @@ const creaturesData = [
             { action: "Fortitude", bonus: "+25" },
             { action: "Contra-ataque", bonus: "+20" },
             { action: "Pancada", bonus: "+20" },
-            { action: "Força-bruta", bonus: "+20" },
+            { action: "Força Bruta", bonus: "+20" }, // Corrigido
             { action: "Morder", bonus: "+20" },
             { action: "Intimidar", bonus: "+20" },
             { action: "Rugir", bonus: "+20" },
             { action: "Cheirar", bonus: "+20" },
             { action: "Luta", bonus: "+15" },
             { action: "Agarrar", bonus: "+15" },
-            { action: "percepção", bonus: "+10" },
+            { action: "Percepção", bonus: "+10" }, // Corrigido
             { action: "Esquiva", bonus: "+10" },
             { action: "Vontade", bonus: "+10" },
             { action: "Rastrear", bonus: "+5" },
             { action: "Furtividade", bonus: "+5" },
             { action: "Correr", bonus: "+5" },
             { action: "Pensar", bonus: "+5" },
-           
-
-
+            
         ],
         attacks: [
             { 
                 name: "Investida com Dentes", 
                 hit: "3d20+15", 
                 damage: "Causa 8d10+35 pontos de dano",
-                passive: "Causa uma repulsão no alvo, o empurrando para trás, em 3 metros. Após acertar ganha +5 no p´roximo bloqueio."
+                passive: "Causa uma repulsão no alvo, empurrando-o para trás em 3 metros. Após acertar, ganha +5 no próximo bloqueio." // Corrigido
             },
             { 
                 name: "Golpe de Corpo", 
                 hit: "3d20+15", 
                 damage: "Causa 9d12+6d8 pontos de dano",
-                passive: "Causa repulsão em todos os inimigos atingidos, fazendo com que eles fiquem lentos e com Debuff de -1 Agi e For."
+                passive: "Causa repulsão em todos os inimigos atingidos, fazendo com que eles fiquem Lentos e com Debuff de -1 Agi e For." // Corrigido
             }
         ],
         skills: [
             { 
                 name: "Grito de Colosso", 
-                desc: "Acro pode gastar 1 Rodada gritando, acumulando todo o dano em uma barra interna e reduzindo o dano pela Metade, cada acerto diferente concede um Acumulo adicional na Barra de Frenesi. Enquanto grita, recebe +1 reação de bloqueio além de +30 Armadura temporária enquanto gritar."
+                desc: "O Acro pode gastar 1 rodada gritando, acumulando todo o dano em uma barra interna e reduzindo o dano pela metade. Cada acerto diferente concede um acúmulo adicional na Barra de Frenesi. Enquanto grita, recebe +1 Reação de Bloqueio, além de +30 de Armadura temporária." // Corrigido
             },
             { 
                 name: "Grito de Fera", 
-                desc: "Acro pode gastar 1 Rodada gritando, buffando aliados por toda a cena com o mesmo acumulo de Frenesi, além de causar lentidão e -2 Agi contra inimigos. Dt Intimidação-Vontade. Caso fracassem, andam até o grito atordoados por 1 turno."
+                desc: "O Acro pode gastar 1 rodada gritando, buffando aliados por toda a Cena com o mesmo acúmulo de Frenesi, além de causar Lentidão e -2 Agi contra inimigos. DT Intimidação-Vontade. Caso fracassem, andam atordoados até o grito por 1 turno." // Corrigido
             }
         ],
         passive: {
             name: "Adrenalina de Frenesi",
-            desc: "Sempre que um aliado ou o próprio recebe o efetio Frenesi, ganha +1 em quaqluer teste de bloqueio ou Força, acumulando com os estoques de seus rugidos, uma vez gastos, o bônus zera novamente."
+            desc: "Sempre que um aliado ou o próprio recebe o efeito Frenesi, ganha +1 em qualquer teste de Bloqueio ou Força, acumulando com os estoques de seus rugidos. Uma vez gastos, o bônus zera novamente." // Corrigido
         },
         elements: [
-            { name: "Fogo", desc: "Acrocantossauros fica em chamas enquanto ruge, caso chegue a 8 estoques de Frenesi, pode liverar uma mordida de fogo especial em grito." },
-            { name: "Hypo", desc: "Acrocantossauros ficam em uma versão ancião, ganhando +70pv, +70 armadura e reduz todo o dano 2,5x em seu grito." },
-            { name: "Elemental", desc: "Acrocantossauro fica corrompido de Elemento, virando um pequeno Chefe, com +1D em testes de For,Vig, +5 em todas as categorias de testes e seus ataques causam o efeito, repulsão, fraco em -1D em testes e -5 em bônus. Quando atinge Frenesi, explode em energia corrompida causando 9d8+20 pontos de dano Verdadeiro." }
+            { name: "Fogo", desc: "Acrocantossauro fica em chamas enquanto ruge. Caso chegue a 8 estoques de Frenesi, pode liberar uma mordida de fogo especial em grito." }, // Corrigido
+            { name: "Hipo", desc: "Acrocantossauro fica em uma versão anciã, ganhando +70 PV, +70 de Armadura e reduz todo o dano 2,5x em seu grito." }, // Corrigido
+            { name: "Elemental", desc: "Acrocantossauro fica corrompido de Elemento, virando um pequeno Chefe, com +1D em testes de For e Vig, +5 em todas as categorias de testes e seus ataques causam o efeito Repulsão, Fraco em -1D em testes e -5 em bônus. Quando atinge Frenesi, explode em energia corrompida, causando 9d8+20 pontos de dano Verdadeiro." } // Corrigido
         ],
         brutalFight: {
             category: "Vanguardista",
-            role: "Tanque que protege aliados",
+            role: "Tanque que protege aliados.", // Corrigido
             size: "Ocupa 2 espaços",
             attributes: {
                 agi: 2,
@@ -1072,14 +582,14 @@ const creaturesData = [
             skills: [
                 { 
                     name: "Muro de Corpo", 
-                    position: "Qualquer Uma",
+                    position: "Qualquer", // Corrigido
                     reach: "Qualquer Aliado",
                     hit: "Auto",
-                    desc: "Protege um aliado, recebendo o efeito Protegido, o alvo recebe +1D de vigor e +5 em testes de Vig, concedendo +10 de armadura até o seu limite Pessoal."
+                    desc: "Protege um aliado, recebendo o efeito Protegido. O alvo recebe +1D de Vigor e +5 em testes de Vig, concedendo +10 de Armadura até o seu limite Pessoal." // Corrigido
                 },
                 { 
                     name: "Investida Protetora", 
-                    position: "Atrás 3,4",
+                    position: "Atrás 3, 4",
                     reach: "Alcança 2 da frente juntos",
                     hit: "3d20+15",
                     desc: "Causa 8d10+4d8 pontos de dano e empurra inimigos 2 espaços para trás."
@@ -1089,11 +599,11 @@ const creaturesData = [
                     position: "Qualquer",
                     reach: "Alcança os 4",
                     hit: "Auto",
-                    desc: "Força inimigos a atacá-lo por 1 rodada, reduzindo dano que ele recebe em 50%. Pórem o Acro perde a Rodada tetando bloquear de forma automática na retomada de Reação Extra."
+                    desc: "Força inimigos a atacá-lo por 1 rodada, reduzindo o dano que ele recebe em 50%. Porém o Acro perde a rodada, tentando bloquear de forma automática na retomada de Reação Extra." // Corrigido
                 },
                 { 
                     name: "Mordida", 
-                    position: "Atrás 3,4",
+                    position: "Atrás 3, 4",
                     reach: "Alcança 1 da Frente",
                     hit: "3d20+20",
                     desc: "Causa uma Mordida de 8d10+35 de dano, que empurra o alvo 1 espaço para trás."
@@ -1101,13 +611,137 @@ const creaturesData = [
             ],
             beastPassive: {
                 name: "Frenesi de Guerra",
-                desc: "Quando Acrocantossauro entra em Campo, ele grita fazendo o próximo turno as cartas ficarem com o efeito de Frenesi, cartas que morrerem no turno com o efeito, atacam mais uma vez antes de morrer."
+                desc: "Quando o Acrocantossauro entra em Campo, ele grita, fazendo com que no próximo turno as cartas fiquem com o efeito de Frenesi. Cartas que morrerem no turno com o efeito, atacam mais uma vez antes de morrer." // Corrigido
             }
         }
     },
-    
-    
-    
+      {
+        id: 5,
+        name: "Dodô",
+        title: "A Super Galinha",
+        image: "../imagens/icon_dodo.png",
+        thumbnail: "../imagens/icon_dodo.png",
+        category: "Dinossauro",
+        biome: ["Bosque", "Campos", "Floresta Vermelha", "Planalto","Montanha","Taiga","Bosque","Praia","Deserto","Tundra","Pântano"],
+        environment: "land", // Mantido "land"
+        height: "1m",
+        length: "4m",
+        weight: "30 kg",
+        diet: "Herbívoro",
+        behavior: "passivo",
+        difficulty: "Iniciante",
+        habitat: "Quase todas as regiões do Ark.",
+        attributes: {
+            agi: 1,
+            for: 1,
+            int: 1,
+            set: 1,
+            vig: 1
+        },
+        stats: {
+            hp: 15,
+            armor: 10,
+            beastHp: 1,
+            beastStr: 0
+        },
+        locomotion: "Terrestre",
+        bonuses: [
+            { action: "Acasalar", bonus: "+20" },
+            { action: "Fortitude", bonus: "+5" },
+            { action: "Comer", bonus: "+5" },
+            { action: "Dormir", bonus: "+5" },
+            { action: "Cantar", bonus: "+5" },
+            { action: "Incubar", bonus: "+5" },
+            { action: "Rastrear", bonus: "+5" },
+            { action: "-5 Correr", bonus: "+5" },
+           
+        ],
+        attacks: [
+            { 
+                name: "Bico", 
+                hit: "1d20", 
+                damage: "Causa 1d8",
+                passive: "Nula"
+            },
+            { 
+                name: "Garra", 
+                hit: "1d20", 
+                damage: "Causa 2d4",
+                passive: "Nula"
+            }
+        ],
+        skills: [
+            { 
+                name: "Amizade em Grupo", 
+                desc: "Quando estão juntos, Dodôs se mantém mais confiantes e ganham um comportamneto territorial " // Corrigido
+            },
+            { 
+                name: "Salto Predatório", 
+                desc: "Pode saltar sobre obstáculos baixos e atacar do ar com vantagem de +5 contra alvos menores, no seu primeiro ataque. Além de Decorar um de seus bônus na luta da Cena e desarmar o alvo, ficando imobilizado até sair do Raptor." // Corrigido
+            }
+        ],
+        passive: {
+            name: "Pesadelo em Grupo",
+            desc: "Velociraptors em bando são muito mais perigosos do que separados. Quando estão em grupo, conseguem trocar informações de forma tática e precisa, com seus rugidos de comunicação, fornecendo +10 em Percepção para um aliado próximo que ouviu e entendeu seu chamado ou grunhido de Alerta." // Corrigido
+        },
+        elements: [
+            { name: "Morte", desc: "Velociraptors de Morte são muito mais Mortais, causando +2D de dano em suas garras e +1D de Sangramento." }, // Corrigido
+            { name: "Fogo", desc: "Velocirraptores de Fogo causam dano de fogo em qualquer ataque físico, além de deixar rastros em seus saltos." },
+            { name: "Caveira", desc: "Velocirraptores da Caveira são muito mais Mortais, ganham +30 PV, +2D de dano em todos os ataques físicos e +5 Luta, +5 Contra-ataque. Todos esses Buffs são amplamente ativos em Cenas com Humanos como presa." } // Corrigido
+        ],
+        brutalFight: {
+            category: "Assassino",
+            role: "Causa dano alto, mas é frágil.", // Corrigido
+            size: "Ocupa 1 espaço",
+            attributes: {
+                agi: 4,
+                for: 2,
+                int: 4,
+                set: 3,
+                vig: 2
+            },
+            stats: {
+                hp: 120,
+                armor: 50,
+                beastHp: 2,
+                beastStr: 3
+            },
+            skills: [
+                { 
+                    name: "Ataque Furtivo", 
+                    position: "Qualquer",
+                    reach: "Auto",
+                    hit: "Auto",
+                    desc: "Ganha o efeito Furtivo, além de causar +6d6 pontos de dano e ter alcance de 4 espaços na Mordida." // Corrigido
+                },
+                { 
+                    name: "Salto Mortal", 
+                    position: "Frente 1, 2",
+                    reach: "Alcança 2 da frente",
+                    hit: "3d20+15",
+                    desc: "Causa 6d8+3d6 pontos de dano e avança 1 para frente."
+                },
+                { 
+                    name: "Chamado do Bando", 
+                    position: "Qualquer",
+                    reach: "Todos os aliados",
+                    hit: "Auto",
+                    desc: "Concede +5 em Iniciativa para toda a equipe por 1 rodada, além de Marcar um alvo em qualquer espaço, aplicando o efeito Marcado."
+                },
+                { 
+                    name: "Golpe Duplo", 
+                    position: "Frente 1, 2",
+                    reach: "Alcança 3 da frente",
+                    hit: "3d20+15",
+                    desc: "Dois ataques rápidos que causam 2d12+3d6 pontos de dano cada."
+                }
+            ],
+            beastPassive: {
+                name: "Caçador em Grupo",
+                desc: "Quando um Raptor entra em Campo, faz com que todas as cartas parentes da família Raptor ganhem +1 de poder de Ataque." // Corrigido
+            }
+        }
+    },
 ];
 
 // Biomes data with image paths (COMPLETO com Pântano adicionado)

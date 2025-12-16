@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Criar Ficha</title>
 
-  
   <!-- CSS e Ícone -->
   <link rel="stylesheet" href="../css/jogadores.css" />
   <link rel="icon" href="../imagens/Icone_ark_v4.png" type="image/png" />
@@ -31,19 +30,19 @@
 
     <div class="nav-middle">
       <div class="nav-links">
-        <a href="../index.html"          class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home  icon"></i><span>Início</span></a>
-        <a href="index_mapas.html"       class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map   icon"></i><span>Mapas</span></a>
-        <a href="index_história.html"    class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book  icon"></i><span>Lore</span></a>
-        <a href="index_regras.html"      class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
-        <a href="index_bloqueado.html"   class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
-        <a href="index_ciencia.html"     class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna   icon"></i><span>Lab</span></a>
+        <a href="../index.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-home icon"></i><span>Início</span></a>
+        <a href="index_mapas.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-map icon"></i><span>Mapas</span></a>
+        <a href="index_história.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-book icon"></i><span>Lore</span></a>
+        <a href="index_regras.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-gavel icon"></i><span>Regras</span></a>
+        <a href="index_bloqueado.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dragon icon"></i><span>Feras</span></a>
+        <a href="index_ciencia.html" class="sidebar-item"><span class="highlight-bar"></span><i class="fas fa-dna icon"></i><span>Lab</span></a>
       </div>
     </div>
 
     <div class="nav-right">
       <div class="dado-container">
         <button id="openMenu" class="glow-on-hover">Jogar Dados</button>
-        <img   src="../imagens/dado_fantasma.webp" alt="Dado" class="dado" />
+        <img src="../imagens/dado_fantasma.webp" alt="Dado" class="dado" />
         <a href="index_login.html" class="new-icon-link">
           <img src="../imagens/Login_v2.jpg" alt="Login" class="new-icon" />
         </a>
@@ -72,175 +71,250 @@
     </div>
   </nav>
 
- <div class="titulo_principal">
-  <h1 class="titulo_efeito">Ficha de Personagem</h1>
-</div>
-
-<div class="level-bar-container">
-  <div class="level-bar-fill" id="levelBarFill"></div>
-</div>
-
-<div class="form-container">
-  <h2 class="h2-front">Crie Seu Personagem</h2>
-  <form id="characterForm">
-    <label for="name">Nome:</label>
-    <input type="text" id="name" placeholder="Nome do personagem" required />
-
-    <label for="age">Idade:</label>
-    <input type="number" id="age" placeholder="Idade do personagem" min="0" required />
-
-    <label for="photo">Foto:</label>
-    <input type="file" id="photo" accept="image/*" />
-    <img id="preview" src="#" alt="Prévia da Imagem" style="display:none;" />
-
-    <label for="level">Nível:</label>
-    <input type="number" id="level" placeholder="Nível" min="1" value="1" max="100" required />
-
-    <label for="lore">Lore - História:</label>
-    <textarea id="lore" class="scrollable" placeholder="Descreva a história, personalidade e motivações."></textarea>
-
-    <h3 class="decorated-title">Atributos Principais:</h3>
-    <p id="attributePointsInfo" class="info-display">
-      Pontos disponíveis: <span id="availableAttributePoints">0</span>
-    </p>
-
-    <div class="attributes">
-      <div class="attribute">
-        <span>Agi</span>
-        <button type="button" onclick="changeAttribute('agi', 1)">+</button>
-        <span id="agiValue">1</span>
-        <button type="button" onclick="changeAttribute('agi', -1)">-</button>
-      </div>
-      <div class="attribute">
-        <span>For</span>
-        <button type="button" onclick="changeAttribute('for', 1)">+</button>
-        <span id="forValue">1</span>
-        <button type="button" onclick="changeAttribute('for', -1)">-</button>
-      </div>
-      <div class="attribute">
-        <span>Int</span>
-        <button type="button" onclick="changeAttribute('int', 1)">+</button>
-        <span id="intValue">1</span>
-        <button type="button" onclick="changeAttribute('int', -1)">-</button>
-      </div>
-      <div class="attribute">
-        <span>Set</span>
-        <button type="button" onclick="changeAttribute('set', 1)">+</button>
-        <span id="setValue">1</span>
-        <button type="button" onclick="changeAttribute('set', -1)">-</button>
-      </div>
-      <div class="attribute">
-        <span>Vig</span>
-        <button type="button" onclick="changeAttribute('vig', 1)">+</button>
-        <span id="vigValue">1</span>
-        <button type="button" onclick="changeAttribute('vig', -1)">-</button>
-      </div>
-    </div>
-
-    <label for="class1">Classe Primitiva 1:</label>
-    <select id="class1" onchange="resetClassBonus('class1')">
-        <option value="">Selecione uma classe</option>
-        <option value="guerreiro">Guerreiro</option>
-        <option value="atirador">Atirador</option>
-        <option value="forjador">Forjador</option>
-        <option value="arcano">Arcano</option>
-        <option value="cientista">Cientista</option>
-        <option value="sobrevivente">Sobrevivente</option>
-        <option value="construtor">Construtor</option>
-        <option value="medico">Médico</option>
-    </select>
-    **<button type="button" id="applyClass1Btn" onclick="applyClassBonus('class1')">Aplicar Bônus Classe 1</button>**
-
-
-    <label for="class2">Classe Primitiva 2:</label>
-    <select id="class2" onchange="resetClassBonus('class2')">
-        <option value="">Selecione uma classe</option>
-        <option value="guerreiro">Guerreiro</option>
-        <option value="atirador">Atirador</option>
-        <option value="forjador">Forjador</option>
-        <option value="arcano">Arcano</option>
-        <option value="cientista">Cientista</option>
-        <option value="sobrevivente">Sobrevivente</option>
-        <option value="construtor">Construtor</option>
-        <option value="medico">Médico</option>
-    </select>
-    **<button type="button" id="applyClass2Btn" onclick="applyClassBonus('class2')">Aplicar Bônus Classe 2</button>**
-
-    <label for="combatClass">Classe de Combate:</label>
-    <select id="combatClass">
-      <option value="">Selecione</option>
-      <option value="duelista">Duelista</option>
-      <option value="guerreiro">Guerreiro</option>
-      <option value="mago">Mago</option>
-      <option value="suporte_endiabrado">Suporte Endiabrado</option>
-      <option value="vanguardista">Vanguardista</option>
-      <option value="adestrador">Adestrador</option>
-      <option value="assassino">Assassino</option>
-      <option value="suporte">Suporte</option>
-      <option value="atirador">Atirador</option>
-      <option value="colosso">Colosso</option>
-    </select>
-
-    <label for="mutation">Mutação de Personagem:</label>
-    <textarea
-      id="mutation"
-      class="scrollable"
-      placeholder="Descreva a mutação/habilidade especial."
-    ></textarea>
-
-    <h3 class="decorated-title">Bônus em Ações:</h3>
-    <p class="info-display">
-      Slots: <span id="totalActionSlots">0</span> &nbsp;(Usados
-      <span id="usedActionSlots">0</span> / Restantes <span id="remainingActionSlots">0</span>)
-    </p>
-    <div id="actionBonusContainer" class="action-bonus-container"></div>
-    <button type="button" onclick="addActionBonus()">
-      Adicionar Bônus de Ação
-    </button>
-
-    <h3 class="section-title">Bônus de Ações Aprendidos</h3>
-    <div id="learnedActionBonusContainer" class="action-bonus-list"></div>
-    <button type="button" class="add-learned-action-btn" onclick="addLearnedActionBonus()">
-      Adicionar Bônus Aprendido
-    </button>
-
-    <label for="inventory">Inventário:</label>
-    <textarea
-      id="inventory"
-      class="scrollable"
-      placeholder="Descreva seus itens, cosméticos, recursos e outros pertences."
-    ></textarea>
-
-    <section class="session-bloco" id="selected-ritual-pact-section">
-    <h2>Rituais e Pactos</h2>
-    <div id="selectedRitualPactDisplay" class="selected-item-display">
-        <p>Nenhum ritual ou pacto selecionado.</p>
-    </div>
-    <div class="button-container">
-    <a href="../index/index_poderes.html" class="action-button">
-        Veja os Rituais e pactos
-    </a>
+  <div class="titulo_principal">
+    <h1 class="titulo_efeito">Ficha de Personagem</h1>
   </div>
-    </section>
 
-    <div class="centered-button-container">
-       <a href="../index/index_status.html" class="icon-button"></a>
+  <div class="level-bar-container">
+    <div class="level-bar-fill" id="levelBarFill"></div>
+  </div>
+
+  <div class="form-container">
+    <h2 class="h2-front">Crie Seu Personagem</h2>
+    <form id="characterForm">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" placeholder="Nome do personagem" required />
+
+      <label for="age">Idade:</label>
+      <input type="number" id="age" placeholder="Idade do personagem" min="0" required />
+
+      <label for="photo">Foto:</label>
+      <input type="file" id="photo" accept="image/*" />
+      <img id="preview" src="#" alt="Prévia da Imagem" style="display:none;" />
+
+      <label for="level">Nível:</label>
+      <input type="number" id="level" placeholder="Nível" min="1" value="1" max="100" required />
+
+      <label for="lore">Lore - História:</label>
+      <textarea id="lore" class="scrollable" placeholder="Descreva a história, personalidade e motivações."></textarea>
+
+      <h3 class="decorated-title">Atributos Principais:</h3>
+      <p id="attributePointsInfo" class="info-display">
+        Pontos disponíveis: <span id="availableAttributePoints">0</span>
+      </p>
+
+      <div class="attributes">
+        <div class="attribute">
+          <span>Agi</span>
+          <button type="button" onclick="changeAttribute('agi', 1)">+</button>
+          <span id="agiValue">1</span>
+          <button type="button" onclick="changeAttribute('agi', -1)">-</button>
+        </div>
+        <div class="attribute">
+          <span>For</span>
+          <button type="button" onclick="changeAttribute('for', 1)">+</button>
+          <span id="forValue">1</span>
+          <button type="button" onclick="changeAttribute('for', -1)">-</button>
+        </div>
+        <div class="attribute">
+          <span>Int</span>
+          <button type="button" onclick="changeAttribute('int', 1)">+</button>
+          <span id="intValue">1</span>
+          <button type="button" onclick="changeAttribute('int', -1)">-</button>
+        </div>
+        <div class="attribute">
+          <span>Set</span>
+          <button type="button" onclick="changeAttribute('set', 1)">+</button>
+          <span id="setValue">1</span>
+          <button type="button" onclick="changeAttribute('set', -1)">-</button>
+        </div>
+        <div class="attribute">
+          <span>Vig</span>
+          <button type="button" onclick="changeAttribute('vig', 1)">+</button>
+          <span id="vigValue">1</span>
+          <button type="button" onclick="changeAttribute('vig', -1)">-</button>
+        </div>
+      </div>
+
+      <label for="class1">Classe Primitiva 1:</label>
+      <select id="class1" onchange="resetClassBonus('class1')">
+        <option value="">Selecione uma classe</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="atirador">Atirador</option>
+        <option value="forjador">Forjador</option>
+        <option value="arcano">Arcano</option>
+        <option value="cientista">Cientista</option>
+        <option value="sobrevivente">Sobrevivente</option>
+        <option value="construtor">Construtor</option>
+        <option value="medico">Médico</option>
+      </select>
+      <button type="button" id="applyClass1Btn" onclick="applyClassBonus('class1')">Aplicar Bônus Classe 1</button>
+
+      <label for="class2">Classe Primitiva 2:</label>
+      <select id="class2" onchange="resetClassBonus('class2')">
+        <option value="">Selecione uma classe</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="atirador">Atirador</option>
+        <option value="forjador">Forjador</option>
+        <option value="arcano">Arcano</option>
+        <option value="cientista">Cientista</option>
+        <option value="sobrevivente">Sobrevivente</option>
+        <option value="construtor">Construtor</option>
+        <option value="medico">Médico</option>
+      </select>
+      <button type="button" id="applyClass2Btn" onclick="applyClassBonus('class2')">Aplicar Bônus Classe 2</button>
+
+      <label for="combatClass">Classe de Combate:</label>
+      <select id="combatClass">
+        <option value="">Selecione</option>
+        <option value="duelista">Duelista</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="mago">Mago</option>
+        <option value="suporte_endiabrado">Suporte Endiabrado</option>
+        <option value="vanguardista">Vanguardista</option>
+        <option value="adestrador">Adestrador</option>
+        <option value="assassino">Assassino</option>
+        <option value="suporte">Suporte</option>
+        <option value="atirador">Atirador</option>
+        <option value="colosso">Colosso</option>
+      </select>
+
+      <!-- SISTEMA DE MUTAÇÃO -->
+      <div class="mutation-section">
+        <h3 class="decorated-title">Sistema de Mutação</h3>
+        
+        <div class="mutation-info">
+          <p class="info-display">
+            <strong>Mutação Primal</strong> - Cada personagem começa com uma mutação primal que evolui nos níveis 65, 95 e 99.
+            <br>
+            <small>Adicione partes de mutação adquiridas através de Colossos, Pactos, Jóias ou Bosses.</small>
+          </p>
+        </div>
+        
+        <!-- Slots de Mutação Primal (evolutiva) -->
+        <div class="mutation-slots-container">
+          <div class="mutation-slot primal-slot" data-index="0">
+            <div class="slot-header">
+              <span class="slot-type" id="primalStageDisplay">MUTAÇÃO PRIMAL - ESTÁGIO 1</span>
+              <button type="button" class="remove-mutation-btn disabled" disabled title="Mutações Primal não podem ser removidas">×</button>
+            </div>
+            <div class="slot-fields">
+              <label for="mutationName_0">Nome da Mutação:</label>
+              <input type="text" id="mutationName_0" placeholder="Ex: Visão Noturna Avançada" value="MUTAÇÃO PRIMAL">
+              
+              <label for="mutationStage_0">Estágio da Primal:</label>
+              <select id="mutationStage_0" disabled>
+                <option value="1" selected>Estágio 1 (Inicial)</option>
+                <option value="2">Estágio 2 (Nível 65+)</option>
+                <option value="3">Estágio 3 (Nível 95+)</option>
+                <option value="4">Estágio 4 (Nível 99+)</option>
+              </select>
+              
+              <label for="mutationDescription_0">Descrição Completa (Benefício + Contraparte):</label>
+              <textarea id="mutationDescription_0" class="mutation-textarea" placeholder="Descreva a mutação completa, incluindo benefícios e fraquezas..."></textarea>
+              
+              <label for="mutationSource_0">Origem/Fonte:</label>
+              <input type="text" id="mutationSource_0" placeholder="Ex: Genética, Colosso das Sombras, Pacto com..." value="Origem do Personagem">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Slots de Mutação Adicionais -->
+        <div id="additionalMutationSlots" class="mutation-slots-container"></div>
+        
+        <!-- Contador de Slots -->
+        <p class="info-display mutation-counter">
+          Partes de Mutação: <span id="mutationSlotCount">1</span>
+          <br>
+          <small>Adicione quantas mutações quiser! O mestre validará a origem.</small>
+        </p>
+        
+        <!-- Botão para adicionar nova parte de mutação -->
+        <div class="add-mutation-container">
+          <button type="button" id="addMutationSlotBtn" class="add-mutation-btn">
+            <i class="fas fa-plus-circle"></i> Adicionar Parte de Mutação
+          </button>
+        </div>
+        
+        <!-- Menu de tipo de mutação -->
+        <div id="mutationTypeMenu" class="mutation-type-menu hidden">
+          <h4>Selecione o tipo da mutação:</h4>
+          <button type="button" class="mutation-type-option" data-type="colosso" onclick="addMutationSlot('colosso')">
+            <i class="fas fa-skull-crossbones"></i> Colosso
+          </button>
+          <button type="button" class="mutation-type-option" data-type="pacto" onclick="addMutationSlot('pacto')">
+            <i class="fas fa-handshake"></i> Pacto
+          </button>
+          <button type="button" class="mutation-type-option" data-type="joia" onclick="addMutationSlot('joia')">
+            <i class="fas fa-gem"></i> Jóia
+          </button>
+          <button type="button" class="mutation-type-option" data-type="boss" onclick="addMutationSlot('boss')">
+            <i class="fas fa-dragon"></i> Boss
+          </button>
+          <button type="button" class="cancel-mutation-btn" onclick="hideMutationTypeMenu()">Cancelar</button>
+        </div>
+      </div>
+
+      <h3 class="decorated-title">Bônus em Ações:</h3>
+      <p class="info-display">
+        Slots: <span id="totalActionSlots">0</span> &nbsp;(Usados
+        <span id="usedActionSlots">0</span> / Restantes <span id="remainingActionSlots">0</span>)
+      </p>
+      <div id="actionBonusContainer" class="action-bonus-container"></div>
+      <button type="button" onclick="addActionBonus()">
+        Adicionar Bônus de Ação
+      </button>
+
+      <h3 class="section-title">Bônus de Ações Aprendidos</h3>
+      <div id="learnedActionBonusContainer" class="action-bonus-list"></div>
+      <button type="button" class="add-learned-action-btn" onclick="addLearnedActionBonus()">
+        Adicionar Bônus Aprendido
+      </button>
+
+      <label for="inventory">Inventário:</label>
+      <textarea
+        id="inventory"
+        class="scrollable"
+        placeholder="Descreva seus itens, cosméticos, recursos e outros pertences."
+      ></textarea>
+
+      <section class="session-bloco" id="selected-ritual-pact-section">
+        <h2>Rituais e Pactos</h2>
+        <div id="selectedRitualPactDisplay" class="selected-item-display">
+          <p>Nenhum ritual ou pacto selecionado.</p>
+        </div>
+        <div class="button-container">
+          <a href="../index/index_poderes.html" class="action-button">
+            Veja os Rituais e pactos
+          </a>
+        </div>
+      </section>
+
+      <div class="centered-button-container">
+        <a href="../index/index_status.html" class="icon-button"></a>
+      </div>
+
+      <!-- ADICIONE ESTE BOTÃO DE PDF -->
+    <div class="pdf-button-container">
+         <button type="button" onclick="generatePDF()" class="pdf-button">
+           <i class="fas fa-file-pdf"></i> Converter em PDF
+         </button>
     </div>
-    
-    <button type="button" onclick="calculateStats()">Calcular Ficha</button>
-    <button type="button" onclick="saveForm()">Salvar Ficha</button>
-  </form>
-</div>
 
-<div id="results" class="results-container">
-  <h2>Ficha Calculada:</h2>
-  <div id="stats"></div>
-  
-</div>
+<!-- Adicione também este container temporário para o PDF -->
+<div id="pdfContainer" style="position: absolute; left: -9999px; top: 0;"></div>
+      
+      <button type="button" onclick="calculateStats()">Calcular Ficha</button>
+      <button type="button" onclick="saveForm()">Salvar Ficha</button>
+    </form>
+  </div>
 
+  <div id="results" class="results-container">
+    <h2>Ficha Calculada:</h2>
+    <div id="stats"></div>
+  </div>
 
-
-  <!-- ░░░ FOOTER ░░░ -->
+   <!-- ░░░ FOOTER ░░░ -->
   <footer>
     <div class="footer-content">
       <div class="footer-section about">
@@ -275,5 +349,7 @@
 
   <!-- ░░░ SCRIPTS ░░░ -->
   <script src="../js/jogadores.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
