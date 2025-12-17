@@ -71,6 +71,9 @@ let currentUser = null;
 const LOCAL_CHARACTER_STORAGE_KEY = 'localCharacterData';
 const RITUALS_STORAGE_KEY = 'selectedRitualPacts';
 
+// Variável para controle de geração de PDF
+let isGeneratingPDF = false;
+
 function loginUser(username) {
     if (!username) {
         alert("Por favor, digite um nome de usuário.");
@@ -148,7 +151,7 @@ function saveCharacterLocal() {
         learnedActionBonuses: [...learnedActionBonuses],
         weapons: [...weapons],
         characterRituals: [...characterRituals],
-        characterMutations: [...characterMutations], // SALVAR AS MUTAÇÕES
+        characterMutations: [...characterMutations],
         appliedClassBonuses: { 
             class1: { ...appliedClassBonuses.class1 }, 
             class2: { ...appliedClassBonuses.class2 }  
@@ -240,10 +243,7 @@ function loadCharacterLocal() {
     weapons = Array.isArray(data.weapons) ? data.weapons : [];
     renderWeapons();
 
-    // ==============================================
-    // CORREÇÃO DO CARREGAMENTO DE RITUAIS
-    // ==============================================
-    // Prioridade: 1. RITUALS_STORAGE_KEY, 2. characterRituals do data, 3. rituals do data
+    // Carregar rituais
     try {
         const storedRituals = localStorage.getItem(RITUALS_STORAGE_KEY);
         if (storedRituals) {
@@ -260,15 +260,13 @@ function loadCharacterLocal() {
         characterRituals = [];
     }
     
-    // Garantir que characterRituals seja um array
     if (!Array.isArray(characterRituals)) {
         characterRituals = [];
     }
     
-    // Atualizar o display dos rituais
     loadSelectedRitualPact();
 
-    // CARREGAR MUTAÇÕES COM SINCRONIZAÇÃO
+    // Carregar mutações
     if (data.characterMutations && Array.isArray(data.characterMutations)) {
         characterMutations = data.characterMutations.map((mut, idx) => ({
             ...mut,
@@ -276,7 +274,6 @@ function loadCharacterLocal() {
         }));
     }
     
-    // GARANTIR QUE A PRIMAL EXISTE
     const hasPrimal = characterMutations.some(mut => mut.type === 'primal');
     if (!hasPrimal) {
         characterMutations.unshift({
@@ -289,7 +286,6 @@ function loadCharacterLocal() {
             index: 0
         });
         
-        // REINDEXAR
         characterMutations.forEach((mut, idx) => {
             mut.index = idx;
         });
@@ -298,7 +294,6 @@ function loadCharacterLocal() {
     renderMutationSlots();
     updatePrimalStage();
     
-    // SINCRONIZAR OS CAMPOS DO FORMULÁRIO COM AS MUTAÇÕES CARREGADAS
     syncFormMutations();
 
     const characterNameInput = document.getElementById("characterNameInput");
@@ -822,11 +817,10 @@ function renderWeapons() {
 }
 
 // ==============================================
-// SISTEMA DE MUTAÇÃO - CORRIGIDO E SINCRONIZADO
+// SISTEMA DE MUTAÇÃO
 // ==============================================
 
 function syncFormMutations() {
-    // SINCRONIZAR A MUTAÇÃO PRIMAL COM OS CAMPOS DO FORMULÁRIO
     const primalMutation = characterMutations.find(mut => mut.type === 'primal');
     if (primalMutation) {
         const primalNameInput = document.getElementById('mutationName_0');
@@ -840,7 +834,6 @@ function syncFormMutations() {
 }
 
 function updateMutationsFromForm() {
-    // ATUALIZAR TODAS AS MUTAÇÕES COM OS VALORES DO FORMULÁRIO
     characterMutations.forEach((mutation, index) => {
         const nameInput = document.getElementById(`mutationName_${index}`);
         const descInput = document.getElementById(`mutationDescription_${index}`);
@@ -864,10 +857,8 @@ function renderMutationSlots() {
     
     container.innerHTML = '';
     
-    // Atualizar o display da primal
     updatePrimalStage();
     
-    // Filtrar mutações adicionais (não primal)
     const additionalMutations = characterMutations.filter(mut => mut.type !== 'primal');
     
     additionalMutations.forEach((mutation, index) => {
@@ -923,7 +914,6 @@ function renderMutationSlots() {
         container.appendChild(slotDiv);
     });
     
-    // SINCRONIZAR A MUTAÇÃO PRIMAL
     syncFormMutations();
     
     document.getElementById('mutationSlotCount').textContent = characterMutations.length;
@@ -937,17 +927,14 @@ function updatePrimalStage() {
     if (level >= 95) stage = 3;
     if (level >= 99) stage = 4;
     
-    // Atualizar a primal mutation
     const primalMutation = characterMutations.find(mut => mut.type === 'primal');
     if (primalMutation) {
         primalMutation.stage = stage;
         
-        // Atualizar o select no formulário
         const stageSelect = document.getElementById('mutationStage_0');
         if (stageSelect) {
             stageSelect.value = stage;
             
-            // Mostrar aviso se o estágio aumentou
             const oldStage = parseInt(stageSelect.dataset.lastStage) || 1;
             if (stage > oldStage) {
                 showPrimalEvolutionWarning(stage);
@@ -955,7 +942,6 @@ function updatePrimalStage() {
             }
         }
         
-        // Atualizar o display do tipo
         const stageDisplay = document.getElementById('primalStageDisplay');
         if (stageDisplay) {
             stageDisplay.textContent = `MUTAÇÃO PRIMAL - ESTÁGIO ${stage}`;
@@ -1029,7 +1015,6 @@ function removeMutationSlot(index) {
     if (confirm(`Tem certeza que deseja remover a mutação "${mutationToRemove.name}"?`)) {
         characterMutations = characterMutations.filter(mut => mut.index !== index);
         
-        // Reindexar
         characterMutations.forEach((mut, idx) => {
             mut.index = idx;
         });
@@ -1048,10 +1033,8 @@ function updateMutationFromFormSlot(index, field, value) {
 }
 
 function saveMutationData() {
-    // PRIMEIRO ATUALIZAR OS VALORES DO FORMULÁRIO
     updateMutationsFromForm();
     
-    // DEPOIS SALVAR NO LOCALSTORAGE
     const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
     characterData.characterMutations = characterMutations;
     localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
@@ -1068,7 +1051,6 @@ function calculateStats() {
     const combatClass = document.getElementById("combatClass").value;
     const inventory = document.getElementById("inventory").value;
 
-    // ATUALIZAR AS MUTAÇÕES DO FORMULÁRIO ANTES DE CALCULAR
     updateMutationsFromForm();
 
     let vida = 55 + (attributes.vig * 15);
@@ -1155,9 +1137,6 @@ function calculateStats() {
         weaponsHtml = '<p class="no-info">Nenhuma arma registrada.</p>';
     }
 
-    // ==============================================
-    // CORREÇÃO DOS RITUAIS - SINCORNIZANDO PROPRIEDADES
-    // ==============================================
     let ritualsHtml = '';
     if (characterRituals.length > 0) {
         ritualsHtml = `<div class="ficha-section"><h4 class="section-title">Rituais e Pactos</h4>`;
@@ -1166,7 +1145,6 @@ function calculateStats() {
         characterRituals.forEach(ritual => {
             if (!ritual) return;
             
-            // Usar propriedades corretas (compatibilidade com ambas as formas)
             const nome = ritual.nome || ritual.name || 'Ritual sem nome';
             const descricao = ritual.descricao || ritual.description || 'Descrição não disponível';
             const tipo = ritual.tipo || ritual.type || 'N/A';
@@ -1451,7 +1429,6 @@ function copyFicha() {
             fichaText += `-- ${subTitleElement.textContent.trim()} --\n\n`;
         });
 
-        // Informações básicas
         const nameElement = section.querySelector('.titulo-ficha');
         if (nameElement) {
             fichaText += `NOME: ${nameElement.textContent.trim()}\n`;
@@ -1466,13 +1443,11 @@ function copyFicha() {
             }
         });
 
-        // Lore
         const loreElement = section.querySelector('.lore-section .formatted-text');
         if (loreElement) {
             fichaText += `\nHISTÓRIA:\n${loreElement.textContent.trim()}\n\n`;
         }
 
-        // Atributos
         const attributeItems = section.querySelectorAll('.attribute-item');
         if (attributeItems.length > 0) {
             fichaText += `ATRIBUTOS:\n`;
@@ -1486,7 +1461,6 @@ function copyFicha() {
             fichaText += '\n';
         }
 
-        // Estatísticas
         const statItems = section.querySelectorAll('.stat-item');
         if (statItems.length > 0) {
             fichaText += `ESTATÍSTICAS:\n`;
@@ -1500,7 +1474,6 @@ function copyFicha() {
             fichaText += '\n';
         }
 
-        // Classes
         const classItems = section.querySelectorAll('.class-item');
         if (classItems.length > 0) {
             fichaText += `CLASSES:\n`;
@@ -1514,7 +1487,6 @@ function copyFicha() {
             fichaText += '\n';
         }
 
-        // Mutações
         const mutationElements = section.querySelectorAll('.mutation-display');
         if (mutationElements.length > 0) {
             fichaText += `MUTAÇÕES:\n`;
@@ -1531,7 +1503,6 @@ function copyFicha() {
             });
         }
 
-        // Bônus de ações
         const bonusLists = section.querySelectorAll('.stats-list:not(.weapon-list):not(.ritual-list)');
         bonusLists.forEach(list => {
             const items = list.querySelectorAll('li');
@@ -1543,13 +1514,11 @@ function copyFicha() {
             }
         });
 
-        // Inventário
         const inventoryElement = section.querySelector('.inventory-section .formatted-text');
         if (inventoryElement) {
             fichaText += `INVENTÁRIO:\n${inventoryElement.textContent.trim()}\n\n`;
         }
 
-        // Armas
         const weaponList = section.querySelector('.weapon-list');
         if (weaponList) {
             const weaponItems = weaponList.querySelectorAll('li');
@@ -1562,7 +1531,6 @@ function copyFicha() {
             }
         }
 
-        // Rituais
         const ritualList = section.querySelector('.ritual-list');
         if (ritualList) {
             const ritualItems = ritualList.querySelectorAll('li');
@@ -1639,8 +1607,6 @@ if (clearRollsButton) {
 function goToPage(page) {
     window.location.href = page;
 }
-
-
 
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
@@ -1769,7 +1735,345 @@ function removeRitualPact(indexToRemove) {
     }
 }
 
-// Inicialização
+// ==============================================
+// SISTEMA DE PDF PRINCIPAL (CORRIGIDO)
+// ==============================================
+
+function generatePDF() {
+    if (isGeneratingPDF) {
+        alert('Aguarde a geração do PDF atual terminar.');
+        return;
+    }
+
+    const resultsContainer = document.getElementById('results');
+    if (!resultsContainer || resultsContainer.style.display === 'none') {
+        alert('Por favor, calcule a ficha primeiro antes de gerar o PDF.');
+        return;
+    }
+
+    // Verificar se as bibliotecas estão carregadas
+    if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
+        alert('Bibliotecas de PDF não estão disponíveis. Usando método alternativo...');
+        generateSimplePDF();
+        return;
+    }
+
+    // Detectar dispositivo móvel
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        offerMobilePDFOptions();
+        return;
+    }
+
+    generateDesktopPDF();
+}
+
+// ==============================================
+// MÉTODO PRINCIPAL PARA DESKTOP
+// ==============================================
+
+function generateDesktopPDF() {
+    isGeneratingPDF = true;
+    
+    const button = document.querySelector('.pdf-button');
+    const originalButtonText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
+    button.disabled = true;
+    
+    const statsElement = document.getElementById('stats');
+    const tempDiv = document.createElement('div');
+    tempDiv.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 800px;';
+    tempDiv.innerHTML = statsElement.innerHTML;
+    document.body.appendChild(tempDiv);
+    
+    html2canvas(tempDiv, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#ffffff',
+        onclone: function(clonedDoc) {
+            clonedDoc.body.style.backgroundColor = '#ffffff';
+            clonedDoc.body.style.color = '#333333';
+        }
+    }).then(canvas => {
+        document.body.removeChild(tempDiv);
+        
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new jspdf.jsPDF({
+            orientation: 'portrait',
+            unit: 'mm',
+            format: 'a4'
+        });
+
+        const imgWidth = 210;
+        const pageHeight = 297;
+        const imgHeight = canvas.height * imgWidth / canvas.width;
+        
+        let heightLeft = imgHeight;
+        let position = 0;
+        
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        while (heightLeft > 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+
+        const characterName = document.getElementById('name').value || 'personagem';
+        const fileName = `ficha_${characterName.toLowerCase().replace(/\s+/g, '_')}.pdf`;
+        
+        pdf.save(fileName);
+        
+        button.innerHTML = originalButtonText;
+        button.disabled = false;
+        isGeneratingPDF = false;
+        
+        alert(`PDF gerado com sucesso: ${fileName}`);
+        
+    }).catch(error => {
+        console.error('Erro ao gerar PDF:', error);
+        document.body.removeChild(tempDiv);
+        
+        button.innerHTML = originalButtonText;
+        button.disabled = false;
+        isGeneratingPDF = false;
+        
+        alert('Erro ao gerar PDF. Tentando método simples...');
+        generateSimplePDF();
+    });
+}
+
+// ==============================================
+// MÉTODO SIMPLES PARA MOBILE/DESKTOP
+// ==============================================
+
+function generateSimplePDF() {
+    const { jsPDF } = window.jspdf;
+    
+    const characterName = document.getElementById('name').value || 'Personagem';
+    const level = document.getElementById('level').value || '1';
+    const age = document.getElementById('age').value || 'N/I';
+    
+    const attributes = ['agi', 'for', 'int', 'set', 'vig'];
+    const attributeNames = ['Agilidade', 'Força', 'Inteligência', 'Sentidos', 'Vitalidade'];
+    const attributeValues = attributes.map(attr => 
+        parseInt(document.getElementById(`${attr}Value`)?.textContent || '1')
+    );
+    
+    const class1 = document.getElementById('class1').value || 'N/I';
+    const class2 = document.getElementById('class2').value || 'N/I';
+    const combatClass = document.getElementById('combatClass').value || 'N/I';
+    
+    const vida = 55 + (parseInt(document.getElementById('vigValue')?.textContent || 1) * 15);
+    const determinacao = 55 + (parseInt(document.getElementById('intValue')?.textContent || 1) * 10) + 
+                        (parseInt(document.getElementById('setValue')?.textContent || 1) * 15);
+    
+    const pdf = new jsPDF();
+    const margin = 20;
+    let y = margin;
+    const lineHeight = 7;
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    
+    pdf.setFontSize(20);
+    pdf.setFont('helvetica', 'bold');
+    pdf.setTextColor(0, 102, 204);
+    pdf.text('FICHA DE PERSONAGEM - RPG ARK', pageWidth / 2, y, { align: 'center' });
+    y += 15;
+    
+    pdf.setFontSize(16);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(characterName, pageWidth / 2, y, { align: 'center' });
+    y += 10;
+    
+    pdf.setFontSize(12);
+    pdf.text(`Nível: ${level}`, margin, y);
+    pdf.text(`Idade: ${age}`, pageWidth - margin - 30, y);
+    y += 10;
+    
+    pdf.setFontSize(10);
+    pdf.setTextColor(100, 100, 100);
+    pdf.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, pageWidth / 2, y, { align: 'center' });
+    y += 15;
+    
+    pdf.setDrawColor(200, 200, 200);
+    pdf.line(margin, y, pageWidth - margin, y);
+    y += 10;
+    
+    pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text('ATRIBUTOS PRINCIPAIS', margin, y);
+    y += 10;
+    
+    pdf.setFontSize(11);
+    const attributesPerRow = 2;
+    for (let i = 0; i < attributes.length; i++) {
+        const col = i % attributesPerRow;
+        const row = Math.floor(i / attributesPerRow);
+        const x = margin + (col * 85);
+        
+        pdf.setFillColor(240, 240, 240);
+        pdf.rect(x, y + (row * 15), 80, 12, 'F');
+        
+        pdf.setTextColor(0, 0, 0);
+        pdf.text(`${attributeNames[i]}:`, x + 5, y + (row * 15) + 8);
+        
+        pdf.setTextColor(255, 0, 0);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(attributeValues[i].toString(), x + 70, y + (row * 15) + 8);
+        pdf.setFont('helvetica', 'normal');
+    }
+    
+    y += (Math.ceil(attributes.length / attributesPerRow) * 15) + 15;
+    
+    pdf.setFontSize(14);
+    pdf.text('CLASSES', margin, y);
+    y += 10;
+    
+    pdf.setFontSize(11);
+    pdf.text(`Classe Primitiva 1: ${class1}`, margin, y);
+    y += 8;
+    pdf.text(`Classe Primitiva 2: ${class2}`, margin, y);
+    y += 8;
+    pdf.text(`Classe de Combate: ${combatClass}`, margin, y);
+    y += 15;
+    
+    pdf.setFontSize(14);
+    pdf.text('ESTATÍSTICAS', margin, y);
+    y += 10;
+    
+    pdf.setFontSize(11);
+    pdf.text(`Vida: ${vida}`, margin, y);
+    y += 8;
+    pdf.text(`Determinação: ${determinacao}`, margin, y);
+    y += 15;
+    
+    pdf.setFontSize(8);
+    pdf.setTextColor(100, 100, 100);
+    pdf.text('© RPG ARK - Ficha gerada automaticamente', pageWidth / 2, 280, { align: 'center' });
+    
+    const fileName = `ficha_${characterName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+    pdf.save(fileName);
+    
+    alert(`PDF "${fileName}" gerado com sucesso!`);
+}
+
+// ==============================================
+// OPÇÕES PARA MOBILE
+// ==============================================
+
+function offerMobilePDFOptions() {
+    const modal = document.createElement('div');
+    modal.id = 'pdfOptionsModal';
+    modal.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 10, 20, 0.95);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    `;
+    
+    const content = document.createElement('div');
+    content.style.cssText = `
+        background: rgba(16, 16, 25, 0.95);
+        border: 2px solid rgba(176, 255, 248, 0.3);
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 500px;
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+    `;
+    
+    content.innerHTML = `
+        <div style="padding: 20px; text-align: center;">
+            <h3 style="color: #b6fff3; margin-bottom: 20px;">Gerar PDF (Dispositivo Móvel)</h3>
+            <p style="color: #d6feff; margin-bottom: 30px;">
+                Escolha o método de geração de PDF:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <button onclick="closeModalAndGenerate('simple')" style="
+                    background: linear-gradient(45deg, #6c63ff, #854fff);
+                    color: white;
+                    border: none;
+                    padding: 15px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 16px;
+                ">
+                    📱 PDF Simples (Rápido)
+                </button>
+                <button onclick="closeModalAndGenerate('full')" style="
+                    background: linear-gradient(45deg, #3498db, #2ecc71);
+                    color: white;
+                    border: none;
+                    padding: 15px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 16px;
+                ">
+                    🖼️ PDF Completo (Pode ser lento)
+                </button>
+            </div>
+            <p style="color: #888; margin-top: 20px; font-size: 12px;">
+                <strong>PDF Simples:</strong> Texto básico, mais rápido<br>
+                <strong>PDF Completo:</strong> Com imagens e formatação
+            </p>
+        </div>
+    `;
+    
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+    
+    const closeButton = document.createElement('button');
+    closeButton.innerHTML = '✕';
+    closeButton.style.cssText = `
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    `;
+    closeButton.onclick = () => document.body.removeChild(modal);
+    content.appendChild(closeButton);
+}
+
+function closeModalAndGenerate(type) {
+    const modal = document.getElementById('pdfOptionsModal');
+    if (modal) modal.remove();
+    
+    if (type === 'simple') {
+        generateSimplePDF();
+    } else if (type === 'full') {
+        generateDesktopPDF();
+    }
+}
+
+// ==============================================
+// INICIALIZAÇÃO
+// ==============================================
+
 window.onload = function() {
     loadForm();
     
@@ -1778,7 +2082,6 @@ window.onload = function() {
         addMutationBtn.addEventListener('click', showMutationTypeMenu);
     }
     
-    // Adicionar eventos para atualizar mutações automaticamente
     document.addEventListener('input', function(e) {
         if (e.target && e.target.id && e.target.id.startsWith('mutationName_') || 
             e.target.id.startsWith('mutationDescription_') || 
@@ -1790,7 +2093,6 @@ window.onload = function() {
         }
     });
     
-    // Atualizar a primal quando o nível mudar
     const levelInput = document.getElementById('level');
     if (levelInput) {
         levelInput.addEventListener('change', function() {
@@ -1798,961 +2100,13 @@ window.onload = function() {
             saveMutationData();
         });
     }
+    
+    const pdfButton = document.querySelector('.pdf-button');
+    if (pdfButton) {
+        pdfButton.onclick = generatePDF;
+    }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
     loadForm();
-});
-
-// ==============================================
-// FUNÇÃO PARA GERAR PDF DA FICHA
-// ==============================================
-
-function generatePDF() {
-    // Verificar se a ficha foi calculada
-    const resultsContainer = document.getElementById('results');
-    if (!resultsContainer || resultsContainer.style.display === 'none') {
-        alert('Por favor, calcule a ficha primeiro antes de gerar o PDF.');
-        return;
-    }
-
-    // Mostrar mensagem de processamento
-    const originalButtonText = document.querySelector('.pdf-button').innerHTML;
-    document.querySelector('.pdf-button').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
-    document.querySelector('.pdf-button').disabled = true;
-
-    // Clonar a ficha para modificar para o PDF
-    const statsElement = document.getElementById('stats').cloneNode(true);
-    
-    // Remover elementos indesejados do clone
-    const elementsToRemove = statsElement.querySelectorAll('.no-info');
-    elementsToRemove.forEach(el => {
-        if (el.textContent.includes('Não preenchido') || el.textContent.includes('Nenhum')) {
-            el.parentNode.removeChild(el);
-        }
-    });
-
-    // Adicionar data/hora
-    const dateTimeDiv = document.createElement('div');
-    dateTimeDiv.style.cssText = `
-        text-align: center;
-        color: #666;
-        font-size: 12px;
-        margin-bottom: 20px;
-        padding: 10px;
-        border-top: 1px solid #eee;
-        border-bottom: 1px solid #eee;
-    `;
-    dateTimeDiv.innerHTML = `
-        Ficha gerada em: ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}<br>
-        RPG ARK - Ficha de Personagem
-    `;
-    
-    // Adicionar rodapé
-    const footerDiv = document.createElement('div');
-    footerDiv.style.cssText = `
-        text-align: center;
-        color: #888;
-        font-size: 10px;
-        margin-top: 20px;
-        padding: 10px;
-        border-top: 1px solid #eee;
-    `;
-    footerDiv.textContent = '© RPG ARK - Todos os direitos reservados';
-    
-    // Adicionar ao clone
-    statsElement.insertBefore(dateTimeDiv, statsElement.firstChild);
-    statsElement.appendChild(footerDiv);
-
-    // Ajustar estilos para PDF
-    const sections = statsElement.querySelectorAll('.ficha-section');
-    sections.forEach(section => {
-        section.style.marginBottom = '20px';
-        section.style.breakInside = 'avoid';
-    });
-
-    // Criar container temporário para o PDF
-    const pdfContainer = document.getElementById('pdfContainer');
-    pdfContainer.innerHTML = '';
-    pdfContainer.appendChild(statsElement);
-
-    // Aplicar estilos específicos para PDF no container
-    pdfContainer.style.cssText = `
-        position: absolute;
-        left: -9999px;
-        top: 0;
-        width: 800px;
-        background: white;
-        color: #333;
-        padding: 40px;
-        font-family: 'Arial', sans-serif;
-    `;
-
-    // Estilos específicos para elementos no PDF
-    const pdfStyles = `
-        <style>
-            .pdf-content {
-                width: 800px;
-                background: white;
-                color: #333;
-                font-family: 'Arial', sans-serif;
-                padding: 40px;
-            }
-            .pdf-content .ficha-section {
-                margin-bottom: 25px;
-                page-break-inside: avoid;
-                background: #f9f9f9;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                padding: 20px;
-            }
-            .pdf-content .section-title {
-                color: #2c3e50;
-                border-bottom: 2px solid #3498db;
-                padding-bottom: 10px;
-                margin-bottom: 15px;
-                font-size: 18px;
-            }
-            .pdf-content .titulo-ficha {
-                color: #2c3e50;
-                font-size: 28px;
-                text-align: center;
-                margin: 20px 0;
-            }
-            .pdf-content .attribute-value,
-            .pdf-content .stat-value {
-                color: #e74c3c;
-                font-weight: bold;
-            }
-            .pdf-content .character-photo-container {
-                border: 3px solid #3498db;
-                box-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
-            }
-            .pdf-content .info-value {
-                color: #2c3e50;
-                font-weight: bold;
-            }
-            .pdf-content .mutation-display {
-                border: 1px solid #9b59b6;
-                background: #f8f8f8;
-                margin-bottom: 15px;
-            }
-            .pdf-content .mutation-name {
-                color: #9b59b6;
-            }
-            .pdf-content .stats-list li {
-                border-left: 3px solid #3498db;
-                background: #f1f8ff;
-            }
-        </style>
-    `;
-
-    // Adicionar estilos ao container
-    const styleElement = document.createElement('style');
-    styleElement.textContent = pdfStyles;
-    pdfContainer.appendChild(styleElement);
-
-    // Configurar opções do html2canvas
-    const options = {
-        scale: 2, // Maior qualidade
-        useCORS: true, // Permitir imagens cross-origin
-        logging: false, // Desativar logs
-        backgroundColor: '#ffffff', // Fundo branco para PDF
-        onclone: function(clonedDoc) {
-            // Ajustar estilos no clone
-            clonedDoc.body.style.backgroundColor = '#ffffff';
-            clonedDoc.body.style.color = '#333333';
-            
-            // Ajustar seções para evitar quebras
-            const clonedSections = clonedDoc.querySelectorAll('.ficha-section');
-            clonedSections.forEach(section => {
-                section.style.pageBreakInside = 'avoid';
-                section.style.breakInside = 'avoid';
-            });
-        }
-    };
-
-    // Gerar PDF com html2canvas e jsPDF
-    html2canvas(pdfContainer, options).then(canvas => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jspdf.jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: 'a4'
-        });
-
-        const imgWidth = 210; // Largura A4 em mm
-        const pageHeight = 297; // Altura A4 em mm
-        const imgHeight = canvas.height * imgWidth / canvas.width;
-        
-        let heightLeft = imgHeight;
-        let position = 0;
-        
-        // Adicionar primeira página
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        
-        // Adicionar páginas adicionais se necessário
-        while (heightLeft > 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        }
-
-        // Gerar nome do arquivo
-        const characterName = document.getElementById('name').value || 'personagem';
-        const fileName = `ficha_${characterName.toLowerCase().replace(/\s+/g, '_')}_${Date.now()}.pdf`;
-        
-        // Baixar o PDF
-        pdf.save(fileName);
-        
-        // Restaurar botão
-        document.querySelector('.pdf-button').innerHTML = originalButtonText;
-        document.querySelector('.pdf-button').disabled = false;
-        
-        // Mostrar mensagem de sucesso
-        alert(`PDF gerado com sucesso: ${fileName}`);
-        
-    }).catch(error => {
-        console.error('Erro ao gerar PDF:', error);
-        alert('Erro ao gerar PDF. Por favor, tente novamente.');
-        
-        // Restaurar botão em caso de erro
-        document.querySelector('.pdf-button').innerHTML = originalButtonText;
-        document.querySelector('.pdf-button').disabled = false;
-    });
-}
-
-// ==============================================
-// FUNÇÃO ALTERNATIVA (mais simples)
-// ==============================================
-
-function generateSimplePDF() {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF('p', 'mm', 'a4');
-    
-    const characterName = document.getElementById('name').value || 'Personagem sem nome';
-    const level = document.getElementById('level').value || '1';
-    
-    // Configurações iniciais
-    let y = 20;
-    const lineHeight = 7;
-    const margin = 20;
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    
-    // Adicionar título
-    pdf.setFontSize(24);
-    pdf.setTextColor(40, 40, 40);
-    pdf.text('FICHA DE PERSONAGEM - RPG ARK', pageWidth / 2, y, { align: 'center' });
-    y += 15;
-    
-    // Informações básicas
-    pdf.setFontSize(14);
-    pdf.text(`Nome: ${characterName}`, margin, y);
-    y += lineHeight;
-    pdf.text(`Nível: ${level}`, margin, y);
-    y += lineHeight;
-    pdf.text(`Data: ${new Date().toLocaleDateString('pt-BR')}`, margin, y);
-    y += 20;
-    
-    // Adicionar linha separadora
-    pdf.setDrawColor(200, 200, 200);
-    pdf.line(margin, y, pageWidth - margin, y);
-    y += 10;
-    
-    // Atributos
-    pdf.setFontSize(16);
-    pdf.setTextColor(52, 152, 219);
-    pdf.text('ATRIBUTOS', margin, y);
-    y += 10;
-    
-    pdf.setFontSize(12);
-    pdf.setTextColor(40, 40, 40);
-    
-    const attributes = ['agi', 'for', 'int', 'set', 'vig'];
-    const attributeNames = ['Agilidade', 'Força', 'Inteligência', 'Sentidos', 'Vitalidade'];
-    
-    for (let i = 0; i < attributes.length; i++) {
-        const value = document.getElementById(`${attributes[i]}Value`)?.textContent || '1';
-        pdf.text(`${attributeNames[i]}: ${value}`, margin + (i % 2) * 80, y + Math.floor(i / 2) * lineHeight);
-    }
-    
-    y += 20;
-    
-    // Adicionar mais seções conforme necessário...
-    // Você pode expandir esta função para incluir todas as informações da ficha
-    
-    // Adicionar rodapé
-    pdf.setFontSize(10);
-    pdf.setTextColor(150, 150, 150);
-    pdf.text('© RPG ARK - Gerado automaticamente', pageWidth / 2, 280, { align: 'center' });
-    
-    // Salvar PDF
-    const fileName = `ficha_${characterName.toLowerCase().replace(/\s+/g, '_')}.pdf`;
-    pdf.save(fileName);
-}
-
-// ==============================================
-// FUNÇÃO DE BACKUP PARA PDF (se as outras falharem)
-// ==============================================
-
-function backupPDFGeneration() {
-    // Coletar dados básicos
-    const characterName = document.getElementById('name').value || 'Personagem';
-    const level = document.getElementById('level').value || '1';
-    
-  // ==============================================
-// FUNÇÃO DE BACKUP PARA PDF MELHORADA
-// ==============================================
-
-function backupPDFGeneration() {
-    // Coletar dados básicos
-    const characterName = document.getElementById('name').value || 'Personagem';
-    const level = document.getElementById('level').value || '1';
-    const age = document.getElementById('age').value || 'Não informada';
-    
-    // Obter atributos
-    const attributes = ['agi', 'for', 'int', 'set', 'vig'];
-    const attributeNames = ['Agilidade', 'Força', 'Inteligência', 'Sentidos', 'Vitalidade'];
-    const attributeValues = attributes.map(attr => 
-        document.getElementById(`${attr}Value`)?.textContent || '1'
-    );
-    
-    // Obter classes
-    const class1 = document.getElementById('class1').value || 'Não selecionada';
-    const class2 = document.getElementById('class2').value || 'Não selecionada';
-    const combatClass = document.getElementById('combatClass').value || 'Não selecionada';
-    
-    // Obter inventário
-    const inventory = document.getElementById('inventory').value || 'Nenhum item registrado';
-    
-    // Criar conteúdo HTML estilizado para o PDF
-    let pdfContent = `
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Ficha de Personagem - ${characterName}</title>
-            <style>
-                @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;400;500;600&display=swap');
-                
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
-                
-                body {
-                    font-family: 'Rajdhani', sans-serif;
-                    color: #d6feff;
-                    background: linear-gradient(135deg, 
-                        rgba(16, 16, 25, 0.95) 0%, 
-                        rgba(25, 10, 40, 0.92) 50%, 
-                        rgba(16, 16, 25, 0.95) 100%),
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(193,240,248,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-                    background-size: cover, 40px 40px;
-                    padding: 30px;
-                    min-height: 100vh;
-                    position: relative;
-                    overflow-x: hidden;
-                }
-                
-                body::before {
-                    content: '';
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: url('../imagens/ark_lobby_conta_versão2.jpg') no-repeat center center;
-                    background-size: cover;
-                    opacity: 0.15;
-                    z-index: -1;
-                    filter: brightness(0.4) contrast(1.2);
-                }
-                
-                body::after {
-                    content: '';
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(45deg, 
-                        rgba(35, 37, 37, 0.7), 
-                        rgba(34, 41, 40, 0.7), 
-                        rgba(31, 34, 34, 0.7));
-                    z-index: -1;
-                }
-
-                
-                
-                .ark-container {
-                    max-width: 1200px;
-                    margin: 0 auto;
-                    position: relative;
-                    z-index: 1;
-                }
-                
-                /* Header Principal */
-                .ark-header {
-                    text-align: center;
-                    margin-bottom: 40px;
-                    padding: 30px;
-                    background: linear-gradient(135deg, 
-                        rgba(16, 16, 25, 0.8), 
-                        rgba(25, 10, 40, 0.8));
-                    border-radius: 15px;
-                    border: 2px solid rgba(193, 240, 248, 0.2);
-                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
-                                0 0 20px rgba(193, 240, 248, 0.1);
-                    position: relative;
-                    overflow: hidden;
-                }
-                
-                .ark-header::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 4px;
-                    background: linear-gradient(90deg, 
-                        transparent, 
-                        #b6fff3, 
-                        #854fff, 
-                        #b6fff3, 
-                        transparent);
-                }
-                
-                .ark-title {
-                    font-family: 'Orbitron', sans-serif;
-                    font-size: 2.8rem;
-                    font-weight: 700;
-                    color: #b6fff3;
-                    text-transform: uppercase;
-                    letter-spacing: 3px;
-                    margin-bottom: 10px;
-                    text-shadow: 0 0 15px rgba(176, 255, 248, 0.8),
-                                 0 0 30px rgba(176, 255, 248, 0.4);
-                }
-                
-                .character-title {
-                    font-family: 'Orbitron', sans-serif;
-                    font-size: 2rem;
-                    color: #ffe375;
-                    margin-bottom: 5px;
-                    text-shadow: 0 0 10px rgba(255, 227, 117, 0.5);
-                }
-                
-                .character-subtitle {
-                    color: #aaa;
-                    font-size: 1.1rem;
-                    margin-bottom: 20px;
-                }
-                
-                .generation-info {
-                    color: #888;
-                    font-size: 0.9rem;
-                    font-style: italic;
-                    padding-top: 15px;
-                    border-top: 1px solid rgba(193, 240, 248, 0.1);
-                }
-                
-                /* Seções */
-                .ark-section {
-                    background: rgba(10, 10, 20, 0.7);
-                    border-radius: 12px;
-                    padding: 25px;
-                    margin-bottom: 30px;
-                    border: 1px solid rgba(193, 240, 248, 0.15);
-                    box-shadow: 0 6px 20px rgba(193, 240, 248, 0.1);
-                    position: relative;
-                    overflow: hidden;
-                }
-                
-                .ark-section::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 3px;
-                    background: linear-gradient(90deg, 
-                        rgba(176, 255, 248, 0.5), 
-                        rgba(133, 79, 255, 0.5), 
-                        rgba(176, 255, 248, 0.5));
-                }
-                
-                .section-title {
-                    font-family: 'Orbitron', sans-serif;
-                    font-size: 1.6rem;
-                    color: #b6fff3;
-                    margin-bottom: 20px;
-                    padding-bottom: 10px;
-                    border-bottom: 2px solid rgba(176, 255, 248, 0.3);
-                    text-shadow: 0 0 10px rgba(176, 255, 248, 0.5);
-                    position: relative;
-                }
-                
-                .section-title::after {
-                    content: '';
-                    display: block;
-                    width: 50px;
-                    height: 3px;
-                    background: linear-gradient(90deg, #b6fff3, #854fff);
-                    margin-top: 10px;
-                }
-                
-                /* Grid de Informações */
-                .info-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                    gap: 20px;
-                    margin-bottom: 30px;
-                }
-                
-                .info-item {
-                    background: rgba(16, 16, 25, 0.8);
-                    border: 1px solid rgba(193, 240, 248, 0.1);
-                    border-radius: 8px;
-                    padding: 15px;
-                    text-align: center;
-                    transition: all 0.3s ease;
-                }
-                
-                .info-item:hover {
-                    transform: translateY(-3px);
-                    border-color: rgba(176, 255, 248, 0.3);
-                    box-shadow: 0 5px 15px rgba(193, 240, 248, 0.2);
-                }
-                
-                .info-label {
-                    color: #888;
-                    font-size: 0.9rem;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    margin-bottom: 8px;
-                }
-                
-                .info-value {
-                    color: #d6feff;
-                    font-size: 1.4rem;
-                    font-weight: 600;
-                }
-                
-                /* Atributos */
-                .attributes-grid {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                    gap: 15px;
-                    margin: 25px 0;
-                }
-                
-                .attribute-item {
-                    background: linear-gradient(135deg, 
-                        rgba(20, 20, 35, 0.9), 
-                        rgba(30, 15, 45, 0.9));
-                    border: 1px solid rgba(193, 240, 248, 0.15);
-                    border-radius: 10px;
-                    padding: 20px;
-                    text-align: center;
-                    position: relative;
-                    overflow: hidden;
-                }
-                
-                .attribute-item::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    background: linear-gradient(45deg, 
-                        transparent 30%, 
-                        rgba(176, 255, 248, 0.05) 50%, 
-                        transparent 70%);
-                    animation: shine 3s infinite;
-                }
-                
-                @keyframes shine {
-                    0% { transform: translateX(-100%); }
-                    100% { transform: translateX(100%); }
-                }
-                
-                .attribute-icon {
-                    width: 50px;
-                    height: 50px;
-                    margin: 0 auto 15px;
-                    background-size: contain;
-                    background-repeat: no-repeat;
-                    background-position: center;
-                    filter: invert(68%) sepia(93%) saturate(384%) 
-                           hue-rotate(129deg) brightness(102%) contrast(101%);
-                }
-                
-                .attribute-name {
-                    color: #888;
-                    font-size: 0.9rem;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    margin-bottom: 5px;
-                }
-                
-                .attribute-value {
-                    color: #ffe375;
-                    font-size: 2rem;
-                    font-weight: 700;
-                    text-shadow: 0 0 10px rgba(255, 227, 117, 0.5);
-                }
-                
-                /* Ícones específicos dos atributos */
-                .attribute-item:nth-child(1) .attribute-icon {
-                    background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f9d9-200d-2642-fe0f.svg'); /* Mago */
-                }
-                
-                .attribute-item:nth-child(2) .attribute-icon {
-                    background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4aa.svg'); /* Força */
-                }
-                
-                .attribute-item:nth-child(3) .attribute-icon {
-                    background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4d6.svg'); /* Livro */
-                }
-                
-                .attribute-item:nth-child(4) .attribute-icon {
-                    background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f50d.svg'); /* Lupa */
-                }
-                
-                .attribute-item:nth-child(5) .attribute-icon {
-                    background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/2764.svg'); /* Coração (Vitalidade) */
-                }
-                
-                /* Classes */
-                .classes-container {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                    gap: 20px;
-                    margin-top: 20px;
-                }
-                
-                .class-card {
-                    background: rgba(16, 16, 25, 0.8);
-                    border: 1px solid rgba(193, 240, 248, 0.1);
-                    border-radius: 10px;
-                    padding: 20px;
-                    text-align: center;
-                }
-                
-                .class-label {
-                    color: #888;
-                    font-size: 0.9rem;
-                    text-transform: uppercase;
-                    letter-spacing: 1.5px;
-                    margin-bottom: 10px;
-                }
-                
-                .class-value {
-                    color: #d6feff;
-                    font-size: 1.3rem;
-                    font-weight: 600;
-                    text-shadow: 0 0 8px rgba(176, 255, 248, 0.3);
-                }
-                
-                /* Inventário */
-                .inventory-content {
-                    background: rgba(10, 10, 20, 0.7);
-                    border: 1px solid rgba(193, 240, 248, 0.1);
-                    border-radius: 8px;
-                    padding: 20px;
-                    margin-top: 15px;
-                    color: #e0e0e0;
-                    line-height: 1.6;
-                    white-space: pre-wrap;
-                }
-                
-                /* Rodapé */
-                .ark-footer {
-                    text-align: center;
-                    margin-top: 50px;
-                    padding: 25px;
-                    background: linear-gradient(135deg, 
-                        rgba(16, 16, 25, 0.8), 
-                        rgba(25, 10, 40, 0.8));
-                    border-radius: 10px;
-                    border-top: 2px solid rgba(193, 240, 248, 0.2);
-                    color: #888;
-                    font-size: 0.9rem;
-                    position: relative;
-                }
-                
-                .ark-footer::before {
-                    content: '';
-                    position: absolute;
-                    top: -2px;
-                    left: 10%;
-                    right: 10%;
-                    height: 2px;
-                    background: linear-gradient(90deg, 
-                        transparent, 
-                        rgba(193, 240, 248, 0.3), 
-                        rgba(193, 240, 248, 0.6),
-                        rgba(193, 240, 248, 0.3),
-                        transparent);
-                }
-                
-                .footer-title {
-                    color: #b6fff3;
-                    font-size: 1.2rem;
-                    margin-bottom: 10px;
-                }
-                
-                /* Utilitários */
-                .no-info {
-                    color: rgba(255, 255, 255, 0.4);
-                    font-style: italic;
-                }
-                
-                .highlight {
-                    color: #ffe375;
-                    font-weight: 600;
-                }
-                
-                /* Media Queries para impressão */
-                @media print {
-                    body {
-                        background: #0a0a14 !important;
-                        padding: 15px !important;
-                    }
-                    
-                    .ark-container {
-                        max-width: 100% !important;
-                    }
-                    
-                    .ark-header, .ark-section, .ark-footer {
-                        break-inside: avoid;
-                        page-break-inside: avoid;
-                    }
-                    
-                    .attributes-grid {
-                        grid-template-columns: repeat(5, 1fr) !important;
-                    }
-                    
-                    .ark-section {
-                        box-shadow: none !important;
-                    }
-                }
-                
-                @media screen and (max-width: 768px) {
-                    body {
-                        padding: 15px;
-                    }
-                    
-                    .ark-title {
-                        font-size: 2rem;
-                    }
-                    
-                    .character-title {
-                        font-size: 1.5rem;
-                    }
-                    
-                    .attributes-grid {
-                        grid-template-columns: repeat(2, 1fr);
-                    }
-                    
-                    .info-grid {
-                        grid-template-columns: 1fr;
-                    }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="ark-container">
-                <!-- Header Principal -->
-                <div class="ark-header">
-                    <h1 class="ark-title">FICHA DE PERSONAGEM</h1>
-                    <h2 class="character-title">${characterName}</h2>
-                    <div class="character-subtitle">
-                        RPG ARK - Aventura além dos limites
-                    </div>
-                    <div class="generation-info">
-                        Nível ${level} • Gerado em ${new Date().toLocaleDateString('pt-BR')} às ${new Date().toLocaleTimeString('pt-BR')}
-                    </div>
-                </div>
-                
-                <!-- Informações Básicas -->
-                <div class="ark-section">
-                    <h3 class="section-title">Informações Básicas</h3>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Nome</div>
-                            <div class="info-value">${characterName}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Nível</div>
-                            <div class="info-value highlight">${level}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Idade</div>
-                            <div class="info-value">${age}</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Atributos -->
-                <div class="ark-section">
-                    <h3 class="section-title">Atributos Principais</h3>
-                    <div class="attributes-grid">
-    `;
-    
-    // Adicionar atributos
-    attributes.forEach((attr, index) => {
-        pdfContent += `
-            <div class="attribute-item">
-                <div class="attribute-icon"></div>
-                <div class="attribute-name">${attributeNames[index]}</div>
-                <div class="attribute-value">${attributeValues[index]}</div>
-            </div>
-        `;
-    });
-    
-    pdfContent += `
-                    </div>
-                </div>
-                
-                <!-- Classes -->
-                <div class="ark-section">
-                    <h3 class="section-title">Classes e Especializações</h3>
-                    <div class="classes-container">
-                        <div class="class-card">
-                            <div class="class-label">Classe Primitiva 1</div>
-                            <div class="class-value">${class1}</div>
-                        </div>
-                        <div class="class-card">
-                            <div class="class-label">Classe Primitiva 2</div>
-                            <div class="class-value">${class2}</div>
-                        </div>
-                        <div class="class-card">
-                            <div class="class-label">Classe de Combate</div>
-                            <div class="class-value">${combatClass}</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Inventário -->
-                <div class="ark-section">
-                    <h3 class="section-title">Inventário e Equipamentos</h3>
-                    <div class="inventory-content">
-                        ${inventory.replace(/\n/g, '<br>')}
-                    </div>
-                </div>
-                
-                <!-- Rodapé -->
-                <div class="ark-footer">
-                    <div class="footer-title">RPG ARK</div>
-                    <p>© ${new Date().getFullYear()} RPG ARK - Todos os direitos reservados</p>
-                    <p>Esta ficha foi gerada automaticamente pelo sistema de criação de personagens.</p>
-                    <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
-                        Ficha ID: ${Date.now()} • Versão 2.0
-                    </p>
-                </div>
-            </div>
-            
-            <script>
-                // Script para melhorar a impressão
-                window.onload = function() {
-                    // Adicionar efeitos visuais
-                    const sections = document.querySelectorAll('.ark-section');
-                    sections.forEach((section, index) => {
-                        section.style.animationDelay = \`\${index * 0.1}s\`;
-                    });
-                    
-                    // Configurar para impressão
-                    if (window.location.search.includes('print')) {
-                        window.print();
-                    }
-                };
-            </script>
-        </body>
-        </html>
-    `;
-
-    // Abrir em nova janela para impressão/salvamento
-    const printWindow = window.open('', '_blank', 'width=1200,height=800');
-    printWindow.document.write(pdfContent);
-    printWindow.document.close();
-    printWindow.focus();
-    
-    // Adicionar botões de controle
-    setTimeout(() => {
-        const controls = `
-            <div style="
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 10000;
-                background: rgba(10, 10, 20, 0.9);
-                padding: 15px;
-                border-radius: 10px;
-                border: 2px solid rgba(176, 255, 248, 0.3);
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            ">
-                <button onclick="window.print()" style="
-                    background: linear-gradient(45deg, #6c63ff, #854fff);
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    margin: 5px;
-                    font-weight: bold;
-                    transition: all 0.3s ease;
-                " onmouseover="this.style.transform='scale(1.05)'" 
-                 onmouseout="this.style.transform='scale(1)'">
-                    🖨️ Imprimir
-                </button>
-                <button onclick="window.close()" style="
-                    background: linear-gradient(45deg, #ff4757, #ff3838);
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    margin: 5px;
-                    font-weight: bold;
-                    transition: all 0.3s ease;
-                " onmouseover="this.style.transform='scale(1.05)'" 
-                 onmouseout="this.style.transform='scale(1)'">
-                    ✖️ Fechar
-                </button>
-            </div>
-        `;
-        
-        printWindow.document.body.insertAdjacentHTML('beforeend', controls);
-        
-        // Oferecer impressão automática
-        if (confirm('Deseja imprimir a ficha agora?')) {
-            printWindow.print();
-        }
-    }, 1000);
-}
-}
-// ==============================================
-// INICIALIZAÇÃO
-// ==============================================
-
-// Adicionar evento para detectar se as bibliotecas estão carregadas
-window.addEventListener('load', function() {
-    // Verificar se as bibliotecas estão carregadas
-    if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
-        console.warn('Bibliotecas de PDF não carregadas. Botão de PDF pode não funcionar.');
-        
-        // Criar fallback
-        const pdfButton = document.querySelector('.pdf-button');
-        if (pdfButton) {
-            pdfButton.onclick = backupPDFGeneration;
-            pdfButton.title = 'Usar método alternativo (impressão)';
-        }
-    }
 });
