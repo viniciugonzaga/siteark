@@ -14,7 +14,7 @@ let learnedActionBonuses = [];
 let weapons = [];
 let characterRituals = [];
 
-// Sistema de Mutação - INICIALIZAÇÃO CORRIGIDA
+// Sistema de Mutação
 let characterMutations = [
     {
         name: "MUTAÇÃO PRIMAL",
@@ -73,6 +73,10 @@ const RITUALS_STORAGE_KEY = 'selectedRitualPacts';
 
 // Variável para controle de geração de PDF
 let isGeneratingPDF = false;
+
+// ==============================================
+// FUNÇÕES DO SISTEMA
+// ==============================================
 
 function loginUser(username) {
     if (!username) {
@@ -133,7 +137,6 @@ function saveCharacterLocal() {
         if (characterNameInput) characterNameInput.value = characterName;
     }
 
-    // ATUALIZAR MUTAÇÕES DO FORMULÁRIO ANTES DE SALVAR
     updateMutationsFromForm();
 
     const characterData = {
@@ -527,6 +530,7 @@ function applyClassBonus(classId) {
     }
 }
 
+// Event Listeners
 document.getElementById('class1').addEventListener('change', updateClassButtonsState);
 document.getElementById('class2').addEventListener('change', updateClassButtonsState);
 document.getElementById('level').addEventListener('input', validateLevelInput);
@@ -546,6 +550,10 @@ document.getElementById('photo').addEventListener('change', function(event) {
         document.getElementById('preview').src = "#";
     }
 });
+
+// ==============================================
+// SISTEMA DE BÔNUS DE AÇÃO
+// ==============================================
 
 const getSlotCost = (value) => {
     switch (value) {
@@ -762,6 +770,10 @@ function updateLearnedActionBonus(index, field, newValue) {
     learnedActionBonuses[index][field] = newValue;
     renderLearnedActionBonuses(); 
 }
+
+// ==============================================
+// SISTEMA DE ARMAS
+// ==============================================
 
 function addWeapon(name = '', damageDice = '', condition = 'Nula') {
     weapons.push({ name: name, damageDice: damageDice, condition: condition });
@@ -1039,6 +1051,10 @@ function saveMutationData() {
     characterData.characterMutations = characterMutations;
     localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
 }
+
+// ==============================================
+// CALCULAR ESTATÍSTICAS DA FICHA
+// ==============================================
 
 function calculateStats() {
     const name = document.getElementById("name").value;
@@ -1556,7 +1572,10 @@ function copyFicha() {
         });
 }
 
-// Sistema de Dados
+// ==============================================
+// SISTEMA DE DADOS
+// ==============================================
+
 const menu = document.getElementById('diceMenu');
 const openMenuButton = document.getElementById('openMenu');
 const closeMenuButton = document.getElementById('closeMenu');
@@ -1608,6 +1627,10 @@ function goToPage(page) {
     window.location.href = page;
 }
 
+// ==============================================
+// NAVEGAÇÃO RESPONSIVA
+// ==============================================
+
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
 
@@ -1628,6 +1651,10 @@ function updateLevelBar() {
         levelBarFill.style.width = percentage + '%';
     }
 }
+
+// ==============================================
+// SISTEMA DE RITUAIS
+// ==============================================
 
 function loadSelectedRitualPact() {
     const displayContainer = document.getElementById("selectedRitualPactDisplay");
@@ -1736,7 +1763,7 @@ function removeRitualPact(indexToRemove) {
 }
 
 // ==============================================
-// SISTEMA DE PDF PRINCIPAL (CORRIGIDO)
+// SISTEMA DE PDF MELHORADO PARA MOBILE
 // ==============================================
 
 function generatePDF() {
@@ -1754,7 +1781,7 @@ function generatePDF() {
     // Verificar se as bibliotecas estão carregadas
     if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
         alert('Bibliotecas de PDF não estão disponíveis. Usando método alternativo...');
-        generateSimplePDF();
+        generateSimplePDFWithFeedback();
         return;
     }
 
@@ -1770,7 +1797,7 @@ function generatePDF() {
 }
 
 // ==============================================
-// MÉTODO PRINCIPAL PARA DESKTOP
+// MÉTODO PARA DESKTOP
 // ==============================================
 
 function generateDesktopPDF() {
@@ -1781,14 +1808,16 @@ function generateDesktopPDF() {
     button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
     button.disabled = true;
     
+    showProcessingNotification('Gerando PDF...');
+    
     const statsElement = document.getElementById('stats');
     const tempDiv = document.createElement('div');
-    tempDiv.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 800px;';
+    tempDiv.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 800px; background: white; padding: 20px;';
     tempDiv.innerHTML = statsElement.innerHTML;
     document.body.appendChild(tempDiv);
     
     html2canvas(tempDiv, {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff',
@@ -1826,24 +1855,46 @@ function generateDesktopPDF() {
         const characterName = document.getElementById('name').value || 'personagem';
         const fileName = `ficha_${characterName.toLowerCase().replace(/\s+/g, '_')}.pdf`;
         
-        pdf.save(fileName);
+        // Gerar blob do PDF
+        const pdfBlob = pdf.output('blob');
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        
+        // Tentar abrir o PDF em uma nova janela
+        try {
+            const pdfWindow = window.open(pdfUrl, '_blank');
+            if (pdfWindow) {
+                pdfWindow.focus();
+                showSuccessMessage(`PDF gerado! Abrindo em nova janela...`);
+            } else {
+                // Se não puder abrir, forçar download
+                pdf.save(fileName);
+                showMobileDownloadInstructions(fileName);
+            }
+        } catch (error) {
+            // Fallback para download direto
+            pdf.save(fileName);
+            showMobileDownloadInstructions(fileName);
+        }
+        
+        // Liberar URL
+        setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
         
         button.innerHTML = originalButtonText;
         button.disabled = false;
         isGeneratingPDF = false;
-        
-        alert(`PDF gerado com sucesso: ${fileName}`);
         
     }).catch(error => {
         console.error('Erro ao gerar PDF:', error);
-        document.body.removeChild(tempDiv);
+        if (tempDiv.parentNode) {
+            document.body.removeChild(tempDiv);
+        }
         
         button.innerHTML = originalButtonText;
         button.disabled = false;
         isGeneratingPDF = false;
         
-        alert('Erro ao gerar PDF. Tentando método simples...');
-        generateSimplePDF();
+        showErrorNotification('Erro ao gerar PDF. Tentando método simples...');
+        setTimeout(() => generateSimplePDFWithFeedback(), 1000);
     });
 }
 
@@ -1851,8 +1902,10 @@ function generateDesktopPDF() {
 // MÉTODO SIMPLES PARA MOBILE/DESKTOP
 // ==============================================
 
-function generateSimplePDF() {
+function generateSimplePDFWithFeedback() {
     const { jsPDF } = window.jspdf;
+    
+    showProcessingNotification('Criando PDF simples...');
     
     const characterName = document.getElementById('name').value || 'Personagem';
     const level = document.getElementById('level').value || '1';
@@ -1878,6 +1931,7 @@ function generateSimplePDF() {
     const lineHeight = 7;
     const pageWidth = pdf.internal.pageSize.getWidth();
     
+    // Cabeçalho
     pdf.setFontSize(20);
     pdf.setFont('helvetica', 'bold');
     pdf.setTextColor(0, 102, 204);
@@ -1899,10 +1953,12 @@ function generateSimplePDF() {
     pdf.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, pageWidth / 2, y, { align: 'center' });
     y += 15;
     
+    // Linha divisória
     pdf.setDrawColor(200, 200, 200);
     pdf.line(margin, y, pageWidth - margin, y);
     y += 10;
     
+    // Atributos
     pdf.setFontSize(14);
     pdf.setTextColor(0, 0, 0);
     pdf.text('ATRIBUTOS PRINCIPAIS', margin, y);
@@ -1929,7 +1985,9 @@ function generateSimplePDF() {
     
     y += (Math.ceil(attributes.length / attributesPerRow) * 15) + 15;
     
+    // Classes
     pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0);
     pdf.text('CLASSES', margin, y);
     y += 10;
     
@@ -1941,7 +1999,9 @@ function generateSimplePDF() {
     pdf.text(`Classe de Combate: ${combatClass}`, margin, y);
     y += 15;
     
+    // Estatísticas
     pdf.setFontSize(14);
+    pdf.setTextColor(0, 0, 0);
     pdf.text('ESTATÍSTICAS', margin, y);
     y += 10;
     
@@ -1951,14 +2011,49 @@ function generateSimplePDF() {
     pdf.text(`Determinação: ${determinacao}`, margin, y);
     y += 15;
     
+    // Rodapé
     pdf.setFontSize(8);
     pdf.setTextColor(100, 100, 100);
     pdf.text('© RPG ARK - Ficha gerada automaticamente', pageWidth / 2, 280, { align: 'center' });
     
     const fileName = `ficha_${characterName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
-    pdf.save(fileName);
     
-    alert(`PDF "${fileName}" gerado com sucesso!`);
+    // Verificar se é mobile e oferecer opções
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
+    if (isMobile && navigator.share) {
+        // Usar Web Share API no mobile
+        pdf.output('blob').then(blob => {
+            const file = new File([blob], fileName, { type: 'application/pdf' });
+            
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                navigator.share({
+                    files: [file],
+                    title: `Ficha de ${characterName}`,
+                    text: 'Ficha de personagem RPG ARK'
+                }).then(() => {
+                    showSuccessMessage('PDF compartilhado com sucesso!');
+                }).catch(error => {
+                    console.log('Erro ao compartilhar:', error);
+                    // Fallback para download
+                    pdf.save(fileName);
+                    showMobileDownloadInstructions(fileName);
+                });
+            } else {
+                pdf.save(fileName);
+                showMobileDownloadInstructions(fileName);
+            }
+        });
+    } else {
+        // Download normal
+        pdf.save(fileName);
+        
+        if (isMobile) {
+            showMobileDownloadInstructions(fileName);
+        } else {
+            showSuccessMessage(`PDF salvo como: ${fileName}<br><br>Verifique sua pasta de Downloads.`);
+        }
+    }
 }
 
 // ==============================================
@@ -1997,9 +2092,9 @@ function offerMobilePDFOptions() {
     
     content.innerHTML = `
         <div style="padding: 20px; text-align: center;">
-            <h3 style="color: #b6fff3; margin-bottom: 20px;">Gerar PDF (Dispositivo Móvel)</h3>
+            <h3 style="color: #b6fff3; margin-bottom: 20px;">📱 Gerar PDF (Mobile)</h3>
             <p style="color: #d6feff; margin-bottom: 30px;">
-                Escolha o método de geração de PDF:
+                Escolha como deseja obter sua ficha:
             </p>
             <div style="display: flex; flex-direction: column; gap: 15px;">
                 <button onclick="closeModalAndGenerate('simple')" style="
@@ -2011,8 +2106,12 @@ function offerMobilePDFOptions() {
                     cursor: pointer;
                     font-weight: bold;
                     font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
                 ">
-                    📱 PDF Simples (Rápido)
+                    📄 PDF Rápido
                 </button>
                 <button onclick="closeModalAndGenerate('full')" style="
                     background: linear-gradient(45deg, #3498db, #2ecc71);
@@ -2023,14 +2122,41 @@ function offerMobilePDFOptions() {
                     cursor: pointer;
                     font-weight: bold;
                     font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
                 ">
-                    🖼️ PDF Completo (Pode ser lento)
+                    🖼️ PDF Completo
+                </button>
+                <button onclick="shareAsImage()" style="
+                    background: linear-gradient(45deg, #9b59b6, #e056fd);
+                    color: white;
+                    border: none;
+                    padding: 15px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-weight: bold;
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                ">
+                    📱 Compartilhar Imagem
                 </button>
             </div>
-            <p style="color: #888; margin-top: 20px; font-size: 12px;">
-                <strong>PDF Simples:</strong> Texto básico, mais rápido<br>
-                <strong>PDF Completo:</strong> Com imagens e formatação
-            </p>
+            <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <p style="color: #b6fff3; font-size: 14px; margin-bottom: 8px;">
+                    <strong>📍 Onde o PDF será salvo?</strong>
+                </p>
+                <p style="color: #aaa; font-size: 12px; line-height: 1.4;">
+                    <strong>Android:</strong> Pasta Downloads<br>
+                    <strong>iPhone/iPad:</strong> Pasta Arquivos → Downloads<br>
+                    <strong>Google Chrome:</strong> Menu → Downloads<br>
+                    <strong>Safari:</strong> Ícone de download na barra de URL
+                </p>
+            </div>
         </div>
     `;
     
@@ -2064,10 +2190,346 @@ function closeModalAndGenerate(type) {
     if (modal) modal.remove();
     
     if (type === 'simple') {
-        generateSimplePDF();
+        generateSimplePDFWithFeedback();
     } else if (type === 'full') {
         generateDesktopPDF();
     }
+}
+
+// ==============================================
+// FUNÇÃO PARA COMPARTILHAR COMO IMAGEM
+// ==============================================
+
+function shareAsImage() {
+    const modal = document.getElementById('pdfOptionsModal');
+    if (modal) modal.remove();
+    
+    showProcessingNotification('Capturando imagem da ficha...');
+    
+    const statsElement = document.getElementById('stats');
+    
+    html2canvas(statsElement, {
+        scale: 1,
+        useCORS: true,
+        logging: false,
+        backgroundColor: '#0a0a14',
+    }).then(canvas => {
+        canvas.toBlob(blob => {
+            const characterName = document.getElementById('name').value || 'Personagem';
+            const fileName = `ficha_${characterName.replace(/\s+/g, '_')}.png`;
+            const file = new File([blob], fileName, { type: 'image/png' });
+            
+            if (navigator.share) {
+                if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                    navigator.share({
+                        files: [file],
+                        title: `Ficha de ${characterName}`,
+                        text: 'Minha ficha de personagem RPG ARK'
+                    }).then(() => {
+                        showSuccessMessage('Imagem compartilhada com sucesso!');
+                    }).catch(error => {
+                        console.log('Erro ao compartilhar:', error);
+                        downloadImage(canvas, fileName);
+                    });
+                } else {
+                    downloadImage(canvas, fileName);
+                }
+            } else {
+                downloadImage(canvas, fileName);
+            }
+        });
+    }).catch(error => {
+        console.error('Erro ao capturar imagem:', error);
+        showErrorNotification('Erro ao criar imagem. Tente o PDF simples.');
+    });
+}
+
+function downloadImage(canvas, fileName) {
+    const link = document.createElement('a');
+    link.download = fileName;
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    
+    showMobileDownloadInstructions(fileName);
+}
+
+// ==============================================
+// FUNÇÕES DE NOTIFICAÇÃO
+// ==============================================
+
+function showMobileDownloadInstructions(fileName) {
+    const notification = document.createElement('div');
+    notification.id = 'mobileDownloadNotification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(45deg, rgba(16, 16, 25, 0.98), rgba(25, 10, 40, 0.98));
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid rgba(176, 255, 248, 0.3);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+        z-index: 10001;
+        max-width: 90%;
+        width: 400px;
+        text-align: center;
+    `;
+    
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isAndroid = /Android/i.test(navigator.userAgent);
+    
+    let instructions = '';
+    
+    if (isIOS) {
+        instructions = `
+            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
+                <strong>✅ PDF Baixado com Sucesso!</strong>
+            </p>
+            <p style="color: #d6feff; margin-bottom: 15px;">
+                Arquivo: <strong>${fileName}</strong>
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
+                    <strong>📱 Como encontrar no iPhone/iPad:</strong>
+                </p>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.5; text-align: left;">
+                    1. Abra o app <strong>Arquivos</strong><br>
+                    2. Vá para <strong>Downloads</strong> ou <strong>Nesta iPhone</strong><br>
+                    3. Procure por: <strong>${fileName}</strong><br>
+                    4. Toque para abrir
+                </p>
+            </div>
+            <p style="color: #888; font-size: 12px; margin-top: 10px;">
+                Dica: Verifique também na barra de downloads do Safari.
+            </p>
+        `;
+    } else if (isAndroid) {
+        instructions = `
+            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
+                <strong>✅ PDF Baixado com Sucesso!</strong>
+            </p>
+            <p style="color: #d6feff; margin-bottom: 15px;">
+                Arquivo: <strong>${fileName}</strong>
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
+                    <strong>📱 Como encontrar no Android:</strong>
+                </p>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.5; text-align: left;">
+                    1. Abra o app <strong>Arquivos</strong> ou <strong>Meus Arquivos</strong><br>
+                    2. Vá para <strong>Downloads</strong> ou <strong>Download</strong><br>
+                    3. Procure por: <strong>${fileName}</strong><br>
+                    4. Toque para abrir
+                </p>
+            </div>
+            <p style="color: #888; font-size: 12px; margin-top: 10px;">
+                Dica: Use um app como Adobe Acrobat ou Google PDF Viewer.
+            </p>
+        `;
+    } else {
+        instructions = `
+            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
+                <strong>✅ PDF Baixado com Sucesso!</strong>
+            </p>
+            <p style="color: #d6feff; margin-bottom: 15px;">
+                Arquivo: <strong>${fileName}</strong>
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
+                    <strong>💻 Local do arquivo:</strong>
+                </p>
+                <p style="color: #aaa; font-size: 13px; line-height: 1.5;">
+                    • Pasta padrão: <strong>Downloads</strong><br>
+                    • Procure na barra de downloads do seu navegador<br>
+                    • Ou abra sua pasta de Downloads
+                </p>
+            </div>
+        `;
+    }
+    
+    notification.innerHTML = `
+        ${instructions}
+        <div style="display: flex; gap: 10px; margin-top: 20px;">
+            <button onclick="document.body.removeChild(document.getElementById('mobileDownloadNotification'))" style="
+                flex: 1;
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+            ">
+                Fechar
+            </button>
+            <button onclick="tryOpenDownloadsFolder()" style="
+                flex: 1;
+                background: linear-gradient(45deg, #6c63ff, #854fff);
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+            ">
+                📂 Abrir Downloads
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-fechar após 20 segundos
+    setTimeout(() => {
+        if (document.getElementById('mobileDownloadNotification')) {
+            document.body.removeChild(notification);
+        }
+    }, 20000);
+}
+
+function tryOpenDownloadsFolder() {
+    const notification = document.getElementById('mobileDownloadNotification');
+    if (notification) {
+        notification.remove();
+    }
+    
+    showProcessingNotification('Tentando abrir pasta de Downloads...');
+    
+    // Tentar várias formas de abrir a pasta de downloads
+    setTimeout(() => {
+        try {
+            // Para Android/Chrome
+            window.open('file:///storage/emulated/0/Download', '_blank');
+        } catch (e) {
+            try {
+                // Para Android alternativo
+                window.open('file:///storage/emulated/0/Downloads', '_blank');
+            } catch (e2) {
+                try {
+                    // Para iOS
+                    window.open('shareddocuments:///private/var/mobile/Containers/Shared/AppGroup', '_blank');
+                } catch (e3) {
+                    // Fallback para instruções
+                    showSuccessMessage('Para abrir seus downloads:<br>1. Abra o app Arquivos<br>2. Vá para a pasta Downloads<br>3. Procure por: ' + fileName);
+                }
+            }
+        }
+    }, 500);
+}
+
+function showProcessingNotification(message) {
+    const existing = document.getElementById('processingNotification');
+    if (existing) existing.remove();
+    
+    const notification = document.createElement('div');
+    notification.id = 'processingNotification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(10, 10, 20, 0.95);
+        color: white;
+        padding: 25px;
+        border-radius: 15px;
+        border: 2px solid rgba(176, 255, 248, 0.3);
+        z-index: 10002;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        min-width: 250px;
+        text-align: center;
+    `;
+    
+    notification.innerHTML = `
+        <i class="fas fa-spinner fa-spin fa-2x" style="color: #b6fff3;"></i>
+        <p style="color: #d6feff; margin: 0; font-size: 16px;">${message}</p>
+        <p style="color: #888; font-size: 12px; margin: 5px 0 0 0;">Aguarde um momento...</p>
+    `;
+    
+    document.body.appendChild(notification);
+}
+
+function showSuccessMessage(message) {
+    const processing = document.getElementById('processingNotification');
+    if (processing) processing.remove();
+    
+    const notification = document.createElement('div');
+    notification.id = 'successNotification';
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #27ae60, #2ecc71);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideIn 0.3s ease, fadeOut 0.3s ease 5s;
+        max-width: 300px;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-check-circle" style="font-size: 20px;"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 5000);
+}
+
+function showErrorNotification(message) {
+    const processing = document.getElementById('processingNotification');
+    if (processing) processing.remove();
+    
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #e74c3c, #ff7675);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 10000;
+        animation: slideIn 0.3s ease;
+        max-width: 300px;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fas fa-exclamation-circle" style="font-size: 20px;"></i>
+            <span>${message}</span>
+        </div>
+        <button onclick="this.parentElement.remove()" style="
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+        ">✕</button>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 5000);
 }
 
 // ==============================================
@@ -2105,6 +2567,36 @@ window.onload = function() {
     if (pdfButton) {
         pdfButton.onclick = generatePDF;
     }
+    
+    // Adicionar animações CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pdf-button {
+            transition: all 0.3s ease;
+        }
+        .pdf-button:hover {
+            animation: pulse 1s infinite;
+        }
+        .pdf-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+    `;
+    document.head.appendChild(style);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
