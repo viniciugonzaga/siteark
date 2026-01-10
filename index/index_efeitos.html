@@ -68,59 +68,149 @@
       <button id="clearRolls">Limpar Registro</button>
     </div>
   </nav>
-    <!-- Fim Nav-Bar ------------------------------------------------->
- <!-- Seção Início -->
-  
-  <div class="titulo_principal">
-    <h1 class="titulo_efeito">Efeitos<h1>
-  </div>
 
- <main class="effects-page-main">
-        <section class="effects-content-section">
-            <h1 class="effects-page-main-title">Efeitos do Sistema</h1>
-            <div class="effects-table-container"> <table>
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Tipo de Dano</th>
-                            <th>Teste Resistido</th>
-                            <th>Status Aplicado</th>
-                            <th>Acúmulo</th>
-                            <th>Mais</th>
-                        </tr>
-                    </thead>
-                    <tbody id="efeito-tabela">
-                        </tbody>
-                </table>
+  <main class="meio">
+        <div class="container">
+            <!-- Título Principal -->
+            <div class="titulo_principal">
+                <h1 class="titulo_efeito">EFEITOS & DADOS</h1>
             </div>
-            <div id="modais-container">
+
+            <!-- Subtítulo -->
+            <div class="subtitle-container">
+                <p class="subtitle">
+                    Sistema completo de mecânicas de status, efeitos especiais e defesas. 
+                    Cada efeito possui características únicas de acumulação, duração e impacto no combate.
+                </p>
+            </div>
+
+            <!-- Seção de Efeitos Comuns -->
+            <section class="section-container">
+                <div class="section-title">
+                    <h2><i class="fas fa-skull-crossbones"></i> EFEITOS DE STATUS</h2>
+                    <p class="section-subtitle">Efeitos que podem ser aplicados em criaturas durante o combate</p>
                 </div>
-        </section>
 
-  <div class="sessao-efeitos">
-    <div class="carousel">
-      <button class="prev">&#10094;</button>
-      <img id="efeito-img" src="" alt="Efeito">
-      <button class="next">&#10095;</button>
-    </div>
-    <div class="efeito-nome" id="efeito-nome"></div>
-    <div class="efeito-descricao" id="efeito-descricao"></div>
-  </div>
+                <div class="effects-table-container">
+                    <table class="effects-table">
+                        <thead>
+                            <tr>
+                                <th class="effect-icon-cell">ÍCONE</th>
+                                <th class="effect-name-cell">NOME</th>
+                                <th class="effect-desc-cell">DESCRIÇÃO</th>
+                                <th class="effect-tags-cell">CARACTERÍSTICAS</th>
+                                <th class="effect-actions-cell">AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="effectsTableBody">
+                            <!-- Linhas serão renderizadas pelo JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
-        <section class="effects-content-section">
-            <h2 class="effects-section-subtitle">Defesas:</h2>
-            <ul class="effects-list">
-                <li><strong>Esquiva:</strong> Evita o dano físico com agilidade.</li>
-                <li><strong>Contra-ataque:</strong> Esquiva e revida ao mesmo tempo.</li>
-                <li><strong>Bloqueio:</strong> Anula totalmente o dano físico.</li>
-                <li><strong>Vontade:</strong> Defesa contra efeitos mentais e medo.</li>
-                <li><strong>Fortitude:</strong> Resistência corporal a efeitos como veneno, sangramento, vulnerável, etc.</li>
-            </ul>
-        </section>
+            <!-- Seção de Efeitos Especiais -->
+            <section class="section-container">
+                <div class="section-title">
+                    <h2><i class="fas fa-crown"></i> EFEITOS ESPECIAIS</h2>
+                    <p class="section-subtitle">Mecânicas exclusivas para situações específicas</p>
+                </div>
+
+                <div class="special-effects-table-container">
+                    <table class="special-effects-table">
+                        <thead>
+                            <tr>
+                                <th>ÍCONE</th>
+                                <th>NOME</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>DETALHES</th>
+                            </tr>
+                        </thead>
+                        <tbody id="specialEffectsTableBody">
+                            <!-- Linhas serão renderizadas pelo JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Seção de Defesas e Atributos -->
+            <section class="section-container">
+                <div class="section-title">
+                    <h2><i class="fas fa-shield-alt"></i> DEFESAS & ATRIBUTOS</h2>
+                    <p class="section-subtitle">Sistemas de defesa e características básicas</p>
+                </div>
+
+                <div class="defenses-attributes-container">
+                    <div class="defenses-table-container">
+                        <table class="defenses-table">
+                            <thead>
+                                <tr>
+                                    <th>ÍCONE</th>
+                                    <th>NOME</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="defensesTableBody">
+                                <!-- Linhas serão renderizadas pelo JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="attributes-table-container">
+                        <table class="attributes-table">
+                            <thead>
+                                <tr>
+                                    <th>ÍCONE</th>
+                                    <th>NOME</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="attributesTableBody">
+                                <!-- Linhas serão renderizadas pelo JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mecânica de Narrativa -->
+            <section class="section-container">
+                <div class="section-title">
+                    <h2><i class="fas fa-book"></i> MECÂNICA DE NARRATIVA</h2>
+                    <p class="section-subtitle">Efeitos aplicados em contextos de história e posicionamento</p>
+                </div>
+
+                <div class="narrative-table-container">
+                    <div class="narrative-header">
+                        <h3><i class="fas fa-users"></i> FLANQUEADO</h3>
+                    </div>
+                    <div class="narrative-content">
+                        <p class="narrative-desc">
+                            <strong>Mecânica Especial de Narrativa</strong> - O efeito de flanqueado pode ser usado especialmente em cenas de narrativa, quando um inimigo gasta todas as suas reações, ou é atacado por várias direções diferentes e se mantém pressionado. O alvo flanqueado recebe <strong>-5 em qualquer reação</strong>, até se posicionar melhor na luta. O número de ataques para ser flanqueado é o mesmo número de agilidade do alvo.
+                        </p>
+                        <div class="narrative-tags">
+                            <span class="narrative-tag"><i class="fas fa-exchange-alt"></i> Não acumula</span>
+                            <span class="narrative-tag"><i class="fas fa-tachometer-alt"></i> Baseado em Agilidade</span>
+                            <span class="narrative-tag"><i class="fas fa-exclamation-triangle"></i> Penalidade em Reações</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
+
+    <!-- Modal para detalhes do efeito -->
+    <div class="modal" id="effectModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-wrapper">
+            <div class="ficha-container" id="effectDetails">
+                <!-- Conteúdo será preenchido pelo JavaScript -->
+            </div>
+        </div>
+    </div>
+
+
     
-
-
  <!-- ░░░ FOOTER ░░░ -->
   <footer>
     <div class="footer-content">
@@ -155,5 +245,6 @@
   </footer>
 
 <script src="../js/efeitos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </body>
 </html>

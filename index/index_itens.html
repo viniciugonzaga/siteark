@@ -85,6 +85,15 @@
     <img src="../imagens/icon_blood_animado.gif" alt="Ícone de Era" class="era-icon-animated">
   </div>
 
+      <!-- BOTÃO VER MINHA FICHA -->
+    <div class="ficha-button-container">
+      <button onclick="window.location.href='../index/index_jogadores.html'" class="btn-ficha-glow">
+        <i class="fas fa-scroll"></i>
+        <span>Ver Minha Ficha</span>
+        <div class="ficha-aura"></div>
+      </button>
+    </div>
+
   <!-- ERA SELECTION -->
   <div class="eras">
     <button onclick="showEra('pedra')">Era da Pedra</button>
@@ -104,7 +113,148 @@
     <!-- Os modais serão gerados dinamicamente pelo JavaScript -->
   </div>
 
-  </main>
+     <!-- SEÇÃO DE FORJA -->
+    <div class="forja-section">
+      <div class="forja-titulo-container">
+        <h2 class="forja-titulo">
+          <i class="fas fa-hammer"></i>
+          Forja de Armas Personalizadas
+          <i class="fas fa-fire"></i>
+        </h2>
+        <p class="forja-descricao">Crie sua própria arma lendária! Escolha a raridade, defina seus atributos e adicione modificadores especiais.</p>
+      </div>
+
+      <div class="forja-container">
+        <!-- Formulário de criação -->
+        <div class="forja-form-container">
+          <div class="forja-form">
+            <div class="form-section">
+              <h3><i class="fas fa-gem"></i> Raridade da Arma</h3>
+              <div class="raridade-buttons">
+                <button class="btn-raridade" data-raridade="pedra" onclick="selecionarRaridade('pedra')">
+                  <i class="fas fa-mountain"></i>
+                  <span>Pedra</span>
+                  <small>1 Modificador</small>
+                </button>
+                <button class="btn-raridade" data-raridade="ferro" onclick="selecionarRaridade('ferro')">
+                  <i class="fas fa-cog"></i>
+                  <span>Ferro</span>
+                  <small>3 Modificadores</small>
+                </button>
+                <button class="btn-raridade" data-raridade="aco" onclick="selecionarRaridade('aco')">
+                  <i class="fas fa-industry"></i>
+                  <span>Aço</span>
+                  <small>2 Modificadores + Joias</small>
+                </button>
+                <button class="btn-raridade" data-raridade="radiante" onclick="selecionarRaridade('radiante')">
+                  <i class="fas fa-sun"></i>
+                  <span>Radiante</span>
+                  <small>3 Modificadores</small>
+                </button>
+                <button class="btn-raridade" data-raridade="final" onclick="selecionarRaridade('final')">
+                  <i class="fas fa-crown"></i>
+                  <span>Era Final</span>
+                  <small>Todos + Tek</small>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-edit"></i> Detalhes da Arma</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="armaNome"><i class="fas fa-sword"></i> Nome da Arma</label>
+                  <input type="text" id="armaNome" placeholder="Ex: Espada do Destino" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label for="armaDano"><i class="fas fa-explosion"></i> Dano (ex: 3d10+15)</label>
+                  <input type="text" id="armaDano" placeholder="3d10+15" class="form-input">
+                </div>
+                <div class="form-group ct-group">
+                  <label for="armaCT"><i class="fas fa-crosshairs"></i> CT (Crítico)</label>
+                  <input type="number" id="armaCT" placeholder="19" min="1" max="20" class="form-input">
+                  <small>De 1 a 20</small>
+                </div>
+                <div class="form-group">
+                  <label for="armaCriticos"><i class="fas fa-bolt"></i> Críticos (ex: +3D6)</label>
+                  <input type="text" id="armaCriticos" placeholder="+3D6" class="form-input">
+                </div>
+                <div class="form-group full-width">
+                  <label for="armaPassiva"><i class="fas fa-star"></i> Passiva</label>
+                  <textarea id="armaPassiva" placeholder="Descreva a passiva da arma..." class="form-textarea"></textarea>
+                </div>
+                <div class="form-group full-width" id="passivaRadianteGroup">
+                  <label for="armaPassivaRadiante"><i class="fas fa-sun"></i> Passiva Radiante</label>
+                  <textarea id="armaPassivaRadiante" placeholder="Descreva a passiva radiante..." class="form-textarea"></textarea>
+                </div>
+                <div class="form-group full-width" id="passivaTekGroup" style="display: none;">
+                  <label for="armaPassivaTek"><i class="fas fa-atom"></i> Passiva Tek</label>
+                  <textarea id="armaPassivaTek" placeholder="Descreva a passiva tek..." class="form-textarea"></textarea>
+                </div>
+                <div class="form-group full-width">
+                  <label for="armaDescricao"><i class="fas fa-book"></i> Descrição</label>
+                  <textarea id="armaDescricao" placeholder="Descreva sua arma lendária..." class="form-textarea"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3><i class="fas fa-tools"></i> Modificadores</h3>
+              <div class="modificadores-container" id="modificadoresContainer">
+                <!-- Modificadores serão gerados dinamicamente -->
+              </div>
+              <small class="mod-limit-info" id="modLimitInfo">Você pode selecionar até <span id="modLimit">1</span> modificador(es)</small>
+            </div>
+
+            <div class="form-actions">
+              <button onclick="criarArma()" class="btn-criar-arma">
+                <i class="fas fa-hammer"></i>
+                Forjar Arma
+              </button>
+              <button onclick="limparFormulario()" class="btn-limpar">
+                <i class="fas fa-broom"></i>
+                Limpar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Preview da arma -->
+        <div class="forja-preview">
+          <h3><i class="fas fa-eye"></i> Pré-visualização</h3>
+          <div class="preview-card" id="previewCard">
+            <div class="preview-placeholder">
+              <i class="fas fa-hammer fa-3x"></i>
+              <p>Sua arma aparecerá aqui</p>
+            </div>
+          </div>
+
+          <!-- Armas Criadas -->
+          <div class="armas-criadas-section">
+            <h3><i class="fas fa-scroll"></i> Armás Criadas</h3>
+            <div class="armas-criadas-list" id="armasCriadasList">
+              <!-- Armás criadas aparecerão aqui -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabela de Modificadores -->
+    <div class="modificadores-tabela-section">
+      <div class="tabela-modificadores-container">
+        <h3><i class="fas fa-table"></i> Tabela de Modificadores</h3>
+        <div class="tabela-modificadores" id="tabelaModificadores">
+          <!-- Tabela será gerada dinamicamente -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MODALS CONTAINER -->
+    <div id="modals-container">
+      <!-- Os modais serão gerados dinamicamente pelo JavaScript -->
+    </div>
+</main>
 
 <!-- ───────────── FOOTER ───────────── -->
   <footer>

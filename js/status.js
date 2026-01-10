@@ -59,748 +59,769 @@ function goToPage(page) {
     window.location.href = page;
 }
 
-// ========================
-// Constantes e Funções da Ficha
-// ========================
-const RITUALS_STORAGE_KEY = 'selectedRitualPacts';
-const LOCAL_CHARACTER_STORAGE_KEY = 'localCharacterData';
-const STAT_BACKGROUND_IMAGE_NORMAL = '../imagens/fundo_rubi_branco.jpg';
-const STAT_BACKGROUND_IMAGE_ALTERED = '../imagens/fundo_rubi_rosa.jpg';
 
-const ATTRIBUTE_MAP = {
-    'agi': 'currentAgi',
-    'for': 'currentFor',
-    'int': 'currentInt',
-    'set': 'currentSet',
-    'vig': 'currentVig'
-};
+// Configurações iniciais
+const LOCAL_STORAGE_KEY = 'arkCharacterSheet';
+let characterData = null;
+let refreshInterval = null;
 
-// ========================
-// Funções de Renderização
-// ========================
-function renderList(data, containerId, formatter) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = '';
-    if (data && data.length > 0) {
-        data.forEach(item => {
-            const li = document.createElement('li');
-            li.innerText = formatter(item);
-            container.appendChild(li);
-        });
-    } else {
-        const li = document.createElement('li');
-        li.innerText = 'Nenhum item registrado.';
-        container.appendChild(li);
+// Função principal para carregar a ficha
+function loadFicha() {
+    console.log('📖 Carregando ficha do personagem...');
+    
+    try {
+        const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (!savedData) {
+            showMessage('Nenhuma ficha encontrada. Volte à página principal e crie uma ficha primeiro.', 'warning');
+            return;
+        }
+        
+        characterData = JSON.parse(savedData);
+        console.log('✅ Dados da ficha carregados:', characterData);
+        
+        updateFichaDisplay();
+        setupAutoRefresh();
+        
+    } catch (error) {
+        console.error('❌ Erro ao carregar ficha:', error);
+        showMessage('Erro ao carregar a ficha. Os dados podem estar corrompidos.', 'error');
     }
 }
 
-function calculateBaseStats(characterData) {
-    const level = parseInt(characterData.level) || 1;
+// Atualizar toda a exibição da ficha
+function updateFichaDisplay() {
+    if (!characterData) return;
     
-    // Calcular atributos base + bônus de classe
-    const vig = characterData.attributesBase.vig + 
-                (characterData.appliedClassBonuses?.class1?.attribute === 'vig' ? 1 : 0) + 
-                (characterData.appliedClassBonuses?.class2?.attribute === 'vig' ? 1 : 0);
-    const int = characterData.attributesBase.int + 
-                (characterData.appliedClassBonuses?.class1?.attribute === 'int' ? 1 : 0) + 
-                (characterData.appliedClassBonuses?.class2?.attribute === 'int' ? 1 : 0);
-    const set = characterData.attributesBase.set + 
-                (characterData.appliedClassBonuses?.class1?.attribute === 'set' ? 1 : 0) + 
-                (characterData.appliedClassBonuses?.class2?.attribute === 'set' ? 1 : 0);
-    const agi = characterData.attributesBase.agi + 
-                (characterData.appliedClassBonuses?.class1?.attribute === 'agi' ? 1 : 0) + 
-                (characterData.appliedClassBonuses?.class2?.attribute === 'agi' ? 1 : 0);
-    const forc = characterData.attributesBase.for + 
-                 (characterData.appliedClassBonuses?.class1?.attribute === 'for' ? 1 : 0) + 
-                 (characterData.appliedClassBonuses?.class2?.attribute === 'for' ? 1 : 0);
+    // 1. Informações básicas
+    updateBasicInfo();
     
-    const resistenciaBase = 15 + (vig * 5);
-
-    let vidaBase = 55 + (vig * 15);
-    let sanidadeBase = 55 + (int * 10) + (set * 15);
-    let armaduraBase = 5;
-
-    // Bônus por nível
-    if (level >= 15) armaduraBase += 1;
-    if (level >= 30) armaduraBase += 1;
-    if (level >= 50) vidaBase += 30;
-    if (level >= 65) sanidadeBase += 20;
-    if (level >= 80) armaduraBase += 10;
-    if (level >= 95) { 
-        vidaBase += 20; 
-        sanidadeBase += 20; 
-    }
-    if (level >= 99) armaduraBase += 10;
-
-    return { 
-        vidaBase, 
-        armaduraBase, 
-        sanidadeBase, 
-        agi, 
-        forc, 
-        int, 
-        set, 
-        vig, 
-        resistenciaBase 
-    };
+    // 2. Status principais (vida, sanidade, etc)
+    updateStatusDisplay();
+    
+    // 3. Atributos
+    updateAttributesDisplay();
+    
+    // 4. Tabela de bônus
+    updateBonusTable();
+    
+    // 5. Slots de mutação
+    updateMutationsDisplay();
+    
+    // 6. Mutações Primal
+    updatePrimalDisplay();
+    
+    // 7. Rodapé e metadados
+    updateFooter();
 }
 
-function checkAndChangeStatBackgrounds(characterData, baseStats) {
-    const statElements = {
-        vida: document.getElementById('fichaVida')?.closest('.main-stat'),
-        armadura: document.getElementById('fichaArmadura')?.closest('.main-stat'),
-        sanidade: document.getElementById('fichaSanidade')?.closest('.main-stat')
-    };
+// 1. Informações básicas
+function updateBasicInfo() {
+    document.getElementById('ficha-name').textContent = characterData.name || '-';
+    document.getElementById('ficha-level').textContent = characterData.level || '1';
+    document.getElementById('ficha-age').textContent = characterData.age || '-';
+    document.getElementById('ficha-class').textContent = characterData.class1 || '-';
+}
 
-    // Verificar e atualizar fundo da Vida
-    if (statElements.vida) {
-        const vidaAltered = parseInt(characterData.currentLife) !== baseStats.vidaBase;
-        const vidaImageUrl = vidaAltered ? STAT_BACKGROUND_IMAGE_ALTERED : STAT_BACKGROUND_IMAGE_NORMAL;
-        statElements.vida.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${vidaImageUrl}')`;
-    }
-
-    // Verificar e atualizar fundo da Armadura
-    if (statElements.armadura) {
-        const armaduraAltered = parseInt(characterData.currentArmor) !== baseStats.armaduraBase;
-        const armaduraImageUrl = armaduraAltered ? STAT_BACKGROUND_IMAGE_ALTERED : STAT_BACKGROUND_IMAGE_NORMAL;
-        statElements.armadura.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${armaduraImageUrl}')`;
-    }
-
-    // Verificar e atualizar fundo da Sanidade
-    if (statElements.sanidade) {
-        const sanidadeAltered = parseInt(characterData.currentSanity) !== baseStats.sanidadeBase;
-        const sanidadeImageUrl = sanidadeAltered ? STAT_BACKGROUND_IMAGE_ALTERED : STAT_BACKGROUND_IMAGE_NORMAL;
-        statElements.sanidade.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${sanidadeImageUrl}')`;
-    }
+// 2. Status principais com barras de progresso
+function updateStatusDisplay() {
+    // Calcular status totais incluindo mutações
+    const baseStats = calculateBaseStats();
+    const mutationStats = calculateMutationStats();
     
-    // Verificar e atualizar fundo da Resistência
-    const resistenciaBlock = document.getElementById('resistenciaBlock');
-    if (resistenciaBlock) {
-        const resistenciaAltered = parseInt(characterData.currentResistencia) !== baseStats.resistenciaBase;
-        const resistenciaImageUrl = resistenciaAltered ? STAT_BACKGROUND_IMAGE_ALTERED : STAT_BACKGROUND_IMAGE_NORMAL;
-        resistenciaBlock.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${resistenciaImageUrl}')`;
-    }
-
-    // Verificar e atualizar fundos dos atributos
-    const attributeMap = {
-        'fichaAgi': 'agi',
-        'fichaFor': 'forc',
-        'fichaInt': 'int',
-        'fichaSet': 'set',
-        'fichaVig': 'vig'
+    const totalStats = {
+        vida: baseStats.vida + mutationStats.vida,
+        sanidade: baseStats.sanidade + mutationStats.sanidade,
+        armadura: baseStats.armadura + mutationStats.armadura,
+        folego: baseStats.folego + mutationStats.folego,
+        resistencia: baseStats.resistencia + mutationStats.resistencia
     };
-
-    document.querySelectorAll('.attribute-input').forEach(input => {
-        const attributeName = attributeMap[input.id];
-        if (attributeName) {
-            const attributeBaseValue = baseStats[attributeName];
-            const attributeCurrentValue = parseInt(input.value) || 0;
-            const parentDiv = input.closest('.stat-box');
-            
-            if (parentDiv) {
-                const isAltered = attributeCurrentValue !== attributeBaseValue;
-                const imageUrl = isAltered ? STAT_BACKGROUND_IMAGE_ALTERED : STAT_BACKGROUND_IMAGE_NORMAL;
-                parentDiv.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${imageUrl}')`;
-            }
+    
+    // Atualizar valores
+    const stats = ['vida', 'sanidade', 'armadura', 'folego', 'resistencia'];
+    stats.forEach(stat => {
+        const element = document.getElementById(`ficha-${stat}`);
+        if (element) {
+            element.textContent = totalStats[stat] || 0;
+        }
+        
+        // Atualizar barras de progresso
+        const maxValue = getMaxStatValue(stat);
+        const percentage = Math.min(100, (totalStats[stat] / maxValue) * 100);
+        const bar = document.getElementById(`${stat}-bar`);
+        if (bar) {
+            bar.style.width = `${percentage}%`;
+        }
+        
+        // Atualizar detalhes
+        const detail = document.getElementById(`ficha-${stat}-detail`);
+        if (detail) {
+            detail.innerHTML = `
+                <small>Base: ${baseStats[stat]} | Mutação: ${mutationStats[stat]}</small>
+            `;
         }
     });
 }
 
-// ========================
-// Sistema de Mutação para Status
-// ========================
-function displayMutationsInStatus(characterData) {
-    const mutationsContainer = document.getElementById('mutationsContainer');
-    if (!mutationsContainer) return;
+// Calcular stats base
+function calculateBaseStats() {
+    const level = parseInt(characterData.level) || 1;
+    const attributes = characterData.attributesBase || { agi: 1, for: 1, int: 1, set: 1, vig: 1 };
     
-    mutationsContainer.innerHTML = '';
+    let vida = 55 + (attributes.vig * 15);
+    let sanidade = 55 + (attributes.int * 10) + (attributes.set * 15);
+    let resistencia = 15 + (attributes.vig * 5);
+    let folego = 4 + (attributes.vig * 1);
+    let armadura = 5;
     
-    // Verificar se há mutações nos dados
+    // Bônus de nível
+    const levelBonuses = getLevelBonuses(level);
+    vida += levelBonuses.vida;
+    sanidade += levelBonuses.determinacaoSanidade;
+    armadura += levelBonuses.armadura;
+    
+    // Bônus de classe
+    const classBonuses = getClassBonuses(characterData.class1);
+    vida += classBonuses.vida;
+    sanidade += classBonuses.determinacaoSanidade;
+    resistencia += classBonuses.resistencia;
+    folego += classBonuses.folego;
+    armadura += classBonuses.armadura;
+    
+    return { vida, sanidade, armadura, folego, resistencia };
+}
+
+// Calcular bônus de mutação
+function calculateMutationStats() {
     const mutations = characterData.characterMutations || [];
+    const stats = {
+        vida: 0,
+        sanidade: 0,
+        armadura: 0,
+        folego: 0,
+        resistencia: 0
+    };
     
-    if (!mutations || mutations.length === 0) {
-        mutationsContainer.innerHTML = `
-            <div class="ark-section">
-                <h3 class="section-title">Sistema de Mutação</h3>
-                <div class="no-info">
-                    Nenhuma mutação registrada.
+    mutations.forEach(mutation => {
+        if (mutation.stats) {
+            stats.vida += (mutation.stats.vida || 0);
+            stats.sanidade += (mutation.stats.sanidade || 0);
+            stats.armadura += (mutation.stats.armadura || 0);
+            stats.folego += (mutation.stats.folego || 0);
+            stats.resistencia += (mutation.stats.resistencia || 0);
+        }
+    });
+    
+    return stats;
+}
+
+// 3. Atributos
+function updateAttributesDisplay() {
+    const attributes = characterData.attributesBase || { agi: 1, for: 1, int: 1, set: 1, vig: 1 };
+    const container = document.getElementById('attributes-grid');
+    
+    container.innerHTML = '';
+    
+    Object.entries(attributes).forEach(([key, value]) => {
+        const attrDiv = document.createElement('div');
+        attrDiv.className = 'attribute-item';
+        
+        const label = key.toUpperCase();
+        const mod = calculateAttributeModifier(value);
+        
+        attrDiv.innerHTML = `
+            <span class="attribute-label">${label}</span>
+            <div class="attribute-value">${value}</div>
+            <span class="attribute-mod">${mod >= 0 ? '+' : ''}${mod}</span>
+        `;
+        
+        container.appendChild(attrDiv);
+    });
+}
+
+function calculateAttributeModifier(value) {
+    return Math.floor((value - 10) / 2);
+}
+
+// 4. Tabela de bônus
+function updateBonusTable() {
+    const tableBody = document.getElementById('bonus-table-body');
+    const slotsUsed = document.getElementById('slots-used');
+    const slotsTotal = document.getElementById('slots-total');
+    const weightUsed = document.getElementById('weight-used');
+    const weightTotal = document.getElementById('weight-total');
+    const bonusCount = document.getElementById('bonus-count');
+    
+    tableBody.innerHTML = '';
+    
+    // Coletar todos os bônus
+    const allBonuses = [];
+    
+    // Bônus normais
+    const normalBonuses = characterData.allBonuses || [];
+    normalBonuses.forEach(bonus => {
+        if (bonus.action && bonus.action.trim() !== '') {
+            allBonuses.push({
+                ...bonus,
+                origin: 'Normal'
+            });
+        }
+    });
+    
+    // Bônus aprendidos
+    const learnedBonuses = characterData.learnedBonuses || [];
+    learnedBonuses.forEach(bonus => {
+        if (bonus.action && bonus.action.trim() !== '') {
+            allBonuses.push({
+                ...bonus,
+                origin: 'Aprendido'
+            });
+        }
+    });
+    
+    // Bônus de mutação
+    const mutations = characterData.characterMutations || [];
+    mutations.forEach(mutation => {
+        if (mutation.bonuses) {
+            mutation.bonuses.forEach(bonus => {
+                if (bonus.action && bonus.action.trim() !== '') {
+                    allBonuses.push({
+                        ...bonus,
+                        origin: mutation.name
+                    });
+                }
+            });
+        }
+    });
+    
+    // Ordenar por valor (maior primeiro)
+    allBonuses.sort((a, b) => b.value - a.value);
+    
+    // Adicionar à tabela
+    allBonuses.forEach(bonus => {
+        const row = document.createElement('tr');
+        const weight = Math.floor(bonus.value / 5);
+        
+        row.innerHTML = `
+            <td>${bonus.action}</td>
+            <td>+${bonus.value}</td>
+            <td>${weight}</td>
+            <td>${bonus.origin}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+    
+    // Atualizar contadores
+    const totalSlots = getTotalBonusSlots();
+    const usedSlots = getUsedBonusSlots();
+    const usedWeight = getUsedBonusWeight();
+    
+    slotsUsed.textContent = usedSlots;
+    slotsTotal.textContent = totalSlots;
+    weightUsed.textContent = usedWeight;
+    weightTotal.textContent = totalSlots;
+    bonusCount.textContent = `${allBonuses.length} bônus registrados`;
+    
+    // Destacar se slots excedidos
+    if (usedSlots > totalSlots) {
+        slotsUsed.style.color = '#e74c3c';
+        slotsUsed.style.fontWeight = 'bold';
+    }
+    
+    if (usedWeight > totalSlots) {
+        weightUsed.style.color = '#e74c3c';
+        weightUsed.style.fontWeight = 'bold';
+    }
+}
+
+// Funções auxiliares para slots de bônus
+function getTotalBonusSlots() {
+    const level = parseInt(characterData.level) || 1;
+    
+    if (level >= 80) return 20;
+    if (level >= 50) return 15;
+    if (level >= 30) return 12;
+    return 9;
+}
+
+function getUsedBonusSlots() {
+    const allBonuses = characterData.allBonuses || [];
+    return allBonuses.filter(b => b.action && b.action.trim() !== '').length;
+}
+
+function getUsedBonusWeight() {
+    const allBonuses = characterData.allBonuses || [];
+    return allBonuses.reduce((total, bonus) => {
+        if (bonus.action && bonus.action.trim() !== '') {
+            return total + (bonus.weight || Math.floor(bonus.value / 5));
+        }
+        return total;
+    }, 0);
+}
+
+// 5. Slots de mutação
+function updateMutationsDisplay() {
+    const container = document.getElementById('mutations-grid');
+    const countElement = document.getElementById('mutation-count');
+    const summaryElement = document.getElementById('mutation-summary');
+    
+    container.innerHTML = '';
+    
+    const mutations = characterData.characterMutations || [];
+    const mutationStats = {
+        vida: 0,
+        sanidade: 0,
+        armadura: 0,
+        folego: 0,
+        resistencia: 0
+    };
+    
+    mutations.forEach((mutation, index) => {
+        const isPrimal = mutation.id === 0;
+        
+        const mutationDiv = document.createElement('div');
+        mutationDiv.className = `mutation-card ${isPrimal ? 'primal' : ''}`;
+        mutationDiv.onclick = () => showMutationDetails(mutation);
+        
+        // Calcular bônus totais desta mutação
+        const stats = mutation.stats || {};
+        const bonuses = mutation.bonuses || [];
+        
+        let statsHTML = '';
+        if (stats.vida > 0) {
+            statsHTML += `<span class="mutation-stat">❤️ +${stats.vida}</span>`;
+            mutationStats.vida += stats.vida;
+        }
+        if (stats.sanidade > 0) {
+            statsHTML += `<span class="mutation-stat">🧠 +${stats.sanidade}</span>`;
+            mutationStats.sanidade += stats.sanidade;
+        }
+        if (stats.armadura > 0) {
+            statsHTML += `<span class="mutation-stat">🛡️ +${stats.armadura}</span>`;
+            mutationStats.armadura += stats.armadura;
+        }
+        if (stats.folego > 0) {
+            statsHTML += `<span class="mutation-stat">💨 +${stats.folego}</span>`;
+            mutationStats.folego += stats.folego;
+        }
+        if (stats.resistencia > 0) {
+            statsHTML += `<span class="mutation-stat">💪 +${stats.resistencia}</span>`;
+            mutationStats.resistencia += stats.resistencia;
+        }
+        
+        mutationDiv.innerHTML = `
+            <div class="mutation-name">${mutation.name}</div>
+            <div class="mutation-type">${mutation.type.toUpperCase()} - Estágio ${mutation.stage || 1}</div>
+            <div class="mutation-stats">
+                ${statsHTML || '<small>Sem bônus de status</small>'}
+            </div>
+            ${bonuses.length > 0 ? `<small>${bonuses.length} bônus de ação</small>` : ''}
+        `;
+        
+        container.appendChild(mutationDiv);
+    });
+    
+    // Atualizar contador
+    countElement.textContent = `${mutations.length}/∞`;
+    
+    // Atualizar resumo
+    updateMutationSummary(mutationStats, summaryElement);
+}
+
+function updateMutationSummary(stats, element) {
+    element.innerHTML = '';
+    
+    Object.entries(stats).forEach(([stat, value]) => {
+        if (value > 0) {
+            const statName = {
+                vida: 'Vida',
+                sanidade: 'Sanidade',
+                armadura: 'Armadura',
+                folego: 'Fôlego',
+                resistencia: 'Resistência'
+            }[stat];
+            
+            const statIcon = {
+                vida: '❤️',
+                sanidade: '🧠',
+                armadura: '🛡️',
+                folego: '💨',
+                resistencia: '💪'
+            }[stat];
+            
+            const div = document.createElement('div');
+            div.className = 'summary-item';
+            div.innerHTML = `
+                <span>${statIcon} ${statName}</span>
+                <span>+${value}</span>
+            `;
+            element.appendChild(div);
+        }
+    });
+    
+    if (element.children.length === 0) {
+        element.innerHTML = '<div class="summary-item"><span>Nenhum bônus de mutação</span></div>';
+    }
+}
+
+// 6. Mutações Primal
+function updatePrimalDisplay() {
+    const mutations = characterData.characterMutations || [];
+    const primal = mutations.find(m => m.id === 0);
+    
+    if (!primal) return;
+    
+    document.getElementById('primal-stage').textContent = primal.stage || 1;
+    document.getElementById('primal-vida').textContent = primal.stats?.vida || 0;
+    document.getElementById('primal-sanidade').textContent = primal.stats?.sanidade || 0;
+    document.getElementById('primal-armadura').textContent = primal.stats?.armadura || 0;
+    document.getElementById('primal-folego').textContent = primal.stats?.folego || 0;
+    document.getElementById('primal-resistencia').textContent = primal.stats?.resistencia || 0;
+    
+    const descElement = document.getElementById('primal-description-text');
+    if (primal.description && primal.description.trim() !== '') {
+        descElement.textContent = primal.description;
+    } else {
+        descElement.textContent = 'Nenhuma descrição fornecida.';
+    }
+}
+
+// 7. Rodapé
+function updateFooter() {
+    const generationTime = document.getElementById('generation-time');
+    const footerUser = document.getElementById('footer-user');
+    const lastUpdate = document.getElementById('last-update');
+    
+    const now = new Date();
+    generationTime.textContent = now.toLocaleString('pt-BR');
+    
+    const user = characterData.user || 'Não logado';
+    footerUser.textContent = `Usuário: ${user}`;
+    
+    const savedAt = characterData.savedAt ? new Date(characterData.savedAt) : now;
+    lastUpdate.textContent = `Última atualização: ${savedAt.toLocaleTimeString('pt-BR')}`;
+}
+
+// Funções auxiliares
+function getMaxStatValue(stat) {
+    const maxValues = {
+        vida: 500,
+        sanidade: 300,
+        armadura: 100,
+        folego: 20,
+        resistencia: 100
+    };
+    return maxValues[stat] || 100;
+}
+
+function getLevelBonuses(level) {
+    const bonuses = { vida: 0, determinacaoSanidade: 0, armadura: 0 };
+    if (level >= 50) bonuses.vida += 30;
+    if (level >= 65) bonuses.determinacaoSanidade += 20;
+    if (level >= 80) bonuses.armadura += 10;
+    if (level >= 95) {
+        bonuses.vida += 20;
+        bonuses.determinacaoSanidade += 20;
+    }
+    if (level >= 99) bonuses.armadura += 10;
+    return bonuses;
+}
+
+function getClassBonuses(className) {
+    const bonuses = { vida: 0, determinacaoSanidade: 0, resistencia: 0, folego: 0, armadura: 0 };
+    
+    switch(className) {
+        case 'guerreiro':
+            bonuses.vida += 20;
+            bonuses.armadura += 20;
+            break;
+        case 'atirador':
+            bonuses.vida += 10;
+            bonuses.determinacaoSanidade += 10;
+            break;
+        case 'forjador':
+            bonuses.vida += 15;
+            bonuses.resistencia += 5;
+            break;
+        case 'arcano':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 25;
+            break;
+        case 'cientista':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 20;
+            break;
+        case 'sobrevivente':
+            bonuses.vida += 15;
+            bonuses.folego += 1;
+            break;
+        case 'construtor':
+            bonuses.vida += 15;
+            break;
+        case 'medico':
+            bonuses.determinacaoSanidade += 25;
+            bonuses.armadura += 10;
+            break;
+    }
+    
+    return bonuses;
+}
+
+// Modal para detalhes
+function showMutationDetails(mutation) {
+    const modal = document.getElementById('detail-modal');
+    const title = document.getElementById('modal-title');
+    const body = document.getElementById('modal-body');
+    
+    title.textContent = mutation.name;
+    
+    let html = `
+        <div class="mutation-detail">
+            <div class="detail-row">
+                <strong>Tipo:</strong> ${mutation.type.toUpperCase()}
+            </div>
+            <div class="detail-row">
+                <strong>Estágio:</strong> ${mutation.stage || 1}
+            </div>
+    `;
+    
+    if (mutation.source) {
+        html += `
+            <div class="detail-row">
+                <strong>Origem:</strong> ${mutation.source}
+            </div>
+        `;
+    }
+    
+    // Status da mutação
+    const stats = mutation.stats || {};
+    const hasStats = Object.values(stats).some(val => val > 0);
+    
+    if (hasStats) {
+        html += `
+            <div class="detail-section">
+                <h4><i class="fas fa-chart-line"></i> Bônus de Status</h4>
+                <div class="stats-grid">
+        `;
+        
+        if (stats.vida > 0) html += `<div class="stat-item">❤️ Vida: +${stats.vida}</div>`;
+        if (stats.sanidade > 0) html += `<div class="stat-item">🧠 Sanidade: +${stats.sanidade}</div>`;
+        if (stats.armadura > 0) html += `<div class="stat-item">🛡️ Armadura: +${stats.armadura}</div>`;
+        if (stats.folego > 0) html += `<div class="stat-item">💨 Fôlego: +${stats.folego}</div>`;
+        if (stats.resistencia > 0) html += `<div class="stat-item">💪 Resistência: +${stats.resistencia}</div>`;
+        
+        html += `</div></div>`;
+    }
+    
+    // Bônus de ação
+    const bonuses = mutation.bonuses || [];
+    if (bonuses.length > 0) {
+        html += `
+            <div class="detail-section">
+                <h4><i class="fas fa-plus-circle"></i> Bônus de Ação</h4>
+                <div class="bonuses-list">
+        `;
+        
+        bonuses.forEach(bonus => {
+            if (bonus.action && bonus.action.trim() !== '') {
+                html += `
+                    <div class="bonus-item">
+                        <strong>${bonus.action}:</strong> +${bonus.value}
+                    </div>
+                `;
+            }
+        });
+        
+        html += `</div></div>`;
+    }
+    
+    // Descrição
+    if (mutation.description) {
+        html += `
+            <div class="detail-section">
+                <h4><i class="fas fa-file-alt"></i> Descrição</h4>
+                <div class="description-box">
+                    ${mutation.description.replace(/\n/g, '<br>')}
                 </div>
             </div>
         `;
-        return;
     }
     
-    // Ordenar: primal primeiro, depois outras
-    const primalMutations = mutations.filter(m => m.type === 'primal');
-    const otherMutations = mutations.filter(m => m.type !== 'primal');
-    const sortedMutations = [...primalMutations, ...otherMutations];
+    html += `</div>`;
     
-    // Criar seção de mutações
-    const mutationsSection = document.createElement('div');
-    mutationsSection.classList.add('ark-section');
-    mutationsSection.innerHTML = `
-        <h3 class="section-title">Sistema de Mutação</h3>
+    body.innerHTML = html;
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('detail-modal').style.display = 'none';
+}
+
+// Configurar auto-atualização
+function setupAutoRefresh() {
+    if (refreshInterval) {
+        clearInterval(refreshInterval);
+    }
+    
+    // Atualizar a cada 30 segundos
+    refreshInterval = setInterval(() => {
+        console.log('🔄 Atualizando ficha automaticamente...');
+        loadFicha();
+    }, 30000);
+}
+
+// Funções de UI
+function showMessage(message, type = 'info') {
+    const colors = {
+        info: '#3498db',
+        success: '#27ae60',
+        warning: '#f39c12',
+        error: '#e74c3c'
+    };
+    
+    // Criar elemento de mensagem
+    const messageDiv = document.createElement('div');
+    messageDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: ${colors[type]};
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
     `;
     
-    sortedMutations.forEach(mutation => {
-        const typeLabels = {
-            'primal': 'MUTAÇÃO PRIMAL',
-            'colosso': 'COLOSSO',
-            'pacto': 'PACTO',
-            'joia': 'JÓIA',
-            'boss': 'BOSS'
-        };
-        
-        const mutationDiv = document.createElement('div');
-        mutationDiv.classList.add('mutation-display', mutation.type);
-        
-        mutationDiv.innerHTML = `
-            <div class="mutation-header">
-                <strong class="mutation-name">${mutation.name || 'Mutação sem nome'}</strong>
-                <span class="mutation-type">
-                    ${typeLabels[mutation.type] || mutation.type.toUpperCase()}
-                    ${mutation.type === 'primal' && mutation.stage ? ` - Estágio ${mutation.stage}` : ''}
-                </span>
-            </div>
-            ${mutation.source ? `<p class="mutation-source"><strong>Origem:</strong> ${mutation.source}</p>` : ''}
-            <div class="mutation-description">
-                <strong>Descrição:</strong>
-                <p>${mutation.description ? mutation.description.replace(/\n/g, '<br>') : '<span class="no-info">Não descrito</span>'}</p>
-            </div>
-        `;
-        
-        mutationsSection.appendChild(mutationDiv);
-    });
+    messageDiv.textContent = message;
+    document.body.appendChild(messageDiv);
     
-    mutationsContainer.appendChild(mutationsSection);
+    // Remover após 5 segundos
+    setTimeout(() => {
+        messageDiv.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(messageDiv);
+        }, 300);
+    }, 5000);
 }
 
-// ========================
-// Carregar e Exibir Ficha Completa
-// ========================
-function loadAndDisplayCharacterSheet() {
-    let characterData;
-
-    try {
-        const dataString = localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY);
-        characterData = dataString ? JSON.parse(dataString) : null;
-    } catch (e) {
-        console.error("Erro ao carregar dados do localStorage:", e);
-        alert("Erro ao carregar a ficha. Os dados podem estar corrompidos.");
-        return;
-    }
-
-    if (!characterData) {
-        alert("Nenhuma ficha salva encontrada. Por favor, crie uma na página inicial.");
-        return;
-    }
-
-    // Nome do personagem
-    document.getElementById('fichaName').innerText = characterData.name || 'Sem Nome';
-
-    // Calcular estatísticas base
-    const baseStats = calculateBaseStats(characterData);
-    
-    // Configurar valores atuais (ou usar padrão)
-    characterData.currentLife = characterData.currentLife ?? baseStats.vidaBase;
-    characterData.currentSanity = characterData.currentSanity ?? baseStats.sanidadeBase;
-    characterData.currentArmor = characterData.currentArmor ?? baseStats.armaduraBase;
-    characterData.currentResistencia = characterData.currentResistencia ?? baseStats.resistenciaBase;
-    
-    characterData.currentAgi = characterData.currentAgi ?? baseStats.agi;
-    characterData.currentFor = characterData.currentFor ?? baseStats.forc;
-    characterData.currentInt = characterData.currentInt ?? baseStats.int;
-    characterData.currentSet = characterData.currentSet ?? baseStats.set;
-    characterData.currentVig = characterData.currentVig ?? baseStats.vig;
-    
-    // Atualizar inputs
-    const vidaInput = document.getElementById('fichaVida');
-    const armaduraInput = document.getElementById('fichaArmadura');
-    const sanidadeInput = document.getElementById('fichaSanidade');
-    
-    if (vidaInput) vidaInput.value = characterData.currentLife;
-    if (armaduraInput) armaduraInput.value = characterData.currentArmor;
-    if (sanidadeInput) sanidadeInput.value = characterData.currentSanity;
-    
-    document.getElementById('fichaAgi').value = characterData.currentAgi;
-    document.getElementById('fichaFor').value = characterData.currentFor;
-    document.getElementById('fichaInt').value = characterData.currentInt;
-    document.getElementById('fichaSet').value = characterData.currentSet;
-    document.getElementById('fichaVig').value = characterData.currentVig;
-    
-    const resistenciaInput = document.getElementById('fichaResistencia');
-    if (resistenciaInput) resistenciaInput.value = characterData.currentResistencia;
-
-    // Verificar e atualizar fundos
-    checkAndChangeStatBackgrounds(characterData, baseStats);
-
-    // Salvar dados atualizados
-    localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-
-    // Barra de nível
-    const level = parseInt(characterData.level) || 1;
-    const percentage = Math.max(0, Math.min(100, level));
-    const levelBarFill = document.getElementById("fichaLevelBarFill");
-    if (levelBarFill) {
-        levelBarFill.style.width = percentage + '%';
-    }
-    
-    // Foto
-    const photo = document.getElementById('fichaPhoto');
-    if (characterData.photo && characterData.photo !== '#' && !characterData.photo.includes('data:image/gif;base64')) {
-        photo.src = characterData.photo;
-        photo.style.display = 'block';
-    }
-    
-    // Informações básicas
-    const loreElement = document.getElementById('fichaLore');
-    const classesElement = document.getElementById('fichaClasses');
-    const inventoryElement = document.getElementById('fichaInventory');
-    
-    if (loreElement) loreElement.innerText = characterData.lore || 'Não preenchido';
-    if (classesElement) classesElement.innerText = `${characterData.class1 || ''} / ${characterData.class2 || ''} / ${characterData.combatClass || ''}`.replace(/ \/ \/ /g, ' / ') || 'Não preenchido';
-    if (inventoryElement) inventoryElement.innerText = characterData.inventory || 'Nenhum item registrado.';
-
-    // Exibir mutações
-    displayMutationsInStatus(characterData);
-
-    // Renderizar listas
-    renderList(characterData.actionBonuses || [], 'fichaActionBonuses', (item) => `${item.action || 'Sem nome'}: +${item.value || 0}`);
-    renderList(characterData.learnedActionBonuses || [], 'learnedActionBonusContainer', (item) => `${item.action || 'Sem nome'}: +${item.value || 0} (Aprendido)`);
-    renderList(characterData.weapons || [], 'fichaWeapons', (item) => {
-        const name = item.name || 'Arma sem nome';
-        const damage = item.damageDice || 'Dano não especificado';
-        const condition = item.condition && item.condition !== 'Nula' ? ` (${item.condition})` : '';
-        return `${name}: ${damage}${condition}`;
-    });
-
-    // Carregar rituais
-    loadAndDisplayRituals(characterData);
-    
-    // Configurar área de defesas
-    setupDefensesArea();
+// Funções exportadas para botões
+function refreshFicha() {
+    loadFicha();
+    showMessage('Ficha atualizada!', 'success');
 }
 
-// ========================
-// Sistema de Rituais
-// ========================
-function loadAndDisplayRituals(characterData) {
-    let ritualsToDisplay = [];
+function exportFicha() {
+    const dataStr = JSON.stringify(characterData, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
     
-    // Tentativa 1: Verificar se os rituais estão nos dados do personagem
-    if (characterData.characterRituals && characterData.characterRituals.length > 0) {
-        ritualsToDisplay = characterData.characterRituals;
-        console.log("✅ Rituais carregados dos dados do personagem:", ritualsToDisplay);
-    }
-    // Tentativa 2: Verificar no localStorage específico de rituais
-    else {
-        try {
-            const storedRituals = localStorage.getItem(RITUALS_STORAGE_KEY);
-            if (storedRituals) {
-                ritualsToDisplay = JSON.parse(storedRituals);
-                console.log("✅ Rituais carregados do localStorage específico:", ritualsToDisplay);
-                
-                // Atualizar os dados do personagem com os rituais encontrados
-                characterData.characterRituals = ritualsToDisplay;
-                localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-            }
-        } catch (e) {
-            console.error("Erro ao carregar rituais do localStorage:", e);
+    const exportFileDefaultName = `ficha_${characterData.name || 'personagem'}_${Date.now()}.json`;
+    
+    const linkElement = document.createElement('a');
+    linkElement.setAttribute('href', dataUri);
+    linkElement.setAttribute('download', exportFileDefaultName);
+    linkElement.click();
+    
+    showMessage('Ficha exportada como JSON!', 'success');
+}
+
+// Inicializar quando a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Inicializando visualizador de ficha...');
+    loadFicha();
+    
+    // Fechar modal ao clicar fora
+    window.onclick = (event) => {
+        const modal = document.getElementById('detail-modal');
+        if (event.target === modal) {
+            closeModal();
         }
-    }
-    
-    // Tentativa 3: Verificar se há rituais na propriedade antiga
-    if ((!ritualsToDisplay || ritualsToDisplay.length === 0) && characterData.rituals) {
-        ritualsToDisplay = characterData.rituals;
-        console.log("✅ Rituais carregados da propriedade antiga 'rituals':", ritualsToDisplay);
-    }
-
-    // Função auxiliar para formatar consistentemente os rituais
-    const formatRitual = (ritual) => {
-        if (!ritual) return 'Ritual inválido';
-        
-        // Normalizar as propriedades (suporta tanto 'nome' quanto 'name')
-        const nome = ritual.nome || ritual.name || 'Ritual sem nome';
-        const descricao = ritual.descricao || ritual.description || 'Descrição não disponível';
-        const elemento = ritual.elemento || ritual.element || '';
-        const nivel = ritual.nivel || ritual.level || '';
-        
-        let formatted = nome;
-        if (elemento) formatted += ` (${elemento})`;
-        if (nivel) formatted += ` [Nv. ${nivel}]`;
-        formatted += `: ${descricao}`;
-        
-        return formatted;
     };
-
-    // Renderizar os rituais
-    renderList(ritualsToDisplay, 'fichaRituals', formatRitual);
     
-    // Debug: log para verificar o que foi carregado
-    if (ritualsToDisplay.length > 0) {
-        console.log(`🎉 ${ritualsToDisplay.length} ritual(s) carregado(s) para exibição`);
-    } else {
-        console.log("ℹ️ Nenhum ritual encontrado para exibir");
-    }
-}
-
-// ========================
-// Configuração de Inputs
-// ========================
-function setupStatInputs() {
-    document.querySelectorAll('.stat-input').forEach(input => {
-        input.addEventListener('change', (event) => {
-            const fieldId = event.target.id;
-            const newValue = parseInt(event.target.value) || 0;
-
-            let characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-
-            const statMap = {
-                'fichaVida': 'currentLife',
-                'fichaArmadura': 'currentArmor',
-                'fichaSanidade': 'currentSanity',
-                'fichaResistencia': 'currentResistencia'
-            };
-
-            const keyToUpdate = statMap[fieldId];
-            if (!keyToUpdate) return;
-
-            characterData[keyToUpdate] = newValue;
-            localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-
-            const baseStats = calculateBaseStats(characterData);
-            checkAndChangeStatBackgrounds(characterData, baseStats);
-            
-            setupDefensesArea();
-        });
-    });
-}
-
-function setupAttributeInputs() {
-    document.querySelectorAll('.attribute-input').forEach(input => {
-        input.addEventListener('change', (event) => {
-            const fieldId = event.target.id;
-            const newValue = parseInt(event.target.value) || 0;
-
-            let characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-
-            const attributeMap = {
-                'fichaAgi': 'currentAgi',
-                'fichaFor': 'currentFor',
-                'fichaInt': 'currentInt',
-                'fichaSet': 'currentSet',
-                'fichaVig': 'currentVig'
-            };
-
-            const keyToUpdate = attributeMap[fieldId];
-            if (!keyToUpdate) return;
-
-            // Se for Vitalidade, atualizar resistência também
-            if (fieldId === 'fichaVig') {
-                const resistencia = 15 + (newValue * 5);
-                const resistenciaValueElement = document.getElementById('resistenciaValue');
-                if (resistenciaValueElement) {
-                    resistenciaValueElement.innerText = resistencia;
-                }
-                characterData.currentResistencia = resistencia;
-                
-                // Atualizar input de resistência
-                const resistenciaInput = document.getElementById('fichaResistencia');
-                if (resistenciaInput) {
-                    resistenciaInput.value = resistencia;
-                }
-            }
-
-            characterData[keyToUpdate] = newValue;
-            localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-
-            const baseStats = calculateBaseStats(characterData);
-            checkAndChangeStatBackgrounds(characterData, baseStats);
-            
-            setupDefensesArea();
-        });
-    });
-}
-
-// ========================
-// Copiar Ficha para Área de Transferência
-// ========================
-function copyFichaDisplay() {
-    let fichaText = `FICHA DE PERSONAGEM - RPG ARK\n\n`;
-    fichaText += `Nome: ${document.getElementById('fichaName').innerText}\n`;
-    
-    const levelBarFill = document.getElementById('fichaLevelBarFill');
-    if (levelBarFill) {
-        fichaText += `Nível: ${levelBarFill.style.width.replace('%', '')}\n`;
-    }
-
-    fichaText += `\n--- ATRIBUTOS ---\n`;
-    fichaText += `Agilidade: ${document.getElementById('fichaAgi').value}\n`;
-    fichaText += `Força: ${document.getElementById('fichaFor').value}\n`;
-    fichaText += `Inteligência: ${document.getElementById('fichaInt').value}\n`;
-    fichaText += `Sentidos: ${document.getElementById('fichaSet').value}\n`;
-    fichaText += `Vitalidade: ${document.getElementById('fichaVig').value}\n`;
-
-    fichaText += `\n--- ESTATÍSTICAS ---\n`;
-    const vidaInput = document.getElementById('fichaVida');
-    const armaduraInput = document.getElementById('fichaArmadura');
-    const sanidadeInput = document.getElementById('fichaSanidade');
-    if (vidaInput) fichaText += `Vida: ${vidaInput.value}\n`;
-    if (armaduraInput) fichaText += `Armadura: ${armaduraInput.value}\n`;
-    if (sanidadeInput) fichaText += `Sanidade: ${sanidadeInput.value}\n`;
-    
-    const resistenciaInput = document.getElementById('fichaResistencia');
-    if (resistenciaInput) fichaText += `Resistência: ${resistenciaInput.value}\n`;
-
-    // Mutações
-    const mutationsContainer = document.getElementById('mutationsContainer');
-    if (mutationsContainer && mutationsContainer.innerHTML && !mutationsContainer.innerHTML.includes('Nenhuma mutação')) {
-        fichaText += `\n--- MUTAÇÕES ---\n`;
-        mutationsContainer.querySelectorAll('.mutation-display').forEach(mutation => {
-            const name = mutation.querySelector('.mutation-name')?.textContent || 'Mutação';
-            const type = mutation.querySelector('.mutation-type')?.textContent || '';
-            const source = mutation.querySelector('.mutation-source')?.textContent || '';
-            const description = mutation.querySelector('.mutation-description p')?.textContent || '';
-            
-            fichaText += `\n${name} (${type})\n`;
-            if (source) fichaText += `Origem: ${source.replace('Origem:', '').trim()}\n`;
-            if (description) fichaText += `Descrição: ${description}\n`;
-        });
-    }
-
-    fichaText += `\n--- DETALHES ---\n`;
-    fichaText += `História: ${document.getElementById('fichaLore').innerText}\n`;
-    fichaText += `Classes: ${document.getElementById('fichaClasses').innerText}\n`;
-    fichaText += `Inventário: ${document.getElementById('fichaInventory').innerText}\n`;
-
-    // Bônus de ações
-    const bonuses = document.getElementById('fichaActionBonuses');
-    if(bonuses && bonuses.innerText && bonuses.innerText !== 'Nenhum item registrado.') {
-        fichaText += `\n--- BÔNUS EM AÇÕES ---\n${bonuses.innerText}\n`;
-    }
-
-    // Bônus aprendidos
-    const learnedBonuses = document.getElementById('learnedActionBonusContainer');
-    if(learnedBonuses && learnedBonuses.innerText && learnedBonuses.innerText !== 'Nenhum item registrado.') {
-        fichaText += `\n--- BÔNUS DE AÇÕES APRENDIDOS ---\n${learnedBonuses.innerText}\n`;
-    }
-
-    // Armas
-    const weapons = document.getElementById('fichaWeapons');
-    if(weapons && weapons.innerText && weapons.innerText !== 'Nenhum item registrado.') {
-        fichaText += `\n--- ARMAS ---\n${weapons.innerText}\n`;
-    }
-
-    // Rituais
-    const rituals = document.getElementById('fichaRituals');
-    if(rituals && rituals.innerText && rituals.innerText !== 'Nenhum item registrado.') {
-        fichaText += `\n--- RITUAIS & PACTOS ---\n${rituals.innerText}\n`;
-    }
-
-    navigator.clipboard.writeText(fichaText)
-        .then(() => alert("Ficha copiada para a área de transferência!"))
-        .catch(err => {
-            console.error('Erro ao copiar a ficha: ', err);
-            alert("Erro ao copiar a ficha. Por favor, tente novamente ou copie manualmente.");
-        });
-}
-
-// ========================
-// Área de Defesas
-// ========================
-function setupDefensesArea() {
-    const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-    if (!characterData) return;
-
-    const vidaAtualInput = document.getElementById('currentHealthInput');
-    const vidaMaxima = parseInt(document.getElementById('fichaVida')?.value) || 0;
-    
-    if (vidaAtualInput) {
-        const vidaSalva = characterData.currentLife || vidaMaxima;
-        vidaAtualInput.value = vidaSalva;
-        updateHealthBar(vidaSalva, vidaMaxima);
-
-        vidaAtualInput.addEventListener('input', () => {
-            const novaVida = parseInt(vidaAtualInput.value) || 0;
-            if (!isNaN(novaVida)) {
-                characterData.currentLife = novaVida;
-                localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-                updateHealthBar(novaVida, vidaMaxima);
-            }
-        });
-    }
-
-    const resistenciaValueElement = document.getElementById('resistenciaValue');
-    const armaduraValueElement = document.getElementById('armaduraValue');
-    
-    if (resistenciaValueElement) {
-        resistenciaValueElement.innerText = characterData.currentResistencia || '0';
-    }
-    if (armaduraValueElement) {
-        armaduraValueElement.innerText = characterData.currentArmor || '0';
-    }
-}
-
-function updateHealthBar(current, max) {
-    const fill = document.getElementById('healthBarFill');
-    if (fill) {
-        if (max > 0) {
-            const percentage = Math.max(0, Math.min(100, (current / max) * 100));
-            fill.style.width = percentage + '%';
-        } else {
-            fill.style.width = '0%';
+    // Fechar modal com ESC
+    document.onkeydown = (event) => {
+        if (event.key === 'Escape') {
+            closeModal();
         }
-    }
-}
+    };
+});
 
-// ========================
-// Sistema de Rolagem de Dados
-// ========================
-function renderBonusListInDiceRoller(data, containerId, title) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
+// Adicionar estilos de animação
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
     
-    container.innerHTML = `<h4 class="section-title">${title}</h4>`;
+    @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(100%); opacity: 0; }
+    }
     
-    if (data && data.length > 0) {
-        const ul = document.createElement('ul');
-        ul.classList.add('stats-list');
-        data.forEach(item => {
-            const li = document.createElement('li');
-            li.innerHTML = `<strong class="sub-category-title">${item.action || 'Ação'}</strong>: <span class="attribute-value">+${item.value || 0}</span>`;
-            ul.appendChild(li);
-        });
-        container.appendChild(ul);
-    } else {
-        const p = document.createElement('p');
-        p.classList.add('no-info');
-        p.innerText = 'Nenhum item registrado.';
-        container.appendChild(p);
+    .mutation-detail {
+        padding: 10px;
     }
-}
-
-function setupDiceRoller(
-    containerId,
-    attributeSelectId,
-    attributeValueDisplayId,
-    bonusInputId,
-    bonusMenuBtnId,
-    bonusOptionsMenuId,
-    rollButtonId,
-    rollResultId
-) {
-    const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
     
-    if (!characterData) return;
-
-    const attributeSelect = document.getElementById(attributeSelectId);
-    const attributeValueDisplay = document.getElementById(attributeValueDisplayId);
-    const bonusInput = document.getElementById(bonusInputId);
-    const bonusMenuBtn = document.getElementById(bonusMenuBtnId);
-    const bonusOptionsMenu = document.getElementById(bonusOptionsMenuId);
-    const rollButton = document.getElementById(rollButtonId);
-    const rollResult = document.getElementById(rollResultId);
+    .detail-row {
+        margin-bottom: 10px;
+        padding: 8px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 4px;
+    }
     
-    // Carrega e renderiza os bônus gerais
-    const bonuses = characterData.actionBonuses || [];
-    renderBonusListInDiceRoller(bonuses, 'dice-roller-bonuses', 'Bônus de Ações');
-
-    // Carrega e renderiza os bônus aprendidos
-    const learnedBonuses = characterData.learnedActionBonuses || [];
-    renderBonusListInDiceRoller(learnedBonuses, 'dice-roller-learned-bonuses', 'Bônus de Ações Aprendidos');
-
-    const savedBonus = localStorage.getItem(`${bonusInputId}Value`);
-    if (bonusInput && savedBonus) {
-        bonusInput.value = savedBonus;
+    .detail-section {
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid #2a2a3e;
     }
-
-    if (bonusInput) {
-        bonusInput.addEventListener('input', () => {
-            localStorage.setItem(`${bonusInputId}Value`, bonusInput.value);
-        });
+    
+    .detail-section h4 {
+        color: #d4af37;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-
-    if (attributeSelect) {
-        attributeSelect.addEventListener('change', (event) => {
-            const selectedAttribute = event.target.value;
-            const attributeKey = ATTRIBUTE_MAP[selectedAttribute];
-            if (attributeValueDisplay) {
-                attributeValueDisplay.value = characterData[attributeKey] || 0;
-            }
-        });
-        
-        // Definir valor inicial
-        if (attributeSelect.value && attributeValueDisplay) {
-            const initialAttributeKey = ATTRIBUTE_MAP[attributeSelect.value];
-            attributeValueDisplay.value = characterData[initialAttributeKey] || 0;
-        }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
     }
-
-    if (bonusMenuBtn) {
-        bonusMenuBtn.addEventListener('click', (event) => {
-            event.stopPropagation();
-            if (bonusOptionsMenu) {
-                bonusOptionsMenu.classList.toggle('hidden');
-            }
-        });
+    
+    .stat-item {
+        padding: 8px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 4px;
+        text-align: center;
     }
-
-    if (bonusOptionsMenu) {
-        document.addEventListener('click', (event) => {
-            if (bonusOptionsMenu && bonusMenuBtn && 
-                !bonusOptionsMenu.contains(event.target) && 
-                !bonusMenuBtn.contains(event.target)) {
-                bonusOptionsMenu.classList.add('hidden');
-            }
-        });
-        
-        if (bonusOptionsMenu.querySelectorAll('button')) {
-            bonusOptionsMenu.querySelectorAll('button').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    if (bonusInput) {
-                        bonusInput.value = `+${btn.dataset.bonus}`;
-                        localStorage.setItem(`${bonusInputId}Value`, bonusInput.value);
-                    }
-                    bonusOptionsMenu.classList.add('hidden');
-                });
-            });
-        }
+    
+    .bonuses-list {
+        margin-top: 10px;
     }
-
-    if (rollButton) {
-        rollButton.addEventListener('click', () => {
-            // Animação de giro
-            rollButton.classList.remove("spin");
-            void rollButton.offsetWidth; // Força reflow
-            rollButton.classList.add("spin");
-
-            // Calcular resultado após animação
-            setTimeout(() => {
-                const attributeValue = parseInt(attributeValueDisplay?.value) || 0;
-                const bonusText = bonusInput?.value.trim() || '';
-                const bonusValue = bonusText ? parseInt(bonusText.replace(/\+/g, '')) || 0 : 0;
-                
-                const rolls = [];
-                for (let i = 0; i < attributeValue; i++) {
-                    rolls.push(Math.floor(Math.random() * 20) + 1);
-                }
-
-                const bestRoll = rolls.length > 0 ? Math.max(...rolls) : 0;
-                const totalResult = bestRoll + bonusValue;
-                
-                if (rollResult) {
-                    rollResult.innerText = totalResult;
-                    rollResult.style.opacity = 0;
-                    setTimeout(() => {
-                        rollResult.style.opacity = 1;
-                    }, 100);
-                }
-            }, 800);
-        });
+    
+    .bonus-item {
+        padding: 8px;
+        margin-bottom: 5px;
+        background: rgba(52, 152, 219, 0.1);
+        border-radius: 4px;
+        border-left: 3px solid #3498db;
     }
-}
+    
+    .description-box {
+        background: rgba(255,255,255,0.05);
+        padding: 15px;
+        border-radius: 6px;
+        line-height: 1.6;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+`;
+document.head.appendChild(style);
+
 
 // ========================
 // Sistema de Eventos
@@ -981,7 +1002,7 @@ const eventos = {
         "Você encontra uma Jóia do Véu",
         "Você encontra uma Jóia de Mefisto",
         "Você encontra um Dente de Lobo Escuro",
-        "Você encontra um Pelo liso branco de Ovelha ",
+        "Você encontra um Pelo liso branco de Ovelha",
         "Você encontra uma Esféra de Ion",
         "Você encontra um Medalão de Ouro Maldito",
         "Você encontra uma Jóia Solar",

@@ -1,6 +1,267 @@
-// JavaScript Completo para Ficha de Personagem - RPG ARK
+// ==============================================
+// INICIALIZAÇÃO COM EVENT LISTENERS PARA SALVAR
+// ==============================================
 
-const attributesBase = {
+// ==============================================
+// FUNÇÃO PARA ATUALIZAR INPUTS DA PRIMAL APÓS CARREGAR
+// ==============================================
+
+function updatePrimalInputsAfterLoad() {
+    console.log('🔄 Atualizando inputs da primal após carregar...');
+    
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    if (!primalMutation) {
+        console.error('❌ Primal não encontrada após carregar');
+        return;
+    }
+    
+    console.log('📊 Dados da primal para carregar:', primalMutation.stats);
+    
+    // Mapear stats para inputs
+    const inputs = [
+        { id: 'primalVida', value: primalMutation.stats?.vida || 0 },
+        { id: 'primalSanidade', value: primalMutation.stats?.sanidade || 0 },
+        { id: 'primalArmadura', value: primalMutation.stats?.armadura || 0 },
+        { id: 'primalFolego', value: primalMutation.stats?.folego || 0 },
+        { id: 'primalResistencia', value: primalMutation.stats?.resistencia || 0 }
+    ];
+    
+    inputs.forEach(({ id, value }) => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.value = value;
+            console.log(`✅ Input ${id} carregado: ${value}`);
+        } else {
+            console.error(`❌ Input ${id} não encontrado`);
+        }
+    });
+    
+    // Descrição
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc && primalMutation.description) {
+        primalDesc.value = primalMutation.description;
+        console.log(`✅ Descrição carregada: ${primalMutation.description.substring(0, 50)}...`);
+    }
+    
+    // Reconfigurar listeners
+    setTimeout(setupDirectPrimalListeners, 100);
+}
+
+// ==============================================
+// FUNÇÃO PARA CONFIGURAR TODOS OS LISTENERS DA PRIMAL
+// ==============================================
+
+function setupAllPrimalListeners() {
+    console.log('🔧 Configurando todos os listeners da primal...');
+    
+    // 1. Descrição da primal
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc) {
+        primalDesc.removeEventListener('input', null);
+        primalDesc.removeEventListener('change', null);
+        
+        primalDesc.addEventListener('input', function() {
+            updateMutation(0, 'description', this.value);
+            saveCharacterData();
+        });
+        
+        primalDesc.addEventListener('change', function() {
+            updateMutation(0, 'description', this.value);
+            saveCharacterData();
+        });
+        
+        console.log('✅ Listener da descrição primal configurado');
+    }
+    
+    // 2. Status da primal - CRIAR FUNÇÃO ESPECÍFICA
+    function setupPrimalStatListeners() {
+        const statsConfig = [
+            { id: 'primalVida', stat: 'vida' },
+            { id: 'primalSanidade', stat: 'sanidade' },
+            { id: 'primalArmadura', stat: 'armadura' },
+            { id: 'primalFolego', stat: 'folego' },
+            { id: 'primalResistencia', stat: 'resistencia' }
+        ];
+        
+        statsConfig.forEach(({ id, stat }) => {
+            const input = document.getElementById(id);
+            if (input) {
+                // Remover listeners antigos
+                input.removeEventListener('input', null);
+                input.removeEventListener('change', null);
+                
+                // Criar nova função de handler
+                const handleStatChange = function() {
+                    const value = parseInt(this.value) || 0;
+                    console.log(`📝 Primal ${stat} alterado para: ${value}`);
+                    
+                    // Atualizar o objeto primal
+                    const primalMutation = characterMutations.find(m => m.id === 0);
+                    if (primalMutation) {
+                        if (!primalMutation.stats) {
+                            primalMutation.stats = {
+                                vida: 0,
+                                sanidade: 0,
+                                armadura: 0,
+                                folego: 0,
+                                resistencia: 0
+                            };
+                        }
+                        primalMutation.stats[stat] = value;
+                        
+                        // Salvar imediatamente
+                        saveCharacterData();
+                        console.log(`✅ Primal ${stat} salvo: ${value}`);
+                    }
+                };
+                
+                // Adicionar novos listeners
+                input.addEventListener('input', handleStatChange);
+                input.addEventListener('change', handleStatChange);
+                
+                console.log(`✅ Listener configurado para: ${id}`);
+            } else {
+                console.error(`❌ Input não encontrado: ${id}`);
+            }
+        });
+    }
+    
+    // Configurar listeners de status
+    setupPrimalStatListeners();
+    
+    // 3. Bônus da primal
+    const addBonusBtn = document.querySelector('#mutation-0 .btn-add-small');
+    if (addBonusBtn) {
+        addBonusBtn.onclick = function() {
+            addMutationBonus(0);
+        };
+        console.log('✅ Botão de bônus primal configurado');
+    }
+    
+    console.log('🎯 Todos os listeners da primal configurados');
+}
+
+// ==============================================
+// ADICIONAR EVENT LISTENERS DIRETOS NOS INPUTS
+// ==============================================
+
+// ==============================================
+// ADICIONAR EVENT LISTENERS DIRETOS NOS INPUTS
+// ==============================================
+
+function setupDirectPrimalListeners() {
+    console.log('🔧 Configurando listeners diretos para primal...');
+    
+    const inputs = [
+        { id: 'primalVida', stat: 'vida' },
+        { id: 'primalSanidade', stat: 'sanidade' },
+        { id: 'primalArmadura', stat: 'armadura' },
+        { id: 'primalFolego', stat: 'folego' },
+        { id: 'primalResistencia', stat: 'resistencia' }
+    ];
+    
+    inputs.forEach(({ id, stat }) => {
+        const input = document.getElementById(id);
+        if (input) {
+            // Remover listeners antigos
+            const newInput = input.cloneNode(true);
+            input.parentNode.replaceChild(newInput, input);
+            
+            const currentInput = document.getElementById(id);
+            
+            // Adicionar novos listeners
+            currentInput.addEventListener('input', function() {
+                console.log(`📝 Input ${id} alterado: ${this.value}`);
+                updateMutationStat(0, stat, this.value);
+                // Salvar IMEDIATAMENTE
+                setTimeout(saveCharacterData, 100);
+            });
+            
+            currentInput.addEventListener('change', function() {
+                console.log(`💾 Change ${id}: ${this.value}`);
+                updateMutationStat(0, stat, this.value);
+                // Salvar IMEDIATAMENTE
+                saveCharacterData();
+            });
+            
+            console.log(`✅ Listener configurado para: ${id}`);
+        } else {
+            console.error(`❌ Input não encontrado: ${id}`);
+        }
+    });
+    
+    // Descrição da primal - TRATAMENTO ESPECIAL
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc) {
+        const newDesc = primalDesc.cloneNode(true);
+        primalDesc.parentNode.replaceChild(newDesc, primalDesc);
+        
+        const currentDesc = document.getElementById('primalDescription');
+        
+        currentDesc.addEventListener('input', function() {
+            console.log(`📝 Descrição primal alterada`);
+            updateMutation(0, 'description', this.value);
+        });
+        
+        currentDesc.addEventListener('change', function() {
+            console.log(`💾 Descrição primal salva`);
+            updateMutation(0, 'description', this.value);
+            saveCharacterData();
+        });
+        
+        // Salvar também no blur (quando sai do campo)
+        currentDesc.addEventListener('blur', function() {
+            console.log(`💾 Descrição primal (blur): ${this.value}`);
+            updateMutation(0, 'description', this.value);
+            saveCharacterData();
+        });
+    }
+    
+    console.log('🎯 Todos os listeners da primal configurados');
+}
+
+// ==============================================
+// FUNÇÃO DE DEBUG PARA VERIFICAR OS DADOS
+// ==============================================
+
+function debugSaveSystem() {
+    console.log('=== DEBUG DO SISTEMA DE SALVAMENTO ===');
+    
+    // Verificar inputs da primal
+    const primalInputs = [
+        'primalVida', 'primalSanidade', 'primalArmadura', 
+        'primalFolego', 'primalResistencia'
+    ];
+    
+    console.log('📋 Inputs HTML da primal:');
+    primalInputs.forEach(id => {
+        const input = document.getElementById(id);
+        console.log(`  ${id}: ${input?.value || 'não encontrado'}`);
+    });
+    
+    // Verificar objeto primal
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    console.log('🧬 Objeto primal:', primalMutation);
+    console.log('📊 Stats da primal:', primalMutation?.stats);
+    
+    // Verificar localStorage
+    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (savedData) {
+        try {
+            const parsed = JSON.parse(savedData);
+            const savedPrimal = parsed.characterMutations?.find(m => m.id === 0);
+            console.log('💾 Primal salva no localStorage:', savedPrimal?.stats);
+        } catch (e) {
+            console.error('Erro ao ler localStorage:', e);
+        }
+    }
+    
+    console.log('=== FIM DEBUG ===');
+}
+
+
+// Variáveis globais
+let attributesBase = {
     agi: 1,
     for: 1,
     int: 1,
@@ -9,416 +270,839 @@ const attributesBase = {
 };
 
 let attributes = { ...attributesBase };
-let actionBonuses = [];
-let learnedActionBonuses = [];
-let weapons = [];
-let characterRituals = [];
+let initialDistributablePoints = 9; // Apenas 9 pontos
+let bonusPointsFromLevel = 0;
+let currentUser = null;
+// Adicione estas variáveis globais
+let mutationBonuses = {}; // Armazenará bônus por mutação
 
-// Sistema de Mutação
+// Modifique a estrutura das mutações
 let characterMutations = [
     {
+        id: 0,
         name: "MUTAÇÃO PRIMAL",
         type: "primal",
         description: "",
         source: "Origem do Personagem",
         stage: 1,
         fixed: true,
-        index: 0
+        stats: {
+            vida: 0,
+            sanidade: 0,
+            armadura: 0,
+            folego: 0,
+            resistencia: 0
+        },
+        bonuses: [] // Bônus de ação específicos desta mutação
     }
 ];
 
-const predefinedConditions = [
-    "Nula",
-    "Sangramento",
-    "Envenenado",
-    "Queimando",
-    "Atordoado",
-    "Amedrontado",
-    "Marcado",
-    "Vulnerável",
-    "Enfraquecido",
-    "Imobilizado",
-    "Cego",
-    "Protegido",
-    "Revelado",
-    "Silenciado",
-    "Exposto",
-    "Abalado",
-    "Fortalecido",
-    "Rage"
-];
+// Inicialize mutationBonuses
+mutationBonuses[0] = [];
 
-let initialDistributablePoints = 5;
-let bonusPointsFromLevel = 0;
+// Sistema de bônus
+let allBonuses = [];
+let learnedBonuses = [];
 
-const appliedClassBonuses = {
-    class1: { className: '', attribute: '' },
-    class2: { className: '', attribute: '' }
-};
+// Sistema de rituais - AGORA COM DADOS DA PÁGINA DE PODERES
+let rituals = [];
 
-const attributeMappings = {
-    guerreiro: ['for', 'vig'],
-    atirador: ['agi', 'int'],
-    forjador: ['int', 'for'],
-    arcano: ['set', 'agi'],
-    cientista: ['int', 'agi'],
-    sobrevivente: ['set', 'int'],
-    construtor: ['int', 'vig'],
-    medico: ['int', 'agi']
-};
+// Sistema de arsenal - AGORA COM ARMAS DA PÁGINA DE ITENS
+let weapons = [];
 
-let currentUser = null;
-const LOCAL_CHARACTER_STORAGE_KEY = 'localCharacterData';
-const RITUALS_STORAGE_KEY = 'selectedRitualPacts';
-
-// Variável para controle de geração de PDF
-let isGeneratingPDF = false;
+// Sistema de armazenamento
+const LOCAL_STORAGE_KEY = 'arkCharacterSheet';
+const WEAPONS_STORAGE_KEY = 'personagemArmas'; // Chave para armas da página de itens
+const RITUALS_STORAGE_KEY = 'selectedRitualPacts'; // Chave para rituais da página de poderes
 
 // ==============================================
-// FUNÇÕES DO SISTEMA
+// FUNÇÕES DE INICIALIZAÇÃO
+// ==============================================
+
+function initializeEventListeners() {
+    // Nível
+    const levelInput = document.getElementById('level');
+    if (levelInput) {
+        levelInput.addEventListener('input', validateLevelInput);
+        levelInput.addEventListener('change', validateLevelInput);
+    }
+    
+    // Foto
+    const photoInput = document.getElementById('photo');
+    if (photoInput) {
+        photoInput.addEventListener('change', handlePhotoUpload);
+    }
+    
+    // Mutação
+    const addMutationBtn = document.getElementById('addMutationBtn');
+    if (addMutationBtn) {
+        addMutationBtn.addEventListener('click', addMutationSlot);
+    }
+    
+    // Login
+    const loginBtn = document.querySelector('.login-btn');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            const usernameInput = document.getElementById('usernameInput');
+            if (usernameInput) {
+                loginUser(usernameInput.value);
+            }
+        });
+    }
+}
+
+// ==============================================
+// CARREGAR RITUAIS DA PÁGINA DE PODERES
+// ==============================================
+
+function loadRitualsFromStorage() {
+    try {
+        const rituaisSalvos = localStorage.getItem(RITUALS_STORAGE_KEY);
+        if (rituaisSalvos) {
+            const rituaisCarregados = JSON.parse(rituaisSalvos);
+            
+            // Converter rituais da página para o formato da ficha
+            rituaisCarregados.forEach(ritual => {
+                const ritualExistente = rituals.find(r => r.nome === ritual.nome);
+                if (!ritualExistente) {
+                    // Adicionar apenas se não existir
+                    rituals.push({
+                        id: Date.now() + Math.random(),
+                        nome: ritual.nome || 'Ritual sem nome',
+                        imagem: ritual.imagem || '',
+                        descricao: ritual.descricao || '',
+                        tipo: ritual.tipo || 'ritual',
+                        elemento: ritual.elemento || '',
+                        nivel: ritual.nivel || 1,
+                        origem: 'poderes'
+                    });
+                }
+            });
+            
+            console.log(`${rituaisCarregados.length} rituais/pactos carregados da página de poderes`);
+            updateRitualsDisplay();
+        }
+    } catch (error) {
+        console.error('Erro ao carregar rituais do storage:', error);
+    }
+}
+
+// ==============================================
+// ATUALIZAR SISTEMA DE RITUAIS DA FICHA
+// ==============================================
+
+function updateRitualsDisplay() {
+    const container = document.getElementById('ritualsContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    if (rituals.length === 0) {
+        container.innerHTML = `
+            <div class="no-rituals" style="text-align: center; padding: 40px 20px;">
+                <p style="margin-bottom: 10px;">Nenhum ritual ou pacto adicionado.</p>
+                <p>Clique em "Ir para Página de Rituais" para selecionar rituais e pactos.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    const characterLevel = parseInt(document.getElementById('level').value) || 1;
+    
+    rituals.forEach((ritual, index) => {
+        // Validar se o personagem tem nível suficiente
+        const status = characterLevel >= ritual.nivel ? 'Aprendido' : 'Não Aprendido';
+        const statusClass = characterLevel >= ritual.nivel ? 'learned' : 'not-learned';
+        const canLearn = characterLevel >= ritual.nivel;
+        
+        const ritualDiv = document.createElement('div');
+        ritualDiv.className = 'ritual-item';
+        ritualDiv.id = `ritual-${ritual.id}`;
+        ritualDiv.style.marginTop = '20px'; // Espaçamento maior em cima
+        ritualDiv.style.marginBottom = '20px'; // Espaçamento embaixo
+        ritualDiv.style.position = 'relative'; // Para posicionar o botão de remover
+        
+        // Determinar tipo visual
+        const isPacto = ritual.tipo && ritual.tipo.toLowerCase().includes('pacto');
+        const typeClass = isPacto ? 'pacto' : 'ritual';
+        
+        ritualDiv.innerHTML = `
+            <div class="ritual-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div class="ritual-name-container" style="flex: 1;">
+                    <h4 class="ritual-name" style="margin: 0; font-size: 1.2rem; color: #d4af37;">${ritual.nome}</h4>
+                    <span class="ritual-level-badge" style="display: inline-block; background: #8b4513; color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.8rem; margin-top: 5px;">
+                        Nível ${ritual.nivel}
+                    </span>
+                </div>
+                <div class="ritual-status ${statusClass}" style="display: flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; ${canLearn ? 'background: rgba(46, 204, 113, 0.2); color: #27ae60;' : 'background: rgba(231, 76, 60, 0.2); color: #e74c3c;'}">
+                    <i class="fas ${canLearn ? 'fa-check-circle' : 'fa-lock'}"></i>
+                    ${status}
+                </div>
+            </div>
+            
+            ${ritual.imagem ? `
+                <div class="ritual-image-container" style="text-align: center; margin-bottom: 15px;">
+                    <img src="${ritual.imagem}" alt="${ritual.nome}" class="ritual-image" loading="lazy" style="max-width: 200px; max-height: 150px; border-radius: 8px; object-fit: cover;">
+                </div>
+            ` : ''}
+            
+            <div class="ritual-details" style="margin-bottom: 15px;">
+                <div class="ritual-info-row" style="display: flex; gap: 15px; margin-bottom: 10px;">
+                    <div class="ritual-info-item" style="flex: 1;">
+                        <span class="ritual-info-label" style="display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 3px;">Tipo:</span>
+                        <span class="ritual-info-value" style="font-weight: bold; color: #fff;">${ritual.tipo || 'Ritual'}</span>
+                    </div>
+                    <div class="ritual-info-item" style="flex: 1;">
+                        <span class="ritual-info-label" style="display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 3px;">Elemento:</span>
+                        <span class="ritual-info-value" style="font-weight: bold; color: #fff;">${ritual.elemento || 'N/A'}</span>
+                    </div>
+                </div>
+                
+                <div class="ritual-description-container">
+                    <span class="ritual-description-label" style="display: block; font-size: 0.85rem; color: #aaa; margin-bottom: 5px;">Descrição:</span>
+                    <p class="ritual-description" style="margin: 0; line-height: 1.5; color: #ccc; font-size: 0.9rem;">${ritual.descricao || 'Sem descrição disponível.'}</p>
+                </div>
+            </div>
+            
+            <div class="ritual-actions" style="display: flex; justify-content: flex-end; align-items: center; gap: 10px;">
+                <button type="button" onclick="removeRitual(${index})" class="remove-ritual" style="position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #c0392b, #e74c3c); color: white; border: none; border-radius: 4px; width: 30px; height: 30px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        container.appendChild(ritualDiv);
+    });
+}
+
+
+
+function addRitual() {
+    // Redirecionar para a página de poderes (rituais)
+    goToRitualsPage();
+}
+
+function removeRitual(index) {
+    if (confirm('Tem certeza que deseja remover este ritual/pacto da ficha?')) {
+        rituals.splice(index, 1);
+        updateRitualsDisplay();
+        saveCharacterData();
+        
+        // Atualizar também o localStorage da página de poderes
+        updatePowersStorage();
+    }
+}
+
+function goToRitualsPage() {
+    saveCharacterData();
+    window.location.href = "../index/index_poderes.html";
+}
+
+function updatePowersStorage() {
+    try {
+        // Converter rituais para o formato da página de poderes
+        const powersFormat = rituals.map(ritual => ({
+            nome: ritual.nome,
+            imagem: ritual.imagem,
+            descricao: ritual.descricao,
+            tipo: ritual.tipo,
+            elemento: ritual.elemento,
+            nivel: ritual.nivel
+        }));
+        
+        localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(powersFormat));
+    } catch (error) {
+        console.error('Erro ao atualizar storage de poderes:', error);
+    }
+}
+
+// ==============================================
+// SISTEMA DE ARMAS (MANTIDO)
+// ==============================================
+
+function loadWeaponsFromStorage() {
+    try {
+        const armasSalvas = localStorage.getItem(WEAPONS_STORAGE_KEY);
+        if (armasSalvas) {
+            const armasCarregadas = JSON.parse(armasSalvas);
+            
+            // Limpar armas antigas
+            weapons = [];
+            
+            // Converter armas da página para o formato da ficha
+            armasCarregadas.forEach(arma => {
+                // Função para processar modificadores
+                const processModificadores = (modData) => {
+                    if (!modData) return [];
+                    
+                    // Se for string, tentar parsear como JSON
+                    if (typeof modData === 'string') {
+                        try {
+                            const parsed = JSON.parse(modData);
+                            return Array.isArray(parsed) ? parsed : [parsed];
+                        } catch (e) {
+                            // Se não for JSON, tratar como array com um item
+                            return [modData];
+                        }
+                    }
+                    // Se já for array
+                    else if (Array.isArray(modData)) {
+                        return modData;
+                    }
+                    // Se for objeto único
+                    else if (typeof modData === 'object' && modData !== null) {
+                        return [modData];
+                    }
+                    // Qualquer outro caso
+                    return [];
+                };
+                
+                const novaArma = {
+                    id: arma.id || `arma-${Date.now()}-${Math.random()}`,
+                    name: arma.nome || arma.name || 'Arma sem nome',
+                    type: getWeaponType(arma),
+                    description: arma.descricao || arma.description || '',
+                    damage: arma.dano || arma.damage || 'Desconhecido',
+                    ct: arma.ct || 'N/A',
+                    dct: arma.dct || 'N/A',
+                    passive: arma.passiva || arma.passive || '',
+                    modifiers: arma.modificadoresResumo || arma.modificadores || '',
+                    criticals: arma.criticos || '',
+                    raridade: arma.raridade || '',
+                    resistence: arma.resistencia || '',
+                    origem: arma.origem || 'arsenal',
+                    personalizada: arma.personalizada || false,
+                    // Processar modificadores corretamente
+                    modificadoresLista: processModificadores(arma.modificadoresLista || arma.modificadores),
+                    passivaRadiante: arma.passivaRadiante || '',
+                    passivaTek: arma.passivaTek || ''
+                };
+                
+                weapons.push(novaArma);
+            });
+            
+            console.log(`${weapons.length} armas carregadas da página de itens`);
+            
+            // Debug para verificar o que foi carregado
+            console.log('Armas carregadas:', weapons);
+            
+            updateArsenalDisplay();
+        }
+    } catch (error) {
+        console.error('Erro ao carregar armas do storage:', error);
+    }
+}
+
+function getWeaponType(arma) {
+    // Determinar tipo baseado no nome ou características
+    if (arma.nome) {
+        const nomeLower = arma.nome.toLowerCase();
+        if (nomeLower.includes('espada')) return 'arma_branca';
+        if (nomeLower.includes('machado')) return 'arma_branca';
+        if (nomeLower.includes('martelo')) return 'arma_branca';
+        if (nomeLower.includes('lanca') || nomeLower.includes('lança')) return 'arma_branca';
+        if (nomeLower.includes('arco')) return 'arma_distancia';
+        if (nomeLower.includes('pistola') || nomeLower.includes('revólver')) return 'arma_fogo';
+        if (nomeLower.includes('rifle') || nomeLower.includes('espingarda')) return 'arma_fogo';
+        if (nomeLower.includes('metralhadora') || nomeLower.includes('smg')) return 'arma_fogo';
+        if (nomeLower.includes('granada')) return 'arma_explosiva';
+        if (nomeLower.includes('escudo')) return 'defesa';
+    }
+    return 'arma_branca';
+}
+
+function updateArsenalDisplay() {
+    const container = document.getElementById('arsenalContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    if (weapons.length === 0) {
+        container.innerHTML = '<p class="no-bonuses">Nenhuma arma adicionada</p>';
+        return;
+    }
+    
+    weapons.forEach((weapon, index) => {
+        const weaponDiv = document.createElement('div');
+        weaponDiv.className = 'weapon-item';
+        weaponDiv.id = `weapon-${weapon.id}`;
+        
+        // Determinar classe de raridade
+        let raridadeClass = '';
+        if (weapon.raridade) {
+            raridadeClass = weapon.raridade.toLowerCase();
+        }
+        
+        // Construir HTML dos modificadores - CORREÇÃO DEFINITIVA
+        let modificadoresHTML = '';
+        
+        // DEBUG: Verificar o que está chegando
+        console.log('DEBUG - Arma:', weapon.name);
+        console.log('DEBUG - modificadoresLista:', weapon.modificadoresLista);
+        console.log('DEBUG - tipo:', typeof weapon.modificadoresLista);
+        
+        // Verificar se há modificadoresLista
+        if (weapon.modificadoresLista) {
+            let modificadoresProcessados = [];
+            
+            // Se for uma string, tentar parsear JSON
+            if (typeof weapon.modificadoresLista === 'string') {
+                try {
+                    const parsed = JSON.parse(weapon.modificadoresLista);
+                    if (Array.isArray(parsed)) {
+                        modificadoresProcessados = parsed;
+                    } else if (typeof parsed === 'object' && parsed !== null) {
+                        modificadoresProcessados = [parsed];
+                    }
+                } catch (e) {
+                    console.error('Erro ao parsear string como JSON:', e);
+                    // Se não for JSON válido, tratar como string normal
+                    modificadoresProcessados = [weapon.modificadoresLista];
+                }
+            }
+            // Se já for um array
+            else if (Array.isArray(weapon.modificadoresLista)) {
+                modificadoresProcessados = weapon.modificadoresLista;
+            }
+            // Se for um objeto único
+            else if (typeof weapon.modificadoresLista === 'object' && weapon.modificadoresLista !== null) {
+                modificadoresProcessados = [weapon.modificadoresLista];
+            }
+            
+            console.log('DEBUG - modificadoresProcessados:', modificadoresProcessados);
+            
+            // Se tiver modificadores processados
+            if (modificadoresProcessados.length > 0) {
+                modificadoresHTML = `
+                    <div class="weapon-modifiers">
+                        <h5><i class="fas fa-tools"></i> Modificadores (${modificadoresProcessados.length}):</h5>
+                        <div class="modifiers-grid">
+                            ${modificadoresProcessados.map((mod, idx) => {
+                                // Se for um objeto válido
+                                if (mod && typeof mod === 'object') {
+                                    const nome = mod.nome || `Modificador ${idx + 1}`;
+                                    const efeito = mod.efeito || '';
+                                    const descricao = mod.descricao || '';
+                                    
+                                    return `
+                                        <div class="modifier-card">
+                                            <div class="modifier-header">
+                                                <div class="modifier-icon">
+                                                    <i class="fas fa-cog"></i>
+                                                </div>
+                                                <div class="modifier-info">
+                                                    <h6 class="modifier-name">${nome}</h6>
+                                                    <span class="modifier-effect">${efeito}</span>
+                                                </div>
+                                            </div>
+                                            ${descricao ? `
+                                                <div class="modifier-description">
+                                                    <p>${descricao}</p>
+                                                </div>
+                                            ` : ''}
+                                        </div>
+                                    `;
+                                }
+                                // Se for string
+                                else if (typeof mod === 'string') {
+                                    return `
+                                        <div class="modifier-card">
+                                            <div class="modifier-header">
+                                                <div class="modifier-icon">
+                                                    <i class="fas fa-cog"></i>
+                                                </div>
+                                                <div class="modifier-info">
+                                                    <h6 class="modifier-name">Modificador ${idx + 1}</h6>
+                                                    <span class="modifier-effect">${mod}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                                // Qualquer outro tipo
+                                else {
+                                    return `
+                                        <div class="modifier-card">
+                                            <div class="modifier-header">
+                                                <div class="modifier-icon">
+                                                    <i class="fas fa-cog"></i>
+                                                </div>
+                                                <div class="modifier-info">
+                                                    <h6 class="modifier-name">Modificador ${idx + 1}</h6>
+                                                    <span class="modifier-effect">${String(mod)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    `;
+                                }
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        // Se não tiver modificadoresLista, verificar a propriedade antiga 'modifiers'
+        else if (weapon.modifiers && weapon.modifiers.trim() !== '') {
+            console.log('DEBUG - Usando property antiga "modifiers":', weapon.modifiers);
+            
+            // Tentar parsear se parecer JSON
+            if (weapon.modifiers.trim().startsWith('[') || weapon.modifiers.trim().startsWith('{')) {
+                try {
+                    const parsed = JSON.parse(weapon.modifiers);
+                    let modificadoresProcessados = [];
+                    
+                    if (Array.isArray(parsed)) {
+                        modificadoresProcessados = parsed;
+                    } else if (typeof parsed === 'object' && parsed !== null) {
+                        modificadoresProcessados = [parsed];
+                    }
+                    
+                    if (modificadoresProcessados.length > 0) {
+                        modificadoresHTML = `
+                            <div class="weapon-modifiers">
+                                <h5><i class="fas fa-tools"></i> Modificadores (${modificadoresProcessados.length}):</h5>
+                                <div class="modifiers-grid">
+                                    ${modificadoresProcessados.map((mod, idx) => {
+                                        if (mod && typeof mod === 'object') {
+                                            const nome = mod.nome || `Modificador ${idx + 1}`;
+                                            const efeito = mod.efeito || '';
+                                            const descricao = mod.descricao || '';
+                                            
+                                            return `
+                                                <div class="modifier-card">
+                                                    <div class="modifier-header">
+                                                        <div class="modifier-icon">
+                                                            <i class="fas fa-cog"></i>
+                                                        </div>
+                                                        <div class="modifier-info">
+                                                            <h6 class="modifier-name">${nome}</h6>
+                                                            <span class="modifier-effect">${efeito}</span>
+                                                        </div>
+                                                    </div>
+                                                    ${descricao ? `
+                                                        <div class="modifier-description">
+                                                            <p>${descricao}</p>
+                                                        </div>
+                                                    ` : ''}
+                                                </div>
+                                            `;
+                                        } else {
+                                            return `
+                                                <div class="modifier-card">
+                                                    <div class="modifier-header">
+                                                        <div class="modifier-icon">
+                                                            <i class="fas fa-cog"></i>
+                                                        </div>
+                                                        <div class="modifier-info">
+                                                            <h6 class="modifier-name">Modificador ${idx + 1}</h6>
+                                                            <span class="modifier-effect">${String(mod)}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `;
+                                        }
+                                    }).join('')}
+                                </div>
+                            </div>
+                        `;
+                    }
+                } catch (e) {
+                    console.error('Não é JSON válido, mostrando como texto:', e);
+                    modificadoresHTML = `
+                        <div class="weapon-modifiers">
+                            <h5><i class="fas fa-tools"></i> Modificadores:</h5>
+                            <div class="modifier-text">
+                                <p>${weapon.modifiers}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+            } else {
+                // Se for texto simples
+                modificadoresHTML = `
+                    <div class="weapon-modifiers">
+                        <h5><i class="fas fa-tools"></i> Modificadores:</h5>
+                        <div class="modifier-text">
+                            <p>${weapon.modifiers}</p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        
+        // Construir HTML das passivas
+        let passivasHTML = '';
+        if (weapon.passive) {
+            passivasHTML += `
+                <div class="weapon-passive">
+                    <h5><i class="fas fa-star"></i> Passiva:</h5>
+                    <p>${weapon.passive}</p>
+                </div>
+            `;
+        }
+        
+        if (weapon.passivaRadiante) {
+            passivasHTML += `
+                <div class="weapon-passive radiante">
+                    <h5><i class="fas fa-sun"></i> Passiva Radiante:</h5>
+                    <p>${weapon.passivaRadiante}</p>
+                </div>
+            `;
+        }
+        
+        if (weapon.passivaTek) {
+            passivasHTML += `
+                <div class="weapon-passive tek">
+                    <h5><i class="fas fa-microchip"></i> Passiva Tek:</h5>
+                    <p>${weapon.passivaTek}</p>
+                </div>
+            `;
+        }
+        
+        weaponDiv.innerHTML = `
+            <button onclick="removeWeapon('${weapon.id}')" class="remove-weapon">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="weapon-header">
+                <div class="weapon-name-container">
+                    <input type="text" value="${weapon.name}" 
+                           class="weapon-name-input" 
+                           onchange="updateWeapon('${weapon.id}', 'name', this.value)"
+                           placeholder="Nome da Arma">
+                    ${weapon.raridade ? `<span class="weapon-rarity ${raridadeClass}">${weapon.raridade.toUpperCase()}</span>` : ''}
+                </div>
+                <div class="weapon-type-select">
+                    <select onchange="updateWeapon('${weapon.id}', 'type', this.value)">
+                        <option value="arma_branca" ${weapon.type === 'arma_branca' ? 'selected' : ''}>Arma Branca</option>
+                        <option value="arma_fogo" ${weapon.type === 'arma_fogo' ? 'selected' : ''}>Arma de Fogo</option>
+                        <option value="arma_arcana" ${weapon.type === 'arma_arcana' ? 'selected' : ''}>Arma Arcana</option>
+                        <option value="arma_explosiva" ${weapon.type === 'arma_explosiva' ? 'selected' : ''}>Arma Explosiva</option>
+                        <option value="arma_distancia" ${weapon.type === 'arma_distancia' ? 'selected' : ''}>Arma à Distância</option>
+                        <option value="defesa" ${weapon.type === 'defesa' ? 'selected' : ''}>Defesa</option>
+                        <option value="especial" ${weapon.type === 'especial' ? 'selected' : ''}>Especial</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <textarea placeholder="Descrição da arma..." 
+                          onchange="updateWeapon('${weapon.id}', 'description', this.value)"
+                          rows="2">${weapon.description}</textarea>
+            </div>
+            
+            <div class="weapon-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Dano:</span>
+                    <input type="text" value="${weapon.damage}" 
+                           class="stat-value-input" 
+                           onchange="updateWeapon('${weapon.id}', 'damage', this.value)"
+                           placeholder="Ex: 1d6">
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">CT:</span>
+                    <input type="number" value="${weapon.ct}" 
+                           class="stat-value-input" 
+                           onchange="updateWeapon('${weapon.id}', 'ct', this.value)"
+                           min="0" max="30" placeholder="0-30">
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">DCT:</span>
+                    <input type="number" value="${weapon.dct}" 
+                           class="stat-value-input" 
+                           onchange="updateWeapon('${weapon.id}', 'dct', this.value)"
+                           min="0" max="30" placeholder="0-30">
+                </div>
+                ${weapon.criticals ? `
+                    <div class="stat-item">
+                        <span class="stat-label">Críticos:</span>
+                        <input type="text" value="${weapon.criticals}" 
+                               class="stat-value-input" 
+                               onchange="updateWeapon('${weapon.id}', 'criticals', this.value)"
+                               placeholder="Ex: +3D6">
+                    </div>
+                ` : ''}
+                ${weapon.resistence ? `
+                    <div class="stat-item">
+                        <span class="stat-label">Resistência:</span>
+                        <input type="text" value="${weapon.resistence}" 
+                               class="stat-value-input" 
+                               onchange="updateWeapon('${weapon.id}', 'resistence', this.value)"
+                               placeholder="Ex: Dt:10">
+                    </div>
+                ` : ''}
+            </div>
+            
+            ${modificadoresHTML}
+            
+            ${passivasHTML}
+            
+            <div class="weapon-origin">
+                <small><i class="fas fa-map-marker-alt"></i> Origem: ${weapon.origem === 'forja' ? 'Arma Personalizada' : 'Arsenal Padrão'}</small>
+            </div>
+        `;
+        container.appendChild(weaponDiv);
+    });
+}
+
+// Função de debug para verificar os dados
+function debugWeaponsData() {
+    console.log('=== DEBUG DE ARMAS ===');
+    weapons.forEach((weapon, index) => {
+        console.log(`Arma ${index + 1}: ${weapon.name}`);
+        console.log('modificadoresLista:', weapon.modificadoresLista);
+        console.log('Tipo:', typeof weapon.modificadoresLista);
+        
+        if (weapon.modificadoresLista) {
+            if (typeof weapon.modificadoresLista === 'string') {
+                console.log('É string, tentando parsear...');
+                try {
+                    const parsed = JSON.parse(weapon.modificadoresLista);
+                    console.log('Parseado:', parsed);
+                } catch (e) {
+                    console.log('Não é JSON válido');
+                }
+            } else if (Array.isArray(weapon.modificadoresLista)) {
+                console.log('É array, tamanho:', weapon.modificadoresLista.length);
+                console.log('Primeiro item:', weapon.modificadoresLista[0]);
+            }
+        }
+        console.log('---');
+    });
+}
+
+// Chame esta função após carregar as armas para debug
+// debugWeaponsData();
+
+function addWeapon() {
+    weapons.push({
+        id: `manual-${Date.now()}`,
+        name: 'Nova Arma',
+        type: 'arma_branca',
+        description: '',
+        damage: '1d6',
+        ct: 10,
+        dct: 15,
+        passive: '',
+        modifiers: '',
+        criticals: '',
+        raridade: '',
+        resistence: '',
+        origem: 'manual',
+        personalizada: false
+    });
+    
+    updateArsenalDisplay();
+    saveCharacterData();
+}
+
+function removeWeapon(id) {
+    weapons = weapons.filter(weapon => weapon.id !== id);
+    updateArsenalDisplay();
+    saveCharacterData();
+}
+
+function updateWeapon(id, field, value) {
+    const weapon = weapons.find(w => w.id === id);
+    if (weapon) {
+        weapon[field] = value;
+        
+        // Atualizar visualização imediata
+        const weaponDiv = document.getElementById(`weapon-${id}`);
+        if (weaponDiv && field === 'name') {
+            const nameInput = weaponDiv.querySelector('.weapon-name-input');
+            if (nameInput) {
+                nameInput.value = value;
+            }
+        }
+        
+        saveCharacterData();
+    }
+}
+
+function goToArsenalPage() {
+    saveCharacterData();
+    window.location.href = "../html/index_itens.html";
+}
+
+// ==============================================
+// SISTEMA DE LOGIN (MANTIDO)
 // ==============================================
 
 function loginUser(username) {
-    if (!username) {
-        alert("Por favor, digite um nome de usuário.");
+    if (!username || username.trim() === '') {
+        alert('Por favor, digite um nome de usuário.');
         return;
     }
-    currentUser = username.toLowerCase();
-    localStorage.setItem('loggedInUser', currentUser);
-    console.log(`Usuário logado: ${currentUser}`);
-    alert(`Bem-vindo, ${username}!`);
+    
+    currentUser = username.trim();
+    localStorage.setItem('arkCurrentUser', currentUser);
     updateLoginDisplay();
+    alert(`Bem-vindo, ${currentUser}!`);
 }
 
 function logoutUser() {
-    if (confirm("Tem certeza que deseja sair?")) {
+    if (confirm('Deseja sair?')) {
         currentUser = null;
-        localStorage.removeItem('loggedInUser');
-        console.log("Usuário deslogado.");
-        alert("Você foi desconectado.");
+        localStorage.removeItem('arkCurrentUser');
         updateLoginDisplay();
+        alert('Você foi desconectado.');
+    }
+}
+
+function updateLoginDisplay() {
+    const loginStatus = document.getElementById('loginStatus');
+    if (!loginStatus) return;
+    
+    if (currentUser) {
+        loginStatus.innerHTML = `
+            <span>Logado como: <strong>${currentUser}</strong></span>
+            <button onclick="logoutUser()" class="logout-btn">Sair</button>
+        `;
+    } else {
+        loginStatus.innerHTML = `
+            <input type="text" id="usernameInput" placeholder="Nome de usuário">
+            <button onclick="loginUser(document.getElementById('usernameInput').value)" class="login-btn">Entrar</button>
+        `;
     }
 }
 
 function getLoggedInUser() {
-    currentUser = localStorage.getItem('loggedInUser');
+    currentUser = localStorage.getItem('arkCurrentUser');
     if (currentUser) {
         updateLoginDisplay();
     }
 }
 
-function updateLoginDisplay() {
-    const loginStatusDiv = document.getElementById('loginStatus');
-    if (loginStatusDiv) {
-        if (currentUser) {
-            loginStatusDiv.innerHTML = `Logado como: <strong>${currentUser}</strong> <button onclick="logoutUser()" class="logout-btn">Sair</button>`;
-        } else {
-            loginStatusDiv.innerHTML = `
-                <input type="text" id="usernameInput" placeholder="Nome de usuário">
-                <button onclick="loginUser(document.getElementById('usernameInput').value)" class="login-btn">Entrar</button>
-            `;
-        }
-    }
-}
+// ==============================================
+// SISTEMA DE ATRIBUTOS (MANTIDO)
+// ==============================================
 
-function saveCharacterLocal() {
-    console.log("Tentativa de salvar ficha localmente.");
-
-    const characterNameInput = document.getElementById("characterNameInput");
-    let characterName = characterNameInput ? characterNameInput.value.trim() : '';
-
-    if (!characterName) {
-        characterName = prompt("Por favor, dê um nome para esta ficha antes de salvar:");
-        if (!characterName) {
-            alert("Salvamento cancelado. O nome da ficha é obrigatório.");
-            console.warn("Salvamento cancelado: Nome da ficha não fornecido.");
-            return;
-        }
-        if (characterNameInput) characterNameInput.value = characterName;
-    }
-
-    updateMutationsFromForm();
-
-    const characterData = {
-        name: document.getElementById("name").value,
-        age: document.getElementById("age").value,
-        level: document.getElementById("level").value,
-        photo: document.getElementById("preview").src,
-        lore: document.getElementById("lore").value,
-        attributesBase: { ...attributesBase },
-        class1: document.getElementById("class1").value,
-        class2: document.getElementById("class2").value,
-        combatClass: document.getElementById("combatClass").value,
-        inventory: document.getElementById("inventory").value,
-        actionBonuses: [...actionBonuses],
-        learnedActionBonuses: [...learnedActionBonuses],
-        weapons: [...weapons],
-        characterRituals: [...characterRituals],
-        characterMutations: [...characterMutations],
-        appliedClassBonuses: { 
-            class1: { ...appliedClassBonuses.class1 }, 
-            class2: { ...appliedClassBonuses.class2 }  
-        },
-        savedName: characterName,
-        savedLevel: parseInt(document.getElementById("level").value) || 1
-    };
-
-    try {
-        localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-        localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(characterRituals));
-        alert(`Ficha "${characterName}" salva localmente com sucesso!`);
-    } catch (e) {
-        console.error("Erro ao salvar no localStorage:", e);
-        alert("Erro ao salvar a ficha. Verifique o console para mais detalhes ou tente limpar o cache do navegador.");
-    }
-}
-
-function loadCharacterLocal() {
-    let data;
-    let loadedRituals;
-    try {
-        data = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || 'null');
-        loadedRituals = JSON.parse(localStorage.getItem(RITUALS_STORAGE_KEY) || '[]');
-    } catch (e) {
-        console.error("Erro ao parsear dados do localStorage:", e);
-        alert("Erro ao carregar a ficha salva. Os dados podem estar corrompidos. Tente limpar o cache do navegador.");
-        resetFormState(); 
+function changeAttribute(attributeName, change) {
+    const currentValue = attributesBase[attributeName];
+    const totalAllowedPoints = initialDistributablePoints + bonusPointsFromLevel;
+    const currentDistributedPoints = calculateCurrentDistributedPoints();
+    const remainingPoints = totalAllowedPoints - currentDistributedPoints;
+    
+    if (currentValue + change < 1) return;
+    if (change > 0 && remainingPoints <= 0) {
+        alert('Você não tem mais pontos de atributo disponíveis!');
         return;
     }
-
-    if (!data) {
-        console.log("Nenhuma ficha salva localmente encontrada. Iniciando com formulário limpo.");
-        resetFormState(); 
-        return;
-    }
-
-    document.getElementById("name").value = data.name || '';
-    document.getElementById("age").value = data.age || '';
-    document.getElementById("level").value = data.level || '1';
-    document.getElementById("lore").value = data.lore || '';
-
-    for (const key in data.attributesBase) {
-        if (attributesBase.hasOwnProperty(key)) {
-            attributesBase[key] = data.attributesBase[key];
-        }
-    }
-
-    appliedClassBonuses.class1 = { className: '', attribute: '' };
-    appliedClassBonuses.class2 = { className: '', attribute: '' };
-
-    if (data.appliedClassBonuses) {
-        if (data.appliedClassBonuses.class1) {
-            Object.assign(appliedClassBonuses.class1, data.appliedClassBonuses.class1);
-        }
-        if (data.appliedClassBonuses.class2) {
-            Object.assign(appliedClassBonuses.class2, data.appliedClassBonuses.class2);
-        }
-    }
-
-    document.getElementById("class1").value = data.class1 || '';
-    document.getElementById("class2").value = data.class2 || '';
-
-    updateAttributesDisplay(); 
-    updateClassButtonsState();
-
-    document.getElementById("combatClass").value = data.combatClass || '';
-    document.getElementById("inventory").value = data.inventory || '';
-
-    const preview = document.getElementById("preview");
-    if (data.photo && data.photo !== window.location.href + "#" && !data.photo.includes('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=') && data.photo !== '') {
-        preview.src = data.photo;
-        preview.style.display = "block";
-    } else {
-        preview.style.display = "none";
-        preview.src = "#";
-    }
-
-    actionBonuses = Array.isArray(data.actionBonuses) ? data.actionBonuses.map(bonus => ({
-        ...bonus,
-        occupiesSlot: bonus.occupiesSlot !== undefined ? bonus.occupiesSlot : !bonus.fixed
-    })) : [];
-    renderActionBonuses();
-    updateActionBonusLimits();
-
-    learnedActionBonuses = Array.isArray(data.learnedActionBonuses) ? data.learnedActionBonuses : [];
-    renderLearnedActionBonuses();
-
-    weapons = Array.isArray(data.weapons) ? data.weapons : [];
-    renderWeapons();
-
-    // Carregar rituais
-    try {
-        const storedRituals = localStorage.getItem(RITUALS_STORAGE_KEY);
-        if (storedRituals) {
-            characterRituals = JSON.parse(storedRituals);
-        } else if (data.characterRituals && Array.isArray(data.characterRituals)) {
-            characterRituals = data.characterRituals;
-        } else if (data.rituals && Array.isArray(data.rituals)) {
-            characterRituals = data.rituals;
-        } else {
-            characterRituals = [];
-        }
-    } catch (error) {
-        console.error("Erro ao carregar rituais:", error);
-        characterRituals = [];
-    }
     
-    if (!Array.isArray(characterRituals)) {
-        characterRituals = [];
-    }
-    
-    loadSelectedRitualPact();
-
-    // Carregar mutações
-    if (data.characterMutations && Array.isArray(data.characterMutations)) {
-        characterMutations = data.characterMutations.map((mut, idx) => ({
-            ...mut,
-            index: idx
-        }));
-    }
-    
-    const hasPrimal = characterMutations.some(mut => mut.type === 'primal');
-    if (!hasPrimal) {
-        characterMutations.unshift({
-            name: "MUTAÇÃO PRIMAL",
-            type: "primal",
-            description: "",
-            source: "Origem do Personagem",
-            stage: 1,
-            fixed: true,
-            index: 0
-        });
-        
-        characterMutations.forEach((mut, idx) => {
-            mut.index = idx;
-        });
-    }
-    
-    renderMutationSlots();
-    updatePrimalStage();
-    
-    syncFormMutations();
-
-    const characterNameInput = document.getElementById("characterNameInput");
-    if (characterNameInput) {
-        characterNameInput.value = data.savedName || '';
-    }
-
-    validateLevelInput();
-    calculateStats(); 
-
-    alert(`Ficha "${data.savedName || 'Sem Nome'}" carregada automaticamente!`);
-    document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
-}
-
-function resetFormState() {
-    const preview = document.getElementById("preview");
-    preview.style.display = "none";
-    preview.src = "#";
-
-    for (const key in attributesBase) {
-        attributesBase[key] = 1;
-    }
-    
-    appliedClassBonuses.class1 = { className: '', attribute: '' };
-    appliedClassBonuses.class2 = { className: '', attribute: '' };
-    
+    attributesBase[attributeName] += change;
     updateAttributesDisplay();
-    document.getElementById('class1').value = '';
-    document.getElementById('class2').value = '';
-    updateClassButtonsState();
-
-    actionBonuses = [];
-    renderActionBonuses();
-    updateActionBonusLimits(); 
-    learnedActionBonuses = [];
-    renderLearnedActionBonuses();
-
-    weapons = [];
-    renderWeapons();
-    characterRituals = []; 
-    loadSelectedRitualPact();
-
-    characterMutations = [
-        {
-            name: "MUTAÇÃO PRIMAL",
-            type: "primal",
-            description: "",
-            source: "Origem do Personagem",
-            stage: 1,
-            fixed: true,
-            index: 0
-        }
-    ];
-    renderMutationSlots();
-    updatePrimalStage();
-
-    const characterNameInput = document.getElementById("characterNameInput");
-    if (characterNameInput) characterNameInput.value = '';
-
-    document.getElementById("level").value = '1';
-    validateLevelInput(); 
-
-    document.getElementById("results").style.display = "none";
-
-    localStorage.removeItem(LOCAL_CHARACTER_STORAGE_KEY);
-    localStorage.removeItem(RITUALS_STORAGE_KEY);
-}
-
-function resetForm() {
-    if (confirm("Tem certeza que deseja limpar todo o formulário e perder o progresso atual?")) {
-        document.getElementById("characterForm").reset(); 
-        resetFormState(); 
-        alert("Formulário limpo para uma nova ficha.");
-    }
-}
-
-function saveForm() {
-    saveCharacterLocal();
-}
-
-function loadForm() {
-    getLoggedInUser();
-    loadCharacterLocal();
-    document.getElementById("results").style.display = "none";
+    updateAttributePointsDisplay();
+    
+    // SALVAR APÓS MUDAR ATRIBUTO
+    saveCharacterData();
 }
 
 function calculateCurrentDistributedPoints() {
     return Object.values(attributesBase).reduce((sum, val) => sum + (val - 1), 0);
 }
 
-function validateLevelInput() {
-    const levelInput = document.getElementById("level");
-    let level = parseInt(levelInput.value) || 1;
-
-    if (level > 100) {
-        level = 100;
-        levelInput.value = 100;
-    } else if (level < 1) {
-        level = 1;
-        levelInput.value = 1;
-    }
-    bonusPointsFromLevel = Math.floor((level - 1) / 15);
-    initialDistributablePoints = 5; 
-    updateAttributePointsDisplay(); 
-    updateActionBonusLimits(); 
-    updateLevelBar();
-    updatePrimalStage();
-}
-
 function updateAttributesDisplay() {
     for (const key in attributesBase) {
         attributes[key] = attributesBase[key];
-    }
-
-    if (appliedClassBonuses.class1.className && appliedClassBonuses.class1.attribute) {
-        attributes[appliedClassBonuses.class1.attribute]++;
-    }
-    if (appliedClassBonuses.class2.className && appliedClassBonuses.class2.attribute) {
-        attributes[appliedClassBonuses.class2.attribute]++;
-    }
-
-    for (const key in attributes) {
         const element = document.getElementById(`${key}Value`);
         if (element) {
             element.textContent = attributes[key];
@@ -426,2179 +1110,3472 @@ function updateAttributesDisplay() {
     }
 }
 
-function changeAttribute(attributeName, change) {
-    const currentAttributeBaseValue = attributesBase[attributeName];
-    const totalAllowedPoints = initialDistributablePoints + bonusPointsFromLevel; 
-    const currentDistributedPoints = calculateCurrentDistributedPoints();
-    const remainingPoints = totalAllowedPoints - currentDistributedPoints;
-
-    if (currentAttributeBaseValue + change < 1) {
-        return;
-    }
-
-    if (change > 0 && remainingPoints <= 0) {
-        return;
-    }
-
-    attributesBase[attributeName] += change;
-    updateAttributesDisplay();
-    updateAttributePointsDisplay();
-}
-
 function updateAttributePointsDisplay() {
     const totalAllowedPoints = initialDistributablePoints + bonusPointsFromLevel;
     const currentDistributedPoints = calculateCurrentDistributedPoints();
     const remainingPoints = totalAllowedPoints - currentDistributedPoints;
-
-    const availablePointsSpan = document.getElementById("availableAttributePoints");
+    
+    const availablePointsSpan = document.getElementById('availableAttributePoints');
     if (availablePointsSpan) {
         availablePointsSpan.textContent = remainingPoints;
+        availablePointsSpan.style.color = remainingPoints >= 0 ? '#27ae60' : '#e74c3c';
     }
 }
 
-function updateClassButtonsState() {
-    const class1Select = document.getElementById('class1');
-    const class2Select = document.getElementById('class2');
-    const applyClass1Btn = document.getElementById('applyClass1Btn');
-    const applyClass2Btn = document.getElementById('applyClass2Btn');
+// ==============================================
+// SISTEMA DE NÍVEL (MANTIDO)
+// ==============================================
 
-    if (!applyClass1Btn || !applyClass2Btn || !class1Select || !class2Select) return;
+function validateLevelInput() {
+    const levelInput = document.getElementById('level');
+    let level = parseInt(levelInput.value) || 1;
+    
+    if (level > 100) {
+        level = 100;
+        levelInput.value = 100;
+    } else if (level < 1) {
+        level = 1;
+        levelInput.value = 1;
+    }
+    
+    bonusPointsFromLevel = 0;
+    if (level >= 15) bonusPointsFromLevel += 1;
+    if (level >= 65) bonusPointsFromLevel += 1;
+    if (level >= 99) bonusPointsFromLevel += 1;
+    
+    updateAttributePointsDisplay();
+    updateLevelBar();
+    updateCenterLevel();
+    updatePrimalMutationStage();
+    updateBonusSlots();
+    updateRitualsDisplay(); // Atualizar validação de rituais quando o nível mudar
+    saveCharacterData();
+}
 
-    const selectedClass1 = class1Select.value;
-    const selectedClass2 = class2Select.value;
-
-    applyClass1Btn.disabled = !!appliedClassBonuses.class1.className || selectedClass1 === '';
-    applyClass2Btn.disabled = !!appliedClassBonuses.class2.className || selectedClass2 === '';
-
-    if (selectedClass1 !== '' && selectedClass1 === selectedClass2) {
-        if (!appliedClassBonuses.class1.className) applyClass1Btn.disabled = true;
-        if (!appliedClassBonuses.class2.className) applyClass2Btn.disabled = true;
+function updateLevelBar() {
+    const levelInput = document.getElementById('level');
+    const level = parseInt(levelInput.value) || 1;
+    const levelBarFill = document.getElementById('levelBarFill');
+    const levelBarFillCenter = document.getElementById('levelBarFillCenter');
+    
+    if (levelBarFill) {
+        levelBarFill.style.width = level + '%';
+    }
+    
+    if (levelBarFillCenter) {
+        levelBarFillCenter.style.width = level + '%';
     }
 }
 
-function resetClassBonus(classId) {
-    const previousBonus = appliedClassBonuses[classId];
-    if (previousBonus.className && previousBonus.attribute) {
-        appliedClassBonuses[classId] = { className: '', attribute: '' }; 
-        updateAttributesDisplay();
-    }
-    updateClassButtonsState();
-}
-
-function applyClassBonus(classId) {
-    const selectElement = document.getElementById(classId);
-    const selectedClass = selectElement.value;
-    const applyButton = document.getElementById(`apply${classId.replace('class', 'Class')}Btn`);
-
-    if (!selectedClass) {
-        alert("Por favor, selecione uma classe antes de aplicar o bônus.");
-        return;
-    }
-
-    if (appliedClassBonuses[classId].className) {
-        alert(`Você já aplicou um bônus para este slot de classe.`);
-        return;
-    }
-
-    const otherClassId = classId === 'class1' ? 'class2' : 'class1';
-    const otherSelectElement = document.getElementById(otherClassId);
-    if (selectedClass !== '' && selectedClass === otherSelectElement.value) {
-        alert(`A classe "${selectedClass}" já está selecionada no outro slot de Classe Primitiva.`);
-        return;
-    }
-
-    const mappedAttributes = attributeMappings[selectedClass];
-    if (!mappedAttributes) {
-        alert("Classe selecionada não possui bônus de atributo definidos.");
-        return;
-    }
-
-    const choice = prompt(`Para a classe ${selectedClass}, qual atributo você deseja aumentar: ${mappedAttributes[0]} ou ${mappedAttributes[1]}? (Digite o nome do atributo, ex: ${mappedAttributes[0]})`);
-
-    if (choice && mappedAttributes.includes(choice.toLowerCase())) {
-        const chosenAttribute = choice.toLowerCase();
-        
-        appliedClassBonuses[classId] = { className: selectedClass, attribute: chosenAttribute };
-
-        updateAttributesDisplay();
-        alert(`Bônus de +1 em ${chosenAttribute} da classe ${selectedClass} aplicado aos atributos!`);
-        updateClassButtonsState();
-        updateAttributePointsDisplay();
-
-    } else {
-        alert("Escolha inválida. Por favor, digite o nome exato de um dos atributos sugeridos.");
+function updateCenterLevel() {
+    const levelInput = document.getElementById('level');
+    const level = parseInt(levelInput.value) || 1;
+    const centerLevelValue = document.getElementById('centerLevelValue');
+    
+    if (centerLevelValue) {
+        centerLevelValue.textContent = level;
     }
 }
 
-// Event Listeners
-document.getElementById('class1').addEventListener('change', updateClassButtonsState);
-document.getElementById('class2').addEventListener('change', updateClassButtonsState);
-document.getElementById('level').addEventListener('input', validateLevelInput);
-document.getElementById('level').addEventListener('change', validateLevelInput);
+// ==============================================
+// SISTEMA DE FOTO (MANTIDO)
+// ==============================================
 
-document.getElementById('photo').addEventListener('change', function(event) {
+function handlePhotoUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    
     const reader = new FileReader();
-    reader.onload = function() {
+    reader.onload = function(e) {
         const preview = document.getElementById('preview');
-        preview.src = reader.result;
+        const centerPreview = document.getElementById('centerPreview');
+        const photoPreview = document.getElementById('photoPreview');
+        const placeholder = photoPreview.querySelector('.photo-placeholder');
+        const centerPlaceholder = document.querySelector('.center-placeholder');
+        
+        preview.src = e.target.result;
         preview.style.display = 'block';
-    }
-    if (event.target.files[0]) {
-        reader.readAsDataURL(event.target.files[0]);
-    } else {
-        document.getElementById('preview').style.display = 'none';
-        document.getElementById('preview').src = "#";
-    }
-});
+        if (placeholder) placeholder.style.display = 'none';
+        
+        centerPreview.src = e.target.result;
+        centerPreview.style.display = 'block';
+        if (centerPlaceholder) centerPlaceholder.style.display = 'none';
+    };
+    
+    reader.readAsDataURL(file);
+}
 
 // ==============================================
-// SISTEMA DE BÔNUS DE AÇÃO
+// SISTEMA DE MUTAÇÃO (MANTIDO)
 // ==============================================
 
-const getSlotCost = (value) => {
-    switch (value) {
-        case 5: return 1;
-        case 10: return 2;
-        case 15: return 3;
-        case 20: return 4;
-        default: return 1;
-    }
-};
-
-function calculateUsedSlots() {
-    return actionBonuses.filter(bonus => bonus.occupiesSlot).reduce((sum, bonus) => sum + getSlotCost(bonus.value), 0);
+// Modificar a função addMutationSlot para inicializar stats corretamente
+function addMutationSlot() {
+    const newMutation = {
+        id: Date.now(),
+        name: 'Nova Mutação',
+        type: 'colosso',
+        description: '',
+        source: '',
+        stage: 1,
+        fixed: false,
+        stats: {
+            vida: 0,
+            sanidade: 0,
+            armadura: 0,
+            folego: 0,
+            resistencia: 0
+        },
+        bonuses: []
+    };
+    
+    characterMutations.push(newMutation);
+    renderMutations();
+    
+    // Salvar após adicionar
+    setTimeout(saveCharacterData, 100);
 }
 
-function updateActionBonusLimits() {
-    const level = parseInt(document.getElementById("level").value) || 1;
-    let totalSlots = 9;
-    let maxBonusValue = 15;
-
-    if (level >= 30) totalSlots = 12;
-    if (level >= 50) {
-        totalSlots = 15;
-        maxBonusValue = 20;
-    }
-    if (level >= 80) totalSlots = 20;
-
-    document.getElementById('totalActionSlots').textContent = totalSlots;
-    document.getElementById('usedActionSlots').textContent = calculateUsedSlots();
-    document.getElementById('remainingActionSlots').textContent = totalSlots - calculateUsedSlots();
-
-    const tekBonusIndex = actionBonuses.findIndex(b => b.action === 'Criação Tek' && b.fixed);
-    if (level >= 95 && tekBonusIndex === -1) {
-        actionBonuses.push({ action: 'Criação Tek', value: 5, fixed: true, occupiesSlot: false });
-    } else if (level < 95 && tekBonusIndex !== -1) {
-        actionBonuses.splice(tekBonusIndex, 1);
-    }
-
-    renderActionBonuses();
-    renderLearnedActionBonuses();
-
-    const addActionButton = document.querySelector('button[onclick="addActionBonus()"]');
-    if (addActionButton) {
-        addActionButton.disabled = (totalSlots - calculateUsedSlots() <= 0 && totalSlots > 0);
-    }
-}
-
-function addActionBonus(action = '', value = 5) {
-    const level = parseInt(document.getElementById("level").value) || 1;
-    let totalSlots = 9;
-    if (level >= 30) totalSlots = 12;
-    if (level >= 50) totalSlots = 15;
-    if (level >= 80) totalSlots = 20;
-
-    const currentCost = getSlotCost(value);
-    if (calculateUsedSlots() + currentCost > totalSlots) {
-        alert("Limite de slots para Bônus de Ação atingido!");
+// Modificar a função removeMutationSlot para salvar
+function removeMutationSlot(id) {
+    if (id === 0) {
+        alert('A mutação primal não pode ser removida!');
         return;
     }
-
-    const newBonus = { action: action, value: value, fixed: false, occupiesSlot: true };
-    actionBonuses.push(newBonus);
-    renderActionBonuses(); 
-    updateActionBonusLimits(); 
+    
+    characterMutations = characterMutations.filter(mut => mut.id !== id);
+    renderMutations();
+    saveCharacterData();
 }
 
-function removeActionBonus(index) {
-    if (actionBonuses[index].fixed) {
-        alert("Este bônus é fixo e não pode ser removido manualmente.");
-        return;
-    }
-    actionBonuses.splice(index, 1);
-    renderActionBonuses(); 
-    updateActionBonusLimits(); 
-}
+// ==============================================
+// FUNÇÃO DE DEBUG
+// ==============================================
 
-function renderActionBonuses() {
-    const container = document.getElementById('actionBonusContainer');
-    if (!container) return;
-
-    container.innerHTML = '';
-    const level = parseInt(document.getElementById("level").value) || 1;
-    const maxBonusValue = (level >= 50) ? 20 : 15;
-
-    actionBonuses.forEach((bonus, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('action-bonus-item');
-
-        const removeButtonHtml = bonus.fixed ?
-            `<button type="button" class="remove-bonus-btn disabled" disabled>X</button>` :
-            `<button type="button" class="remove-bonus-btn" onclick="removeActionBonus(${index})">X</button>`;
-
-        const inputReadonly = bonus.fixed ? 'readonly' : '';
-        const selectDisabled = bonus.fixed ? 'disabled' : '';
-
-        itemDiv.innerHTML = `
-            ${removeButtonHtml}
-            <label for="actionName${index}">Ação:</label>
-            <input type="text" id="actionName${index}" value="${bonus.action}" onchange="updateActionBonus(${index}, 'action', this.value)" placeholder="Nome da Ação" ${inputReadonly}>
-            <label for="actionValue${index}">Bônus:</label>
-            <select id="actionValue${index}" class="action-bonus-value-select" onchange="updateActionBonus(${index}, 'value', parseInt(this.value))" ${selectDisabled}>
-                <option value="5">+5</option>
-                ${maxBonusValue >= 10 ? '<option value="10">+10</option>' : ''}
-                ${maxBonusValue >= 15 ? '<option value="15">+15</option>' : ''}
-                ${maxBonusValue >= 20 ? '<option value="20">+20</option>' : ''}
-            </select>
-        `;
-        container.appendChild(itemDiv);
-
-        const selectElement = itemDiv.querySelector(`#actionValue${index}`);
-        if (selectElement) {
-            if (selectElement.querySelector(`option[value="${bonus.value}"]`)) {
-                selectElement.value = bonus.value;
-            } else {
-                if (bonus.value > maxBonusValue) {
-                    selectElement.value = maxBonusValue;
-                    bonus.value = maxBonusValue; 
-                } else {
-                    selectElement.value = 5; 
-                    bonus.value = 5; 
-                }
-            }
-        }
+function debugPrimalSystem() {
+    console.log('=== DEBUG DO SISTEMA PRIMAL ===');
+    
+    // Verificar inputs
+    const inputs = [
+        'primalVida', 'primalSanidade', 'primalArmadura', 
+        'primalFolego', 'primalResistencia', 'primalDescription'
+    ];
+    
+    inputs.forEach(id => {
+        const element = document.getElementById(id);
+        console.log(`📋 ${id}:`, {
+            existe: !!element,
+            valor: element?.value,
+            type: element?.type
+        });
     });
-}
-
-function updateActionBonus(index, field, newValue) {
-    if (actionBonuses[index].fixed && (field === 'action' || field === 'value')) {
-        alert("Este bônus é fixo e não pode ser editado manualmente.");
-        if (field === 'action') {
-            document.getElementById(`actionName${index}`).value = actionBonuses[index].action;
-        } else if (field === 'value') {
-            document.getElementById(`actionValue${index}`).value = actionBonuses[index].value;
-        }
-        return;
+    
+    // Verificar objeto primal
+    const primal = characterMutations.find(m => m.id === 0);
+    console.log('🧬 Objeto primal:', primal);
+    console.log('📊 Stats da primal:', primal?.stats);
+    
+    // Verificar event listeners
+    const primalVidaInput = document.getElementById('primalVida');
+    if (primalVidaInput) {
+        const listeners = getEventListeners(primalVidaInput);
+        console.log('🎯 Listeners do primalVida:', listeners);
     }
-
-    if (field === 'value' && actionBonuses[index].occupiesSlot) {
-        const originalValue = actionBonuses[index].value;
-        const originalCost = getSlotCost(originalValue);
-        const newCost = getSlotCost(newValue);
-
-        const level = parseInt(document.getElementById("level").value) || 1;
-        let totalSlots = 9;
-        if (level >= 30) totalSlots = 12;
-        if (level >= 50) totalSlots = 15;
-        if (level >= 80) totalSlots = 20;
-
-        if (newCost > originalCost && (calculateUsedSlots() - originalCost + newCost) > totalSlots) {
-            alert("Mudar este bônus para este valor excederia o limite de slots!");
-            document.getElementById(`actionValue${index}`).value = originalValue; 
-            return;
-        }
-    }
-
-    actionBonuses[index][field] = newValue;
-    updateActionBonusLimits(); 
+    
+    console.log('=== FIM DEBUG ===');
 }
 
-function addLearnedActionBonus(action = '', value = 5) {
-    learnedActionBonuses.push({ action: action, value: value });
-    renderLearnedActionBonuses(); 
-}
-
-function removeLearnedActionBonus(index) {
-    learnedActionBonuses.splice(index, 1);
-    renderLearnedActionBonuses(); 
-}
-
-function renderLearnedActionBonuses() {
-    const container = document.getElementById('learnedActionBonusContainer');
-    if (!container) return;
-
-    container.innerHTML = '';
-    const level = parseInt(document.getElementById("level").value) || 1;
-    const maxBonusValue = (level >= 50) ? 20 : 15;
-
-    learnedActionBonuses.forEach((bonus, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.classList.add('learned-action-bonus-item');
-
-        itemDiv.innerHTML = `
-            <button type="button" class="remove-learned-bonus-btn" onclick="removeLearnedActionBonus(${index})">X</button>
-            <label for="learnedActionName${index}">Ação:</label>
-            <input type="text" id="learnedActionName${index}" value="${bonus.action}" onchange="updateLearnedActionBonus(${index}, 'action', this.value)" placeholder="Nome da Ação">
-            <label for="learnedActionValue${index}">Bônus:</label>
-            <select id="learnedActionValue${index}" class="learned-action-bonus-value-select" onchange="updateLearnedActionBonus(${index}, 'value', parseInt(this.value))">
-                <option value="5">+5</option>
-                ${maxBonusValue >= 10 ? '<option value="10">+10</option>' : ''}
-                ${maxBonusValue >= 15 ? '<option value="15">+15</option>' : ''}
-                ${maxBonusValue >= 20 ? '<option value="20">+20</option>' : ''}
-            </select>
-        `;
-        container.appendChild(itemDiv);
-
-        const selectElement = itemDiv.querySelector(`#learnedActionValue${index}`);
-        if (selectElement) {
-            if (selectElement.querySelector(`option[value="${bonus.value}"]`)) {
-                selectElement.value = bonus.value;
-            } else {
-                if (bonus.value > maxBonusValue) {
-                    selectElement.value = maxBonusValue;
-                    bonus.value = maxBonusValue;
-                } else {
-                    selectElement.value = 5;
-                    bonus.value = 5;
-                }
-            }
-        }
-    });
-}
-
-function updateLearnedActionBonus(index, field, newValue) {
-    learnedActionBonuses[index][field] = newValue;
-    renderLearnedActionBonuses(); 
-}
 
 // ==============================================
-// SISTEMA DE ARMAS
+// CORREÇÃO DA FUNÇÃO renderMutations()
 // ==============================================
 
-function addWeapon(name = '', damageDice = '', condition = 'Nula') {
-    weapons.push({ name: name, damageDice: damageDice, condition: condition });
-    renderWeapons();
-}
-
-function removeWeapon(index) {
-    if (confirm("Tem certeza que deseja remover esta arma?")) {
-        weapons.splice(index, 1);
-        renderWeapons();
+function renderMutations() {
+    const additionalMutations = document.getElementById('additionalMutations');
+    const mutationCount = document.getElementById('mutationCount');
+    
+    if (!additionalMutations || !mutationCount) return;
+    
+    // Atualizar mutação primal
+    const primalStage = document.getElementById('primalStage');
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    
+    if (primalStage && primalMutation) {
+        primalStage.textContent = primalMutation.stage;
     }
-}
-
-function updateWeapon(index, field, value) {
-    if (weapons[index]) {
-        weapons[index][field] = value;
-    }
-}
-
-function renderWeapons() {
-    const container = document.getElementById('weaponsContainer');
-    if (!container) return;
-
-    container.innerHTML = '';
-
-    weapons.forEach((weapon, index) => {
-        const weaponDiv = document.createElement('div');
-        weaponDiv.classList.add('weapon-item');
-
-        const conditionOptions = predefinedConditions.map(cond =>
-            `<option value="${cond}" ${weapon.condition === cond ? 'selected' : ''}>${cond}</option>`
-        ).join('');
-
-        weaponDiv.innerHTML = `
-            <div class="weapon-header">
-                <button type="button" class="remove-item-btn" onclick="removeWeapon(${index})">X</button>
+    
+    // 🔥 CONFIGURAR LISTENERS DA PRIMAL APÓS RENDERIZAR
+    setTimeout(setupAllPrimalListeners, 100);
+    
+    // Renderizar mutações adicionais
+    additionalMutations.innerHTML = '';
+    const additionalMuts = characterMutations.filter(m => m.id !== 0);
+    
+    additionalMuts.forEach(mutation => {
+        const mutationDiv = document.createElement('div');
+        mutationDiv.className = 'mutation-slot';
+        mutationDiv.id = `mutation-${mutation.id}`;
+        mutationDiv.innerHTML = `
+            <div class="mutation-header">
+                <div class="mutation-title">
+                    <h3>${mutation.name}</h3>
+                </div>
+                <div class="mutation-actions">
+                    <span class="mutation-type" id="mutation-type-${mutation.id}">${mutation.type.toUpperCase()}</span>
+                    <button onclick="removeMutationSlot(${mutation.id})" class="remove-mutation">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
             </div>
-            <div class="weapon-fields">
-                <label for="weaponName${index}">Nome da Arma:</label>
-                <input type="text" id="weaponName${index}" value="${weapon.name}" onchange="updateWeapon(${index}, 'name', this.value)" placeholder="Ex: Espada Larga">
-
-                <label for="weaponDamage${index}">Dano:</label>
-                <input type="text" id="weaponDamage${index}" value="${weapon.damageDice}" onchange="updateWeapon(${index}, 'damageDice', this.value)" placeholder="Ex: 4d10">
-
-                <label for="weaponCondition${index}">Condição:</label>
-                <select id="weaponCondition${index}" onchange="updateWeapon(${index}, 'condition', this.value)">
-                    ${conditionOptions}
-                </select>
+            <div class="mutation-fields">
+                <div class="form-group">
+                    <input type="text" value="${mutation.name}" 
+                           placeholder="Nome da Mutação" 
+                           class="mutation-input mutation-name-input"
+                           data-id="${mutation.id}">
+                </div>
+                <div class="form-group">
+                    <select class="mutation-type-select" data-id="${mutation.id}">
+                        <option value="colosso" ${mutation.type === 'colosso' ? 'selected' : ''}>Colosso</option>
+                        <option value="pacto" ${mutation.type === 'pacto' ? 'selected' : ''}>Pacto</option>
+                        <option value="joia" ${mutation.type === 'joia' ? 'selected' : ''}>Jóia</option>
+                        <option value="boss" ${mutation.type === 'boss' ? 'selected' : ''}>Boss</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Descrição (Benefício + Contraparte)" 
+                              class="mutation-description-input"
+                              data-id="${mutation.id}"
+                              rows="3">${mutation.description}</textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" value="${mutation.source}" 
+                           placeholder="Origem/Fonte" 
+                           class="mutation-source-input"
+                           data-id="${mutation.id}">
+                </div>
+            </div>
+            
+            <!-- Blocos de Status Adicionais -->
+            <div class="mutation-stats-section">
+                <h4><i class="fas fa-chart-line"></i> Status Adicionais</h4>
+                <div class="mutation-stats-grid">
+                    <div class="mutation-stat-item">
+                        <label><i class="fas fa-heart"></i> Vida Extra:</label>
+                        <input type="number" min="0" value="${mutation.stats?.vida || 0}" 
+                               class="mutation-stat-input" 
+                               data-id="${mutation.id}"
+                               data-stat="vida">
+                        <span class="stat-unit">HP</span>
+                    </div>
+                    
+                    <div class="mutation-stat-item">
+                        <label><i class="fas fa-brain"></i> Sanidade Extra:</label>
+                        <input type="number" min="0" value="${mutation.stats?.sanidade || 0}" 
+                               class="mutation-stat-input" 
+                               data-id="${mutation.id}"
+                               data-stat="sanidade">
+                        <span class="stat-unit">SP</span>
+                    </div>
+                    
+                    <div class="mutation-stat-item">
+                        <label><i class="fas fa-shield-alt"></i> Armadura Extra:</label>
+                        <input type="number" min="0" value="${mutation.stats?.armadura || 0}" 
+                               class="mutation-stat-input" 
+                               data-id="${mutation.id}"
+                               data-stat="armadura">
+                        <span class="stat-unit">ARM</span>
+                    </div>
+                    
+                    <div class="mutation-stat-item">
+                        <label><i class="fas fa-wind"></i> Fôlego Extra:</label>
+                        <input type="number" min="0" value="${mutation.stats?.folego || 0}" 
+                               class="mutation-stat-input" 
+                               data-id="${mutation.id}"
+                               data-stat="folego">
+                        <span class="stat-unit">FOL</span>
+                    </div>
+                    
+                    <div class="mutation-stat-item">
+                        <label><i class="fas fa-dumbbell"></i> Resistência Extra:</label>
+                        <input type="number" min="0" value="${mutation.stats?.resistencia || 0}" 
+                               class="mutation-stat-input" 
+                               data-id="${mutation.id}"
+                               data-stat="resistencia">
+                        <span class="stat-unit">RES</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bônus de Ação da Mutação -->
+            <div class="mutation-bonus-section">
+                <h4><i class="fas fa-plus-circle"></i> Bônus de Ação da Mutação</h4>
+                <div class="mutation-bonus-controls">
+                    <button type="button" onclick="addMutationBonus(${mutation.id})" class="btn-add-small">
+                        <i class="fas fa-plus"></i> Adicionar Bônus
+                    </button>
+                    <span class="mutation-bonus-counter">Bônus: <span id="mutationBonusCount-${mutation.id}">${mutation.bonuses?.length || 0}</span></span>
+                </div>
+                <div id="mutationBonuses-${mutation.id}" class="mutation-bonuses-list">
+                    <!-- Bônus serão renderizados aqui -->
+                </div>
             </div>
         `;
-        container.appendChild(weaponDiv);
+        additionalMutations.appendChild(mutationDiv);
+        
+        // Adicionar event listeners após criar o elemento
+        setupMutationEventListeners(mutation.id);
+        
+        // Renderizar bônus desta mutação
+        renderMutationBonuses(mutation.id);
+    });
+    
+    mutationCount.textContent = characterMutations.length;
+} // FALTAVA ESTE FECHAMENTO DE CHAVE
+
+// NOVA FUNÇÃO: Debug para verificar o estado da primal
+function debugPrimalStatus() {
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    console.log('=== DEBUG PRIMAL ===');
+    console.log('Objeto primal:', primalMutation);
+    console.log('Stats da primal:', primalMutation?.stats);
+    
+    // Verificar inputs
+    const inputs = ['primalVida', 'primalSanidade', 'primalArmadura', 'primalFolego', 'primalResistencia'];
+    inputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            console.log(`${id}: ${input.value} (type: ${typeof input.value})`);
+        }
     });
 }
 
-// ==============================================
-// SISTEMA DE MUTAÇÃO
-// ==============================================
 
-function syncFormMutations() {
-    const primalMutation = characterMutations.find(mut => mut.type === 'primal');
-    if (primalMutation) {
-        const primalNameInput = document.getElementById('mutationName_0');
-        const primalDescInput = document.getElementById('mutationDescription_0');
-        const primalSourceInput = document.getElementById('mutationSource_0');
+// Adicionar event listeners específicos para a primal
+function setupPrimalEventListeners() {
+    const primalStats = ['Vida', 'Sanidade', 'Armadura', 'Folego', 'Resistencia'];
+    
+    primalStats.forEach(stat => {
+        const inputId = `primal${stat}`;
+        const input = document.getElementById(inputId);
         
-        if (primalNameInput) primalNameInput.value = primalMutation.name;
-        if (primalDescInput) primalDescInput.value = primalMutation.description;
-        if (primalSourceInput) primalSourceInput.value = primalMutation.source;
-    }
-}
-
-function updateMutationsFromForm() {
-    characterMutations.forEach((mutation, index) => {
-        const nameInput = document.getElementById(`mutationName_${index}`);
-        const descInput = document.getElementById(`mutationDescription_${index}`);
-        const sourceInput = document.getElementById(`mutationSource_${index}`);
-        const typeInput = document.getElementById(`mutationType_${index}`);
-        
-        if (nameInput) mutation.name = nameInput.value || mutation.name;
-        if (descInput) mutation.description = descInput.value;
-        if (sourceInput) mutation.source = sourceInput.value;
-        if (typeInput) mutation.type = typeInput.value;
+        if (input) {
+            // Remover event listeners antigos
+            input.onchange = null;
+            input.oninput = null;
+            
+            // Adicionar novos listeners
+            input.oninput = function() {
+                updateMutationStat(0, stat.toLowerCase(), this.value);
+            };
+            
+            input.onchange = function() {
+                updateMutationStat(0, stat.toLowerCase(), this.value);
+            };
+            
+            console.log(`Listener adicionado para: ${inputId}`);
+        }
     });
-}
-
-function renderMutationSlots() {
-    const container = document.getElementById('additionalMutationSlots');
     
-    if (!container) {
-        console.warn("Container de mutações não encontrado");
-        return;
-    }
-    
-    container.innerHTML = '';
-    
-    updatePrimalStage();
-    
-    const additionalMutations = characterMutations.filter(mut => mut.type !== 'primal');
-    
-    additionalMutations.forEach((mutation, index) => {
-        const slotIndex = mutation.index;
-        const slotDiv = document.createElement('div');
-        slotDiv.classList.add('mutation-slot');
-        slotDiv.classList.add(`${mutation.type}-slot`);
-        slotDiv.setAttribute('data-index', slotIndex);
-        
-        const typeLabels = {
-            'colosso': 'COLOSSO',
-            'pacto': 'PACTO',
-            'joia': 'JÓIA',
-            'boss': 'BOSS',
-            'primal': 'MUTAÇÃO PRIMAL'
+    // Descrição da primal
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc) {
+        primalDesc.oninput = function() {
+            updateMutation(0, 'description', this.value);
         };
-        
-        slotDiv.innerHTML = `
-            <div class="slot-header">
-                <span class="slot-type">${typeLabels[mutation.type] || mutation.type.toUpperCase()}</span>
-                <button type="button" class="remove-mutation-btn" onclick="removeMutationSlot(${slotIndex})" title="Remover esta parte de mutação">×</button>
-            </div>
-            <div class="slot-fields">
-                <label for="mutationName_${slotIndex}">Nome da Mutação:</label>
-                <input type="text" id="mutationName_${slotIndex}" 
-                       value="${mutation.name || ''}" 
-                       placeholder="Ex: Visão Noturna Avançada"
-                       oninput="updateMutationFromFormSlot(${slotIndex}, 'name', this.value)">
-                
-                <label for="mutationType_${slotIndex}">Tipo:</label>
-                <select id="mutationType_${slotIndex}" 
-                        onchange="updateMutationFromFormSlot(${slotIndex}, 'type', this.value)">
-                    <option value="colosso" ${mutation.type === 'colosso' ? 'selected' : ''}>Colosso</option>
-                    <option value="pacto" ${mutation.type === 'pacto' ? 'selected' : ''}>Pacto</option>
-                    <option value="joia" ${mutation.type === 'joia' ? 'selected' : ''}>Jóia</option>
-                    <option value="boss" ${mutation.type === 'boss' ? 'selected' : ''}>Boss</option>
-                </select>
-                
-                <label for="mutationDescription_${slotIndex}">Descrição Completa (Benefício + Contraparte):</label>
-                <textarea id="mutationDescription_${slotIndex}" 
-                          class="mutation-textarea"
-                          placeholder="Descreva a mutação completa, incluindo benefícios e fraquezas..."
-                          oninput="updateMutationFromFormSlot(${slotIndex}, 'description', this.value)">${mutation.description || ''}</textarea>
-                
-                <label for="mutationSource_${slotIndex}">Origem/Fonte:</label>
-                <input type="text" id="mutationSource_${slotIndex}" 
-                       value="${mutation.source || ''}" 
-                       placeholder="Ex: Colosso das Sombras, Pacto com..."
-                       oninput="updateMutationFromFormSlot(${slotIndex}, 'source', this.value)">
-            </div>
-        `;
-        
-        container.appendChild(slotDiv);
-    });
-    
-    syncFormMutations();
-    
-    document.getElementById('mutationSlotCount').textContent = characterMutations.length;
+    }
 }
 
-function updatePrimalStage() {
-    const level = parseInt(document.getElementById("level").value) || 1;
+
+// NOVA FUNÇÃO: Configurar event listeners para mutação
+function setupMutationEventListeners(mutationId) {
+    // Nome
+    const nameInput = document.querySelector(`#mutation-${mutationId} .mutation-name-input`);
+    if (nameInput) {
+        nameInput.oninput = function() {
+            updateMutation(mutationId, 'name', this.value);
+        };
+    }
+    
+    // Tipo
+    const typeSelect = document.querySelector(`#mutation-${mutationId} .mutation-type-select`);
+    if (typeSelect) {
+        typeSelect.onchange = function() {
+            updateMutationType(mutationId, this.value);
+        };
+    }
+    
+    // Descrição
+    const descInput = document.querySelector(`#mutation-${mutationId} .mutation-description-input`);
+    if (descInput) {
+        descInput.oninput = function() {
+            updateMutation(mutationId, 'description', this.value);
+        };
+    }
+    
+    // Fonte
+    const sourceInput = document.querySelector(`#mutation-${mutationId} .mutation-source-input`);
+    if (sourceInput) {
+        sourceInput.oninput = function() {
+            updateMutation(mutationId, 'source', this.value);
+        };
+    }
+    
+    // Status (o mais importante - estava faltando!)
+    const statInputs = document.querySelectorAll(`#mutation-${mutationId} .mutation-stat-input`);
+    statInputs.forEach(input => {
+        input.oninput = function() {
+            const mutationId = parseInt(this.dataset.id);
+            const stat = this.dataset.stat;
+            const value = parseInt(this.value) || 0;
+            
+            // Atualizar o objeto mutation
+            const mutation = characterMutations.find(m => m.id === mutationId);
+            if (mutation) {
+                if (!mutation.stats) {
+                    mutation.stats = {
+                        vida: 0,
+                        sanidade: 0,
+                        armadura: 0,
+                        folego: 0,
+                        resistencia: 0
+                    };
+                }
+                mutation.stats[stat] = value;
+                
+                // Salvar imediatamente
+                saveCharacterData();
+                
+                console.log(`Status salvo: ${mutation.name} - ${stat}: ${value}`);
+            }
+        };
+    });
+}
+
+// Nova função para renderizar bônus de uma mutação específica
+function renderMutationBonuses(mutationId) {
+    const container = document.getElementById(`mutationBonuses-${mutationId}`);
+    const counter = document.getElementById(`mutationBonusCount-${mutationId}`);
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    
+    if (!container || !mutation) return;
+    
+    container.innerHTML = '';
+    
+    if (mutation.bonuses && mutation.bonuses.length > 0) {
+        mutation.bonuses.forEach((bonus, index) => {
+            const bonusDiv = document.createElement('div');
+            bonusDiv.className = 'mutation-bonus-item';
+            bonusDiv.innerHTML = `
+                <div class="mutation-bonus-name">
+                    <input type="text" value="${bonus.action}" 
+                           placeholder="Nome da ação" 
+                           onchange="updateMutationBonus(${mutationId}, ${index}, 'action', this.value)">
+                </div>
+                <div class="mutation-bonus-value">
+                    <select onchange="updateMutationBonus(${mutationId}, ${index}, 'value', parseInt(this.value))">
+                        <option value="5" ${bonus.value === 5 ? 'selected' : ''}>+5</option>
+                        <option value="10" ${bonus.value === 10 ? 'selected' : ''}>+10</option>
+                        <option value="15" ${bonus.value === 15 ? 'selected' : ''}>+15</option>
+                        <option value="20" ${bonus.value === 20 ? 'selected' : ''}>+20</option>
+                        <option value="25" ${bonus.value === 25 ? 'selected' : ''}>+25</option>
+                    </select>
+                </div>
+                <button onclick="removeMutationBonus(${mutationId}, ${index})" class="mutation-bonus-remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            container.appendChild(bonusDiv);
+        });
+    }
+    
+    if (counter) {
+        counter.textContent = mutation.bonuses ? mutation.bonuses.length : 0;
+    }
+}
+// Nova função para adicionar bônus a uma mutação
+function addMutationBonus(mutationId) {
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    if (!mutation) return;
+    
+    if (!mutation.bonuses) {
+        mutation.bonuses = [];
+    }
+    
+    mutation.bonuses.push({
+        id: `mut-bonus-${mutationId}-${Date.now()}`,
+        action: 'Nova Ação',
+        value: 5,
+        mutationId: mutationId,
+        mutationName: mutation.name
+    });
+    
+    renderMutationBonuses(mutationId);
+    updateBonusTables();
+    saveCharacterData();
+}
+
+// Nova função para remover bônus de uma mutação
+function removeMutationBonus(mutationId, bonusIndex) {
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    if (!mutation || !mutation.bonuses) return;
+    
+    mutation.bonuses.splice(bonusIndex, 1);
+    renderMutationBonuses(mutationId);
+    updateBonusTables();
+    saveCharacterData();
+}
+
+// Nova função para atualizar bônus de mutação
+function updateMutationBonus(mutationId, bonusIndex, field, value) {
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    if (!mutation || !mutation.bonuses || !mutation.bonuses[bonusIndex]) return;
+    
+    mutation.bonuses[bonusIndex][field] = value;
+    updateBonusTables();
+    saveCharacterData();
+}
+
+function updateMutationStat(mutationId, stat, value) {
+    console.log(`📝 Atualizando stat: ${stat} = ${value} para mutação ${mutationId}`);
+    
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    if (!mutation) {
+        console.error('❌ Mutação não encontrada:', mutationId);
+        
+        // Se for primal e não existir, criar
+        if (mutationId === 0) {
+            console.log('⚠️ Criando primal porque não foi encontrada');
+            characterMutations.unshift({
+                id: 0,
+                name: "MUTAÇÃO PRIMAL",
+                type: "primal",
+                description: "",
+                source: "Origem do Personagem",
+                stage: 1,
+                fixed: true,
+                stats: {
+                    vida: 0,
+                    sanidade: 0,
+                    armadura: 0,
+                    folego: 0,
+                    resistencia: 0
+                },
+                bonuses: []
+            });
+            
+            // Chamar novamente com a primal criada
+            return updateMutationStat(0, stat, value);
+        }
+        return;
+    }
+    
+    // Garantir que stats exista
+    if (!mutation.stats) {
+        mutation.stats = {
+            vida: 0,
+            sanidade: 0,
+            armadura: 0,
+            folego: 0,
+            resistencia: 0
+        };
+    }
+    
+    const numericValue = parseInt(value) || 0;
+    mutation.stats[stat] = numericValue;
+    
+    console.log(`✅ Stat atualizado:`, mutation.stats);
+    
+    // Para a primal, também atualizar o input HTML (sincronização bidirecional)
+    if (mutationId === 0) {
+        const inputId = `primal${stat.charAt(0).toUpperCase() + stat.slice(1)}`;
+        const input = document.getElementById(inputId);
+        if (input && input.value !== String(numericValue)) {
+            input.value = numericValue;
+            console.log(`✅ Input ${inputId} sincronizado: ${numericValue}`);
+        }
+    }
+    
+    // SALVAR IMEDIATAMENTE
+    setTimeout(() => {
+        saveCharacterData();
+    }, 50);
+}
+
+// ==============================================
+// FUNÇÃO PARA SINCRONIZAR PRIMAL EM TEMPO REAL
+// ==============================================
+
+// ==============================================
+// FUNÇÃO PARA SINCRONIZAR PRIMAL (CORRIGIDA)
+// ==============================================
+
+function syncPrimalData() {
+    console.log('🔄 [SYNC] Sincronizando dados da primal...');
+    
+    // Garantir que a primal existe no array
+    let primalMutation = characterMutations.find(m => m.id === 0);
+    if (!primalMutation) {
+        console.log('⚠️ [SYNC] Primal não encontrada, criando...');
+        primalMutation = {
+            id: 0,
+            name: "MUTAÇÃO PRIMAL",
+            type: "primal",
+            description: "",
+            source: "Origem do Personagem",
+            stage: 1,
+            fixed: true,
+            stats: {
+                vida: 0,
+                sanidade: 0,
+                armadura: 0,
+                folego: 0,
+                resistencia: 0
+            },
+            bonuses: []
+        };
+        characterMutations.unshift(primalMutation);
+    }
+    
+    // Garantir que stats existe
+    if (!primalMutation.stats) {
+        primalMutation.stats = {
+            vida: 0,
+            sanidade: 0,
+            armadura: 0,
+            folego: 0,
+            resistencia: 0
+        };
+    }
+    
+    // Sincronizar inputs com objeto - USAR VALORES DOS INPUTS COMO FONTE DA VERDADE
+    const statMappings = [
+        { inputId: 'primalVida', statKey: 'vida' },
+        { inputId: 'primalSanidade', statKey: 'sanidade' },
+        { inputId: 'primalArmadura', statKey: 'armadura' },
+        { inputId: 'primalFolego', statKey: 'folego' },
+        { inputId: 'primalResistencia', statKey: 'resistencia' }
+    ];
+    
+    let changed = false;
+    
+    statMappings.forEach(({ inputId, statKey }) => {
+        const input = document.getElementById(inputId);
+        if (input) {
+            const inputValue = parseInt(input.value) || 0;
+            const currentValue = primalMutation.stats[statKey] || 0;
+            
+            if (inputValue !== currentValue) {
+                console.log(`🔄 [SYNC] ${statKey}: ${currentValue} → ${inputValue}`);
+                primalMutation.stats[statKey] = inputValue;
+                changed = true;
+            }
+        }
+    });
+    
+    // Sincronizar descrição
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc) {
+        const inputDesc = primalDesc.value || "";
+        const currentDesc = primalMutation.description || "";
+        
+        if (inputDesc !== currentDesc) {
+            console.log(`🔄 [SYNC] Descrição alterada`);
+            primalMutation.description = inputDesc;
+            changed = true;
+        }
+    }
+    
+    if (changed) {
+        console.log('✅ [SYNC] Primal sincronizada e alterada:', primalMutation.stats);
+        // Salvar imediatamente se houve alteração
+        setTimeout(saveCharacterData, 100);
+    } else {
+        console.log('✅ [SYNC] Primal já está sincronizada');
+    }
+    
+    return primalMutation;
+}
+
+// ==============================================
+// SALVAR ANTES DE SAIR DA PÁGINA
+// ==============================================
+
+function setupBeforeUnload() {
+    window.addEventListener('beforeunload', function(e) {
+        console.log('🚪 Salvando antes de sair da página...');
+        
+        // Sincronizar primal
+        syncPrimalData();
+        
+        // Forçar salvamento
+        saveCharacterData();
+        
+        // Mensagem opcional para navegadores mais antigos
+        // e.preventDefault();
+        // e.returnValue = '';
+    });
+    
+    // Também salvar quando a página perde o foco
+    window.addEventListener('blur', function() {
+        console.log('👁️ Página perdeu foco, salvando...');
+        setTimeout(() => {
+            syncPrimalData();
+            saveCharacterData();
+        }, 100);
+    });
+}
+
+// Chame esta função no DOMContentLoaded
+// Adicione no final do DOMContentLoaded:
+setupBeforeUnload();
+
+// Nova função para atualizar display dos stats
+function updateMutationStatsDisplay(mutationId) {
+    const mutation = characterMutations.find(m => m.id === mutationId);
+    if (!mutation || !mutation.stats) return;
+    
+    const stats = ['vida', 'sanidade', 'armadura', 'folego', 'resistencia'];
+    stats.forEach(stat => {
+        const input = document.getElementById(`${mutationId === 0 ? 'primal' : 'mutation'}${stat.charAt(0).toUpperCase() + stat.slice(1)}-${mutationId}`);
+        if (input) {
+            input.value = mutation.stats[stat] || 0;
+        }
+    });
+}
+
+function updateMutation(id, field, value) {
+    const mutation = characterMutations.find(m => m.id === id);
+    if (mutation) {
+        mutation[field] = value;
+        
+        // Se for a mutação primal, atualizar o textarea
+        if (id === 0 && field === 'description') {
+            const primalDescription = document.getElementById('primalDescription');
+            if (primalDescription) {
+                primalDescription.value = value;
+            }
+        }
+        
+        if (field === 'name' && id !== 0) {
+            const mutationDiv = document.querySelector(`#mutation-${id} .mutation-title h3`);
+            if (mutationDiv) {
+                mutationDiv.textContent = value;
+            }
+        }
+        
+        saveCharacterData();
+    }
+}
+
+function updateMutationType(id, value) {
+    const mutation = characterMutations.find(m => m.id === id);
+    if (mutation) {
+        mutation.type = value;
+        
+        const typeSpan = document.getElementById(`mutation-type-${id}`);
+        if (typeSpan) {
+            typeSpan.textContent = value.toUpperCase();
+        }
+        
+        saveCharacterData();
+    }
+}
+
+function updatePrimalMutationStage() {
+    const levelInput = document.getElementById('level');
+    const level = parseInt(levelInput.value) || 1;
     let stage = 1;
     
     if (level >= 65) stage = 2;
     if (level >= 95) stage = 3;
     if (level >= 99) stage = 4;
     
-    const primalMutation = characterMutations.find(mut => mut.type === 'primal');
+    const primalMutation = characterMutations.find(m => m.id === 0);
     if (primalMutation) {
         primalMutation.stage = stage;
         
-        const stageSelect = document.getElementById('mutationStage_0');
-        if (stageSelect) {
-            stageSelect.value = stage;
+        if (stage > 1) {
+            const stageDisplay = document.getElementById('primalStage');
+            const oldStage = parseInt(stageDisplay.dataset.lastStage) || 1;
             
-            const oldStage = parseInt(stageSelect.dataset.lastStage) || 1;
             if (stage > oldStage) {
-                showPrimalEvolutionWarning(stage);
-                stageSelect.dataset.lastStage = stage;
+                const messages = {
+                    2: "MUTAÇÃO PRIMAL evoluiu para Estágio 2!",
+                    3: "MUTAÇÃO PRIMAL evoluiu para Estágio 3!",
+                    4: "MUTAÇÃO PRIMAL alcançou o Estágio 4 máximo!"
+                };
+                
+                if (messages[stage]) {
+                    alert(messages[stage]);
+                }
+                
+                stageDisplay.dataset.lastStage = stage;
             }
         }
         
-        const stageDisplay = document.getElementById('primalStageDisplay');
-        if (stageDisplay) {
-            stageDisplay.textContent = `MUTAÇÃO PRIMAL - ESTÁGIO ${stage}`;
-        }
+        saveCharacterData();
     }
 }
 
-function showPrimalEvolutionWarning(stage) {
-    const messages = {
-        2: " Sua Mutação Primal evoluiu para o Estágio 2! Atualize sua descrição para refletir esta evolução.",
-        3: " Sua Mutação Primal evoluiu para o Estágio 3! Sua mutação está se tornando poderosa!",
-        4: " Sua Mutação Primal alcançou o Estágio 4 máximo! Complete sua evolução primal!"
-    };
+// ==============================================
+// SISTEMA DE BÔNUS (MANTIDO)
+// ==============================================
+
+function updateBonusSystem() {
+    renderAllBonuses();
+    renderLearnedBonuses();
+    updateBonusSlots();
+}
+
+function addBonus() {
+    const totalSlots = getTotalBonusSlots();
+    const usedSlots = getUsedBonusSlots();
+    const usedWeight = getUsedBonusWeight();
+    const maxWeight = getTotalBonusWeight();
     
-    if (messages[stage]) {
-        alert(messages[stage]);
-    }
-}
-
-function showMutationTypeMenu() {
-    const menu = document.getElementById('mutationTypeMenu');
-    const btn = document.getElementById('addMutationSlotBtn');
-    if (menu && btn) {
-        menu.classList.remove('hidden');
-        btn.disabled = true;
-    }
-}
-
-function hideMutationTypeMenu() {
-    const menu = document.getElementById('mutationTypeMenu');
-    const btn = document.getElementById('addMutationSlotBtn');
-    if (menu && btn) {
-        menu.classList.add('hidden');
-        btn.disabled = false;
-    }
-}
-
-function addMutationSlot(type) {
-    const newIndex = characterMutations.length;
-    const typeNames = {
-        'colosso': 'Colosso',
-        'pacto': 'Pacto',
-        'joia': 'Jóia',
-        'boss': 'Boss'
-    };
-    
-    const newMutation = {
-        name: `Nova Mutação ${typeNames[type] || type}`,
-        type: type,
-        description: "",
-        source: "",
-        fixed: false,
-        index: newIndex
-    };
-    
-    characterMutations.push(newMutation);
-    renderMutationSlots();
-    hideMutationTypeMenu();
-    saveMutationData();
-}
-
-function removeMutationSlot(index) {
-    if (index === 0) {
-        alert("A Mutação Primal não pode ser removida!");
+    if (usedSlots >= totalSlots) {
+        alert('Limite de slots para bônus atingido!');
         return;
     }
     
-    const mutationToRemove = characterMutations.find(mut => mut.index === index);
-    if (!mutationToRemove) return;
+    const newBonusWeight = 1;
+    if (usedWeight + newBonusWeight > maxWeight) {
+        alert('Limite de peso para bônus atingido!');
+        return;
+    }
     
-    if (confirm(`Tem certeza que deseja remover a mutação "${mutationToRemove.name}"?`)) {
-        characterMutations = characterMutations.filter(mut => mut.index !== index);
+    allBonuses.push({
+        id: `bonus-${Date.now()}`,
+        action: '',
+        value: 5,
+        fixed: false,
+        weight: 1
+    });
+    
+    renderAllBonuses();
+    updateBonusTables();
+    updateBonusSlots();
+}
+
+function addLearnedBonus() {
+    learnedBonuses.push({
+        id: `learned-${Date.now()}`,
+        action: '',
+        value: 5,
+        weight: 1
+    });
+    
+    renderLearnedBonuses();
+    updateBonusTables();
+    saveCharacterData();
+}
+
+function removeBonus(id) {
+    allBonuses = allBonuses.filter(bonus => bonus.id !== id);
+    renderAllBonuses();
+    updateBonusTables();
+    updateBonusSlots();
+}
+
+function removeLearnedBonus(id) {
+    learnedBonuses = learnedBonuses.filter(bonus => bonus.id !== id);
+    renderLearnedBonuses();
+    updateBonusTables();
+    saveCharacterData();
+}
+
+function renderAllBonuses() {
+    const container = document.getElementById('allBonuses');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    allBonuses.forEach(bonus => {
+        const bonusDiv = createBonusElement(bonus, false);
+        container.appendChild(bonusDiv);
+    });
+}
+
+function renderLearnedBonuses() {
+    const container = document.getElementById('learnedBonuses');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    learnedBonuses.forEach(bonus => {
+        const bonusDiv = createBonusElement(bonus, true);
+        container.appendChild(bonusDiv);
+    });
+}
+
+function createBonusElement(bonus, isLearned) {
+    const div = document.createElement('div');
+    div.className = 'bonus-item';
+    
+    const weight = Math.floor(bonus.value / 5);
+    
+    div.innerHTML = `
+        <div class="bonus-name">
+            <input type="text" value="${bonus.action}" 
+                   placeholder="Nome da ação" 
+                   onchange="${isLearned ? 'updateLearnedBonusValue' : 'updateBonusValue'}('${bonus.id}', 'action', this.value)"
+                   ${bonus.fixed ? 'readonly' : ''}>
+        </div>
+        <div class="bonus-value">
+            <select onchange="${isLearned ? 'updateLearnedBonusValue' : 'updateBonusValue'}('${bonus.id}', 'value', parseInt(this.value))"
+                    ${bonus.fixed ? 'disabled' : ''}>
+                <option value="5" ${bonus.value === 5 ? 'selected' : ''}>+5</option>
+                <option value="10" ${bonus.value === 10 ? 'selected' : ''}>+10</option>
+                <option value="15" ${bonus.value === 15 ? 'selected' : ''}>+15</option>
+                ${getMaxBonusValue() >= 20 ? '<option value="20" ' + (bonus.value === 20 ? 'selected' : '') + '>+20</option>' : ''}
+            </select>
+        </div>
+        <div class="bonus-weight">${weight} peso${weight !== 1 ? 's' : ''}</div>
+        ${!bonus.fixed ? `
+            <button onclick="${isLearned ? 'removeLearnedBonus' : 'removeBonus'}('${bonus.id}')" class="remove-bonus">
+                <i class="fas fa-times"></i>
+            </button>
+        ` : ''}
+    `;
+    return div;
+}
+
+function updateBonusValue(id, field, value) {
+    const bonus = allBonuses.find(b => b.id === id);
+    if (bonus) {
+        const oldValue = bonus[field];
+        bonus[field] = value;
         
-        characterMutations.forEach((mut, idx) => {
-            mut.index = idx;
+        if (field === 'value') {
+            const weight = Math.floor(value / 5);
+            bonus.weight = weight;
+            
+            const maxValue = getMaxBonusValue();
+            if (value > maxValue) {
+                bonus.value = maxValue;
+                bonus.weight = Math.floor(maxValue / 5);
+                alert(`O valor máximo permitido é +${maxValue} neste nível!`);
+            }
+            
+            const usedWeight = getUsedBonusWeight();
+            const maxWeight = getTotalBonusWeight();
+            if (usedWeight > maxWeight) {
+                bonus.value = oldValue;
+                bonus.weight = Math.floor(oldValue / 5);
+                alert('Limite de peso excedido! Reduza o valor ou remova outro bônus.');
+            }
+        }
+        
+        renderAllBonuses();
+        updateBonusTables();
+        updateBonusSlots();
+        saveCharacterData();
+    }
+}
+
+function updateLearnedBonusValue(id, field, value) {
+    const bonus = learnedBonuses.find(b => b.id === id);
+    if (bonus) {
+        bonus[field] = value;
+        
+        if (field === 'value') {
+            bonus.weight = Math.floor(value / 5);
+        }
+        
+        renderLearnedBonuses();
+        updateBonusTables();
+        saveCharacterData();
+    }
+}
+
+// Modifique a função updateBonusTables para incluir bônus de mutação
+function updateBonusTables() {
+    const normalTable = document.getElementById('bonusTable');
+    const learnedTable = document.getElementById('learnedBonusTable');
+    
+    if (!normalTable || !learnedTable) return;
+    
+    // Limpar tabelas
+    normalTable.innerHTML = '';
+    learnedTable.innerHTML = '';
+    
+    // Bônus normais
+    const activeBonuses = allBonuses
+        .filter(b => b.action && b.action.trim() !== '')
+        .sort((a, b) => b.value - a.value);
+    
+    // Bônus aprendidos
+    const activeLearnedBonuses = learnedBonuses
+        .filter(b => b.action && b.action.trim() !== '')
+        .sort((a, b) => b.value - a.value);
+    
+    // Bônus de mutação (todos juntos)
+    let mutationBonusesList = [];
+    characterMutations.forEach(mutation => {
+        if (mutation.bonuses && mutation.bonuses.length > 0) {
+            mutation.bonuses.forEach(bonus => {
+                if (bonus.action && bonus.action.trim() !== '') {
+                    mutationBonusesList.push({
+                        ...bonus,
+                        mutationName: mutation.name,
+                        isMutationBonus: true
+                    });
+                }
+            });
+        }
+    });
+    
+    mutationBonusesList.sort((a, b) => b.value - a.value);
+    
+    // Renderizar bônus normais
+    if (activeBonuses.length === 0 && mutationBonusesList.length === 0) {
+        normalTable.innerHTML = '<p class="no-bonuses">Nenhum bônus adicionado</p>';
+    } else {
+        // Adicionar bônus normais
+        activeBonuses.forEach(bonus => {
+            const item = document.createElement('div');
+            item.className = 'bonus-table-item';
+            item.innerHTML = `
+                <span>${bonus.action}</span>
+                <span class="bonus-value-display">+${bonus.value}</span>
+            `;
+            normalTable.appendChild(item);
         });
         
-        renderMutationSlots();
-        saveMutationData();
+        // Adicionar bônus de mutação (em verde)
+        mutationBonusesList.forEach(bonus => {
+            const item = document.createElement('div');
+            item.className = 'bonus-table-item mutation-bonus';
+            item.innerHTML = `
+                <span>${bonus.action} <small style="color: #27ae60; font-size: 0.8rem;">(${bonus.mutationName})</small></span>
+                <span class="bonus-value-display">+${bonus.value}</span>
+            `;
+            normalTable.appendChild(item);
+        });
     }
-}
-
-function updateMutationFromFormSlot(index, field, value) {
-    const mutation = characterMutations.find(mut => mut.index === index);
-    if (mutation) {
-        mutation[field] = value;
-        saveMutationData();
-    }
-}
-
-function saveMutationData() {
-    updateMutationsFromForm();
     
-    const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-    characterData.characterMutations = characterMutations;
-    localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
+    // Renderizar bônus aprendidos
+    if (activeLearnedBonuses.length === 0) {
+        learnedTable.innerHTML = '<p class="no-bonuses">Nenhum bônus aprendido</p>';
+    } else {
+        activeLearnedBonuses.forEach(bonus => {
+            const item = document.createElement('div');
+            item.className = 'bonus-table-item';
+            item.innerHTML = `
+                <span>${bonus.action}</span>
+                <span class="bonus-value-display">+${bonus.value}</span>
+            `;
+            learnedTable.appendChild(item);
+        });
+    }
+}
+
+function getMaxBonusValue() {
+    const levelInput = document.getElementById('level');
+    const level = parseInt(levelInput.value) || 1;
+    return level >= 50 ? 20 : 15;
+}
+
+function getTotalBonusSlots() {
+    const levelInput = document.getElementById('level');
+    const level = parseInt(levelInput.value) || 1;
+    
+    if (level >= 80) return 20;
+    if (level >= 50) return 15;
+    if (level >= 30) return 12;
+    return 9;
+}
+
+function getTotalBonusWeight() {
+    return getTotalBonusSlots();
+}
+
+function getUsedBonusSlots() {
+    return allBonuses.filter(b => b.action && b.action.trim() !== '').length;
+}
+
+function getUsedBonusWeight() {
+    return allBonuses.reduce((total, bonus) => {
+        if (bonus.action && bonus.action.trim() !== '') {
+            return total + bonus.weight;
+        }
+        return total;
+    }, 0);
+}
+
+function updateBonusSlots() {
+    const totalSlots = getTotalBonusSlots();
+    const usedSlots = getUsedBonusSlots();
+    const remainingSlots = totalSlots - usedSlots;
+    const usedWeight = getUsedBonusWeight();
+    const totalWeight = getTotalBonusWeight();
+    const remainingWeight = totalWeight - usedWeight;
+    
+    const totalElement = document.getElementById('totalActionSlots');
+    const usedElement = document.getElementById('usedActionSlots');
+    const remainingElement = document.getElementById('remainingActionSlots');
+    const usedWeightElement = document.getElementById('usedBonusWeight');
+    const totalWeightElement = document.getElementById('totalBonusWeight');
+    
+    if (totalElement) totalElement.textContent = totalSlots;
+    if (usedElement) usedElement.textContent = usedSlots;
+    if (remainingElement) remainingElement.textContent = remainingSlots;
+    if (usedWeightElement) usedWeightElement.textContent = usedWeight;
+    if (totalWeightElement) totalWeightElement.textContent = totalWeight;
+    
+    if (remainingElement) {
+        remainingElement.style.color = remainingSlots >= 0 ? '#27ae60' : '#e74c3c';
+    }
+    
+    if (usedWeightElement) {
+        usedWeightElement.style.color = usedWeight <= totalWeight ? '#27ae60' : '#e74c3c';
+    }
 }
 
 // ==============================================
-// CALCULAR ESTATÍSTICAS DA FICHA
+// SISTEMA DE ARMAZENAMENTO (ATUALIZADO COM RITUAIS)
 // ==============================================
 
+function saveCharacterData() {
+    console.log('🔄 Salvando ficha...');
+    
+    // PRIMEIRO: Coletar dados dos inputs da primal de forma SEGURA
+    const primalVida = document.getElementById('primalVida');
+    const primalSanidade = document.getElementById('primalSanidade');
+    const primalArmadura = document.getElementById('primalArmadura');
+    const primalFolego = document.getElementById('primalFolego');
+    const primalResistencia = document.getElementById('primalResistencia');
+    const primalDesc = document.getElementById('primalDescription');
+    
+    console.log('📊 Valores dos inputs da primal:', {
+        vida: primalVida?.value,
+        sanidade: primalSanidade?.value,
+        armadura: primalArmadura?.value,
+        folego: primalFolego?.value,
+        resistencia: primalResistencia?.value,
+        descricao: primalDesc?.value
+    });
+    
+    // Atualizar o objeto primal no array - COM VERIFICAÇÃO ROBUSTA
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    if (primalMutation) {
+        // Garantir que stats exista
+        if (!primalMutation.stats) {
+            primalMutation.stats = {
+                vida: 0,
+                sanidade: 0,
+                armadura: 0,
+                folego: 0,
+                resistencia: 0
+            };
+        }
+        
+        // Atualizar cada stat individualmente com fallback
+        primalMutation.stats.vida = parseInt(primalVida?.value) || 0;
+        primalMutation.stats.sanidade = parseInt(primalSanidade?.value) || 0;
+        primalMutation.stats.armadura = parseInt(primalArmadura?.value) || 0;
+        primalMutation.stats.folego = parseInt(primalFolego?.value) || 0;
+        primalMutation.stats.resistencia = parseInt(primalResistencia?.value) || 0;
+        
+        if (primalDesc) {
+            primalMutation.description = primalDesc.value || "";
+        }
+        
+        console.log('✅ Primal atualizada:', primalMutation.stats);
+    } else {
+        console.error('❌ Primal não encontrada!');
+        // Criar primal se não existir
+        characterMutations.unshift({
+            id: 0,
+            name: "MUTAÇÃO PRIMAL",
+            type: "primal",
+            description: primalDesc?.value || "",
+            source: "Origem do Personagem",
+            stage: 1,
+            fixed: true,
+            stats: {
+                vida: parseInt(primalVida?.value) || 0,
+                sanidade: parseInt(primalSanidade?.value) || 0,
+                armadura: parseInt(primalArmadura?.value) || 0,
+                folego: parseInt(primalFolego?.value) || 0,
+                resistencia: parseInt(primalResistencia?.value) || 0
+            },
+            bonuses: []
+        });
+    }
+    
+    const characterData = {
+        // Informações básicas
+        characterName: document.getElementById('characterNameInput')?.value || '',
+        name: document.getElementById('name')?.value || '',
+        age: document.getElementById('age')?.value || '',
+        level: document.getElementById('level')?.value || '1',
+        photo: document.getElementById('preview')?.src || '',
+        lore: document.getElementById('lore')?.value || '',
+        
+        // Atributos
+        attributesBase: { ...attributesBase },
+        
+        // Classes
+        class1: document.getElementById('class1')?.value || '',
+        combatClass: document.getElementById('combatClass')?.value || '',
+        
+        // Mutação - GARANTIR QUE ESTÁ COMPLETO
+        characterMutations: characterMutations.map(mutation => ({
+            id: mutation.id,
+            name: mutation.name || '',
+            type: mutation.type || 'primal',
+            description: mutation.description || '',
+            source: mutation.source || '',
+            stage: mutation.stage || 1,
+            fixed: mutation.fixed !== undefined ? mutation.fixed : true,
+            stats: mutation.stats || {
+                vida: 0,
+                sanidade: 0,
+                armadura: 0,
+                folego: 0,
+                resistencia: 0
+            },
+            bonuses: mutation.bonuses || []
+        })),
+        
+        // Bônus
+        allBonuses: [...allBonuses],
+        learnedBonuses: [...learnedBonuses],
+        
+        // Rituais
+        rituals: [...rituals],
+        
+        // Arsenal
+        weapons: [...weapons],
+        
+        // Inventário
+        inventory: document.getElementById('inventory')?.value || '',
+        
+        // Timestamp
+        savedAt: new Date().toISOString(),
+        user: currentUser,
+        
+        // Versão
+        version: '4.1-primal-fix-final'
+    };
+    
+    try {
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(characterData));
+        console.log('💾 Ficha salva no localStorage!');
+        console.log('🧬 Mutações salvas:', characterData.characterMutations);
+        return true;
+    } catch (error) {
+        console.error('❌ Erro ao salvar ficha:', error);
+        return false;
+    }
+}
+
+
+function loadCharacterData() {
+    try {
+        const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+        if (!savedData) {
+            console.log('Nenhuma ficha salva encontrada.');
+            
+            // CONFIGURAR LISTENERS MESMO SEM DADOS SALVOS
+            setTimeout(setupAllPrimalListeners, 500);
+            return;
+        }
+        
+        const characterData = JSON.parse(savedData);
+        console.log('📂 Dados carregados do localStorage:', characterData);
+        
+        // Carregar informações básicas
+        document.getElementById('characterNameInput').value = characterData.characterName || '';
+        document.getElementById('name').value = characterData.name || '';
+        document.getElementById('age').value = characterData.age || '';
+        document.getElementById('level').value = characterData.level || '1';
+        document.getElementById('lore').value = characterData.lore || '';
+        
+        // Carregar atributos
+        if (characterData.attributesBase) {
+            attributesBase = { ...characterData.attributesBase };
+            updateAttributesDisplay();
+        }
+        
+        // Carregar classes
+        document.getElementById('class1').value = characterData.class1 || '';
+        document.getElementById('combatClass').value = characterData.combatClass || '';
+        
+        // 🔥 CORREÇÃO CRÍTICA: Carregar mutações de forma mais robusta
+        if (characterData.characterMutations && characterData.characterMutations.length > 0) {
+            console.log('🧬 Carregando mutações do storage:', characterData.characterMutations);
+            
+            // Limpar array existente
+            characterMutations = [];
+            
+            // 🔥 ENCONTRAR E PROCESSAR A PRIMAL PRIMEIRO
+            const savedPrimal = characterData.characterMutations.find(m => m.id === 0);
+            if (savedPrimal) {
+                console.log('🎯 PRIMAL encontrada no storage:', savedPrimal);
+                
+                // Adicionar primal ao array
+                characterMutations.push({
+                    id: 0,
+                    name: savedPrimal.name || "MUTAÇÃO PRIMAL",
+                    type: savedPrimal.type || "primal",
+                    description: savedPrimal.description || "",
+                    source: savedPrimal.source || "Origem do Personagem",
+                    stage: savedPrimal.stage || 1,
+                    fixed: true,
+                    stats: savedPrimal.stats || {
+                        vida: 0,
+                        sanidade: 0,
+                        armadura: 0,
+                        folego: 0,
+                        resistencia: 0
+                    },
+                    bonuses: savedPrimal.bonuses || []
+                });
+                
+                // 🔥 ATUALIZAR INPUTS DA PRIMAL IMEDIATAMENTE E FORÇADAMENTE
+                setTimeout(() => {
+                    console.log('🔄 FORÇANDO atualização dos inputs da primal...');
+                    updatePrimalInputsFromMutation(savedPrimal);
+                    
+                    // Verificar se os valores foram aplicados
+                    setTimeout(() => {
+                        const primalVida = document.getElementById('primalVida');
+                        console.log('✅ primalVida após carga:', primalVida?.value);
+                    }, 200);
+                }, 100);
+                
+            } else {
+                console.log('⚠️ PRIMAL não encontrada no storage, criando padrão');
+                
+                // Criar primal padrão
+                characterMutations.unshift({
+                    id: 0,
+                    name: "MUTAÇÃO PRIMAL",
+                    type: "primal",
+                    description: "",
+                    source: "Origem do Personagem",
+                    stage: 1,
+                    fixed: true,
+                    stats: {
+                        vida: 0,
+                        sanidade: 0,
+                        armadura: 0,
+                        folego: 0,
+                        resistencia: 0
+                    },
+                    bonuses: []
+                });
+                
+                // Atualizar inputs com valores padrão
+                setTimeout(() => {
+                    updatePrimalInputsFromMutation({
+                        stats: { vida: 0, sanidade: 0, armadura: 0, folego: 0, resistencia: 0 },
+                        description: ""
+                    });
+                }, 100);
+            }
+            
+            // Adicionar outras mutações
+            characterData.characterMutations
+                .filter(m => m.id !== 0)
+                .forEach(savedMut => {
+                    characterMutations.push({
+                        id: savedMut.id || Date.now(),
+                        name: savedMut.name || 'Nova Mutação',
+                        type: savedMut.type || 'colosso',
+                        description: savedMut.description || '',
+                        source: savedMut.source || '',
+                        stage: savedMut.stage || 1,
+                        fixed: false,
+                        stats: savedMut.stats || {
+                            vida: 0,
+                            sanidade: 0,
+                            armadura: 0,
+                            folego: 0,
+                            resistencia: 0
+                        },
+                        bonuses: savedMut.bonuses || []
+                    });
+                });
+        } else {
+            console.log('⚠️ Nenhuma mutação encontrada no storage');
+            
+            // Criar primal padrão se não existir
+            characterMutations = [{
+                id: 0,
+                name: "MUTAÇÃO PRIMAL",
+                type: "primal",
+                description: "",
+                source: "Origem do Personagem",
+                stage: 1,
+                fixed: true,
+                stats: {
+                    vida: 0,
+                    sanidade: 0,
+                    armadura: 0,
+                    folego: 0,
+                    resistencia: 0
+                },
+                bonuses: []
+            }];
+        }
+        
+        // Carregar bônus
+        if (characterData.allBonuses) {
+            allBonuses = [...characterData.allBonuses];
+        }
+        
+        if (characterData.learnedBonuses) {
+            learnedBonuses = [...characterData.learnedBonuses];
+        }
+        
+        // Carregar rituais
+        if (characterData.rituals) {
+            rituals = [...characterData.rituals];
+        }
+        
+        // Carregar armas
+        if (characterData.weapons) {
+            weapons = [...characterData.weapons];
+        }
+        
+        // Carregar inventário
+        document.getElementById('inventory').value = characterData.inventory || '';
+        
+        // Carregar foto
+        const preview = document.getElementById('preview');
+        const centerPreview = document.getElementById('centerPreview');
+        const photoPreview = document.getElementById('photoPreview');
+        const placeholder = photoPreview?.querySelector('.photo-placeholder');
+        const centerPlaceholder = document.querySelector('.center-placeholder');
+        
+        if (characterData.photo && characterData.photo !== '') {
+            if (preview) {
+                preview.src = characterData.photo;
+                preview.style.display = 'block';
+            }
+            if (centerPreview) {
+                centerPreview.src = characterData.photo;
+                centerPreview.style.display = 'block';
+            }
+            if (placeholder) placeholder.style.display = 'none';
+            if (centerPlaceholder) centerPlaceholder.style.display = 'none';
+        }
+        
+        // Renderizar tudo
+        setTimeout(() => {
+            renderAllBonuses();
+            renderLearnedBonuses();
+            updateBonusTables();
+            renderMutations();
+            updateRitualsDisplay();
+            updateArsenalDisplay();
+            
+            // Atualizar displays
+            updateAttributePointsDisplay();
+            updateLevelBar();
+            updateCenterLevel();
+            validateLevelInput();
+            updateBonusSlots();
+            
+            console.log('✅ Tudo renderizado após carga');
+        }, 200);
+        
+        // 🔥 IMPORTANTE: Configurar listeners APÓS renderizar tudo
+        setTimeout(() => {
+            console.log('🎯 Configurando listeners da primal...');
+            setupAllPrimalListeners();
+            
+            // 🔥 FORÇAR SINCRONIZAÇÃO FINAL
+            setTimeout(() => {
+                const primalFromMemory = characterMutations.find(m => m.id === 0);
+                if (primalFromMemory) {
+                    console.log('🔄 Sincronização final da primal:', primalFromMemory.stats);
+                    updatePrimalInputsFromMutation(primalFromMemory);
+                }
+            }, 300);
+        }, 500);
+        
+        console.log('✅ Ficha carregada com sucesso!');
+        
+    } catch (error) {
+        console.error('❌ Erro ao carregar ficha:', error);
+        // Mesmo com erro, tentar configurar listeners
+        setTimeout(setupAllPrimalListeners, 500);
+    }
+}
+
+// ==============================================
+// FUNÇÃO DE DEBUG PARA VERIFICAR ESTADO DA PRIMAL
+// ==============================================
+
+function debugPrimalState() {
+    console.log('=== DEBUG DO ESTADO DA PRIMAL ===');
+    
+    // Verificar storage
+    const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (savedData) {
+        try {
+            const parsed = JSON.parse(savedData);
+            const storagePrimal = parsed.characterMutations?.find(m => m.id === 0);
+            console.log('💾 Primal no localStorage:', storagePrimal?.stats);
+        } catch (e) {
+            console.error('Erro ao ler storage:', e);
+        }
+    }
+    
+    // Verificar array em memória
+    const memoryPrimal = characterMutations.find(m => m.id === 0);
+    console.log('🧠 Primal em memória:', memoryPrimal?.stats);
+    
+    // Verificar inputs HTML
+    const inputs = [
+        'primalVida', 'primalSanidade', 'primalArmadura', 
+        'primalFolego', 'primalResistencia'
+    ];
+    
+    console.log('📋 Inputs HTML:');
+    inputs.forEach(id => {
+        const input = document.getElementById(id);
+        console.log(`  ${id}: ${input?.value || 'não encontrado'}`);
+    });
+    
+    // Verificar objeto primal completo
+    console.log('📊 Primal completa:', memoryPrimal);
+    
+    console.log('=== FIM DEBUG ===');
+    
+    // Retornar dados para inspeção
+    return {
+        storage: savedData ? JSON.parse(savedData).characterMutations?.find(m => m.id === 0) : null,
+        memory: memoryPrimal,
+        inputs: inputs.reduce((acc, id) => {
+            const input = document.getElementById(id);
+            acc[id] = input?.value;
+            return acc;
+        }, {})
+    };
+}
+
+// Adicione um botão para debug no HTML temporariamente
+function addDebugButton() {
+    const debugBtn = document.createElement('button');
+    debugBtn.textContent = '🐛 Debug Primal';
+    debugBtn.style.position = 'fixed';
+    debugBtn.style.bottom = '10px';
+    debugBtn.style.right = '10px';
+    debugBtn.style.zIndex = '9999';
+    debugBtn.style.padding = '10px';
+    debugBtn.style.background = '#e74c3c';
+    debugBtn.style.color = 'white';
+    debugBtn.style.border = 'none';
+    debugBtn.style.borderRadius = '5px';
+    debugBtn.style.cursor = 'pointer';
+    
+    debugBtn.onclick = debugPrimalState;
+    
+    document.body.appendChild(debugBtn);
+}
+
+// ==============================================
+// FUNÇÃO PARA FORÇAR SALVAMENTO E RECARGA
+// ==============================================
+
+function forceSaveAndReload() {
+    console.log('💥 FORÇANDO salvamento e recarga da primal...');
+    
+    // 1. Sincronizar primal do HTML para memória
+    syncPrimalData();
+    
+    // 2. Salvar imediatamente
+    saveCharacterData();
+    
+    // 3. Recarregar dados do storage
+    setTimeout(() => {
+        loadCharacterData();
+        alert('Primal forçada a salvar e recarregar! Verifique o console.');
+    }, 500);
+}
+
+// Adicione ao DOMContentLoaded para chamar debug
+document.addEventListener('DOMContentLoaded', function() {
+    // ... código existente ...
+    
+    setTimeout(() => {
+        // Adicionar botão de debug (remova depois de testar)
+        addDebugButton();
+        
+        // Forçar verificação após 2 segundos
+        setTimeout(() => {
+            console.log('🕒 Verificando estado da primal após carga...');
+            debugPrimalState();
+        }, 2000);
+    }, 1000);
+});
+
+// ==============================================
+// FUNÇÃO PARA ATUALIZAR INPUTS DA PRIMAL
+// ==============================================
+
+// ==============================================
+// FUNÇÃO PARA ATUALIZAR INPUTS DA PRIMAL (CORRIGIDA)
+// ==============================================
+
+function updatePrimalInputsFromMutation(mutation) {
+    console.log('🔄 [PRIMAL SYNC] Atualizando inputs da primal a partir de mutação:', mutation);
+    
+    if (!mutation) {
+        console.error('❌ [PRIMAL SYNC] Mutação não fornecida');
+        return;
+    }
+    
+    // Atualizar stats - GARANTIR que stats existe
+    const stats = mutation.stats || {
+        vida: 0,
+        sanidade: 0,
+        armadura: 0,
+        folego: 0,
+        resistencia: 0
+    };
+    
+    console.log('📊 [PRIMAL SYNC] Stats recebidos:', stats);
+    
+    // Mapear stats para inputs
+    const statMappings = [
+        { inputId: 'primalVida', statKey: 'vida', defaultValue: 0 },
+        { inputId: 'primalSanidade', statKey: 'sanidade', defaultValue: 0 },
+        { inputId: 'primalArmadura', statKey: 'armadura', defaultValue: 0 },
+        { inputId: 'primalFolego', statKey: 'folego', defaultValue: 0 },
+        { inputId: 'primalResistencia', statKey: 'resistencia', defaultValue: 0 }
+    ];
+    
+    statMappings.forEach(({ inputId, statKey, defaultValue }) => {
+        const input = document.getElementById(inputId);
+        const value = stats[statKey] !== undefined ? stats[statKey] : defaultValue;
+        
+        if (input) {
+            // FORÇAR atualização mesmo se o valor parecer igual
+            input.value = value;
+            
+            // Disparar evento para atualizar o objeto em memória
+            setTimeout(() => {
+                input.dispatchEvent(new Event('input', { bubbles: true }));
+                input.dispatchEvent(new Event('change', { bubbles: true }));
+            }, 10);
+            
+            console.log(`✅ [PRIMAL SYNC] Input ${inputId} atualizado: ${value}`);
+        } else {
+            console.error(`❌ [PRIMAL SYNC] Input ${inputId} não encontrado no DOM`);
+        }
+    });
+    
+    // Atualizar descrição
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc) {
+        const descValue = mutation.description || "";
+        primalDesc.value = descValue;
+        
+        // Disparar evento
+        setTimeout(() => {
+            primalDesc.dispatchEvent(new Event('input', { bubbles: true }));
+            primalDesc.dispatchEvent(new Event('change', { bubbles: true }));
+        }, 10);
+        
+        console.log(`✅ [PRIMAL SYNC] Descrição primal atualizada: "${descValue.substring(0, 50)}..."`);
+    } else {
+        console.error('❌ [PRIMAL SYNC] Elemento primalDescription não encontrado');
+    }
+    
+    // ATUALIZAR O OBJETO EM MEMÓRIA IMEDIATAMENTE
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    if (primalMutation) {
+        primalMutation.stats = { ...stats };
+        primalMutation.description = mutation.description || "";
+        console.log('✅ [PRIMAL SYNC] Objeto primal atualizado em memória:', primalMutation.stats);
+    }
+}
+
+// ==============================================
+// FUNÇÃO PARA CARREGAR DADOS DA PRIMAL DO STORAGE
+// ==============================================
+
+function updatePrimalInputsFromSavedData(characterData) {
+    console.log('🔄 Carregando dados da primal do storage...');
+    
+    if (!characterData || !characterData.characterMutations) {
+        console.log('❌ Nenhum dado de mutações encontrado');
+        return;
+    }
+    
+    const savedPrimal = characterData.characterMutations.find(m => m.id === 0);
+    if (!savedPrimal) {
+        console.log('❌ Primal não encontrada nos dados salvos');
+        return;
+    }
+    
+    console.log('📊 Dados da primal para carregar:', savedPrimal.stats);
+    
+    // Atualizar inputs com os valores salvos
+    const inputs = [
+        { id: 'primalVida', value: savedPrimal.stats?.vida || 0 },
+        { id: 'primalSanidade', value: savedPrimal.stats?.sanidade || 0 },
+        { id: 'primalArmadura', value: savedPrimal.stats?.armadura || 0 },
+        { id: 'primalFolego', value: savedPrimal.stats?.folego || 0 },
+        { id: 'primalResistencia', value: savedPrimal.stats?.resistencia || 0 }
+    ];
+    
+    inputs.forEach(({ id, value }) => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.value = value;
+            console.log(`✅ Input ${id} carregado: ${value}`);
+        } else {
+            console.error(`❌ Input ${id} não encontrado`);
+        }
+    });
+    
+    // Descrição
+    const primalDesc = document.getElementById('primalDescription');
+    if (primalDesc && savedPrimal.description) {
+        primalDesc.value = savedPrimal.description;
+        console.log(`✅ Descrição primal carregada`);
+    }
+    
+    // Atualizar o objeto primal no array global
+    const primalMutation = characterMutations.find(m => m.id === 0);
+    if (primalMutation) {
+        primalMutation.description = savedPrimal.description || '';
+        primalMutation.stats = {
+            vida: savedPrimal.stats?.vida || 0,
+            sanidade: savedPrimal.stats?.sanidade || 0,
+            armadura: savedPrimal.stats?.armadura || 0,
+            folego: savedPrimal.stats?.folego || 0,
+            resistencia: savedPrimal.stats?.resistencia || 0
+        };
+        primalMutation.bonuses = savedPrimal.bonuses || [];
+        
+        // Renderizar bônus da primal
+        renderMutationBonuses(0);
+    }
+}
+
+// ==============================================
+// FUNÇÕES PRINCIPAIS DA FICHA (ATUALIZADAS COM RITUAIS)
+// ==============================================
 function calculateStats() {
-    const name = document.getElementById("name").value;
-    const age = document.getElementById("age").value;
-    const level = parseInt(document.getElementById("level").value) || 1;
-    const photoSrc = document.getElementById("preview").src;
-    const lore = document.getElementById("lore").value;
-    const class1 = document.getElementById("class1").value;
-    const class2 = document.getElementById("class2").value;
-    const combatClass = document.getElementById("combatClass").value;
-    const inventory = document.getElementById("inventory").value;
-
-    updateMutationsFromForm();
-
+    // Coletar dados do formulário
+    const name = document.getElementById('name').value || 'Personagem Sem Nome';
+    const age = document.getElementById('age').value || 'Não informado';
+    const level = parseInt(document.getElementById('level').value) || 1;
+    const class1 = document.getElementById('class1').value;
+    const combatClass = document.getElementById('combatClass').value;
+    const inventory = document.getElementById('inventory').value;
+    
+    // Calcular estatísticas base
     let vida = 55 + (attributes.vig * 15);
     let determinacaoSanidade = 55 + (attributes.int * 10) + (attributes.set * 15);
     let resistencia = 15 + (attributes.vig * 5);
     let folego = 4 + (attributes.vig * 1);
     let armadura = 5;
-
-    if (level >= 15) armadura += 1;
-    if (level >= 30) armadura += 1;
-    if (level >= 50) vida += 30;
-    if (level >= 65) determinacaoSanidade += 20;
-    if (level >= 80) armadura += 10;
-    if (level >= 95) {
-        vida += 20;
-        determinacaoSanidade += 20;
-    }
-    if (level >= 99) armadura += 10;
     
-    const characterData = {
-        name: name,
-        age: age,
-        level: level,
-        photo: photoSrc,
-        lore: lore,
-        class1: class1,
-        class2: class2,
-        combatClass: combatClass,
-        inventory: inventory,
-        attributesBase: attributes,
-        appliedClassBonuses: appliedClassBonuses,
-        currentLife: vida,
-        currentSanity: determinacaoSanidade,
-        currentArmor: armadura,
-        currentResistencia: resistencia,
-        currentAgi: attributes.agi,
-        currentFor: attributes.for,
-        currentInt: attributes.int,
-        currentSet: attributes.set,
-        currentVig: attributes.vig,
-        actionBonuses: actionBonuses,
-        learnedActionBonuses: learnedActionBonuses,
-        weapons: weapons,
-        rituals: characterRituals,
-        characterMutations: characterMutations,
-    };
-
-    localStorage.setItem('localCharacterData', JSON.stringify(characterData));
+    // Aplicar bônus de nível
+    const levelBonuses = getLevelBonuses(level);
+    vida += levelBonuses.vida;
+    determinacaoSanidade += levelBonuses.determinacaoSanidade;
+    armadura += levelBonuses.armadura;
     
-    let bonusAcoesHtml = '';
-    if (actionBonuses.length > 0) {
-        bonusAcoesHtml = `<ul class="stats-list">`;
-        actionBonuses.forEach(bonus => {
-            bonusAcoesHtml += `<li><strong class="sub-category-title">${bonus.action}</strong>: <span class="attribute-value">+${bonus.value} em ações</span></li>`;
-        });
-        bonusAcoesHtml += `</ul>`;
-    } else {
-        bonusAcoesHtml = '<p class="no-info">Nenhum bônus de ação registrado.</p>';
-    }
-
-    let learnedBonusAcoesHtml = '';
-    if (learnedActionBonuses.length > 0) {
-        learnedBonusAcoesHtml = `<ul class="stats-list">`;
-        learnedActionBonuses.forEach(bonus => {
-            learnedBonusAcoesHtml += `<li><strong class="sub-category-title">${bonus.action}</strong>: <span class="attribute-value">+${bonus.value} em ações (Aprendido)</span></li>`;
-        });
-        learnedBonusAcoesHtml += `</ul>`;
-    } else {
-        learnedBonusAcoesHtml = '<p class="no-info">Nenhum bônus de ação aprendido registrado.</p>';
-    }
-
-    let weaponsHtml = '';
-    if (weapons.length > 0) {
-        weaponsHtml = `<ul class="stats-list weapon-list">`;
-        weapons.forEach(weapon => {
-            weaponsHtml += `<li><strong class="sub-category-title">${weapon.name || '<span class="no-info">Arma sem nome</span>'}</strong>: <span class="attribute-value">${weapon.damageDice || '<span class="no-info">Dano não especificado</span>'}</span>`;
-            if (weapon.condition && weapon.condition !== 'Nula') {
-                weaponsHtml += `<span class="attribute-value"> (${weapon.condition})</span>`;
-            }
-            weaponsHtml += `</li>`;
-        });
-        weaponsHtml += `</ul>`;
-    } else {
-        weaponsHtml = '<p class="no-info">Nenhuma arma registrada.</p>';
-    }
-
-    let ritualsHtml = '';
-    if (characterRituals.length > 0) {
-        ritualsHtml = `<div class="ficha-section"><h4 class="section-title">Rituais e Pactos</h4>`;
-        ritualsHtml += `<ul class="stats-list ritual-list">`;
+    // Aplicar bônus de classe
+    const classBonuses = getClassBonuses(class1);
+    vida += classBonuses.vida;
+    determinacaoSanidade += classBonuses.determinacaoSanidade;
+    resistencia += classBonuses.resistencia;
+    folego += classBonuses.folego;
+    armadura += classBonuses.armadura;
+    
+    // NOVO: Coletar bônus de status de todas as mutações
+    let totalMutationVida = 0;
+    let totalMutationSanidade = 0;
+    let totalMutationArmadura = 0;
+    let totalMutationFolego = 0;
+    let totalMutationResistencia = 0;
+    
+    characterMutations.forEach(mutation => {
+        if (mutation.stats) {
+            totalMutationVida += (mutation.stats.vida || 0);
+            totalMutationSanidade += (mutation.stats.sanidade || 0);
+            totalMutationArmadura += (mutation.stats.armadura || 0);
+            totalMutationFolego += (mutation.stats.folego || 0);
+            totalMutationResistencia += (mutation.stats.resistencia || 0);
+        }
+    });
+    
+    // NOVO: Aplicar bônus de mutação aos status
+    vida += totalMutationVida;
+    determinacaoSanidade += totalMutationSanidade;
+    armadura += totalMutationArmadura;
+    folego += totalMutationFolego;
+    resistencia += totalMutationResistencia;
+    
+    // NOVO: Coletar todos os bônus de ação (normais + aprendidos + mutação)
+    const mutationBonusesList = [];
+    characterMutations.forEach(mutation => {
+        if (mutation.bonuses && mutation.bonuses.length > 0) {
+            mutation.bonuses.forEach(bonus => {
+                if (bonus.action && bonus.action.trim() !== '') {
+                    mutationBonusesList.push({
+                        ...bonus,
+                        mutationName: mutation.name,
+                        isMutationBonus: true
+                    });
+                }
+            });
+        }
+    });
+    
+    // LIMPAR QUALQUER CONTEÚDO DUPLICADO ANTES DE GERAR NOVO
+    const statsDiv = document.getElementById('stats');
+    statsDiv.innerHTML = '';
+    
+    // Gerar HTML da ficha calculada
+    const statsHTML = `
+        <div class="character-header">
+            <h3>${name}</h3>
+            <p>Nível ${level} | ${age} anos</p>
+            <p>Classe: ${class1 || 'Não selecionada'} | Combate: ${combatClass || 'Não selecionada'}</p>
+        </div>
         
-        characterRituals.forEach(ritual => {
-            if (!ritual) return;
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-name">Vida</div>
+                <div class="stat-value">${vida}</div>
+                ${totalMutationVida > 0 ? `<div class="stat-mutation-bonus">+${totalMutationVida} de mutações</div>` : ''}
+            </div>
+            <div class="stat-card">
+                <div class="stat-name">Determinação</div>
+                <div class="stat-value">${determinacaoSanidade}</div>
+                ${totalMutationSanidade > 0 ? `<div class="stat-mutation-bonus">+${totalMutationSanidade} de mutações</div>` : ''}
+            </div>
+            <div class="stat-card">
+                <div class="stat-name">Resistência</div>
+                <div class="stat-value">${resistencia}</div>
+                ${totalMutationResistencia > 0 ? `<div class="stat-mutation-bonus">+${totalMutationResistencia} de mutações</div>` : ''}
+            </div>
+            <div class="stat-card">
+                <div class="stat-name">Fôlego</div>
+                <div class="stat-value">${folego}</div>
+                ${totalMutationFolego > 0 ? `<div class="stat-mutation-bonus">+${totalMutationFolego} de mutações</div>` : ''}
+            </div>
+            <div class="stat-card">
+                <div class="stat-name">Armadura</div>
+                <div class="stat-value">${armadura}</div>
+                ${totalMutationArmadura > 0 ? `<div class="stat-mutation-bonus">+${totalMutationArmadura} de mutações</div>` : ''}
+            </div>
+        </div>
+        
+        <div class="attributes-display">
+            <h4>Atributos</h4>
+            <div class="attributes-list">
+                <div class="attribute-display">
+                    <span>AGI:</span>
+                    <span class="attr-value">${attributes.agi}</span>
+                </div>
+                <div class="attribute-display">
+                    <span>FOR:</span>
+                    <span class="attr-value">${attributes.for}</span>
+                </div>
+                <div class="attribute-display">
+                    <span>INT:</span>
+                    <span class="attr-value">${attributes.int}</span>
+                </div>
+                <div class="attribute-display">
+                    <span>SET:</span>
+                    <span class="attr-value">${attributes.set}</span>
+                </div>
+                <div class="attribute-display">
+                    <span>VIG:</span>
+                    <span class="attr-value">${attributes.vig}</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mutations-display">
+            <h4>Mutações (${characterMutations.length})</h4>
+            ${characterMutations.map(mut => {
+                const hasStats = mut.stats && Object.values(mut.stats).some(val => val > 0);
+                return `
+                    <div class="mutation-display-card ${mut.type}">
+                        <div class="mutation-display-header">
+                            <h5>${mut.name}</h5>
+                            <span class="mutation-display-type">${mut.type.toUpperCase()} - Estágio ${mut.stage}</span>
+                        </div>
+                        ${mut.description ? `<p class="mutation-description">${mut.description}</p>` : ''}
+                        ${mut.source ? `<p class="mutation-source"><small>Origem: ${mut.source}</small></p>` : ''}
+                        
+                        ${hasStats ? `
+                            <div class="mutation-stats-display">
+                                <h6><i class="fas fa-chart-line"></i> Bônus desta Mutação:</h6>
+                                <div class="mutation-stats-list">
+                                    ${mut.stats.vida > 0 ? `<span class="mutation-stat"><i class="fas fa-heart"></i> +${mut.stats.vida} Vida</span>` : ''}
+                                    ${mut.stats.sanidade > 0 ? `<span class="mutation-stat"><i class="fas fa-brain"></i> +${mut.stats.sanidade} Sanidade</span>` : ''}
+                                    ${mut.stats.armadura > 0 ? `<span class="mutation-stat"><i class="fas fa-shield-alt"></i> +${mut.stats.armadura} Armadura</span>` : ''}
+                                    ${mut.stats.folego > 0 ? `<span class="mutation-stat"><i class="fas fa-wind"></i> +${mut.stats.folego} Fôlego</span>` : ''}
+                                    ${mut.stats.resistencia > 0 ? `<span class="mutation-stat"><i class="fas fa-dumbbell"></i> +${mut.stats.resistencia} Resistência</span>` : ''}
+                                </div>
+                            </div>
+                        ` : ''}
+                        
+                        ${mut.bonuses && mut.bonuses.length > 0 ? `
+                            <div class="mutation-bonuses-display">
+                                <h6><i class="fas fa-plus-circle"></i> Bônus de Ação:</h6>
+                                <ul class="mutation-bonuses-list">
+                                    ${mut.bonuses
+                                        .filter(b => b.action && b.action.trim() !== '')
+                                        .map(bonus => `<li>${bonus.action}: <span class="bonus-value">+${bonus.value}</span></li>`)
+                                        .join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            }).join('')}
+        </div>
+        
+        <div class="mutations-summary">
+            <h4><i class="fas fa-calculator"></i> Resumo de Bônus por Mutação</h4>
+            <div class="mutations-stats-list">
+                ${characterMutations.filter(m => m.stats && Object.values(m.stats).some(val => val > 0)).map(mutation => `
+                    <div class="mutation-stat-summary">
+                        <h5>${mutation.name} <span class="mutation-type-badge">${mutation.type.toUpperCase()}</span></h5>
+                        <div class="mutation-stat-values">
+                            ${mutation.stats.vida > 0 ? `<span><i class="fas fa-heart"></i> +${mutation.stats.vida} Vida</span>` : ''}
+                            ${mutation.stats.sanidade > 0 ? `<span><i class="fas fa-brain"></i> +${mutation.stats.sanidade} Sanidade</span>` : ''}
+                            ${mutation.stats.armadura > 0 ? `<span><i class="fas fa-shield-alt"></i> +${mutation.stats.armadura} Armadura</span>` : ''}
+                            ${mutation.stats.folego > 0 ? `<span><i class="fas fa-wind"></i> +${mutation.stats.folego} Fôlego</span>` : ''}
+                            ${mutation.stats.resistencia > 0 ? `<span><i class="fas fa-dumbbell"></i> +${mutation.stats.resistencia} Resistência</span>` : ''}
+                        </div>
+                    </div>
+                `).join('')}
+                
+                ${characterMutations.filter(m => m.stats && Object.values(m.stats).every(val => val === 0)).length > 0 ? `
+                    <div class="no-mutation-stats">
+                        <p><i class="fas fa-info-circle"></i> ${characterMutations.filter(m => m.stats && Object.values(m.stats).every(val => val === 0)).length} mutação(ões) sem bônus de status</p>
+                    </div>
+                ` : ''}
+            </div>
+        </div>
+        
+        <div class="bonuses-display">
+            <h4>Bônus em Ações - Total: ${allBonuses.filter(b => b.action && b.action.trim() !== '').length + learnedBonuses.filter(b => b.action && b.action.trim() !== '').length + mutationBonusesList.length}</h4>
             
-            const nome = ritual.nome || ritual.name || 'Ritual sem nome';
-            const descricao = ritual.descricao || ritual.description || 'Descrição não disponível';
-            const tipo = ritual.tipo || ritual.type || 'N/A';
-            const elemento = ritual.elemento || ritual.element || 'N/A';
-            const nivel = ritual.nivel || ritual.level || 'N/A';
-            const imagem = ritual.imagem || ritual.image || '';
+            ${allBonuses.filter(b => b.action && b.action.trim() !== '').length > 0 ? `
+                <div class="bonus-category">
+                    <h5><i class="fas fa-star"></i> Bônus Normais (${allBonuses.filter(b => b.action && b.action.trim() !== '').length})</h5>
+                    <ul>
+                        ${allBonuses
+                            .filter(b => b.action && b.action.trim() !== '')
+                            .sort((a, b) => b.value - a.value)
+                            .map(bonus => `<li>${bonus.action}: <span class="bonus-value">+${bonus.value}</span></li>`)
+                            .join('')}
+                    </ul>
+                </div>
+            ` : ''}
             
-            ritualsHtml += `
-                <li class="ritual-item">
-                    <div class="ritual-header">
-                        <strong class="sub-category-title">${nome}</strong>
-                        <span class="ritual-meta">${elemento} / ${tipo} / Nv. ${nivel}</span>
-                    </div>
-                    ${imagem ? `<img src="${imagem}" alt="${nome}" class="ritual-image-ficha" style="max-width: 150px; margin: 10px 0; border-radius: 8px; border: 1px solid rgba(193, 240, 248, 0.2);">` : ''}
-                    <div class="ritual-description-ficha">
-                        <p>${descricao}</p>
-                    </div>
-                </li>
-            `;
-        });
-        
-        ritualsHtml += `</ul></div>`;
-    } else {
-        ritualsHtml = '<div class="ficha-section"><h4 class="section-title">Rituais e Pactos</h4><p class="no-info">Nenhum ritual ou pacto selecionado.</p></div>';
-    }
-
-    let mutationsHtml = '';
-    if (characterMutations && characterMutations.length > 0) {
-        mutationsHtml = `<div class="ficha-section"><h4 class="section-title">Sistema de Mutação</h4>`;
-        
-        characterMutations.forEach((mutation) => {
-            const typeLabels = {
-                'primal': 'MUTAÇÃO PRIMAL',
-                'colosso': 'COLOSSO',
-                'pacto': 'PACTO',
-                'joia': 'JÓIA',
-                'boss': 'BOSS'
-            };
+            ${learnedBonuses.filter(b => b.action && b.action.trim() !== '').length > 0 ? `
+                <div class="bonus-category learned">
+                    <h5><i class="fas fa-graduation-cap"></i> Bônus Aprendidos (${learnedBonuses.filter(b => b.action && b.action.trim() !== '').length})</h5>
+                    <ul>
+                        ${learnedBonuses
+                            .filter(b => b.action && b.action.trim() !== '')
+                            .sort((a, b) => b.value - a.value)
+                            .map(bonus => `<li>${bonus.action}: <span class="bonus-value">+${bonus.value}</span></li>`)
+                            .join('')}
+                    </ul>
+                </div>
+            ` : ''}
             
-            mutationsHtml += `
-                <div class="mutation-display" data-type="${mutation.type}">
-                    <div class="mutation-header">
-                        <strong class="mutation-name">${mutation.name || 'Mutação sem nome'}</strong>
-                        <span class="mutation-type">${typeLabels[mutation.type] || mutation.type.toUpperCase()} ${mutation.type === 'primal' ? `- Estágio ${mutation.stage}` : ''}</span>
-                    </div>
-                    ${mutation.source && mutation.source.trim() ? `<p class="mutation-source"><strong>Origem:</strong> ${mutation.source}</p>` : ''}
-                    <div class="mutation-description">
-                        <strong>Descrição Completa:</strong>
-                        <p>${mutation.description ? mutation.description.replace(/\n/g, '<br>') : '<span class="no-info">Não descrito</span>'}</p>
-                    </div>
+            ${mutationBonusesList.length > 0 ? `
+                <div class="bonus-category mutation">
+                    <h5><i class="fas fa-dna"></i> Bônus de Mutação (${mutationBonusesList.length})</h5>
+                    <ul>
+                        ${mutationBonusesList
+                            .sort((a, b) => b.value - a.value)
+                            .map(bonus => `<li>${bonus.action}: <span class="bonus-value">+${bonus.value}</span> <span class="bonus-mutation-name">(${bonus.mutationName})</span></li>`)
+                            .join('')}
+                    </ul>
                 </div>
-            `;
-        });
-        
-        mutationsHtml += `</div>`;
-    }
-
-    let levelRewardsList = [];
-    let mutationRewardsList = [];
-    let inventoryRewardsList = [];
-
-    if (level >= 15) {
-        levelRewardsList.push(`+1 Ponto de Atributo (já contabilizado na ficha)`);
-    }
-    if (level >= 30) {
-        levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 12 slots)`);
-    }
-    if (level >= 50) {
-        levelRewardsList.push(`+30 de Vida (já adicionado ao total)`);
-        levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 15 slots) e possibilidade de bônus até +20`);
-        inventoryRewardsList.push('Convite da Linhagem de Athenas');
-        inventoryRewardsList.push('1 Presente de Evento Global');
-    }
-    if (level >= 65) {
-        levelRewardsList.push(`+20 de Sanidade (já adicionado ao total de Determinação/Sanidade)`);
-        levelRewardsList.push(`+1 Ponto de Atributo adicional (já contabilizado na ficha)`);
-        mutationRewardsList.push(`+1 Parte de Mutação (Revivendo Memória) - Mutação Primal evolui para Estágio 2`);
-    }
-    if (level >= 80) {
-        levelRewardsList.push(`+10 Armadura padrão (já adicionado ao total)`);
-        levelRewardsList.push(`Mais slots para Bônus de Ação (Total de 20 slots)`);
-        inventoryRewardsList.push('1 Ritual Normal');
-        inventoryRewardsList.push('1 Subida de Patente');
-    }
-    if (level >= 95) {
-        mutationRewardsList.push(`+1 Parte de Mutação (Conversa com o Infinito) - Mutação Primal evolui para Estágio 3`);
-        inventoryRewardsList.push('Convite da Linhagem de Athenas');
-    }
-    if (level >= 99) {
-        levelRewardsList.push(`+10 Armadura padrão (já adicionado ao total)`);
-        levelRewardsList.push(`+1 Ponto de Atributo adicional (já contabilizado na ficha)`);
-        mutationRewardsList.push(`+1 Parte de Mutação (Último Incentivo Pessoal) - Mutação Primal evolui para Estágio 4`);
-        levelRewardsList.push(`Título: "Sobrevivente"`);
-    }
-
-    let statsHtml = `
-        <div class="ficha-section">
-            <h4 class="section-title">Informações Básicas</h4>
-            <div class="header-ficha">
-                <div class="title-with-image">
-                    ${photoSrc && photoSrc !== window.location.href + "#" && !photoSrc.includes('data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=') ? 
-                    `<div class="character-photo-container">
-                        <img src="${photoSrc}" alt="Foto do Personagem" class="character-photo">
-                    </div>` : ''}
-                    <h3 class="titulo-ficha">${name || '<span class="no-info">Não preenchido</span>'}</h3>
-                </div>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-label">Idade</div>
-                        <div class="info-value">${age || '<span class="no-info">Não preenchido</span>'}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Nível</div>
-                        <div class="info-value ficha-calculated-level-value">${level}</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">Experiência</div>
-                        <div class="info-value">Nv. ${level}</div>
-                    </div>
-                </div>
-            </div>
-            ${lore ? `<div class="lore-section">
-                <h5 class="sub-section-title">História & Personalidade</h5>
-                <p class="formatted-text">${lore.replace(/\n/g, '<br>')}</p>
-            </div>` : ''}
-        </div>
-
-        <div class="ficha-section">
-            <h4 class="section-title">Atributos e Estatísticas</h4>
-            <div class="attributes-grid">
-                <div class="attribute-item">
-                    <div class="attribute-icon"></div>
-                    <div class="attribute-content">
-                        <div class="attribute-name">Agilidade</div>
-                        <div class="attribute-value">${attributes.agi}</div>
-                    </div>
-                </div>
-                <div class="attribute-item">
-                    <div class="attribute-icon"></div>
-                    <div class="attribute-content">
-                        <div class="attribute-name">Força</div>
-                        <div class="attribute-value">${attributes.for}</div>
-                    </div>
-                </div>
-                <div class="attribute-item">
-                    <div class="attribute-icon"></div>
-                    <div class="attribute-content">
-                        <div class="attribute-name">Inteligência</div>
-                        <div class="attribute-value">${attributes.int}</div>
-                    </div>
-                </div>
-                <div class="attribute-item">
-                    <div class="attribute-icon"></div>
-                    <div class="attribute-content">
-                        <div class="attribute-name">Sentidos</div>
-                        <div class="attribute-value">${attributes.set}</div>
-                    </div>
-                </div>
-                <div class="attribute-item">
-                    <div class="attribute-icon"></div>
-                    <div class="attribute-content">
-                        <div class="attribute-name">Vitalidade</div>
-                        <div class="attribute-value">${attributes.vig}</div>
-                    </div>
-                </div>
-            </div>
+            ` : ''}
             
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-icon"></div>
-                    <div class="stat-content">
-                        <div class="stat-value">${vida}</div>
-                        <div class="stat-label">Vida Total</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"></div>
-                    <div class="stat-content">
-                        <div class="stat-value">${determinacaoSanidade}</div>
-                        <div class="stat-label">Determinação</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"></div>
-                    <div class="stat-content">
-                        <div class="stat-value">${resistencia}</div>
-                        <div class="stat-label">Resistência</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"></div>
-                    <div class="stat-content">
-                        <div class="stat-value">${folego}</div>
-                        <div class="stat-label">Fôlego</div>
-                    </div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-icon"></div>
-                    <div class="stat-content">
-                        <div class="stat-value">${armadura}</div>
-                        <div class="stat-label">Armadura</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ficha-section">
-            <h4 class="section-title">Classes</h4>
-            <div class="classes-grid">
-                <div class="class-item">
-                    <div class="class-label">Classe Primitiva 1</div>
-                    <div class="class-value">${class1 || '<span class="no-info">Não selecionado</span>'}</div>
-                </div>
-                <div class="class-item">
-                    <div class="class-label">Classe Primitiva 2</div>
-                    <div class="class-value">${class2 || '<span class="no-info">Não selecionado</span>'}</div>
-                </div>
-                <div class="class-item">
-                    <div class="class-label">Classe de Combate</div>
-                    <div class="class-value">${combatClass || '<span class="no-info">Não selecionado</span>'}</div>
-                </div>
-            </div>
-        </div>
-
-        ${mutationsHtml}
-
-        ${mutationRewardsList.length > 0 ? `<div class="ficha-section"><h4 class="section-title">Recompensas de Mutação</h4><ul class="stats-list">${mutationRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul></div>` : ''}
-
-        <div class="ficha-section">
-            <h4 class="section-title">Bônus em Ações</h4>
-            ${bonusAcoesHtml}
-        </div>
-
-        <div class="ficha-section">
-            <h4 class="section-title">Bônus de Ações Aprendidos</h4>
-            ${learnedBonusAcoesHtml}
+            ${allBonuses.filter(b => b.action && b.action.trim() !== '').length === 0 && 
+              learnedBonuses.filter(b => b.action && b.action.trim() !== '').length === 0 && 
+              mutationBonusesList.length === 0 ? `
+                <p class="no-bonuses-message">Nenhum bônus em ações adicionado</p>
+            ` : ''}
         </div>
         
-        ${ritualsHtml}
-
-        <div class="ficha-section">
-            <h4 class="section-title">Inventário e Armas</h4>
-            <div class="inventory-section">
-                <h5 class="sub-section-title">Itens Atuais</h5>
-                <p class="formatted-text">${inventory ? inventory.replace(/\n/g, '<br>') : '<span class="no-info">Nenhum item registrado.</span>'}</p>
+        ${rituals.length > 0 ? `
+            <div class="rituals-display">
+                <h4>Rituais e Pactos (${rituals.length})</h4>
+                <div class="rituals-summary">
+                    <p>Aprendidos: ${rituals.filter(r => level >= r.nivel).length} | Não disponíveis: ${rituals.filter(r => level < r.nivel).length}</p>
+                </div>
+                <div class="rituals-grid">
+                    ${rituals.map(ritual => {
+                        const canLearn = level >= ritual.nivel;
+                        return `
+                            <div class="ritual-display-card ${canLearn ? 'learned' : 'locked'}">
+                                <div class="ritual-display-header">
+                                    <h5>${ritual.nome}</h5>
+                                    <div class="ritual-display-status ${canLearn ? 'can-learn' : 'cannot-learn'}">
+                                        <i class="fas ${canLearn ? 'fa-unlock' : 'fa-lock'}"></i>
+                                        ${canLearn ? 'Disponível' : 'Nível ' + ritual.nivel}
+                                    </div>
+                                </div>
+                                
+                                <div class="ritual-display-info">
+                                    <div class="ritual-display-type">
+                                        <span class="type-label">Tipo:</span>
+                                        <span class="type-value">${ritual.tipo || 'Ritual'}</span>
+                                    </div>
+                                    <div class="ritual-display-element">
+                                        <span class="element-label">Elemento:</span>
+                                        <span class="element-value">${ritual.elemento || 'N/A'}</span>
+                                    </div>
+                                    <div class="ritual-display-level">
+                                        <span class="level-label">Nível:</span>
+                                        <span class="level-value ${canLearn ? 'met' : 'not-met'}">${ritual.nivel}</span>
+                                    </div>
+                                </div>
+                                
+                                ${ritual.descricao ? `
+                                    <div class="ritual-display-description">
+                                        <p>${ritual.descricao}</p>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
             </div>
-            ${inventoryRewardsList.length > 0 ? `<div class="rewards-section">
-                <h5 class="sub-section-title">Recompensas Adicionais</h5>
-                <ul class="stats-list">${inventoryRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul>
-            </div>` : ''}
-
-            ${weaponsHtml}
+        ` : ''}
+        
+        ${weapons.length > 0 ? `
+            <div class="arsenal-display">
+                <h4>Arsenal de Armas (${weapons.length} arma${weapons.length !== 1 ? 's' : ''})</h4>
+                <div class="weapons-grid">
+                    ${weapons.map(weapon => `
+                        <div class="weapon-display-card ${weapon.raridade ? weapon.raridade.toLowerCase() : ''}">
+                            <div class="weapon-display-header">
+                                <h5>${weapon.name}</h5>
+                                <span class="weapon-display-type">${getWeaponTypeDisplay(weapon.type)}</span>
+                            </div>
+                            
+                            <div class="weapon-display-stats">
+                                <div class="weapon-stat">
+                                    <span>Dano:</span>
+                                    <strong>${weapon.damage}</strong>
+                                </div>
+                                ${weapon.ct && weapon.ct !== 'N/A' ? `
+                                    <div class="weapon-stat">
+                                        <span>CT:</span>
+                                        <strong>${weapon.ct}</strong>
+                                    </div>
+                                ` : ''}
+                                ${weapon.dct && weapon.dct !== 'N/A' ? `
+                                    <div class="weapon-stat">
+                                        <span>DCT:</span>
+                                        <strong>${weapon.dct}</strong>
+                                    </div>
+                                ` : ''}
+                                ${weapon.criticals ? `
+                                    <div class="weapon-stat">
+                                        <span>Críticos:</span>
+                                        <strong>${weapon.criticals}</strong>
+                                    </div>
+                                ` : ''}
+                                ${weapon.resistence ? `
+                                    <div class="weapon-stat">
+                                        <span>Resistência:</span>
+                                        <strong>${weapon.resistence}</strong>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            
+                            ${weapon.passive ? `
+                                <div class="weapon-passive-display">
+                                    <span class="passive-label">Passiva:</span>
+                                    <p>${weapon.passive}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${weapon.passivaRadiante ? `
+                                <div class="weapon-passive-display radiante">
+                                    <span class="passive-label">Passiva Radiante:</span>
+                                    <p>${weapon.passivaRadiante}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${weapon.passivaTek ? `
+                                <div class="weapon-passive-display tek">
+                                    <span class="passive-label">Passiva Tek:</span>
+                                    <p>${weapon.passivaTek}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${weapon.modificadoresLista && weapon.modificadoresLista.length > 0 ? `
+                                <div class="weapon-modifiers-display">
+                                    <span class="modifiers-label">Modificadores:</span>
+                                    <ul>
+                                        ${weapon.modificadoresLista.map(mod => `
+                                            <li>
+                                                <strong>${mod.nome}:</strong> ${mod.efeito}
+                                                ${mod.descricao ? `<br><small>${mod.descricao}</small>` : ''}
+                                            </li>
+                                        `).join('')}
+                                    </ul>
+                                </div>
+                            ` : weapon.modifiers ? `
+                                <div class="weapon-modifiers-display">
+                                    <span class="modifiers-label">Modificadores:</span>
+                                    <p>${weapon.modifiers}</p>
+                                </div>
+                            ` : ''}
+                            
+                            ${weapon.description ? `
+                                <div class="weapon-description-display">
+                                    <span class="description-label">Descrição:</span>
+                                    <p>${weapon.description}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        ` : ''}
+        
+        ${inventory ? `
+            <div class="inventory-display">
+                <h4>Inventário</h4>
+                <p>${inventory}</p>
+            </div>
+        ` : ''}
+        
+        <div class="rewards-display">
+            <h4>Recompensas por Nível</h4>
+            <ul>
+                ${getLevelRewards(level).map(reward => `<li>${reward}</li>`).join('')}
+            </ul>
         </div>
-
-        ${levelRewardsList.length > 0 ? `<div class="ficha-section"><h4 class="section-title">Recompensas Gerais por Nível</h4><ul class="stats-list">${levelRewardsList.map(item => `<li><span class="attribute-value">${item}</span></li>`).join('')}</ul></div>` : ''}
+        
+        <!-- NOVO: Resumo Final dos Status com Mutação -->
+        <div class="final-summary">
+            <h4><i class="fas fa-chart-pie"></i> Resumo Final dos Status</h4>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">Vida Total:</div>
+                    <div class="summary-value">${vida}</div>
+                    <div class="summary-breakdown">
+                        <small>Base: ${55 + (attributes.vig * 15)}</small>
+                        <small>Classe: ${classBonuses.vida}</small>
+                        <small>Nível: ${levelBonuses.vida}</small>
+                        ${totalMutationVida > 0 ? `<small>Mutações: +${totalMutationVida}</small>` : ''}
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Determinação Total:</div>
+                    <div class="summary-value">${determinacaoSanidade}</div>
+                    <div class="summary-breakdown">
+                        <small>Base: ${55 + (attributes.int * 10) + (attributes.set * 15)}</small>
+                        <small>Classe: ${classBonuses.determinacaoSanidade}</small>
+                        <small>Nível: ${levelBonuses.determinacaoSanidade}</small>
+                        ${totalMutationSanidade > 0 ? `<small>Mutações: +${totalMutationSanidade}</small>` : ''}
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Resistência Total:</div>
+                    <div class="summary-value">${resistencia}</div>
+                    <div class="summary-breakdown">
+                        <small>Base: ${15 + (attributes.vig * 5)}</small>
+                        <small>Classe: ${classBonuses.resistencia}</small>
+                        ${totalMutationResistencia > 0 ? `<small>Mutações: +${totalMutationResistencia}</small>` : ''}
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Fôlego Total:</div>
+                    <div class="summary-value">${folego}</div>
+                    <div class="summary-breakdown">
+                        <small>Base: ${4 + (attributes.vig * 1)}</small>
+                        <small>Classe: ${classBonuses.folego}</small>
+                        ${totalMutationFolego > 0 ? `<small>Mutações: +${totalMutationFolego}</small>` : ''}
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Armadura Total:</div>
+                    <div class="summary-value">${armadura}</div>
+                    <div class="summary-breakdown">
+                        <small>Base: 5</small>
+                        <small>Classe: ${classBonuses.armadura}</small>
+                        <small>Nível: ${levelBonuses.armadura}</small>
+                        ${totalMutationArmadura > 0 ? `<small>Mutações: +${totalMutationArmadura}</small>` : ''}
+                    </div>
+                </div>
+            </div>
+        </div>
     `;
+    
+    // Adicionar o HTML gerado
+    statsDiv.innerHTML = statsHTML;
+    
+    // Mostrar resultados
+    document.getElementById('results').style.display = 'block';
+    
+    // Salvar automaticamente
+    saveCharacterData();
+}
 
-    document.getElementById("stats").innerHTML = statsHtml;
-    document.getElementById("results").style.display = "block";
-    document.getElementById("results").scrollIntoView({ behavior: 'smooth' });
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Inicializando ficha de personagem...');
+    
+    // Inicializar listeners básicos
+    initializeEventListeners();
+    
+    // Configurar salvamento antes de sair
+    setupBeforeUnload();
+    
+    // Carregar dados salvos
+    loadCharacterData();
+    
+    // Atualizar displays
+    updateAttributePointsDisplay();
+    updateLevelBar();
+    updateCenterLevel();
+    updateBonusSystem();
+    
+    // CARREGAR ARMAS DA PÁGINA DE ITENS
+    loadWeaponsFromStorage();
+    updateArsenalDisplay();
+    
+    // CARREGAR RITUAIS DA PÁGINA DE PODERES
+    loadRitualsFromStorage();
+    
+    // Verificar usuário logado
+    getLoggedInUser();
+    
+    // 🔥 CONFIGURAR LISTENERS DA PRIMAL NO CARREGAMENTO INICIAL
+    // Usamos setTimeout para garantir que o DOM esteja completamente carregado
+    setTimeout(() => {
+        console.log('🎯 Configurando listeners da primal...');
+        setupAllPrimalListeners();
+        
+        // Sincronizar primal
+        syncPrimalData();
+        
+        // Debug: verificar se tudo está funcionando
+        console.log('✅ Sistema de ficha inicializado');
+        console.log('📊 Primal Mutation:', characterMutations.find(m => m.id === 0));
+        
+        // Verificar inputs da primal
+        const primalInputs = [
+            'primalVida', 'primalSanidade', 'primalArmadura', 
+            'primalFolego', 'primalResistencia'
+        ];
+        
+        primalInputs.forEach(id => {
+            const input = document.getElementById(id);
+            if (input) {
+                console.log(`✅ Input ${id} encontrado, valor: ${input.value}`);
+            }
+        });
+    }, 1000); // Aguardar 1 segundo para garantir tudo carregou
+});
+
+
+function getWeaponTypeDisplay(type) {
+    const types = {
+        'arma_branca': 'Arma Branca',
+        'arma_fogo': 'Arma de Fogo',
+        'arma_arcana': 'Arma Arcana',
+        'arma_explosiva': 'Arma Explosiva',
+        'arma_distancia': 'Arma à Distância',
+        'defesa': 'Defesa',
+        'especial': 'Especial'
+    };
+    return types[type] || type;
+}
+
+function getLevelBonuses(level) {
+    const bonuses = {
+        vida: 0,
+        determinacaoSanidade: 0,
+        armadura: 0
+    };
+    
+    if (level >= 50) bonuses.vida += 30;
+    if (level >= 65) bonuses.determinacaoSanidade += 20;
+    if (level >= 80) bonuses.armadura += 10;
+    if (level >= 95) {
+        bonuses.vida += 20;
+        bonuses.determinacaoSanidade += 20;
+    }
+    if (level >= 99) bonuses.armadura += 10;
+    
+    return bonuses;
+}
+
+
+
+function getClassBonuses(className) {
+    const bonuses = {
+        vida: 0,
+        determinacaoSanidade: 0,
+        resistencia: 0,
+        folego: 0,
+        armadura: 0
+    };
+    
+    switch(className) {
+        case 'guerreiro':
+            bonuses.vida += 20;
+            bonuses.armadura += 20;
+            break;
+        case 'atirador':
+            bonuses.vida += 10;
+            bonuses.determinacaoSanidade += 10;
+            break;
+        case 'forjador':
+            bonuses.vida += 15;
+            bonuses.resistencia += 5;
+            break;
+        case 'arcano':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 25;
+            break;
+        case 'cientista':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 20;
+            break;
+        case 'sobrevivente':
+            bonuses.vida += 15;
+            bonuses.folego += 1;
+            break;
+        case 'construtor':
+            bonuses.vida += 15;
+            break;
+        case 'medico':
+            bonuses.determinacaoSanidade += 25;
+            bonuses.armadura += 10;
+            break;
+    }
+    
+    return bonuses;
+}
+
+function getLevelRewards(level) {
+    const rewards = [];
+    
+    if (level >= 15) rewards.push('Nível 15: +1 Ponto de Atributo');
+    if (level >= 30) rewards.push('Nível 30: +3 slots para Bônus de Ação');
+    if (level >= 50) {
+        rewards.push('Nível 50: +30 de Vida');
+        rewards.push('Nível 50: +3 slots para Bônus de Ação');
+        rewards.push('Nível 50: Convite da Linhagem de Athenas');
+        rewards.push('Nível 50: Presente de Evento Principal');
+    }
+    if (level >= 65) rewards.push('Nível 65: Mutação Primal evolui para Estágio 2');
+    if (level >= 95) rewards.push('Nível 95: Mutação Primal evolui para Estágio 3');
+    if (level >= 99) rewards.push('Nível 99: Mutação Primal evolui para Estágio 4');
+    
+    return rewards;
+}
+
+// ==============================================
+// FUNÇÕES DE EXPORTAÇÃO (ATUALIZADAS COM RITUAIS)
+// ==============================================
+
+function saveForm() {
+    if (saveCharacterData()) {
+        alert('Ficha salva com sucesso!');
+    }
+}
+
+function resetForm() {
+    if (confirm('Tem certeza que deseja limpar todo o formulário? Esta ação não pode ser desfeita.')) {
+        document.getElementById('characterForm').reset();
+        
+        // Resetar variáveis
+        attributesBase = { agi: 1, for: 1, int: 1, set: 1, vig: 1 };
+        characterMutations = [
+            {
+                id: 0,
+                name: "MUTAÇÃO PRIMAL",
+                type: "primal",
+                description: "",
+                source: "Origem do Personagem",
+                stage: 1,
+                fixed: true
+            }
+        ];
+        allBonuses = [];
+        learnedBonuses = [];
+        rituals = [];
+        weapons = [];
+        
+        // Resetar foto
+        const preview = document.getElementById('preview');
+        const centerPreview = document.getElementById('centerPreview');
+        const photoPreview = document.getElementById('photoPreview');
+        const placeholder = photoPreview.querySelector('.photo-placeholder');
+        const centerPlaceholder = document.querySelector('.center-placeholder');
+        
+        preview.src = '';
+        preview.style.display = 'none';
+        centerPreview.src = '';
+        centerPreview.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'flex';
+        if (centerPlaceholder) centerPlaceholder.style.display = 'flex';
+        
+        // Resetar displays
+        updateAttributesDisplay();
+        updateAttributePointsDisplay();
+        validateLevelInput();
+        updateBonusSystem();
+        renderMutations();
+        updateBonusTables();
+        updateRitualsDisplay();
+        updateArsenalDisplay();
+        
+        // Esconder resultados
+        document.getElementById('results').style.display = 'none';
+        
+        alert('Formulário limpo com sucesso!');
+    }
 }
 
 function copyFicha() {
-    const statsDiv = document.getElementById("stats");
-    if (!statsDiv) {
-        alert("A ficha calculada não está disponível para cópia.");
+    const results = document.getElementById('results');
+    if (!results || results.style.display === 'none') {
+        alert('⚠️ Calcule a ficha primeiro usando o botão "Calcular Ficha"!');
         return;
     }
-
-    const tempDiv = statsDiv.cloneNode(true);
-    const photoDisplay = tempDiv.querySelector('.photo-display');
-    if (photoDisplay) photoDisplay.remove();
-
-    let fichaText = '=== FICHA DE PERSONAGEM - RPG ARK ===\n\n';
-    tempDiv.querySelectorAll('.ficha-section').forEach(section => {
-        const sectionTitleElement = section.querySelector('.section-title');
-        if (sectionTitleElement) {
-            fichaText += `=== ${sectionTitleElement.textContent.trim().toUpperCase()} ===\n\n`;
+    
+    const fichaText = generateFichaText();
+    
+    // Criar um elemento textarea temporário para cópia
+    const textArea = document.createElement('textarea');
+    textArea.value = fichaText;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    textArea.style.top = '-999999px';
+    document.body.appendChild(textArea);
+    
+    try {
+        textArea.select();
+        textArea.setSelectionRange(0, 99999); // Para dispositivos móveis
+        
+        const successful = document.execCommand('copy');
+        
+        if (successful) {
+            // Feedback visual
+            const copyBtn = document.querySelector('button[onclick="copyFicha()"]');
+            const originalText = copyBtn.innerHTML;
+            
+            copyBtn.innerHTML = '<i class="fas fa-check"></i> Ficha Copiada!';
+            copyBtn.style.backgroundColor = '#27ae60';
+            
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.backgroundColor = '';
+            }, 2000);
+            
+            console.log('📋 Ficha copiada com sucesso!');
+            console.log('Tamanho do texto:', fichaText.length, 'caracteres');
+        } else {
+            throw new Error('Falha no comando de cópia');
         }
+    } catch (err) {
+        console.error('Erro ao copiar:', err);
+        alert('❌ Erro ao copiar a ficha. Tente selecionar e copiar manualmente.');
+    } finally {
+        document.body.removeChild(textArea);
+    }
+}
 
-        section.querySelectorAll('.sub-section-title').forEach(subTitleElement => {
-            fichaText += `-- ${subTitleElement.textContent.trim()} --\n\n`;
-        });
-
-        const nameElement = section.querySelector('.titulo-ficha');
-        if (nameElement) {
-            fichaText += `NOME: ${nameElement.textContent.trim()}\n`;
-        }
-
-        const infoItems = section.querySelectorAll('.info-item');
-        infoItems.forEach(item => {
-            const label = item.querySelector('.info-label')?.textContent.trim();
-            const value = item.querySelector('.info-value')?.textContent.trim();
-            if (label && value) {
-                fichaText += `${label}: ${value}\n`;
-            }
-        });
-
-        const loreElement = section.querySelector('.lore-section .formatted-text');
-        if (loreElement) {
-            fichaText += `\nHISTÓRIA:\n${loreElement.textContent.trim()}\n\n`;
-        }
-
-        const attributeItems = section.querySelectorAll('.attribute-item');
-        if (attributeItems.length > 0) {
-            fichaText += `ATRIBUTOS:\n`;
-            attributeItems.forEach(item => {
-                const name = item.querySelector('.attribute-name')?.textContent.trim();
-                const value = item.querySelector('.attribute-value')?.textContent.trim();
-                if (name && value) {
-                    fichaText += `  ${name}: ${value}\n`;
+function previewFicha() {
+    const results = document.getElementById('results');
+    if (!results || results.style.display === 'none') {
+        alert('Calcule a ficha primeiro!');
+        return;
+    }
+    
+    const fichaText = generateFichaText();
+    
+    // Criar janela/modal de pré-visualização
+    const previewWindow = window.open('', 'Pré-visualização da Ficha', 
+        'width=800,height=600,scrollbars=yes,resizable=yes');
+    
+    previewWindow.document.write(`
+        <html>
+        <head>
+            <title>Pré-visualização da Ficha - RPG ARK</title>
+            <style>
+                body {
+                    font-family: 'Courier New', monospace;
+                    line-height: 1.4;
+                    margin: 20px;
+                    background: #1a1a1a;
+                    color: #e0e0e0;
+                    white-space: pre-wrap;
+                    font-size: 12px;
                 }
-            });
-            fichaText += '\n';
-        }
-
-        const statItems = section.querySelectorAll('.stat-item');
-        if (statItems.length > 0) {
-            fichaText += `ESTATÍSTICAS:\n`;
-            statItems.forEach(item => {
-                const label = item.querySelector('.stat-label')?.textContent.trim();
-                const value = item.querySelector('.stat-value')?.textContent.trim();
-                if (label && value) {
-                    fichaText += `  ${label}: ${value}\n`;
+                h1 {
+                    color: #d4af37;
+                    text-align: center;
                 }
-            });
-            fichaText += '\n';
-        }
-
-        const classItems = section.querySelectorAll('.class-item');
-        if (classItems.length > 0) {
-            fichaText += `CLASSES:\n`;
-            classItems.forEach(item => {
-                const label = item.querySelector('.class-label')?.textContent.trim();
-                const value = item.querySelector('.class-value')?.textContent.trim();
-                if (label && value) {
-                    fichaText += `  ${label}: ${value}\n`;
+                .section-title {
+                    color: #4fc3f7;
+                    font-weight: bold;
+                    margin-top: 20px;
+                    border-bottom: 1px solid #333;
+                    padding-bottom: 5px;
                 }
-            });
-            fichaText += '\n';
-        }
-
-        const mutationElements = section.querySelectorAll('.mutation-display');
-        if (mutationElements.length > 0) {
-            fichaText += `MUTAÇÕES:\n`;
-            mutationElements.forEach(mutation => {
-                const name = mutation.querySelector('.mutation-name')?.textContent.trim();
-                const type = mutation.querySelector('.mutation-type')?.textContent.trim();
-                const source = mutation.querySelector('.mutation-source')?.textContent.trim();
-                const description = mutation.querySelector('.mutation-description p')?.textContent.trim();
+                .copy-btn {
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #27ae60;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+                .copy-btn:hover {
+                    background: #219653;
+                }
+                .stats {
+                    background: rgba(255,255,255,0.05);
+                    padding: 10px;
+                    border-radius: 5px;
+                    margin: 10px 0;
+                }
+                .mutation {
+                    background: rgba(46, 204, 113, 0.1);
+                    padding: 10px;
+                    margin: 5px 0;
+                    border-left: 3px solid #2ecc71;
+                }
+                .weapon {
+                    background: rgba(241, 196, 15, 0.1);
+                    padding: 10px;
+                    margin: 5px 0;
+                    border-left: 3px solid #f1c40f;
+                }
+            </style>
+        </head>
+        <body>
+            <button class="copy-btn" onclick="copyToClipboard()">📋 Copiar Ficha</button>
+            <div id="fichaContent">${fichaText.replace(/\n/g, '<br>')}</div>
+            
+            <script>
+                function copyToClipboard() {
+                    const text = \`${fichaText.replace(/`/g, '\\`')}\`;
+                    navigator.clipboard.writeText(text)
+                        .then(() => {
+                            alert('Ficha copiada!');
+                            window.close();
+                        })
+                        .catch(err => {
+                            alert('Erro ao copiar: ' + err);
+                        });
+                }
                 
-                fichaText += `- ${name} (${type})\n`;
-                if (source) fichaText += `  Origem: ${source.replace('Origem:', '').trim()}\n`;
-                if (description) fichaText += `  Descrição: ${description}\n`;
-                fichaText += '\n';
-            });
-        }
-
-        const bonusLists = section.querySelectorAll('.stats-list:not(.weapon-list):not(.ritual-list)');
-        bonusLists.forEach(list => {
-            const items = list.querySelectorAll('li');
-            if (items.length > 0) {
-                items.forEach(item => {
-                    fichaText += `- ${item.textContent.trim()}\n`;
+                // Destacar seções
+                document.addEventListener('DOMContentLoaded', function() {
+                    const content = document.getElementById('fichaContent');
+                    let html = content.innerHTML;
+                    
+                    // Destacar títulos de seção
+                    html = html.replace(/📋 INFORMAÇÕES BÁSICAS/g, '<div class="section-title">📋 INFORMAÇÕES BÁSICAS</div>');
+                    html = html.replace(/⚡ ATRIBUTOS/g, '<div class="section-title">⚡ ATRIBUTOS</div>');
+                    html = html.replace(/❤️ STATUS COMPLETOS/g, '<div class="section-title">❤️ STATUS COMPLETOS</div>');
+                    html = html.replace(/🧬 MUTAÇÕES/g, '<div class="section-title">🧬 MUTAÇÕES</div>');
+                    html = html.replace(/🎯 TABELA DE BÔNUS/g, '<div class="section-title">🎯 TABELA DE BÔNUS</div>');
+                    html = html.replace(/🔮 RITUAIS E PACTOS/g, '<div class="section-title">🔮 RITUAIS E PACTOS</div>');
+                    html = html.replace(/⚔️ ARSENAL DE ARMAS/g, '<div class="section-title">⚔️ ARSENAL DE ARMAS</div>');
+                    html = html.replace(/🎒 INVENTÁRIO/g, '<div class="section-title">🎒 INVENTÁRIO</div>');
+                    html = html.replace(/🏆 RECOMPENSAS/g, '<div class="section-title">🏆 RECOMPENSAS</div>');
+                    html = html.replace(/📊 RESUMO FINAL/g, '<div class="section-title">📊 RESUMO FINAL</div>');
+                    
+                    content.innerHTML = html;
                 });
-                fichaText += '\n';
-            }
-        });
-
-        const inventoryElement = section.querySelector('.inventory-section .formatted-text');
-        if (inventoryElement) {
-            fichaText += `INVENTÁRIO:\n${inventoryElement.textContent.trim()}\n\n`;
-        }
-
-        const weaponList = section.querySelector('.weapon-list');
-        if (weaponList) {
-            const weaponItems = weaponList.querySelectorAll('li');
-            if (weaponItems.length > 0) {
-                fichaText += `ARMAS:\n`;
-                weaponItems.forEach(item => {
-                    fichaText += `- ${item.textContent.trim()}\n`;
-                });
-                fichaText += '\n';
-            }
-        }
-
-        const ritualList = section.querySelector('.ritual-list');
-        if (ritualList) {
-            const ritualItems = ritualList.querySelectorAll('li');
-            if (ritualItems.length > 0) {
-                fichaText += `RITUAIS/PACTOS:\n`;
-                ritualItems.forEach(item => {
-                    fichaText += `- ${item.textContent.trim()}\n`;
-                });
-                fichaText += '\n';
-            }
-        }
-
-        fichaText += '\n';
-    });
-
-    fichaText = fichaText.replace(/(\n\s*){3,}/g, '\n\n').trim();
-
-    navigator.clipboard.writeText(fichaText)
-        .then(() => alert("Ficha copiada para a área de transferência!"))
-        .catch(err => {
-            console.error('Erro ao copiar a ficha: ', err);
-            alert("Erro ao copiar a ficha. Por favor, tente novamente ou copie manualmente.");
-        });
+            </script>
+        </body>
+        </html>
+    `);
+    
+    previewWindow.document.close();
 }
 
 // ==============================================
-// SISTEMA DE DADOS
+// FUNÇÃO COMPLETA PARA EXPORTAR PARA PDF
 // ==============================================
 
-const menu = document.getElementById('diceMenu');
-const openMenuButton = document.getElementById('openMenu');
-const closeMenuButton = document.getElementById('closeMenu');
-const diceSelect = document.getElementById('diceSelect');
-const rollDiceButton = document.getElementById('rollDice');
-const clearRollsButton = document.getElementById('clearRolls');
-const rollList = document.getElementById('rollList');
-const totalDisplay = document.getElementById('total');
-const playerNameInput = document.getElementById('playerName');
-
-let playerScores = {};
-
-if (openMenuButton && menu && closeMenuButton) {
-    openMenuButton.addEventListener('click', () => menu.classList.remove('hidden'));
-    closeMenuButton.addEventListener('click', () => menu.classList.add('hidden'));
-}
-
-if (rollDiceButton) {
-    rollDiceButton.addEventListener('click', () => {
-        const playerName = playerNameInput.value.trim();
-        const diceType = parseInt(diceSelect.value);
-        const roll = Math.floor(Math.random() * diceType) + 1;
-
-        if (!playerName) {
-            alert("Por favor, insira o nome do jogador!");
-            return;
-        }
-
-        if (!playerScores[playerName]) playerScores[playerName] = 0;
-        playerScores[playerName] += roll;
-
-        const listItem = document.createElement('li');
-        listItem.textContent = `${playerName} = D${diceType}: ${roll} (Total: ${playerScores[playerName]})`;
-        rollList.appendChild(listItem);
-
-        totalDisplay.textContent = `Total geral: ${Object.values(playerScores).reduce((a, b) => a + b, 0)}`;
-    });
-}
-
-if (clearRollsButton) {
-    clearRollsButton.addEventListener('click', () => {
-        playerScores = {};
-        rollList.innerHTML = '';
-        totalDisplay.textContent = 'Total geral: 0';
-    });
-}
-
-function goToPage(page) {
-    window.location.href = page;
-}
-
 // ==============================================
-// NAVEGAÇÃO RESPONSIVA
+// FUNÇÃO SIMPLIFICADA PARA EXPORTAR PARA PDF
 // ==============================================
 
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function() {
-        navLinks.classList.toggle('active');
-    });
-}
-
-function updateLevelBar() {
-    const levelInput = document.getElementById("level");
-    const level = parseInt(levelInput.value) || 1;
-    const levelBarFill = document.getElementById("levelBarFill");
-
-    const percentage = Math.max(0, Math.min(100, level));
-
-    if (levelBarFill) {
-        levelBarFill.style.width = percentage + '%';
+async function exportToPDF() {
+    const results = document.getElementById('results');
+    if (!results || results.style.display === 'none') {
+        alert('⚠️ Calcule a ficha primeiro usando o botão "Calcular Ficha"!');
+        return;
     }
-}
-
-// ==============================================
-// SISTEMA DE RITUAIS
-// ==============================================
-
-function loadSelectedRitualPact() {
-    const displayContainer = document.getElementById("selectedRitualPactDisplay");
-
-    if (!displayContainer) return;
-
-    displayContainer.innerHTML = '';
-
+    
     try {
-        const storedData = localStorage.getItem(RITUALS_STORAGE_KEY);
-        const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
+        console.log('🔄 Iniciando geração de PDF...');
         
-        if (storedData) {
-            characterRituals = JSON.parse(storedData);
-        }
-        else if (characterData.characterRituals) {
-            characterRituals = characterData.characterRituals;
-        }
-        else if (characterData.rituals) {
-            characterRituals = characterData.rituals;
-        }
-        else {
-            characterRituals = [];
-        }
-
-    } catch (error) {
-        console.error("Erro ao carregar rituais:", error);
-        characterRituals = [];
-    }
-
-    if (!Array.isArray(characterRituals)) characterRituals = [];
-
-    if (characterRituals.length > 0) {
-        characterRituals.forEach((item, index) => {
-            if (!item) return;
-
-            const itemDiv = document.createElement("div");
-            itemDiv.classList.add("ritual-pact-item");
-            
-            const nome = item.nome || item.name || 'Ritual sem nome';
-            const imagem = item.imagem || item.image || '';
-            const descricao = item.descricao || item.description || 'Descrição não disponível';
-            const tipo = item.tipo || item.type || 'N/A';
-            const elemento = item.elemento || item.element || 'N/A';
-            const nivel = item.nivel || item.level || 'N/A';
-
-            itemDiv.innerHTML = `
-                <div class="ritual-pact-header">
-                    <h3>${nome}</h3>
-                    <span class="ritual-type">${elemento} / ${tipo} / Nv. ${nivel}</span>
-                </div>
-                ${imagem ? `<img src="${imagem}" alt="${nome}" class="ritual-image">` : ''}
-                <div class="ritual-info">
-                    <p class="ritual-description">${descricao}</p>
-                </div>
-                <button class="remove-ritual-pact-btn" data-index="${index}">🗑️ Remover</button>
-            `;
-            
-            displayContainer.appendChild(itemDiv);
-        });
-
-        document.querySelectorAll(".remove-ritual-pact-btn").forEach(button => {
-            button.addEventListener("click", (event) => {
-                const indexToRemove = parseInt(event.target.dataset.index);
-                removeRitualPact(indexToRemove);
-            });
-        });
-
-    } else {
-        displayContainer.innerHTML = `
-            <div class="no-rituals-message">
-                <p>📜 Nenhum ritual ou pacto selecionado.</p>
-                <p><small>Vá para a página de Rituais para adicionar alguns!</small></p>
-            </div>
+        // Mostrar loading
+        const originalBtn = document.querySelector('button[onclick="exportToPDF()"]');
+        const originalBtnText = originalBtn.innerHTML;
+        originalBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando PDF...';
+        originalBtn.disabled = true;
+        
+        // Coletar dados básicos
+        const name = document.getElementById('name').value || 'Personagem Sem Nome';
+        
+        // Primeiro, vamos criar um elemento temporário com conteúdo otimizado para PDF
+        const tempDiv = document.createElement('div');
+        tempDiv.id = 'tempPdfContainer';
+        tempDiv.style.cssText = `
+            position: absolute;
+            left: -10000px;
+            top: 0;
+            width: 800px;
+            background: white;
+            color: black;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            box-sizing: border-box;
         `;
-    }
-    
-    synchronizeRitualsWithCharacterData();
-}
-
-function synchronizeRitualsWithCharacterData() {
-    try {
-        const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-        characterData.characterRituals = characterRituals;
-        localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-    } catch (error) {
-        console.error("Erro ao sincronizar rituais:", error);
-    }
-}
-
-function updateRitualsInBothStorages(ritualsArray) {
-    localStorage.setItem(RITUALS_STORAGE_KEY, JSON.stringify(ritualsArray));
-    const characterData = JSON.parse(localStorage.getItem(LOCAL_CHARACTER_STORAGE_KEY) || '{}');
-    characterData.characterRituals = ritualsArray;
-    localStorage.setItem(LOCAL_CHARACTER_STORAGE_KEY, JSON.stringify(characterData));
-}
-
-function removeRitualPact(indexToRemove) {
-    if (indexToRemove !== undefined && indexToRemove >= 0 && indexToRemove < characterRituals.length) {
-        const removedItemName = characterRituals[indexToRemove].nome || characterRituals[indexToRemove].name;
-        characterRituals.splice(indexToRemove, 1);
-        updateRitualsInBothStorages(characterRituals);
-        loadSelectedRitualPact();
-        alert(`"${removedItemName}" removido da ficha.`);
-    }
-}
-
-// ==============================================
-// SISTEMA DE PDF MELHORADO PARA MOBILE
-// ==============================================
-
-function generatePDF() {
-    if (isGeneratingPDF) {
-        alert('Aguarde a geração do PDF atual terminar.');
-        return;
-    }
-
-    const resultsContainer = document.getElementById('results');
-    if (!resultsContainer || resultsContainer.style.display === 'none') {
-        alert('Por favor, calcule a ficha primeiro antes de gerar o PDF.');
-        return;
-    }
-
-    // Verificar se as bibliotecas estão carregadas
-    if (typeof html2canvas === 'undefined' || typeof jspdf === 'undefined') {
-        alert('Bibliotecas de PDF não estão disponíveis. Usando método alternativo...');
-        generateSimplePDFWithFeedback();
-        return;
-    }
-
-    // Detectar dispositivo móvel
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    if (isMobile) {
-        offerMobilePDFOptions();
-        return;
-    }
-
-    generateDesktopPDF();
-}
-
-// ==============================================
-// MÉTODO PARA DESKTOP
-// ==============================================
-
-function generateDesktopPDF() {
-    isGeneratingPDF = true;
-    
-    const button = document.querySelector('.pdf-button');
-    const originalButtonText = button.innerHTML;
-    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gerando...';
-    button.disabled = true;
-    
-    showProcessingNotification('Gerando PDF...');
-    
-    const statsElement = document.getElementById('stats');
-    const tempDiv = document.createElement('div');
-    tempDiv.style.cssText = 'position: absolute; left: -9999px; top: 0; width: 800px; background: white; padding: 20px;';
-    tempDiv.innerHTML = statsElement.innerHTML;
-    document.body.appendChild(tempDiv);
-    
-    html2canvas(tempDiv, {
-        scale: 1.5,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-        onclone: function(clonedDoc) {
-            clonedDoc.body.style.backgroundColor = '#ffffff';
-            clonedDoc.body.style.color = '#333333';
-        }
-    }).then(canvas => {
-        document.body.removeChild(tempDiv);
         
+        // Conteúdo HTML simplificado para PDF
+        tempDiv.innerHTML = generatePDFContent();
+        
+        document.body.appendChild(tempDiv);
+        
+        // Verificar se as bibliotecas estão carregadas
+        if (typeof window.jspdf === 'undefined' || typeof html2canvas === 'undefined') {
+            throw new Error('Bibliotecas para PDF não carregadas. Recarregue a página.');
+        }
+        
+        // Usar html2canvas para capturar o conteúdo
+        const canvas = await html2canvas(tempDiv, {
+            scale: 1.5,
+            useCORS: true,
+            backgroundColor: '#ffffff',
+            logging: false,
+            allowTaint: true
+        });
+        
+        // Configurar o PDF
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('p', 'mm', 'a4');
+        
+        // Calcular dimensões
+        const imgWidth = 210; // A4 width in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        
+        // Converter canvas para imagem
         const imgData = canvas.toDataURL('image/png');
-        const pdf = new jspdf.jsPDF({
-            orientation: 'portrait',
-            unit: 'mm',
-            format: 'a4'
-        });
-
-        const imgWidth = 210;
-        const pageHeight = 297;
-        const imgHeight = canvas.height * imgWidth / canvas.width;
         
-        let heightLeft = imgHeight;
-        let position = 0;
+        // Adicionar imagem ao PDF
+        pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
         
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+        // Gerar nome do arquivo
+        const fileName = `ficha_${name.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
         
-        while (heightLeft > 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        }
-
-        const characterName = document.getElementById('name').value || 'personagem';
-        const fileName = `ficha_${characterName.toLowerCase().replace(/\s+/g, '_')}.pdf`;
-        
-        // Gerar blob do PDF
-        const pdfBlob = pdf.output('blob');
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        
-        // Tentar abrir o PDF em uma nova janela
-        try {
-            const pdfWindow = window.open(pdfUrl, '_blank');
-            if (pdfWindow) {
-                pdfWindow.focus();
-                showSuccessMessage(`PDF gerado! Abrindo em nova janela...`);
-            } else {
-                // Se não puder abrir, forçar download
-                pdf.save(fileName);
-                showMobileDownloadInstructions(fileName);
-            }
-        } catch (error) {
-            // Fallback para download direto
-            pdf.save(fileName);
-            showMobileDownloadInstructions(fileName);
-        }
-        
-        // Liberar URL
-        setTimeout(() => URL.revokeObjectURL(pdfUrl), 1000);
-        
-        button.innerHTML = originalButtonText;
-        button.disabled = false;
-        isGeneratingPDF = false;
-        
-    }).catch(error => {
-        console.error('Erro ao gerar PDF:', error);
-        if (tempDiv.parentNode) {
-            document.body.removeChild(tempDiv);
-        }
-        
-        button.innerHTML = originalButtonText;
-        button.disabled = false;
-        isGeneratingPDF = false;
-        
-        showErrorNotification('Erro ao gerar PDF. Tentando método simples...');
-        setTimeout(() => generateSimplePDFWithFeedback(), 1000);
-    });
-}
-
-// ==============================================
-// MÉTODO SIMPLES PARA MOBILE/DESKTOP
-// ==============================================
-
-function generateSimplePDFWithFeedback() {
-    const { jsPDF } = window.jspdf;
-    
-    showProcessingNotification('Criando PDF simples...');
-    
-    const characterName = document.getElementById('name').value || 'Personagem';
-    const level = document.getElementById('level').value || '1';
-    const age = document.getElementById('age').value || 'N/I';
-    
-    const attributes = ['agi', 'for', 'int', 'set', 'vig'];
-    const attributeNames = ['Agilidade', 'Força', 'Inteligência', 'Sentidos', 'Vitalidade'];
-    const attributeValues = attributes.map(attr => 
-        parseInt(document.getElementById(`${attr}Value`)?.textContent || '1')
-    );
-    
-    const class1 = document.getElementById('class1').value || 'N/I';
-    const class2 = document.getElementById('class2').value || 'N/I';
-    const combatClass = document.getElementById('combatClass').value || 'N/I';
-    
-    const vida = 55 + (parseInt(document.getElementById('vigValue')?.textContent || 1) * 15);
-    const determinacao = 55 + (parseInt(document.getElementById('intValue')?.textContent || 1) * 10) + 
-                        (parseInt(document.getElementById('setValue')?.textContent || 1) * 15);
-    
-    const pdf = new jsPDF();
-    const margin = 20;
-    let y = margin;
-    const lineHeight = 7;
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    
-    // Cabeçalho
-    pdf.setFontSize(20);
-    pdf.setFont('helvetica', 'bold');
-    pdf.setTextColor(0, 102, 204);
-    pdf.text('FICHA DE PERSONAGEM - RPG ARK', pageWidth / 2, y, { align: 'center' });
-    y += 15;
-    
-    pdf.setFontSize(16);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text(characterName, pageWidth / 2, y, { align: 'center' });
-    y += 10;
-    
-    pdf.setFontSize(12);
-    pdf.text(`Nível: ${level}`, margin, y);
-    pdf.text(`Idade: ${age}`, pageWidth - margin - 30, y);
-    y += 10;
-    
-    pdf.setFontSize(10);
-    pdf.setTextColor(100, 100, 100);
-    pdf.text(`Gerado em: ${new Date().toLocaleDateString('pt-BR')}`, pageWidth / 2, y, { align: 'center' });
-    y += 15;
-    
-    // Linha divisória
-    pdf.setDrawColor(200, 200, 200);
-    pdf.line(margin, y, pageWidth - margin, y);
-    y += 10;
-    
-    // Atributos
-    pdf.setFontSize(14);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text('ATRIBUTOS PRINCIPAIS', margin, y);
-    y += 10;
-    
-    pdf.setFontSize(11);
-    const attributesPerRow = 2;
-    for (let i = 0; i < attributes.length; i++) {
-        const col = i % attributesPerRow;
-        const row = Math.floor(i / attributesPerRow);
-        const x = margin + (col * 85);
-        
-        pdf.setFillColor(240, 240, 240);
-        pdf.rect(x, y + (row * 15), 80, 12, 'F');
-        
-        pdf.setTextColor(0, 0, 0);
-        pdf.text(`${attributeNames[i]}:`, x + 5, y + (row * 15) + 8);
-        
-        pdf.setTextColor(255, 0, 0);
-        pdf.setFont('helvetica', 'bold');
-        pdf.text(attributeValues[i].toString(), x + 70, y + (row * 15) + 8);
-        pdf.setFont('helvetica', 'normal');
-    }
-    
-    y += (Math.ceil(attributes.length / attributesPerRow) * 15) + 15;
-    
-    // Classes
-    pdf.setFontSize(14);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text('CLASSES', margin, y);
-    y += 10;
-    
-    pdf.setFontSize(11);
-    pdf.text(`Classe Primitiva 1: ${class1}`, margin, y);
-    y += 8;
-    pdf.text(`Classe Primitiva 2: ${class2}`, margin, y);
-    y += 8;
-    pdf.text(`Classe de Combate: ${combatClass}`, margin, y);
-    y += 15;
-    
-    // Estatísticas
-    pdf.setFontSize(14);
-    pdf.setTextColor(0, 0, 0);
-    pdf.text('ESTATÍSTICAS', margin, y);
-    y += 10;
-    
-    pdf.setFontSize(11);
-    pdf.text(`Vida: ${vida}`, margin, y);
-    y += 8;
-    pdf.text(`Determinação: ${determinacao}`, margin, y);
-    y += 15;
-    
-    // Rodapé
-    pdf.setFontSize(8);
-    pdf.setTextColor(100, 100, 100);
-    pdf.text('© RPG ARK - Ficha gerada automaticamente', pageWidth / 2, 280, { align: 'center' });
-    
-    const fileName = `ficha_${characterName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
-    
-    // Verificar se é mobile e oferecer opções
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    
-    if (isMobile && navigator.share) {
-        // Usar Web Share API no mobile
-        pdf.output('blob').then(blob => {
-            const file = new File([blob], fileName, { type: 'application/pdf' });
-            
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                navigator.share({
-                    files: [file],
-                    title: `Ficha de ${characterName}`,
-                    text: 'Ficha de personagem RPG ARK'
-                }).then(() => {
-                    showSuccessMessage('PDF compartilhado com sucesso!');
-                }).catch(error => {
-                    console.log('Erro ao compartilhar:', error);
-                    // Fallback para download
-                    pdf.save(fileName);
-                    showMobileDownloadInstructions(fileName);
-                });
-            } else {
-                pdf.save(fileName);
-                showMobileDownloadInstructions(fileName);
-            }
-        });
-    } else {
-        // Download normal
+        // Salvar o PDF
         pdf.save(fileName);
         
-        if (isMobile) {
-            showMobileDownloadInstructions(fileName);
-        } else {
-            showSuccessMessage(`PDF salvo como: ${fileName}<br><br>Verifique sua pasta de Downloads.`);
-        }
-    }
-}
-
-// ==============================================
-// OPÇÕES PARA MOBILE
-// ==============================================
-
-function offerMobilePDFOptions() {
-    const modal = document.createElement('div');
-    modal.id = 'pdfOptionsModal';
-    modal.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(10, 10, 20, 0.95);
-        z-index: 9999;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    `;
-    
-    const content = document.createElement('div');
-    content.style.cssText = `
-        background: rgba(16, 16, 25, 0.95);
-        border: 2px solid rgba(176, 255, 248, 0.3);
-        border-radius: 15px;
-        padding: 30px;
-        max-width: 500px;
-        width: 100%;
-        max-height: 90vh;
-        overflow-y: auto;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-    `;
-    
-    content.innerHTML = `
-        <div style="padding: 20px; text-align: center;">
-            <h3 style="color: #b6fff3; margin-bottom: 20px;">📱 Gerar PDF (Mobile)</h3>
-            <p style="color: #d6feff; margin-bottom: 30px;">
-                Escolha como deseja obter sua ficha:
-            </p>
-            <div style="display: flex; flex-direction: column; gap: 15px;">
-                <button onclick="closeModalAndGenerate('simple')" style="
-                    background: linear-gradient(45deg, #6c63ff, #854fff);
-                    color: white;
-                    border: none;
-                    padding: 15px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    font-size: 16px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                ">
-                    📄 PDF Rápido
-                </button>
-                <button onclick="closeModalAndGenerate('full')" style="
-                    background: linear-gradient(45deg, #3498db, #2ecc71);
-                    color: white;
-                    border: none;
-                    padding: 15px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    font-size: 16px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                ">
-                    🖼️ PDF Completo
-                </button>
-                <button onclick="shareAsImage()" style="
-                    background: linear-gradient(45deg, #9b59b6, #e056fd);
-                    color: white;
-                    border: none;
-                    padding: 15px;
-                    border-radius: 8px;
-                    cursor: pointer;
-                    font-weight: bold;
-                    font-size: 16px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                ">
-                    📱 Compartilhar Imagem
-                </button>
-            </div>
-            <div style="margin-top: 25px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px;">
-                <p style="color: #b6fff3; font-size: 14px; margin-bottom: 8px;">
-                    <strong>📍 Onde o PDF será salvo?</strong>
-                </p>
-                <p style="color: #aaa; font-size: 12px; line-height: 1.4;">
-                    <strong>Android:</strong> Pasta Downloads<br>
-                    <strong>iPhone/iPad:</strong> Pasta Arquivos → Downloads<br>
-                    <strong>Google Chrome:</strong> Menu → Downloads<br>
-                    <strong>Safari:</strong> Ícone de download na barra de URL
-                </p>
-            </div>
-        </div>
-    `;
-    
-    modal.appendChild(content);
-    document.body.appendChild(modal);
-    
-    const closeButton = document.createElement('button');
-    closeButton.innerHTML = '✕';
-    closeButton.style.cssText = `
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        background: rgba(255, 255, 255, 0.1);
-        color: white;
-        border: none;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    `;
-    closeButton.onclick = () => document.body.removeChild(modal);
-    content.appendChild(closeButton);
-}
-
-function closeModalAndGenerate(type) {
-    const modal = document.getElementById('pdfOptionsModal');
-    if (modal) modal.remove();
-    
-    if (type === 'simple') {
-        generateSimplePDFWithFeedback();
-    } else if (type === 'full') {
-        generateDesktopPDF();
-    }
-}
-
-// ==============================================
-// FUNÇÃO PARA COMPARTILHAR COMO IMAGEM
-// ==============================================
-
-function shareAsImage() {
-    const modal = document.getElementById('pdfOptionsModal');
-    if (modal) modal.remove();
-    
-    showProcessingNotification('Capturando imagem da ficha...');
-    
-    const statsElement = document.getElementById('stats');
-    
-    html2canvas(statsElement, {
-        scale: 1,
-        useCORS: true,
-        logging: false,
-        backgroundColor: '#0a0a14',
-    }).then(canvas => {
-        canvas.toBlob(blob => {
-            const characterName = document.getElementById('name').value || 'Personagem';
-            const fileName = `ficha_${characterName.replace(/\s+/g, '_')}.png`;
-            const file = new File([blob], fileName, { type: 'image/png' });
-            
-            if (navigator.share) {
-                if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    navigator.share({
-                        files: [file],
-                        title: `Ficha de ${characterName}`,
-                        text: 'Minha ficha de personagem RPG ARK'
-                    }).then(() => {
-                        showSuccessMessage('Imagem compartilhada com sucesso!');
-                    }).catch(error => {
-                        console.log('Erro ao compartilhar:', error);
-                        downloadImage(canvas, fileName);
-                    });
-                } else {
-                    downloadImage(canvas, fileName);
-                }
-            } else {
-                downloadImage(canvas, fileName);
-            }
-        });
-    }).catch(error => {
-        console.error('Erro ao capturar imagem:', error);
-        showErrorNotification('Erro ao criar imagem. Tente o PDF simples.');
-    });
-}
-
-function downloadImage(canvas, fileName) {
-    const link = document.createElement('a');
-    link.download = fileName;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    
-    showMobileDownloadInstructions(fileName);
-}
-
-// ==============================================
-// FUNÇÕES DE NOTIFICAÇÃO
-// ==============================================
-
-function showMobileDownloadInstructions(fileName) {
-    const notification = document.createElement('div');
-    notification.id = 'mobileDownloadNotification';
-    notification.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(45deg, rgba(16, 16, 25, 0.98), rgba(25, 10, 40, 0.98));
-        color: white;
-        padding: 25px;
-        border-radius: 15px;
-        border: 2px solid rgba(176, 255, 248, 0.3);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-        z-index: 10001;
-        max-width: 90%;
-        width: 400px;
-        text-align: center;
-    `;
-    
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const isAndroid = /Android/i.test(navigator.userAgent);
-    
-    let instructions = '';
-    
-    if (isIOS) {
-        instructions = `
-            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
-                <strong>✅ PDF Baixado com Sucesso!</strong>
-            </p>
-            <p style="color: #d6feff; margin-bottom: 15px;">
-                Arquivo: <strong>${fileName}</strong>
-            </p>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
-                    <strong>📱 Como encontrar no iPhone/iPad:</strong>
-                </p>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.5; text-align: left;">
-                    1. Abra o app <strong>Arquivos</strong><br>
-                    2. Vá para <strong>Downloads</strong> ou <strong>Nesta iPhone</strong><br>
-                    3. Procure por: <strong>${fileName}</strong><br>
-                    4. Toque para abrir
-                </p>
-            </div>
-            <p style="color: #888; font-size: 12px; margin-top: 10px;">
-                Dica: Verifique também na barra de downloads do Safari.
-            </p>
-        `;
-    } else if (isAndroid) {
-        instructions = `
-            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
-                <strong>✅ PDF Baixado com Sucesso!</strong>
-            </p>
-            <p style="color: #d6feff; margin-bottom: 15px;">
-                Arquivo: <strong>${fileName}</strong>
-            </p>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
-                    <strong>📱 Como encontrar no Android:</strong>
-                </p>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.5; text-align: left;">
-                    1. Abra o app <strong>Arquivos</strong> ou <strong>Meus Arquivos</strong><br>
-                    2. Vá para <strong>Downloads</strong> ou <strong>Download</strong><br>
-                    3. Procure por: <strong>${fileName}</strong><br>
-                    4. Toque para abrir
-                </p>
-            </div>
-            <p style="color: #888; font-size: 12px; margin-top: 10px;">
-                Dica: Use um app como Adobe Acrobat ou Google PDF Viewer.
-            </p>
-        `;
-    } else {
-        instructions = `
-            <p style="color: #b6fff3; margin-bottom: 15px; font-size: 18px;">
-                <strong>✅ PDF Baixado com Sucesso!</strong>
-            </p>
-            <p style="color: #d6feff; margin-bottom: 15px;">
-                Arquivo: <strong>${fileName}</strong>
-            </p>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                <p style="color: #ffe375; font-size: 14px; margin-bottom: 10px;">
-                    <strong>💻 Local do arquivo:</strong>
-                </p>
-                <p style="color: #aaa; font-size: 13px; line-height: 1.5;">
-                    • Pasta padrão: <strong>Downloads</strong><br>
-                    • Procure na barra de downloads do seu navegador<br>
-                    • Ou abra sua pasta de Downloads
-                </p>
-            </div>
-        `;
-    }
-    
-    notification.innerHTML = `
-        ${instructions}
-        <div style="display: flex; gap: 10px; margin-top: 20px;">
-            <button onclick="document.body.removeChild(document.getElementById('mobileDownloadNotification'))" style="
-                flex: 1;
-                background: rgba(255, 255, 255, 0.1);
-                color: white;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                padding: 10px;
-                border-radius: 8px;
-                cursor: pointer;
-            ">
-                Fechar
-            </button>
-            <button onclick="tryOpenDownloadsFolder()" style="
-                flex: 1;
-                background: linear-gradient(45deg, #6c63ff, #854fff);
-                color: white;
-                border: none;
-                padding: 10px;
-                border-radius: 8px;
-                cursor: pointer;
-            ">
-                📂 Abrir Downloads
-            </button>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Auto-fechar após 20 segundos
-    setTimeout(() => {
-        if (document.getElementById('mobileDownloadNotification')) {
-            document.body.removeChild(notification);
-        }
-    }, 20000);
-}
-
-function tryOpenDownloadsFolder() {
-    const notification = document.getElementById('mobileDownloadNotification');
-    if (notification) {
-        notification.remove();
-    }
-    
-    showProcessingNotification('Tentando abrir pasta de Downloads...');
-    
-    // Tentar várias formas de abrir a pasta de downloads
-    setTimeout(() => {
-        try {
-            // Para Android/Chrome
-            window.open('file:///storage/emulated/0/Download', '_blank');
-        } catch (e) {
-            try {
-                // Para Android alternativo
-                window.open('file:///storage/emulated/0/Downloads', '_blank');
-            } catch (e2) {
-                try {
-                    // Para iOS
-                    window.open('shareddocuments:///private/var/mobile/Containers/Shared/AppGroup', '_blank');
-                } catch (e3) {
-                    // Fallback para instruções
-                    showSuccessMessage('Para abrir seus downloads:<br>1. Abra o app Arquivos<br>2. Vá para a pasta Downloads<br>3. Procure por: ' + fileName);
-                }
-            }
-        }
-    }, 500);
-}
-
-function showProcessingNotification(message) {
-    const existing = document.getElementById('processingNotification');
-    if (existing) existing.remove();
-    
-    const notification = document.createElement('div');
-    notification.id = 'processingNotification';
-    notification.style.cssText = `
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: rgba(10, 10, 20, 0.95);
-        color: white;
-        padding: 25px;
-        border-radius: 15px;
-        border: 2px solid rgba(176, 255, 248, 0.3);
-        z-index: 10002;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        min-width: 250px;
-        text-align: center;
-    `;
-    
-    notification.innerHTML = `
-        <i class="fas fa-spinner fa-spin fa-2x" style="color: #b6fff3;"></i>
-        <p style="color: #d6feff; margin: 0; font-size: 16px;">${message}</p>
-        <p style="color: #888; font-size: 12px; margin: 5px 0 0 0;">Aguarde um momento...</p>
-    `;
-    
-    document.body.appendChild(notification);
-}
-
-function showSuccessMessage(message) {
-    const processing = document.getElementById('processingNotification');
-    if (processing) processing.remove();
-    
-    const notification = document.createElement('div');
-    notification.id = 'successNotification';
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(45deg, #27ae60, #2ecc71);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        z-index: 10000;
-        animation: slideIn 0.3s ease, fadeOut 0.3s ease 5s;
-        max-width: 300px;
-    `;
-    
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fas fa-check-circle" style="font-size: 20px;"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 5000);
-}
-
-function showErrorNotification(message) {
-    const processing = document.getElementById('processingNotification');
-    if (processing) processing.remove();
-    
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: linear-gradient(45deg, #e74c3c, #ff7675);
-        color: white;
-        padding: 15px 25px;
-        border-radius: 8px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        z-index: 10000;
-        animation: slideIn 0.3s ease;
-        max-width: 300px;
-    `;
-    
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 10px;">
-            <i class="fas fa-exclamation-circle" style="font-size: 20px;"></i>
-            <span>${message}</span>
-        </div>
-        <button onclick="this.parentElement.remove()" style="
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: transparent;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 12px;
-        ">✕</button>
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-        }
-    }, 5000);
-}
-
-// ==============================================
-// INICIALIZAÇÃO
-// ==============================================
-
-window.onload = function() {
-    loadForm();
-    
-    const addMutationBtn = document.getElementById('addMutationSlotBtn');
-    if (addMutationBtn) {
-        addMutationBtn.addEventListener('click', showMutationTypeMenu);
-    }
-    
-    document.addEventListener('input', function(e) {
-        if (e.target && e.target.id && e.target.id.startsWith('mutationName_') || 
-            e.target.id.startsWith('mutationDescription_') || 
-            e.target.id.startsWith('mutationSource_')) {
-            const index = parseInt(e.target.id.split('_')[1]);
-            const field = e.target.id.includes('Name') ? 'name' : 
-                         e.target.id.includes('Description') ? 'description' : 'source';
-            updateMutationFromFormSlot(index, field, e.target.value);
-        }
-    });
-    
-    const levelInput = document.getElementById('level');
-    if (levelInput) {
-        levelInput.addEventListener('change', function() {
-            updatePrimalStage();
-            saveMutationData();
-        });
-    }
-    
-    const pdfButton = document.querySelector('.pdf-button');
-    if (pdfButton) {
-        pdfButton.onclick = generatePDF;
-    }
-    
-    // Adicionar animações CSS
-    const style = document.createElement('style');
-    style.textContent = `
-        @keyframes slideIn {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        // Limpar
+        document.body.removeChild(tempDiv);
+        
+        // Restaurar botão
+        originalBtn.innerHTML = originalBtnText;
+        originalBtn.disabled = false;
+        
+        console.log('✅ PDF gerado com sucesso:', fileName);
+        alert(`✅ PDF "${fileName}" gerado com sucesso!`);
+        
+    } catch (error) {
+        console.error('❌ Erro ao gerar PDF:', error);
+        
+        // Tentar restaurar o botão
+        const originalBtn = document.querySelector('button[onclick="exportToPDF()"]');
+        if (originalBtn) {
+            originalBtn.innerHTML = '<i class="fas fa-file-pdf"></i> Exportar para PDF';
+            originalBtn.disabled = false;
         }
         
-        .pdf-button {
-            transition: all 0.3s ease;
+        // Mostrar mensagem de erro específica
+        let errorMessage = 'Erro ao gerar PDF. ';
+        
+        if (error.message.includes('Bibliotecas')) {
+            errorMessage += 'Verifique sua conexão com a internet e recarregue a página.';
+        } else if (error.message.includes('html2canvas')) {
+            errorMessage += 'Problema ao capturar a tela.';
+        } else {
+            errorMessage += 'Detalhes: ' + error.message;
         }
-        .pdf-button:hover {
-            animation: pulse 1s infinite;
+        
+        alert(`❌ ${errorMessage}\n\nVocê pode usar a opção "Copiar Ficha" como alternativa.`);
+        
+        // Fallback: abrir o conteúdo em nova janela para impressão
+        if (confirm('Deseja abrir uma versão para impressão em vez disso?')) {
+            openPrintableVersion();
         }
-        .pdf-button:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-    `;
-    document.head.appendChild(style);
-};
+    }
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadForm();
-});
+// ==============================================
+// FUNÇÃO PARA GERAR CONTEÚDO DO PDF (SIMPLIFICADA)
+// ==============================================
+
+function generatePDFContent() {
+    const name = document.getElementById('name').value || 'Personagem Sem Nome';
+    const age = document.getElementById('age').value || 'Não informado';
+    const level = parseInt(document.getElementById('level').value) || 1;
+    const class1 = document.getElementById('class1').value || 'Não selecionada';
+    const combatClass = document.getElementById('combatClass').value || 'Não selecionada';
+    const lore = document.getElementById('lore').value || '';
+    
+    // Calcular estatísticas básicas
+    let vida = 55 + (attributes.vig * 15);
+    let determinacaoSanidade = 55 + (attributes.int * 10) + (attributes.set * 15);
+    let resistencia = 15 + (attributes.vig * 5);
+    let folego = 4 + (attributes.vig * 1);
+    let armadura = 5;
+    
+    const levelBonuses = getLevelBonuses(level);
+    const classBonuses = getClassBonuses(class1);
+    
+    vida += levelBonuses.vida + classBonuses.vida;
+    determinacaoSanidade += levelBonuses.determinacaoSanidade + classBonuses.determinacaoSanidade;
+    resistencia += classBonuses.resistencia;
+    folego += classBonuses.folego;
+    armadura += levelBonuses.armadura + classBonuses.armadura;
+    
+    return `
+        <div style="max-width: 800px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;">
+            <!-- Cabeçalho -->
+            <div style="text-align: center; border-bottom: 3px solid #d4af37; padding-bottom: 20px; margin-bottom: 30px;">
+                <h1 style="color: #333; margin: 0;">FICHA DE PERSONAGEM - RPG ARK</h1>
+                <h2 style="color: #666; margin: 10px 0;">${name}</h2>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px;">
+                    <div><strong>Nível:</strong> ${level}</div>
+                    <div><strong>Idade:</strong> ${age}</div>
+                    <div><strong>Classe:</strong> ${class1}</div>
+                </div>
+            </div>
+            
+            <!-- Status -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #333; border-bottom: 2px solid #4fc3f7; padding-bottom: 5px;">STATUS</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 15px;">
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #e74c3c;">${vida}</div>
+                        <div style="color: #666;">VIDA</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #9b59b6;">${determinacaoSanidade}</div>
+                        <div style="color: #666;">DETERMINAÇÃO</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #2ecc71;">${armadura}</div>
+                        <div style="color: #666;">ARMADURA</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #f1c40f;">${resistencia}</div>
+                        <div style="color: #666;">RESISTÊNCIA</div>
+                    </div>
+                    <div style="background: #f0f8ff; padding: 15px; border-radius: 5px; text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; color: #3498db;">${folego}</div>
+                        <div style="color: #666;">FÔLEGO</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Atributos -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #333; border-bottom: 2px solid #3498db; padding-bottom: 5px;">ATRIBUTOS</h3>
+                <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 15px;">
+                    ${['AGI', 'FOR', 'INT', 'SET', 'VIG'].map(attr => `
+                        <div style="background: #e8f4fc; padding: 15px; border-radius: 5px; text-align: center;">
+                            <div style="color: #666; font-size: 14px;">${attr}</div>
+                            <div style="font-size: 28px; font-weight: bold; color: #2980b9;">${attributes[attr.toLowerCase()]}</div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            
+            <!-- Mutações -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #333; border-bottom: 2px solid #2ecc71; padding-bottom: 5px;">
+                    MUTAÇÕES (${characterMutations.length})
+                </h3>
+                ${characterMutations.map((mut, index) => `
+                    <div style="background: #f0f9f0; padding: 15px; border-radius: 5px; margin-top: 15px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <h4 style="margin: 0; color: #27ae60;">${mut.name}</h4>
+                            <span style="background: #d4af37; color: white; padding: 3px 10px; border-radius: 3px; font-size: 12px;">
+                                ${mut.type.toUpperCase()} - Estágio ${mut.stage}
+                            </span>
+                        </div>
+                        ${mut.description ? `
+                            <p style="color: #555; margin: 10px 0; font-size: 14px;">${mut.description}</p>
+                        ` : ''}
+                    </div>
+                `).join('')}
+            </div>
+            
+            <!-- Rodapé -->
+            <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; color: #777; font-size: 12px;">
+                <div>Gerado em: ${new Date().toLocaleString('pt-BR')}</div>
+                <div style="margin-top: 5px;">RPG ARK - Sistema de Ficha de Personagem</div>
+            </div>
+        </div>
+    `;
+}
+
+// ==============================================
+// FUNÇÃO FALLBACK PARA IMPRESSÃO
+// ==============================================
+
+function openPrintableVersion() {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Ficha de Personagem - RPG ARK</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    max-width: 800px;
+                    margin: 0 auto;
+                    padding: 20px;
+                    background: white;
+                    color: black;
+                }
+                @media print {
+                    body { padding: 0; }
+                    .no-print { display: none; }
+                }
+                .header {
+                    text-align: center;
+                    border-bottom: 3px solid #d4af37;
+                    padding-bottom: 20px;
+                    margin-bottom: 30px;
+                }
+                .section {
+                    margin-bottom: 30px;
+                    page-break-inside: avoid;
+                }
+                .stats-grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 15px;
+                }
+                .stat-box {
+                    background: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 5px;
+                    text-align: center;
+                    border: 1px solid #dee2e6;
+                }
+                .btn {
+                    background: #007bff;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin: 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="no-print" style="text-align: center; margin-bottom: 20px;">
+                <button class="btn" onclick="window.print()">🖨️ Imprimir</button>
+                <button class="btn" onclick="window.close()">❌ Fechar</button>
+            </div>
+            ${generatePDFContent()}
+            <div class="no-print" style="text-align: center; margin-top: 30px;">
+                <p style="color: #666;">Use Ctrl+P para imprimir esta ficha</p>
+            </div>
+        </body>
+        </html>
+    `);
+    printWindow.document.close();
+}
+
+// ==============================================
+// FUNÇÕES AUXILIARES (se não existirem)
+// ==============================================
+
+function getLevelBonuses(level) {
+    const bonuses = { vida: 0, determinacaoSanidade: 0, armadura: 0 };
+    if (level >= 50) bonuses.vida += 30;
+    if (level >= 65) bonuses.determinacaoSanidade += 20;
+    if (level >= 80) bonuses.armadura += 10;
+    if (level >= 95) {
+        bonuses.vida += 20;
+        bonuses.determinacaoSanidade += 20;
+    }
+    if (level >= 99) bonuses.armadura += 10;
+    return bonuses;
+}
+
+function getClassBonuses(className) {
+    const bonuses = { vida: 0, determinacaoSanidade: 0, resistencia: 0, folego: 0, armadura: 0 };
+    const bonusesMap = {
+        'guerreiro': { vida: 20, armadura: 20 },
+        'atirador': { vida: 10, determinacaoSanidade: 10 },
+        'forjador': { vida: 15, resistencia: 5 },
+        'arcano': { vida: 5, determinacaoSanidade: 25 },
+        'cientista': { vida: 5, determinacaoSanidade: 20 },
+        'sobrevivente': { vida: 15, folego: 1 },
+        'construtor': { vida: 15 },
+        'medico': { determinacaoSanidade: 25, armadura: 10 }
+    };
+    
+    if (bonusesMap[className]) {
+        Object.assign(bonuses, bonusesMap[className]);
+    }
+    
+    return bonuses;
+}
+
+// Função auxiliar para cores de raridade
+function getRarityColor(rarity) {
+    const colors = {
+        'comum': '#95a5a6',
+        'incomum': '#2ecc71',
+        'rara': '#3498db',
+        'épica': '#9b59b6',
+        'lendária': '#f1c40f',
+        'mítica': '#e74c3c',
+        'única': '#d4af37'
+    };
+    return colors[rarity.toLowerCase()] || '#95a5a6';
+}
+
+// Função auxiliar para exibir tipo de arma
+function getWeaponTypeDisplay(type) {
+    const types = {
+        'arma_branca': 'Arma Branca',
+        'arma_fogo': 'Arma de Fogo',
+        'arma_arcana': 'Arma Arcana',
+        'arma_explosiva': 'Arma Explosiva',
+        'arma_distancia': 'Arma à Distância',
+        'defesa': 'Defesa',
+        'especial': 'Especial'
+    };
+    return types[type] || type;
+}
+
+// Função para obter bônus de nível
+function getLevelBonuses(level) {
+    const bonuses = {
+        vida: 0,
+        determinacaoSanidade: 0,
+        armadura: 0
+    };
+    
+    if (level >= 50) bonuses.vida += 30;
+    if (level >= 65) bonuses.determinacaoSanidade += 20;
+    if (level >= 80) bonuses.armadura += 10;
+    if (level >= 95) {
+        bonuses.vida += 20;
+        bonuses.determinacaoSanidade += 20;
+    }
+    if (level >= 99) bonuses.armadura += 10;
+    
+    return bonuses;
+}
+
+// Função para obter bônus de classe
+function getClassBonuses(className) {
+    const bonuses = {
+        vida: 0,
+        determinacaoSanidade: 0,
+        resistencia: 0,
+        folego: 0,
+        armadura: 0
+    };
+    
+    switch(className) {
+        case 'guerreiro':
+            bonuses.vida += 20;
+            bonuses.armadura += 20;
+            break;
+        case 'atirador':
+            bonuses.vida += 10;
+            bonuses.determinacaoSanidade += 10;
+            break;
+        case 'forjador':
+            bonuses.vida += 15;
+            bonuses.resistencia += 5;
+            break;
+        case 'arcano':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 25;
+            break;
+        case 'cientista':
+            bonuses.vida += 5;
+            bonuses.determinacaoSanidade += 20;
+            break;
+        case 'sobrevivente':
+            bonuses.vida += 15;
+            bonuses.folego += 1;
+            break;
+        case 'construtor':
+            bonuses.vida += 15;
+            break;
+        case 'medico':
+            bonuses.determinacaoSanidade += 25;
+            bonuses.armadura += 10;
+            break;
+    }
+    
+    return bonuses;
+}
+
+function generateFichaText() {
+    const name = document.getElementById('name').value || 'Personagem Sem Nome';
+    const age = document.getElementById('age').value || 'Não informado';
+    const level = parseInt(document.getElementById('level').value) || 1;
+    const class1 = document.getElementById('class1').value || 'Não selecionada';
+    const combatClass = document.getElementById('combatClass').value || 'Não selecionada';
+    const lore = document.getElementById('lore').value || '';
+    
+    // Calcular estatísticas (reutilizando a lógica de calculateStats)
+    let vida = 55 + (attributes.vig * 15);
+    let determinacaoSanidade = 55 + (attributes.int * 10) + (attributes.set * 15);
+    let resistencia = 15 + (attributes.vig * 5);
+    let folego = 4 + (attributes.vig * 1);
+    let armadura = 5;
+    
+    // Aplicar bônus de nível
+    const levelBonuses = getLevelBonuses(level);
+    vida += levelBonuses.vida;
+    determinacaoSanidade += levelBonuses.determinacaoSanidade;
+    armadura += levelBonuses.armadura;
+    
+    // Aplicar bônus de classe
+    const classBonuses = getClassBonuses(class1);
+    vida += classBonuses.vida;
+    determinacaoSanidade += classBonuses.determinacaoSanidade;
+    resistencia += classBonuses.resistencia;
+    folego += classBonuses.folego;
+    armadura += classBonuses.armadura;
+    
+    // Bônus de mutação
+    let totalMutationVida = 0;
+    let totalMutationSanidade = 0;
+    let totalMutationArmadura = 0;
+    let totalMutationFolego = 0;
+    let totalMutationResistencia = 0;
+    
+    characterMutations.forEach(mutation => {
+        if (mutation.stats) {
+            totalMutationVida += (mutation.stats.vida || 0);
+            totalMutationSanidade += (mutation.stats.sanidade || 0);
+            totalMutationArmadura += (mutation.stats.armadura || 0);
+            totalMutationFolego += (mutation.stats.folego || 0);
+            totalMutationResistencia += (mutation.stats.resistencia || 0);
+        }
+    });
+    
+    // Aplicar bônus de mutação
+    vida += totalMutationVida;
+    determinacaoSanidade += totalMutationSanidade;
+    armadura += totalMutationArmadura;
+    folego += totalMutationFolego;
+    resistencia += totalMutationResistencia;
+    
+    // Coletar todos os bônus
+    const mutationBonusesList = [];
+    characterMutations.forEach(mutation => {
+        if (mutation.bonuses && mutation.bonuses.length > 0) {
+            mutation.bonuses.forEach(bonus => {
+                if (bonus.action && bonus.action.trim() !== '') {
+                    mutationBonusesList.push({
+                        ...bonus,
+                        mutationName: mutation.name,
+                        isMutationBonus: true
+                    });
+                }
+            });
+        }
+    });
+    
+    let text = '='.repeat(80) + '\n';
+    text += 'FICHA COMPLETA DE PERSONAGEM - RPG ARK\n';
+    text += '='.repeat(80) + '\n\n';
+    
+    // SEÇÃO 1: INFORMAÇÕES BÁSICAS
+    text += '📋 INFORMAÇÕES BÁSICAS\n';
+    text += '─'.repeat(40) + '\n';
+    text += `Nome: ${name}\n`;
+    text += `Idade: ${age}\n`;
+    text += `Nível: ${level}\n`;
+    text += `Classe Primitiva: ${class1}\n`;
+    text += `Classe de Combate: ${combatClass}\n`;
+    if (lore) text += `História/Background: ${lore}\n`;
+    text += '\n';
+    
+    // SEÇÃO 2: ATRIBUTOS
+    text += '⚡ ATRIBUTOS\n';
+    text += '─'.repeat(40) + '\n';
+    text += `AGILIDADE (AGI): ${attributes.agi}\n`;
+    text += `FORÇA (FOR): ${attributes.for}\n`;
+    text += `INTELIGÊNCIA (INT): ${attributes.int}\n`;
+    text += `SENTIDOS (SET): ${attributes.set}\n`;
+    text += `VIGOR (VIG): ${attributes.vig}\n`;
+    text += '\n';
+    
+    // SEÇÃO 3: STATUS COMPLETOS
+    text += '❤️ STATUS COMPLETOS\n';
+    text += '─'.repeat(40) + '\n';
+    text += `VIDA: ${vida} HP\n`;
+    text += `  ├─ Base: ${55 + (attributes.vig * 15)}\n`;
+    text += `  ├─ Classe (${class1}): +${classBonuses.vida}\n`;
+    text += `  ├─ Nível (${level}): +${levelBonuses.vida}\n`;
+    if (totalMutationVida > 0) text += `  └─ Mutações: +${totalMutationVida}\n`;
+    text += '\n';
+    
+    text += `DETERMINAÇÃO/SANIDADE: ${determinacaoSanidade} SP\n`;
+    text += `  ├─ Base: ${55 + (attributes.int * 10) + (attributes.set * 15)}\n`;
+    text += `  ├─ Classe (${class1}): +${classBonuses.determinacaoSanidade}\n`;
+    text += `  ├─ Nível (${level}): +${levelBonuses.determinacaoSanidade}\n`;
+    if (totalMutationSanidade > 0) text += `  └─ Mutações: +${totalMutationSanidade}\n`;
+    text += '\n';
+    
+    text += `RESISTÊNCIA: ${resistencia}\n`;
+    text += `  ├─ Base: ${15 + (attributes.vig * 5)}\n`;
+    text += `  ├─ Classe (${class1}): +${classBonuses.resistencia}\n`;
+    if (totalMutationResistencia > 0) text += `  └─ Mutações: +${totalMutationResistencia}\n`;
+    text += '\n';
+    
+    text += `FÔLEGO: ${folego}\n`;
+    text += `  ├─ Base: ${4 + (attributes.vig * 1)}\n`;
+    text += `  ├─ Classe (${class1}): +${classBonuses.folego}\n`;
+    if (totalMutationFolego > 0) text += `  └─ Mutações: +${totalMutationFolego}\n`;
+    text += '\n';
+    
+    text += `ARMADURA: ${armadura}\n`;
+    text += `  ├─ Base: 5\n`;
+    text += `  ├─ Classe (${class1}): +${classBonuses.armadura}\n`;
+    text += `  ├─ Nível (${level}): +${levelBonuses.armadura}\n`;
+    if (totalMutationArmadura > 0) text += `  └─ Mutações: +${totalMutationArmadura}\n`;
+    text += '\n';
+    
+    // SEÇÃO 4: MUTAÇÕES DETALHADAS
+    text += '🧬 MUTAÇÕES\n';
+    text += '─'.repeat(40) + '\n';
+    characterMutations.forEach((mut, index) => {
+        text += `${index + 1}. ${mut.name.toUpperCase()} (${mut.type.toUpperCase()})\n`;
+        text += `   Estágio: ${mut.stage}\n`;
+        if (mut.source) text += `   Origem: ${mut.source}\n`;
+        if (mut.description) {
+            text += `   Descrição:\n`;
+            const lines = mut.description.split('\n');
+            lines.forEach(line => {
+                if (line.trim()) text += `      ${line}\n`;
+            });
+        }
+        
+        // Status da mutação
+        if (mut.stats) {
+            const hasStats = Object.values(mut.stats).some(val => val > 0);
+            if (hasStats) {
+                text += `   Bônus de Status:\n`;
+                if (mut.stats.vida > 0) text += `      +${mut.stats.vida} Vida\n`;
+                if (mut.stats.sanidade > 0) text += `      +${mut.stats.sanidade} Sanidade\n`;
+                if (mut.stats.armadura > 0) text += `      +${mut.stats.armadura} Armadura\n`;
+                if (mut.stats.folego > 0) text += `      +${mut.stats.folego} Fôlego\n`;
+                if (mut.stats.resistencia > 0) text += `      +${mut.stats.resistencia} Resistência\n`;
+            }
+        }
+        
+        // Bônus de ação da mutação
+        if (mut.bonuses && mut.bonuses.length > 0) {
+            text += `   Bônus de Ação:\n`;
+            mut.bonuses
+                .filter(b => b.action && b.action.trim() !== '')
+                .forEach(bonus => {
+                    text += `      ${bonus.action}: +${bonus.value}\n`;
+                });
+        }
+        text += '\n';
+    });
+    
+    // SEÇÃO 5: TABELA DE BÔNUS COMPLETA
+    text += '🎯 TABELA DE BÔNUS EM AÇÕES\n';
+    text += '─'.repeat(40) + '\n';
+    
+    // Bônus normais
+    const normalBonuses = allBonuses.filter(b => b.action && b.action.trim() !== '');
+    if (normalBonuses.length > 0) {
+        text += 'BÔNUS NORMAIS:\n';
+        normalBonuses
+            .sort((a, b) => b.value - a.value)
+            .forEach(bonus => {
+                const weight = Math.floor(bonus.value / 5);
+                text += `  ✓ ${bonus.action}: +${bonus.value} (${weight} peso${weight !== 1 ? 's' : ''})\n`;
+            });
+        text += '\n';
+    }
+    
+    // Bônus aprendidos
+    const learnedBonusesList = learnedBonuses.filter(b => b.action && b.action.trim() !== '');
+    if (learnedBonusesList.length > 0) {
+        text += 'BÔNUS APRENDIDOS:\n';
+        learnedBonusesList
+            .sort((a, b) => b.value - a.value)
+            .forEach(bonus => {
+                const weight = Math.floor(bonus.value / 5);
+                text += `  🎓 ${bonus.action}: +${bonus.value} (${weight} peso${weight !== 1 ? 's' : ''})\n`;
+            });
+        text += '\n';
+    }
+    
+    // Bônus de mutação
+    if (mutationBonusesList.length > 0) {
+        text += 'BÔNUS DE MUTAÇÃO:\n';
+        mutationBonusesList
+            .sort((a, b) => b.value - a.value)
+            .forEach(bonus => {
+                text += `  🧬 ${bonus.action}: +${bonus.value} (${bonus.mutationName})\n`;
+            });
+        text += '\n';
+    }
+    
+    // Resumo de slots
+    const totalSlots = getTotalBonusSlots();
+    const usedSlots = getUsedBonusSlots();
+    const usedWeight = getUsedBonusWeight();
+    const totalWeight = getTotalBonusWeight();
+    
+    text += `RESUMO DE SLOTS:\n`;
+    text += `  Slots usados: ${usedSlots}/${totalSlots}\n`;
+    text += `  Peso usado: ${usedWeight}/${totalWeight}\n`;
+    text += '\n';
+    
+    // SEÇÃO 6: RITUAIS E PACTOS
+    if (rituals.length > 0) {
+        text += '🔮 RITUAIS E PACTOS\n';
+        text += '─'.repeat(40) + '\n';
+        
+        const aprendidos = rituals.filter(r => level >= r.nivel);
+        const bloqueados = rituals.filter(r => level < r.nivel);
+        
+        text += `Total: ${rituals.length} | Aprendidos: ${aprendidos.length} | Bloqueados: ${bloqueados.length}\n\n`;
+        
+        if (aprendidos.length > 0) {
+            text += 'DISPONÍVEIS (Aprendidos):\n';
+            aprendidos.forEach(ritual => {
+                text += `  ✅ ${ritual.nome}\n`;
+                text += `     Tipo: ${ritual.tipo || 'Ritual'}\n`;
+                if (ritual.elemento) text += `     Elemento: ${ritual.elemento}\n`;
+                text += `     Nível Requerido: ${ritual.nivel}\n`;
+                if (ritual.descricao) {
+                    text += `     Descrição: ${ritual.descricao.substring(0, 150)}`;
+                    if (ritual.descricao.length > 150) text += '...';
+                    text += '\n';
+                }
+                text += '\n';
+            });
+        }
+        
+        if (bloqueados.length > 0) {
+            text += 'BLOQUEADOS (Falta nível):\n';
+            bloqueados.forEach(ritual => {
+                text += `  🔒 ${ritual.nome}\n`;
+                text += `     Tipo: ${ritual.tipo || 'Ritual'}\n`;
+                if (ritual.elemento) text += `     Elemento: ${ritual.elemento}\n`;
+                text += `     Nível Requerido: ${ritual.nivel} (Faltam ${ritual.nivel - level} níveis)\n`;
+                text += '\n';
+            });
+        }
+    }
+    
+    // SEÇÃO 7: ARSENAL DE ARMAS (COMPLETO)
+    if (weapons.length > 0) {
+        text += '⚔️ ARSENAL DE ARMAS\n';
+        text += '─'.repeat(40) + '\n';
+        
+        weapons.forEach((weapon, index) => {
+            text += `${index + 1}. ${weapon.name}\n`;
+            text += `   Tipo: ${getWeaponTypeDisplay(weapon.type)}\n`;
+            if (weapon.raridade) text += `   Raridade: ${weapon.raridade.toUpperCase()}\n`;
+            if (weapon.origem) text += `   Origem: ${weapon.origem === 'forja' ? 'Arma Personalizada' : 'Arsenal Padrão'}\n`;
+            
+            text += `   Status:\n`;
+            text += `     ▸ Dano: ${weapon.damage}\n`;
+            if (weapon.ct && weapon.ct !== 'N/A') text += `     ▸ CT: ${weapon.ct}\n`;
+            if (weapon.dct && weapon.dct !== 'N/A') text += `     ▸ DCT: ${weapon.dct}\n`;
+            if (weapon.criticals) text += `     ▸ Críticos: ${weapon.criticals}\n`;
+            if (weapon.resistence) text += `     ▸ Resistência: ${weapon.resistence}\n`;
+            
+            // Descrição
+            if (weapon.description) {
+                text += `   Descrição: ${weapon.description}\n`;
+            }
+            
+            // Passivas
+            if (weapon.passive) {
+                text += `   Passiva: ${weapon.passive}\n`;
+            }
+            if (weapon.passivaRadiante) {
+                text += `   Passiva Radiante: ${weapon.passivaRadiante}\n`;
+            }
+            if (weapon.passivaTek) {
+                text += `   Passiva Tek: ${weapon.passivaTek}\n`;
+            }
+            
+            // Modificadores (corrigindo a forma como são exibidos)
+            if (weapon.modificadoresLista && Array.isArray(weapon.modificadoresLista) && weapon.modificadoresLista.length > 0) {
+                text += `   Modificadores:\n`;
+                weapon.modificadoresLista.forEach((mod, idx) => {
+                    if (mod && typeof mod === 'object') {
+                        text += `     ${idx + 1}. ${mod.nome || `Modificador ${idx + 1}`}\n`;
+                        if (mod.efeito) text += `        Efeito: ${mod.efeito}\n`;
+                        if (mod.descricao) text += `        Descrição: ${mod.descricao}\n`;
+                    } else {
+                        text += `     ${idx + 1}. ${mod}\n`;
+                    }
+                });
+            } else if (weapon.modifiers && weapon.modifiers.trim() !== '') {
+                text += `   Modificadores: ${weapon.modifiers}\n`;
+            }
+            
+            text += '\n';
+        });
+    }
+    
+    // SEÇÃO 8: INVENTÁRIO
+    const inventory = document.getElementById('inventory').value;
+    if (inventory && inventory.trim() !== '') {
+        text += '🎒 INVENTÁRIO\n';
+        text += '─'.repeat(40) + '\n';
+        const lines = inventory.split('\n');
+        lines.forEach(line => {
+            if (line.trim()) text += `• ${line.trim()}\n`;
+        });
+        text += '\n';
+    }
+    
+    // SEÇÃO 9: RECOMPENSAS E PROGRESSÃO
+    text += '🏆 RECOMPENSAS POR NÍVEL\n';
+    text += '─'.repeat(40) + '\n';
+    const rewards = getLevelRewards(level);
+    if (rewards.length > 0) {
+        rewards.forEach(reward => {
+            text += `• ${reward}\n`;
+        });
+    } else {
+        text += `Nível ${level}: Sem recompensas especiais ainda\n`;
+    }
+    text += '\n';
+    
+    // SEÇÃO 10: RESUMO FINAL
+    text += '📊 RESUMO FINAL\n';
+    text += '─'.repeat(40) + '\n';
+    text += `Nível Atual: ${level}\n`;
+    text += `Vida Total: ${vida} HP\n`;
+    text += `Determinação/Sanidade Total: ${determinacaoSanidade} SP\n`;
+    text += `Resistência Total: ${resistencia}\n`;
+    text += `Fôlego Total: ${folego}\n`;
+    text += `Armadura Total: ${armadura}\n`;
+    text += `Mutações: ${characterMutations.length}\n`;
+    text += `Bônus de Ação: ${normalBonuses.length + learnedBonusesList.length + mutationBonusesList.length}\n`;
+    text += `Rituais/Pactos: ${rituals.length}\n`;
+    text += `Armas no Arsenal: ${weapons.length}\n`;
+    text += '\n';
+    
+    // SEÇÃO 11: METADADOS
+    text += '📅 METADADOS\n';
+    text += '─'.repeat(40) + '\n';
+    text += `Data de Geração: ${new Date().toLocaleString('pt-BR')}\n`;
+    if (currentUser) text += `Jogador: ${currentUser}\n`;
+    text += `Sistema: RPG ARK - Ficha de Personagem\n`;
+    text += '='.repeat(80) + '\n';
+    
+    return text;
+}
+
+// Função para formatar tipo de arma para texto
+function getWeaponTypeDisplay(type) {
+    const typeMap = {
+        'arma_branca': 'Arma Branca',
+        'arma_fogo': 'Arma de Fogo',
+        'arma_arcana': 'Arma Arcana',
+        'arma_explosiva': 'Arma Explosiva',
+        'arma_distancia': 'Arma à Distância',
+        'defesa': 'Escudo/Defesa',
+        'especial': 'Arma Especial'
+    };
+    return typeMap[type] || type;
+}
+
+// Função para obter recompensas por nível
+function getLevelRewards(level) {
+    const rewards = [];
+    
+    if (level >= 15) rewards.push('Nível 15: +1 Ponto de Atributo');
+    if (level >= 30) rewards.push('Nível 30: +3 slots para Bônus de Ação');
+    if (level >= 50) {
+        rewards.push('Nível 50: +30 de Vida');
+        rewards.push('Nível 50: +3 slots para Bônus de Ação');
+        rewards.push('Nível 50: Convite da Linhagem de Athenas');
+        rewards.push('Nível 50: Presente de Evento Principal');
+    }
+    if (level >= 65) rewards.push('Nível 65: Mutação Primal evolui para Estágio 2');
+    if (level >= 95) rewards.push('Nível 95: Mutação Primal evolui para Estágio 3');
+    if (level >= 99) rewards.push('Nível 99: Mutação Primal evolui para Estágio 4');
+    
+    return rewards;
+}
+
+window.loginUser = loginUser;
+window.logoutUser = logoutUser;
+window.changeAttribute = changeAttribute;
+window.calculateStats = calculateStats;
+window.saveForm = saveForm;
+window.resetForm = resetForm;
+window.copyFicha = copyFicha;
+window.exportToPDF = exportToPDF;
+window.addBonus = addBonus;
+window.addLearnedBonus = addLearnedBonus;
+window.removeBonus = removeBonus;
+window.removeLearnedBonus = removeLearnedBonus;
+window.updateBonusValue = updateBonusValue;
+window.updateLearnedBonusValue = updateLearnedBonusValue;
+window.addMutationSlot = addMutationSlot;
+window.removeMutationSlot = removeMutationSlot;
+window.updateMutation = updateMutation;
+window.updateMutationType = updateMutationType;
+window.validateLevelInput = validateLevelInput;
+window.removeRitual = removeRitual;
+window.goToRitualsPage = goToRitualsPage;
+window.addWeapon = addWeapon;
+window.removeWeapon = removeWeapon;
+window.updateWeapon = updateWeapon;
+window.goToArsenalPage = goToArsenalPage;
+window.addMutationBonus = addMutationBonus;
+window.removeMutationBonus = removeMutationBonus;
+window.updateMutationBonus = updateMutationBonus;
+window.updateMutationStat = updateMutationStat;

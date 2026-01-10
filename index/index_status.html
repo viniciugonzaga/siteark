@@ -73,192 +73,260 @@
         <div class="titulo_principal">
             <h1 class="titulo_efeito">Status</h1>
         </div>
-
-           <div class="ficha-container">
-        <div class="header-ficha">
-            <div class="title-with-image">
-                <img id="fichaPhoto" src="#" alt="Foto do Personagem" class="character-photo" style="display:none;">
-                <h1 class="titulo-ficha" id="fichaName">NOME DO PERSONAGEM</h1>
+ <div class="container">
+        <!-- Cabeçalho -->
+        <header class="ficha-header">
+            <div class="header-left">
+                <h1><i class="fas fa-scroll"></i> FICHA DO PERSONAGEM</h1>
+                <p class="subtitle">Resumo completo das estatísticas e habilidades</p>
             </div>
-            <div class="level-bar-container">
-                <div class="level-bar-fill" id="fichaLevelBarFill"></div>
+            <div class="header-right">
+                <button onclick="window.history.back()" class="btn-back">
+                    <i class="fas fa-arrow-left"></i> Voltar
+                </button>
+                <button onclick="window.print()" class="btn-print">
+                    <i class="fas fa-print"></i> Imprimir
+                </button>
+                <span id="last-update"></span>
+            </div>
+        </header>
+
+        <!-- Seção principal -->
+        <main class="ficha-main">
+            <!-- Painel esquerdo: Status principais -->
+            <section class="panel left-panel">
+                <div class="panel-header">
+                    <h2><i class="fas fa-user-circle"></i> STATUS PRINCIPAIS</h2>
+                </div>
+                
+                <!-- Nome e informações básicas -->
+                <div class="basic-info">
+                    <div class="info-row">
+                        <div class="info-item">
+                            <label><i class="fas fa-user"></i> Nome</label>
+                            <span id="ficha-name">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label><i class="fas fa-chart-line"></i> Nível</label>
+                            <span id="ficha-level">1</span>
+                        </div>
+                    </div>
+                    <div class="info-row">
+                        <div class="info-item">
+                            <label><i class="fas fa-birthday-cake"></i> Idade</label>
+                            <span id="ficha-age">-</span>
+                        </div>
+                        <div class="info-item">
+                            <label><i class="fas fa-shield-alt"></i> Classe</label>
+                            <span id="ficha-class">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status de vida, sanidade, etc -->
+                <div class="status-grid">
+                    <div class="status-card life">
+                        <div class="status-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>VIDA</h3>
+                            <div class="status-value" id="ficha-vida">0</div>
+                            <div class="status-bar">
+                                <div class="status-bar-fill" id="vida-bar"></div>
+                            </div>
+                            <div class="status-detail" id="ficha-vida-detail"></div>
+                        </div>
+                    </div>
+
+                    <div class="status-card sanity">
+                        <div class="status-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>SANIDADE</h3>
+                            <div class="status-value" id="ficha-sanidade">0</div>
+                            <div class="status-bar">
+                                <div class="status-bar-fill" id="sanidade-bar"></div>
+                            </div>
+                            <div class="status-detail" id="ficha-sanidade-detail"></div>
+                        </div>
+                    </div>
+
+                    <div class="status-card armor">
+                        <div class="status-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>ARMADURA</h3>
+                            <div class="status-value" id="ficha-armadura">0</div>
+                            <div class="status-bar">
+                                <div class="status-bar-fill" id="armadura-bar"></div>
+                            </div>
+                            <div class="status-detail" id="ficha-armadura-detail"></div>
+                        </div>
+                    </div>
+
+                    <div class="status-card breath">
+                        <div class="status-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>FÔLEGO</h3>
+                            <div class="status-value" id="ficha-folego">0</div>
+                            <div class="status-bar">
+                                <div class="status-bar-fill" id="folego-bar"></div>
+                            </div>
+                            <div class="status-detail" id="ficha-folego-detail"></div>
+                        </div>
+                    </div>
+
+                    <div class="status-card resistance">
+                        <div class="status-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="status-info">
+                            <h3>RESISTÊNCIA</h3>
+                            <div class="status-value" id="ficha-resistencia">0</div>
+                            <div class="status-bar">
+                                <div class="status-bar-fill" id="resistencia-bar"></div>
+                            </div>
+                            <div class="status-detail" id="ficha-resistencia-detail"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Atributos -->
+                <div class="attributes-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-chart-bar"></i> ATRIBUTOS</h3>
+                    </div>
+                    <div class="attributes-grid" id="attributes-grid">
+                        <!-- Atributos serão inseridos pelo JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Painel direito: Tabela de bônus e slots -->
+            <section class="panel right-panel">
+                <!-- Tabela de Bônus de Ação -->
+                <div class="bonus-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-star"></i> TABELA DE BÔNUS DE AÇÃO</h3>
+                        <div class="slots-info">
+                            <span>Slots: <span id="slots-used">0</span>/<span id="slots-total">9</span></span>
+                            <span>Peso: <span id="weight-used">0</span>/<span id="weight-total">9</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="table-container">
+                        <table class="bonus-table">
+                            <thead>
+                                <tr>
+                                    <th><i class="fas fa-tasks"></i> AÇÃO</th>
+                                    <th><i class="fas fa-plus"></i> BÔNUS</th>
+                                    <th><i class="fas fa-weight"></i> PESO</th>
+                                    <th><i class="fas fa-dna"></i> ORIGEM</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bonus-table-body">
+                                <!-- Linhas serão inseridas pelo JavaScript -->
+                            </tbody>
+                        </table>
+                        <div class="table-footer">
+                            <span id="bonus-count">0 bônus registrados</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slots de Mutação -->
+                <div class="mutations-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-dna"></i> SLOTS DE MUTAÇÃO</h3>
+                        <span class="mutation-count" id="mutation-count">0/∞</span>
+                    </div>
+                    
+                    <div class="mutations-grid" id="mutations-grid">
+                        <!-- Mutações serão inseridas pelo JavaScript -->
+                    </div>
+                    
+                    <div class="mutation-summary">
+                        <h4><i class="fas fa-chart-pie"></i> RESUMO DE BÔNUS POR MUTAÇÃO</h4>
+                        <div class="summary-stats" id="mutation-summary">
+                            <!-- Resumo será inserido pelo JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumo Primal -->
+                <div class="primal-section">
+                    <div class="section-header">
+                        <h3><i class="fas fa-fire"></i> MUTAÇÃO PRIMAL - ESTÁGIO <span id="primal-stage">1</span></h3>
+                    </div>
+                    <div class="primal-content">
+                        <div class="primal-stats">
+                            <div class="primal-stat">
+                                <span>Vida:</span>
+                                <strong id="primal-vida">0</strong>
+                            </div>
+                            <div class="primal-stat">
+                                <span>Sanidade:</span>
+                                <strong id="primal-sanidade">0</strong>
+                            </div>
+                            <div class="primal-stat">
+                                <span>Armadura:</span>
+                                <strong id="primal-armadura">0</strong>
+                            </div>
+                            <div class="primal-stat">
+                                <span>Fôlego:</span>
+                                <strong id="primal-folego">0</strong>
+                            </div>
+                            <div class="primal-stat">
+                                <span>Resistência:</span>
+                                <strong id="primal-resistencia">0</strong>
+                            </div>
+                        </div>
+                        <div class="primal-description">
+                            <p id="primal-description-text">Nenhuma descrição fornecida.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="ficha-footer">
+            <div class="footer-left">
+                <p><i class="fas fa-info-circle"></i> Ficha gerada em: <span id="generation-time">-</span></p>
+                <p id="footer-user">Usuário: Não logado</p>
+            </div>
+            <div class="footer-right">
+                <button onclick="refreshFicha()" class="btn-refresh">
+                    <i class="fas fa-sync-alt"></i> Atualizar Ficha
+                </button>
+                <button onclick="exportFicha()" class="btn-export">
+                    <i class="fas fa-file-export"></i> Exportar
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal para detalhes -->
+    <div id="detail-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Detalhes</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Conteúdo será inserido dinamicamente -->
             </div>
         </div>
-
-       <div class="stats-grid">
-    <div class="stat-box" id="statAgi">
-        <span class="stat-name">Agi</span>
-        <input type="number" class="stat-value attribute-input" id="fichaAgi" value="0">
-    </div>
-    <div class="stat-box" id="statFor">
-        <span class="stat-name">For</span>
-        <input type="number" class="stat-value attribute-input" id="fichaFor" value="0">
-    </div>
-    <div class="stat-box" id="statInt">
-        <span class="stat-name">Int</span>
-        <input type="number" class="stat-value attribute-input" id="fichaInt" value="0">
-    </div>
-    <div class="stat-box" id="statSet">
-        <span class="stat-name">Set</span>
-        <input type="number" class="stat-value attribute-input" id="fichaSet" value="0">
-    </div>
-    <div class="stat-box" id="statVig">
-        <span class="stat-name">Vig</span>
-        <input type="number" class="stat-value attribute-input" id="fichaVig" value="0">
-    </div>
-</div>
-
-       <div class="main-stats-container">
-    <div class="main-stat">
-        <p>Vida</p>
-        <input type="number" id="fichaVida" class="stat-input" value="0">
-    </div>
-    <div class="main-stat">
-        <p>Armadura</p>
-        <input type="number" id="fichaArmadura" class="stat-input" value="0">
-    </div>
-    <div class="main-stat">
-        <p>Sanidade</p>
-        <input type="number" id="fichaSanidade" class="stat-input" value="0">
-    </div>
-</div>
-
-<div class="defenses-section">
-    <h2 class="defesas">Área de Defesas</h2>
-    <div class="defense-container">
-        <div class="health-bar-wrapper">
-            <span class="bar-title">Barra de Vida</span>
-            <div class="health-bar-total" id="healthBarTotal">
-                <div class="health-bar-fill" id="healthBarFill"></div>
-            </div>
-            <div class="health-input-container">
-                <input type="number" class="current-health-input" id="currentHealthInput" value="0">
-            </div>
-        </div>
-        
-         <div class="defense-stat-box" id="resistenciaBlock">
-           <span class="defense-name">Resistência</span>
-           <input type="text" class="defense-value stat-input" id="fichaResistencia">
-        </div>
-
-        <div class="defense-stat-box" id="armaduraBlock">
-            <span class="defense-name">Armadura</span>
-            <span class="defense-value" id="armaduraValue">0</span>
-        </div>
     </div>
 
-   <div class="dice-mechanism-container">
-    
-    <button class="roll-icon-btn" id="rollButton">
-        </button>
-    
-    <div class="dice-attribute-group">
-        <span class="stat-name">Atri</span>
-        <select class="attribute-select" id="attributeSelect">
-            <option value="agi">Agi</option>
-            <option value="for">For</option>
-            <option value="int">Int</option>
-            <option value="set">Set</option>
-            <option value="vig">Vig</option>
-        </select>
-        <input type="number" class="attribute-value-display" id="attributeValueDisplay" disabled>
-    </div>
-
-    <div class="dice-bonus-group">
-        <input type="text" class="bonus-input" id="bonusInput" placeholder="Bônus (+N)">
-        <button class="menu-button" id="bonusMenuBtn">☰</button>
-        <div class="bonus-options-menu hidden" id="bonusOptionsMenu">
-            <button data-bonus="5">+5</button>
-            <button data-bonus="10">+10</button>
-            <button data-bonus="15">+15</button>
-            <button data-bonus="20">+20</button>
-        </div>
-    </div>
-    
-    <div class="roll-result-block" id="rollResultBlock">
-        <p class="roll-result" id="rollResult"></p>
-    </div>
-</div>
 <br>
 
-<div class="dice-mechanism-container theme-orange" id="strengthDiceContainer">
 
-    <button class="roll-icon-btn theme-orange" id="strengthRollButton"></button>
-    
-    <div class="dice-attribute-group theme-orange">
-        <span class="stat-name">Atri</span>
-        <select class="attribute-select" id="strengthAttributeSelect">
-            <option value="agi">Agi</option>
-            <option value="for" selected>For</option>
-            <option value="int">Int</option>
-            <option value="set">Set</option>
-            <option value="vig">Vig</option>
-        </select>
-        <input type="number" class="attribute-value-display" id="strengthAttributeValueDisplay" disabled>
-    </div>
-
-    <div class="dice-bonus-group theme-orange">
-        <input type="text" class="bonus-input" id="strengthBonusInput" placeholder="Bônus (+N)">
-        <button class="menu-button" id="strengthBonusMenuBtn">☰</button>
-        <div class="bonus-options-menu hidden" id="strengthBonusOptionsMenu">
-            <button data-bonus="5">+5</button>
-            <button data-bonus="10">+10</button>
-            <button data-bonus="15">+15</button>
-            <button data-bonus="20">+20</button>
-        </div>
-    </div>
-    
-    <div class="roll-result-block theme-orange" id="strengthRollResultBlock">
-        <p class="roll-result" id="strengthRollResult"></p>
-    </div>
-</div>
-
-
-
-<div class="bloco-dano">
-  <!-- Ícone clicável para rolar os dados -->
-  <div class="icone" onclick="rolarDados()"></div>
-
-  <!-- Lista decorada de dados -->
-  <select id="tipoDado" class="campo-dado">
-    <option value="2">d2</option>
-    <option value="4">d4</option>
-    <option value="6">d6</option>
-    <option value="8">d8</option>
-    <option value="10">d10</option>
-    <option value="12">d12</option>
-    <option value="20">d20</option>
-  </select>
-
-  <!-- Quantidade decorada -->
-  <input type="number" id="quantidade" min="1" value="1" class="campo-dado">
-
-  <!-- Resultado -->
-  <div class="resultado" id="resultado">-</div>
-</div>
-
-</div>
-        <div class="ficha-content-section">
-            <h3>Detalhes da Ficha</h3>
-            <p><strong>Lore:</strong> <span id="fichaLore"></span></p>
-               <div id="mutationsContainer" class="ark-section">
-   
-              </div>
-            <p><strong>Classes:</strong> <span id="fichaClasses"></span></p>
-            <p><strong>Inventário:</strong> <span id="fichaInventory"></span></p>
-            
-            <h4 class="section-title">Bônus em Ações</h4>
-            <ul id="fichaActionBonuses"></ul>
-            <ul id="learnedActionBonusContainer"></ul>
-            
-            
-            <h4>Rituais & Pactos:</h4>
-            <ul id="fichaRituals"></ul>
-        </div>
-        
-
-        <button onclick="window.location.href='index_jogadores.html'" class="back-button">Voltar a Ficha</button>
- </div>
 
  <div class="event-container">
 <!-- Bloco de Evento 1 -->
@@ -510,6 +578,7 @@
   </footer>
  <!-- JS -->
 <script src="../js/status.js" defer></script>
+<script src="../js/jogadores.js" defer></script>
 
 </body>
 </html>

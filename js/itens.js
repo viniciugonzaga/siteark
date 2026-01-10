@@ -1583,157 +1583,1989 @@ const armasData = {
         // ... continuar com as demais armas radiante seguindo o mesmo padrão
     ]
 };
+// Variáveis globais
+let eraAtual = 'pedra';
 
-// Função para criar a tabela de uma era específica
-function criarTabelaEra(era) {
-    const armas = armasData[era];
-    if (!armas) return '';
-
-    const temCt = armas.some(arma => arma.ct !== null);
+// Função para mostrar era
+function showEra(era) {
+    eraAtual = era;
+    renderWeaponsTable();
     
-    let html = `
-        <table id="${era}" class="tabela ${era === 'pedra' ? 'active' : 'hidden'}">
-            <tr>
-                <th>Armas</th>
-                <th>Dano</th>
-                ${temCt ? '<th>CT</th><th>Críticos</th>' : ''}
-            </tr>
-    `;
-
-    armas.forEach(arma => {
-        html += `
-            <tr>
-                <td class="arma" onclick="openModal('modal-${arma.id}')">${arma.nome}</td>
-                <td>${arma.dano}</td>
-                ${temCt ? `
-                    <td>${arma.ct || '-'}</td>
-                    <td>${arma.criticos || '-'}</td>
-                ` : ''}
-            </tr>
-        `;
+    // Atualizar botões ativos
+    document.querySelectorAll('.eras button').forEach(btn => {
+        btn.classList.remove('active');
     });
-
-    html += `</table>`;
-    return html;
+    event.target.classList.add('active');
 }
 
-// Função para criar os modais das armas
-function criarModais() {
-    let html = '';
+// Função para renderizar tabela de armas
+function renderWeaponsTable() {
+    const container = document.getElementById('weapons-container');
+    if (!container) return;
     
-    Object.keys(armasData).forEach(era => {
-        armasData[era].forEach(arma => {
-            html += `
-                <div id="modal-${arma.id}" class="effects-modal">
-                    <div class="effects-modal-content">
-                        <span class="effects-modal-close-button" onclick="closeModal('modal-${arma.id}')">&times;</span>
-                        <h2>${arma.nome}</h2>
-                        <p><b>Dano:</b> ${arma.dano}</p>
-                        ${arma.ct ? `<p><b>Crítico (CT):</b> ${arma.ct} | <b>Dano Extra:</b> ${arma.criticos}</p>` : ''}
-                        ${arma.passiva ? `<p><b>Passiva Base:</b> ${arma.passiva}</p>` : ''}
-                        ${arma.passivaRadiante ? `<p><b>Passiva Radiante:</b> ${arma.passivaRadiante}</p>` : ''}
-                        <p><b>Descrição:</b> ${arma.descricao}</p>
-                        <button class="add-btn" onclick="adicionarAFicha('${arma.id}')">Adicionar à Ficha</button>
+    const armas = armasData[eraAtual] || [];
+    
+    container.innerHTML = `
+        <div class="weapons-table-container">
+            <h3 class="era-title">${getEraTitle(eraAtual)}</h3>
+            ${armas.length > 0 ? `
+                <table class="weapons-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Dano</th>
+                            <th>CT</th>
+                            <th>Críticos</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${armas.map(arma => `
+                            <tr>
+                                <td>
+                                    <div class="weapon-name-cell">
+                                        <strong>${arma.nome}</strong>
+                                        ${arma.passivaRadiante ? '<span class="radiante-badge">RADIANTE</span>' : ''}
+                                    </div>
+                                </td>
+                                <td><span class="damage-cell">${arma.dano}</span></td>
+                                <td>${arma.ct}</td>
+                                <td>${arma.criticos}</td>
+                                <td>
+                                    <button onclick="showWeaponDetails('${arma.id}')" class="btn-detalhes" title="Ver detalhes">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button onclick="adicionarAFicha('${arma.id}')" class="btn-adicionar" title="Adicionar à ficha">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            ` : `
+                <div class="no-weapons-message">
+                    <p>Nenhuma arma disponível nesta era.</p>
+                </div>
+            `}
+        </div>
+    `;
+}
+
+// Função para obter título da era
+function getEraTitle(era) {
+    const titles = {
+        pedra: 'Era da Pedra',
+        ferro: 'Era do Ferro',
+        aco: 'Era do Aço',
+        radiante: 'Era Radiante',
+        final: 'Era Final'
+    };
+    return titles[era] || era;
+}
+
+// Função para mostrar detalhes da arma
+function showWeaponDetails(armaId) {
+    // Encontrar a arma
+    let armaEncontrada = null;
+    for (const era in armasData) {
+        const arma = armasData[era].find(a => a.id === armaId);
+        if (arma) {
+            armaEncontrada = arma;
+            break;
+        }
+    }
+    
+    if (!armaEncontrada) return;
+    
+    // Criar ou atualizar modal
+    let modal = document.getElementById(`modal-${armaId}`);
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = `modal-${armaId}`;
+        modal.className = 'weapon-modal';
+        document.getElementById('modals-container').appendChild(modal);
+    }
+    
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('${armaId}')">&times;</button>
+            <div class="modal-header">
+                <h3>${armaEncontrada.nome}</h3>
+                ${armaEncontrada.passivaRadiante ? '<span class="modal-radiante-badge">ARMA RADIANTE</span>' : ''}
+            </div>
+            <div class="modal-body">
+                ${armaEncontrada.imagem ? `<img src="${armaEncontrada.imagem}" alt="${armaEncontrada.nome}" class="modal-weapon-image">` : ''}
+                
+                <div class="modal-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Dano:</span>
+                        <span class="stat-value damage-highlight">${armaEncontrada.dano}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">CT:</span>
+                        <span class="stat-value">${armaEncontrada.ct}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Críticos:</span>
+                        <span class="stat-value">${armaEncontrada.criticos}</span>
                     </div>
                 </div>
-            `;
+                
+                <div class="modal-passives">
+                    ${armaEncontrada.passiva ? `
+                        <div class="passive-item">
+                            <h4>Passiva:</h4>
+                            <p>${armaEncontrada.passiva}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${armaEncontrada.passivaRadiante ? `
+                        <div class="passive-item radiante">
+                            <h4>Passiva Radiante:</h4>
+                            <p>${armaEncontrada.passivaRadiante}</p>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                ${armaEncontrada.descricao ? `
+                    <div class="modal-description">
+                        <h4>Descrição:</h4>
+                        <p>${armaEncontrada.descricao}</p>
+                    </div>
+                ` : ''}
+                
+                <div class="modal-actions">
+                    <button onclick="adicionarAFicha('${armaId}')" class="btn-adicionar-modal">
+                        <i class="fas fa-plus"></i> Adicionar à Minha Ficha
+                    </button>
+                    <button onclick="closeModal('${armaId}')" class="btn-fechar-modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    modal.style.display = 'block';
+    
+    // Adicionar evento para fechar ao clicar fora
+    setTimeout(() => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal(armaId);
+            }
         });
-    });
-    
-    return html;
+    }, 10);
 }
 
-// Função para inicializar as armas na página
-function inicializarArmas() {
-    const weaponsContainer = document.getElementById('weapons-container');
-    const modalsContainer = document.getElementById('modals-container');
-    
-    if (!weaponsContainer || !modalsContainer) {
-        console.error('Containers não encontrados!');
-        return;
-    }
-    
-    // Criar todas as tabelas
-    Object.keys(armasData).forEach(era => {
-        weaponsContainer.innerHTML += criarTabelaEra(era);
-    });
-    
-    // Criar todos os modais
-    modalsContainer.innerHTML = criarModais();
-}
-
-// Função para mostrar uma era específica
-function showEra(eraId) {
-    // Esconde todas as tabelas
-    const tabelas = document.querySelectorAll('.tabela');
-    tabelas.forEach(tabela => tabela.classList.remove('active'));
-
-    // Mostra a tabela correspondente
-    const tabelaAtiva = document.getElementById(eraId);
-    if (tabelaAtiva) {
-        tabelaAtiva.classList.add('active');
-    }
-
-    // Atualiza o estado dos botões
-    const botoes = document.querySelectorAll('.eras button');
-    botoes.forEach(btn => btn.classList.remove('active'));
-    const botaoAtivo = document.querySelector(`.eras button[onclick="showEra('${eraId}')"]`);
-    if (botaoAtivo) {
-        botaoAtivo.classList.add('active');
-    }
-}
-
-// Função para adicionar arma à ficha
-function adicionarAFicha(armaId) {
-    // Encontrar a arma nos dados
-    let arma = null;
-    Object.keys(armasData).forEach(era => {
-        const found = armasData[era].find(a => a.id === armaId);
-        if (found) arma = found;
-    });
-    
-    if (arma) {
-        // Aqui você pode implementar a lógica para adicionar à ficha do jogador
-        console.log(`Adicionando à ficha: ${arma.nome}`);
-        alert(`${arma.nome} adicionada à ficha!`);
-        
-        // Fechar o modal após adicionar
-        closeModal(`modal-${armaId}`);
-    }
-}
-
-// Funções para os modais
-function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = 'block';
-    }
-}
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
+// Função para fechar modal
+function closeModal(armaId) {
+    const modal = document.getElementById(`modal-${armaId}`);
     if (modal) {
         modal.style.display = 'none';
     }
 }
 
-// Função de redirecionamento
-function goToPage(page) {
-    window.location.href = page;
+// Função para adicionar arma à ficha
+function adicionarAFicha(armaId) {
+    console.log(`Tentando adicionar arma: ${armaId}`);
+    
+    // Encontrar a arma
+    let armaEncontrada = null;
+    for (const era in armasData) {
+        const arma = armasData[era].find(a => a.id === armaId);
+        if (arma) {
+            armaEncontrada = arma;
+            break;
+        }
+    }
+    
+    if (!armaEncontrada) {
+        alert('Erro: Arma não encontrada.');
+        return false;
+    }
+    
+    // Tentar salvar no armazenamento da ficha
+    try {
+        // Carregar armas existentes
+        let fichaArmas = [];
+        const armasSalvas = localStorage.getItem('personagemArmas');
+        if (armasSalvas) {
+            fichaArmas = JSON.parse(armasSalvas);
+        }
+        
+        // Verificar se já existe
+        const armaJaExiste = fichaArmas.some(a => a.id === armaId);
+        
+        if (armaJaExiste) {
+            const confirmacao = confirm(`"${armaEncontrada.nome}" já está na sua ficha. Deseja adicionar outra vez?`);
+            if (!confirmacao) {
+                console.log('Adição de arma cancelada pelo usuário');
+                return false;
+            }
+        }
+        
+        // Adicionar nova arma com dados completos
+        const novaArma = {
+            ...armaEncontrada,
+            fichaId: Date.now() + Math.random(), // ID único para esta instância na ficha
+            dataAdicao: new Date().toISOString(),
+            condition: 'Nula' // Valor padrão
+        };
+        
+        fichaArmas.push(novaArma);
+        
+        // Salvar
+        localStorage.setItem('personagemArmas', JSON.stringify(fichaArmas));
+        
+        // Mostrar notificação
+        mostrarNotificacaoArma(armaEncontrada.nome);
+        
+        // Fechar modal se estiver aberto
+        closeModal(armaId);
+        
+        console.log(`Arma "${armaEncontrada.nome}" adicionada à ficha com sucesso!`);
+        return true;
+        
+    } catch (error) {
+        console.error('Erro ao adicionar arma:', error);
+        alert('❌ Erro ao adicionar arma à ficha. Verifique o console para detalhes.');
+        return false;
+    }
 }
 
-// Fechar modal ao clicar fora dele
-window.onclick = function(event) {
-    const modals = document.querySelectorAll('.effects-modal');
-    modals.forEach(modal => {
-        if (event.target === modal) {
-            modal.style.display = 'none';
+// Função para mostrar notificação
+function mostrarNotificacaoArma(nomeArma) {
+    // Criar notificação
+    const notification = document.createElement('div');
+    notification.className = 'arma-notification';
+    notification.innerHTML = `
+        <div class="arma-notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span><strong>"${nomeArma}"</strong> adicionada à sua ficha!</span>
+        </div>
+    `;
+    
+    // Estilos
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 350px;
+    `;
+    
+    // Adicionar estilos CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        .arma-notification i {
+            font-size: 20px;
+            color: #4ade80;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    document.body.appendChild(notification);
+    
+    // Remover após animação
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3300);
+}
+
+// Inicialização
+document.addEventListener('DOMContentLoaded', function() {
+    // Renderizar tabela inicial
+    renderWeaponsTable();
+    
+    // Sistema de dados
+    const openMenuButton = document.getElementById('openMenu');
+    const closeMenuButton = document.getElementById('closeMenu');
+    const diceMenu = document.getElementById('diceMenu');
+    const rollDiceButton = document.getElementById('rollDice');
+    const clearRollsButton = document.getElementById('clearRolls');
+    
+    if (openMenuButton && diceMenu) {
+        openMenuButton.addEventListener('click', () => {
+            diceMenu.classList.remove('hidden');
+        });
+    }
+    
+    if (closeMenuButton && diceMenu) {
+        closeMenuButton.addEventListener('click', () => {
+            diceMenu.classList.add('hidden');
+        });
+    }
+    
+    if (rollDiceButton) {
+        rollDiceButton.addEventListener('click', () => {
+            const playerName = document.getElementById('playerName').value.trim();
+            const diceType = parseInt(document.getElementById('diceSelect').value);
+            const roll = Math.floor(Math.random() * diceType) + 1;
+
+            if (!playerName) {
+                alert("Por favor, insira o nome do jogador!");
+                return;
+            }
+
+            if (!playerScores[playerName]) {
+                playerScores[playerName] = 0;
+            }
+            playerScores[playerName] += roll;
+
+            const listItem = document.createElement('li');
+            listItem.textContent = `${playerName} = D${diceType}: ${roll} (Total: ${playerScores[playerName]})`;
+            document.getElementById('rollList').appendChild(listItem);
+
+            document.getElementById('total').textContent = `Total geral: ${Object.values(playerScores).reduce((a, b) => a + b, 0)}`;
+        });
+    }
+    
+    if (clearRollsButton) {
+        clearRollsButton.addEventListener('click', () => {
+            playerScores = {};
+            document.getElementById('rollList').innerHTML = '';
+            document.getElementById('total').textContent = 'Total geral: 0';
+        });
+    }
+    
+    console.log('Arsenal de armas inicializado com sucesso!');
+});
+
+// Exportar funções para escopo global
+window.showEra = showEra;
+window.showWeaponDetails = showWeaponDetails;
+window.closeModal = closeModal;
+window.adicionarAFicha = adicionarAFicha;
+
+
+
+
+// ========================
+// SISTEMA DE FORJA DE ARMAS
+// ========================
+
+// Dados dos modificadores
+const modificadoresData = {
+    pedra: [
+        { id: 'pedra-presa-inseto', nome: 'Presas de Inseto', efeito: '3d6 de Veneno', descricao: 'Presas venenosas que injetam toxinas no alvo.' },
+        { id: 'pedra-garras-predador', nome: 'Garras ou Dentes de Predador', efeito: '3d6 de Sangramento', descricao: 'Garras afiadas que causam feridas profundas.' },
+        { id: 'pedra-ossos-revestidos', nome: 'Ossos Revestidos ou Queratina', efeito: '+5 Resistência da Arma', descricao: 'Reforço ósseo que aumenta a durabilidade.' },
+        { id: 'pedra-couro', nome: 'Couro ou Couro Peludo', efeito: 'Saque Rápido, ganhando +5 Iniciativa', descricao: 'Acabamento em couro que permite manuseio rápido.' }
+    ],
+    ferro: [
+        { id: 'ferro-bronze', nome: 'Bronze ou Cobre', efeito: '3d6 de Dano', descricao: 'Revestimento metálico que aumenta o dano base.' },
+        { id: 'ferro-afiacao', nome: 'Afiação De Minério', efeito: '3d6 de Sangramento', descricao: 'Fio extremamente afiado que causa cortes profundos.' },
+        { id: 'ferro-camada-secundaria', nome: 'Camada Secundária de Ferro', efeito: '+5 Resistência de Arma', descricao: 'Camada adicional que fortalece a arma.' },
+        { id: 'ferro-couro', nome: 'Couro ou Couro Peludo', efeito: 'Saque Rápido, ganhando +5 Iniciativa', descricao: 'Empunhadura em couro para manuseio rápido.' },
+        { id: 'ferro-ouro', nome: 'Ouro', efeito: '+1D de dano da Arma / -5 Resistência', descricao: 'Revestimento dourado que aumenta dano mas reduz durabilidade.' },
+        { id: 'ferro-cristal', nome: 'Cristal', efeito: 'Reflete Luz ou Emite', descricao: 'Cristais que emitem ou refletem luz.' }
+    ],
+    aco: [
+        { id: 'aco-bronze', nome: 'Bronze ou Cobre', efeito: '3d6 de Dano', descricao: 'Liga metálica que aumenta o poder ofensivo.' },
+        { id: 'aco-garras-predador', nome: 'Garras ou Dentes de Predador', efeito: '3d6 de Sangramento', descricao: 'Incrustações afiadas que causam sangramento.' },
+        { id: 'aco-titanio', nome: 'Camada Secundária de Titânio', efeito: '+5 Resistência de Arma', descricao: 'Camada de titânio que reforça a estrutura.' },
+        { id: 'aco-couro', nome: 'Couro ou Couro Peludo', efeito: 'Saque Rápido, ganhando +5 Iniciativa', descricao: 'Acabamento premium para combate rápido.' },
+        { id: 'aco-ouro', nome: 'Ouro', efeito: '+1D de dano da Arma / -5 Resistência', descricao: 'Douramento que sacrifica resistência por poder.' },
+        { id: 'aco-cristal', nome: 'Cristal', efeito: 'Reflete Luz ou Emite', descricao: 'Cristais com propriedades luminosas.' },
+        { id: 'aco-chumbo', nome: 'Camada Fina de Chumbo', efeito: 'Diminui o Peso da Arma - 2 mãos para 1', descricao: 'Revestimento que torna a arma mais leve.' },
+        { id: 'aco-obsidiana', nome: 'Obsidiana', efeito: 'Imunidade a Fogo', descricao: 'Vidro vulcânico que protege contra chamas.' },
+        { id: 'aco-diamante', nome: 'Diamante', efeito: '+2D de dano, +3D de Crítico', descricao: 'Incrustações de diamante que aumentam letalidade.' },
+        { id: 'aco-netherite', nome: 'Netherite', efeito: '+25 de dano na Arma. Aumenta o Peso', descricao: 'Material ancestral com poder destrutivo.' },
+        { id: 'aco-uranio', nome: 'Urânio', efeito: '+15 de dano na arma em área. Ignora Armadura', descricao: 'Material radioativo que penetra defesas.' }
+    ],
+    joias: [
+        { id: 'joia-safira', nome: 'Sáfira', efeito: 'Mutação de Sáfira - Focada em Arcano, Mana', descricao: 'Jóia azul que amplifica poderes mágicos.' },
+        { id: 'joia-esmeralda', nome: 'Esmeralda', efeito: 'Mutação de Esmeralda - Focada na Nobreza', descricao: 'Jóia verde associada à riqueza e poder.' },
+        { id: 'joia-rubi', nome: 'Rubi', efeito: 'Mutação de Rubi - Focada em Defesa e Precisão', descricao: 'Jóia vermelha que aumenta precisão.' },
+        { id: 'joia-redstone', nome: 'Redstone', efeito: 'Mutação de Redstone - Focada em energia', descricao: 'Cristal energético com propriedades mecânicas.' },
+        { id: 'joia-diamante', nome: 'Diamante Mutado', efeito: 'Aumenta dano verdadeiro ou lentidão', descricao: 'Diamante purificado com poderes especiais.' },
+        { id: 'joia-hypo', nome: 'Hypo', efeito: 'Mutação Hypo - Aumento de vida, resistência', descricao: 'Cristal orgânico que fortalece o portador.' },
+        { id: 'joia-noite', nome: 'Noite', efeito: 'Mutação de Noite - Focada em furtividade', descricao: 'Jóia escura que concede habilidades sombrias.' },
+        { id: 'joia-elemento', nome: 'Elemento', efeito: 'Mutação de Elemento - Efeitos aleatórios', descricao: 'Jóia instável com múltiplos elementos.' },
+        { id: 'joia-caveira', nome: 'Cristal da Caveira', efeito: 'Mutação da Caveira - Violência monstruosa', descricao: 'Cristal amaldiçoado que incita violência.' },
+        { id: 'joia-inferno', nome: 'Cristal do Inferno', efeito: 'Mutação do Inferno - Dano de fogo acumulativo', descricao: 'Jóia ígnea que queima inimigos.' },
+        { id: 'joia-veu', nome: 'Véu', efeito: 'Mutação de Véu - Eletricidade, vento, fortuna', descricao: 'Cristal etéreo que manipula vento e sorte.' },
+        { id: 'joia-mefisto', nome: 'Mefisto', efeito: 'Mutação de Demônio - Risco e recompensa', descricao: 'Jóia demoníaca com pacto arriscado.' },
+        { id: 'joia-morte', nome: 'Dente de Lobo Escuro', efeito: 'Mutação de Morte - Dano verdadeiro, finalizar', descricao: 'Troféu que concede poderes de morte.' },
+        { id: 'joia-ion', nome: 'Esfera de Ion', efeito: 'Mutação de Ion - Inteligência, eletricidade', descricao: 'Esfera tecnológica que amplifica mente.' },
+        { id: 'joia-ouro-maldito', nome: 'Medalhão de Ouro Maldito', efeito: 'Mutação de Ouro - Ganância, maldição', descricao: 'Ouro amaldiçoado que seduz e corrompe.' },
+        { id: 'joia-solar', nome: 'Jóia Solar', efeito: 'Mutação Solar - Calor, fogo, purificação', descricao: 'Jóia solar que queima impurezas.' }
+    ],
+    radiante: [
+        { id: 'radiante-obsidiana', nome: 'Obsidiana Radiante', efeito: 'Imunidade a Fogo Avançada', descricao: 'Obsidiana purificada que anula chamas.' },
+        { id: 'radiante-diamante', nome: 'Diamante Radiante', efeito: '+2D de dano, +3D de Crítico', descricao: 'Diamante brilhante com poder amplificado.' },
+        { id: 'radiante-netherite', nome: 'Netherite Radiante', efeito: '+25 de dano. Aumenta Peso', descricao: 'Netherite abençoado com força divina.' },
+        { id: 'radiante-uranio', nome: 'Urânio Radiante', efeito: '+15 de dano em área. Ignora Armadura', descricao: 'Urânio estabilizado com radiação controlada.' }
+    ]
+};
+
+// Estado da forja
+let forjaEstado = {
+    raridade: null,
+    modificadoresSelecionados: [],
+    joiasSelecionadas: []
+};
+
+// ==============================================
+// FUNÇÃO CRIAR ARMA - ATUALIZADA
+// ==============================================
+
+function criarArma() {
+    // Validar raridade
+    if (!forjaEstado.raridade) {
+        alert('Selecione uma raridade para sua arma!');
+        return;
+    }
+    
+    // Validar campos obrigatórios
+    const nome = document.getElementById('armaNome').value.trim();
+    const dano = document.getElementById('armaDano').value.trim();
+    
+    if (!nome || !dano) {
+        alert('Preencha pelo menos o nome e dano da arma!');
+        return;
+    }
+    
+    // Coletar dados
+    const ct = document.getElementById('armaCT').value;
+    const criticos = document.getElementById('armaCriticos').value.trim();
+    const passiva = document.getElementById('armaPassiva').value.trim();
+    const passivaRadiante = document.getElementById('armaPassivaRadiante').value.trim();
+    const passivaTek = document.getElementById('armaPassivaTek').value.trim();
+    const descricao = document.getElementById('armaDescricao').value.trim();
+    
+    // Calcular resistência baseada na raridade
+    const resistencias = {
+        pedra: 'Dt:10 Resistência',
+        ferro: 'Dt:15 Resistência',
+        aco: 'Dt:20 Resistência',
+        radiante: 'Dt:25 Resistência',
+        final: 'Dt:30 Resistência'
+    };
+    
+    // Criar ID único
+    const armaId = 'custom-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+    
+    // Coletar todos os modificadores (incluindo joias como modificadores)
+    const todosModificadores = [
+        ...forjaEstado.modificadoresSelecionados,
+        ...forjaEstado.joiasSelecionadas
+    ];
+    
+    // Criar descrição combinada dos modificadores
+    let descricaoModificadores = '';
+    if (todosModificadores.length > 0) {
+        descricaoModificadores = 'Arma aprimorada com: ' + 
+            todosModificadores.map(mod => mod.nome).join(', ');
+        
+        // Adicionar efeitos detalhados
+        descricaoModificadores += '. Efeitos: ';
+        descricaoModificadores += todosModificadores.map(mod => mod.efeito).join('; ');
+    }
+    
+    // Criar objeto da arma com todos os detalhes
+    const novaArma = {
+        id: armaId,
+        nome: nome,
+        dano: dano,
+        ct: ct || null,
+        criticos: criticos || null,
+        descricao: descricao || 'Arma personalizada forjada por um mestre artesão.',
+        passiva: passiva || null,
+        passivaRadiante: forjaEstado.raridade === 'radiante' || forjaEstado.raridade === 'final' ? passivaRadiante : null,
+        passivaTek: forjaEstado.raridade === 'final' ? passivaTek : null,
+        raridade: forjaEstado.raridade,
+        resistencia: resistencias[forjaEstado.raridade] || '',
+        
+        // Armazenar modificadores detalhados
+        modificadores: todosModificadores,
+        
+        // Armazenar separadamente para fácil acesso
+        modificadoresLista: todosModificadores.map(mod => ({
+            nome: mod.nome,
+            efeito: mod.efeito,
+            descricao: mod.descricao,
+            tipo: mod.id.includes('joia') ? 'joia' : 'modificador'
+        })),
+        
+        // Resumo dos modificadores para exibição
+        modificadoresResumo: todosModificadores.map(mod => `${mod.nome}: ${mod.efeito}`).join(' | '),
+        
+        dataCriacao: new Date().toISOString(),
+        tipo: 'custom',
+        
+        // Flag para identificar como arma personalizada
+        personalizada: true
+    };
+    
+    // Se houver modificadores, adicionar à descrição
+    if (todosModificadores.length > 0) {
+        novaArma.descricao += ' ' + descricaoModificadores;
+    }
+    
+    // Salvar no localStorage
+    salvarArmaCriada(novaArma);
+    
+    // Mostrar notificação
+    mostrarNotificacaoCriacao(novaArma.nome, todosModificadores.length);
+    
+    // Atualizar lista de armas criadas
+    carregarArmasCriadas();
+    
+    // Limpar formulário
+    limparFormulario();
+}
+
+// ==============================================
+// FUNÇÕES AUXILIARES
+// ==============================================
+
+function selecionarRaridade(raridade) {
+    forjaEstado.raridade = raridade;
+    forjaEstado.modificadoresSelecionados = [];
+    forjaEstado.joiasSelecionadas = [];
+    
+    // Atualizar botões de raridade
+    document.querySelectorAll('.btn-raridade').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Atualizar limites de modificadores
+    atualizarLimitesModificadores();
+    
+    // Atualizar campos visíveis
+    atualizarCamposVisiveis();
+    
+    // Atualizar modificadores disponíveis
+    atualizarModificadoresDisponiveis();
+    
+    // Atualizar tabela de modificadores
+    renderizarTabelaModificadores();
+    
+    // Atualizar preview
+    atualizarPreview();
+}
+
+function atualizarLimitesModificadores() {
+    const limites = {
+        pedra: 1,
+        ferro: 3,
+        aco: 2,
+        radiante: 3,
+        final: 5
+    };
+    
+    const limite = limites[forjaEstado.raridade] || 0;
+    document.getElementById('modLimit').textContent = limite;
+    document.getElementById('modLimitInfo').style.display = 'block';
+}
+
+function atualizarCamposVisiveis() {
+    const passivaRadianteGroup = document.getElementById('passivaRadianteGroup');
+    const passivaTekGroup = document.getElementById('passivaTekGroup');
+    
+    // Mostrar passiva radiante para radiante e final
+    if (forjaEstado.raridade === 'radiante' || forjaEstado.raridade === 'final') {
+        passivaRadianteGroup.style.display = 'block';
+    } else {
+        passivaRadianteGroup.style.display = 'none';
+        document.getElementById('armaPassivaRadiante').value = '';
+    }
+    
+    // Mostrar passiva tek apenas para final
+    if (forjaEstado.raridade === 'final') {
+        passivaTekGroup.style.display = 'block';
+    } else {
+        passivaTekGroup.style.display = 'none';
+        document.getElementById('armaPassivaTek').value = '';
+    }
+}
+
+function atualizarModificadoresDisponiveis() {
+    const container = document.getElementById('modificadoresContainer');
+    if (!container) return;
+    
+    let html = '<div class="modificadores-grid">';
+    
+    // Adicionar modificadores baseados na raridade
+    if (forjaEstado.raridade && modificadoresData[forjaEstado.raridade]) {
+        modificadoresData[forjaEstado.raridade].forEach(mod => {
+            const isSelected = forjaEstado.modificadoresSelecionados.some(m => m.id === mod.id);
+            html += `
+                <div class="modificador-item ${isSelected ? 'selected' : ''}" onclick="toggleModificador('${mod.id}', '${forjaEstado.raridade}')">
+                    <div class="modificador-header">
+                        <h4>${mod.nome}</h4>
+                        <span class="modificador-tipo">${forjaEstado.raridade.toUpperCase()}</span>
+                    </div>
+                    <p class="modificador-efeito">${mod.efeito}</p>
+                    <p class="modificador-desc">${mod.descricao}</p>
+                    ${isSelected ? '<div class="modificador-selected"><i class="fas fa-check"></i> Selecionado</div>' : ''}
+                </div>
+            `;
+        });
+    }
+    
+    // Adicionar joias para aço
+    if (forjaEstado.raridade === 'aco' || forjaEstado.raridade === 'radiante' || forjaEstado.raridade === 'final') {
+        html += '<div class="joias-section"><h4><i class="fas fa-gem"></i> Joias Especiais</h4></div>';
+        
+        modificadoresData.joias.forEach(joia => {
+            const isSelected = forjaEstado.joiasSelecionadas.some(j => j.id === joia.id);
+            html += `
+                <div class="modificador-item joia-item ${isSelected ? 'selected' : ''}" onclick="toggleJoia('${joia.id}')">
+                    <div class="modificador-header">
+                        <h4><i class="fas fa-gem"></i> ${joia.nome}</h4>
+                        <span class="modificador-tipo">JOIA</span>
+                    </div>
+                    <p class="modificador-efeito">${joia.efeito}</p>
+                    <p class="modificador-desc">${joia.descricao}</p>
+                    ${isSelected ? '<div class="modificador-selected"><i class="fas fa-check"></i> Selecionada</div>' : ''}
+                </div>
+            `;
+        });
+    }
+    
+    // Adicionar modificadores radiante para radiante e final
+    if (forjaEstado.raridade === 'radiante' || forjaEstado.raridade === 'final') {
+        html += '<div class="radiante-section"><h4><i class="fas fa-sun"></i> Modificadores Radiantes</h4></div>';
+        
+        modificadoresData.radiante.forEach(mod => {
+            const isSelected = forjaEstado.modificadoresSelecionados.some(m => m.id === mod.id);
+            html += `
+                <div class="modificador-item radiante-item ${isSelected ? 'selected' : ''}" onclick="toggleModificador('${mod.id}', 'radiante')">
+                    <div class="modificador-header">
+                        <h4><i class="fas fa-sun"></i> ${mod.nome}</h4>
+                        <span class="modificador-tipo">RADIANTE</span>
+                    </div>
+                    <p class="modificador-efeito">${mod.efeito}</p>
+                    <p class="modificador-desc">${mod.descricao}</p>
+                    ${isSelected ? '<div class="modificador-selected"><i class="fas fa-check"></i> Selecionado</div>' : ''}
+                </div>
+            `;
+        });
+    }
+    
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function toggleModificador(modId, tipo) {
+    const limites = {
+        pedra: 1,
+        ferro: 3,
+        aco: 2,
+        radiante: 3,
+        final: 5
+    };
+    
+    const limite = limites[forjaEstado.raridade] || 0;
+    
+    // Encontrar o modificador
+    let modificador = null;
+    if (modificadoresData[tipo]) {
+        modificador = modificadoresData[tipo].find(m => m.id === modId);
+    }
+    
+    if (!modificador) return;
+    
+    // Verificar se já está selecionado
+    const index = forjaEstado.modificadoresSelecionados.findIndex(m => m.id === modId);
+    
+    if (index > -1) {
+        // Remover se já estiver selecionado
+        forjaEstado.modificadoresSelecionados.splice(index, 1);
+    } else {
+        // Verificar limite
+        if (forjaEstado.modificadoresSelecionados.length >= limite) {
+            alert(`Limite de ${limite} modificador(es) atingido para raridade ${forjaEstado.raridade}`);
+            return;
+        }
+        
+        // Adicionar modificador
+        forjaEstado.modificadoresSelecionados.push(modificador);
+    }
+    
+    // Atualizar interface
+    atualizarModificadoresDisponiveis();
+    atualizarPreview();
+}
+
+function toggleJoia(joiaId) {
+    const joia = modificadoresData.joias.find(j => j.id === joiaId);
+    if (!joia) return;
+    
+    const index = forjaEstado.joiasSelecionadas.findIndex(j => j.id === joiaId);
+    
+    if (index > -1) {
+        forjaEstado.joiasSelecionadas.splice(index, 1);
+    } else {
+        // Limite de 1 joia para aço
+        if (forjaEstado.raridade === 'aco' && forjaEstado.joiasSelecionadas.length >= 1) {
+            alert('Limite de 1 joia para armas de Aço');
+            return;
+        }
+        
+        // Sem limite para radiante/final (já contabilizado nos modificadores)
+        forjaEstado.joiasSelecionadas.push(joia);
+    }
+    
+    atualizarModificadoresDisponiveis();
+    atualizarPreview();
+}
+
+function renderizarTabelaModificadores() {
+    const container = document.getElementById('tabelaModificadores');
+    if (!container) return;
+    
+    let html = `
+        <table class="mod-tabela">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Modificador</th>
+                    <th>Efeito</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    // Adicionar todas as categorias
+    for (const [tipo, modificadores] of Object.entries(modificadoresData)) {
+        if (tipo === 'joias') continue;
+        
+        modificadores.forEach(mod => {
+            html += `
+                <tr>
+                    <td><span class="mod-tipo-badge ${tipo}">${tipo.toUpperCase()}</span></td>
+                    <td><strong>${mod.nome}</strong></td>
+                    <td class="mod-efeito">${mod.efeito}</td>
+                    <td class="mod-desc">${mod.descricao}</td>
+                </tr>
+            `;
+        });
+    }
+    
+    // Adicionar joias separadamente
+    html += '<tr><td colspan="4" class="joias-header"><h4><i class="fas fa-gem"></i> Joias Especiais</h4></td></tr>';
+    
+    modificadoresData.joias.forEach(joia => {
+        html += `
+            <tr>
+                <td><span class="mod-tipo-badge joia">JOIA</span></td>
+                <td><strong><i class="fas fa-gem"></i> ${joia.nome}</strong></td>
+                <td class="mod-efeito">${joia.efeito}</td>
+                <td class="mod-desc">${joia.descricao}</td>
+            </tr>
+        `;
+    });
+    
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+
+function atualizarPreview() {
+    const previewCard = document.getElementById('previewCard');
+    if (!previewCard) return;
+    
+    const nome = document.getElementById('armaNome').value;
+    const dano = document.getElementById('armaDano').value;
+    const ct = document.getElementById('armaCT').value;
+    const criticos = document.getElementById('armaCriticos').value;
+    const passiva = document.getElementById('armaPassiva').value;
+    const passivaRadiante = document.getElementById('armaPassivaRadiante').value;
+    const passivaTek = document.getElementById('armaPassivaTek').value;
+    const descricao = document.getElementById('armaDescricao').value;
+    
+    if (!nome && !dano && !forjaEstado.raridade) {
+        previewCard.innerHTML = `
+            <div class="preview-placeholder">
+                <i class="fas fa-hammer fa-3x"></i>
+                <p>Sua arma aparecerá aqui</p>
+            </div>
+        `;
+        return;
+    }
+    
+    let html = `
+        <div class="preview-content">
+            <div class="preview-header">
+                <h4>${nome || 'Nome não definido'}</h4>
+                <span class="preview-raridade ${forjaEstado.raridade || ''}">
+                    ${forjaEstado.raridade ? forjaEstado.raridade.toUpperCase() : 'SEM RARIDADE'}
+                </span>
+            </div>
+            
+            <div class="preview-stats">
+                ${dano ? `<div class="preview-stat"><span>Dano:</span> <strong>${dano}</strong></div>` : ''}
+                ${ct ? `<div class="preview-stat"><span>CT:</span> <strong>${ct}</strong></div>` : ''}
+                ${criticos ? `<div class="preview-stat"><span>Críticos:</span> <strong>${criticos}</strong></div>` : ''}
+                ${forjaEstado.raridade ? `<div class="preview-stat"><span>Resistência:</span> <strong>${{pedra: 'Dt:10', ferro: 'Dt:15', aco: 'Dt:20', radiante: 'Dt:25', final: 'Dt:30'}[forjaEstado.raridade] || ''}</strong></div>` : ''}
+            </div>
+            
+            ${passiva ? `<div class="preview-passiva"><span>Passiva:</span> ${passiva}</div>` : ''}
+            ${passivaRadiante ? `<div class="preview-passiva radiante"><span>Passiva Radiante:</span> ${passivaRadiante}</div>` : ''}
+            ${passivaTek ? `<div class="preview-passiva tek"><span>Passiva Tek:</span> ${passivaTek}</div>` : ''}
+            
+            ${descricao ? `<div class="preview-desc"><span>Descrição:</span> ${descricao}</div>` : ''}
+            
+            ${forjaEstado.modificadoresSelecionados.length > 0 || forjaEstado.joiasSelecionadas.length > 0 ? `
+                <div class="preview-mods">
+                    <h5><i class="fas fa-tools"></i> Modificadores Aplicados:</h5>
+                    <ul>
+                        ${forjaEstado.modificadoresSelecionados.map(mod => `<li><strong>${mod.nome}:</strong> ${mod.efeito}</li>`).join('')}
+                        ${forjaEstado.joiasSelecionadas.map(joia => `<li class="joia-mod"><strong><i class="fas fa-gem"></i> ${joia.nome}:</strong> ${joia.efeito}</li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+        </div>
+    `;
+    
+    previewCard.innerHTML = html;
+}
+
+function salvarArmaCriada(arma) {
+    try {
+        let armasCriadas = [];
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        
+        if (armasSalvas) {
+            armasCriadas = JSON.parse(armasSalvas);
+        }
+        
+        armasCriadas.push(arma);
+        localStorage.setItem('armasCriadas', JSON.stringify(armasCriadas));
+        
+        return true;
+    } catch (error) {
+        console.error('Erro ao salvar arma:', error);
+        return false;
+    }
+}
+
+function mostrarNotificacaoCriacao(nomeArma, numModificadores) {
+    const notification = document.createElement('div');
+    notification.className = 'arma-notification';
+    
+    let mensagem = `<strong>"${nomeArma}"</strong> forjada com sucesso!`;
+    if (numModificadores > 0) {
+        mensagem += ` (${numModificadores} modificador(es) aplicado(s))`;
+    }
+    
+    notification.innerHTML = `
+        <div class="arma-notification-content">
+            <i class="fas fa-hammer"></i>
+            <span>${mensagem}</span>
+        </div>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 400px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3300);
+}
+
+function carregarArmasCriadas() {
+    const container = document.getElementById('armasCriadasList');
+    if (!container) return;
+    
+    try {
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        const armasCriadas = armasSalvas ? JSON.parse(armasSalvas) : [];
+        
+        if (armasCriadas.length === 0) {
+            container.innerHTML = `
+                <div class="armas-criadas-empty">
+                    <i class="fas fa-hammer fa-2x"></i>
+                    <p>Nenhuma arma criada ainda</p>
+                    <small>Forje sua primeira arma acima!</small>
+                </div>
+            `;
+            return;
+        }
+        
+        // Ordenar por data (mais recente primeiro)
+        armasCriadas.sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
+        
+        let html = '';
+        armasCriadas.forEach(arma => {
+            const data = new Date(arma.dataCriacao).toLocaleDateString('pt-BR');
+            const numMods = arma.modificadores ? arma.modificadores.length : 0;
+            
+            html += `
+                <div class="arma-criada-card" data-id="${arma.id}">
+                    <div class="arma-criada-header">
+                        <div>
+                            <h4>${arma.nome}</h4>
+                            <div class="arma-criada-mods-badge">
+                                <i class="fas fa-tools"></i>
+                                <span>${numMods} mod(s)</span>
+                            </div>
+                        </div>
+                        <span class="arma-criada-raridade ${arma.raridade}">${arma.raridade.toUpperCase()}</span>
+                    </div>
+                    
+                    <div class="arma-criada-stats">
+                        <span class="arma-criada-stat"><strong>Dano:</strong> ${arma.dano}</span>
+                        ${arma.ct ? `<span class="arma-criada-stat"><strong>CT:</strong> ${arma.ct}</span>` : ''}
+                        ${arma.resistencia ? `<span class="arma-criada-stat resistencia"><strong>Res:</strong> ${arma.resistencia}</span>` : ''}
+                    </div>
+                    
+                    ${numMods > 0 ? `
+                        <div class="arma-criada-mods-preview">
+                            <small><i class="fas fa-cog"></i> Modificadores: ${arma.modificadoresResumo || arma.modificadores.map(m => m.nome).join(', ')}</small>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="arma-criada-actions">
+                        <button onclick="verArmaCriada('${arma.id}')" class="btn-arma-action ver" title="Ver detalhes">
+                            <i class="fas fa-eye"></i> Ver
+                        </button>
+                        <button onclick="adicionarArmaCriadaAFicha('${arma.id}')" class="btn-arma-action adicionar" title="Adicionar à ficha">
+                            <i class="fas fa-plus"></i> Ficha
+                        </button>
+                        <button onclick="removerArmaCriada('${arma.id}')" class="btn-arma-action remover" title="Remover arma">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="arma-criada-footer">
+                        <small><i class="fas fa-calendar"></i> ${data}</small>
+                        <small><i class="fas fa-cog"></i> ${numMods} mod(s)</small>
+                    </div>
+                </div>
+            `;
+        });
+        
+        container.innerHTML = html;
+    } catch (error) {
+        console.error('Erro ao carregar armas criadas:', error);
+        container.innerHTML = `
+            <div class="armas-criadas-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Erro ao carregar armas</p>
+            </div>
+        `;
+    }
+}
+
+function verArmaCriada(armaId) {
+    try {
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        const armasCriadas = armasSalvas ? JSON.parse(armasSalvas) : [];
+        const arma = armasCriadas.find(a => a.id === armaId);
+        
+        if (!arma) {
+            alert('Arma não encontrada!');
+            return;
+        }
+        
+        // Criar modal de visualização
+        let modal = document.getElementById('modal-ver-arma');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'modal-ver-arma';
+            modal.className = 'weapon-modal';
+            document.getElementById('modals-container').appendChild(modal);
+        }
+        
+        // Criar HTML dos modificadores
+        let modificadoresHTML = '';
+        if (arma.modificadores && arma.modificadores.length > 0) {
+            modificadoresHTML = `
+                <div class="modal-mods">
+                    <h4><i class="fas fa-tools"></i> Modificadores Aplicados</h4>
+                    <div class="mods-grid">
+                        ${arma.modificadores.map((mod, index) => `
+                            <div class="mod-card ${mod.id && mod.id.includes('joia') ? 'joia' : ''}">
+                                <div class="mod-card-header">
+                                    <h5>${mod.nome}</h5>
+                                    <span class="mod-badge">${mod.id && mod.id.includes('joia') ? 'JOIA' : 'MOD'}</span>
+                                </div>
+                                <div class="mod-card-body">
+                                    <p class="mod-efeito"><strong>Efeito:</strong> ${mod.efeito}</p>
+                                    <p class="mod-desc">${mod.descricao}</p>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="mods-resumo">
+                        <h5>Resumo dos Efeitos:</h5>
+                        <p>${arma.modificadoresResumo || arma.modificadores.map(mod => `${mod.nome}: ${mod.efeito}`).join(' | ')}</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        modal.innerHTML = `
+            <div class="modal-content">
+                <button class="close-modal" onclick="closeModal('ver-arma')">&times;</button>
+                <div class="modal-header">
+                    <h3>${arma.nome}</h3>
+                    <div class="modal-header-info">
+                        <span class="modal-raridade-badge ${arma.raridade}">${arma.raridade.toUpperCase()}</span>
+                        ${arma.resistencia ? `<span class="modal-resistencia">${arma.resistencia}</span>` : ''}
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Dano:</span>
+                            <span class="stat-value damage-highlight">${arma.dano}</span>
+                        </div>
+                        ${arma.ct ? `
+                            <div class="stat-item">
+                                <span class="stat-label">CT:</span>
+                                <span class="stat-value">${arma.ct}</span>
+                            </div>
+                        ` : ''}
+                        ${arma.criticos ? `
+                            <div class="stat-item">
+                                <span class="stat-label">Críticos:</span>
+                                <span class="stat-value">${arma.criticos}</span>
+                            </div>
+                        ` : ''}
+                        ${arma.resistencia ? `
+                            <div class="stat-item">
+                                <span class="stat-label">Resistência:</span>
+                                <span class="stat-value">${arma.resistencia}</span>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="modal-passives">
+                        ${arma.passiva ? `
+                            <div class="passive-item">
+                                <h4>Passiva:</h4>
+                                <p>${arma.passiva}</p>
+                            </div>
+                        ` : ''}
+                        
+                        ${arma.passivaRadiante ? `
+                            <div class="passive-item radiante">
+                                <h4>Passiva Radiante:</h4>
+                                <p>${arma.passivaRadiante}</p>
+                            </div>
+                        ` : ''}
+                        
+                        ${arma.passivaTek ? `
+                            <div class="passive-item tek">
+                                <h4>Passiva Tek:</h4>
+                                <p>${arma.passivaTek}</p>
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    ${modificadoresHTML}
+                    
+                    ${arma.descricao ? `
+                        <div class="modal-description">
+                            <h4>Descrição:</h4>
+                            <p>${arma.descricao}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div class="modal-footer">
+                        <div class="modal-actions">
+                            <button onclick="adicionarArmaCriadaAFicha('${arma.id}')" class="btn-adicionar-modal">
+                                <i class="fas fa-plus"></i> Adicionar à Minha Ficha
+                            </button>
+                            <button onclick="copiarDadosArma('${arma.id}')" class="btn-copiar-modal" title="Copiar dados da arma">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
+                            <button onclick="closeModal('ver-arma')" class="btn-fechar-modal">
+                                Fechar
+                            </button>
+                        </div>
+                        
+                        <div class="modal-info">
+                            <small><i class="fas fa-calendar"></i> Criada em: ${new Date(arma.dataCriacao).toLocaleDateString('pt-BR')}</small>
+                            <small><i class="fas fa-cog"></i> ${arma.modificadores ? arma.modificadores.length : 0} modificador(es)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        modal.style.display = 'block';
+        
+        // Adicionar evento para fechar ao clicar fora
+        setTimeout(() => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal('ver-arma');
+                }
+            });
+        }, 10);
+        
+    } catch (error) {
+        console.error('Erro ao visualizar arma:', error);
+        alert('Erro ao visualizar arma!');
+    }
+}
+
+function copiarDadosArma(armaId) {
+    try {
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        const armasCriadas = armasSalvas ? JSON.parse(armasSalvas) : [];
+        const arma = armasCriadas.find(a => a.id === armaId);
+        
+        if (!arma) return;
+        
+        // Criar texto formatado para cópia
+        let texto = `=== ${arma.nome} ===\n`;
+        texto += `Raridade: ${arma.raridade.toUpperCase()}\n`;
+        texto += `Dano: ${arma.dano}\n`;
+        if (arma.ct) texto += `CT: ${arma.ct}\n`;
+        if (arma.criticos) texto += `Críticos: ${arma.criticos}\n`;
+        if (arma.resistencia) texto += `Resistência: ${arma.resistencia}\n`;
+        if (arma.passiva) texto += `\nPassiva: ${arma.passiva}\n`;
+        if (arma.passivaRadiante) texto += `Passiva Radiante: ${arma.passivaRadiante}\n`;
+        if (arma.passivaTek) texto += `Passiva Tek: ${arma.passivaTek}\n`;
+        
+        if (arma.modificadores && arma.modificadores.length > 0) {
+            texto += `\n=== MODIFICADORES ===\n`;
+            arma.modificadores.forEach((mod, index) => {
+                texto += `${index + 1}. ${mod.nome}: ${mod.efeito}\n`;
+                texto += `   ${mod.descricao}\n\n`;
+            });
+        }
+        
+        if (arma.descricao) texto += `\nDescrição: ${arma.descricao}\n`;
+        
+        // Copiar para área de transferência
+        navigator.clipboard.writeText(texto).then(() => {
+            // Mostrar notificação de cópia
+            const notification = document.createElement('div');
+            notification.className = 'arma-notification';
+            notification.innerHTML = `
+                <div class="arma-notification-content">
+                    <i class="fas fa-copy"></i>
+                    <span>Dados da arma copiados!</span>
+                </div>
+            `;
+            
+            notification.style.cssText = `
+                position: fixed;
+                top: 70px;
+                right: 20px;
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                z-index: 10000;
+                animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                max-width: 350px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.parentNode.removeChild(notification);
+                }
+            }, 2000);
+        });
+        
+    } catch (error) {
+        console.error('Erro ao copiar dados:', error);
+        alert('Não foi possível copiar os dados.');
+    }
+}
+
+function adicionarArmaCriadaAFicha(armaId) {
+    try {
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        const armasCriadas = armasSalvas ? JSON.parse(armasSalvas) : [];
+        const arma = armasCriadas.find(a => a.id === armaId);
+        
+        if (!arma) {
+            alert('Arma não encontrada!');
+            return;
+        }
+        
+        // Criar objeto completo para a ficha com todos os dados
+        const armaParaFicha = {
+            id: arma.id,
+            nome: arma.nome,
+            dano: arma.dano,
+            ct: arma.ct || null,
+            criticos: arma.criticos || null,
+            descricao: arma.descricao || 'Arma personalizada forjada por um mestre artesão.',
+            passiva: arma.passiva || null,
+            passivaRadiante: arma.passivaRadiante || null,
+            passivaTek: arma.passivaTek || null,
+            raridade: arma.raridade,
+            resistencia: arma.resistencia || '',
+            
+            // Incluir todos os modificadores
+            modificadores: arma.modificadores || [],
+            modificadoresLista: arma.modificadoresLista || [],
+            modificadoresResumo: arma.modificadoresResumo || '',
+            
+            // Informações de identificação
+            fichaId: Date.now() + Math.random(),
+            dataAdicao: new Date().toISOString(),
+            dataCriacao: arma.dataCriacao,
+            condition: 'Nova',
+            
+            // Flags para identificação
+            tipo: 'custom',
+            personalizada: true,
+            origem: 'forja'
+        };
+        
+        // Se houver modificadores, adicionar informação extra na descrição
+        if (arma.modificadores && arma.modificadores.length > 0) {
+            armaParaFicha.descricao += `\n\nArma aprimorada com ${arma.modificadores.length} modificador(es).`;
+        }
+        
+        // Carregar armas existentes na ficha
+        let fichaArmas = [];
+        const armasFichaSalvas = localStorage.getItem('personagemArmas');
+        if (armasFichaSalvas) {
+            fichaArmas = JSON.parse(armasFichaSalvas);
+        }
+        
+        // Verificar se já existe
+        const armaJaExiste = fichaArmas.some(a => a.id === armaId);
+        
+        if (armaJaExiste) {
+            const confirmacao = confirm(`"${arma.nome}" já está na sua ficha. Deseja adicionar outra vez?`);
+            if (!confirmacao) return;
+        }
+        
+        fichaArmas.push(armaParaFicha);
+        localStorage.setItem('personagemArmas', JSON.stringify(fichaArmas));
+        
+        // Mostrar notificação detalhada
+        mostrarNotificacaoArmaComMods(arma.nome, arma.modificadores ? arma.modificadores.length : 0);
+        
+        console.log(`Arma personalizada "${arma.nome}" adicionada à ficha com sucesso!`);
+        
+    } catch (error) {
+        console.error('Erro ao adicionar arma à ficha:', error);
+        alert('❌ Erro ao adicionar arma à ficha.');
+    }
+}
+
+function mostrarNotificacaoArmaComMods(nomeArma, numModificadores) {
+    const notification = document.createElement('div');
+    notification.className = 'arma-notification';
+    
+    let mensagem = `<strong>"${nomeArma}"</strong> adicionada à sua ficha!`;
+    if (numModificadores > 0) {
+        mensagem += ` <small>(${numModificadores} modificador(es) incluído(s))</small>`;
+    }
+    
+    notification.innerHTML = `
+        <div class="arma-notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span>${mensagem}</span>
+        </div>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 400px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3300);
+}
+
+function removerArmaCriada(armaId) {
+    const confirmacao = confirm('Tem certeza que deseja remover esta arma? Esta ação não pode ser desfeita.');
+    
+    if (!confirmacao) return;
+    
+    try {
+        const armasSalvas = localStorage.getItem('armasCriadas');
+        let armasCriadas = armasSalvas ? JSON.parse(armasSalvas) : [];
+        
+        // Filtrar a arma removida
+        armasCriadas = armasCriadas.filter(a => a.id !== armaId);
+        
+        // Salvar novamente
+        localStorage.setItem('armasCriadas', JSON.stringify(armasCriadas));
+        
+        // Atualizar lista
+        carregarArmasCriadas();
+        
+        // Mostrar notificação
+        const notification = document.createElement('div');
+        notification.className = 'arma-notification';
+        notification.innerHTML = `
+            <div class="arma-notification-content">
+                <i class="fas fa-trash"></i>
+                <span>Arma removida com sucesso!</span>
+            </div>
+        `;
+        
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            max-width: 350px;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 3300);
+        
+    } catch (error) {
+        console.error('Erro ao remover arma:', error);
+        alert('❌ Erro ao remover arma.');
+    }
+}
+
+function limparFormulario() {
+    document.getElementById('armaNome').value = '';
+    document.getElementById('armaDano').value = '';
+    document.getElementById('armaCT').value = '';
+    document.getElementById('armaCriticos').value = '';
+    document.getElementById('armaPassiva').value = '';
+    document.getElementById('armaPassivaRadiante').value = '';
+    document.getElementById('armaPassivaTek').value = '';
+    document.getElementById('armaDescricao').value = '';
+    
+    forjaEstado.modificadoresSelecionados = [];
+    forjaEstado.joiasSelecionadas = [];
+    
+    document.querySelectorAll('.btn-raridade').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    forjaEstado.raridade = null;
+    
+    atualizarModificadoresDisponiveis();
+    atualizarPreview();
+    
+    // Mostrar mensagem de confirmação
+    const notification = document.createElement('div');
+    notification.className = 'arma-notification';
+    notification.innerHTML = `
+        <div class="arma-notification-content">
+            <i class="fas fa-broom"></i>
+            <span>Formulário limpo!</span>
+        </div>
+    `;
+    
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        padding: 15px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease, fadeOut 0.3s ease 3s forwards;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 350px;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 3300);
+}
+
+// ==============================================
+// ADICIONAR CSS PARA OS NOVOS ELEMENTOS
+// ==============================================
+
+const novoCSS = `
+/* Estilos para modificadores na visualização */
+.mods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.mod-card {
+    background: rgba(50, 50, 50, 0.7);
+    border-radius: 10px;
+    padding: 12px;
+    border-left: 4px solid #b6fff3;
+    transition: all 0.3s ease;
+}
+
+.mod-card.joia {
+    border-left-color: #ffd700;
+    background: rgba(50, 50, 50, 0.8);
+}
+
+.mod-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mod-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mod-card-header h5 {
+    color: #d0d0d0;
+    font-size: 0.9rem;
+    margin: 0;
+    font-family: 'Cinzel', serif;
+}
+
+.mod-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(176, 255, 248, 0.2);
+    color: #b6fff3;
+    font-weight: bold;
+}
+
+.mod-card.joia .mod-badge {
+    background: rgba(255, 215, 0, 0.2);
+    color: #ffd700;
+}
+
+.mod-card-body {
+    color: #aaa;
+    font-size: 0.8rem;
+}
+
+.mod-efeito {
+    color: #affaea;
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 0.85rem;
+}
+
+.mod-desc {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    margin: 5px 0 0;
+}
+
+.mods-resumo {
+    background: rgba(40, 40, 40, 0.6);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid rgba(193, 240, 248, 0.1);
+}
+
+.mods-resumo h5 {
+    color: #affaea;
+    margin: 0 0 8px 0;
+    font-size: 0.9rem;
+}
+
+.mods-resumo p {
+    color: #aaa;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.modal-header-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.modal-resistencia {
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+    border: 1px solid #ff6b6b;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(193, 240, 248, 0.1);
+}
+
+.modal-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    color: #666;
+    font-size: 0.8rem;
+}
+
+.modal-info small {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-copiar-modal {
+    background: rgba(74, 144, 226, 0.3);
+    color: #4a90e2;
+    border: 1px solid #4a90e2;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-copiar-modal:hover {
+    background: rgba(74, 144, 226, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Estilos para a lista de armas criadas */
+.arma-criada-mods-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(176, 255, 248, 0.1);
+    padding: 3px 8px;
+    border-radius: 10px;
+    margin-top: 5px;
+    font-size: 0.75rem;
+}
+
+.arma-criada-mods-badge i {
+    color: #b6fff3;
+    font-size: 0.7rem;
+}
+
+.arma-criada-mods-badge span {
+    color: #b6fff3;
+}
+
+.arma-criada-stat.resistencia {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.arma-criada-mods-preview {
+    background: rgba(40, 40, 40, 0.5);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 10px 0;
+    border-left: 3px solid rgba(176, 255, 248, 0.3);
+}
+
+.arma-criada-mods-preview small {
+    color: #aaa;
+    font-size: 0.8rem;
+    line-height: 1.3;
+}
+
+.arma-criada-mods-preview i {
+    color: #b6fff3;
+    margin-right: 5px;
+}
+
+/* Melhorias na responsividade */
+@media (max-width: 768px) {
+    .mods-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-header-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .arma-criada-actions {
+        flex-wrap: wrap;
+    }
+    
+    .btn-arma-action {
+        flex: 1;
+        min-width: 70px;
+    }
+}
+`;
+
+// Adicionar o CSS ao documento
+document.addEventListener('DOMContentLoaded', function() {
+    const styleSheet = document.createElement("style");
+    styleSheet.textContent = novoCSS;
+    document.head.appendChild(styleSheet);
+});
+
+// ==============================================
+// INICIALIZAÇÃO
+// ==============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Atualizar preview quando campos mudarem
+    const campos = [
+        'armaNome', 'armaDano', 'armaCT', 'armaCriticos', 
+        'armaPassiva', 'armaPassivaRadiante', 'armaPassivaTek', 'armaDescricao'
+    ];
+    
+    campos.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            campo.addEventListener('input', atualizarPreview);
         }
     });
+    
+    // Inicializar tabela de modificadores
+    renderizarTabelaModificadores();
+    
+    // Carregar armas criadas
+    carregarArmasCriadas();
+    
+    console.log('Sistema de forja com modificadores inicializado!');
+});
+
+// ==============================================
+// EXPORTAR FUNÇÕES PARA ESCOPO GLOBAL
+// ==============================================
+
+window.selecionarRaridade = selecionarRaridade;
+window.toggleModificador = toggleModificador;
+window.toggleJoia = toggleJoia;
+window.criarArma = criarArma;
+window.verArmaCriada = verArmaCriada;
+window.copiarDadosArma = copiarDadosArma;
+window.adicionarArmaCriadaAFicha = adicionarArmaCriadaAFicha;
+window.removerArmaCriada = removerArmaCriada;
+window.limparFormulario = limparFormulario;
+
+
+// Adicione este código ao seu arquivo JavaScript existente
+
+// Função para abrir modal de forma otimizada
+function openModal(modal) {
+    modal.style.display = 'block';
+    document.body.classList.add('modal-open');
+    
+    // Focar no botão de fechar para acessibilidade
+    setTimeout(() => {
+        const closeBtn = modal.querySelector('.close-modal');
+        if (closeBtn) closeBtn.focus();
+    }, 100);
 }
 
-// Inicializar quando o DOM estiver carregado
-document.addEventListener('DOMContentLoaded', () => {
-    inicializarArmas();
-    showEra('pedra'); // Mostrar a primeira era por padrão
+// Função para fechar modal
+function closeModal(modal) {
+    if (typeof modal === 'string') {
+        const modalElement = document.getElementById(`modal-${modal}`);
+        if (modalElement) {
+            modalElement.style.display = 'none';
+        }
+    } else if (modal) {
+        modal.style.display = 'none';
+    }
+    
+    document.body.classList.remove('modal-open');
+}
+
+// Atualizar a função showWeaponDetails para usar o novo sistema
+function showWeaponDetails(armaId) {
+    // Encontrar a arma
+    let armaEncontrada = null;
+    for (const era in armasData) {
+        const arma = armasData[era].find(a => a.id === armaId);
+        if (arma) {
+            armaEncontrada = arma;
+            break;
+        }
+    }
+    
+    if (!armaEncontrada) return;
+    
+    // Criar ou atualizar modal
+    let modal = document.getElementById(`modal-${armaId}`);
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = `modal-${armaId}`;
+        modal.className = 'weapon-modal';
+        document.getElementById('modals-container').appendChild(modal);
+    }
+    
+    modal.innerHTML = `
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('${armaId}')">&times;</button>
+            <div class="modal-header">
+                <h3>${armaEncontrada.nome}</h3>
+                ${armaEncontrada.passivaRadiante ? '<span class="modal-radiante-badge">ARMA RADIANTE</span>' : ''}
+            </div>
+            <div class="modal-body">
+                ${armaEncontrada.imagem ? `<img src="${armaEncontrada.imagem}" alt="${armaEncontrada.nome}" class="modal-weapon-image">` : ''}
+                
+                <div class="modal-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Dano:</span>
+                        <span class="stat-value damage-highlight">${armaEncontrada.dano}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">CT:</span>
+                        <span class="stat-value">${armaEncontrada.ct}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Críticos:</span>
+                        <span class="stat-value">${armaEncontrada.criticos}</span>
+                    </div>
+                </div>
+                
+                <div class="modal-passives">
+                    ${armaEncontrada.passiva ? `
+                        <div class="passive-item">
+                            <h4>Passiva:</h4>
+                            <p>${armaEncontrada.passiva}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${armaEncontrada.passivaRadiante ? `
+                        <div class="passive-item radiante">
+                            <h4>Passiva Radiante:</h4>
+                            <p>${armaEncontrada.passivaRadiante}</p>
+                        </div>
+                    ` : ''}
+                </div>
+                
+                ${armaEncontrada.descricao ? `
+                    <div class="modal-description">
+                        <h4>Descrição:</h4>
+                        <p>${armaEncontrada.descricao}</p>
+                    </div>
+                ` : ''}
+                
+                <div class="modal-actions">
+                    <button onclick="adicionarAFicha('${armaId}')" class="btn-adicionar-modal">
+                        <i class="fas fa-plus"></i> Adicionar à Minha Ficha
+                    </button>
+                    <button onclick="closeModal('${armaId}')" class="btn-fechar-modal">
+                        Fechar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    openModal(modal);
+    
+    // Adicionar evento para fechar ao clicar fora
+    setTimeout(() => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal(modal);
+            }
+        });
+        
+        // Fechar com ESC
+        document.addEventListener('keydown', function escHandler(e) {
+            if (e.key === 'Escape') {
+                closeModal(modal);
+                document.removeEventListener('keydown', escHandler);
+            }
+        });
+    }, 10);
+}
+
+// Inicialização dos eventos de modal
+document.addEventListener('DOMContentLoaded', function() {
+    // Fechar modais quando clicar no botão de fechar
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('close-modal')) {
+            const modal = e.target.closest('.weapon-modal');
+            if (modal) {
+                closeModal(modal);
+            }
+        }
+    });
+    
+    // Fechar modais com ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modais = document.querySelectorAll('.weapon-modal[style*="display: block"]');
+            modais.forEach(modal => {
+                closeModal(modal);
+            });
+        }
+    });
 });
+
+// Adicione ao final do script.js da página de armas
+function adicionarArmaAFichaCompleta(arma) {
+    try {
+        // Carregar armas existentes
+        let fichaArmas = [];
+        const armasSalvas = localStorage.getItem('personagemArmas');
+        if (armasSalvas) {
+            fichaArmas = JSON.parse(armasSalvas);
+        }
+        
+        // Converter arma para formato da ficha
+        const armaParaFicha = {
+            id: arma.id,
+            nome: arma.nome,
+            dano: arma.dano,
+            ct: arma.ct || 'N/A',
+            dct: arma.dct || 'N/A',
+            criticos: arma.criticos || '',
+            passiva: arma.passiva || '',
+            passivaRadiante: arma.passivaRadiante || '',
+            passivaTek: arma.passivaTek || '',
+            descricao: arma.descricao || '',
+            raridade: arma.raridade || '',
+            resistencia: arma.resistencia || '',
+            modificadoresResumo: arma.modificadoresResumo || '',
+            modificadoresLista: arma.modificadoresLista || [],
+            dataAdicao: new Date().toISOString(),
+            origem: arma.origem || 'arsenal',
+            personalizada: arma.personalizada || false
+        };
+        
+        // Verificar se já existe
+        const armaJaExiste = fichaArmas.some(a => a.id === arma.id);
+        
+        if (!armaJaExiste) {
+            fichaArmas.push(armaParaFicha);
+            localStorage.setItem('personagemArmas', JSON.stringify(fichaArmas));
+            
+            // Notificação
+            mostrarNotificacaoArma(arma.nome);
+            
+            return true;
+        } else {
+            const confirmacao = confirm(`"${arma.nome}" já está na sua ficha. Deseja adicionar outra vez?`);
+            if (confirmacao) {
+                fichaArmas.push(armaParaFicha);
+                localStorage.setItem('personagemArmas', JSON.stringify(fichaArmas));
+                mostrarNotificacaoArma(arma.nome + " (cópia)");
+                return true;
+            }
+            return false;
+        }
+        
+    } catch (error) {
+        console.error('Erro ao adicionar arma à ficha:', error);
+        alert('❌ Erro ao adicionar arma à ficha.');
+        return false;
+    }
+}
+
+// Substitua a função adicionarAFicha na página de armas por esta versão melhorada
+window.adicionarAFicha = function(armaId) {
+    console.log(`Tentando adicionar arma: ${armaId}`);
+    
+    // Encontrar a arma
+    let armaEncontrada = null;
+    for (const era in armasData) {
+        const arma = armasData[era].find(a => a.id === armaId);
+        if (arma) {
+            armaEncontrada = arma;
+            break;
+        }
+    }
+    
+    if (!armaEncontrada) {
+        alert('Erro: Arma não encontrada.');
+        return false;
+    }
+    
+    return adicionarArmaAFichaCompleta(armaEncontrada);
+};
