@@ -1190,7 +1190,14 @@ const eventos = {
        "Uma viagem interrompida. Um temporal atinge o navio",
        "Uma viagem tranquila. Até baterem em uma vela de espinossauro marinho no meio do barco",
        "Uma vigaem tranquila. Até um Karkinos segurar o barco achando que é comida.",
-       "",
+       "Uma viagem tranquila. Até um Leviatã aparecer e atacar o barco",
+       "Uma viagem tranquila. Até nada acontecer. Que bom!",
+       "Uma vigaem tranquila. Até as maldições do mar arderem e causarem dano aos naufragados. 2D12 de dano Verdadeiro.",
+       "Uma viagem tranquila. Até vocês baterem o barco em corais.",
+       "Uma viagem tranquila. Até o Mar ficar completamente calmo e sem vento, parando o barco por 1d4 horas.",
+       "Uma viagem tranquila. Até o mar ficar quieto demais..."
+       
+    
     ],
 
     Item2: [
