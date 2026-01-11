@@ -178,7 +178,7 @@ const actionsData = [
         type: "Padrão",
         shortDesc: "Golpes físicos em combate",
         fullDesc: "Uma ação padrão de luta ou golpes físicos.",
-        mechanics: "Teste de Força ou Agilidade (escolha do jogador) para acertar golpes corpo-a-corpo. Dano baseado na arma + modificador de atributo.",
+        mechanics: "Teste de Força ou Agilidade (escolha do mestre) para acertar golpes corpo-a-corpo. Dano baseado na arma + modificador de atributo.",
         notes: "Pode ser combinada com outras ações como Combo ou Fintar. Especializações em armas específicas concedem bônus."
     },
     {
@@ -214,7 +214,7 @@ const actionsData = [
         type: "Passiva",
         shortDesc: "Ataques em sequência rápida",
         fullDesc: "Uma ação passiva que libera um ataque de combate com combo.",
-        mechanics: "Após um ataque bem-sucedido, pode realizar um ataque adicional com penalidade progressiva (-10 por ataque extra). Máximo de ataques = Força Atual.",
+        mechanics: "Após um ataque bem-sucedido, pode realizar um ataque adicional com penalidade progressiva (-10 por ataque extra). Máximo de ataques = 1 ataque extra-> +5 em Combo.",
         notes: "Máximo de ataques igual a Força usada em combo para personagens normais. Monstros e chefes podem ter combos especiais."
     },
     {
@@ -223,7 +223,7 @@ const actionsData = [
         type: "Passiva",
         shortDesc: "Enganar oponente para abrir defesa",
         fullDesc: "Uma ação passiva que libera um ataque de combate com finta.",
-        mechanics: "Teste de Enganação contra Percepção do alvo. Sucesso: próximo ataque causa 2x, enganando o alvo. Falha: o ataque normal ocorre, pórem perde -5 em Luta contra o oponente.",
+        mechanics: "Teste de Enganação contra Percepção do alvo. Sucesso: próximo ataque causa 2x, enganando o alvo. Falha: o ataque normal ocorre, pórem perde -5 em Luta contra o oponente. O máximo de Fintas em uma rodada é igual o valor de peso no bônus. +5 = 1 Finta.",
         notes: "Particularmente eficaz contra inimigos com armadura pesada. Requer movimento livre para executar."
     },
     {
@@ -242,7 +242,7 @@ const actionsData = [
         shortDesc: "Foco para aumentar precisão",
         fullDesc: "Uma ação passiva de um ataque de Pontaria de combate.",
         mechanics: "Usar ação completa para mirar concede +5 no próximo ataque à distância. Pode mirar em partes específicas do corpo com penalidades/bônus.",
-        notes: "Mírar na cabeça: -10 para acertar, dano crítico automático se acertar. Mírar nas pernas: -4, reduz movimento do alvo pela metade."
+        notes: "Mírar na cabeça: -10 para acertar, dano crítico automático se acertar. Mírar nas pernas: -4, reduz movimento do alvo pela metade. O alcance máximo de Mirar é igual o peso do bônus usado. +5 = 9 metros."
     },
     {
         name: "Força bruta",
