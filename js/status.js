@@ -1185,6 +1185,14 @@ const eventos = {
         "Amarberry", "Azulberry", "Mejoberry", "Narcoberry", "Stimberry", "Tintoberry", "Planta X", "Semente de Trigo", "Semente de Arroz", "Semente de Soja", "Limão", "Milho", "Cenoura", "Batata", "Maçã", "Banana", "Manga", "Cereja"
     ],
 
+    navio: [
+       "Uma viagem tranquila sem eventos ou encontros",
+       "Uma viagem interrompida. Um temporal atinge o navio",
+       "Uma viagem tranquila. Até baterem em uma vela de espinossauro marinho no meio do barco",
+       "Uma vigaem tranquila. Até um Karkinos segurar o barco achando que é comida.",
+       "",
+    ],
+
     Item2: [
         "Baú Normal - Item de pedra",
         "Baú Vazio - Que Azar",

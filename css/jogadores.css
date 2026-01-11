@@ -2726,20 +2726,58 @@ select:focus {
     align-items: center;
     gap: 15px;
     padding: 15px 40px;
-    background: rgba(4, 226, 255, 0.05);
-    color: #04e2ff;
+    background: rgba(35, 3, 56, 0.952);
+    color: #a1f1fc;
     text-decoration: none;
     font-family: 'Orbitron', sans-serif;
     font-size: 1.1rem;
     font-weight: bold;
     letter-spacing: 3px;
     text-transform: uppercase;
-    border: 2px solid #04e2ff;
+    border: 2px solid #85027e;
     border-radius: 4px;
     overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(4, 226, 255, 0.2), 
-                inset 0 0 10px rgba(4, 226, 255, 0.1);
+    box-shadow: 0 0 15px rgba(138, 237, 250, 0.2), 
+                inset 0 0 10px rgba(113, 231, 247, 0.1);
+}
+
+/* Garante que o corpo da página ocupe toda a altura */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Faz o conteúdo principal empurrar o footer para baixo */
+main {
+    flex: 1 0 auto;
+    width: 100%; /* Garante que o main ocupe a largura total */
+    max-width: 1200px; /* Ou a largura que você definiu para a ficha */
+    margin: 0 auto;
+}
+
+/* Ajuste do Footer */
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    background-color: #0a0a0a; /* Cor de fundo do seu tema */
+    margin-top: 50px;
+    padding: 40px 0 20px 0;
+    border-top: 1px solid var(--neon-cyan); /* O estilo que estamos usando */
+}
+
+.footer-content {
+    max-width: 1200px; /* Alinha com o resto do site */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
 }
 
 /* Efeito de Hover */

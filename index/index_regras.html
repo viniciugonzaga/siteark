@@ -163,6 +163,96 @@
         </div>
     </section>
 
+
+
+    <!-- Sessão de Bônus em Ações do RPG Ark -->
+<section class="ark-actions-section" id="ark-actions">
+    <div class="container">
+        <h2 class="section-title">Bônus em Ações - RPG Ark</h2>
+        <p class="section-subtitle">Clique em qualquer ação para ver detalhes sobre seu funcionamento</p>
+        
+        <!-- Filtros por categoria -->
+        <div class="filter-container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Todas as Ações</button>
+                <button class="filter-btn" data-filter="defesas">Defesas</button>
+                <button class="filter-btn" data-filter="combate">Combate</button>
+                <button class="filter-btn" data-filter="mecanico">Mecânico</button>
+                <button class="filter-btn" data-filter="tipos">Tipos de Ações</button>
+            </div>
+            <div class="search-box">
+                <input type="text" id="action-search" placeholder="Buscar ação...">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+        
+        <!-- Tabela de Ações -->
+        <div class="table-responsive">
+            <table class="actions-table">
+                <thead>
+                    <tr>
+                        <th class="col-name">Nome da Ação</th>
+                        <th class="col-category">Categoria</th>
+                        <th class="col-type">Tipo de Ação</th>
+                        <th class="col-description">Descrição Resumida</th>
+                        <th class="col-details">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody id="actions-table-body">
+                    <!-- As ações serão inseridas via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Modal para detalhes da ação -->
+        <div id="action-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modal-title">Esquiva</h2>
+                    <span class="close-modal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Categoria:</span>
+                            <span id="modal-category" class="info-value">DEFESAS</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Tipo de Ação:</span>
+                            <span id="modal-type" class="info-value">Reação</span>
+                        </div>
+                        <div class="info-item full-width">
+                            <span class="info-label">Descrição:</span>
+                            <p id="modal-description">Uma defesa usada como reação em uma rodada usando a agilidade, desviando do ataque.</p>
+                        </div>
+                        <div class="info-item full-width">
+                            <span class="info-label">Mecânica Detalhada:</span>
+                            <div id="modal-mechanics" class="mechanics-content">
+                                <!-- Conteúdo será inserido via JavaScript -->
+                            </div>
+                        </div>
+                        <div class="info-item full-width">
+                            <span class="info-label">Notas Adicionais:</span>
+                            <div id="modal-notes" class="notes-content">
+                                <!-- Conteúdo será inserido via JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-close-modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Nota sobre ação válida -->
+        <div class="valid-action-note">
+            <h3>Mecânica de Ação Válida</h3>
+            <p>Pode também ser usada a mecânica de ação válida, onde o jogador realiza ações até ser interrompido por um teste que dificulte sua ação.</p>
+        </div>
+    </div>
+</section>
+
   <!-- CONTAINER DE DIFICULDADES -->
     <div class="dificuldades-container">
         
@@ -359,7 +449,7 @@
         <div class="era-container-ark era-aço-ark">
             <div class="era-header-ark">
                 <div class="era-icon-ark icon-aço-ark">
-                    <img src="../imagens/icon_era_aco.png" alt="Era do Aço">
+                    <img src="../imagens/icon_minério_raro.jpg" alt="Era do Aço">
                 </div>
                 <h3 class="era-title-ark">III. A Era de Aço</h3>
             </div>
