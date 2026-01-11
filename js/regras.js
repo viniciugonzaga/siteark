@@ -214,8 +214,8 @@ const actionsData = [
         type: "Passiva",
         shortDesc: "Ataques em sequência rápida",
         fullDesc: "Uma ação passiva que libera um ataque de combate com combo.",
-        mechanics: "Após um ataque bem-sucedido, pode realizar um ataque adicional com penalidade progressiva (-2 por ataque extra). Máximo de ataques = nível/5 (arredondado para cima).",
-        notes: "Máximo de 3 ataques em combo para personagens normais. Monstros e chefes podem ter combos especiais."
+        mechanics: "Após um ataque bem-sucedido, pode realizar um ataque adicional com penalidade progressiva (-10 por ataque extra). Máximo de ataques = Força Atual.",
+        notes: "Máximo de ataques igual a Força usada em combo para personagens normais. Monstros e chefes podem ter combos especiais."
     },
     {
         name: "Fintar",
@@ -223,7 +223,7 @@ const actionsData = [
         type: "Passiva",
         shortDesc: "Enganar oponente para abrir defesa",
         fullDesc: "Uma ação passiva que libera um ataque de combate com finta.",
-        mechanics: "Teste de Enganação contra Percepção do alvo. Sucesso: próximo ataque ignora 50% da CA do alvo. Falha: o ataque normal ocorre.",
+        mechanics: "Teste de Enganação contra Percepção do alvo. Sucesso: próximo ataque causa 2x, enganando o alvo. Falha: o ataque normal ocorre, pórem perde -5 em Luta contra o oponente.",
         notes: "Particularmente eficaz contra inimigos com armadura pesada. Requer movimento livre para executar."
     },
     {
@@ -242,7 +242,7 @@ const actionsData = [
         shortDesc: "Foco para aumentar precisão",
         fullDesc: "Uma ação passiva de um ataque de Pontaria de combate.",
         mechanics: "Usar ação completa para mirar concede +5 no próximo ataque à distância. Pode mirar em partes específicas do corpo com penalidades/bônus.",
-        notes: "Mírar na cabeça: -8 para acertar, dano crítico automático se acertar. Mírar nas pernas: -4, reduz movimento do alvo pela metade."
+        notes: "Mírar na cabeça: -10 para acertar, dano crítico automático se acertar. Mírar nas pernas: -4, reduz movimento do alvo pela metade."
     },
     {
         name: "Força bruta",
@@ -250,8 +250,8 @@ const actionsData = [
         type: "Padrão",
         shortDesc: "Usar força pura em ações",
         fullDesc: "Uma ação Padrão que usa como prática sua Força em ações.",
-        mechanics: "Teste de Força para ações como arrombar portas (CD 15-25), levantar objetos pesados (peso = Força x 10kg), quebrar barreiras (dano = Força x 1d4).",
-        notes: "Pode ser usada em combate para atordoar ou empurrar oponentes. Empurrar: teste oposto de Força, sucesso move alvo 1,5m."
+        mechanics: "Teste de Força para ações como arrombar portas (CD 15-25), levantar objetos pesados (peso = Força x 10kg), quebrar barreiras (dano = Força x 1d6).",
+        notes: "Pode ser usada em combate para atordoar ou empurrar oponentes. Empurrar: teste oposto de Força, sucesso move alvo 1,5m ou mais escalando com a Força."
     },
     {
         name: "Acrobacia",
